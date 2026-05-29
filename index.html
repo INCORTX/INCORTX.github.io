@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" style="color-scheme: dark;">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INCORTX // Advanced Machine Intelligence</title>
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <!-- Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
@@ -83,8 +86,13 @@
         }
 
         @keyframes float {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(50px, 80px) scale(1.1); }
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(50px, 80px) scale(1.1);
+            }
         }
 
         /* Main Container */
@@ -200,8 +208,8 @@
             max-width: 800px;
             text-align: center;
             padding: 3rem;
-            background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%);
-            border-top: 1px solid rgba(255,255,255,0.05);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 24px;
             z-index: 10;
             position: relative;
@@ -260,8 +268,11 @@
         .course-card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.06), transparent 40%);
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.06), transparent 40%);
             z-index: 0;
             opacity: 0;
             transition: opacity 0.4s ease;
@@ -381,6 +392,7 @@
                 flex-direction: column;
                 gap: 1.5rem;
             }
+
             .footer-content {
                 flex-direction: column;
                 gap: 1rem;
@@ -389,6 +401,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- Ambient Background -->
@@ -413,7 +426,8 @@
         <section class="hero fade-up">
             <div class="hero-badge">Academic Portal</div>
             <h1>Advanced Machine<br>Intelligence</h1>
-            <p>Exclusive academic resources, engineering fundamentals, and advanced research materials designed for elite engineers, researchers, and innovators.</p>
+            <p>Exclusive academic resources, engineering fundamentals, and advanced research materials designed for
+                elite scientists, researchers, and innovators.</p>
         </section>
 
         <!-- Philosophy Section -->
@@ -424,7 +438,7 @@
                 Technology (<span class="highlight">-tx</span>)
             </div>
             <p class="philosophy-desc">
-                "ศูนย์กลางระบบประมวลผลทางปัญญาที่หลอมรวมนวัตกรรมและเทคโนโลยีเข้าไว้ด้วยกันอย่างชาญฉลาด สร้างสรรค์เทคโนโลยีขั้นสูงที่คิดวิเคราะห์และบูรณาการเข้ากับทุกระบบได้อย่างเป็นเนื้อเดียวกัน"
+                "A cognitive processing core that intelligently fuses innovation and technology, architecting advanced systems capable of deep analytical reasoning and seamless universal integration."
             </p>
         </section>
 
@@ -437,7 +451,8 @@
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">Signal Processing</h3>
-                    <p class="card-desc">Mathematical foundations of signal analysis in the frequency domain. Covering Fourier transforms, digital filters, and real-time audio systems.</p>
+                    <p class="card-desc">Mathematical foundations of signal analysis in the frequency domain. Covering
+                        Fourier transforms, digital filters, and real-time audio systems.</p>
                     <div class="card-footer">
                         <span>Enter Course</span>
                         <i class="ph-bold ph-arrow-right"></i>
@@ -452,7 +467,8 @@
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">Computer Vision</h3>
-                    <p class="card-desc">Advanced techniques for spatial intelligence. Deep learning algorithms, feature extraction, and real-time inference on edge devices.</p>
+                    <p class="card-desc">Advanced techniques for spatial intelligence. Deep learning algorithms, feature
+                        extraction, and real-time inference on edge devices.</p>
                     <div class="card-footer">
                         <span>Enter Course</span>
                         <i class="ph-bold ph-arrow-right"></i>
@@ -486,4 +502,5 @@
         });
     </script>
 </body>
+
 </html>
