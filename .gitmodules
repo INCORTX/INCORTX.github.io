@@ -1,0 +1,3 @@
+[submodule "SignalProcessing"]
+	path = SignalProcessing
+	url = https://github.com/INCORTX/SignalProcessing.git
