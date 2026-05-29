@@ -254,7 +254,7 @@
 
         .philosophy-desc {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             line-height: 1.5;
             color: #f8fafc;
             font-style: italic;
@@ -272,35 +272,102 @@
         .philosophy-breakdown {
             display: flex;
             justify-content: center;
-            gap: 4rem;
+            gap: 1.5rem;
             width: 100%;
             flex-wrap: wrap;
         }
 
         .breakdown-item {
+            flex: 1;
+            min-width: 240px;
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 1.5rem;
             text-align: center;
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            gap: 1rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .breakdown-item::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .breakdown-item:hover {
+            background: rgba(0, 229, 255, 0.02);
+            border-color: rgba(0, 229, 255, 0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.2);
+        }
+
+        .breakdown-item:hover::before {
+            opacity: 1;
         }
 
         .breakdown-item .prefix {
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 700;
-            font-size: 1.25rem;
+            font-size: 1.4rem;
             letter-spacing: 0.15em;
-            color: #2dd4bf;
+            background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             text-transform: uppercase;
         }
+        
+        .breakdown-item:nth-child(2) .prefix {
+            background: linear-gradient(135deg, #fff 0%, #2dd4bf 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-        .breakdown-item .meaning {
+        .breakdown-item:nth-child(3) .prefix {
+            background: linear-gradient(135deg, #fff 0%, #fcd34d 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .meaning-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .meaning-tags span {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
+            font-weight: 500;
             color: #94a3b8;
-            line-height: 1.6;
-            letter-spacing: 0.05em;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            padding: 0.35rem 0.6rem;
+            border-radius: 8px;
             text-transform: uppercase;
-            max-width: 260px;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+        }
+
+        .breakdown-item:hover .meaning-tags span {
+            color: #e2e8f0;
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .breakdown-item:hover .meaning-tags span:hover {
+            color: #fff;
+            background: rgba(0, 229, 255, 0.15);
+            border-color: rgba(0, 229, 255, 0.3);
+            transform: translateY(-1px);
         }
 
         /* Course Grid */
@@ -455,17 +522,17 @@
         @media (max-width: 768px) {
             .philosophy-breakdown {
                 flex-direction: column;
-                gap: 2rem;
-                align-items: center;
+                gap: 1.5rem;
+                align-items: stretch;
             }
-            .breakdown-item .meaning {
-                max-width: 100%;
+            .breakdown-item {
+                min-width: 100%;
             }
             .glass-panel {
                 padding: 2.5rem 1.5rem;
             }
             .philosophy-desc {
-                font-size: 1.35rem;
+                font-size: 1.45rem;
             }
 
             .hero h1 {
@@ -522,15 +589,36 @@
                 <div class="philosophy-breakdown">
                     <div class="breakdown-item">
                         <div class="prefix">IN-</div>
-                        <div class="meaning">Intelligence &middot; Inference &middot; Insight<br>Integration &middot; Incorporate &middot; Innovation</div>
+                        <div class="meaning-tags">
+                            <span>Intelligence</span>
+                            <span>Inference</span>
+                            <span>Insight</span>
+                            <span>Integration</span>
+                            <span>Incorporate</span>
+                            <span>Innovation</span>
+                        </div>
                     </div>
                     <div class="breakdown-item">
                         <div class="prefix">COR</div>
-                        <div class="meaning">Cortex &middot; Core &middot; Corpus<br>Correlation &middot; Coordination &middot; Correction</div>
+                        <div class="meaning-tags">
+                            <span>Cortex</span>
+                            <span>Core</span>
+                            <span>Corpus</span>
+                            <span>Correlation</span>
+                            <span>Coordination</span>
+                            <span>Correction</span>
+                        </div>
                     </div>
                     <div class="breakdown-item">
                         <div class="prefix">-TX</div>
-                        <div class="meaning">Technology &middot; Transformation &middot; Transmission<br>Transfer &middot; Tensor &middot; Transaction</div>
+                        <div class="meaning-tags">
+                            <span>Technology</span>
+                            <span>Transformation</span>
+                            <span>Transmission</span>
+                            <span>Transfer</span>
+                            <span>Tensor</span>
+                            <span>Transaction</span>
+                        </div>
                     </div>
                 </div>
             </div>
