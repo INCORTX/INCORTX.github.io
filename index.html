@@ -127,6 +127,12 @@
             gap: 0.75rem;
         }
 
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
         .nav-links a {
             color: var(--text-muted);
             text-decoration: none;
@@ -158,6 +164,34 @@
         .nav-links a:hover::after {
             transform: scaleX(1);
             transform-origin: left;
+        }
+
+        .nav-profile-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.45rem 1.1rem;
+            background: rgba(45, 212, 191, 0.08);
+            border: 1px solid rgba(45, 212, 191, 0.2);
+            border-radius: 99px;
+            color: #2dd4bf !important;
+            font-size: 0.78rem !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s ease !important;
+        }
+
+        .nav-profile-btn:hover {
+            background: rgba(45, 212, 191, 0.15) !important;
+            border-color: rgba(45, 212, 191, 0.4) !important;
+            color: #5eead4 !important;
+            transform: none !important;
+        }
+
+        .nav-profile-btn::after {
+            display: none !important;
         }
 
         /* Hero Section */
@@ -564,6 +598,11 @@
             <a href="#" class="brand">
                 INCORTX
             </a>
+            <nav class="nav-links">
+                <a href="https://profile.wkneil.com" target="_blank" class="nav-profile-btn">
+                    <i class="ph ph-user-circle"></i> Instructor Profile
+                </a>
+            </nav>
         </header>
 
         <!-- Hero -->
@@ -665,6 +704,7 @@
         <div class="footer-content">
             <p>&copy; 2026 INCORTX Research Lab. All rights reserved.</p>
             <div class="footer-links">
+                <a href="https://profile.wkneil.com" target="_blank">Instructor Profile</a>
                 <a href="mailto:wasu.ku@kmitl.ac.th">Contact</a>
             </div>
         </div>
