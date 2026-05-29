@@ -202,40 +202,105 @@
             font-weight: 300;
         }
 
-        /* Philosophy Section */
+        /* Philosophy Section - Premium Glassmorphism */
         .philosophy {
-            margin: 2rem auto 4rem;
-            max-width: 800px;
-            text-align: center;
-            padding: 3rem;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 100%);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 24px;
+            margin: 2rem auto 6rem;
+            max-width: 900px;
+            position: relative;
             z-index: 10;
+        }
+
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(0, 229, 255, 0.08);
+            border-radius: 24px;
+            padding: 3.5rem;
+            box-shadow: 
+                0 4px 24px -1px rgba(0, 0, 0, 0.3),
+                inset 0 1px 1px rgba(255, 255, 255, 0.05),
+                inset 0 0 40px rgba(0, 229, 255, 0.03);
+            transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+        }
+        
+        .glass-panel:hover {
+            border-color: rgba(0, 229, 255, 0.25);
+            box-shadow: 
+                0 10px 40px -1px rgba(0, 229, 255, 0.1),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1),
+                inset 0 0 40px rgba(0, 229, 255, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .philosophy-layout {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .philosophy-quote {
+            text-align: center;
             position: relative;
         }
 
-        .philosophy-etymology {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 0.95rem;
-            letter-spacing: 0.1em;
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-            line-height: 2;
-            text-transform: uppercase;
-        }
-
-        .philosophy-etymology .highlight {
-            color: #2dd4bf;
-            font-weight: 700;
+        .philosophy-quote i {
+            font-size: 2.5rem;
+            color: rgba(0, 229, 255, 0.2);
+            margin-bottom: 1rem;
+            display: inline-block;
         }
 
         .philosophy-desc {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            line-height: 1.6;
-            color: #e2e8f0;
+            font-size: 1.6rem;
+            line-height: 1.5;
+            color: #f8fafc;
             font-style: italic;
+            font-weight: 400;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .philosophy-divider {
+            height: 1px;
+            width: 120px;
+            background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.4), transparent);
+        }
+
+        .philosophy-breakdown {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .breakdown-item {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .breakdown-item .prefix {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: 0.15em;
+            color: #2dd4bf;
+            text-transform: uppercase;
+        }
+
+        .breakdown-item .meaning {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.8rem;
+            color: #94a3b8;
+            line-height: 1.6;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            max-width: 200px;
         }
 
         /* Course Grid */
@@ -388,7 +453,22 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            header {
+            .philosophy-breakdown {
+                flex-direction: column;
+                gap: 2rem;
+                align-items: center;
+            }
+            .breakdown-item .meaning {
+                max-width: 100%;
+            }
+            .glass-panel {
+                padding: 2.5rem 1.5rem;
+            }
+            .philosophy-desc {
+                font-size: 1.35rem;
+            }
+
+            .hero h1 {
                 flex-direction: column;
                 gap: 1.5rem;
             }
@@ -428,15 +508,32 @@
         </section>
 
         <!-- Philosophy Section -->
-        <section class="philosophy">
-            <div class="philosophy-etymology">
-                <span class="highlight">In-</span> (Intelligence, Inference, Insight, Integration, Incorporate, Innovation) <br>
-                <span class="highlight">Cort</span>ex &nbsp;&nbsp;&bull;&nbsp;&nbsp;
-                Technology (<span class="highlight">-tx</span>)
+        <section class="philosophy glass-panel fade-up">
+            <div class="philosophy-layout">
+                <div class="philosophy-quote">
+                    <i class="ph-fill ph-quotes"></i>
+                    <p class="philosophy-desc">
+                        "A cognitive processing core that intelligently fuses innovation and technology, architecting advanced systems capable of deep analytical reasoning and seamless universal integration."
+                    </p>
+                </div>
+                
+                <div class="philosophy-divider"></div>
+
+                <div class="philosophy-breakdown">
+                    <div class="breakdown-item">
+                        <div class="prefix">IN-</div>
+                        <div class="meaning">Intelligence &middot; Inference &middot; Insight<br>Integration &middot; Incorporate &middot; Innovation</div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="prefix">CORT</div>
+                        <div class="meaning">Cortex<br>(Cognitive Center)</div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="prefix">-TX</div>
+                        <div class="meaning">Technology</div>
+                    </div>
+                </div>
             </div>
-            <p class="philosophy-desc">
-                "A cognitive processing core that intelligently fuses innovation and technology, architecting advanced systems capable of deep analytical reasoning and seamless universal integration."
-            </p>
         </section>
 
         <!-- Course Grid -->
