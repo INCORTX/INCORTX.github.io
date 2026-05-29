@@ -1,28 +1,454 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="color-scheme: dark;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INCORTX Classes</title>
+    <title>INCORTX // Advanced Machine Intelligence</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; text-align: center; padding: 50px; background-color: #f9fafb; color: #111827; }
-        h1 { color: #2563eb; }
-        .courses { display: flex; flex-direction: column; gap: 15px; max-width: 400px; margin: 0 auto; }
-        a.button { display: block; padding: 15px 20px; background-color: #ffffff; color: #2563eb; text-decoration: none; border-radius: 8px; border: 1px solid #e5e7eb; font-weight: bold; box-shadow: 0 1px 3px rgba(0,0,0,0.1); transition: all 0.2s; }
-        a.button:hover { background-color: #f3f4f6; transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .instructor-link { margin-top: 40px; display: inline-block; color: #6b7280; text-decoration: none; border-bottom: 1px dotted #6b7280; }
-        .instructor-link:hover { color: #374151; }
+        /* CSS Reset & Variables */
+        :root {
+            --bg-void: #050811;
+            --bg-deep: #0a101f;
+            --text-primary: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-glow-teal: rgba(13, 148, 136, 0.4);
+            --accent-glow-violet: rgba(76, 29, 149, 0.4);
+            --glass-bg: rgba(15, 23, 42, 0.45);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-highlight: rgba(255, 255, 255, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-void);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Ambient Glowing Background (Glassmorphism Environment) */
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            background: var(--bg-void);
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.6;
+            animation: float 20s infinite ease-in-out alternate;
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: var(--accent-glow-teal);
+            top: -10%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 600px;
+            height: 600px;
+            background: var(--accent-glow-violet);
+            bottom: -20%;
+            right: -10%;
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 80px) scale(1.1); }
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Header / Navigation */
+        header {
+            padding: 2.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .brand {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: 0.15em;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .brand-icon {
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, #0d9488, #4c1d95);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--text-primary);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 6rem 0 4rem;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(13, 148, 136, 0.1);
+            border: 1px solid rgba(13, 148, 136, 0.2);
+            border-radius: 99px;
+            color: #2dd4bf;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            font-weight: 600;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* Course Grid */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0 8rem;
+            z-index: 10;
+        }
+
+        .course-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Hover effect mask */
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.06), transparent 40%);
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--glass-highlight);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+
+        .course-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: #e2e8f0;
+            z-index: 1;
+        }
+
+        .card-content {
+            z-index: 1;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 0.75rem;
+            line-height: 1.2;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            flex: 1;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: auto;
+        }
+
+        .card-footer i {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .course-card:hover .card-footer {
+            color: #38bdf8;
+        }
+
+        .course-card:hover .card-footer i {
+            transform: translateX(4px);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--glass-border);
+            padding: 2rem 0;
+            margin-top: auto;
+            z-index: 10;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            .footer-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
-    <h1>INCORTX Classes</h1>
-    <p>Welcome to INCORTX learning portal.</p>
-    
-    <div class="courses">
-        <a href="/SignalProcessing" class="button">Signal Processing</a>
-        <a href="/ComputerVision" class="button">Computer Vision</a>
+
+    <!-- Ambient Background -->
+    <div class="ambient-bg">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
     </div>
 
-    <a href="/profile" class="instructor-link">Instructor Profile</a>
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Navigation -->
+        <header>
+            <a href="#" class="brand">
+                <div class="brand-icon">
+                    <i class="ph-bold ph-infinity" style="color: white; font-size: 1.2rem;"></i>
+                </div>
+                INCORTX
+            </a>
+            <nav class="nav-links">
+                <a href="http://cv.wkneil.com" target="_blank">Instructor Profile</a>
+            </nav>
+        </header>
+
+        <!-- Hero -->
+        <section class="hero fade-up">
+            <div class="hero-badge">Academic Portal</div>
+            <h1>Advanced Machine<br>Intelligence</h1>
+            <p>Exclusive academic resources, engineering fundamentals, and advanced research materials designed for elite software engineers.</p>
+        </section>
+
+        <!-- Course Grid -->
+        <section class="course-grid">
+            <!-- Signal Processing -->
+            <a href="/SignalProcessing" class="course-card">
+                <div class="card-icon">
+                    <i class="ph ph-waveform"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Signal Processing</h3>
+                    <p class="card-desc">Mathematical foundations of signal analysis in the frequency domain. Covering Fourier transforms, digital filters, and real-time audio systems.</p>
+                    <div class="card-footer">
+                        <span>Enter Course</span>
+                        <i class="ph-bold ph-arrow-right"></i>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Computer Vision -->
+            <a href="/ComputerVision" class="course-card">
+                <div class="card-icon">
+                    <i class="ph ph-bounding-box"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Computer Vision</h3>
+                    <p class="card-desc">Advanced techniques for spatial intelligence. Deep learning algorithms, feature extraction, and real-time inference on edge devices.</p>
+                    <div class="card-footer">
+                        <span>Enter Course</span>
+                        <i class="ph-bold ph-arrow-right"></i>
+                    </div>
+                </div>
+            </a>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 INCORTX Research Lab. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="http://wk.incortx.com">Instructor CV</a>
+                <a href="mailto:wasu.ku@kmitl.ac.th">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Mouse Tracking for Cards -->
+    <script>
+        document.querySelectorAll('.course-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
 </body>
 </html>
