@@ -1,0 +1,1847 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data-First Data Science: Foundations and Strategic Preparation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Urbanist:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* 1. THE SETUP */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #e5e5e5;
+            display: block;
+            text-align: center;
+            margin: 0;
+            min-height: 100vh;
+            padding: 40px 20px;
+            font-family: 'Urbanist', sans-serif;
+            color: #333;
+            overflow-x: auto;
+        }
+
+        .slide-container {
+            text-align: left;
+            align-items: flex-start;
+            background-color: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: inline-flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 40px;
+            width: 1024px;
+            height: 768px;
+            flex-shrink: 0;
+            justify-content: flex-start;
+            overflow: hidden;
+            padding: 60px 60px;
+            padding-bottom: 90px;
+            position: relative;
+            page-break-after: always;
+        }
+
+        .slide-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: 40px 40px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .slide-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(21, 101, 192, 0.08) 0%, transparent 70%);
+            filter: blur(40px);
+            z-index: 0;
+        }
+
+        .slide-container>* {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+
+        #slide1::before,
+        #slide1::after {
+            display: none !important;
+        }
+
+        /* 2. TYPOGRAPHY */
+        h1,
+        h2,
+        h3,
+        h4 {
+            color: #1a1a1a;
+            margin: 0;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        h1 {
+            font-size: 60px;
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            font-size: 48px;
+            margin-bottom: 25px;
+            color: #1565C0;
+        }
+
+        h3 {
+            font-size: 26px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+        }
+
+        p,
+        li {
+            font-size: 20px;
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .accent {
+            color: #1565C0;
+        }
+
+        .text-small {
+            font-size: 16px;
+            color: #6b7280;
+        }
+
+        /* 3. LAYOUT UTILITIES */
+        .content-area {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+        }
+
+        .single-column {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .image-wrapper {
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+            max-height: 450px;
+        }
+
+        .image-wrapper img,
+        .image-wrapper svg {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 20px;
+        }
+
+        .golden-rule-box {
+            width: 100%;
+            max-width: 400px;
+            min-width: 300px;
+            aspect-ratio: 1 / 1;
+            flex: 0 0 auto;
+            box-sizing: border-box;
+        }
+
+        /* Title Page (Slide 1) */
+        #slide1 {
+            display: inline-grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            padding: 0 !important;
+            background-color: #ffffff !important;
+            gap: 0;
+            align-items: stretch;
+            justify-content: stretch;
+            overflow: hidden;
+            width: 1024px;
+            height: 768px;
+            flex-shrink: 0;
+        }
+
+        #slide1 .left-col {
+            padding: 80px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            z-index: 10;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        #slide1 .academic-tag {
+            font-family: 'Urbanist', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #1565C0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #slide1 .academic-tag::before {
+            content: '';
+            width: 40px;
+            height: 2px;
+            background: #1565C0;
+        }
+
+        #slide1 .title-wrapper {
+            margin-top: -40px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        #slide1 .left-col h1 {
+            font-family: 'Urbanist', sans-serif;
+            font-size: 64px;
+            font-weight: 800;
+            line-height: 0.95;
+            color: #0F172A;
+            letter-spacing: -2px;
+            margin-bottom: 30px;
+            margin-top: 0;
+        }
+
+        #slide1 .left-col h1 .highlight {
+            color: #1565C0;
+            position: relative;
+            display: inline-block;
+        }
+
+        #slide1 .subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 34px;
+            font-weight: 400;
+            font-style: italic;
+            color: #52525B;
+            line-height: 1.2;
+            max-width: 95%;
+            border-left: 4px solid #1565C0;
+            padding-left: 25px;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        #slide1 .presenter-block {
+            margin-bottom: 20px;
+        }
+
+        #slide1 .presenter-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0F172A;
+            letter-spacing: -0.5px;
+        }
+
+        #slide1 .presenter-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            color: #64748B;
+            font-style: italic;
+            margin-top: 4px;
+        }
+
+        #slide1 .meta-data {
+            display: flex;
+            gap: 40px;
+            border-top: 1px solid #E2E8F0;
+            padding-top: 20px;
+            font-size: 13px;
+            color: #94A3B8;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        #slide1 .right-col {
+            background: linear-gradient(135deg, #0D47A1 0%, #1565C0 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+
+        #slide1 .pattern-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.3) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        #slide1 .graphic-container {
+            width: 300px;
+            height: 500px;
+            position: relative;
+            z-index: 5;
+        }
+
+        #slide1 .glass-card {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            z-index: 2;
+        }
+
+        #slide1 .card-1 {
+            top: 15%;
+            right: -20px;
+            width: 120px;
+            height: 120px;
+            transform: rotate(15deg);
+        }
+
+        #slide1 .card-2 {
+            bottom: 20%;
+            left: -30px;
+            width: 180px;
+            height: 180px;
+            transform: rotate(-10deg);
+            opacity: 0.5;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        #slide1 .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        #slide1 .dot {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+        }
+
+        .tiled-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            width: 100%;
+        }
+
+        .tile {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            border-radius: 12px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+        }
+
+        .tile .icon {
+            font-size: 32px;
+            color: #1565C0;
+            margin-bottom: 20px;
+        }
+
+        .formula-box {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            border-left: 4px solid #1565C0;
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 24px;
+            color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+        }
+
+        ul.tech-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul.tech-list li {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        ul.tech-list li::before {
+            content: '\f054';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: #1565C0;
+            position: absolute;
+            left: 0;
+            top: 4px;
+            font-size: 14px;
+        }
+
+        .box-highlight {
+            background: rgba(21, 101, 192, 0.05);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 1px solid rgba(21, 101, 192, 0.2);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+        }
+
+        .box-impact {
+            background: rgba(66, 165, 245, 0.95);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            color: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        .box-warning {
+            background: rgba(220, 38, 38, 0.08);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            color: #B91C1C;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+        }
+
+        .code-tag {
+            background: #e5e7eb;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #374151;
+            font-size: 0.9em;
+        }
+
+        .text-danger {
+            color: #dc2626;
+            font-weight: 700;
+        }
+
+        .text-success {
+            color: #1565C0;
+            font-weight: 700;
+        }
+
+        .pub-box {
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+        }
+
+        .venue-rank {
+            display: inline-block;
+            background: linear-gradient(135deg, #1565C0 0%, #0D47A1 100%);
+            color: #fff;
+            font-weight: 700;
+            font-size: 12px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: 6px;
+            vertical-align: baseline;
+            line-height: 1.2;
+        }
+
+        .checklist-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            text-align: left;
+        }
+
+        .slide-footer {
+            position: absolute;
+            bottom: 20px;
+            left: 60px;
+            width: calc(100% - 120px);
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 0px solid rgba(0, 0, 0, 0.05);
+            padding-top: 10px;
+            font-family: 'Urbanist', sans-serif;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        #slide1 .slide-footer {
+            display: none !important;
+        }
+
+        .footer-text {
+            font-size: 12px;
+            color: #666;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: left;
+            flex: 1 1 auto;
+            min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin-right: 20px;
+        }
+
+        .footer-text::before {
+            content: "Wasu Kudisthalert, Ph.D. | Data-First Data Science | Feb 2026";
+        }
+
+        .page-number {
+            font-size: 16px;
+            font-weight: 800;
+            color: #666;
+            text-align: right;
+            flex: 0 0 auto;
+            white-space: nowrap;
+        }
+
+        @media print {
+            body {
+                background: none;
+                display: block;
+                padding: 0;
+                margin: 0;
+            }
+
+            .slide-container {
+                width: 100%;
+                height: 100vh;
+                break-after: page;
+                page-break-after: always;
+                box-shadow: none;
+                border-radius: 0;
+                margin: 0;
+                border: none;
+                margin-bottom: 0 !important;
+                background-color: #ffffff !important;
+            }
+
+            #slide1 {
+                display: grid !important;
+                grid-template-columns: 1.2fr 0.8fr !important;
+                width: 100% !important;
+                height: 100vh !important;
+                padding: 0 !important;
+                background-color: #ffffff !important;
+            }
+
+            #slide1 .right-col {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .tile,
+            .formula-box,
+            .box-impact,
+            .box-highlight,
+            .box-warning,
+            .pub-box,
+            .image-wrapper,
+            .golden-rule-box {
+                border: 1px solid rgba(0, 0, 0, 0.18) !important;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(0, 0, 0, 0.08) !important;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+
+        @page {
+            size: landscape;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Slide 1: Title -->
+    <div class="slide-container" id="slide1">
+        <div class="left-col">
+            <div class="academic-tag">Advanced Machine Learning Series</div>
+            <div class="title-wrapper">
+                <h1>Data-First <br><span class="highlight">Data Science</span></h1>
+                <div class="subtitle">Foundations and Strategic Preparation</div>
+            </div>
+            <div>
+                <div class="presenter-block">
+                    <div class="presenter-name">Wasu Kudisthalert, Ph.D.</div>
+                    <div class="presenter-title">Machine Learning Engineer Lead</div>
+                </div>
+                <div class="meta-data">
+                    <span><i class="fa-regular fa-calendar" style="margin-right: 8px;"></i> Feb 2026</span>
+                    <span><i class="fa-solid fa-layer-group" style="margin-right: 8px;"></i> Data-Centric</span>
+                    <span><i class="fa-solid fa-code" style="margin-right: 8px;"></i> AI/ML</span>
+                </div>
+            </div>
+        </div>
+        <div class="right-col">
+            <div class="pattern-overlay"></div>
+            <div class="glass-card card-1 floating"></div>
+            <div class="glass-card card-2 floating" style="animation-delay: 2s;"></div>
+            <div class="graphic-container">
+                <div class="dot floating"
+                    style="width:10px; height:10px; top:145px; left:85px; opacity:0.6; animation-duration: 5.2s;"></div>
+                <div class="dot floating"
+                    style="width:8px; height:8px; top:172px; left:142px; opacity:0.5; animation-duration: 6.1s;"></div>
+                <div class="dot floating"
+                    style="width:12px; height:12px; top:98px; left:178px; opacity:0.7; animation-duration: 4.8s;"></div>
+                <div class="dot floating"
+                    style="width:7px; height:7px; top:225px; left:156px; opacity:0.41; animation-duration: 5.9s;"></div>
+                <div class="dot floating"
+                    style="width:9px; height:9px; top:152px; left:223px; opacity:0.6; animation-duration: 5.5s;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: About the Speaker -->
+    <div class="slide-container" id="slide2">
+        <h2 class="slide-title">About the Speaker</h2>
+        <div class="content-area">
+            <div class="single-column">
+                <div
+                    style="display: grid; grid-template-columns: 1.0fr 0.9fr; gap: 40px; height: 100%; align-items: start;">
+                    <div style="display: flex; flex-direction: column;">
+                        <h3 style="color: #1565C0; margin-bottom: 1px;">Wasu Kudisthalert, Ph.D.</h3>
+                        <p class="text-small" style="margin-bottom: 15px; font-size: 15px; font-weight: 600;">Machine
+                            Learning Engineer Lead @ AI & Robotics Ventures (ARV)</p>
+
+                        <div style="margin-bottom: 1px;">
+                            <h4
+                                style="color:#1a1a1a; margin-bottom:6px; font-size: 18px; border-bottom: 2px solid #1565C0; padding-bottom: 3px; display: inline-block;">
+                                <i class="fa-solid fa-graduation-cap" style="color:#1565C0; margin-right: 8px;"></i>
+                                Education
+                            </h4>
+                            <ul class="tech-list" style="font-size: 16px; margin-top: 6px;">
+                                <li style="margin-bottom: 4px; font-size: 16px;"><strong>Ph.D. in Information Technology
+                                        (2022)</strong> - KMITL, Thailand</li>
+                                <li style="margin-bottom: 4px; font-size: 16px;"><strong>M.Sc. in Information Science
+                                        (2017)</strong> - KMITL, Thailand</li>
+                                <li style="margin-bottom: 4px; font-size: 16px;"><strong>B.Sc. in Computer Science
+                                        (2012)</strong> - KMITL, Thailand</li>
+                            </ul>
+                        </div>
+
+                        <div style="margin-bottom: 1px;">
+                            <h4
+                                style="color:#1a1a1a; margin-bottom:6px; font-size: 18px; border-bottom: 2px solid #1565C0; padding-bottom: 3px; display: inline-block;">
+                                <i class="fa-solid fa-earth-americas" style="color:#1565C0; margin-right: 8px;"></i>
+                                Global Research & Internship
+                            </h4>
+                            <ul class="tech-list" style="font-size: 16px; margin-top: 6px;">
+                                <li style="margin-bottom: 8px; font-size: 16px;">
+                                    <strong>BiDA Lab, Universidad Politécnica de Madrid <br> (Madrid, Spain,
+                                        2019):</strong> <br>
+                                    <span style="font-size: 15px; color: #555;">Constructed global human face datasets &
+                                        proposed ML verification techniques.</span>
+                                </li>
+                                <li style="margin-bottom: 8px; font-size: 16px;">
+                                    <strong>Kurume College (Fukuoka, Japan, 2017):</strong> <br>
+                                    <span style="font-size: 15px; color: #555;">Proposed voting rule for depth-of-field
+                                        extension in microscopy.</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4
+                                style="color:#1a1a1a; margin-bottom:6px; font-size: 16px; border-bottom: 2px solid #1565C0; padding-bottom: 3px; display: inline-block;">
+                                <i class="fa-solid fa-flask"
+                                    style="color:#1565C0; margin-right: 6px; font-size: 14px;"></i> Research Domains
+                            </h4>
+                            <ul class="tech-list"
+                                style="font-size: 16px; margin-top: 6px; display: grid; grid-template-columns: 1fr 1fr; gap: 4px 10px;">
+                                <li style="margin-bottom: 2px; font-size: 16px;">Smart Cities</li>
+                                <li style="margin-bottom: 2px; font-size: 16px;">Biometrics</li>
+                                <li style="margin-bottom: 2px; font-size: 16px;">Bioinformatics</li>
+                                <li style="margin-bottom: 2px; font-size: 16px;">Chemoinformatics</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="pub-box"
+                        style="background: rgba(255,255,255,0.95); padding: 15px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.15); display: flex; flex-direction: column; margin-top: -10px;">
+                        <h4 style="color:#1565C0; margin-bottom:10px; font-size: 18px;"><i class="fa-solid fa-book"></i>
+                            Publications</h4>
+                        <div class="pub-list-container">
+                            <ul
+                                style="list-style: none; padding: 0; color: #333; line-height: 1.3; margin: 0; text-align: justify;">
+                                <li style="margin-bottom: 4px; font-size: 15px;">• <strong>2025 (IEEE/CVF<span
+                                            class="venue-rank">A*</span>):</strong> TrafficInternVL: Spatially-Guided
+                                    Fine-Tuning with Caption Refinement for Fine-Grained Traffic Safety Captioning</li>
+                                <li style="margin-bottom: 4px; font-size: 15px;">• <strong>2024 (IEEE/CVF<span
+                                            class="venue-rank">A*</span>):</strong> Online Multi-camera People Tracking
+                                    with Spatial-temporal Mechanism</li>
+                                <li style="margin-bottom: 4px; font-size: 15px;">• <strong>2022 (Neural Computing<span
+                                            class="venue-rank">Q1</span>):</strong> SELM: Siamese extreme learning
+                                    machine with application to face biometrics</li>
+                                <li style="margin-bottom: 4px; font-size: 15px;">• <strong>2020 (IEEE Access<span
+                                            class="venue-rank">Q1</span>):</strong> Counting and classification of
+                                    malarial parasite from giemsa-stained thin film images</li>
+                                <li style="margin-bottom: 4px; font-size: 15px;">• <strong>2018 (PLOS ONE<span
+                                            class="venue-rank">Q1</span>):</strong> Virtual screening by a new
+                                    Clustering-based Weighted Similarity Extreme Learning Machine approach</li>
+                                <li style="margin-bottom: 4px; font-size: 15px;">• <strong>2016 (ICONIP<span
+                                            class="venue-rank">A</span>):</strong> Clustering-based weighted extreme
+                                    learning machine for classification in drug discovery process</li>
+                                <li style="margin-bottom: 0; font-size: 15px;">• <strong>2016 (KST<span
+                                            class="venue-rank">C</span>):</strong> A coefficient comparison of weighted
+                                    similarity extreme learning machine for drug screening</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span class="footer-text"></span>
+            <span class="page-number"></span>
+        </div>
+    </div>
+
+    <!-- Slide 3: What is Data Science? -->
+    <div class="slide-container" id="slide3">
+        <h2 class="slide-title">What is Data Science?</h2>
+        <div class="content-area">
+            <div class="two-column">
+                <div>
+                    <h3>Definition</h3>
+                    <p>An interdisciplinary field that combines statistics, programming, and domain knowledge to extract
+                        meaningful insights from data through systematic analysis.</p>
+
+                    <div class="box-impact">
+                        <h4 style="margin: 0 0 5px 0; font-size: 18px; color: #fff;"><i class="fa-solid fa-play"></i>
+                            Example: Netflix</h4>
+                        <p style="font-size: 16px; margin: 0; color: rgba(255,255,255,0.9);">
+                            Uses data science to recommend shows based on viewing patterns and preferences.<br>
+                            <strong>Result:</strong> Keeps <strong>80%</strong> of subscribers engaged.
+                        </p>
+                    </div>
+                </div>
+                <div class="image-wrapper">
+                    <svg viewBox="0 0 400 350" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="140" cy="120" r="90" fill="#E3F2FD" stroke="#1565C0" stroke-width="2"
+                            opacity="0.8" />
+                        <text x="100" y="90" fill="#1565C0" font-weight="bold">Statistics</text>
+                        <circle cx="260" cy="120" r="90" fill="#BBDEFB" stroke="#0D47A1" stroke-width="2"
+                            opacity="0.8" />
+                        <text x="230" y="90" fill="#0D47A1" font-weight="bold">Programming</text>
+                        <circle cx="200" cy="220" r="90" fill="#90CAF9" stroke="#1565C0" stroke-width="2"
+                            opacity="0.8" />
+                        <text x="200" y="255" text-anchor="middle" fill="#0D47A1" font-weight="bold">Domain
+                            Knowledge</text>
+                        <text x="200" y="175" text-anchor="middle" fill="#fff" font-weight="bold" font-size="14">DATA
+                            SCIENCE</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span class="footer-text"></span>
+            <span class="page-number"></span>
+        </div>
+    </div>
+
+    <!-- Slide 4: Real-World Applications -->
+    <div class="slide-container" id="slide4">
+        <h2 class="slide-title">Real-World Applications</h2>
+        <div class="content-area">
+            <p style="font-size: 18px; color: #555; margin-bottom: 20px;">How data science drives tangible impact across industries.</p>
+            <div class="tiled-content">
+                <div class="tile" style="border-top: 4px solid #1565C0;">
+                    <div class="icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                    <h3 style="font-size: 22px;">Healthcare</h3>
+                    <p style="font-size: 16px; flex-grow: 1;">Disease prediction and personalized medicine.</p>
+                    <div class="box-impact"
+                        style="width: 100%; margin-top: 10px; background: rgba(66, 165, 245, 0.95);">
+                        <strong>95% Accuracy</strong><br><span style="font-size: 14px;">Cancer detection</span>
+                    </div>
+                </div>
+                <div class="tile" style="border-top: 4px solid #1565C0;">
+                    <div class="icon"><i class="fa-solid fa-money-bill-trend-up"></i></div>
+                    <h3 style="font-size: 22px;">Finance</h3>
+                    <p style="font-size: 16px; flex-grow: 1;">Fraud detection and risk assessment.</p>
+                    <div class="box-impact"
+                        style="width: 100%; margin-top: 10px; background: rgba(66, 165, 245, 0.95);">
+                        <strong>Real-time</strong><br><span style="font-size: 14px;">Fraud prevention</span>
+                    </div>
+                </div>
+                <div class="tile" style="border-top: 4px solid #1565C0;">
+                    <div class="icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                    <h3 style="font-size: 22px;">E-commerce</h3>
+                    <p style="font-size: 16px; flex-grow: 1;">Product recommendations and forecasting.</p>
+                    <div class="box-impact"
+                        style="width: 100%; margin-top: 10px; background: rgba(66, 165, 245, 0.95);">
+                        <strong>35% Sales</strong><br><span style="font-size: 14px;">Driven by AI</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span class="footer-text"></span>
+            <span class="page-number"></span>
+        </div>
+    </div>
+
+    <!-- Slide 5: The Data Science Process -->
+    <div class="slide-container" id="slide5">
+        <h2 class="slide-title">The Data Science Process</h2>
+        <div class="content-area">
+            <p style="font-size: 18px; color: #555; margin-bottom: 20px;">A systematic four-step approach to solving
+                problems with data.</p>
+            <div class="tiled-content" style="grid-template-columns: repeat(4, 1fr); gap: 15px;">
+                <div class="tile" style="align-items: center; text-align: center; border-top: 4px solid #1565C0;">
+                    <div class="icon"
+                        style="background: #E3F2FD; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+                        <i class="fa-solid fa-crosshairs" style="font-size: 24px; color: #1565C0;"></i>
+                    </div>
+                    <h3 style="color: #1565C0; font-size: 20px; margin-bottom: 10px;">1. Define</h3>
+                    <p style="font-size: 16px; color: #555;">Articulate the problem clearly. What question are you
+                        answering?</p>
+                </div>
+                <div class="tile" style="align-items: center; text-align: center; border-top: 4px solid #1565C0;">
+                    <div class="icon"
+                        style="background: #E3F2FD; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+                        <i class="fa-solid fa-database" style="font-size: 24px; color: #1565C0;"></i>
+                    </div>
+                    <h3 style="color: #1565C0; font-size: 20px; margin-bottom: 10px;">2. Collect</h3>
+                    <p style="font-size: 16px; color: #555;">Gather relevant data from DBs, APIs, surveys, or sensors.
+                    </p>
+                </div>
+                <div class="tile" style="align-items: center; text-align: center; border-top: 4px solid #1565C0;">
+                    <div class="icon"
+                        style="background: #E3F2FD; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+                        <i class="fa-solid fa-flask" style="font-size: 24px; color: #1565C0;"></i>
+                    </div>
+                    <h3 style="color: #1565C0; font-size: 20px; margin-bottom: 10px;">3. Analyze</h3>
+                    <p style="font-size: 16px; color: #555;">Clean data, explore patterns, and build predictive models.
+                    </p>
+                </div>
+                <div class="tile" style="align-items: center; text-align: center; border-top: 4px solid #1565C0;">
+                    <div class="icon"
+                        style="background: #E3F2FD; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+                        <i class="fa-solid fa-chart-line" style="font-size: 24px; color: #1565C0;"></i>
+                    </div>
+                    <h3 style="color: #1565C0; font-size: 20px; margin-bottom: 10px;">4. Communicate</h3>
+                    <p style="font-size: 16px; color: #555;">Present findings via dashboards or reports to stakeholders.
+                    </p>
+                </div>
+            </div>
+            <div class="box-highlight" style="margin-top: 30px; text-align: center;">
+                <p style="margin: 0; color: #333;"><strong>Real World Example:</strong> Predicting customer churn to
+                    improve retention strategies.</p>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span class="footer-text"></span>
+            <span class="page-number"></span>
+        </div>
+    </div>
+
+    <!-- Slide 6: Understanding Data Types -->
+    <div class="slide-container" id="slide6">
+        <h2 class="slide-title">Understanding Data Types</h2>
+        <div class="content-area">
+            <div class="two-column">
+                <div class="tile" style="height: 100%; border-top: 4px solid #1565C0;">
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                        <i class="fa-solid fa-table" style="font-size: 32px; color: #1565C0;"></i>
+                        <h3 style="margin: 0; color: #1565C0;">Structured Data</h3>
+                    </div>
+                    <ul class="tech-list" style="flex-grow: 1;">
+                        <li>Organized in tables (rows/cols)</li>
+                        <li>Has clearly defined schema</li>
+                        <li>Easy to query (SQL, Excel)</li>
+                    </ul>
+                    <div style="background: #E3F2FD; padding: 15px; border-radius: 8px; width: 100%;">
+                        <strong>Example:</strong> Customer DB<br>
+                        <span class="code-tag">ID: 001</span> <span class="code-tag">Name: John</span> <span
+                            class="code-tag">Spend: $50</span>
+                    </div>
+                </div>
+                <div class="tile" style="height: 100%; border-top: 4px solid #DC2626;">
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                        <i class="fa-solid fa-layer-group" style="font-size: 32px; color: #DC2626;"></i>
+                        <h3 style="margin: 0; color: #DC2626;">Unstructured Data</h3>
+                    </div>
+                    <ul class="tech-list" style="flex-grow: 1;">
+                        <li>No fixed format or schema</li>
+                        <li>~80-90% of world's data</li>
+                        <li>Needs complex preprocessing</li>
+                    </ul>
+                    <div style="background: #FFEBEE; padding: 15px; border-radius: 8px; width: 100%;">
+                        <strong>Example:</strong> Media & Text<br>
+                        <i class="fa-regular fa-image"></i> Images, <i class="fa-regular fa-envelope"></i> Emails, <i
+                            class="fa-brands fa-twitter"></i> Tweets
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span class="footer-text"></span>
+            <span class="page-number"></span>
+        </div>
+    </div>
+
+    <!-- Slide 7: ML Ecosystem & Modern AI Platforms -->
+    <div class="slide-container" id="slide7">
+        <h2 class="slide-title">ML Ecosystem & Modern AI Platforms</h2>
+        <div class="content-area">
+            <p style="font-size: 18px; color: #555; margin-bottom: 20px;">How machines learn from data — and where models run at scale.</p>
+            <div class="two-column">
+                <div>
+                    <h3><i class="fa-solid fa-brain" style="color: #1565C0; margin-right: 8px;"></i>How They Learn</h3>
+                    <div class="tiled-content" style="grid-template-columns: 1fr; gap: 12px;">
+                        <div class="tile" style="padding: 12px 15px; border-left: 4px solid #1565C0;">
+                            <h4 style="color: #1565C0; font-size: 16px; margin-bottom: 4px;"><i class="fa-solid fa-tags" style="margin-right: 6px; font-size: 14px;"></i>Supervised</h4>
+                            <p style="font-size: 14px; margin: 0;">Labeled data → predict outcomes (e.g. house prices, spam detection).</p>
+                        </div>
+                        <div class="tile" style="padding: 12px 15px; border-left: 4px solid #0D47A1;">
+                            <h4 style="color: #0D47A1; font-size: 16px; margin-bottom: 4px;"><i class="fa-solid fa-diagram-project" style="margin-right: 6px; font-size: 14px;"></i>Unsupervised</h4>
+                            <p style="font-size: 14px; margin: 0;">No labels → discover hidden structure (e.g. customer segments).</p>
+                        </div>
+                        <div class="tile" style="padding: 12px 15px; border-left: 4px solid #1A237E;">
+                            <h4 style="color: #1A237E; font-size: 16px; margin-bottom: 4px;"><i class="fa-solid fa-gamepad" style="margin-right: 6px; font-size: 14px;"></i>Reinforcement</h4>
+                            <p style="font-size: 14px; margin: 0;">Trial & error → maximize reward (e.g. robotics, game AI).</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3><i class="fa-solid fa-rocket" style="color: #1565C0; margin-right: 8px;"></i>Where They Run (MLOps)</h3>
+                    <div style="width: 100%; display: flex; flex-direction: column; gap: 12px;">
+                        <div class="tile" style="padding: 12px 15px; border-left: 4px solid #1565C0; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                            <h4 style="margin: 0 0 5px 0; color: #1565C0;"><i class="fa-solid fa-cloud" style="margin-right: 6px;"></i> Cloud Ecosystems</h4>
+                            <span class="code-tag">AWS SageMaker</span> <span class="code-tag">Google Vertex AI</span> <span class="code-tag">Azure AI</span>
+                        </div>
+                        <div class="tile" style="padding: 12px 15px; border-left: 4px solid #0D47A1; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                            <h4 style="margin: 0 0 5px 0; color: #0D47A1;"><i class="fa-solid fa-server" style="margin-right: 6px;"></i> Specialized & Enterprise</h4>
+                            <span class="code-tag">Databricks</span> <span class="code-tag">DataRobot</span> <span class="code-tag">Snowflake</span>
+                        </div>
+                        <div class="tile" style="padding: 12px 15px; border-left: 4px solid #1A237E; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                            <h4 style="margin: 0 0 5px 0; color: #1A237E;"><i class="fa-solid fa-cubes" style="margin-right: 6px;"></i> Open Source / Hubs</h4>
+                            <span class="code-tag">Hugging Face</span> <span class="code-tag">MLflow</span> <span class="code-tag">Kubeflow</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-highlight" style="margin-top: 15px; text-align: center; padding: 10px 20px; font-size: 14px;">
+                <p style="margin: 0; color: #333;"><i class="fa-solid fa-lightbulb" style="color: #F59E0B; margin-right: 5px;"></i><strong>Key Insight:</strong> You build a model on your laptop, but when 100K users query it simultaneously — you need an AI Platform.</p>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span class="footer-text"></span>
+            <span class="page-number"></span>
+        </div>
+    </div>
+    <!-- Slide 8: Career Opportunities & Essential Skills -->
+    <div class="slide-container" id="slide8">
+        <h2 class="slide-title">Career Opportunities & Essential Skills</h2>
+        <div class="content-area">
+            <div class="tiled-content" style="grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                <div class="tile" style="align-items: center; text-align: center; border-top: 4px solid #1565C0;">
+                    <div class="icon" style="background: #E3F2FD; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+                        <i class="fa-solid fa-chart-pie" style="font-size: 24px; color: #1565C0;"></i>
+                    </div>
+                    <h3 style="margin-bottom: 10px; font-size: 20px;">Data Analyst</h3>
+                    <p style="font-size: 15px; color: #555; margin-bottom: 15px;">Extracts insights, creates reports, and visualizes data.</p>
+                    <div style="background: #f8f9fa; padding: 10px; border-radius: 8px; width: 100%;">
+                        <strong style="color: #1565C0; font-size: 14px;">Essential Tools:</strong><br>
+                        <span class="code-tag">SQL</span> <span class="code-tag">Tableau</span> <span class="code-tag">Excel</span>
+                    </div>
+                </div>
+                <div class="tile" style="align-items: center; text-align: center; border-top: 4px solid #1565C0;">
+                    <div class="icon" style="background: #E3F2FD; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+                        <i class="fa-solid fa-user-graduate" style="font-size: 24px; color: #1565C0;"></i>
+                    </div>
+                    <h3 style="margin-bottom: 10px; font-size: 20px;">Data Scientist</h3>
+                    <p style="font-size: 15px; color: #555; margin-bottom: 15px;">Builds predictive models and validates hypotheses.</p>
+                    <div style="background: #f8f9fa; padding: 10px; border-radius: 8px; width: 100%;">
+                        <strong style="color: #1565C0; font-size: 14px;">Essential Tools:</strong><br>
+                        <span class="code-tag">Python</span> <span class="code-tag">scikit-learn</span> <span class="code-tag">pandas</span>
+                    </div>
+                </div>
+                <div class="tile" style="align-items: center; text-align: center; border-top: 4px solid #1565C0;">
+                    <div class="icon" style="background: #E3F2FD; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+                        <i class="fa-solid fa-server" style="font-size: 24px; color: #1565C0;"></i>
+                    </div>
+                    <h3 style="margin-bottom: 10px; font-size: 20px;">ML Engineer</h3>
+                    <p style="font-size: 15px; color: #555; margin-bottom: 15px;">Deploys ML models into scalable production systems.</p>
+                    <div style="background: #f8f9fa; padding: 10px; border-radius: 8px; width: 100%;">
+                        <strong style="color: #1565C0; font-size: 14px;">Essential Tools:</strong><br>
+                        <span class="code-tag">AWS</span> <span class="code-tag">PyTorch</span> <span class="code-tag">MLOps</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span class="footer-text"></span>
+            <span class="page-number"></span>
+        </div>
+    </div>
+    <!-- Slide 9: Data Preparation: The Reality -->
+    <div class="slide-container" id="slide9">
+        <div style="display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #1565C0, #0D47A1); color: #fff; padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: -10px;">
+            <i class="fa-solid fa-layer-group" style="font-size: 11px;"></i> Part 2: Deep Dive
+        </div>
+        <h2 class="slide-title">Data Preparation: The Reality</h2>
+        <div class="content-area">
+            <div class="two-column">
+                <div>
+                    <h3>The "80/20" Rule of AI</h3>
+                    <p>Most people think AI is about coding models. In reality, it's about data.</p>
+                    <div class="box-highlight" style="margin-top: 15px;">
+                        <h4 style="color: #1565C0; margin-bottom: 5px;"><i class="fa-solid fa-fire-burner"></i> The
+                            Cooking Analogy</h4>
+                        <p style="font-size: 18px; margin:0; color: #374151;">
+                            <strong>Model = Cooking Pot</strong> | <strong>Data = Ingredients</strong><br>
+                            Even a Michelin-star chef cannot make good food from rotten ingredients.
+                        </p>
+                    </div>
+                    <div class="box-impact">
+                        <h4 style="margin: 0 0 5px 0; font-size: 18px; color: #fff;"><i
+                                class="fa-solid fa-chart-line"></i> Real Impact (Project X)</h4>
+                        <ul style="font-size: 16px; margin: 0; padding-left: 20px; color: rgba(255,255,255,0.9);">
+                            <li>Data cleaning 2 weeks &rarr; <strong>Accuracy +15%</strong></li>
+                            <li>Model tuning 1 week &rarr; <strong>Accuracy +2%</strong></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="image-wrapper">
+                    <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="water" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#E3F2FD;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#64B5F6;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <rect x="0" y="100" width="400" height="200" fill="url(#water)" opacity="0.3" />
+                        <line x1="0" y1="100" x2="400" y2="100" stroke="#1976D2" stroke-width="2" />
+                        <path d="M 150 100 L 200 40 L 250 100 Z" fill="#fff" stroke="#1565C0" stroke-width="2" />
+                        <text x="270" y="60" fill="#1565C0" font-weight="bold">Modeling (20%)</text>
+                        <line x1="220" y1="60" x2="260" y2="60" stroke="#1565C0" stroke-dasharray="4" />
+                        <path d="M 150 100 L 120 250 L 280 230 L 250 100 Z" fill="#BBDEFB" stroke="#1565C0"
+                            stroke-width="2" />
+                        <text x="270" y="180" fill="#0D47A1" font-weight="bold">Data Prep (80%)</text>
+                        <line x1="220" y1="180" x2="260" y2="180" stroke="#0D47A1" stroke-dasharray="4" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span class="footer-text"></span>
+            <span class="page-number"></span>
+        </div>
+    </div>
+
+    <!-- Slide 10: Context: Signal vs. Noise -->
+    <div class="slide-container" id="slide10">
+        <h2 class="slide-title">Context: Signal vs. Noise</h2>
+        <div class="content-area">
+            <div class="two-column">
+                <div>
+                    <h3>The Core Objective</h3>
+                    <p>Every dataset consists of the pattern we want (Signal) and errors (Noise).</p>
+                    <div class="formula-box">
+                        <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+                            <mi>y</mi>
+                            <mo>=</mo>
+                            <mi>f</mi>
+                            <mo stretchy="false">(</mo>
+                            <mi>x</mi>
+                            <mo stretchy="false">)</mo>
+                            <mo>+</mo>
+                            <mi>&#x03F5;</mi>
+                        </math>
+                    </div>
+                    <ul class="tech-list">
+                        <li><strong style="color: #1565C0;">f(x):</strong> The Signal (e.g., actual face pattern)</li>
+                        <li><strong style="color: #dc2626;">&epsilon;:</strong> The Noise (blur, bad lighting)</li>
+                    </ul>
+                    <p style="font-size: 19.5px;"><strong>Goal:</strong> Minimize &epsilon; so the model learns the true
+                        f(x).</p>
+                    <div style="background: #fff8e1; border: 1px solid #ffecb3; padding: 15px; border-radius: 8px;">
+                        <p style="margin:0; font-size: 13px; color: #856404;">
+                            <strong><i class="fa-solid fa-lightbulb"></i> Concept Distinction:</strong><br>
+                            • <strong>Here:</strong> Minimize <em>Unwanted</em> Noise (Errors).<br>
+                            • <strong>Augmentation (Later):</strong> Add <em>Controlled</em> Variance (Robustness).
+                        </p>
+                    </div>
+                </div>
+                <div class="image-wrapper">
+                    <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#eee" stroke-width="1" />
+                            </pattern>
+                        </defs>
+                        <rect width="100%" height="100%" fill="url(#grid)" />
+                        <line x1="50" y1="150" x2="550" y2="150" stroke="#999" stroke-width="2" />
+                        <line x1="50" y1="50" x2="50" y2="250" stroke="#999" stroke-width="2" />
+                        <path d="M50 150 Q100 50 150 150 T250 150 T350 150 T450 150 T550 150" fill="none"
+                            stroke="#DC2626" stroke-width="1" stroke-opacity="0.5" />
+                        <path
+                            d="M50 160 L70 140 L90 170 L110 130 L130 160 L150 140 L170 160 L190 130 L210 170 L230 140 L250 160"
+                            fill="none" stroke="#DC2626" stroke-width="2" opacity="0.6" />
+                        <text x="500" y="140" fill="#DC2626" font-size="14">Noise</text>
+                        <path d="M50 150 C100 50, 200 250, 300 150 S500 50, 550 150" fill="none" stroke="#1565C0"
+                            stroke-width="4" />
+                        <text x="500" y="80" fill="#1565C0" font-weight="bold" font-size="14">Signal f(x)</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span class="footer-text"></span>
+            <span class="page-number"></span>
+        </div>
+    </div>
+
+    <!-- Slide 11: The Strategic Framework -->
+    <div class="slide-container" id="slide11">
+        <h2 class="slide-title">The Strategic Framework</h2>
+        <div class="content-area">
+            <div style="display: flex; flex-direction: column; height: 100%; justify-content: center;">
+                <p style="font-size: 24px; color: #555; text-align: left; max-width: 800px; margin-bottom: 40px;">
+                    Transforming raw data into robust model inputs requires a structured, multi-stage approach.
+                </p>
+                <div class="tiled-content" style="gap: 30px;">
+                    <div class="tile" style="align-items: center; text-align: center; border-top: 5px solid #1565C0;">
+                        <div class="icon"
+                            style="background: #E3F2FD; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                            <i class="fa-solid fa-filter" style="font-size: 36px; color: #1565C0;"></i>
+                        </div>
+                        <h3 style="color: #1565C0; font-size: 24px; margin-bottom: 10px;">Phase 1: Prep</h3>
+                        <p style="font-size: 18px; color: #555; margin-bottom: 5px;"><strong>Essential
+                                Preprocessing</strong></p>
+                        <p style="font-size: 16px; color: #777;">Normalization & Standardization</p>
+                    </div>
+                    <div class="tile" style="align-items: center; text-align: center; border-top: 5px solid #1565C0;">
+                        <div class="icon"
+                            style="background: #E3F2FD; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                            <i class="fa-solid fa-code-branch" style="font-size: 36px; color: #1565C0;"></i>
+                        </div>
+                        <h3 style="color: #1565C0; font-size: 24px; margin-bottom: 10px;">Phase 2: Split</h3>
+                        <p style="font-size: 18px; color: #555; margin-bottom: 5px;"><strong>Separation
+                                Strategy</strong></p>
+                        <p style="font-size: 16px; color: #777;">Random, Stratified, or Group</p>
+                    </div>
+                    <div class="tile" style="align-items: center; text-align: center; border-top: 5px solid #1565C0;">
+                        <div class="icon"
+                            style="background: #E3F2FD; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                            <i class="fa-solid fa-gem" style="font-size: 36px; color: #1565C0;"></i>
+                        </div>
+                        <h3 style="color: #1565C0; font-size: 24px; margin-bottom: 10px;">Phase 3: Refine</h3>
+                        <p style="font-size: 18px; color: #555; margin-bottom: 5px;"><strong>Training Set
+                                Refinement</strong></p>
+                        <p style="font-size: 16px; color: #777;">Augmentation & Resampling</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span class="footer-text"></span>
+            <span class="page-number"></span>
+        </div>
+    </div>
+
+    <!-- Slide 12: Phase 1: Essential Preprocessing -->
+    <div class="slide-container" id="slide12">
+        <h2 class="slide-title">Phase 1: Essential Preprocessing</h2>
+        <div class="content-area">
+            <div class="two-column">
+                <div>
+                    <h3>Making Data "Standard"</h3>
+                    <div style="margin-top: 20px;">
+                        <h4 style="color: #1565C0; margin-bottom:5px;">1. Numerical Data (e.g., Salary)</h4>
+                        <p style="font-size: 19px; margin-bottom: 20px;">
+                            Scale to 0-1 range (<strong style="color: #1565C0;">Normalization</strong>) or transform to
+                            Mean=0, Std=1 (<strong style="color: #1565C0;">Standardization</strong>).<br>
+                            <span class="text-small" style="color:#666;">Why? Models are biased by large numbers.</span>
+                        </p>
+
+                        <h4 style="color: #1565C0; margin-bottom:5px;">2. Text Data (NLP/LLM)</h4>
+                        <p style="font-size: 19px; margin-bottom: 0;">Cleaning, Lowercasing, Tokenization.<br><span
+                                class="text-small" style="color:#666;">Why? "Hello!" vs "hello" should match.</span></p>
+                    </div>
+                    <p class="text-small" style="margin-top: 30px;"><i class="fa-solid fa-code"></i> Stack: <span
+                            class="code-tag">torchvision</span> | <span class="code-tag">NLTK / spaCy</span></p>
+                </div>
+                <div class="image-wrapper">
+                    <svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <marker id="arrow-s12" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                <path d="M 0 0 L 10 5 L 0 10 z" fill="#333" />
+                            </marker>
+                        </defs>
+                        <g transform="translate(0, -20)">
+                            <text x="250" y="40" text-anchor="middle" font-weight="bold" fill="#555"
+                                font-size="14">Numerical: Scaling</text>
+                            <g transform="translate(90, 60)">
+                                <rect x="0" y="0" width="120" height="120" fill="none" stroke="#999" />
+                                <ellipse cx="60" cy="60" rx="10" ry="50" fill="#DC2626" opacity="0.3"
+                                    transform="rotate(45, 60, 60)" />
+                                <text x="60" y="140" text-anchor="middle" font-size="12" fill="#555">Raw</text>
+                            </g>
+                            <path d="M 230 120 L 270 120" stroke="#333" stroke-width="2" marker-end="url(#arrow-s12)" />
+                            <g transform="translate(290, 60)">
+                                <rect x="0" y="0" width="120" height="120" fill="none" stroke="#999" />
+                                <circle cx="60" cy="60" r="30" fill="#1565C0" opacity="0.3" />
+                                <text x="60" y="140" text-anchor="middle" font-size="12" fill="#555">Normalized</text>
+                                <text x="60" y="155" text-anchor="middle" font-size="10" fill="#1565C0">(Equal
+                                    Variance)</text>
+                            </g>
+                        </g>
+                        <line x1="50" y1="220" x2="450" y2="220" stroke="#ddd" stroke-width="2" stroke-dasharray="4" />
+                        <g transform="translate(0, 240)">
+                            <text x="250" y="20" text-anchor="middle" font-weight="bold" fill="#555"
+                                font-size="14">Text: Tokenization & Cleaning</text>
+                            <rect x="60" y="40" width="140" height="40" rx="8" fill="#FFEBEE" stroke="#DC2626" />
+                            <text x="130" y="65" text-anchor="middle" fill="#B71C1C" font-family="monospace">"Hello,
+                                World!"</text>
+                            <path d="M 220 60 L 260 60" stroke="#333" stroke-width="2" />
+                            <rect x="280" y="40" width="160" height="40" rx="8" fill="#E3F2FD" stroke="#1565C0" />
+                            <text x="360" y="65" text-anchor="middle" fill="#0D47A1" font-family="monospace">['hello',
+                                'world']</text>
+                            <text x="360" y="95" text-anchor="middle" font-size="12" fill="#555">Standardized
+                                Tokens</text>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span class="footer-text"></span>
+            <span class="page-number"></span>
+        </div>
+    </div>
+
+    <!-- Slide 13: Phase 2: The Separation Strategy -->
+    <div class="slide-container" id="slide13">
+        <h2 class="slide-title">Phase 2: The Separation Strategy</h2>
+        <div class="content-area">
+            <div class="two-column">
+                <div style="display: flex; flex-direction: column; justify-content: center;">
+                    <h3 style="margin-bottom: 20px;">Choosing the Right Logic</h3>
+                    <p style="font-size: 22px; color: #555;">Instead of a linear path, separating data requires a
+                        <strong>strategic decision</strong> based on your dataset's characteristics.
+                    </p>
+                    <div class="box-highlight" style="margin-top: 30px;">
+                        <p style="margin: 0; font-size: 18px; color: #1565C0;">
+                            <strong><i class="fa-solid fa-map-signs"></i> Navigator:</strong><br>
+                            Follow the decision tree to find the correct strategy for your project.
+                        </p>
+                    </div>
+                </div>
+                <div class="image-wrapper">
+                    <svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="180" y="20" width="140" height="50" rx="25" fill="#1565C0" stroke="#0D47A1" />
+                        <text x="250" y="50" text-anchor="middle" fill="#fff" font-weight="bold" font-size="14">START:
+                            Data Check</text>
+
+                        <line x1="250" y1="70" x2="250" y2="100" stroke="#333" stroke-width="2" />
+
+                        <polygon points="250,100 350,140 250,180 150,140" fill="#fff" stroke="#333" stroke-width="2" />
+                        <text x="250" y="135" text-anchor="middle" font-size="12" fill="#333">Independent</text>
+                        <text x="250" y="150" text-anchor="middle" font-size="12" fill="#333">Samples?</text>
+
+                        <line x1="150" y1="140" x2="80" y2="140" stroke="#333" stroke-width="2" />
+                        <line x1="80" y1="140" x2="80" y2="280" stroke="#333" stroke-width="2" />
+                        <rect x="20" y="280" width="120" height="50" rx="8" fill="#BBDEFB" stroke="#1565C0" />
+                        <text x="80" y="305" text-anchor="middle" fill="#1565C0" font-weight="bold"
+                            font-size="12">Strategy C:</text>
+                        <text x="80" y="320" text-anchor="middle" fill="#1565C0" font-weight="bold" font-size="12">Group
+                            Split</text>
+                        <text x="115" y="135" text-anchor="middle" fill="#DC2626" font-size="11"
+                            font-weight="bold">NO</text>
+
+                        <line x1="350" y1="140" x2="420" y2="140" stroke="#333" stroke-width="2" />
+                        <line x1="420" y1="140" x2="420" y2="180" stroke="#333" stroke-width="2" />
+                        <text x="385" y="135" text-anchor="middle" fill="#1565C0" font-size="11"
+                            font-weight="bold">YES</text>
+
+                        <polygon points="420,180 480,210 420,240 360,210" fill="#fff" stroke="#333" stroke-width="2" />
+                        <text x="420" y="205" text-anchor="middle" font-size="11" fill="#333">Target</text>
+                        <text x="420" y="218" text-anchor="middle" font-size="11" fill="#333">Balanced?</text>
+
+                        <line x1="360" y1="210" x2="280" y2="210" stroke="#333" stroke-width="2" />
+                        <line x1="280" y1="210" x2="280" y2="280" stroke="#333" stroke-width="2" />
+                        <rect x="220" y="280" width="120" height="50" rx="8" fill="#E3F2FD" stroke="#1565C0" />
+                        <text x="280" y="305" text-anchor="middle" fill="#1565C0" font-weight="bold"
+                            font-size="12">Strategy A:</text>
+                        <text x="280" y="320" text-anchor="middle" fill="#1565C0" font-weight="bold"
+                            font-size="12">Random Split</text>
+                        <text x="320" y="205" text-anchor="middle" fill="#1565C0" font-size="11"
+                            font-weight="bold">YES</text>
+
+                        <line x1="420" y1="240" x2="420" y2="280" stroke="#333" stroke-width="2" />
+                        <rect x="360" y="280" width="120" height="50" rx="8" fill="#FFEBEE" stroke="#C62828" />
+                        <text x="420" y="305" text-anchor="middle" fill="#C62828" font-weight="bold"
+                            font-size="12">Strategy B:</text>
+                        <text x="420" y="320" text-anchor="middle" fill="#C62828" font-weight="bold"
+                            font-size="12">Stratified Split</text>
+                        <text x="445" y="255" text-anchor="middle" fill="#DC2626" font-size="11"
+                            font-weight="bold">NO</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span class="footer-text"></span>
+            <span class="page-number"></span>
+        </div>
+    </div>
+
+    <!-- Slide 14: Strategy A: Random Split -->
+    <div class="slide-container" id="slide14">
+        <h2 class="slide-title">Strategy A: Random Split</h2>
+        <div class="content-area">
+            <div class="two-column tiled">
+                <div class="tile" style="justify-content: center; text-align: left;">
+                    <h3 style="color: #1565C0;">The Standard Approach</h3>
+                    <p>Randomly shuffling data into Train (70%), Valid (15%), Test (15%).</p>
+                    <div style="margin-top: 20px;">
+                        <p><i class="fa-solid fa-check" style="color:#1565C0;"></i> <strong>Best for:</strong> Large,
+                            Balanced Data.</p>
+                        <div
+                            style="background: rgba(220, 38, 38, 0.05); padding: 10px; border-radius: 6px; margin-top: 10px;">
+                            <p style="margin:0; font-size: 18px; color: #B91C1C;"><i
+                                    class="fa-solid fa-triangle-exclamation"></i> <strong>Problem: Imbalanced
+                                    Data</strong></p>
+                            <p style="font-size: 16px; margin: 5px 0 0 0; color: #555;">Example: 1000 samples, 10
+                                defects <br>&rarr; Test set might get 0 defects!</p>
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px; font-weight: bold; color: #1565C0;">
+                        <i class="fa-solid fa-arrow-right" style="margin-right: 6px;"></i> Solution: Stratified Sampling <i class="fa-solid fa-arrow-right" style="margin-left: 4px;"></i>
+                    </div>
+                </div>
+                <div class="tile" style="align-items: center; justify-content: center; padding: 20px;">
+                    <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                        <text x="150" y="30" text-anchor="middle" font-size="14" fill="#555">Total Dataset</text>
+                        <rect x="10" y="40" width="280" height="30" fill="#ddd" stroke="#999" rx="4" />
+                        <text x="150" y="110" text-anchor="middle" font-size="14" fill="#555">Random Shuffle</text>
+                        <path d="M 150 75 L 150 90" stroke="#555" stroke-width="2" />
+                        <g transform="translate(10, 120)">
+                            <rect x="0" y="0" width="196" height="40" fill="#1565C0" rx="4">
+                                <title>Train 70%</title>
+                            </rect>
+                            <text x="98" y="25" text-anchor="middle" fill="#fff" font-size="12">Train (70%)</text>
+                            <rect x="200" y="0" width="40" height="40" fill="#64B5F6" rx="4">
+                                <title>Val 15%</title>
+                            </rect>
+                            <rect x="245" y="0" width="35" height="40" fill="#BBDEFB" rx="4">
+                                <title>Test 15%</title>
+                            </rect>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span class="footer-text"></span>
+            <span class="page-number"></span>
+        </div>
+    </div>
+
+    <!-- Slide 15: Strategy B: Stratified Split -->
+    <div class="slide-container" id="slide15">
+        <h2 class="slide-title">Strategy B: Stratified Split</h2>
+        <div class="content-area">
+            <div class="two-column">
+                <div>
+                    <h3>Solving the "Rare Case" Problem</h3>
+                    <p><strong>Problem:</strong> Random shuffle might leave ZERO defects in the Test set for imbalanced
+                        data.</p>
+                    <div class="box-highlight">
+                        <p style="margin: 0; color: #1565C0;"><strong><i class="fa-regular fa-lightbulb"></i>
+                                Solution:</strong> Force the split to maintain the same ratio.</p>
+                        <p style="margin: 5px 0 0 0; font-size: 16px; color: #374151;">1% Defects in Train &harr; 1%
+                            Defects in Test</p>
+                    </div>
+                    <p class="text-small"><i class="fa-solid fa-code"></i> Stack: <span
+                            class="code-tag">sklearn.model_selection.StratifiedKFold</span></p>
+                </div>
+                <div class="image-wrapper">
+                    <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                        <text x="200" y="30" text-anchor="middle" font-weight="bold" fill="#333">Population (90% A, 10%
+                            B)</text>
+                        <rect x="50" y="40" width="270" height="30" fill="#BBDEFB" stroke="#1565C0" />
+                        <rect x="320" y="40" width="30" height="30" fill="#DC2626" stroke="#B91C1C" />
+                        <path d="M 150 80 L 100 130" stroke="#999" stroke-width="2" />
+                        <path d="M 250 80 L 300 130" stroke="#999" stroke-width="2" />
+                        <text x="100" y="150" text-anchor="middle" font-weight="bold" fill="#1565C0">Train Set</text>
+                        <rect x="20" y="160" width="135" height="20" fill="#BBDEFB" />
+                        <rect x="155" y="160" width="15" height="20" fill="#DC2626" />
+                        <text x="100" y="195" text-anchor="middle" font-size="12" fill="#555">Maintains 90:10
+                            Ratio</text>
+                        <text x="300" y="150" text-anchor="middle" font-weight="bold" fill="#1565C0">Test Set</text>
+                        <rect x="230" y="160" width="135" height="20" fill="#BBDEFB" />
+                        <rect x="365" y="160" width="15" height="20" fill="#DC2626" />
+                        <text x="300" y="195" text-anchor="middle" font-size="12" fill="#555">Maintains 90:10
+                            Ratio</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span class="footer-text"></span>
+            <span class="page-number"></span>
+        </div>
+    </div>
+
+    <!-- Slide 16: Strategy C: Group Split -->
+    <div class="slide-container" id="slide16">
+        <h2 class="slide-title">Strategy C: Group Split</h2>
+        <div class="content-area">
+            <div class="two-column">
+                <div>
+                    <h3 style="color: #dc2626;">Preventing Data Leakage</h3>
+                    <p><strong>Problem:</strong> Mixing photos of the same person in Train/Test creates memorization.
+                    </p>
+                    <div
+                        style="background: white; border: 1px solid #ddd; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                        <div style="color: #B91C1C; margin-bottom: 5px;"><strong><i class="fa-solid fa-circle-xmark" style="margin-right: 4px;"></i> WRONG:</strong> Person A in Train &
+                            Test</div>
+                        <div style="font-size: 14px; color: #666;">Result: Model memorizes A. Fails on new people.</div>
+                        <div style="color: #1565C0; margin-top: 10px; margin-bottom: 5px;"><strong><i class="fa-solid fa-circle-check" style="margin-right: 4px;"></i> CORRECT:</strong>
+                            Person A in Train Only</div>
+                        <div style="font-size: 14px; color: #666;">Result: Model learns general patterns. WORKS!</div>
+                    </div>
+
+                    <div class="box-warning" style="margin-top: 0; padding: 15px;">
+                        <strong style="display:block; margin-bottom:5px;"><i class="fa-solid fa-triangle-exclamation" style="margin-right: 4px;"></i> Real-World Disaster</strong>
+                        <span style="font-size: 16px; color: #333;">
+                            <strong>Company X:</strong> Test Acc 95% &rarr; Prod 60%<br>
+                            <strong>Reason:</strong> Data Leakage!<br>
+                            <strong>Cost:</strong> $500K wasted.
+                        </span>
+                    </div>
+                </div>
+                <div class="image-wrapper">
+                    <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                        <text x="200" y="30" text-anchor="middle" font-weight="bold" fill="#333">Groups (e.g.,
+                            Patients)</text>
+                        <g transform="translate(100, 50)">
+                            <rect x="0" y="0" width="60" height="80" fill="#E1F5FE" stroke="#0288D1" />
+                            <text x="30" y="45" text-anchor="middle" fill="#0277BD">G1</text>
+                        </g>
+                        <g transform="translate(170, 50)">
+                            <rect x="0" y="0" width="60" height="80" fill="#E1F5FE" stroke="#0288D1" />
+                            <text x="30" y="45" text-anchor="middle" fill="#0277BD">G2</text>
+                        </g>
+                        <g transform="translate(240, 50)">
+                            <rect x="0" y="0" width="60" height="80" fill="#FFEBEE" stroke="#C62828" />
+                            <text x="30" y="45" text-anchor="middle" fill="#C62828">G3</text>
+                        </g>
+
+                        <!-- Clean bracket showing G1 and G2 merging into TRAIN -->
+                        <path d="M 130 135 L 130 150 L 200 150 L 200 135" fill="none" stroke="#1565C0"
+                            stroke-width="2" />
+                        <path d="M 165 150 L 165 180" fill="none" stroke="#1565C0" stroke-width="2" />
+
+                        <!-- Clean line dropping G3 into TEST -->
+                        <!-- <path d="M 270 135 L 270 150 L 255 150 L 255 180" fill="none" stroke="#DC2626" stroke-width="2"/> -->
+                        <path d="M 270 135 L 270 180" fill="none" stroke="#DC2626" stroke-width="2" />
+
+                        <rect x="120" y="180" width="90" height="40" fill="#1565C0" rx="4" />
+                        <text x="165" y="205" text-anchor="middle" fill="#fff" font-weight="bold">TRAIN</text>
+
+                        <rect x="240" y="180" width="60" height="40" fill="#DC2626" rx="4" />
+                        <text x="270" y="205" text-anchor="middle" fill="#fff" font-weight="bold">TEST</text>
+
+                        <text x="200" y="260" text-anchor="middle" font-size="12" fill="#555">G3 is completely separated
+                            from G1, G2</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span class="footer-text"></span>
+            <span class="page-number"></span>
+        </div>
+    </div>
+
+    <!-- Slide 17: Phase 3: Data Augmentation -->
+    <div class="slide-container" id="slide17">
+        <h2 class="slide-title">Phase 3: Data Augmentation</h2>
+        <div class="content-area">
+            <div class="two-column">
+                <div>
+                    <h3>Multiplying Data with Logic</h3>
+                    <div style="margin-bottom: 20px;">
+                        <p style="margin-bottom: 8px;"><strong>1. Computer Vision (Images):</strong><br> Rotation, Flip,
+                            Zoom, Noise.</p>
+                        <p style="margin-bottom: 0;"><strong>2. NLP (Text):</strong><br> Synonym Replacement,
+                            Back-Translation.</p>
+                    </div>
+                    <div class="box-warning" style="margin-top: 15px;">
+                        <h4 style="margin: 0 0 5px 0; color:#B91C1C; font-size: 16px;"><i
+                                class="fa-solid fa-triangle-exclamation"></i> CRITICAL RULES</h4>
+                        <p style="text-align: left; font-size: 16px; color: #333; margin: 0; line-height: 1.4;">
+                            <span class="text-success">✅ Augment Training Set ONLY</span><br>
+                            <span class="text-danger">❌ Never Touch Test Set!</span>
+                        </p>
+                    </div>
+                    <p class="text-small" style="margin-top: 20px;"><i class="fa-solid fa-code"></i> Stack: <span
+                            class="code-tag">Albumentations</span> | <span class="code-tag">nlpaug</span></p>
+                </div>
+                <div class="image-wrapper">
+                    <svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg" style="background: #fff;">
+                        <defs>
+                            <marker id="arrow-s17" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                <path d="M 0 0 L 10 5 L 0 10 z" fill="#333" />
+                            </marker>
+                        </defs>
+                        <g transform="translate(0, 10)">
+                            <text x="250" y="25" text-anchor="middle" font-weight="bold" fill="#555"
+                                font-size="14">Image Augmentation</text>
+                            <g transform="translate(35, 50)">
+                                <rect x="0" y="0" width="80" height="80" fill="#fff" stroke="#333" stroke-width="2" />
+                                <text x="40" y="-10" text-anchor="middle" font-size="12" fill="#333">Original</text>
+                                <path d="M 30 60 L 40 40 L 50 60" fill="none" stroke="#1565C0" stroke-width="3" />
+                            </g>
+                            <path d="M 120 90 L 145 90" stroke="#333" stroke-width="2" />
+                            <g transform="translate(150, 50)">
+                                <rect x="0" y="0" width="80" height="80" fill="#fff" stroke="#999"
+                                    stroke-dasharray="4" />
+                                <path d="M 30 60 L 40 40 L 50 60" fill="none" stroke="#1565C0" stroke-width="3"
+                                    transform="rotate(45, 40, 40)" />
+                                <text x="40" y="100" text-anchor="middle" font-size="12" fill="#555">Rotate</text>
+                            </g>
+                            <g transform="translate(265, 50)">
+                                <rect x="0" y="0" width="80" height="80" fill="#fff" stroke="#999"
+                                    stroke-dasharray="4" />
+                                <path d="M 30 20 L 40 40 L 50 20" fill="none" stroke="#1565C0" stroke-width="3" />
+                                <text x="40" y="100" text-anchor="middle" font-size="12" fill="#555">Flip</text>
+                            </g>
+                            <g transform="translate(380, 50)">
+                                <rect x="0" y="0" width="80" height="80" fill="#fff" stroke="#999"
+                                    stroke-dasharray="4" />
+                                <path d="M 30 60 L 40 40 L 50 60" fill="none" stroke="#1565C0" stroke-width="3" />
+                                <circle cx="20" cy="20" r="2" fill="#555" />
+                                <circle cx="60" cy="50" r="2" fill="#555" />
+                                <circle cx="10" cy="70" r="2" fill="#555" />
+                                <circle cx="70" cy="15" r="2" fill="#555" />
+                                <text x="40" y="100" text-anchor="middle" font-size="12" fill="#555">Noise</text>
+                            </g>
+                        </g>
+                        <line x1="50" y1="200" x2="450" y2="200" stroke="#ddd" stroke-width="2" stroke-dasharray="4" />
+                        <g transform="translate(0, 210)">
+                            <text x="250" y="30" text-anchor="middle" font-weight="bold" fill="#555"
+                                font-size="14">Text: Synonym Replacement & Back-Translation</text>
+                            <g transform="translate(130, 50)">
+                                <rect x="0" y="0" width="100" height="35" rx="6" fill="#E1F5FE" stroke="#0288D1" />
+                                <text x="50" y="22" text-anchor="middle" fill="#0277BD" font-size="14">"bad"</text>
+                                <path d="M 110 17 L 130 17" stroke="#333" stroke-width="2" marker-end="url(#arrow-s17)" />
+                                <rect x="140" y="0" width="100" height="35" rx="6" fill="#E8F5E9" stroke="#2E7D32" />
+                                <text x="190" y="22" text-anchor="middle" fill="#1B5E20" font-size="14"
+                                    font-weight="bold">"awful"</text>
+                                <text x="120" y="48" text-anchor="middle" font-size="11" fill="#555"
+                                    style="display: block;">Synonym</text>
+                            </g>
+                            <g transform="translate(85, 110)">
+                                <rect x="0" y="0" width="80" height="35" rx="6" fill="#FFF3E0" stroke="#E65100" />
+                                <text x="40" y="22" text-anchor="middle" fill="#E65100" font-size="14">"Dog"</text>
+                                <text x="40" y="48" text-anchor="middle" font-size="10" fill="#999">Original</text>
+                                <path d="M 90 17 L 110 17" stroke="#333" stroke-width="2" marker-end="url(#arrow-s17)" />
+                                <rect x="120" y="0" width="90" height="35" rx="6" fill="#F3E5F5" stroke="#7B1FA2" />
+                                <text x="165" y="22" text-anchor="middle" fill="#6A1B9A" font-size="14">"Chien"</text>
+                                <text x="165" y="48" text-anchor="middle" font-size="10" fill="#999">Intermediate
+                                    (Fr)</text>
+                                <path d="M 220 17 L 240 17" stroke="#333" stroke-width="2" marker-end="url(#arrow-s17)" />
+                                <rect x="250" y="0" width="100" height="35" rx="6" fill="#E3F2FD" stroke="#1565C0" />
+                                <text x="300" y="22" text-anchor="middle" fill="#0D47A1" font-size="14"
+                                    font-weight="bold">"Canine"</text>
+                                <text x="300" y="48" text-anchor="middle" font-size="10" fill="#999">Paraphrased</text>
+                                <text x="175" y="65" text-anchor="middle" font-size="11"
+                                    fill="#555">Back-Translation</text>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span class="footer-text"></span>
+            <span class="page-number"></span>
+        </div>
+    </div>
+
+    <!-- Slide 18: Phase 3: Data Resampling -->
+    <div class="slide-container" id="slide18">
+        <h2 class="slide-title">Phase 3 (Cont.): Data Resampling</h2>
+        <div class="content-area">
+            <div class="two-column">
+                <div>
+                    <h3>Balancing the Scales</h3>
+                    <p>When you have extreme class imbalance, augmentation might not be enough. You need to reshape the
+                        dataset.</p>
+
+                    <div style="margin-top: 25px;">
+                        <div style="margin-bottom: 20px;">
+                            <h4 style="color: #1565C0; margin-bottom: 5px;"><i
+                                    class="fa-solid fa-compress-arrows-alt"></i> Downsampling (Under-sampling)</h4>
+                            <p style="font-size: 18px; color: #555;">Removing samples from the Majority class.</p>
+                        </div>
+                        <div>
+                            <h4 style="color: #1565C0; margin-bottom: 5px;"><i
+                                    class="fa-solid fa-expand-arrows-alt"></i> Oversampling</h4>
+                            <p style="font-size: 18px; color: #555;">Duplicating samples from the Minority class
+                                (SMOTE).</p>
+                        </div>
+                    </div>
+
+                    <div class="box-warning" style="padding: 15px; margin-top: 25px;">
+                        <h4 style="margin: 0 0 5px 0; color:#B91C1C; font-size: 16px;"><i
+                                class="fa-solid fa-triangle-exclamation"></i> CAUTION: DOWNSAMPLING</h4>
+                        <p style="text-align: left; font-size: 16px; color: #333; margin: 0; line-height: 1.4;">
+                            Downsampling <strong>throws away data (signal)</strong>. Use only when you have massive
+                            datasets (millions of rows) with high redundancy.
+                        </p>
+                    </div>
+                </div>
+                <div class="image-wrapper">
+                    <svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg" style="background: #fff;">
+                        <defs>
+                            <marker id="arrow-s18" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                <path d="M 0 0 L 10 5 L 0 10 z" fill="#333" />
+                            </marker>
+                        </defs>
+                        <text x="250" y="30" text-anchor="middle" font-weight="bold" fill="#333" font-size="16">From
+                            Imbalance to Balance</text>
+
+                        <g transform="translate(60, 80)">
+                            <text x="50" y="-15" text-anchor="middle" font-size="14" fill="#555"
+                                font-weight="bold">Imbalanced</text>
+                            <line x1="0" y1="0" x2="0" y2="200" stroke="#999" stroke-width="2" />
+                            <line x1="0" y1="200" x2="120" y2="200" stroke="#999" stroke-width="2" />
+                            <rect x="20" y="20" width="30" height="180" fill="#E3F2FD" stroke="#1565C0" />
+                            <text x="35" y="215" text-anchor="middle" font-size="12" fill="#555">Class A</text>
+                            <text x="35" y="15" text-anchor="middle" font-size="12" fill="#1565C0">90%</text>
+                            <rect x="70" y="180" width="30" height="20" fill="#FFEBEE" stroke="#DC2626" />
+                            <text x="85" y="215" text-anchor="middle" font-size="12" fill="#555">Class B</text>
+                            <text x="85" y="175" text-anchor="middle" font-size="12" fill="#DC2626">10%</text>
+                        </g>
+
+                        <g transform="translate(210, 180)">
+                            <line x1="0" y1="0" x2="60" y2="0" stroke="#333" stroke-width="2"
+                                marker-end="url(#arrow-s18)" />
+                            <text x="30" y="-10" text-anchor="middle" font-size="12" fill="#555">Resample</text>
+                        </g>
+
+                        <g transform="translate(320, 80)">
+                            <text x="50" y="-15" text-anchor="middle" font-size="14" fill="#1565C0"
+                                font-weight="bold">Balanced</text>
+                            <line x1="0" y1="0" x2="0" y2="200" stroke="#999" stroke-width="2" />
+                            <line x1="0" y1="200" x2="120" y2="200" stroke="#999" stroke-width="2" />
+
+                            <rect x="20" y="100" width="30" height="100" fill="#E3F2FD" stroke="#1565C0" />
+                            <rect x="20" y="20" width="30" height="80" fill="none" stroke="#ddd" stroke-dasharray="4" />
+                            <text x="35" y="215" text-anchor="middle" font-size="12" fill="#555">Class A</text>
+
+                            <rect x="70" y="100" width="30" height="100" fill="#FFEBEE" stroke="#DC2626" />
+                            <rect x="70" y="180" width="30" height="20" fill="#DC2626" opacity="0.3" />
+                            <text x="85" y="215" text-anchor="middle" font-size="12" fill="#555">Class B</text>
+
+                            <text x="60" y="90" text-anchor="middle" font-size="12" fill="#333">50% / 50%</text>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span class="footer-text"></span>
+            <span class="page-number"></span>
+        </div>
+    </div>
+
+    <!-- Slide 19: Common Mistakes -->
+    <div class="slide-container" id="slide19">
+        <h2 class="slide-title" style="color: #1565C0;">Common Mistakes to Avoid</h2>
+        <div class="content-area">
+            <div class="tiled-content" style="grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="tile" style="padding: 20px 25px; min-height: 140px; justify-content: start; gap: 10px;">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 5px;">
+                        <div class="icon" style="color: #dc2626; font-size: 24px; margin: 0;"><i
+                                class="fa-solid fa-vial-circle-check"></i></div>
+                        <h3 style="color: #dc2626; font-size: 22px; margin: 0;">Augmenting the Test Set</h3>
+                    </div>
+                    <p style="font-size: 18px; line-height: 1.4; margin: 0;">Never apply rotation/noise to test data. It
+                        must represent reality, not synthetic variations.</p>
+                </div>
+                <div class="tile" style="padding: 20px 25px; min-height: 140px; justify-content: start; gap: 10px;">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 5px;">
+                        <div class="icon" style="color: #dc2626; font-size: 24px; margin: 0;"><i
+                                class="fa-solid fa-scale-unbalanced"></i></div>
+                        <h3 style="color: #dc2626; font-size: 22px; margin: 0;">Ignoring Class Distribution</h3>
+                    </div>
+                    <p style="font-size: 18px; line-height: 1.4; margin: 0;">Failing to check if your test set actually
+                        contains the rare classes (defects) you need.</p>
+                </div>
+                <div class="tile" style="padding: 20px 25px; min-height: 140px; justify-content: start; gap: 10px;">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 5px;">
+                        <div class="icon" style="color: #dc2626; font-size: 24px; margin: 0;"><i
+                                class="fa-solid fa-calculator"></i></div>
+                        <h3 style="color: #dc2626; font-size: 22px; margin: 0;">Separate Normalization</h3>
+                    </div>
+                    <p style="font-size: 18px; line-height: 1.4; margin: 0;"><strong>Wrong:</strong> Calc Mean/Std on
+                        Test.<br><strong>Right:</strong> Use Mean/Std from Train to transform Test.</p>
+                </div>
+                <div class="tile" style="padding: 20px 25px; min-height: 140px; justify-content: start; gap: 10px;">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 5px;">
+                        <div class="icon" style="color: #dc2626; font-size: 24px; margin: 0;"><i
+                                class="fa-solid fa-faucet-drip"></i></div>
+                        <h3 style="color: #dc2626; font-size: 22px; margin: 0;">Feature Leakage</h3>
+                    </div>
+                    <p style="font-size: 18px; line-height: 1.4; margin: 0;">Creating features (like "Group Average")
+                        using the whole dataset before splitting.</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span class="footer-text"></span>
+            <span class="page-number"></span>
+        </div>
+    </div>
+
+    <!-- Slide 20: Final Recap & Conclusion -->
+    <div class="slide-container" id="slide20">
+        <h2 class="slide-title">Final Recap & Conclusion</h2>
+        <div class="content-area">
+            <div class="two-column">
+                <div class="checklist-container" style="justify-content: center; height: 100%;">
+                    <p style="font-size: 20px; color: #555; margin-bottom: 25px;">A structured approach to data
+                        preparation significantly improves model reliability.</p>
+
+                    <div style="position: relative; padding-left: 20px; border-left: 3px solid #E3F2FD;">
+                        <div style="margin-bottom: 25px;">
+                            <h4 style="color: #1565C0; font-size: 20px; margin: 0 0 5px 0;">1. Normalize (Phase 1)</h4>
+                            <p style="font-size: 16px; margin: 0; color: #555;">Scale inputs and clean text. <em>Always
+                                    mandatory.</em></p>
+                        </div>
+                        <div style="margin-bottom: 25px;">
+                            <h4 style="color: #1565C0; font-size: 20px; margin: 0 0 5px 0;">2. Strategize Split (Phase
+                                2)</h4>
+                            <p style="font-size: 16px; margin: 0; color: #555;">Random, Stratified, or Group split based
+                                on data characteristics.</p>
+                        </div>
+                        <div style="margin-bottom: 0px;">
+                            <h4 style="color: #1565C0; font-size: 20px; margin: 0 0 5px 0;">3. Refine Train Set (Phase
+                                3)</h4>
+                            <p style="font-size: 16px; margin: 0; color: #555;">Apply Augmentation and Resampling to the
+                                <strong>Training Set only</strong>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <div class="golden-rule-box"
+                        style="display: flex; flex-direction: column; justify-content: center; align-items: center; background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border: 1px solid rgba(0, 0, 0, 0.12); width: 100%; height: auto; aspect-ratio: auto;">
+                        <div style="font-size: 40px; color: #FFD700; margin-bottom: 10px;"><i
+                                class="fa-solid fa-medal"></i></div>
+                        <h3 style="margin-bottom: 10px; color: #333; font-size: 20px;">Golden Rule</h3>
+                        <p style="font-size: 18px; font-weight: 700; color: #1565C0; margin: 0;">"Garbage In, Garbage
+                            Out"</p>
+                    </div>
+
+                    <div class="tile" style="border-left: 5px solid #1565C0; margin-top: 0; padding: 20px;">
+                        <h4 style="margin: 0; font-size: 22px; color: #1565C0;">Questions?</h4>
+                        <p style="margin: 5px 0 0 0; font-size: 16px; color: #555;">Feel free to ask about any concepts
+                            or specific industry applications discussed today.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span class="footer-text"></span>
+            <span class="page-number"></span>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var slides = document.querySelectorAll(".slide-container");
+            var total = slides.length;
+            slides.forEach(function (slide, i) {
+                var el = slide.querySelector(".page-number");
+                if (el) el.textContent = (i + 1) + " / " + total;
+            });
+        });
+    </script>
+</body>
+
+</html>
