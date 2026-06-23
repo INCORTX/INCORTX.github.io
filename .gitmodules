@@ -10,3 +10,6 @@
 [submodule "DigitalSignalProcessing"]
 	path = DigitalSignalProcessing
 	url = https://github.com/INCORTX/DigitalSignalProcessing.git
+[submodule "ModernComputerVision"]
+	path = ModernComputerVision
+	url = https://github.com/INCORTX/ModernComputerVision.git
