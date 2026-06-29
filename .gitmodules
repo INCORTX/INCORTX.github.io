@@ -7,6 +7,3 @@
 [submodule "teaching-demo"]
 	path = teaching-demo
 	url = https://github.com/INCORTX/teaching-demo.git
-[submodule "DigitalSignalProcessing"]
-	path = DigitalSignalProcessing
-	url = https://github.com/INCORTX/DigitalSignalProcessing.git
