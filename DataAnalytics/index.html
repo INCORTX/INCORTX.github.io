@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" style="color-scheme: dark;">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Analytics | INCORTX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg-void:#050811;--bg-deep:#0a101f;--text-primary:#f8fafc;--text-muted:#94a3b8;
+--glass-bg:rgba(15,23,42,.45);--glass-border:rgba(255,255,255,.08);--teal:#2dd4bf}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg-void);
+color:var(--text-primary);line-height:1.65;
+background-image:radial-gradient(circle at 15% 0%,rgba(13,148,136,.16),transparent 45%),
+radial-gradient(circle at 85% 100%,rgba(76,29,149,.18),transparent 45%);
+background-attachment:fixed;min-height:100vh}
+.wrap{max-width:900px;margin:0 auto;padding:4rem 1.5rem 5rem}
+.back{color:var(--text-muted);text-decoration:none;font-size:.85rem;letter-spacing:.06em;
+text-transform:uppercase}
+.back:hover{color:var(--teal)}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,6vw,3.6rem);font-weight:600;
+margin:1.6rem 0 .4rem;letter-spacing:-.01em}
+.lede{color:var(--text-muted);max-width:60ch;margin-bottom:.9rem}
+.note{background:var(--glass-bg);border:1px solid var(--glass-border);border-left:2px solid var(--teal);
+border-radius:8px;padding:.9rem 1.1rem;color:var(--text-muted);font-size:.9rem;margin:2rem 0 2.6rem}
+.note b{color:var(--text-primary);font-weight:600}
+.session{display:flex;gap:1.4rem;background:var(--glass-bg);border:1px solid var(--glass-border);
+border-radius:14px;padding:1.5rem 1.6rem;margin-bottom:1rem;backdrop-filter:blur(12px)}
+.session.pending{opacity:.5}
+.num{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--teal);
+line-height:1;min-width:2.2rem;padding-top:.2rem}
+.session.pending .num{color:var(--text-muted)}
+h2{font-size:1.12rem;font-weight:600;margin-bottom:.35rem}
+.desc{color:var(--text-muted);font-size:.92rem}
+.topics{color:var(--text-muted);font-size:.78rem;opacity:.75;margin-top:.5rem;letter-spacing:.02em}
+.links{margin-top:1rem;display:flex;gap:.6rem;flex-wrap:wrap}
+.btn{display:inline-block;padding:.45rem 1rem;border-radius:999px;font-size:.82rem;font-weight:500;
+text-decoration:none;border:1px solid var(--glass-border);color:var(--text-primary);
+transition:border-color .2s,transform .2s}
+.btn:hover{border-color:var(--teal);transform:translateY(-1px)}
+.btn.primary{background:rgba(45,212,191,.12);border-color:rgba(45,212,191,.35);color:var(--teal)}
+.soon{font-size:.8rem;color:var(--text-muted);font-style:italic}
+footer{margin-top:3.5rem;padding-top:1.6rem;border-top:1px solid var(--glass-border);
+color:var(--text-muted);font-size:.8rem}
+@media(max-width:560px){.session{flex-direction:column;gap:.6rem}.num{padding-top:0}}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="../">&larr; INCORTX Classes</a>
+    <h1>Data Analytics</h1>
+    <p class="lede">Lab sessions for Data Analytics, DTii 1/2026 at KMITL. Five hands-on sessions
+    running alongside the lecture course, from raw files through to models you can defend.</p>
+    <div class="note"><b>Everything runs in Google Colab.</b> Nothing to install, no files to upload —
+    every dataset in these notebooks loads in a single line.</div>
+      <article class="session ">
+        <div class="num">01</div>
+        <div class="body">
+          <h2>From Raw Data to a First Model</h2>
+          <p class="desc">Preprocessing and supervised learning. A baseline you have to beat, a Pipeline with no leakage, and why accuracy on its own will lie to you.</p>
+          <p class="topics">Data collection · Missing values · Target leakage · Decision trees · Confusion matrix · Cross-validation</p>
+          <div class="links">
+            <a class="btn primary" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/master/DataAnalytics/session-01/lab01_raw_data_to_first_model.ipynb" target="_blank" rel="noopener">Open in Colab</a>
+            <a class="btn" href="session-01/lab01_raw_data_to_first_model.ipynb" download>Download .ipynb</a>
+          </div>
+        </div>
+      </article>
+      <article class="session pending">
+        <div class="num">02</div>
+        <div class="body">
+          <h2>When There Is No Answer Key</h2>
+          <p class="desc">Unsupervised learning — clustering, density, and seeing 20 dimensions in 2.</p>
+          <p class="topics">k-Means · Hierarchical · DBSCAN · PCA · t-SNE · Anomaly detection</p>
+          <div class="links"><span class="soon">Not published yet</span></div>
+        </div>
+      </article>
+      <article class="session pending">
+        <div class="num">03</div>
+        <div class="body">
+          <h2>Letting the Machine Find the Features</h2>
+          <p class="desc">Neural networks on tables, images and text — and when they are not worth it.</p>
+          <p class="topics">ANN · CNN · Grad-CAM · RNN · Learning curves</p>
+          <div class="links"><span class="soon">Not published yet</span></div>
+        </div>
+      </article>
+      <article class="session pending">
+        <div class="num">04</div>
+        <div class="body">
+          <h2>Making Things That Never Existed</h2>
+          <p class="desc">Autoencoders and GANs, and three ways of looking at the same data.</p>
+          <p class="topics">Autoencoder · Latent space · GAN · Mode collapse</p>
+          <div class="links"><span class="soon">Not published yet</span></div>
+        </div>
+      </article>
+      <article class="session pending">
+        <div class="num">05</div>
+        <div class="body">
+          <h2>SOM, DRL, and the Whole Pipeline</h2>
+          <p class="desc">The last two methods, then you walk your own data end to end.</p>
+          <p class="topics">Self-organising maps · Q-learning · End-to-end project</p>
+          <div class="links"><span class="soon">Not published yet</span></div>
+        </div>
+      </article>
+    <footer>INCORTX Research Lab &middot; Data Analytics, DTii 1/2026</footer>
+  </div>
+</body>
+</html>
