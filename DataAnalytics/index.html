@@ -46,22 +46,83 @@ transition:border-color .2s,transform .2s}
 footer{margin-top:3.5rem;padding-top:1.6rem;border-top:1px solid var(--glass-border);
 color:var(--text-muted);font-size:.8rem}
 @media(max-width:560px){.session{flex-direction:column;gap:.6rem}.num{padding-top:0}}
-</style>
+
+.marking{background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:14px;
+padding:1.5rem 1.7rem;margin:1.6rem 0 1.2rem;backdrop-filter:blur(12px)}
+.marking h2{font-size:1.08rem;margin-bottom:.3rem}
+.marking .sub{color:var(--text-muted);font-size:.9rem;margin-bottom:1.1rem}
+.shape{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.6rem;margin-bottom:1.3rem}
+.shape div{background:rgba(255,255,255,.04);border:1px solid var(--glass-border);border-radius:9px;
+padding:.65rem .8rem;font-size:.84rem;color:var(--text-muted)}
+.shape b{display:block;color:var(--teal);font-size:.74rem;letter-spacing:.06em;
+text-transform:uppercase;margin-bottom:.2rem}
+.marked{list-style:none;margin:0 0 1.2rem;padding:0;
+display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:.5rem}
+.marked li{display:flex;gap:.6rem;align-items:baseline;font-size:.88rem;color:var(--text-muted);
+background:rgba(255,255,255,.03);border-radius:8px;padding:.55rem .75rem}
+.marked li span{color:var(--teal);font-weight:700;font-size:.78rem;flex:none}
+.hard{border-left:2px solid var(--teal);background:rgba(45,212,191,.06);border-radius:0 8px 8px 0;
+padding:.8rem 1rem;font-size:.88rem;color:var(--text-muted);margin-bottom:1rem}
+.hard b{color:var(--text-primary)}
+.hard ul{margin:.5rem 0 0 1.1rem}
+.hard li{margin:.25rem 0}</style>
 </head>
 <body>
   <div class="wrap">
     <a class="back" href="../">&larr; INCORTX Classes</a>
     <h1>Data Analytics</h1>
-    <p class="lede">Lab sessions for Data Analytics, DTii 1/2026 at KMITL. Five hands-on sessions
+    <p class="lede">Lab sessions for Data Analytics, DTii 1/2026 at KMITL. Six hands-on sessions
     running alongside the lecture course, from raw files through to models you can defend.</p>
     <div class="note"><b>Everything runs in Google Colab.</b> Nothing to install, no files to upload —
     every dataset in these notebooks loads in a single line.</div>
+
+    <div class="marking">
+      <h2>Every session is an assignment, and they are all marked the same way</h2>
+      <p class="sub">Group work, three or four people, groups named A&ndash;J. One topic per group.</p>
+
+      <div class="shape">
+        <div><b>45 min</b>Demo — watch, do not type along</div>
+        <div><b>60 min</b>Your hour — your topic, five steps</div>
+        <div><b>60 min</b>Everyone presents, then questions</div>
+      </div>
+
+      <p class="sub" style="margin-bottom:.6rem"><b style="color:var(--text-primary)">The five steps of
+      your hour are also exactly what you present:</b> EDA &rarr; Insight &rarr; Problem &rarr; Solution
+      &rarr; Metric. Each one has to be opened on screen from your notebook.</p>
+
+      <p class="sub" style="margin-bottom:.5rem"><b style="color:var(--text-primary)">Seven things are
+      marked:</b></p>
+      <ul class="marked">
+        <li><span>01</span>Presenting in the session</li>
+        <li><span>02</span>Answering questions about your code</li>
+        <li><span>03</span>Handing in every file on time</li>
+        <li><span>04</span>Video — fluent, and it analyses something</li>
+        <li><span>05</span>Slides — visualisation worth looking at</li>
+        <li><span>06</span>The homework checklist, complete</li>
+        <li><span>07</span>Slide count and video length</li>
+      </ul>
+
+      <div class="hard">
+        <b>Four rules that decide marks before anything else is read</b>
+        <ul>
+          <li><b>Everything is a file.</b> No YouTube, Drive, Google Slides or Colab links —
+              <code>.ipynb</code>, <code>.mp4</code>, <code>.pdf</code>/<code>.pptx</code>,
+              <code>README</code>.</li>
+          <li><b>Homework is due the day before the next session.</b></li>
+          <li><b>Everybody presents every assignment</b> — two of you in the room, the rest in the video.</li>
+          <li><b>You are not required to get a good result.</b> A model that loses to its own baseline
+              scores just as well, if you can say why.</li>
+        </ul>
+      </div>
+
+      <a class="btn primary" href="session-00/">Read the full assignment brief &amp; marking</a>
+    </div>
       <article class="session ">
         <div class="num">00</div>
         <div class="body">
-          <h2>Assignment 1 &amp; Marking</h2>
-          <p class="desc">How the group assignment is set and marked — the baseline rule, the Pipeline rule, how questions are scored on both sides of the room, and what to hand in.</p>
-          <p class="topics">Groups of 4 · 10 marks · Asking earns marks too</p>
+          <h2>Assignments &amp; Marking</h2>
+          <p class="desc">How every assignment is set, presented and marked — the five steps of your hour, the seven things that are marked, how questions are scored on both sides of the room, and what to hand in.</p>
+          <p class="topics">Groups of 3–4 · Everybody presents · Files only, no links</p>
           <div class="links"><a class="btn primary" href="session-00/">Read it</a></div>
         </div>
       </article>
@@ -81,36 +142,45 @@ color:var(--text-muted);font-size:.8rem}
       <article class="session pending">
         <div class="num">02</div>
         <div class="body">
-          <h2>When There Is No Answer Key</h2>
-          <p class="desc">Unsupervised learning — clustering, density, and seeing 20 dimensions in 2.</p>
-          <p class="topics">k-Means · Hierarchical · DBSCAN · PCA · t-SNE · Anomaly detection</p>
+          <h2>Predicting a Number, and Measuring It Honestly</h2>
+          <p class="desc">Regression, where being wrong by 2 and being wrong by 200 are not the same mistake — and each metric takes a different view of that.</p>
+          <p class="topics">Linear &amp; tree regression · MAE / RMSE / R² · Residual plots · Overfitting curves</p>
           <div class="links"><span class="soon">Not published yet</span></div>
         </div>
       </article>
       <article class="session pending">
         <div class="num">03</div>
         <div class="body">
-          <h2>Letting the Machine Find the Features</h2>
-          <p class="desc">Neural networks on tables, images and text — and when they are not worth it.</p>
-          <p class="topics">ANN · CNN · Grad-CAM · RNN · Learning curves</p>
+          <h2>What Goes With What, and What Groups With What</h2>
+          <p class="desc">Association rules and clustering — two ways of finding structure when nobody handed you an answer key.</p>
+          <p class="topics">Apriori · Support / confidence / lift · k-Means · DBSCAN · Silhouette · PCA</p>
           <div class="links"><span class="soon">Not published yet</span></div>
         </div>
       </article>
       <article class="session pending">
         <div class="num">04</div>
         <div class="body">
-          <h2>Making Things That Never Existed</h2>
-          <p class="desc">Autoencoders and GANs, and three ways of looking at the same data.</p>
-          <p class="topics">Autoencoder · Latent space · GAN · Mode collapse</p>
+          <h2>Letting the Machine Find the Features</h2>
+          <p class="desc">Neural networks on tables and images, in PyTorch — and the question of whether they were worth it.</p>
+          <p class="topics">ANN · CNN · Transfer learning · Grad-CAM · Learning curves</p>
           <div class="links"><span class="soon">Not published yet</span></div>
         </div>
       </article>
       <article class="session pending">
         <div class="num">05</div>
         <div class="body">
-          <h2>SOM, DRL, and the Whole Pipeline</h2>
-          <p class="desc">The last two methods, then you walk your own data end to end.</p>
-          <p class="topics">Self-organising maps · Q-learning · End-to-end project</p>
+          <h2>Making Things Up, and Data That Has an Order</h2>
+          <p class="desc">Autoencoders, GANs, and recurrent networks on Thai text — three architectures that fail in three different ways.</p>
+          <p class="topics">Autoencoder · Latent space · GAN · Mode collapse · RNN / LSTM · Thai sentiment</p>
+          <div class="links"><span class="soon">Not published yet</span></div>
+        </div>
+      </article>
+      <article class="session pending">
+        <div class="num">06</div>
+        <div class="body">
+          <h2>Maps, Agents, and Your Own Data End to End</h2>
+          <p class="desc">Self-organising maps and reinforcement learning, then you walk your dataset the whole way through on your own.</p>
+          <p class="topics">Self-organising maps · U-matrix · Q-learning · End-to-end project</p>
           <div class="links"><span class="soon">Not published yet</span></div>
         </div>
       </article>
