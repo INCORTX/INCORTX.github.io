@@ -680,7 +680,7 @@ kbd{
 <span class="topic-tag">A · Designed Features → Learned Ones</span>
 <span class="slide-head">💻 LAB — One neuron, then one hidden layer</span>
 <div class="code-block" style="margin-top:10px;">
-<div class="code-header"><span>lab_a.py</span><span>Colab · run it, then the TODOs</span></div>
+<div class="code-header"><span>lab_a.py</span><span><a href="https://classes.incortx.com/ComputerVision/session-07/lab.html" target="_blank" rel="noopener" style="color:#0E7C86;text-decoration:underline;">💻 lab.ipynb — open in Colab</a></span></div>
 <pre style="font-size:19px;"><span class="kw">import</span> numpy <span class="kw">as</span> np
 <span class="kw">from</span> sklearn.datasets <span class="kw">import</span> make_circles
 <span class="kw">from</span> sklearn.linear_model <span class="kw">import</span> LogisticRegression
@@ -849,7 +849,7 @@ X, y = make_circles(<span class="st">500</span>, noise=<span class="st">.07</spa
 <span class="slide-head">💻 LAB — Learn a 3×3 kernel yourself, in twelve lines</span>
 <div class="lab-checklist" style="margin-top:4px;font-size:23px;gap:2px;"><div class="it"><span class="ci">①</span><span>Make the training pairs · ② run gradient descent · ③ compare with Sobel</span></div></div>
 <div class="code-block" style="margin-top:10px;">
-<div class="code-header"><span>lab_b.py</span><span>Colab · run it, then the TODOs</span></div>
+<div class="code-header"><span>lab_b.py</span><span><a href="https://classes.incortx.com/ComputerVision/session-07/lab.html" target="_blank" rel="noopener" style="color:#0E7C86;text-decoration:underline;">💻 lab.ipynb — open in Colab</a></span></div>
 <pre style="font-size:18px;"><span class="kw">import</span> numpy <span class="kw">as</span> np, cv2
 img = cv2.imread(cv2.samples.findFile(<span class="st">"building.jpg"</span>), <span class="st">0</span>)
 img = cv2.resize(img, (<span class="st">260</span>, <span class="st">179</span>), interpolation=cv2.INTER_AREA).astype(np.float32)/<span class="st">255</span>
@@ -989,7 +989,7 @@ w = np.random.default_rng(<span class="st">0</span>).normal(scale=<span class="s
 <span class="topic-tag">C · Reading an Architecture</span>
 <span class="slide-head">💻 LAB — Watch the picture shrink, one stage at a time</span>
 <div class="code-block" style="margin-top:10px;">
-<div class="code-header"><span>lab_c.py</span><span>Colab · run it, then the TODOs</span></div>
+<div class="code-header"><span>lab_c.py</span><span><a href="https://classes.incortx.com/ComputerVision/session-07/lab.html" target="_blank" rel="noopener" style="color:#0E7C86;text-decoration:underline;">💻 lab.ipynb — open in Colab</a></span></div>
 <pre style="font-size:19px;"><span class="kw">import</span> cv2, numpy <span class="kw">as</span> np, matplotlib.pyplot <span class="kw">as</span> plt
 
 im = cv2.resize(cv2.imread(cv2.samples.findFile(<span class="st">"building.jpg"</span>), <span class="st">0</span>), (<span class="st">128</span>, <span class="st">128</span>))
@@ -1162,7 +1162,7 @@ s = im.astype(np.float32); plt.subplot(<span class="st">1</span>, <span class="s
 <span class="slide-head">💻 LAB — Gradient descent in five lines</span>
 <div class="lab-checklist" style="margin-top:6px;font-size:24px;gap:4px;"><div class="it"><span class="ci">①</span><span>Write a loss · ② write its slope · ③ loop, and watch w move</span></div></div>
 <div class="code-block" style="margin-top:10px;">
-<div class="code-header"><span>lab_d.py</span><span>Colab · run it, then the TODOs</span></div>
+<div class="code-header"><span>lab_d.py</span><span><a href="https://classes.incortx.com/ComputerVision/session-07/lab.html" target="_blank" rel="noopener" style="color:#0E7C86;text-decoration:underline;">💻 lab.ipynb — open in Colab</a></span></div>
 <pre style="font-size:24px;">loss  = <span class="kw">lambda</span> w: (w - <span class="st">1.2</span>)**<span class="st">2</span> + <span class="st">0.4</span>       <span class="cm"># the bowl</span>
 slope = <span class="kw">lambda</span> w: <span class="st">2</span>*(w - <span class="st">1.2</span>)                <span class="cm"># its derivative</span>
 
@@ -1345,7 +1345,7 @@ w, eta = -<span class="st">2.6</span>, <span class="st">0.18</span>
 <span class="slide-head">💻 LAB — Make a model overfit, on purpose</span>
 <div class="lab-checklist" style="margin-top:4px;font-size:23px;gap:2px;"><div class="it"><span class="ci">①</span><span>Hold data out · ② starve the model · ③ watch the two numbers separate</span></div></div>
 <div class="code-block" style="margin-top:10px;">
-<div class="code-header"><span>lab_e.py</span><span>Colab · run it, then the TODOs</span></div>
+<div class="code-header"><span>lab_e.py</span><span><a href="https://classes.incortx.com/ComputerVision/session-07/lab.html" target="_blank" rel="noopener" style="color:#0E7C86;text-decoration:underline;">💻 lab.ipynb — open in Colab</a></span></div>
 <pre style="font-size:17px;"><span class="kw">from</span> sklearn.datasets <span class="kw">import</span> load_digits
 <span class="kw">from</span> sklearn.model_selection <span class="kw">import</span> train_test_split
 <span class="kw">from</span> sklearn.neural_network <span class="kw">import</span> MLPClassifier
@@ -1492,7 +1492,7 @@ sc = StandardScaler().fit(Xtr); Xtr, Xte = sc.transform(Xtr), sc.transform(Xte)
     <div class="sum-item"><div class="sum-key">Measured here</div><div class="sum-val">regularisation bought <b>&lt; 1 point</b>; going from 60 to 1,257 images bought <b>12</b> — <b>data is the cure</b></div></div>
   </div>
   <div class="sum-next">Next session: the model says "cat" for the whole picture — but where is it, and how many? Detection, segmentation, and how those are scored (Session 8).</div>
-  <p class="muted" style="font-size:25px;margin-top:10px;">A <b>🧮 Practice &amp; Review</b> block follows — every answer is on the slide. <b>💻 Notebook lab (opens in Colab):</b> <code>classes.incortx.com/ComputerVision/session-07/lab.html</code></p>
+  <p class="muted" style="font-size:25px;margin-top:8px;">A <b>🧮 Practice &amp; Review</b> block follows, answers included · <b>💻 Lab:</b> <a href="https://classes.incortx.com/ComputerVision/session-07/lab.html" target="_blank" rel="noopener" style="color:#0E7C86;"><code>classes.incortx.com/ComputerVision/session-07/lab.html</code></a></p>
   <div class="img-credits" style="margin-top:6px;font-size:18px;color:var(--text-muted);opacity:.85;">Images: OpenCV samples (Apache-2.0) · digits from scikit-learn (UCI, public domain) · every figure computed at build time</div>
   <div class="progress-indicator"><span class="cur">1</span> / <span class="tot">63</span></div>
 </section>
