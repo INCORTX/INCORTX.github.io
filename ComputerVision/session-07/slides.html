@@ -957,7 +957,7 @@ w = np.random.default_rng(<span class="st">0</span>).normal(scale=<span class="s
   <span class="slide-head">↩ Why does one dense layer hold 84% of the weights?</span>
   <div class="we-body" style="padding-top:26px;">
     <div class="we-visual">
-      <svg viewBox="0 0 620 400" aria-label="A conv layer's kernel is reused at every position while a dense layer needs a separate weight for every input-output pair">
+      <svg viewBox="0 0 620 436" aria-label="A conv layer's kernel is reused at every position while a dense layer needs a separate weight for every input-output pair; the plus one in each count is that layer's bias">
         <g font-family="IBM Plex Sans">
           <text x="30" y="42" font-size="25" fill="#0F766E" font-weight="700">Conv 32→64, 3×3</text>
           <rect x="30" y="58" width="540" height="112" rx="10" fill="#F0FDFA" stroke="#0D9488" stroke-width="2"/>
@@ -967,6 +967,7 @@ w = np.random.default_rng(<span class="st">0</span>).normal(scale=<span class="s
           <rect x="30" y="250" width="540" height="112" rx="10" fill="#FEF2F2" stroke="#EF4444" stroke-width="2"/>
           <text x="300" y="290" text-anchor="middle" font-size="24" fill="#1A1A2E">(1024 + 1) × 128  =  131,200</text>
           <text x="300" y="332" text-anchor="middle" font-size="23" fill="#B91C1C">one separate weight per pair — nothing is shared</text>
+          <text x="300" y="410" text-anchor="middle" font-size="21" fill="#495057">the <tspan font-weight="700">+ 1</tspan> is the bias — one per filter, one per unit</text>
         </g>
       </svg>
     </div>
