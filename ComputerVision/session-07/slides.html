@@ -438,15 +438,14 @@ kbd{
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:90px 70px 90px 80px;">
     <div class="title-kicker">Computer Vision · Session 07</div>
     <div class="title-rule"></div>
-    <h1 class="title-main" style="font-size:66px;">Bridge to Deep Learning:<br>Kernels That Learn Themselves</h1>
-    <p class="hook-q" style="text-align:left;margin:38px 0 0;font-size:37px;color:var(--text-muted);font-weight:500;">For six sessions a human decided what to measure. Today the model decides.</p>
-    <div style="margin-top:42px;display:flex;flex-direction:column;gap:15px;">
-      <div style="display:flex;align-items:center;gap:18px;"><span style="width:10px;height:10px;border-radius:50%;background:var(--accent);flex-shrink:0;"></span><span style="font-size:29px;color:var(--text);">A neuron, a layer, and why the activation is not optional</span></div>
-      <div style="display:flex;align-items:center;gap:18px;"><span style="width:10px;height:10px;border-radius:50%;background:var(--accent);flex-shrink:0;"></span><span style="font-size:29px;color:var(--text);">CNN = the convolution of Session 2, with <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">h</span></span></span></span> found by gradient descent</span></div>
-      <div style="display:flex;align-items:center;gap:18px;"><span style="width:10px;height:10px;border-radius:50%;background:var(--accent);flex-shrink:0;"></span><span style="font-size:29px;color:var(--text);">Reading an architecture: shapes, pooling, and where the weights hide</span></div>
-      <div style="display:flex;align-items:center;gap:18px;"><span style="width:10px;height:10px;border-radius:50%;background:var(--accent);flex-shrink:0;"></span><span style="font-size:29px;color:var(--text);">How it learns — and how to make it work on <i>your</i> few hundred images</span></div>
+    <h1 class="title-main" style="font-size:70px;line-height:1.12;">Bridge to Deep Learning:<br>Kernels That Learn Themselves</h1>
+    <p class="hook-q" style="text-align:left;margin:34px 0 0;font-size:38px;color:var(--text-muted);font-weight:500;line-height:1.35;">For six sessions a human decided what to measure.<br><b style="color:var(--text);">Today the model decides.</b></p>
+    <div style="margin-top:46px;display:flex;flex-direction:column;gap:20px;">
+      <div style="display:flex;align-items:flex-start;gap:20px;"><span style="width:11px;height:11px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:14px;"></span><span style="font-size:31px;color:var(--text);line-height:1.35;">A neuron, and why the activation is not optional</span></div>
+      <div style="display:flex;align-items:flex-start;gap:20px;"><span style="width:11px;height:11px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:14px;"></span><span style="font-size:31px;color:var(--text);line-height:1.35;">Session 2's convolution, with <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">h</span></span></span></span> found by gradient descent</span></div>
+      <div style="display:flex;align-items:flex-start;gap:20px;"><span style="width:11px;height:11px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:14px;"></span><span style="font-size:31px;color:var(--text);line-height:1.35;">Reading an architecture — and making it work on <i>your</i> few hundred images</span></div>
     </div>
-    <div style="margin-top:auto;padding-top:64px;">
+    <div style="margin-top:auto;padding-top:60px;">
       <div style="font-weight:700;font-size:34px;color:var(--text);">Dr. Wasu Kudisthalert</div>
       <div style="font-size:28px;color:var(--text-muted);margin-top:4px;">King Mongkut's Institute of Technology Ladkrabang</div>
     </div>
@@ -456,44 +455,31 @@ kbd{
       <defs><pattern id="pg" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M60 0H0V60" fill="none" stroke="#fff" stroke-width="1.5"/></pattern></defs>
       <rect width="900" height="1080" fill="url(#pg)"/>
     </svg>
-    <svg viewBox="0 0 780 640" style="width:88%;height:auto;position:relative;" aria-label="Two pipelines: on top a human writes a 3 by 3 kernel that feeds a classifier; below, data feeds gradient descent which produces the kernel instead">
-      <text x="390" y="40" text-anchor="middle" font-size="25" fill="#E9D5FF" font-family="IBM Plex Sans" font-weight="600">Sessions 2–6 · a person chose the numbers</text>
-      <g>
-        <rect x="70" y="72" width="150" height="112" rx="12" fill="rgba(255,255,255,0.14)" stroke="#E9D5FF" stroke-width="2"/>
-        <text x="145" y="118" text-anchor="middle" font-size="21" fill="#fff" font-family="IBM Plex Sans">a human</text>
-        <text x="145" y="150" text-anchor="middle" font-size="21" fill="#fff" font-family="IBM Plex Sans">writes it</text>
-        <polygon points="234,122 268,122 268,113 296,128 268,143 268,134 234,134" fill="#E9D5FF"/>
-        <g font-family="IBM Plex Mono" font-size="22" fill="#fff">
-          <rect x="310" y="76" width="150" height="104" rx="10" fill="rgba(255,255,255,0.10)" stroke="#E9D5FF" stroke-width="2"/>
-          <text x="385" y="108" text-anchor="middle">−1  0  1</text>
-          <text x="385" y="136" text-anchor="middle">−2  0  2</text>
-          <text x="385" y="164" text-anchor="middle">−1  0  1</text>
-        </g>
-        <polygon points="474,122 508,122 508,113 536,128 508,143 508,134 474,134" fill="#E9D5FF"/>
-        <rect x="550" y="72" width="160" height="112" rx="12" fill="rgba(255,255,255,0.14)" stroke="#E9D5FF" stroke-width="2"/>
-        <text x="630" y="134" text-anchor="middle" font-size="22" fill="#fff" font-family="IBM Plex Sans">a classifier</text>
+    <svg viewBox="0 0 800 700" style="width:90%;height:auto;position:relative;" aria-label="The same 3 by 3 kernel twice: on top the Sobel numbers a person wrote by hand in Sessions 2 to 6, below the numbers gradient descent found by itself in this session's build, which come out almost the same shape">
+
+      <text x="400" y="34" text-anchor="middle" font-size="26" fill="#E9D5FF" font-family="IBM Plex Sans" font-weight="600">Sessions 2–6 · a person wrote the numbers</text>
+      <rect x="255" y="62" width="290" height="176" rx="16" fill="rgba(255,255,255,0.16)" stroke="#E9D5FF" stroke-width="2.5"/>
+      <g font-family="IBM Plex Mono" font-size="34" fill="#ffffff" text-anchor="middle">
+        <text x="400" y="112">−1   0   1</text>
+        <text x="400" y="163">−2   0   2</text>
+        <text x="400" y="214">−1   0   1</text>
+      </g>
+      <text x="400" y="272" text-anchor="middle" font-size="23" fill="#C4B5FD" font-family="IBM Plex Sans">Sobel · designed by hand</text>
+
+      <text x="400" y="318" text-anchor="middle" font-size="22" fill="#E9D5FF" font-family="IBM Plex Sans" opacity=".85">400 steps of gradient descent</text>
+      <g stroke="#E9D5FF" stroke-width="2.5" opacity=".55">
+        <line x1="400" y1="336" x2="400" y2="372"/>
+        <polygon points="392,368 408,368 400,388" fill="#E9D5FF" stroke="none"/>
       </g>
 
-      <line x1="90" y1="250" x2="690" y2="250" stroke="rgba(255,255,255,0.28)" stroke-width="2" stroke-dasharray="8 8"/>
-      <text x="390" y="316" text-anchor="middle" font-size="25" fill="#FDE68A" font-family="IBM Plex Sans" font-weight="600">Session 7 · the numbers come from the data</text>
-      <g>
-        <rect x="70" y="348" width="150" height="112" rx="12" fill="rgba(253,230,138,0.16)" stroke="#FDE68A" stroke-width="2"/>
-        <text x="145" y="394" text-anchor="middle" font-size="21" fill="#FDE68A" font-family="IBM Plex Sans">examples</text>
-        <text x="145" y="426" text-anchor="middle" font-size="21" fill="#FDE68A" font-family="IBM Plex Sans">+ answers</text>
-        <polygon points="234,398 268,398 268,389 296,404 268,419 268,410 234,410" fill="#FDE68A"/>
-        <rect x="310" y="348" width="150" height="112" rx="12" fill="rgba(253,230,138,0.16)" stroke="#FDE68A" stroke-width="2"/>
-        <text x="385" y="394" text-anchor="middle" font-size="21" fill="#FDE68A" font-family="IBM Plex Sans">gradient</text>
-        <text x="385" y="426" text-anchor="middle" font-size="21" fill="#FDE68A" font-family="IBM Plex Sans">descent</text>
-        <polygon points="474,398 508,398 508,389 536,404 508,419 508,410 474,410" fill="#FDE68A"/>
-        <g font-family="IBM Plex Mono" font-size="21" fill="#FDE68A">
-          <rect x="550" y="352" width="164" height="104" rx="10" fill="rgba(253,230,138,0.10)" stroke="#FDE68A" stroke-width="2"/>
-          <text x="632" y="384" text-anchor="middle">−1.02 −0.11  0.82</text>
-          <text x="632" y="412" text-anchor="middle">−1.10 −0.03  1.10</text>
-          <text x="632" y="440" text-anchor="middle">−0.76  0.14  0.98</text>
-        </g>
+      <text x="400" y="424" text-anchor="middle" font-size="26" fill="#FDE68A" font-family="IBM Plex Sans" font-weight="600">Session 7 · the data wrote them</text>
+      <rect x="215" y="452" width="370" height="176" rx="16" fill="rgba(253,230,138,0.12)" stroke="#FDE68A" stroke-width="2.5"/>
+      <g font-family="IBM Plex Mono" font-size="30" fill="#FDE68A" text-anchor="middle">
+        <text x="400" y="502">−1.02  −0.11   0.82</text>
+        <text x="400" y="553">−1.10  −0.03   1.10</text>
+        <text x="400" y="604">−0.76   0.14   0.98</text>
       </g>
-      <text x="390" y="520" text-anchor="middle" font-size="23" fill="#CCFBF1" font-family="IBM Plex Sans">the second one is a real result from this deck's build</text>
-      <text x="390" y="558" text-anchor="middle" font-size="23" fill="#CCFBF1" font-family="IBM Plex Sans">— nobody told it what an edge looks like</text>
+      <text x="400" y="662" text-anchor="middle" font-size="23" fill="#FDE68A" font-family="IBM Plex Sans">a real result from this deck's build — nobody told it what an edge is</text>
     </svg>
   </div>
 </section>
