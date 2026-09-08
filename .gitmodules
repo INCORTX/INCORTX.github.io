@@ -1,9 +1,6 @@
 [submodule "SignalProcessing"]
 	path = SignalProcessing
 	url = https://github.com/INCORTX/SignalProcessing.git
-[submodule "ComputerVision"]
-	path = ComputerVision
-	url = https://github.com/INCORTX/ComputerVision.git
 [submodule "teaching-demo"]
 	path = teaching-demo
 	url = https://github.com/INCORTX/teaching-demo.git
