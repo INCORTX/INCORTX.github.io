@@ -37,6 +37,23 @@ jobs:
           GIT_CONFIG_KEY_0: url.https://${{ secrets.GH_PAT }}@github.com/.insteadOf
           GIT_CONFIG_VALUE_0: https://github.com/
 
+      # Everything in this repository is world-readable on github.com as well as
+      # on classes.incortx.com, and Cloudflare Access only gates the website. So
+      # the answer files have to be stopped here, before they are ever committed
+      # and served. Added 2026-09-08, when the course content stopped being a
+      # private submodule and became files in this repo.
+      - name: Refuse to publish instructor-only files
+        run: |
+          bad=$(git ls-files | grep -iE '(^|/)(exercise_key|exercises|solutions?|answers?|_key)[^/]*\.(html|ipynb|md|pdf)$' || true)
+          tok=$(git grep -lE 'gh[pousr]_[A-Za-z0-9]{20,}|sk-[A-Za-z0-9]{20,}|AIza[0-9A-Za-z_-]{30,}' -- . || true)
+          if [ -n "$bad$tok" ]; then
+            echo "::error::refusing to deploy — instructor-only or secret-looking content:"
+            [ -n "$bad" ] && echo "$bad"
+            [ -n "$tok" ] && echo "$tok"
+            exit 1
+          fi
+          echo "publish guard: clean"
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
