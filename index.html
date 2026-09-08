@@ -521,6 +521,39 @@
             transform: translateX(4px);
         }
 
+        /* Talks — standalone presentations, not course material */
+        .talks-section {
+            position: relative;
+            z-index: 10;
+            margin: 0 0 8rem;
+        }
+
+        .talks-head {
+            display: flex;
+            align-items: baseline;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.75rem;
+        }
+
+        .talks-head h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+
+        .talks-head p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .talks-grid {
+            margin: 0;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 520px));
+        }
+
         /* Footer */
         footer {
             border-top: 1px solid var(--glass-border);
@@ -818,6 +851,31 @@
                     </div>
                 </div>
             </a>
+        </section>
+
+        <!-- Talks -->
+        <section class="talks-section fade-up">
+            <div class="talks-head">
+                <h2>Talks</h2>
+                <p>Standalone presentations — not part of any course.</p>
+            </div>
+            <div class="course-grid talks-grid">
+                <a href="Talks/data-first-data-science/index.html" target="_blank" class="course-card">
+                    <div class="card-icon">
+                        <i class="ph ph-presentation-chart"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Data-First Data Science</h3>
+                        <p class="card-desc">Foundations and strategic preparation — why the decisions made about
+                            the data, before a single model is trained, are the ones that decide the result.
+                            A 20-minute talk.</p>
+                        <div class="card-footer">
+                            <span>Open the slides</span>
+                            <i class="ph-bold ph-arrow-right"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
         </section>
     </div>
 
