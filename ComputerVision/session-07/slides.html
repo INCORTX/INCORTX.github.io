@@ -708,7 +708,7 @@ c100.7 8.3 195.3 44 280 108 55.3 42 101.7 93 139 153l9 14c2.7-4 5.7-8.7 9-14
 <span class="slide-head">💻 LAB — One neuron, then one hidden layer</span>
 <div class="code-block" style="margin-top:10px;">
 <div class="code-header"><span>lab_a.py</span><span><a href="https://classes.incortx.com/ComputerVision/session-07/lab.html" target="_blank" rel="noopener" style="color:#0E7C86;text-decoration:underline;">💻 lab.ipynb — open in Colab</a></span></div>
-<pre style="font-size:19px;"><span class="kw">import</span> numpy <span class="kw">as</span> np
+<pre style="font-size:17px;"><span class="kw">import</span> numpy <span class="kw">as</span> np
 <span class="kw">from</span> sklearn.datasets <span class="kw">import</span> make_circles
 <span class="kw">from</span> sklearn.linear_model <span class="kw">import</span> LogisticRegression
 <span class="kw">from</span> sklearn.neural_network <span class="kw">import</span> MLPClassifier
@@ -720,10 +720,11 @@ X, y = make_circles(<span class="st">500</span>, noise=<span class="st">.07</spa
 <span class="kw">print</span>(<span class="st">"straight line "</span>, LogisticRegression().fit(X, y).score(X, y))
 <span class="kw">print</span>(<span class="st">"8 hidden ReLU"</span>, MLPClassifier((<span class="st">8</span>,), max_iter=<span class="st">4000</span>,
                                     random_state=<span class="st">1</span>).fit(X, y).score(X, y))
-<span class="cm"># TODO 1: raise b until the neuron stops printing 0.0 — where is the line?</span>
-<span class="cm"># TODO 2: refit "8 hidden ReLU" with random_state=7 — does 1.0 survive?</span></pre>
+<span class="kw">print</span>(<span class="st">"with b = 4.5  :"</span>, <span class="kw">max</span>(0, w @ x + 4.5))          <span class="cm"># the same neuron, awake</span>
+<span class="kw">print</span>(<span class="st">"seed 7        "</span>, MLPClassifier((<span class="st">8</span>,), max_iter=<span class="st">4000</span>,
+                                random_state=<span class="st">7</span>).fit(X, y).score(X, y))</pre>
 </div>
-<div class="callout-box callout-good" style="margin-top:12px;"><span class="callout-icon">✅</span><p><code>one neuron: 0.0</code> — the sum is −3.5, and ReLU clips it. Then <b><code>straight line 0.5</code></b> and <b><code>8 hidden ReLU 1.0</code></b> — <code>MLPClassifier</code> is exactly the multi-layer perceptron of slide 7. Two lines of difference, and one of them cannot do the task at all. <b>TODO:</b> the neuron wakes at <b>b &gt; 4.0</b> · <code>random_state=7</code> → <b>0.998</b>.</p></div>
+<div class="callout-box callout-good" style="margin-top:12px;"><span class="callout-icon">✅</span><p><code>one neuron: 0.0</code> — the sum is −3.5, and ReLU clips it. Then <b><code>straight line 0.5</code></b> and <b><code>8 hidden ReLU 1.0</code></b> — <code>MLPClassifier</code> is exactly the multi-layer perceptron of slide 7. Two lines of difference, and one of them cannot do the task at all. Raise the bias to 4.5 and the same neuron outputs <b>0.5</b> — it wakes at <b>b &gt; 4.0</b>, because the weighted sum is −4.0. A different seed (7) still gives <b>0.998</b>.</p></div>
   <div class="progress-indicator"><span class="cur">1</span> / <span class="tot">64</span></div>
 </section>
 
@@ -733,13 +734,15 @@ X, y = make_circles(<span class="st">500</span>, noise=<span class="st">.07</spa
 <span class="slide-head">🔍 Explore — how few neurons are enough?</span>
 <div class="code-block" style="margin-top:10px;">
 <div class="code-header"><span>explore_a.py</span></div>
-<pre style="font-size:25px;"><span class="cm"># TODO 1: run the sweep and note where the accuracy jumps.</span>
-<span class="cm"># TODO 2: rerun it with noise=.15 in make_circles — does the jump move?</span>
-<span class="kw">for</span> h <span class="kw">in</span> [<span class="st">1</span>, <span class="st">2</span>, <span class="st">3</span>, <span class="st">4</span>, <span class="st">8</span>, <span class="st">64</span>]:
-    m = MLPClassifier((h,), max_iter=<span class="st">4000</span>, random_state=<span class="st">1</span>).fit(X, y)
-    <span class="kw">print</span>(f<span class="st">"hidden={h:3d} | accuracy {m.score(X, y):.3f}"</span>)</pre>
+<pre style="font-size:23px;"><span class="kw">def</span> sweep(X_, y_):                    <span class="cm"># six model sizes, one line each</span>
+    <span class="kw">return</span> [f<span class="st">"{MLPClassifier((h,), max_iter=4000, random_state=1)</span>
+             <span class="st">.fit(X_, y_).score(X_, y_):.3f}"</span> <span class="kw">for</span> h <span class="kw">in</span> [<span class="st">1</span>, <span class="st">2</span>, <span class="st">3</span>, <span class="st">4</span>, <span class="st">8</span>, <span class="st">64</span>]]
+
+<span class="kw">print</span>(<span class="st">"noise .07"</span>, sweep(X, y))            <span class="cm"># the rings from lab_a.py</span>
+Xn, yn = make_circles(<span class="st">500</span>, noise=<span class="st">.15</span>, factor=<span class="st">.45</span>, random_state=<span class="st">3</span>)
+<span class="kw">print</span>(<span class="st">"noise .15"</span>, sweep(Xn, yn))          <span class="cm"># same sweep, messier rings</span></pre>
 </div>
-<div class="callout-box callout-info" style="margin-top:14px;"><span class="callout-icon">🔎</span><p>Measured here: <b>0.500 · 0.642 · 0.824 · 0.998 · 1.000 · 1.000</b>. One neuron is exactly chance, and the jump happens at <b>four</b>. Each ReLU unit is one straight cut, and <b>three cuts are enough to bound a region in principle</b> — a triangle does it. Four is what this fit needed to close cleanly, which is the usual gap between what is possible and what an optimiser finds. Then going from 8 to 64 buys <b>nothing</b> — <b>capacity you do not need is not free, it is just unused</b>, and in sub-topic E it becomes actively harmful. <b>TODO 2:</b> at noise=.15 the sweep reads <b>0.500 · 0.604 · 0.782 · 0.950 · 0.966 · 0.972</b> — <b>the jump is still at four</b>; noise costs accuracy, not cuts.</p></div>
+<div class="callout-box callout-info" style="margin-top:14px;"><span class="callout-icon">🔎</span><p>Measured here: <b>0.500 · 0.642 · 0.824 · 0.998 · 1.000 · 1.000</b>. One neuron is exactly chance, and the jump happens at <b>four</b>. Each ReLU unit is one straight cut, and <b>three cuts are enough to bound a region in principle</b> — a triangle does it. Four is what this fit needed to close cleanly, which is the usual gap between what is possible and what an optimiser finds. Then going from 8 to 64 buys <b>nothing</b> — <b>capacity you do not need is not free, it is just unused</b>, and in sub-topic E it becomes actively harmful. The second row, at noise=.15, reads <b>0.500 · 0.604 · 0.782 · 0.950 · 0.966 · 0.972</b> — <b>the jump is still at four</b>; noise costs accuracy, not cuts.</p></div>
   <div class="progress-indicator"><span class="cur">1</span> / <span class="tot">64</span></div>
 </section>
 
@@ -972,8 +975,9 @@ X, y = make_circles(<span class="st">500</span>, noise=<span class="st">.07</spa
 <div class="lab-checklist" style="margin-top:4px;font-size:23px;gap:2px;"><div class="it"><span class="ci">①</span><span>Make the training pairs · ② run gradient descent · ③ compare with Sobel</span></div></div>
 <div class="code-block" style="margin-top:10px;">
 <div class="code-header"><span>lab_b.py</span><span><a href="https://classes.incortx.com/ComputerVision/session-07/lab.html" target="_blank" rel="noopener" style="color:#0E7C86;text-decoration:underline;">💻 lab.ipynb — open in Colab</a></span></div>
-<pre style="font-size:18px;"><span class="kw">import</span> numpy <span class="kw">as</span> np, cv2
-img = cv2.imread(cv2.samples.findFile(<span class="st">"building.jpg"</span>), <span class="st">0</span>)
+<pre style="font-size:16px;"><span class="kw">import</span> numpy <span class="kw">as</span> np, cv2, urllib.request <span class="kw">as</span> u
+D = <span class="st">"https://raw.githubusercontent.com/opencv/opencv/4.x/samples/data/"</span>
+u.urlretrieve(D + <span class="st">"building.jpg"</span>, <span class="st">"b.jpg"</span>); img = cv2.imread(<span class="st">"b.jpg"</span>, <span class="st">0</span>)
 img = cv2.resize(img, (<span class="st">260</span>, <span class="st">179</span>), interpolation=cv2.INTER_AREA).astype(np.float32)/<span class="st">255</span>
 sobel = np.array([[-<span class="st">1</span>,<span class="st">0</span>,<span class="st">1</span>],[-<span class="st">2</span>,<span class="st">0</span>,<span class="st">2</span>],[-<span class="st">1</span>,<span class="st">0</span>,<span class="st">1</span>]], np.float32)
 target = cv2.filter2D(img, -<span class="st">1</span>, sobel).ravel()        <span class="cm"># the answers</span>
@@ -983,11 +987,11 @@ P = np.stack([pad[i:i+img.shape[<span class="st">0</span>], j:j+img.shape[<span 
 w = np.random.default_rng(<span class="st">0</span>).normal(scale=<span class="st">.05</span>, size=<span class="st">9</span>)   <span class="cm"># start at random</span>
 <span class="kw">for</span> step <span class="kw">in</span> range(<span class="st">400</span>):
     w -= <span class="st">0.06</span> * (<span class="st">2</span>/len(target)) * (P.T @ (P @ w - target))
+    <span class="kw">if</span> step % <span class="st">100</span> == <span class="st">99</span>: <span class="kw">print</span>(step+<span class="st">1</span>, f<span class="st">"{np.mean((P @ w - target)**2):.4f}"</span>)
 <span class="kw">print</span>(np.round(w.reshape(<span class="st">3</span>,<span class="st">3</span>), <span class="st">2</span>))
-<span class="cm"># TODO 1: print the loss every 100 steps — is it still falling at step 400?</span>
-<span class="cm"># TODO 2: divide w by np.abs(w).max() and compare it with sobel itself.</span></pre>
+<span class="kw">print</span>(np.round(w.reshape(<span class="st">3</span>,<span class="st">3</span>) / np.abs(w).max(), <span class="st">2</span>))  <span class="cm"># next to Sobel</span></pre>
 </div>
-<div class="callout-box callout-good" style="margin-top:12px;"><span class="callout-icon">✅</span><p>Prints <code>[[-1.02 -0.11 0.82] [-1.10 -0.03 1.10] [-0.76 0.14 0.98]]</code> — negative on the left, near zero in the middle, positive on the right. <b>Nine random numbers became an edge detector in 400 steps and no library.</b> <b>TODO:</b> loss <b>0.311 → 0.026</b>, still falling · normalised, w is Sobel's <i>shape</i>, not its numbers.</p></div>
+<div class="callout-box callout-good" style="margin-top:12px;"><span class="callout-icon">✅</span><p>Prints <code>[[-1.02 -0.11 0.82] [-1.10 -0.03 1.10] [-0.76 0.14 0.98]]</code> — negative on the left, near zero in the middle, positive on the right. <b>Nine random numbers became an edge detector in 400 steps and no library.</b> The loss prints <b>0.1556 · 0.0822 · 0.0451 · 0.0256</b> — <b>still falling at step 400</b> · normalised it reads −0.93 −0.10 0.75 / −1.00 −0.03 1.00 / −0.69 0.12 0.89: <b>Sobel's shape, not its numbers.</b></p></div>
   <div class="progress-indicator"><span class="cur">1</span> / <span class="tot">64</span></div>
 </section>
 
@@ -1019,7 +1023,7 @@ w = np.random.default_rng(<span class="st">0</span>).normal(scale=<span class="s
 <span class="slide-head">🎯 Your Turn — find where this small experiment breaks</span>
 <div class="hook-badge" style="margin:6px 0 4px;">🎯 Predict first: the loop above learns from ONE image. What happens if that image has no vertical edges at all?</div>
 <div class="code-block" style="margin-top:6px;">
-<div class="code-header"><span>your_turn_b.py</span><span>fill in the TODOs</span></div>
+<div class="code-header"><span>your_turn_b.py</span><span>runs as written</span></div>
 <pre style="font-size:18px;"><span class="kw">def</span> patches(a):                                  <span class="cm"># the same trick as lab_b.py</span>
     q = np.pad(a, 1, mode=<span class="st">"edge"</span>)
     <span class="kw">return</span> np.stack([q[i:i+a.shape[0], j:j+a.shape[1]]
@@ -1122,9 +1126,11 @@ wt = train(patches(top), cv2.filter2D(top, -1, sobel).ravel())
 <span class="slide-head">💻 LAB — Watch the picture shrink, one stage at a time</span>
 <div class="code-block" style="margin-top:10px;">
 <div class="code-header"><span>lab_c.py</span><span><a href="https://classes.incortx.com/ComputerVision/session-07/lab.html" target="_blank" rel="noopener" style="color:#0E7C86;text-decoration:underline;">💻 lab.ipynb — open in Colab</a></span></div>
-<pre style="font-size:19px;"><span class="kw">import</span> cv2, numpy <span class="kw">as</span> np, matplotlib.pyplot <span class="kw">as</span> plt
+<pre style="font-size:17px;"><span class="kw">import</span> cv2, numpy <span class="kw">as</span> np, matplotlib.pyplot <span class="kw">as</span> plt, urllib.request
 
-im = cv2.resize(cv2.imread(cv2.samples.findFile(<span class="st">"building.jpg"</span>), <span class="st">0</span>), (<span class="st">128</span>, <span class="st">128</span>))
+D = <span class="st">"https://raw.githubusercontent.com/opencv/opencv/4.x/samples/data/"</span>
+urllib.request.urlretrieve(D + <span class="st">"building.jpg"</span>, <span class="st">"b.jpg"</span>)   <span class="cm"># Colab-safe</span>
+im = cv2.resize(cv2.imread(<span class="st">"b.jpg"</span>, <span class="st">0</span>), (<span class="st">128</span>, <span class="st">128</span>))
 k = np.array([[-<span class="st">1</span>, <span class="st">0</span>, <span class="st">1</span>], [-<span class="st">2</span>, <span class="st">0</span>, <span class="st">2</span>], [-<span class="st">1</span>, <span class="st">0</span>, <span class="st">1</span>]], np.float32)
 
 <span class="kw">def</span> pool(a):                                    <span class="cm"># 2x2 max-pool, no weights</span>
@@ -1133,12 +1139,10 @@ k = np.array([[-<span class="st">1</span>, <span class="st">0</span>, <span clas
 
 s = im.astype(np.float32); plt.subplot(<span class="st">1</span>, <span class="st">4</span>, <span class="st">1</span>).imshow(im, cmap=<span class="st">"magma"</span>)
 <span class="kw">for</span> i <span class="kw">in</span> <span class="kw">range</span>(<span class="st">3</span>):                             <span class="cm"># conv (padding kept), then pool</span>
-    s = pool(np.abs(cv2.filter2D(s, -<span class="st">1</span>, k))); <span class="kw">print</span>(<span class="st">"stage"</span>, i+<span class="st">1</span>, s.shape)
-    plt.subplot(<span class="st">1</span>, <span class="st">4</span>, i+<span class="st">2</span>).imshow(s, cmap=<span class="st">"magma"</span>)
-<span class="cm"># TODO 1: also print s.size — how fast does the data itself shrink?</span>
-<span class="cm"># TODO 2: which line is the conv, and which one is the pool?</span></pre>
+    s = pool(np.abs(cv2.filter2D(s, -<span class="st">1</span>, k))); <span class="kw">print</span>(<span class="st">"stage"</span>, i+<span class="st">1</span>, s.shape, s.size, <span class="st">"numbers"</span>)
+    plt.subplot(<span class="st">1</span>, <span class="st">4</span>, i+<span class="st">2</span>).imshow(s, cmap=<span class="st">"magma"</span>)</pre>
 </div>
-<div class="callout-box callout-good" style="margin-top:12px;"><span class="callout-icon">✅</span><p>Each picture is a quarter of the last: <b>128 → 64 → 32 → 16</b> — the staircase from slide 27, on a real photograph. The windows are gone in the last one, but <b>the bright band of facade and the dark band of grass survive in 256 numbers</b>. <b>TODO 1:</b> 4096 → 1024 → 256, a quarter each time.</p></div>
+<div class="callout-box callout-good" style="margin-top:12px;"><span class="callout-icon">✅</span><p>Each picture is a quarter of the last: <b>128 → 64 → 32 → 16</b> — the staircase from slide 27, on a real photograph. The windows are gone in the last one, but <b>the bright band of facade and the dark band of grass survive in 256 numbers</b>. The printed sizes fall <b>4096 → 1024 → 256</b> numbers — a quarter each time.</p></div>
   <div class="progress-indicator"><span class="cur">1</span> / <span class="tot">64</span></div>
 </section>
 
@@ -1171,8 +1175,9 @@ s = im.astype(np.float32); plt.subplot(<span class="st">1</span>, <span class="s
 <span class="topic-tag">C · Reading an Architecture</span>
 <span class="slide-head">🎯 Your Turn — how small can it get and still be your object?</span>
 <div class="code-block" style="margin-top:6px;">
-<div class="code-header"><span>your_turn_c.py</span><span>fill in the TODOs</span></div>
-<pre style="font-size:21px;">box = cv2.imread(cv2.samples.findFile(<span class="st">"box.png"</span>), 0)
+<div class="code-header"><span>your_turn_c.py</span><span>runs as written</span></div>
+<pre style="font-size:21px;">urllib.request.urlretrieve(D + <span class="st">"box.png"</span>, <span class="st">"box.png"</span>)
+box = cv2.imread(<span class="st">"box.png"</span>, 0)
 
 <span class="kw">for</span> name, src <span class="kw">in</span> ((<span class="st">"box"</span>, box), (<span class="st">"building"</span>, im)):
     <span class="kw">for</span> size <span class="kw">in</span> (128, 64):                       <span class="cm"># start big, then start small</span>
@@ -1305,7 +1310,7 @@ s = im.astype(np.float32); plt.subplot(<span class="st">1</span>, <span class="s
 <div class="lab-checklist" style="margin-top:6px;font-size:24px;gap:4px;"><div class="it"><span class="ci">①</span><span>Write a loss · ② write its slope · ③ loop, and watch w move</span></div></div>
 <div class="code-block" style="margin-top:10px;">
 <div class="code-header"><span>lab_d.py</span><span><a href="https://classes.incortx.com/ComputerVision/session-07/lab.html" target="_blank" rel="noopener" style="color:#0E7C86;text-decoration:underline;">💻 lab.ipynb — open in Colab</a></span></div>
-<pre style="font-size:24px;">loss  = <span class="kw">lambda</span> w: (w - <span class="st">1.2</span>)**<span class="st">2</span> + <span class="st">0.4</span>       <span class="cm"># the bowl</span>
+<pre style="font-size:21px;">loss  = <span class="kw">lambda</span> w: (w - <span class="st">1.2</span>)**<span class="st">2</span> + <span class="st">0.4</span>       <span class="cm"># the bowl</span>
 slope = <span class="kw">lambda</span> w: <span class="st">2</span>*(w - <span class="st">1.2</span>)                <span class="cm"># its derivative</span>
 
 w, eta = -<span class="st">2.6</span>, <span class="st">0.18</span>
@@ -1313,10 +1318,11 @@ w, eta = -<span class="st">2.6</span>, <span class="st">0.18</span>
     <span class="kw">if</span> step % <span class="st">10</span> == <span class="st">0</span>:
         <span class="kw">print</span>(f<span class="st">"step {step:3d} | w {w:7.3f} | loss {loss(w):7.3f}"</span>)
     w -= eta * slope(w)                     <span class="cm"># the entire algorithm</span>
-<span class="cm"># TODO 1: start from w = 5.0 instead of −2.6 — does it still arrive?</span>
-<span class="cm"># TODO 2: set eta = 0.02 and look at step 40. How far did it get?</span></pre>
+<span class="kw">for</span> tag, w, eta <span class="kw">in</span> ((<span class="st">"start +5.0"</span>, <span class="st">5.0</span>, <span class="st">.18</span>), (<span class="st">"eta 0.02"</span>, -<span class="st">2.6</span>, <span class="st">.02</span>)):
+    <span class="kw">for</span> _ <span class="kw">in</span> <span class="kw">range</span>(<span class="st">41</span>): w -= eta * slope(w)
+    <span class="kw">print</span>(f<span class="st">"{tag}  ->  w {w:.3f}"</span>)
 </div>
-<div class="callout-box callout-good" style="margin-top:12px;"><span class="callout-icon">✅</span><p><code>w</code> goes <b>−2.600 → 1.156 → 1.199 → 1.200 → 1.200</b> and the loss <b>14.840 → 0.402 → 0.400 → 0.400</b>. It is within 0.05 of the answer by step 10 and then just polishes. <b>That is what "converged" looks like</b> — and it is why a curve that is still visibly falling means you stopped too early. <b>TODO:</b> from +5.0 it lands on <b>1.200</b> too — a bowl has one bottom · at η = 0.02, step 40 is still only <b>0.458</b>.</p></div>
+<div class="callout-box callout-good" style="margin-top:12px;"><span class="callout-icon">✅</span><p><code>w</code> goes <b>−2.600 → 1.156 → 1.199 → 1.200 → 1.200</b> and the loss <b>14.840 → 0.402 → 0.400 → 0.400</b>. It is within 0.05 of the answer by step 10 and then just polishes. <b>That is what "converged" looks like</b> — and it is why a curve that is still visibly falling means you stopped too early. From <b>+5.0</b> it lands on <b>1.200</b> as well — a bowl has one bottom. At <b>η = 0.02</b> the same 41 steps reach only <b>0.487</b>.</p></div>
   <div class="progress-indicator"><span class="cur">1</span> / <span class="tot">64</span></div>
 </section>
 
@@ -1326,14 +1332,12 @@ w, eta = -<span class="st">2.6</span>, <span class="st">0.18</span>
 <span class="slide-head">🔍 Explore — find the learning rate where it breaks</span>
 <div class="code-block" style="margin-top:10px;">
 <div class="code-header"><span>explore_d.py</span></div>
-<pre style="font-size:25px;"><span class="cm"># TODO 1: run the sweep and find where it stops converging.</span>
-<span class="cm"># TODO 2: predict eta = 2.0 before you run it, then run it.</span>
-<span class="kw">for</span> eta <span class="kw">in</span> [<span class="st">0.02</span>, <span class="st">0.18</span>, <span class="st">0.5</span>, <span class="st">0.99</span>, <span class="st">1.0</span>, <span class="st">1.02</span>]:
+<span class="kw">for</span> eta <span class="kw">in</span> [<span class="st">0.02</span>, <span class="st">0.18</span>, <span class="st">0.5</span>, <span class="st">0.99</span>, <span class="st">1.0</span>, <span class="st">1.02</span>, <span class="st">2.0</span>]:
     w = -<span class="st">2.6</span>
     <span class="kw">for</span> _ <span class="kw">in</span> range(<span class="st">40</span>): w -= eta * slope(w)
     <span class="kw">print</span>(f<span class="st">"eta {eta:5.2f} -> w {w:12.4g}"</span>)</pre>
 </div>
-<div class="callout-box callout-info" style="margin-top:14px;"><span class="callout-icon">🔎</span><p>Measured: <b>0.02 → 0.458</b> (still crawling) · <b>0.18 → 1.200</b> · <b>0.5 → 1.200</b> · <b>0.99 → −0.494</b> (bouncing across the minimum, closing very slowly) · <b>1.0 → −2.600</b> — it lands back exactly where it started, every step, forever · <b>1.02 → −17.0</b> and growing. The edge is at exactly <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">η</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> for this bowl: the update moves <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.03588em;">η</span></span></span></span> times the distance to the minimum, so at <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">η</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> you always arrive the same distance out on the far side. <b>Real losses have no such clean threshold, which is why people search for the learning rate instead of deriving it.</b> <b>TODO 2:</b> η = 2.0 reaches <b>−4.6 × 10¹⁹</b> in 40 steps.</p></div>
+<div class="callout-box callout-info" style="margin-top:14px;"><span class="callout-icon">🔎</span><p>Measured: <b>0.02 → 0.458</b> (still crawling) · <b>0.18 → 1.200</b> · <b>0.5 → 1.200</b> · <b>0.99 → −0.494</b> (bouncing across the minimum, closing very slowly) · <b>1.0 → −2.600</b> — it lands back exactly where it started, every step, forever · <b>1.02 → −17.0</b> and growing. The edge is at exactly <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">η</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> for this bowl: the update moves <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.03588em;">η</span></span></span></span> times the distance to the minimum, so at <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">η</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> you always arrive the same distance out on the far side. <b>Real losses have no such clean threshold, which is why people search for the learning rate instead of deriving it.</b> The last value, <b>η = 2.0</b>, reaches <b>−4.6 × 10¹⁹</b> in 40 steps.</p></div>
   <div class="progress-indicator"><span class="cur">1</span> / <span class="tot">64</span></div>
 </section>
 
@@ -1343,7 +1347,7 @@ w, eta = -<span class="st">2.6</span>, <span class="st">0.18</span>
 <span class="slide-head">🎯 Your Turn — one weight of a real model, by hand</span>
 <div class="hook-badge" style="margin:6px 0 4px;">🎯 Predict first: the model outputs 0.8, the answer is 1.0, and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">η</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.1</span></span></span></span>. Does <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span></span></span></span> go up or down?</div>
 <div class="code-block" style="margin-top:6px;">
-<div class="code-header"><span>your_turn_d.py</span><span>fill in the TODOs</span></div>
+<div class="code-header"><span>your_turn_d.py</span><span>runs as written</span></div>
 <pre style="font-size:21px;">w, x, y, eta = 0.4, 2.0, 1.0, 0.1
 
 <span class="kw">for</span> step <span class="kw">in</span> <span class="kw">range</span>(1, 4):                       <span class="cm"># three steps, by the same rule</span>
@@ -1500,15 +1504,14 @@ Xtr, Xte, ytr, yte = train_test_split(X, y, test_size=<span class="st">.3</span>
                                       stratify=y)
 sc = StandardScaler().fit(Xtr); Xtr, Xte = sc.transform(Xtr), sc.transform(Xte)
 
-<span class="kw">for</span> n <span class="kw">in</span> [<span class="st">60</span>, <span class="st">200</span>, len(Xtr)]:
+<span class="kw">for</span> n <span class="kw">in</span> [<span class="st">20</span>, <span class="st">60</span>, <span class="st">200</span>, len(Xtr)]:
     m = MLPClassifier((<span class="st">256</span>, <span class="st">128</span>), max_iter=<span class="st">600</span>, random_state=<span class="st">0</span>, alpha=<span class="st">1e-6</span>)
     m.fit(Xtr[:n], ytr[:n])
     <span class="kw">print</span>(f<span class="st">"{n:5d} images | train {m.score(Xtr[:n], ytr[:n]):.3f}"</span>
-          f<span class="st">" | held-out {m.score(Xte, yte):.3f}"</span>)
-<span class="cm"># TODO 1: add n = 20 to the list. How big is the gap at 20 images?</span>
-<span class="cm"># TODO 2: print the gap (train − held-out) next to each row.</span></pre>
+          f<span class="st">" | held-out {m.score(Xte, yte):.3f}"</span>
+          f<span class="st">" | gap {m.score(Xtr[:n], ytr[:n]) - m.score(Xte, yte):.3f}"</span>)</pre>
 </div>
-<div class="callout-box callout-good" style="margin-top:12px;"><span class="callout-icon">✅</span><p><code>60 → train 1.000 | held-out 0.859</code> · <code>200 → 1.000 | 0.915</code> · <code>1257 → 1.000 | 0.978</code>. <b>The training score is 1.000 in every single case and tells you nothing at all.</b> The gap — 14 points, then 8, then 2 — is the whole message. <b>TODO:</b> <b>n = 20</b> → held-out <b>0.639</b>, a <b>36-point</b> gap.</p></div>
+<div class="callout-box callout-good" style="margin-top:12px;"><span class="callout-icon">✅</span><p><code>60 → train 1.000 | held-out 0.859</code> · <code>200 → 1.000 | 0.915</code> · <code>1257 → 1.000 | 0.978</code>. <b>The training score is 1.000 in every single case and tells you nothing at all.</b> The gap — 14 points, then 8, then 2 — is the whole message. At <b>n = 20</b> held-out is <b>0.639</b> — the gaps read <b>0.361 · 0.141 · 0.085 · 0.022</b>.</p></div>
   <div class="progress-indicator"><span class="cur">1</span> / <span class="tot">64</span></div>
 </section>
 
@@ -1537,7 +1540,7 @@ sc = StandardScaler().fit(Xtr); Xtr, Xte = sc.transform(Xtr), sc.transform(Xte)
 <span class="slide-head">🎯 Your Turn — augment the 60 images, and be careful what you promise</span>
 <div class="hook-badge" style="margin:6px 0 4px;">🎯 Predict first: you triple 60 images by rotating each one ±10°. Does held-out accuracy go up, and by how much?</div>
 <div class="code-block" style="margin-top:6px;">
-<div class="code-header"><span>your_turn_e.py</span><span>fill in the TODOs</span></div>
+<div class="code-header"><span>your_turn_e.py</span><span>runs as written</span></div>
 <pre style="font-size:20px;"><span class="kw">from</span> scipy.ndimage <span class="kw">import</span> rotate
 <span class="kw">def</span> spin(Xr, a):                       <span class="cm"># one rotated copy of every image</span>
     <span class="kw">return</span> np.array([rotate(im.reshape(8,8), a, reshape=<span class="kw">False</span>, order=1).ravel()
@@ -1807,19 +1810,19 @@ sc = StandardScaler().fit(Xtr); Xtr, Xte = sc.transform(Xtr), sc.transform(Xte)
 <section class="slide" data-type="exercise">
   <div class="exercise-header h-partb"><span>💻</span><span>Q5 — The First Experiment You Would Run</span></div>
   <div class="code-block" style="margin-top:16px;">
-    <div class="code-header"><span>case.py</span><span>fill in the TODOs</span></div>
-    <pre style="font-size:25px;"><span class="cm"># TODO 1: split 240 filenames into 170/35/35, stratified, with a fixed seed.</span>
-<span class="cm">#         Print the class counts of each split and check them.</span>
-<span class="cm"># TODO 2: build the HOG + linear SVM baseline first (slide 5's recipe —</span>
-<span class="cm">#         skimage.feature.hog per image, then LinearSVC). Record its score.</span>
-<span class="cm"># TODO 3: train a small CNN from scratch. Plot train vs validation accuracy</span>
-<span class="cm">#         on one axis — do you see the slide-42 gap?</span>
-<span class="cm"># TODO 4: add rotation + brightness augmentation to the TRAINING split only.</span>
-<span class="cm">#         Re-measure. Did the gap narrow?</span>
-<span class="cm"># TODO 5: one paragraph — report all three numbers, say which you would ship,</span>
-<span class="cm">#         and state one thing your 240 bench photographs cannot tell you.</span></pre>
+    <div class="code-header"><span>case.py</span><span>five steps, in order</span></div>
+<pre style="font-size:25px;"><span class="cm"># 1. split 240 filenames into 170/35/35, stratified, with a fixed seed.</span>
+<span class="cm">#    Print the class counts of each split and check them.</span>
+<span class="cm"># 2. build the HOG + linear SVM baseline first (slide 5's recipe:</span>
+<span class="cm">#    skimage.feature.hog per image, then LinearSVC). Record its score.</span>
+<span class="cm"># 3. train a small CNN from scratch. Plot train vs validation accuracy</span>
+<span class="cm">#    on one axis — do you see the slide-42 gap?</span>
+<span class="cm"># 4. add rotation + brightness augmentation to the TRAINING split only.</span>
+<span class="cm">#    Re-measure. Did the gap narrow?</span>
+<span class="cm"># 5. one paragraph — report all three numbers, say which you would ship,</span>
+<span class="cm">#    and state one thing your 240 bench photographs cannot tell you.</span></pre>
   </div>
-  <div class="callout-box callout-good" style="margin-top:18px;"><span class="callout-icon">✅</span><p><b>Expected shape of the result:</b> the baseline will be respectable, the from-scratch CNN will overfit visibly on 170 images, and augmentation will narrow the gap without closing it. <b>The right answer to TODO 5 is frequently "ship the baseline"</b> — and the thing 240 bench photographs cannot tell you is <b>how any of them behaves on the factory floor, under different light, on a bolt neither of us has seen.</b></p></div>
+  <div class="callout-box callout-good" style="margin-top:18px;"><span class="callout-icon">✅</span><p><b>Expected shape of the result:</b> the baseline will be respectable, the from-scratch CNN will overfit visibly on 170 images, and augmentation will narrow the gap without closing it. <b>The right answer to step 5 is frequently "ship the baseline"</b> — and the thing 240 bench photographs cannot tell you is <b>how any of them behaves on the factory floor, under different light, on a bolt neither of us has seen.</b></p></div>
 </section>
 <div class="slide-controls">
   <span class="ctl-side ctl-left">
