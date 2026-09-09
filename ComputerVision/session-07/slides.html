@@ -749,15 +749,16 @@ X, y = make_circles(<span class="st">500</span>, noise=<span class="st">.07</spa
 <span class="slide-head">🎯 Your Turn — remove the activation and watch it fail</span>
 <div class="hook-badge" style="margin:6px 0 4px;">🎯 Predict first: a 64-unit hidden layer with <code>activation="identity"</code> — better or worse than one straight line?</div>
 <div class="code-block" style="margin-top:6px;">
-<div class="code-header"><span>your_turn_a.py</span><span>fill in the TODOs</span></div>
-<pre style="font-size:23px;"><span class="cm"># TODO 1: fit MLPClassifier((64,), activation="identity") on the rings.</span>
-<span class="cm">#         Compare with LogisticRegression. Explain the number you get.</span>
-<span class="cm"># TODO 2: now (64, 64) with activation="identity". Does depth rescue it?</span>
-<span class="cm"># TODO 3: switch back to "relu" for both and report the two accuracies.</span>
-<span class="cm"># TODO 4: one sentence — a colleague says "my model is not learning, I will</span>
-<span class="cm">#         add more layers". Using TODO 2, say when that will not help.</span></pre>
+<div class="code-header"><span>your_turn_a.py</span><span>continues from lab_a.py — X and y are the rings</span></div>
+<pre style="font-size:22px;"><span class="kw">print</span>(<span class="st">"straight line      "</span>, f<span class="st">"{LogisticRegression().fit(X, y).score(X, y):.3f}"</span>)
+
+<span class="kw">for</span> hidden <span class="kw">in</span> [(<span class="st">64</span>,), (<span class="st">64</span>, <span class="st">64</span>)]:              <span class="cm"># one layer, then two</span>
+    <span class="kw">for</span> act <span class="kw">in</span> [<span class="st">"identity"</span>, <span class="st">"relu"</span>]:            <span class="cm"># no bend, then a bend</span>
+        acc = MLPClassifier(hidden, activation=act, max_iter=<span class="st">4000</span>,
+                            random_state=<span class="st">1</span>).fit(X, y).score(X, y)
+        <span class="kw">print</span>(f<span class="st">"{str(hidden):9s} {act:8s} {acc:.3f}"</span>)</pre>
 </div>
-<div class="callout-box callout-good" style="margin-top:12px;"><span class="callout-icon">✅</span><p><b>1</b> gives <b>0.344</b> and <b>2</b> gives <b>0.476</b> — both no better than guessing, and both <i>worse</i> than the single straight line's 0.50. Depth without activations collapses to one linear layer (slide 7, middle panel), and the extra parameters only make that same linear model harder to fit. <b>3</b> gives <b>1.00</b> for both. <b>4</b>: more layers help only when something <i>non-linear</i> sits between them — otherwise you are paying for weights that algebra cancels out.</p></div>
+<div class="callout-box callout-good" style="margin-top:12px;"><span class="callout-icon">✅</span><p><code>straight line 0.500</code> · <code>(64,) identity <b>0.344</b></code> · <code>(64,) relu <b>1.000</b></code> · <code>(64,64) identity <b>0.476</b></code> · <code>(64,64) relu <b>1.000</b></code> — <b>both identity runs come out worse than the single straight line</b>, because depth without activations collapses to one linear layer (slide 7) and the extra parameters only make that same model harder to fit. <b>More layers help only when something non-linear sits between them.</b></p></div>
   <div class="progress-indicator"><span class="cur">1</span> / <span class="tot">64</span></div>
 </section>
 
@@ -996,16 +997,19 @@ w = np.random.default_rng(<span class="st">0</span>).normal(scale=<span class="s
 <span class="slide-head">🔍 Explore — change the answers, and it learns something else</span>
 <div class="code-block" style="margin-top:10px;">
 <div class="code-header"><span>explore_b.py</span></div>
-<pre style="font-size:24px;">targets = {
-  <span class="st">"blur"</span>      : np.ones((<span class="st">3</span>,<span class="st">3</span>), np.float32)/<span class="st">9</span>,
-  <span class="st">"horizontal"</span>: np.array([[-<span class="st">1</span>,-<span class="st">2</span>,-<span class="st">1</span>],[<span class="st">0</span>,<span class="st">0</span>,<span class="st">0</span>],[<span class="st">1</span>,<span class="st">2</span>,<span class="st">1</span>]], np.float32),
-  <span class="st">"identity"</span>  : np.array([[<span class="st">0</span>,<span class="st">0</span>,<span class="st">0</span>],[<span class="st">0</span>,<span class="st">1</span>,<span class="st">0</span>],[<span class="st">0</span>,<span class="st">0</span>,<span class="st">0</span>]], np.float32),
-}
-<span class="cm"># TODO 1: rerun the loop with each of these as `target`, 400 steps.</span>
-<span class="cm"># TODO 2: for the one that fails, try 4,000 steps and then 40,000.</span>
-<span class="cm"># TODO 3: one sentence — why is that one so much slower than the others?</span></pre>
+<pre style="font-size:20px;">targets = {<span class="st">"blur"</span>      : np.ones((3, 3), np.float32) / 9,
+           <span class="st">"horizontal"</span>: np.array([[-1,-2,-1], [0,0,0], [1,2,1]], np.float32),
+           <span class="st">"identity"</span>  : np.array([[0,0,0], [0,1,0], [0,0,0]], np.float32)}
+
+<span class="kw">for</span> name, kernel <span class="kw">in</span> targets.items():
+    target = cv2.filter2D(img, -1, kernel).ravel()      <span class="cm"># a different set of answers</span>
+    w = np.random.default_rng(0).normal(scale=.05, size=9)
+    <span class="kw">for</span> step <span class="kw">in</span> <span class="kw">range</span>(1, 40001):
+        w -= 0.06 * (2/<span class="kw">len</span>(target)) * (P.T @ (P @ w - target))
+        <span class="kw">if</span> step <span class="kw">in</span> (400, 40000):
+            <span class="kw">print</span>(f<span class="st">"{name:11s} {step:6d} steps  loss {np.mean((P @ w - target)**2):.6f}"</span>)</pre>
 </div>
-<div class="callout-box callout-info" style="margin-top:14px;"><span class="callout-icon">🔎</span><p>Two of them recover; one refuses to. <b>Horizontal</b> comes back cleanly, <b>blur</b> takes about 4,000 steps to settle near 0.11 everywhere, and <b>identity</b> after 400 steps is still a vague blob with 0.23 in the middle — it needs <b>40,000</b> steps to reach 0.99. Nothing is broken: <b>neighbouring pixels look almost the same, so many different kernels produce almost the same output, and the loss barely changes along those directions.</b> A flat loss surface is a slow one, and that is a real effect you will meet again on real models.</p></div>
+<div class="callout-box callout-info" style="margin-top:12px;"><span class="callout-icon">🔎</span><p>Measured: <b>blur 0.000034 → 0.000015</b> · <b>horizontal 0.010878 → 0.001398</b> · <b>identity 0.002123 → 0.000000</b>. All three are exactly representable by nine numbers, so the difference is entirely <b>how fast the optimiser gets there</b>: blur is done in a few hundred steps, identity needs the full 40,000 to land exactly, and horizontal is <i>still crawling</i> at 40,000. <b>A flat loss surface is a slow one</b> — the same effect you meet on real models.</p></div>
   <div class="progress-indicator"><span class="cur">1</span> / <span class="tot">64</span></div>
 </section>
 
@@ -1016,16 +1020,22 @@ w = np.random.default_rng(<span class="st">0</span>).normal(scale=<span class="s
 <div class="hook-badge" style="margin:6px 0 4px;">🎯 Predict first: the loop above learns from ONE image. What happens if that image has no vertical edges at all?</div>
 <div class="code-block" style="margin-top:6px;">
 <div class="code-header"><span>your_turn_b.py</span><span>fill in the TODOs</span></div>
-<pre style="font-size:23px;"><span class="cm"># TODO 1: rerun the whole loop on a nearly blank image</span>
-<span class="cm">#         (np.zeros + a little noise). What kernel comes back, and why?</span>
-<span class="cm"># TODO 2: set the learning rate to 0.6 instead of 0.06. Print w every</span>
-<span class="cm">#         50 steps and describe what happens.</span>
-<span class="cm"># TODO 3: train on the top half of the image, then measure the error on</span>
-<span class="cm">#         the bottom half. Is it similar? Why does that matter?</span>
-<span class="cm"># TODO 4: one sentence — what did this toy leave out that a real conv</span>
-<span class="cm">#         layer has? (Hint: count the kernels, and count the layers.)</span></pre>
+<pre style="font-size:18px;"><span class="kw">def</span> patches(a):                                  <span class="cm"># the same trick as lab_b.py</span>
+    q = np.pad(a, 1, mode=<span class="st">"edge"</span>)
+    <span class="kw">return</span> np.stack([q[i:i+a.shape[0], j:j+a.shape[1]]
+                     <span class="kw">for</span> i <span class="kw">in</span> <span class="kw">range</span>(3) <span class="kw">for</span> j <span class="kw">in</span> <span class="kw">range</span>(3)], -1).reshape(-1, 9)
+<span class="kw">def</span> train(Pm, t, lr=0.06, steps=400):
+    w = np.random.default_rng(0).normal(scale=.05, size=9)
+    <span class="kw">for</span> _ <span class="kw">in</span> <span class="kw">range</span>(steps): w -= lr * (2/<span class="kw">len</span>(t)) * (Pm.T @ (Pm @ w - t))
+    <span class="kw">return</span> w
+blank, w0 = np.full_like(img, 0.5), np.random.default_rng(0).normal(scale=.05, size=9)
+<span class="kw">print</span>(<span class="st">"blank  "</span>, np.abs(train(patches(blank), cv2.filter2D(blank,-1,sobel).ravel()) - w0).max())
+<span class="kw">print</span>(<span class="st">"lr 0.6 "</span>, np.abs(train(P, target, lr=0.6)).max())          <span class="cm"># 2 · step too big</span>
+top, bot = img[:90], img[90:]                         <span class="cm"># 3 · train up, test down</span>
+wt = train(patches(top), cv2.filter2D(top, -1, sobel).ravel())
+<span class="kw">print</span>(<span class="st">"unseen "</span>, np.mean((patches(bot) @ wt - cv2.filter2D(bot,-1,sobel).ravel())**2))</pre>
 </div>
-<div class="callout-box callout-good" style="margin-top:12px;"><span class="callout-icon">✅</span><p><b>1</b> the kernel stays near random — <b>no edges in the data means no gradient pushing it towards an edge detector</b>; a model cannot learn what its data never shows. <b>2</b> it diverges to huge values (that is sub-topic D). <b>3</b> the error is similar, which is the first appearance of <i>generalisation</i>. <b>4</b> a real layer has <b>many</b> kernels, a bias, an activation, and layers stacked on top — this toy has exactly one linear kernel.</p></div>
+<div class="callout-box callout-good" style="margin-top:12px;"><span class="callout-icon">✅</span><p><b>1</b> On a blank image the kernel moves by <b>0.0117</b> and stops — no edges, no gradient, nothing to learn. <b>2</b> At <code>lr = 0.6</code> the weights reach <b>1.6 × 10²⁰⁶</b> and the loss is <code>inf</code>. <b>3</b> Trained on the top half, the loss on the never-seen bottom half is <b>0.0151</b> and the kernel is still Sobel-shaped — <b>your first measurement of generalisation.</b></p></div>
   <div class="progress-indicator"><span class="cur">1</span> / <span class="tot">64</span></div>
 </section>
 
@@ -1138,13 +1148,21 @@ s = im.astype(np.float32); plt.subplot(<span class="st">1</span>, <span class="s
 <span class="slide-head">🔍 Explore — turn one knob at a time and watch the picture answer</span>
 <div class="code-block" style="margin-top:10px;">
 <div class="code-header"><span>explore_c.py</span></div>
-<pre style="font-size:24px;"><span class="cm"># Re-run the same three stages, changing one thing each time:</span>
-<span class="cm"># TODO 1: average instead of max     .mean(axis=(1, 3))</span>
-<span class="cm"># TODO 2: no padding                 crop m[1:-1, 1:-1] after each filter</span>
-<span class="cm"># TODO 3: no pooling at all          drop the pool() call</span>
-<span class="cm"># TODO 4: plot all four rows together and compare them by eye.</span></pre>
+<pre style="font-size:20px;"><span class="kw">def</span> stages(im, pool_fn=np.max, pad=<span class="kw">True</span>, use_pool=<span class="kw">True</span>):
+    s, out = im.astype(np.float32), []
+    <span class="kw">for</span> _ <span class="kw">in</span> <span class="kw">range</span>(3):
+        m = np.abs(cv2.filter2D(s, -1, k))
+        <span class="kw">if</span> <span class="kw">not</span> pad: m = m[1:-1, 1:-1]                <span class="cm"># P = 0 eats a pixel a side</span>
+        <span class="kw">if</span> use_pool:
+            h, w = m.shape[0]//2*2, m.shape[1]//2*2
+            m = pool_fn(m[:h, :w].reshape(h//2, 2, w//2, 2), axis=(1, 3))
+        s = m; out.append((s.shape[0], <span class="kw">round</span>(<span class="kw">float</span>(s.mean()), 1)))
+    <span class="kw">return</span> out
+
+<span class="kw">print</span>(<span class="st">"max    "</span>, stages(im));           <span class="kw">print</span>(<span class="st">"average"</span>, stages(im, np.mean))
+<span class="kw">print</span>(<span class="st">"no pad "</span>, stages(im, pad=<span class="kw">False</span>)); <span class="kw">print</span>(<span class="st">"no pool"</span>, stages(im, use_pool=<span class="kw">False</span>))</pre>
 </div>
-<div class="callout-box callout-info" style="margin-top:14px;"><span class="callout-icon">🔎</span><p><b>(a)</b> Same sizes, softer picture — the mean brightness of the last map falls from <b>3,612.9</b> to <b>1,063.9</b>, because max keeps the strongest edge in each block and average dilutes it with the flat pixels around it. <b>(b)</b> <b>63 → 30 → 14</b>, not 64 → 32 → 16: each filter quietly eats a pixel off every side, which is Session 4's border problem showing up as an architecture decision. <b>(c)</b> It never shrinks — the last map still holds <b>16,384</b> numbers instead of 256, <b>64× more to carry into the dense layer. Pooling is not a detail; it is the budget.</b></p></div>
+<div class="callout-box callout-info" style="margin-top:12px;"><span class="callout-icon">🔎</span><p><b>max</b> → 64 · 32 · 16 with mean brightness 196.7 → 1008.1 → <b>3612.9</b> · <b>average</b> → same sizes but <b>1063.9</b> at the end, because max keeps the strongest edge in each block and average dilutes it · <b>no padding</b> → <b>63 → 30 → 14</b>, not 64 → 32 → 16 · <b>no pooling</b> → never shrinks, the last map holds <b>16,384</b> numbers instead of 256. <b>Pooling is not a detail; it is the budget.</b></p></div>
   <div class="progress-indicator"><span class="cur">1</span> / <span class="tot">64</span></div>
 </section>
 
@@ -1154,15 +1172,18 @@ s = im.astype(np.float32); plt.subplot(<span class="st">1</span>, <span class="s
 <span class="slide-head">🎯 Your Turn — how small can it get and still be your object?</span>
 <div class="code-block" style="margin-top:6px;">
 <div class="code-header"><span>your_turn_c.py</span><span>fill in the TODOs</span></div>
-<pre style="font-size:23px;"><span class="cm"># TODO 1: run the same three stages on your own photo, or on box.png.</span>
-<span class="cm">#         At which stage can you no longer tell what the object is?</span>
-<span class="cm"># TODO 2: add a fourth and a fifth stage. What is the picture at the end?</span>
-<span class="cm"># TODO 3: your input is 64x64 instead of 128x128. Predict the four sizes</span>
-<span class="cm">#         BEFORE running, then run it and check.</span>
-<span class="cm"># TODO 4: one sentence — the model is too large to train. Name the one</span>
-<span class="cm">#         change from the Explore step that shrinks it the most, and why.</span></pre>
+<pre style="font-size:21px;">box = cv2.imread(cv2.samples.findFile(<span class="st">"box.png"</span>), 0)
+
+<span class="kw">for</span> name, src <span class="kw">in</span> ((<span class="st">"box"</span>, box), (<span class="st">"building"</span>, im)):
+    <span class="kw">for</span> size <span class="kw">in</span> (128, 64):                       <span class="cm"># start big, then start small</span>
+        s = cv2.resize(src, (size, size)).astype(np.float32)
+        shapes = [s.shape[0]]
+        <span class="kw">for</span> _ <span class="kw">in</span> <span class="kw">range</span>(5):                        <span class="cm"># five stages, not three</span>
+            s = pool(np.abs(cv2.filter2D(s, -1, k)))
+            shapes.append(s.shape[0])
+        <span class="kw">print</span>(f<span class="st">"{name:9s} {size}px  {shapes}"</span>)</pre>
 </div>
-<div class="callout-box callout-good" style="margin-top:12px;"><span class="callout-icon">✅</span><p><b>1</b> On <code>box.png</code> the frame of the box is still readable at 32×32, marginal at 16×16 and <b>gone by 8×8</b> — one stage earlier than most people guess. <b>2</b> By stage five you have a 4×4 patch of brightness: a summary, not a picture. <b>3</b> 64 → 32 → 16 → 8, exactly one stage further along the same staircase. <b>4</b> Add pooling (or start from a smaller image) — both shrink what reaches the flatten, and <b>the flatten is where the weights live.</b></p></div>
+<div class="callout-box callout-good" style="margin-top:12px;"><span class="callout-icon">✅</span><p><b>128px → [128, 64, 32, 16, 8, 4]</b> and <b>64px → [64, 32, 16, 8, 4, 2]</b>, the same for both images. On <code>box.png</code> the frame is readable at 32×32, marginal at 16×16 and <b>gone by 8×8</b> — one stage earlier than most people guess. By stage five you hold a 4×4 patch of brightness: <b>a summary, not a picture.</b> Starting smaller only moves you one step further down the same staircase.</p></div>
   <div class="progress-indicator"><span class="cur">1</span> / <span class="tot">64</span></div>
 </section>
 
@@ -1323,15 +1344,18 @@ w, eta = -<span class="st">2.6</span>, <span class="st">0.18</span>
 <div class="hook-badge" style="margin:6px 0 4px;">🎯 Predict first: the model outputs 0.8, the answer is 1.0, and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">η</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.1</span></span></span></span>. Does <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span></span></span></span> go up or down?</div>
 <div class="code-block" style="margin-top:6px;">
 <div class="code-header"><span>your_turn_d.py</span><span>fill in the TODOs</span></div>
-<pre style="font-size:23px;"><span class="cm"># A single neuron with no activation: pred = w * x, loss = (pred - y)**2</span>
-<span class="cm"># Given w = 0.4, x = 2.0, y = 1.0, eta = 0.1</span>
-<span class="cm"># TODO 1: compute pred and the loss by hand, then check in Python.</span>
-<span class="cm"># TODO 2: dL/dw = 2*(w*x - y)*x. Compute it and do ONE update.</span>
-<span class="cm"># TODO 3: loop 20 times and print w. What value does it approach, and</span>
-<span class="cm">#         what is the loss there?</span>
-<span class="cm"># TODO 4: one sentence — repeat with eta = 0.3 and say what changed and why.</span></pre>
+<pre style="font-size:21px;">w, x, y, eta = 0.4, 2.0, 1.0, 0.1
+
+<span class="kw">for</span> step <span class="kw">in</span> <span class="kw">range</span>(1, 4):                       <span class="cm"># three steps, by the same rule</span>
+    pred = w * x
+    grad = 2 * (pred - y) * x                  <span class="cm"># dL/dw for L = (wx - y)²</span>
+    <span class="kw">print</span>(f<span class="st">"step {step}: pred {pred:.3f} grad {grad:+.2f} w {w:.4f}"</span>)
+    w -= eta * grad
+w = 0.4
+<span class="kw">for</span> _ <span class="kw">in</span> <span class="kw">range</span>(6): w -= 0.3 * 2 * (w*x - y) * x       <span class="cm"># eta three times too big</span>
+<span class="kw">print</span>(<span class="st">"eta = 0.3 after six steps:"</span>, <span class="kw">round</span>(w, 3))</pre>
 </div>
-<div class="callout-box callout-good" style="margin-top:12px;"><span class="callout-icon">✅</span><p><b>1</b> pred = 0.8, loss = 0.04. <b>2</b> dL/dw = 2(0.8−1.0)(2.0) = <b>−0.8</b>, so <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span></span></span></span> goes <b>up</b> to 0.48 — the minus sign in the update turns a negative slope into an increase. <b>3</b> it approaches <b>w = 0.5</b>, where pred = 1.0 and the loss is <b>0</b>. <b>4</b> at <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">η</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.3</span></span></span></span> the steps overshoot and it diverges — with x = 2 the curvature is 8, so anything above <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">η</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.25</span></span></span></span> is unstable. <b>The safe learning rate depends on your data's scale, which is why people normalise inputs.</b></p></div>
+<div class="callout-box callout-good" style="margin-top:12px;"><span class="callout-icon">✅</span><p>The three steps print <b>pred 0.800 grad −0.80 w 0.4000</b> → <b>0.960 / −0.16 / 0.4800</b> → <b>0.992 / −0.03 / 0.4960</b>, and sixty steps land on <b>w = 0.5000</b> exactly, where the loss is 0. <b>The negative gradient is what pushes w up</b> — get that sign backwards and you climb. At <code>eta = 0.3</code> the same weight reaches <b>−0.253</b> in six steps and keeps going: the curvature here is 8, so anything above <b>0.25</b> diverges.</p></div>
   <div class="progress-indicator"><span class="cur">1</span> / <span class="tot">64</span></div>
 </section>
 
@@ -1494,18 +1518,16 @@ sc = StandardScaler().fit(Xtr); Xtr, Xte = sc.transform(Xtr), sc.transform(Xte)
 <span class="slide-head">🔍 Explore — three ways to close the gap without new data</span>
 <div class="code-block" style="margin-top:10px;">
 <div class="code-header"><span>explore_e.py</span></div>
-<pre style="font-size:20px;"><span class="cm"># Keep n = 60 and sweep each knob properly — one bad setting proves nothing:</span>
-<span class="cm"># TODO 1-3: run all three sweeps below, one knob at a time</span>
-<span class="kw">for</span> a <span class="kw">in</span> [<span class="st">1e-4</span>, <span class="st">0.1</span>, <span class="st">1.0</span>, <span class="st">10.0</span>, <span class="st">30.0</span>]:            <span class="cm"># (a) weight decay</span>
-    ...
-<span class="kw">for</span> h <span class="kw">in</span> [(<span class="st">8</span>,), (<span class="st">16</span>,), (<span class="st">64</span>,), (<span class="st">256</span>, <span class="st">128</span>)]:        <span class="cm"># (b) model size</span>
-    ...
-<span class="kw">for</span> it <span class="kw">in</span> [<span class="st">10</span>, <span class="st">40</span>, <span class="st">80</span>, <span class="st">600</span>]:                     <span class="cm"># (c) stop early</span>
-    ...
-<span class="cm"># TODO 4: report held-out accuracy for every setting</span>
-<span class="cm"># TODO 5: one sentence — which knob helped most, and by how much?</span></pre>
+<pre style="font-size:21px;"><span class="kw">def</span> run(**kw):                       <span class="cm"># same 60 images every time</span>
+    kw.setdefault(<span class="st">"hidden_layer_sizes"</span>, (256, 128)); kw.setdefault(<span class="st">"max_iter"</span>, 600)
+    kw.setdefault(<span class="st">"alpha"</span>, 1e-6);                kw.setdefault(<span class="st">"random_state"</span>, 0)
+    <span class="kw">return</span> MLPClassifier(**kw).fit(Xtr[:60], ytr[:60]).score(Xte, yte)
+
+<span class="kw">print</span>(<span class="st">"weight decay"</span>, [f<span class="st">"{run(alpha=a):.3f}"</span> <span class="kw">for</span> a <span class="kw">in</span> (1e-4, .1, 1., 10., 30.)])
+<span class="kw">print</span>(<span class="st">"model size  "</span>, [f<span class="st">"{run(hidden_layer_sizes=h):.3f}"</span> <span class="kw">for</span> h <span class="kw">in</span> ((8,), (16,), (64,), (256,128))])
+<span class="kw">print</span>(<span class="st">"stop early  "</span>, [f<span class="st">"{run(max_iter=i):.3f}"</span> <span class="kw">for</span> i <span class="kw">in</span> (10, 40, 80, 600)])</pre>
 </div>
-<div class="callout-box callout-info" style="margin-top:14px;"><span class="callout-icon">🔎</span><p>This is the honest result, and it is not the one the textbook picture suggests. Baseline <b>0.859</b>. Weight decay: <b>0.859 · 0.867 · 0.859 · 0.691 · 0.100</b> — the best setting bought <b>less than one point</b>, and too much collapsed the model to chance. Smaller models: <b>0.707 · 0.769 · 0.833</b> — every one of them <i>worse</i>. Early stopping: <b>0.689 · 0.846 · 0.859</b> — never better. So on this data, <b>the three classic anti-overfitting knobs bought at most 0.8 points, while going from 60 to 1,257 images bought 12.</b> Regularisation is damage control; <b>data is the cure</b> — and that ordering is the single most useful thing in this sub-topic.</p></div>
+<div class="callout-box callout-info" style="margin-top:12px;"><span class="callout-icon">🔎</span><p>Baseline <b>0.859</b>. Weight decay: <b>0.859 · 0.867 · 0.859 · 0.691 · 0.100</b> — the best setting bought <b>less than one point</b>, too much collapsed it to chance. Smaller models: <b>0.707 · 0.769 · 0.833</b>, every one <i>worse</i>. Stopping early: <b>0.689 · 0.846 · 0.859</b>, never better. Three classic anti-overfitting knobs bought at most 0.8 points, while <b>going from 60 to 1,257 images bought 12</b>. Regularisation is damage control; <b>data is the cure.</b></p></div>
   <div class="progress-indicator"><span class="cur">1</span> / <span class="tot">64</span></div>
 </section>
 
@@ -1516,15 +1538,19 @@ sc = StandardScaler().fit(Xtr); Xtr, Xte = sc.transform(Xtr), sc.transform(Xte)
 <div class="hook-badge" style="margin:6px 0 4px;">🎯 Predict first: you triple 60 images by rotating each one ±10°. Does held-out accuracy go up, and by how much?</div>
 <div class="code-block" style="margin-top:6px;">
 <div class="code-header"><span>your_turn_e.py</span><span>fill in the TODOs</span></div>
-<pre style="font-size:23px;"><span class="cm"># TODO 1: reshape the 60 training rows back to 8x8, rotate each by +10 and</span>
-<span class="cm">#         -10 with cv2.warpAffine, and stack them into 180 training rows.</span>
-<span class="cm"># TODO 2: retrain and report held-out accuracy against the 0.859 baseline.</span>
-<span class="cm"># TODO 3: now add a 180-degree rotation as a third augmentation and</span>
-<span class="cm">#         report again. Explain the direction of the change.</span>
-<span class="cm"># TODO 4: two sentences — you are building a classifier for road signs.</span>
-<span class="cm">#         Name one augmentation that is safe and one that is not, and say why.</span></pre>
+<pre style="font-size:20px;"><span class="kw">from</span> scipy.ndimage <span class="kw">import</span> rotate
+<span class="kw">def</span> spin(Xr, a):                       <span class="cm"># one rotated copy of every image</span>
+    <span class="kw">return</span> np.array([rotate(im.reshape(8,8), a, reshape=<span class="kw">False</span>, order=1).ravel()
+                     <span class="kw">for</span> im <span class="kw">in</span> Xr])
+
+<span class="kw">for</span> angles <span class="kw">in</span> ([10, -10], [10, -10, 180]):
+    Xa = np.vstack([X_raw[:60]] + [spin(X_raw[:60], a) <span class="kw">for</span> a <span class="kw">in</span> angles])
+    ya = np.tile(ytr[:60], 1 + <span class="kw">len</span>(angles))
+    acc = MLPClassifier((256,128), max_iter=600, random_state=0,
+                        alpha=1e-6).fit(sc.transform(Xa), ya).score(Xte, yte)
+    <span class="kw">print</span>(f<span class="st">"{len(Xa):3d} images, angles {angles} -> {acc:.3f}"</span>)</pre>
 </div>
-<div class="callout-box callout-good" style="margin-top:12px;"><span class="callout-icon">✅</span><p><b>2</b> gives <b>0.867</b> — up from 0.859, so a real gain but a small one, and about the same as the best knob on the previous slide. <b>3</b> drops to <b>0.837</b>, <i>below</i> the un-augmented baseline: 6 and 9 are now labelled as each other, so <b>an augmentation that breaks the label is worse than no augmentation at all.</b> <b>4</b> brightness and small rotations are safe; a <b>horizontal flip is not</b> — it turns "turn left" into "turn right", and the model will learn to be confidently wrong.</p></div>
+<div class="callout-box callout-good" style="margin-top:12px;"><span class="callout-icon">✅</span><p><b>180 images with ±10° → 0.863</b>, up from the 60-image baseline of 0.859. Add 180° and you get <b>240 images → 0.843</b>, <b>below the baseline you started from</b>. A rotated 6 is a 9, so the third copy teaches the model that its labels are unreliable. <b>Augmentation only helps while the label survives the transform</b> — more data is not the same as more <i>correct</i> data.</p></div>
   <div class="progress-indicator"><span class="cur">1</span> / <span class="tot">64</span></div>
 </section>
 
