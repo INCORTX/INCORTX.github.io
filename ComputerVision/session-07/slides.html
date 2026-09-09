@@ -1310,7 +1310,7 @@ box = cv2.imread(<span class="st">"box.png"</span>, 0)
 <div class="lab-checklist" style="margin-top:6px;font-size:24px;gap:4px;"><div class="it"><span class="ci">①</span><span>Write a loss · ② write its slope · ③ loop, and watch w move</span></div></div>
 <div class="code-block" style="margin-top:10px;">
 <div class="code-header"><span>lab_d.py</span><span><a href="https://classes.incortx.com/ComputerVision/session-07/lab.html" target="_blank" rel="noopener" style="color:#0E7C86;text-decoration:underline;">💻 lab.ipynb — open in Colab</a></span></div>
-<pre style="font-size:21px;">loss  = <span class="kw">lambda</span> w: (w - <span class="st">1.2</span>)**<span class="st">2</span> + <span class="st">0.4</span>       <span class="cm"># the bowl</span>
+<pre style="font-size:20px;">loss  = <span class="kw">lambda</span> w: (w - <span class="st">1.2</span>)**<span class="st">2</span> + <span class="st">0.4</span>       <span class="cm"># the bowl</span>
 slope = <span class="kw">lambda</span> w: <span class="st">2</span>*(w - <span class="st">1.2</span>)                <span class="cm"># its derivative</span>
 
 w, eta = -<span class="st">2.6</span>, <span class="st">0.18</span>
@@ -1318,11 +1318,12 @@ w, eta = -<span class="st">2.6</span>, <span class="st">0.18</span>
     <span class="kw">if</span> step % <span class="st">10</span> == <span class="st">0</span>:
         <span class="kw">print</span>(f<span class="st">"step {step:3d} | w {w:7.3f} | loss {loss(w):7.3f}"</span>)
     w -= eta * slope(w)                     <span class="cm"># the entire algorithm</span>
+
 <span class="kw">for</span> tag, w, eta <span class="kw">in</span> ((<span class="st">"start +5.0"</span>, <span class="st">5.0</span>, <span class="st">.18</span>), (<span class="st">"eta 0.02"</span>, -<span class="st">2.6</span>, <span class="st">.02</span>)):
     <span class="kw">for</span> _ <span class="kw">in</span> <span class="kw">range</span>(<span class="st">41</span>): w -= eta * slope(w)
-    <span class="kw">print</span>(f<span class="st">"{tag}  ->  w {w:.3f}"</span>)
+    <span class="kw">print</span>(f<span class="st">"{tag}  ->  w {w:.3f}"</span>)</pre>
 </div>
-<div class="callout-box callout-good" style="margin-top:12px;"><span class="callout-icon">✅</span><p><code>w</code> goes <b>−2.600 → 1.156 → 1.199 → 1.200 → 1.200</b> and the loss <b>14.840 → 0.402 → 0.400 → 0.400</b>. It is within 0.05 of the answer by step 10 and then just polishes. <b>That is what "converged" looks like</b> — and it is why a curve that is still visibly falling means you stopped too early. From <b>+5.0</b> it lands on <b>1.200</b> as well — a bowl has one bottom. At <b>η = 0.02</b> the same 41 steps reach only <b>0.487</b>.</p></div>
+<div class="callout-box callout-good" style="margin-top:12px;"><span class="callout-icon">✅</span><p><code>w</code> goes <b>−2.600 → 1.156 → 1.199 → 1.200 → 1.200</b> and the loss <b>14.840 → 0.402 → 0.400 → 0.400</b>. Within 0.05 of the answer by step 10, then just polishing. <b>That is what "converged" looks like</b> — a curve still visibly falling means you stopped too early. From <b>+5.0</b> it lands on <b>1.200</b> as well — a bowl has one bottom. At <b>η = 0.02</b> the same 41 steps reach only <b>0.487</b>.</p></div>
   <div class="progress-indicator"><span class="cur">1</span> / <span class="tot">64</span></div>
 </section>
 
@@ -1332,7 +1333,7 @@ w, eta = -<span class="st">2.6</span>, <span class="st">0.18</span>
 <span class="slide-head">🔍 Explore — find the learning rate where it breaks</span>
 <div class="code-block" style="margin-top:10px;">
 <div class="code-header"><span>explore_d.py</span></div>
-<span class="kw">for</span> eta <span class="kw">in</span> [<span class="st">0.02</span>, <span class="st">0.18</span>, <span class="st">0.5</span>, <span class="st">0.99</span>, <span class="st">1.0</span>, <span class="st">1.02</span>, <span class="st">2.0</span>]:
+<pre style="font-size:26px;"><span class="kw">for</span> eta <span class="kw">in</span> [<span class="st">0.02</span>, <span class="st">0.18</span>, <span class="st">0.5</span>, <span class="st">0.99</span>, <span class="st">1.0</span>, <span class="st">1.02</span>, <span class="st">2.0</span>]:
     w = -<span class="st">2.6</span>
     <span class="kw">for</span> _ <span class="kw">in</span> range(<span class="st">40</span>): w -= eta * slope(w)
     <span class="kw">print</span>(f<span class="st">"eta {eta:5.2f} -> w {w:12.4g}"</span>)</pre>
