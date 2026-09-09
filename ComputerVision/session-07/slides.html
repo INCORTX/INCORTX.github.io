@@ -513,6 +513,7 @@ kbd{
     <div class="rm-item"><span class="rm-letter">E</span><div class="rm-txt"><b>Making It Work on Your Data</b><span>overfitting · augmentation · borrowing a trained model</span></div></div>
     <div class="rm-item rm-do"><span class="rm-letter">💻</span><div class="rm-txt"><b>Hands-on Labs</b><span>A Colab lab closes every sub-topic — run, explore, your turn</span></div></div>
     <div class="rm-item rm-do"><span class="rm-letter">🌍</span><div class="rm-txt"><b>Where you can use this</b><span>Industry · medicine · science · your project</span></div></div>
+    <div class="rm-item rm-do"><span class="rm-letter">🔗</span><div class="rm-txt"><b>Your notebook</b><span><a href="https://classes.incortx.com/ComputerVision/session-07/lab.html" target="_blank" rel="noopener" style="color:#0E7C86;">classes.incortx.com/ComputerVision/session-07/lab.html</a></span></div></div>
     <div class="rm-item rm-do" style="grid-column:1 / -1;"><span class="rm-letter">🧮</span><div class="rm-txt"><b>Practice &amp; Review</b><span>Closes the session — worked examples, checks and one integrated case, all with full solutions, to work through in your own time</span></div></div>
   </div>
   <div class="progress-indicator"><span class="cur">1</span> / <span class="tot">64</span></div>
@@ -1275,20 +1276,20 @@ box = cv2.imread(<span class="st">"box.png"</span>, 0)
         <g font-family="IBM Plex Sans" text-anchor="middle">
           <rect x="40" y="40" width="200" height="72" rx="12" fill="#F5F3FF" stroke="#5B21B6" stroke-width="2.5"/>
           <text x="140" y="84" font-size="24" fill="#5B21B6">① predict</text>
-          <rect x="380" y="40" width="200" height="72" rx="12" fill="#F5F3FF" stroke="#5B21B6" stroke-width="2.5"/>
+          <rect x="364" y="40" width="232" height="72" rx="12" fill="#F5F3FF" stroke="#5B21B6" stroke-width="2.5"/>
           <text x="480" y="84" font-size="24" fill="#5B21B6">② measure the loss</text>
-          <rect x="380" y="264" width="200" height="72" rx="12" fill="#F0FDFA" stroke="#0D9488" stroke-width="2.5"/>
+          <rect x="364" y="264" width="232" height="72" rx="12" fill="#F0FDFA" stroke="#0D9488" stroke-width="2.5"/>
           <text x="480" y="308" font-size="24" fill="#0F766E">③ slope per weight</text>
           <rect x="40" y="264" width="200" height="72" rx="12" fill="#F0FDFA" stroke="#0D9488" stroke-width="2.5"/>
           <text x="140" y="298" font-size="23" fill="#0F766E">④ step downhill</text>
           <text x="140" y="324" font-size="20" fill="#495057">w ← w − η·∂L/∂w</text>
         </g>
         <g stroke="#94A3B8" stroke-width="3" fill="none">
-          <path d="M240 76 L 366 76"/><path d="M480 112 L 480 256"/>
-          <path d="M380 300 L 254 300"/><path d="M140 264 L 140 120"/>
+          <path d="M240 76 L 344 76"/><path d="M480 112 L 480 256"/>
+          <path d="M364 300 L 254 300"/><path d="M140 264 L 140 120"/>
         </g>
         <g fill="#94A3B8">
-          <polygon points="366,68 384,76 366,84"/><polygon points="472,256 480,274 488,256"/>
+          <polygon points="344,68 362,76 344,84"/><polygon points="472,256 480,274 488,256"/>
           <polygon points="254,292 236,300 254,308"/><polygon points="132,120 140,102 148,120"/>
         </g>
         <text x="310" y="384" text-anchor="middle" font-size="23" fill="#495057" font-family="IBM Plex Sans">one lap = one step · repeat a few thousand times</text>
@@ -1643,7 +1644,7 @@ sc = StandardScaler().fit(Xtr); Xtr, Xte = sc.transform(Xtr), sc.transform(Xte)
     <div class="sum-item"><div class="sum-key">Measured here</div><div class="sum-val">regularisation bought <b>&lt; 1 point</b>; going from 60 to 1,257 images bought <b>12</b> — <b>data is the cure</b></div></div>
   </div>
   <div class="sum-next">Next session: the model says "cat" for the whole picture — but where is it, and how many? Detection, segmentation, and how those are scored (Session 8).</div>
-  <p class="muted" style="font-size:25px;margin-top:8px;">A <b>🧮 Practice &amp; Review</b> block follows, answers included · <b>💻 Lab:</b> <a href="https://classes.incortx.com/ComputerVision/session-07/lab.html" target="_blank" rel="noopener" style="color:#0E7C86;"><code>classes.incortx.com/ComputerVision/session-07/lab.html</code></a></p>
+  <p class="muted" style="font-size:25px;margin-top:8px;">A <b>🧮 Practice &amp; Review</b> block follows, answers included</p>
   <div class="img-credits" style="margin-top:6px;font-size:18px;color:var(--text-muted);opacity:.85;">Images: OpenCV samples (Apache-2.0) · digits from scikit-learn (UCI, public domain) · every figure computed at build time</div>
   <div class="progress-indicator"><span class="cur">1</span> / <span class="tot">64</span></div>
 </section>
