@@ -45,6 +45,7 @@ transition:border-color .2s,transform .2s}
 .soon{font-size:.8rem;color:var(--text-muted);font-style:italic}
 footer{margin-top:3.5rem;padding-top:1.6rem;border-top:1px solid var(--glass-border);
 color:var(--text-muted);font-size:.8rem}
+.lect{color:var(--teal);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;margin:0 0 .45rem}
 @media(max-width:560px){.session{flex-direction:column;gap:.6rem}.num{padding-top:0}}
 
 .marking{background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:14px;
@@ -73,6 +74,8 @@ padding:.8rem 1rem;font-size:.88rem;color:var(--text-muted);margin-bottom:1rem}
     <h1>Data Analytics</h1>
     <p class="lede">Lab sessions for Data Analytics. Hands-on sessions running alongside the lecture
     course, from raw files through to models you can defend.</p>
+    <p class="lede">Every session runs the same way: the lecture&rsquo;s own method on real data, then
+    what that first number hides, and always a baseline you have to beat.</p>
 
     <div class="marking">
       <h2>Every session is an assignment, and they are all marked the same way</h2>
@@ -85,7 +88,7 @@ padding:.8rem 1rem;font-size:.88rem;color:var(--text-muted);margin-bottom:1rem}
       </div>
 
       <p class="sub" style="margin-bottom:.6rem"><b style="color:var(--text-primary)">You present a
-      session late, on purpose.</b> The work you do in the hour is finished at home, handed in the day
+      session late, on purpose.</b> The work you do in the hour is finished at home, handed in two days
       before the next session, and presented at the start of it &mdash; so you get a week to make
       something worth the time on screen. <i>Session 1 has no presentation hour and a 120-minute work block
       instead; the last assignment is shown briefly at the end of session 6 itself, since there is no
@@ -137,6 +140,7 @@ padding:.8rem 1rem;font-size:.88rem;color:var(--text-muted);margin-bottom:1rem}
         <div class="num">01</div>
         <div class="body">
           <h2>From Raw Data to a First Model</h2>
+          <p class="lect">Follows lectures 2–3 · Supervised learning &amp; model evaluation</p>
           <p class="desc">Preprocessing and supervised learning. A baseline you have to beat, a Pipeline with no leakage, and why accuracy on its own will lie to you.</p>
           <p class="topics">Missing values · Target leakage · Decision trees · Imbalance &amp; choosing a metric · Baselines · Confusion matrix · Cross-validation</p>
           <div class="links">
@@ -150,6 +154,7 @@ padding:.8rem 1rem;font-size:.88rem;color:var(--text-muted);margin-bottom:1rem}
         <div class="num">02</div>
         <div class="body">
           <h2>Predicting a Number, and Measuring It Honestly</h2>
+          <p class="lect">Follows lecture 4 · Regression analysis</p>
           <p class="desc">The least-squares line from the lecture, fitted on real data — then its residual analysis done for real: the plot, the ceiling it exposes, the outlier rule, and what correlated columns do to the coefficients.</p>
           <p class="topics">Linear regression · R² &amp; a baseline · Residual plots · A target that hit a ceiling · Standardised residuals · Multicollinearity</p>
           <div class="links">
@@ -163,8 +168,9 @@ padding:.8rem 1rem;font-size:.88rem;color:var(--text-muted);margin-bottom:1rem}
         <div class="num">03</div>
         <div class="body">
           <h2>What Goes With What, and What Groups With What</h2>
-          <p class="desc">Association rules and clustering — two ways of finding structure when nobody handed you an answer key.</p>
-          <p class="topics">Apriori · Support / confidence / lift · k-Means · Hierarchical clustering · Feature scaling · Choosing k</p>
+          <p class="lect">Follows lecture 5 · Unsupervised learning</p>
+          <p class="desc">Association rules and clustering, the two halves of the lecture, on real baskets and real penguins — and how to tell a rule or a cluster that means something from one that only looks like it does, when nobody handed you an answer key.</p>
+          <p class="topics">Apriori · Support / confidence / lift · k-Means · Choosing k · Feature scaling · Hierarchical clustering</p>
           <div class="links"><span class="soon">Not published yet</span></div>
         </div>
       </article>
@@ -172,8 +178,9 @@ padding:.8rem 1rem;font-size:.88rem;color:var(--text-muted);margin-bottom:1rem}
         <div class="num">04</div>
         <div class="body">
           <h2>Letting the Machine Find the Features</h2>
-          <p class="desc">Neural networks on tables and images, in PyTorch — the same ANN and CNN as the lectures, and the question of whether they were worth it.</p>
-          <p class="topics">ANN · CNN · Convolution &amp; pooling · Learning curves</p>
+          <p class="lect">Follows lectures 6–7 · ANN &amp; CNN</p>
+          <p class="desc">The lecture’s ANN and CNN, in PyTorch, on data you have already modelled — a network that does not beat session 1’s tree, a dense layer that breaks when the image moves two pixels, and the training curve that says why.</p>
+          <p class="topics">ANN · Training loop · CNN · Convolution &amp; pooling · Learning curves · Feature maps</p>
           <div class="links"><span class="soon">Not published yet</span></div>
         </div>
       </article>
@@ -181,17 +188,19 @@ padding:.8rem 1rem;font-size:.88rem;color:var(--text-muted);margin-bottom:1rem}
         <div class="num">05</div>
         <div class="body">
           <h2>Making Things Up, and Data That Has an Order</h2>
-          <p class="desc">Autoencoders, GANs, and recurrent networks on Thai text — three architectures that fail in three different ways.</p>
-          <p class="topics">Autoencoder · Latent space · GAN · Mode collapse · RNN / LSTM · Thai sentiment</p>
+          <p class="lect">Follows lectures 8–10 · Autoencoders, GANs, RNNs</p>
+          <p class="desc">Autoencoders, GANs, and recurrent networks on Thai text — three architectures that fail in three different ways, and a loss curve that goes down while the pictures get no better.</p>
+          <p class="topics">Autoencoder · Latent space · GAN · Mode collapse · RNN / LSTM · Thai sentiment · A baseline the LSTM has to beat</p>
           <div class="links"><span class="soon">Not published yet</span></div>
         </div>
       </article>
       <article class="session pending">
         <div class="num">06</div>
         <div class="body">
-          <h2>Maps, Agents, and Your Own Data End to End</h2>
-          <p class="desc">Self-organising maps and reinforcement learning, then you walk your dataset the whole way through on your own.</p>
-          <p class="topics">Self-organising maps · U-matrix · Q-learning · End-to-end project</p>
+          <h2>Maps, Agents, and a Last Word in the Room</h2>
+          <p class="lect">Follows lectures 11–12 · Self-organising maps &amp; deep RL</p>
+          <p class="desc">Self-organising maps on the data you clustered in session 3, and an agent that learns from reward alone — then, since there is no next session, each group presents its last assignment briefly in the room before finishing it at home.</p>
+          <p class="topics">Self-organising maps · U-matrix · Q-learning · Exploration vs exploitation · Preliminary presentation</p>
           <div class="links"><span class="soon">Not published yet</span></div>
         </div>
       </article>
