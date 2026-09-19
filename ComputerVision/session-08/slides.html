@@ -918,20 +918,20 @@ sc  = [<span class="st">0.9</span>, <span class="st">0.8</span>]
     </div>
     <div class="col" style="justify-content:center;gap:10px;">
       <div style="background:#F5F3FF;border:2px solid #DDD6FE;border-radius:12px;padding:12px 20px;">
-        <p style="font-size:24px;margin:0;line-height:1.45;"><b style="color:var(--accent);">Rule 1 — an IoU threshold decides "matched."</b> Usually 0.5; slide 8 showed what moving it does.</p>
+        <p style="font-size:24px;margin:0;line-height:1.45;"><b style="color:var(--accent);">Rule 1 — when does a box count as "on a carton"?</b> Compare it with the true box of the carton it lands on. <b>If their IoU is at least 0.5, the box is a TP; below that, an FP.</b> This 0.5 is the <i>evaluation</i> IoU — it has nothing to do with the 0.3 NMS used to drop duplicates.</p>
       </div>
       <div style="background:#F0FDFA;border:2px solid #99F6E4;border-radius:12px;padding:12px 20px;">
-        <p style="font-size:24px;margin:0;line-height:1.45;"><b style="color:#0F766E;">Rule 2 — one prediction, one object.</b> The highest-scoring box claims the carton; a second box on it is a <b>false positive</b>. On the raw 2,985-box pile this rule is everything: <b>with it, 6 TP · without it, 656</b>.</p>
+        <p style="font-size:24px;margin:0;line-height:1.45;"><b style="color:#0F766E;">Rule 2 — each carton can be claimed once.</b> Walk the boxes from highest score down; the first box that reaches IoU 0.5 on a carton takes it. <b>Any later box on the same carton is an FP</b>, even if it fits well — otherwise a detector could score perfectly by predicting the same box a hundred times. On the raw 2,985-box pile: <b>6 TP with this rule, 656 without it</b>.</p>
       </div>
-      <table class="cmp-table" style="font-size:24px;">
-        <tr><th>at IoU ≥ 0.5</th><th>count</th></tr>
+      <table class="cmp-table" style="font-size:23px;">
+        <tr><th>judged at evaluation IoU ≥ 0.5</th><th>count</th></tr>
         <tr><td>predictions made</td><td class="mono">16</td></tr>
         <tr><td><b>TP</b> — claimed a carton</td><td class="mono">6</td></tr>
         <tr><td><b>FP</b> — claimed nothing</td><td class="mono">10</td></tr>
         <tr><td><b>FN</b> — cartons nobody claimed</td><td class="mono">0</td></tr>
         <tr><td>precision = 6 / 16 · recall = 6 / 6</td><td class="mono">0.375 · 1.000</td></tr>
       </table>
-      <div class="callout-box callout-info" style="margin:0;"><span class="callout-icon">📊</span><p style="font-size:24px;">Perfect recall, poor precision. <b>Both statements are true about the same detector</b>, which is why one number was never going to be enough.</p></div>
+      <div class="callout-box callout-info" style="margin:0;"><span class="callout-icon">📊</span><p style="font-size:23px;">Perfect recall, poor precision. <b>Both statements are true about the same detector</b>, which is why one number was never going to be enough.</p></div>
     </div>
   </div>
   <div class="progress-indicator"><span class="cur">1</span> / <span class="tot">57</span></div>
