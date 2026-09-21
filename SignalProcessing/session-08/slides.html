@@ -682,17 +682,21 @@ plt.ylim(-<span class="st">80</span>, <span class="st">5</span>); plt.xlabel(<sp
 <span class="slide-head">🎯 Your Turn — translate three sentences into three filters</span>
 <div class="hook-badge" style="margin:6px 0 4px;">🎯 Predict first: for each job, say the shape out loud before you write any numbers.</div>
 <div class="code-block" style="margin-top:6px;">
-<div class="code-header"><span>your_turn_a.py</span><span>fill in the TODOs</span></div>
-<pre style="font-size:24px;"><span class="cm"># fs = 8000 for all three</span>
-<span class="cm"># TODO 1: "a rumble below 40 Hz is shaking my microphone recording"</span>
-<span class="cm"># TODO 2: "I only care about the 1000-1200 Hz whine of this motor"</span>
-<span class="cm"># TODO 3: "my sensor readings are noisy above about 30 Hz"</span>
-<span class="cm"># For each: name the shape, choose the cutoff(s), design with firwin(101, ...)</span>
-<span class="cm">#           and plot the response.</span>
-<span class="cm"># TODO 4: one sentence — for TODO 2, what would you lose if the motor's speed</span>
-<span class="cm">#           drifted up to 1300 Hz overnight?</span></pre>
+<div class="code-header"><span>your_turn_a.py</span><span>Colab · complete, run as is</span></div>
+<pre style="font-size:19px;">fs = <span class="st">8000</span>
+jobs = {                                                  <span class="cm"># sentence -&gt; shape -&gt; cutoff</span>
+    <span class="st">&quot;1 rumble below 40 Hz&quot;</span>   : signal.firwin(<span class="st">101</span>, <span class="st">60</span>, fs=fs, pass_zero=<span class="st">False</span>),          <span class="cm"># highpass</span>
+    <span class="st">&quot;2 motor whine 1000-1200&quot;</span>: signal.firwin(<span class="st">101</span>, [<span class="st">950</span>, <span class="st">1250</span>], fs=fs, pass_zero=<span class="st">False</span>),  <span class="cm"># bandpass</span>
+    <span class="st">&quot;3 noise above 30 Hz&quot;</span>    : signal.firwin(<span class="st">101</span>, <span class="st">30</span>, fs=fs),                            <span class="cm"># lowpass</span>
+}
+<span class="kw">for</span> name, h <span class="kw">in</span> jobs.items():
+    w, H = signal.freqz(h, worN=<span class="st">8192</span>, fs=fs)
+    plt.plot(w, <span class="st">20</span>*np.log10(abs(H) + <span class="st">1e-9</span>), label=name)
+plt.xlim(<span class="st">0</span>, <span class="st">2000</span>); plt.ylim(-<span class="st">80</span>, <span class="st">5</span>); plt.xlabel(<span class="st">&quot;Hz&quot;</span>); plt.legend(); plt.show()
+w, H = signal.freqz(jobs[<span class="st">&quot;2 motor whine 1000-1200&quot;</span>], worN=<span class="st">8192</span>, fs=fs)   <span class="cm"># 4: whine drifts to 1300?</span>
+print(<span class="st">&quot;motor filter at 1300 Hz:&quot;</span>, round(<span class="st">20</span>*np.log10(abs(H[np.argmin(abs(w - <span class="st">1300</span>))])), <span class="st">1</span>), <span class="st">&quot;dB&quot;</span>)</pre>
 </div>
-<div class="callout-box callout-good" style="margin-top:12px;"><span class="callout-icon">✅</span><p><b>1</b> highpass, cutoff ≈ 40–60 Hz · <b>2</b> bandpass, roughly 950–1250 Hz · <b>3</b> lowpass, cutoff ≈ 30 Hz. TODO 4 is the real question: a narrow bandpass <b>stops seeing the thing it was built to watch</b> the moment that thing moves. A tight filter is a bet that the frequency will stay put — say so when you report it.</p></div>
+<div class="callout-box callout-good" style="margin-top:12px;"><span class="callout-icon">✅</span><p><b>1</b> highpass ≈ 40–60 Hz · <b>2</b> bandpass ≈ 950–1250 Hz · <b>3</b> lowpass ≈ 30 Hz. The last print is the real question: at 1300 Hz the motor filter is already at <b>−14.2 dB</b> — a narrow bandpass <b>stops seeing what it was built to watch</b> the moment that moves. A tight filter is a bet that the frequency stays put; say so in the report.</p></div>
   <div class="progress-indicator"><span class="cur">1</span> / <span class="tot">65</span></div>
 </section>
 
@@ -882,16 +886,19 @@ out = signal.lfilter(h, <span class="st">1</span>, impulse)          <span class
 <span class="slide-head">🎯 Your Turn — write the taps for a job, then check them</span>
 <div class="hook-badge" style="margin:6px 0 4px;">🎯 Predict first: what should the three weights be if the middle sample matters twice as much as its neighbours?</div>
 <div class="code-block" style="margin-top:6px;">
-<div class="code-header"><span>your_turn_b.py</span><span>fill in the TODOs</span></div>
-<pre style="font-size:24px;"><span class="cm"># TODO 1: write h for a 3-point weighted average, middle weight double the</span>
-<span class="cm">#         others, weights summing to 1. Apply it to x from explore_b.</span>
-<span class="cm"># TODO 2: plot freqz for your h and for np.ones(3)/3 on the same axes.</span>
-<span class="cm">#         Which one falls more gently, and why would you ever want that?</span>
-<span class="cm"># TODO 3: make h = [-1, 2, -1] and run it on x. What does it react to?</span>
-<span class="cm"># TODO 4: one sentence — the weights of every filter you wrote today sum to</span>
-<span class="cm">#         either 1 or 0. What does each of those two cases mean?</span></pre>
+<div class="code-header"><span>your_turn_b.py</span><span>Colab · complete, run as is</span></div>
+<pre style="font-size:19px;">x = np.array([<span class="st">0</span>,<span class="st">0</span>,<span class="st">4</span>,<span class="st">4</span>,<span class="st">4</span>,<span class="st">4</span>,<span class="st">0</span>,<span class="st">0</span>,<span class="st">0</span>], dtype=float)
+h_mine = np.array([<span class="st">0.25</span>, <span class="st">0.5</span>, <span class="st">0.25</span>])            <span class="cm"># 1: middle weight double, sums to 1</span>
+h_avg  = np.ones(<span class="st">3</span>)/<span class="st">3</span>; h_curv = np.array([-<span class="st">1</span>., <span class="st">2</span>., -<span class="st">1</span>.])     <span class="cm"># 3</span>
+print(<span class="st">&quot;weighted &quot;</span>, np.round(np.convolve(x, h_mine)[:<span class="st">9</span>], <span class="st">2</span>))
+print(<span class="st">&quot;curvature&quot;</span>, np.round(np.convolve(x, h_curv)[:<span class="st">9</span>], <span class="st">2</span>))
+<span class="kw">for</span> name, h <span class="kw">in</span> [(<span class="st">&quot;weighted&quot;</span>, h_mine), (<span class="st">&quot;average 3&quot;</span>, h_avg)]:   <span class="cm"># 2</span>
+    w, H = signal.freqz(h, worN=<span class="st">512</span>, fs=<span class="st">8000</span>)
+    plt.plot(w, <span class="st">20</span>*np.log10(abs(H) + <span class="st">1e-9</span>), label=name)
+plt.ylim(-<span class="st">40</span>, <span class="st">3</span>); plt.legend(); plt.show()
+print(<span class="st">&quot;sum of taps:&quot;</span>, h_mine.sum(), h_avg.sum(), h_curv.sum())   <span class="cm"># 4: = gain at 0 Hz</span></pre>
 </div>
-<div class="callout-box callout-good" style="margin-top:12px;"><span class="callout-icon">✅</span><p><b>1</b> <code>[0.25, 0.5, 0.25]</code> · <b>2</b> yours falls more gently — a gentler filter distorts the passband less · <b>3</b> <code>[-1, 2, -1]</code> reacts to <i>curvature</i>: flat and straight-sloping stretches both give zero. <b>4</b> is the one to remember: <b>weights summing to 1 leave a constant signal untouched (gain 1 at 0 Hz); weights summing to 0 delete it entirely (gain 0 at 0 Hz)</b> — you can read the DC gain straight off the taps without any transform.</p></div>
+<div class="callout-box callout-good" style="margin-top:12px;"><span class="callout-icon">✅</span><p><b>1</b> <code>[0.25, 0.5, 0.25]</code> gives <code>[0 0 1 3 4 4 3 1 0]</code> · <b>2</b> yours falls more gently, so it distorts the passband less · <b>3</b> <code>[-1, 2, -1]</code> gives <code>[0 0 −4 4 0 0 4 −4 0]</code>: it reacts to <i>curvature</i>, so flat and straight-sloping stretches give zero · <b>4</b> prints <code>1.0 1.0 0.0</code> — the one to remember: <b>taps summing to 1 leave a constant untouched (gain 1 at 0 Hz); summing to 0 delete it (gain 0 at 0 Hz).</b> The DC gain is readable straight off the taps.</p></div>
   <div class="progress-indicator"><span class="cur">1</span> / <span class="tot">65</span></div>
 </section>
 
@@ -1046,14 +1053,18 @@ trans = w[np.argmax(db &lt; -<span class="st">40</span>)] - cut               <s
 <span class="slide-head">🎯 Your Turn — meet a spec, then prove you met it</span>
 <div class="hook-badge" style="margin:6px 0 4px;">🎯 The brief: <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">8000</span></span></span></span> Hz · keep everything below 500 Hz · everything above 700 Hz must be at least 40 dB down.</div>
 <div class="code-block" style="margin-top:6px;">
-<div class="code-header"><span>your_turn_c.py</span><span>fill in the TODOs</span></div>
-<pre style="font-size:24px;"><span class="cm"># TODO 1: try N = 21, 51, 101, 201 with firwin(N, 600, fs=8000)</span>
-<span class="cm"># TODO 2: for each, print the gain at 500 Hz and the worst gain above 700 Hz</span>
-<span class="cm"># TODO 3: report the SMALLEST N that meets both halves of the brief</span>
-<span class="cm"># TODO 4: one sentence — you could pass the test by using N = 1001 for</span>
-<span class="cm">#         everything. Give one concrete reason not to.</span></pre>
+<div class="code-header"><span>your_turn_c.py</span><span>Colab · complete, run as is</span></div>
+<pre style="font-size:21px;"><span class="kw">for</span> N <span class="kw">in</span> [<span class="st">21</span>, <span class="st">51</span>, <span class="st">101</span>, <span class="st">201</span>, <span class="st">1001</span>]:
+    h = signal.firwin(N, <span class="st">600</span>, fs=<span class="st">8000</span>)
+    w, H = signal.freqz(h, worN=<span class="st">8192</span>, fs=<span class="st">8000</span>)
+    db = <span class="st">20</span>*np.log10(abs(H) + <span class="st">1e-9</span>)
+    g500  = db[np.argmin(abs(w - <span class="st">500</span>))]                 <span class="cm"># must stay near 0 dB</span>
+    worst = db[w &gt; <span class="st">700</span>].max()                            <span class="cm"># must be below -40 dB</span>
+    ok = (g500 &gt; -<span class="st">1</span>) <span class="kw">and</span> (worst &lt; -<span class="st">40</span>)
+    print(<span class="st">f&quot;N={N:5d} | 500 Hz {g500:6.2f} dB | worst above 700 Hz {worst:6.1f} dB&quot;</span>
+          <span class="st">f&quot; | {&#x27;meets the brief&#x27; if ok else &#x27;fails&#x27;} | delay {(N-1)//2/8000*1000:5.1f} ms&quot;</span>)</pre>
 </div>
-<div class="callout-box callout-good" style="margin-top:12px;"><span class="callout-icon">✅</span><p>Measured — worst gain above 700 Hz: N = 21 → <b>−8.6 dB</b> · 51 → <b>−14.3</b> · 101 → <b>−29.7</b> · 201 → <b>−59.5 dB</b>. Only the last one clears 40 dB, so the answer is <b>N = 201</b> (and its 500 Hz gain is −0.00 dB). Note how far off a guess would have been: the brief <i>sounds</i> easy and needs 201 taps. TODO 4: a needlessly long filter costs arithmetic on every sample <i>and</i> delays the output by <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mord">/2</span></span></span></span> samples — <b>N = 1001 is 500 samples = 62 ms, which is audible, and in a control loop it is a bug.</b></p></div>
+<div class="callout-box callout-good" style="margin-top:12px;"><span class="callout-icon">✅</span><p>Measured — worst gain above 700 Hz: N = 21 → <b>−8.6 dB</b> · 51 → <b>−14.3</b> · 101 → <b>−29.7</b> · 201 → <b>−59.5 dB</b>. The first line that says <b>meets the brief</b> is <b>N = 201</b> (500 Hz gain −0.00 dB). Note how far off a guess would have been: the brief <i>sounds</i> easy and needs 201 taps. The last line answers 4: N = 1001 also passes (−65.1 dB), but the delay column shows its price — <b>62.5 ms against 12.5, which is audible, and in a control loop it is a bug.</b></p></div>
   <div class="progress-indicator"><span class="cur">1</span> / <span class="tot">65</span></div>
 </section>
 
@@ -1203,17 +1214,19 @@ bad  = good.copy(); bad[<span class="st">5</span>] += <span class="st">0.05</spa
 <span class="slide-head">🎯 Your Turn — undo the delay, then decide when you cannot</span>
 <div class="hook-badge" style="margin:6px 0 4px;">🎯 Predict first: if you shift the output back by (N−1)/2, how close to the input should it get?</div>
 <div class="code-block" style="margin-top:6px;">
-<div class="code-header"><span>your_turn_d.py</span><span>fill in the TODOs</span></div>
-<pre style="font-size:24px;"><span class="cm"># TODO 1: filter x with lfilter, then shift the result left by (N-1)//2</span>
-<span class="cm">#         and plot it on top of x. How well do the peaks line up?</span>
-<span class="cm"># TODO 2: repeat with signal.filtfilt(h, 1, x) — no shifting needed.</span>
-<span class="cm">#         Read the docs for one line: why is its response the SQUARE</span>
-<span class="cm">#         of the one you designed?</span>
-<span class="cm"># TODO 3: N = 401 at fs = 8000. What is the delay in milliseconds?</span>
-<span class="cm"># TODO 4: one sentence — you are building a live guitar pedal. Is that</span>
-<span class="cm">#         delay acceptable? Say what you would do instead.</span></pre>
+<div class="code-header"><span>your_turn_d.py</span><span>Colab · complete, run as is</span></div>
+<pre style="font-size:19px;">h = signal.firwin(<span class="st">41</span>, <span class="st">1200</span>, fs=<span class="st">8000</span>); d = (len(h) - <span class="st">1</span>)//<span class="st">2</span>
+n = np.arange(<span class="st">160</span>); x = np.exp(-(n - <span class="st">40</span>)**<span class="st">2</span> / <span class="st">30</span>)
+y_shift = np.roll(signal.lfilter(h, <span class="st">1</span>, x), -d)       <span class="cm"># 1: undo the delay by hand</span>
+y_ff    = signal.filtfilt(h, <span class="st">1</span>, x)                    <span class="cm"># 2: forward + backward, no delay</span>
+print(<span class="st">&quot;peak: in&quot;</span>, np.argmax(x), <span class="st">&quot;| shifted&quot;</span>, np.argmax(y_shift), <span class="st">&quot;| filtfilt&quot;</span>, np.argmax(y_ff))
+plt.plot(n, x, label=<span class="st">&quot;in&quot;</span>); plt.plot(n, y_shift, label=<span class="st">&quot;shifted back&quot;</span>)
+plt.plot(n, y_ff, <span class="st">&quot;--&quot;</span>, label=<span class="st">&quot;filtfilt&quot;</span>); plt.xlim(<span class="st">0</span>, <span class="st">100</span>); plt.legend(); plt.show()
+w, H = signal.freqz(h, worN=<span class="st">512</span>, fs=<span class="st">8000</span>); g = <span class="st">20</span>*np.log10(abs(H[np.argmin(abs(w - <span class="st">1200</span>))]))
+print(<span class="st">f&quot;gain at 1200 Hz: one pass {g:.1f} dB | filtfilt {2*g:.1f} dB&quot;</span>)
+print(<span class="st">&quot;N = 401 -&gt; delay&quot;</span>, <span class="st">200</span> / <span class="st">8000</span> * <span class="st">1000</span>, <span class="st">&quot;ms&quot;</span>)        <span class="cm"># 3 · 4: a live pedal needs &lt; ~10 ms</span></pre>
 </div>
-<div class="callout-box callout-good" style="margin-top:12px;"><span class="callout-icon">✅</span><p><b>1</b> the peaks land on top of each other — the only difference left is the frequencies the filter genuinely removed. <b>2</b> <code>filtfilt</code> runs the filter forwards and then backwards, so the delays cancel exactly and the magnitude response is applied <b>twice</b> (the dB values double). <b>3</b> 200 samples = <b>25 ms</b>. <b>4</b> that is far too long for a live pedal — players notice about 10 ms — so you would <b>shorten the filter or switch to IIR</b>, which is sub-topic E.</p></div>
+<div class="callout-box callout-good" style="margin-top:12px;"><span class="callout-icon">✅</span><p><b>1</b> <code>peak: in 40 | shifted 40 | filtfilt 40</code> — the peaks land on top of each other; the only difference left is the frequencies the filter genuinely removed. <b>2</b> <code>filtfilt</code> runs the filter forwards and then backwards, so the delays cancel exactly and the magnitude response is applied <b>twice</b>: at 1200 Hz one pass is −6.2 dB, <code>filtfilt</code> −12.3 dB. <b>3</b> 200 samples = <b>25 ms</b>. <b>4</b> that is far too long for a live pedal — players notice about 10 ms — so you would <b>shorten the filter or switch to IIR</b>, which is sub-topic E.</p></div>
   <div class="progress-indicator"><span class="cur">1</span> / <span class="tot">65</span></div>
 </section>
 
@@ -1403,14 +1416,17 @@ ref = signal.lfilter([<span class="st">0.1</span>], [<span class="st">1</span>, 
 <span class="slide-head">🎯 Your Turn — same spec, both technologies, then choose</span>
 <div class="hook-badge" style="margin:6px 0 4px;">🎯 The brief: <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">8000</span></span></span></span> Hz, lowpass at 800 Hz, running live on a small microcontroller.</div>
 <div class="code-block" style="margin-top:6px;">
-<div class="code-header"><span>your_turn_e.py</span><span>fill in the TODOs</span></div>
-<pre style="font-size:24px;"><span class="cm"># TODO 1: design signal.firwin(101, 800, fs=8000) and</span>
-<span class="cm">#         signal.butter(4, 800, fs=8000, btype="low"); plot both responses</span>
-<span class="cm"># TODO 2: count the numbers each one needs, and check the IIR poles</span>
-<span class="cm">#         with tf2zpk — is it stable?</span>
-<span class="cm"># TODO 3: plot np.unwrap(np.angle(H)) for both. Which is straight?</span>
-<span class="cm"># TODO 4: two sentences — which would you ship for this brief, and what</span>
-<span class="cm">#         would change your mind?</span></pre>
+<div class="code-header"><span>your_turn_e.py</span><span>Colab · complete, run as is</span></div>
+<pre style="font-size:21px;">h_fir = signal.firwin(<span class="st">101</span>, <span class="st">800</span>, fs=<span class="st">8000</span>)                             <span class="cm"># 1</span>
+b, a  = signal.butter(<span class="st">4</span>, <span class="st">800</span>, fs=<span class="st">8000</span>, btype=<span class="st">&quot;low&quot;</span>)
+print(<span class="st">&quot;multiply-adds per sample: FIR&quot;</span>, len(h_fir), <span class="st">&quot;| IIR&quot;</span>, len(b) + len(a) - <span class="st">1</span>)   <span class="cm"># 2</span>
+z, p, k = signal.tf2zpk(b, a)
+print(<span class="st">&quot;IIR |poles| =&quot;</span>, np.round(np.sort(abs(p))[::<span class="st">2</span>], <span class="st">3</span>), <span class="st">&quot;-&gt; stable?&quot;</span>, np.all(abs(p) &lt; <span class="st">1</span>))
+<span class="kw">for</span> name, num, den <span class="kw">in</span> [(<span class="st">&quot;FIR&quot;</span>, h_fir, <span class="st">1</span>), (<span class="st">&quot;IIR&quot;</span>, b, a)]:           <span class="cm"># 3</span>
+    w, H = signal.freqz(num, den, worN=<span class="st">1024</span>, fs=<span class="st">8000</span>)
+    plt.subplot(<span class="st">1</span>, <span class="st">2</span>, <span class="st">1</span>); plt.plot(w, <span class="st">20</span>*np.log10(abs(H) + <span class="st">1e-9</span>), label=name)
+    plt.subplot(<span class="st">1</span>, <span class="st">2</span>, <span class="st">2</span>); plt.plot(w, np.unwrap(np.angle(H)), label=name)
+plt.legend(); plt.show()                       <span class="cm"># 4: which to ship, and what would change your mind</span></pre>
 </div>
 <div class="callout-box callout-good" style="margin-top:12px;"><span class="callout-icon">✅</span><p>The IIR needs <b>9 multiply-adds against the FIR's 101</b>, and its poles have magnitudes <b>0.795 and 0.544 — comfortably inside the circle, so stable</b>. Its phase bends; the FIR's is straight. For <i>this</i> brief — live, small chip, audio — <b>ship the IIR.</b> What would change your mind: if the output feeds a peak-shape measurement rather than a listener, or if the chip has a hardware multiply-accumulate that makes 101 taps free anyway.</p></div>
   <div class="progress-indicator"><span class="cur">1</span> / <span class="tot">65</span></div>
@@ -1683,18 +1699,22 @@ ref = signal.lfilter([<span class="st">0.1</span>], [<span class="st">1</span>, 
 <section class="slide" data-type="exercise">
   <div class="exercise-header h-partb"><span>💻</span><span>Q5 — The Filter Chain You Would Ship</span></div>
   <div class="code-block" style="margin-top:16px;">
-    <div class="code-header"><span>case.py</span><span>fill in the TODOs</span></div>
-    <pre style="font-size:25px;">fs = <span class="st">100</span>
-<span class="cm"># build a stand-in: 30 s of a 1.2 Hz pulse + 0.2 Hz drift + bursts at 8 Hz</span>
-<span class="cm"># TODO 1: design signal.butter(4, [0.5, 5], fs=fs, btype="band")</span>
-<span class="cm"># TODO 2: check stability with tf2zpk — print max |pole|</span>
-<span class="cm"># TODO 3: plot the response, and the signal before and after</span>
-<span class="cm"># TODO 4: count peaks in the filtered signal (scipy.signal.find_peaks)</span>
-<span class="cm">#         and convert to bpm. How close is it to 1.2 Hz = 72 bpm?</span>
-<span class="cm"># TODO 5: repeat with filtfilt instead of lfilter. What changed about the</span>
-<span class="cm">#         peak TIMES, and why can a real watch not do this?</span></pre>
+    <div class="code-header"><span>case.py</span><span>Colab · complete, run as is</span></div>
+    <pre style="font-size:18px;">fs = <span class="st">100</span>; t = np.arange(<span class="st">0</span>, <span class="st">30</span>, <span class="st">1</span>/fs)
+x = (np.sin(<span class="st">2</span>*np.pi*<span class="st">1.2</span>*t) + <span class="st">1.5</span>*np.sin(<span class="st">2</span>*np.pi*<span class="st">0.2</span>*t)          <span class="cm"># pulse + drift</span>
+     + <span class="st">1.2</span>*np.sin(<span class="st">2</span>*np.pi*<span class="st">8</span>*t) * ((t % <span class="st">6</span>) &lt; <span class="st">1</span>))                  <span class="cm"># + movement bursts</span>
+b, a = signal.butter(<span class="st">4</span>, [<span class="st">0.5</span>, <span class="st">5</span>], fs=fs, btype=<span class="st">&quot;band&quot;</span>)          <span class="cm"># 1</span>
+z, p, k = signal.tf2zpk(b, a); print(<span class="st">&quot;max |pole| =&quot;</span>, round(abs(p).max(), <span class="st">3</span>))    <span class="cm"># 2</span>
+w, H = signal.freqz(b, a, worN=<span class="st">4096</span>, fs=fs)                      <span class="cm"># 3</span>
+plt.subplot(<span class="st">1</span>, <span class="st">2</span>, <span class="st">1</span>); plt.plot(w, <span class="st">20</span>*np.log10(abs(H) + <span class="st">1e-9</span>)); plt.xlim(<span class="st">0</span>, <span class="st">10</span>)
+plt.subplot(<span class="st">1</span>, <span class="st">2</span>, <span class="st">2</span>); plt.plot(t, x); plt.plot(t, signal.lfilter(b, a, x)); plt.show()
+<span class="kw">for</span> name, y <span class="kw">in</span> [(<span class="st">&quot;lfilter&quot;</span>, signal.lfilter(b, a, x)), (<span class="st">&quot;filtfilt&quot;</span>, signal.filtfilt(b, a, x))]:
+    pk, _ = signal.find_peaks(y, distance=int(<span class="st">0.4</span>*fs), height=<span class="st">0.3</span>)             <span class="cm"># 4, 5</span>
+    print(<span class="st">f&quot;{name:8s} {len(pk)} peaks in 30 s -&gt; {len(pk)/30*60:.0f} bpm&quot;</span>)
+_, gd = signal.group_delay((b, a), w=[<span class="st">1.2</span>], fs=fs)
+print(<span class="st">&quot;lfilter is&quot;</span>, round(gd[<span class="st">0</span>]/fs, <span class="st">2</span>), <span class="st">&quot;s late; filtfilt cancels that with future samples&quot;</span>)</pre>
   </div>
-  <div class="callout-box callout-good" style="margin-top:18px;"><span class="callout-icon">✅</span><p><b>Expected:</b> max |pole| ≈ <b>0.99</b> — stable, but close to the edge, which is normal for a narrow low-frequency band and a good reason to use <code>sos</code> form in production. The drift and the bursts both vanish, and the peak count gives <b>≈ 72 bpm</b>. With <code>filtfilt</code> the peaks land at the <i>true</i> times because the delay cancels — <b>and a watch cannot do it, because filtering backwards requires data from the future.</b></p></div>
+  <div class="callout-box callout-good" style="margin-top:18px;"><span class="callout-icon">✅</span><p><b>Expected:</b> max |pole| ≈ <b>0.99</b> — stable but close to the edge, normal for a narrow low-frequency band and the reason production code uses <code>sos</code> form. Drift and bursts vanish; both runs count <b>36 peaks in 30 s = 72 bpm</b>. The last line is the difference: <code>lfilter</code> delivers each beat <b>0.26 s late</b> (the group delay at 1.2 Hz); <code>filtfilt</code> cancels that — <b>but a watch cannot, because filtering backwards needs data from the future.</b></p></div>
 </section>
 <div class="slide-controls">
   <span class="ctl-side ctl-left">
