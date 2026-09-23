@@ -709,7 +709,8 @@ print(<span class="st">&quot;motor filter at 1300 Hz:&quot;</span>, round(<span 
 <!-- ════════ SLIDE 15 — B · Concept 1/4: it is convolution ════════ -->
 <section class="slide" data-type="content">
 <span class="topic-tag">B · The Filter Is a List of Numbers</span>
-  <span class="slide-head">This is Session 3, with the coefficients chosen on purpose</span>
+  <span class="slide-head">↩ Recap of Session 3: convolution — now with the weights chosen on purpose</span>
+  <div class="hook-badge" style="margin:2px 0 4px;">↩ Recap · nothing new here — the equation is Session 3's, the picture is Session 3's</div>
   <div class="lab-split" style="gap:34px;margin-top:8px;">
     <div class="col" style="justify-content:center;gap:20px;">
       <div style="display:flex;justify-content:center;"><span class="eq-big" style="font-size:40px;"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mopen">[</span><span class="mord mathnormal">n</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.2809em;vertical-align:-0.2997em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9812em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">h</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">x</span><span class="mopen">[</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mclose">]</span></span></span></span></span></div>
@@ -719,7 +720,7 @@ print(<span class="st">&quot;motor filter at 1300 Hz:&quot;</span>, round(<span 
       </div>
     </div>
     <div class="col" style="justify-content:center;">
-      <svg viewBox="0 0 620 420" aria-label="A sliding window over a row of samples, with each sample multiplied by a weight and the products summed into one output value">
+      <svg viewBox="0 0 620 420" aria-label="A sliding window over a row of samples labelled x of n minus 2, x of n minus 1 and x of n, each multiplied by a tap labelled h of 2, h of 1 and h of 0, and the products summed into one output value y of n">
         <g font-family="IBM Plex Sans">
           <text x="20" y="40" font-size="25" fill="#495057">x[n] — the samples</text>
           <g fill="#F1F3F5" stroke="#CED4DA" stroke-width="2">
@@ -732,7 +733,13 @@ print(<span class="st">&quot;motor filter at 1300 Hz:&quot;</span>, round(<span 
           <g font-size="25" fill="#1A1A2E" text-anchor="middle">
             <text x="269" y="95">4</text><text x="341" y="95">6</text><text x="413" y="95">2</text>
           </g>
-          <text x="341" y="164" text-anchor="middle" font-size="24" fill="#5B21B6" font-weight="600">the window, one position</text>
+          <g font-size="20" fill="#5B21B6" text-anchor="middle" font-family="IBM Plex Mono">
+            <text x="269" y="142">x[n−2]</text><text x="341" y="142">x[n−1]</text><text x="413" y="142">x[n]</text>
+          </g>
+          <text x="341" y="170" text-anchor="middle" font-size="24" fill="#5B21B6" font-weight="600">the window = the last N inputs, x[n−k]</text>
+          <g font-size="20" fill="#868E96" text-anchor="middle" font-family="IBM Plex Mono">
+            <text x="269" y="197">h[2]</text><text x="341" y="197">h[1]</text><text x="413" y="197">h[0]</text>
+          </g>
           <g font-size="22" fill="#5B21B6" text-anchor="middle">
             <text x="269" y="216">× 0.25</text><text x="341" y="216">× 0.50</text><text x="413" y="216">× 0.25</text>
           </g>
