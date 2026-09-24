@@ -45,7 +45,7 @@
   <pre>real signal → load / sample → solution A / B / C (filter · spectral · feature …) → accuracy + speed / resources → pick the best trade-off</pre>
   <p><b>Must have:</b></p>
   <ul>
-    <li><b>Five techniques</b> in use — from the course or from the literature, but <b>every one explained in full, in your own words</b>: the theory · what it does for this project · the parameter settings and why · an example figure (e.g. “moving average because the noise is random around the true value”, not “because the sample code had it”)</li>
+    <li><b>Five techniques</b> in use — from the course or from the literature, but <b>every one explained in full, in your own words</b>: the theory · what it does for this project · an example figure (e.g. “moving average because the noise is random around the true value”, not “because the sample code had it”)</li>
     <li><b>Two or three solutions</b> — each with its own workflow, plus pros and cons</li>
     <li><b>Measured on two axes</b> — accuracy (a metric that fits the task, the same one for every solution on the same data) and speed / resources (time, memory or parameter count, <b>as numbers</b>)</li>
     <li><b>Results need not be good</b> — the points are for the idea, the comparison, and the analysis of why things came out the way they did</li>
@@ -59,7 +59,7 @@
     <tr><th>#</th><th>Criterion</th></tr>
         <tr><td class="id">P1</td><td><b>Why this problem</b> <span class="d">— where it comes from and why it matters or is interesting</span></td></tr>
         <tr><td class="id">P2</td><td><b>Dataset</b> <span class="d">— where it comes from and how it was collected</span></td></tr>
-        <tr><td class="id">P3</td><td><b>Five techniques</b> <span class="d">— from the course or from the literature — but every one explained in full, in your own words: the theory · what it does for this project · <b>the parameter settings and why you chose them</b> · an example figure</span></td></tr>
+        <tr><td class="id">P3</td><td><b>Five techniques</b> <span class="d">— from the course or from the literature — but every one explained in full, in your own words: the theory · what it does for this project · an example figure</span></td></tr>
         <tr><td class="id">P4</td><td><b>Two or three solutions</b> <span class="d">— workflow + pros and cons of each — two are required, a third is welcome</span></td></tr>
         <tr><td class="id">P5</td><td><b>Creativity</b> <span class="d">— an out-of-the-box idea, a strong concept, or a wide and interesting literature survey (any one)</span></td></tr>
         <tr><td class="id">P6</td><td><b>Slides</b> <span class="d">— <b>30+ pages</b> · page numbers on every slide · at least one image · no slide over 6 lines</span></td></tr>
@@ -74,19 +74,20 @@
     <tr><th>#</th><th>Criterion</th></tr>
         <tr><td class="id">C1</td><td><b>Accuracy</b> <span class="d">— a metric that fits the task, and why · every solution measured with that metric on the same data</span></td></tr>
         <tr><td class="id">C2</td><td><b>Speed / resources</b> <span class="d">— time, memory or parameter count for every solution — as numbers</span></td></tr>
-        <tr><td class="id">C3</td><td><b>Analysis per solution</b> <span class="d">— what each solution got and why, from the numbers in C1 + C2 · <b>the parameters used and how the result moves when you change them</b></span></td></tr>
-        <tr><td class="id">C4</td><td><b>Overall analysis</b> <span class="d">— the final choice with reasons on both axes · where the whole project breaks or is limited</span></td></tr>
-        <tr><td class="id">C5</td><td><b>Future work</b> <span class="d">— what you would try next, and why</span></td></tr>
-        <tr><td class="id">C6</td><td><b>Creativity</b> <span class="d">— an out-of-the-box idea, a strong concept, or a wide and interesting literature survey (any one)</span></td></tr>
-        <tr><td class="id">C7</td><td><b>Notebook + live demo</b> <span class="d">— every experiment in one file that runs end to end · <b>a live demo explaining every cell</b> · cells chain into the full experiment for every solution, no dead cells · <b>does not run = nothing for this item</b></span></td></tr>
-        <tr><td class="id">C8</td><td><b>Clean notebook</b> <span class="d">— a section per solution with headings · meaningful variable / function names · no duplicated code</span></td></tr>
-        <tr><td class="id">C9</td><td><b>Slides</b> <span class="d">— <b>20+ pages</b> · page numbers on every slide · at least one image · no slide over 6 lines</span></td></tr>
-        <tr><td class="id">C10</td><td><b>Delivery</b> <span class="d">— <b>20+ minutes including the demo</b> · explained, not read</span></td></tr>
-        <tr><td class="id">C11</td><td><b>Q&amp;A</b> <span class="d">— questions from the instructor and classmates</span></td></tr>
-        <tr><td class="id">C12</td><td><b>Everything submitted</b> <span class="d">— clip + slide deck for every assignment of the term — 5 presentation rounds + 2 project sessions</span></td></tr>
+        <tr><td class="id">C3</td><td><b>Analysis per solution</b> <span class="d">— what each solution got and why, from the numbers in C1 + C2</span></td></tr>
+        <tr><td class="id">C4</td><td><b>Parameter study</b> <span class="d">— the parameters actually used for each solution · how the result moves when at least one of them changes, with numbers</span></td></tr>
+        <tr><td class="id">C5</td><td><b>Overall analysis</b> <span class="d">— the final choice with reasons on both axes · where the whole project breaks or is limited</span></td></tr>
+        <tr><td class="id">C6</td><td><b>Future work</b> <span class="d">— what you would try next, and why</span></td></tr>
+        <tr><td class="id">C7</td><td><b>Creativity</b> <span class="d">— an out-of-the-box idea, a strong concept, or a wide and interesting literature survey (any one)</span></td></tr>
+        <tr><td class="id">C8</td><td><b>Notebook + live demo</b> <span class="d">— every experiment in one file that runs end to end · <b>a live demo explaining every cell</b> · cells chain into the full experiment for every solution, no dead cells · <b>does not run = nothing for this item</b></span></td></tr>
+        <tr><td class="id">C9</td><td><b>Clean notebook</b> <span class="d">— a section per solution with headings · meaningful variable / function names · no duplicated code</span></td></tr>
+        <tr><td class="id">C10</td><td><b>Slides</b> <span class="d">— <b>20+ pages</b> · page numbers on every slide · at least one image · no slide over 6 lines</span></td></tr>
+        <tr><td class="id">C11</td><td><b>Delivery</b> <span class="d">— <b>20+ minutes including the demo</b> · explained, not read</span></td></tr>
+        <tr><td class="id">C12</td><td><b>Q&amp;A</b> <span class="d">— questions from the instructor and classmates</span></td></tr>
+        <tr><td class="id">C13</td><td><b>Everything submitted</b> <span class="d">— clip + slide deck for every assignment of the term — 5 presentation rounds + 2 project sessions</span></td></tr>
   </table>
   <p class="note"><b>Group score</b> — everyone in the group gets the same points, Q&amp;A included; the instructor may ask anyone in the group, so <b>everyone must understand the group's code and results</b>.<br>
-  <b>Running code is not a score</b> — if it doesn't run you can't submit (does not run = 0 on C7). The points are for explaining what every cell does and reading your own results.</p>
+  <b>Running code is not a score</b> — if it doesn't run you can't submit (does not run = 0 on C8). The points are for explaining what every cell does and reading your own results.</p>
 
   <h2>3. Sample Q&amp;A (prepare for these)</h2>
   <div class="two">
@@ -113,7 +114,7 @@
   <p class="note">Also for the results session: the data — the actual files, or a link / download script that yields the same set · a short README — how to run it, and who did what.</p>
 
   <h2>5. AI and attribution</h2>
-  <p>You may use AI to help write code, <b>but you must understand every cell you submit</b> — the demo (C7) and the Q&amp;A (C11) are where that is checked. If you use a pretrained model or borrow code or data, cite the source on the slides and in the README (no citation = treated as copying).</p>
+  <p>You may use AI to help write code, <b>but you must understand every cell you submit</b> — the demo (C8) and the Q&amp;A (C12) are where that is checked. If you use a pretrained model or borrow code or data, cite the source on the slides and in the README (no citation = treated as copying).</p>
 
   <footer>Digital Signal Processing · Project brief · points are the same for both courses; only the domain differs · <a href="../session-00/slides.html" style="color:var(--teal)">back to Session 0</a></footer>
 </div>
