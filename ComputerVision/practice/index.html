@@ -2873,14 +2873,17 @@ with $k = 0.04$. Compute the Harris response $R$.
       </div>
       <details class="answer">
         <summary>Show solution</summary>
-        <div class="soln">Step 1: find the determinant (the matrix is diagonal)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\det(M) = 8 \times 2 = 16$ [1]<br>
-Step 2: find the trace and square it<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\mathrm{trace}(M) = 8 + 2 = 10$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$[\mathrm{trace}(M)]^2 = 100$ [1]<br>
-Step 3: substitute into the Harris formula<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$R = \det - k\,\mathrm{trace}^2 = 16 - (0.04)(100) = 16 - 4 = 12$<br>
-→ $R &gt; 0$, so this is a corner [1]<br>
+        <div class="soln">Step 1: write the Harris response formula<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$R = \det(M) - k\ [\mathrm{trace}(M)]^2$<br>
+→ formula · written with the trace squared before $k$ multiplies it [1]<br>
+Step 2: compute $R$<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$\det(M) = 8 \times 2 = 16$ (the matrix is diagonal)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$\mathrm{trace}(M) = 8 + 2 = 10$, so $k(10)^2 = 0.04 \times 100 = 4$<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$R = 16 - 4 = 12$<br>
+→ computation · determinant, trace, penalty and the final value [1.5]<br>
+Step 3: classify the window from the sign of $R$<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$R &gt; 0$ → a <strong>corner</strong> — both diagonal entries are large, so intensity changes in both directions<br>
+→ classification · corner, edge or flat named with a reason [0.5]<br>
 <strong>Answer:</strong> $R = 12$ (corner)<br>
 <strong>Common mistake:</strong> forgetting to square the trace before multiplying by $k$, or summing instead of multiplying inside the determinant.
         </div>
@@ -2907,20 +2910,18 @@ Step 3: substitute into the Harris formula<br>
       </div>
       <details class="answer">
         <summary>Show solution</summary>
-        <div class="soln">Step 1: match the three sums to $A$, $B$, $C$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$A = \sum G_x^2 = 5$ (left–right change)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$B = \sum G_y^2 = 4$ (up–down change)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$C = \sum G_x G_y = 2$ (diagonal coupling) [1]<br>
-Step 2: compute the first term $A\cdot B - C^2$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$A \cdot B = 5 \times 4 = 20$ · $C^2 = 2^2 = 4$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$A\cdot B - C^2 = 20 - 4 = 16$ [1]<br>
-Step 3: compute the penalty term $k(A+B)^2$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$A + B = 5 + 4 = 9$ · $(A+B)^2 = 81$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$k(A+B)^2 = 0.04 \times 81 = 3.24$ [1]<br>
-Step 4: combine and classify<br>
+        <div class="soln">Step 1: match the three sums to $A$, $B$, $C$ in the score<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$A = \sum G_x^2 = 5$ (left–right change) · $B = \sum G_y^2 = 4$ (up–down change) · $C = \sum G_x G_y = 2$ (diagonal coupling)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$R = (A\cdot B - C^2) - k\ (A+B)^2$<br>
+→ formula · the three sums placed correctly and the score written out [1.5]<br>
+Step 2: compute $R$<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$A\cdot B - C^2 = 20 - 4 = 16$<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$k(A+B)^2 = 0.04 \times 81 = 3.24$<br>
 &nbsp;&nbsp;&nbsp;&nbsp;$R = 16 - 3.24 = 12.76$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$R \gg 0$ → <strong>corner</strong> (intensity changes strongly in both directions)<br>
-→ for an edge the first term would be $\approx 0$ and the penalty would drive $R$ negative [1]<br>
+→ computation · first term, penalty term and the final value [1.75]<br>
+Step 3: classify the window from the sign of $R$<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$R \gg 0$ → <strong>corner</strong> — intensity changes strongly in both directions · for an edge the first term would be $\approx 0$ and the penalty would drive $R$ negative<br>
+→ classification · corner, edge or flat named with a reason [0.75]<br>
 <strong>Answer:</strong> $R = 12.76$ → <strong>corner</strong><br>
 <strong>Common mistake:</strong> forgetting to square $C$ (using $20-2$), forgetting to square $(A+B)$ before multiplying by $k$, or folding $C$ into the trace — the trace is $A+B$ only.
         </div>
