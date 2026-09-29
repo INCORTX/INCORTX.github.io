@@ -1,27 +1,50 @@
 name: Deploy to GitHub Pages
 
+# One site, built from two branches:
+#   master   → https://classes.incortx.com/        (what students use)
+#   cv-next  → https://classes.incortx.com/dev/    (next term, instructor-only
+#                                                    via Cloudflare Access)
+#
+# 2026-09-29: the github-pages environment only lets master deploy, and it stays
+# that way. A push to cv-next deploys nothing itself — it asks master's copy of
+# this workflow to rebuild the site. The deploy steps therefore always come from
+# master, so editing this file on cv-next cannot change what goes live.
 on:
   push:
-    branches: [master]
+    branches: [master, cv-next]
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: false
 
 jobs:
+  dev-trigger:
+    if: github.ref == 'refs/heads/cv-next'
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - name: Ask master to rebuild the site with the new cv-next
+        run: gh workflow run deploy.yml --ref master --repo "$GITHUB_REPOSITORY"
+        env:
+          GH_TOKEN: ${{ github.token }}
+
   deploy:
+    if: github.ref == 'refs/heads/master'
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+      DEV_BRANCH: cv-next
     steps:
       # 2026-09-08: nothing here is a submodule any more, so the checkout needs
       # no token beyond the one GitHub hands the job. The GH_PAT secret (a
@@ -29,16 +52,40 @@ jobs:
       # been deleted along with this step.
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          path: site
+
+      # git archive, not a second checkout: /dev/ gets the files and no .git.
+      # No dev branch → the site is master alone, exactly as before.
+      - name: Add the dev branch under /dev
+        run: |
+          if ! git -C site ls-remote --exit-code --heads origin "$DEV_BRANCH" >/dev/null; then
+            echo "no $DEV_BRANCH branch — /dev/ not published"
+            exit 0
+          fi
+          if [ -e site/dev ]; then
+            echo "::error::master has its own dev/ — it would collide with the $DEV_BRANCH preview"
+            exit 1
+          fi
+          git -C site fetch --depth=1 origin "$DEV_BRANCH"
+          mkdir site/dev
+          git -C site archive FETCH_HEAD | tar -x -C site/dev
+          echo "/dev/ = $DEV_BRANCH @ $(git -C site rev-parse --short FETCH_HEAD)"
 
       # Everything in this repository is world-readable on github.com as well as
       # on classes.incortx.com, and Cloudflare Access only gates the website. So
       # the answer files have to be stopped here, before they are ever committed
       # and served. Added 2026-09-08, when the course content stopped being a
       # private submodule and became files in this repo.
+      # 2026-09-29: scans the assembled site (master + /dev/) instead of
+      # git ls-files, and the name may appear anywhere in the file name — the
+      # real keys are lab_01_KEY.ipynb / midterm_exam_key.docx, which the old
+      # start-of-name pattern let through.
       - name: Refuse to publish instructor-only files
+        working-directory: site
         run: |
-          bad=$(git ls-files | grep -iE '(^|/)(exercise_key|exercises|solutions?|answers?|_key)[^/]*\.(html|ipynb|md|pdf)$' || true)
-          tok=$(git grep -lE 'gh[pousr]_[A-Za-z0-9]{20,}|sk-[A-Za-z0-9]{20,}|AIza[0-9A-Za-z_-]{30,}' -- . || true)
+          bad=$(find . -path ./.git -prune -o -type f -print | grep -iE '(^|/)[^/]*(exercise_key|exercises|solutions?|answers?|_key|เฉลย)[^/]*\.(html|ipynb|md|pdf|docx|py)$' || true)
+          tok=$(grep -rlE --exclude-dir=.git 'gh[pousr]_[A-Za-z0-9]{20,}|sk-[A-Za-z0-9]{20,}|AIza[0-9A-Za-z_-]{30,}' . || true)
           if [ -n "$bad$tok" ]; then
             echo "::error::refusing to deploy — instructor-only or secret-looking content:"
             [ -n "$bad" ] && echo "$bad"
@@ -53,7 +100,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: site
 
       - name: Deploy to GitHub Pages
         id: deployment
