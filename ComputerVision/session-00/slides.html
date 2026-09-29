@@ -8,7 +8,8 @@
   CV next-term deck template v1 (2026-09-29) — prototype on session 0.
   Pattern: COMP90086-style reveal.js deck (claim titles · Outline + Learning outcomes up front ·
   Summary + References at the end · live canvases) plus: fragments for step reveals ·
-  .tryit (collapsible answer) · .flashback · .colab button · .src footer on every content slide ·
+  .tryit (collapsible answer) · .flashback · .colab button · .src = short academic citation on content slides only (no "Source" label, no internal
+  codes — those stay in the speaker script) ·
   .term key terms with Thai meaning · toolbar bottom-centre, hidden while idle (first · prev · next · last · overview · fullscreen · PDF · ?)
   · ↓/↑ = whole slide skipping fragments · Enter = full screen · overview scrolls/drags sideways · page number
   in every slide footer, so it also prints
@@ -76,8 +77,9 @@ html,body{background:var(--bg);}
 .spacer{height:.6em;}
 
 /* source line: sits on the footer rule of every content slide */
-.src{position:absolute;left:4px;bottom:14px;font-size:.4em;color:var(--muted);max-width:34%;line-height:1.35;}
-.src::before{content:"Source · ";font-weight:700;color:var(--teal);}
+.src{position:absolute;left:4px;bottom:16px;font-size:12px;color:var(--muted);white-space:nowrap;line-height:1.3;}
+.src i{font-style:italic;}
+html.reading .src{white-space:normal;}
 .pgno{position:absolute;right:4px;bottom:12px;font-family:var(--display);font-size:15px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.02em;}
 .pgno b{color:var(--ink);font-weight:700;}
 .title-slide .pgno{display:none;}
@@ -334,7 +336,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
       </div>
     </div>
   </div>
-  <p class="src">FP P12-02 (What is computer vision?) · TIF ch. 1</p>
+  <p class="src">Nayar, <i>First Principles of Computer Vision</i> · Torralba et al. (2024), ch. 1</p>
 </section>
 
 <!-- 5 · Vision is everywhere -->
@@ -352,7 +354,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card amber"><b>Factories</b>Find defects on a production line</div>
   </div>
   <p class="lead" style="margin-top:.9em">Every one of these starts from the same thing: a grid of numbers.</p>
-  <p class="src">FP P12-03 (What is vision used for?) · Szeliski 2e ch. 1</p>
+  <p class="src">Nayar, <i>First Principles of Computer Vision</i> · Szeliski (2022), ch. 1</p>
 </section>
 
 <!-- 6 · Humans make it look easy -->
@@ -374,7 +376,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
       <li class="fragment">You handle this without effort; a program has to be <b>taught</b> to.</li>
     </ul>
   </div>
-  <p class="src">FP P12-04 (How do humans do it?) · TIF ch. 1, 3</p>
+  <p class="src">Nayar, <i>First Principles of Computer Vision</i> · Torralba et al. (2024), ch. 1 &amp; 3</p>
 </section>
 
 <!-- 7 · 1966 summer project -->
@@ -391,7 +393,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
       <div class="card coral fragment"><b>What happened</b>It proved <b>much harder than anybody expected</b>. Sixty years later, this course is what we have learned since.</div>
     </div>
   </div>
-  <p class="src">TIF §2.1</p>
+  <p class="src">Quoted in Torralba et al. (2024), §2.1</p>
 </section>
 
 <!-- 8 · A simple vision system -->
@@ -411,7 +413,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="st"><b>5 · 3D</b>Height of every point, inferred from the constraints</div>
   </div>
   <div class="flashback fragment" style="margin-top:.9em;border-left-color:var(--teal);background:var(--teal-soft);border-color:#bfe3de"><b style="font-family:var(--display)">Why this course exists</b><br>Every stage is hand-written for this toy world. Real scenes break these rules — so we replace hand rules with <b>learning</b> where we can, and keep <b>geometry</b> where we must.</div>
-  <p class="src">TIF §2.2–2.6 (A Simple Vision System)</p>
+  <p class="src">Torralba et al. (2024), §2.2–2.6</p>
 </section>
 
 <!-- 9 · Course map -->
@@ -429,7 +431,6 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div><b>Weeks 8–14 · Project</b><br>Kick-off in session 8, proposal in week 11, results and live demo in week 14</div>
     <div><b>Week 15 · Final exam</b><br>Sessions 1–8, hand calculation</div>
   </div>
-  <p class="src">Course syllabus</p>
 </section>
 
 <!-- 10 · Why learning before geometry -->
@@ -441,7 +442,6 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card coral fragment"><span class="n">02</span><b>Your project needs it</b>Meeting CNNs, ViT and CLIP by week 4 gives you half a term to decide what to build.</div>
     <div class="card amber fragment"><span class="n">03</span><b>Geometry is not learned for you</b>Cameras, matching and depth follow fixed rules — we study them once you have learning to compare against.</div>
   </div>
-  <p class="src">Course syllabus · order after Melbourne COMP90086</p>
 </section>
 
 <!-- 11 · Course learning outcomes -->
@@ -456,7 +456,6 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <li><b>Evaluate</b> a vision system with the right metric — and name its risks</li>
     <li><b>Design and compare</b> two or three solutions to a real problem</li>
   </ol>
-  <p class="src">Course syllabus</p>
 </section>
 
 <!-- 12 · How each session runs -->
@@ -481,7 +480,6 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
       <p style="margin:.5em 0 0">One <code>lab.ipynb</code> per session, one section per sub-topic. Runs on free Colab.</p>
     </div>
   </div>
-  <p class="src">Course syllabus</p>
 </section>
 
 <!-- 13 · Grading -->
@@ -495,7 +493,6 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="gtile" style="background:var(--violet)"><span class="lbl">Part.</span><span class="num">10</span><span class="det">Questions</span></div>
   </div>
   <p class="lead">No midterm. No bonus points.</p>
-  <p class="src">Course syllabus — grading</p>
 </section>
 
 <!-- 14 · Assignment: halves -->
@@ -514,7 +511,6 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card"><b>Send first</b>10+ slides and an 8+ minute video, one day before</div>
     <div class="card coral"><b>No make-up</b>A missed turn costs 5 points</div>
   </div>
-  <p class="src">Course syllabus — Assignment</p>
 </section>
 
 <!-- 15 · Assignment checklist -->
@@ -529,7 +525,6 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <li><span><b>On time</b> — video and slides one day before (timestamp)</span><span class="pt">1</span></li>
   </ul>
   <p class="lead" style="margin-top:.8em">Checks 2, 3 and 5 are why copying an AI answer does not work: you have to understand it to answer and to speak.</p>
-  <p class="src">Course syllabus — Assignment checklist</p>
 </section>
 
 <!-- 16 · First turns -->
@@ -551,7 +546,6 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card amber"><b>Starting sources</b>Every topic lists a chapter, video or paper to begin with</div>
     <div class="card coral"><b>Not in the final</b>Topics go beyond the lectures on purpose</div>
   </div>
-  <p class="src">Course syllabus — Assignment</p>
 </section>
 
 <!-- 17 · Project -->
@@ -577,7 +571,6 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
       <div class="card"><b>All 13 files of the term</b>Hand in all → 1.5 points · −0.1 per missing file</div>
     </div>
   </div>
-  <p class="src">Course syllabus — Project</p>
 </section>
 
 <!-- 18 · Final exam -->
@@ -599,7 +592,6 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
       <div class="card coral"><b>Sessions 7–8</b>IoU and NMS · optical flow</div>
     </div>
   </div>
-  <p class="src">Course syllabus — Final</p>
 </section>
 
 <!-- 19 · Participation -->
@@ -615,7 +607,6 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     </table>
   </div>
   <p class="lead" style="margin-top:.8em">Up to <b>10 points</b>. Questions alone rarely reach 10 — volunteering answers and taking part in class activities count too.</p>
-  <p class="src">Course syllabus — Participation</p>
 </section>
 
 <!-- 20 · Schedule -->
@@ -641,7 +632,6 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
       <tr class="hl"><td>15</td><td>Final exam</td><td></td></tr>
     </table>
   </div>
-  <p class="src">Course syllabus</p>
 </section>
 
 <!-- 21 · Tools & resources -->
@@ -668,7 +658,6 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
       </ul>
     </div>
   </div>
-  <p class="src">Course syllabus — sources</p>
 </section>
 
 <!-- 22 · Today -->
@@ -714,11 +703,11 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="kicker">References</p>
   <h2>References</h2>
   <ul class="small">
-    <li>A. Torralba, P. Isola, W. T. Freeman. <i>Foundations of Computer Vision</i>. MIT Press, 2024 — ch. 1–3 (TIF).</li>
+    <li>A. Torralba, P. Isola, W. T. Freeman. <i>Foundations of Computer Vision</i>. MIT Press, 2024 — ch. 1–3. Free online: visionbook.mit.edu</li>
     <li>R. Szeliski. <i>Computer Vision: Algorithms and Applications</i>, 2nd ed., 2022 — ch. 1.</li>
-    <li>S. Nayar. <i>First Principles of Computer Vision</i> — Introduction playlist (FP P12).</li>
-    <li>S. Papert. <i>The Summer Vision Project</i>. MIT, 1966 — as quoted in TIF §2.1.</li>
-    <li>L. G. Roberts. Blocks world, Ph.D. thesis, 1963 — as described in TIF §2.2.</li>
+    <li>S. Nayar. <i>First Principles of Computer Vision</i> — video lectures, Introduction series.</li>
+    <li>S. Papert. <i>The Summer Vision Project</i>. MIT, 1966 — as quoted in Torralba, Isola &amp; Freeman (2024), §2.1.</li>
+    <li>L. G. Roberts. Blocks world, Ph.D. thesis, 1963 — as described in Torralba, Isola &amp; Freeman (2024), §2.2.</li>
   </ul>
 </section>
 
