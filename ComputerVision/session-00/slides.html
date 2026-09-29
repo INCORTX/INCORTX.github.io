@@ -9,7 +9,8 @@
   Pattern: COMP90086-style reveal.js deck (claim titles · Outline + Learning outcomes up front ·
   Summary + References at the end · live canvases) plus: fragments for step reveals ·
   .tryit (collapsible answer) · .flashback · .colab button · .src footer on every content slide ·
-  .term key terms with Thai meaning · toolbar bottom-centre, hidden while idle (prev · next · overview · fullscreen · PDF · shortcuts) · page number
+  .term key terms with Thai meaning · toolbar bottom-centre, hidden while idle (first · prev · next · last · overview · fullscreen · PDF · ?)
+  · ↓/↑ = whole slide skipping fragments · Enter = full screen · overview scrolls/drags sideways · page number
   in every slide footer, so it also prints
   · exports: ?print-pdf = 16:9 PDF, ?handout = A4 portrait, 2 slides/page (append &autoprint to open the
   print dialog) · reading mode on phones (≤760px: Reveal is not started;
@@ -205,6 +206,7 @@ html.reading .reveal .slides>section::before,html.reading .reveal .slides>sectio
 .deckbar svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
 .deckbar .count{min-width:4.2em;text-align:center;font-size:14px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums;}
 .deckbar .sep{width:1px;height:24px;background:var(--line);margin:0 4px;}
+.deckbar .q{font-family:var(--display);font-size:19px;font-weight:700;}
 .deckbar .pdf{width:auto;padding:0 14px;font-size:13px;font-weight:700;letter-spacing:.04em;gap:6px;}
 .pop{position:fixed;z-index:50;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 16px 40px -16px rgba(15,27,45,.45);font-family:var(--font);color:var(--body);}
 .pop[hidden]{display:none;}
@@ -213,12 +215,19 @@ html.reading .reveal .slides>section::before,html.reading .reveal .slides>sectio
 .pdfmenu a:hover,.pdfmenu a:focus-visible{background:var(--soft);outline:none;}
 .pdfmenu b{font-family:var(--display);font-size:15px;}
 .pdfmenu small{font-size:12.5px;color:var(--muted);}
-.keys{left:50%;top:50%;transform:translate(-50%,-50%);padding:22px 26px;width:min(92vw,460px);}
+.keys{left:50%;top:50%;transform:translate(-50%,-50%);padding:22px 26px;width:min(92vw,520px);}
 .keys h3{margin:0 0 12px;font-family:var(--display);font-size:18px;color:var(--ink);}
+.keys dd kbd{font-size:11.5px;padding:1px 5px;}
 .keys dl{display:grid;grid-template-columns:auto 1fr;gap:9px 16px;margin:0;font-size:14.5px;align-items:center;}
 .keys dt{display:flex;gap:4px;justify-content:flex-end;}
 .keys dd{margin:0;}
 .keys kbd{font-family:var(--mono);font-size:12.5px;min-width:1.9em;text-align:center;padding:3px 7px;border-radius:6px;border:1px solid var(--line);border-bottom-width:2px;background:var(--soft);color:var(--ink);}
+.ovhint{position:fixed;left:50%;top:18px;transform:translateX(-50%);z-index:40;background:var(--navy);color:#fff;font-family:var(--display);font-size:14px;font-weight:600;padding:10px 18px;border-radius:999px;box-shadow:0 8px 24px -12px rgba(15,27,45,.5);}
+.ovhint[hidden]{display:none;}
+.reveal.overview .slides{cursor:grab;}
+.reveal.overview .slides>section{box-shadow:0 0 0 2px var(--line);}
+.reveal.overview .slides>section.present{box-shadow:0 0 0 22px var(--teal) !important;}
+.reveal.overview.dragging .slides{cursor:grabbing;}
 .scrim{position:fixed;inset:0;z-index:45;background:rgba(15,27,45,.28);}
 .scrim[hidden]{display:none;}
 
@@ -721,13 +730,15 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
 
 <!-- deck toolbar -->
 <nav class="deckbar" id="deckbar" aria-label="Slide controls" hidden>
+  <button data-act="first" aria-label="First slide" title="First slide (Home · Shift+←)"><svg viewBox="0 0 24 24"><path d="M6 5v14M18 18l-6-6 6-6"/></svg></button>
   <button data-act="prev" aria-label="Previous slide" title="Previous (←)"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
   <button data-act="next" aria-label="Next slide" title="Next (→ or Space)"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>
+  <button data-act="last" aria-label="Last slide" title="Last slide (End · Shift+→)"><svg viewBox="0 0 24 24"><path d="M18 5v14M6 18l6-6-6-6"/></svg></button>
   <span class="sep" aria-hidden="true"></span>
   <button data-act="overview" aria-label="All slides" title="All slides (O)"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></button>
-  <button data-act="fullscreen" aria-label="Full screen" title="Full screen (F)"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+  <button data-act="fullscreen" aria-label="Full screen" title="Full screen (Enter · F)"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
   <button data-act="pdf" class="pdf" aria-label="Download PDF" aria-haspopup="true" title="Download PDF (P)"><svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>PDF</button>
-  <button data-act="help" aria-label="Keyboard shortcuts" title="Shortcuts (?)"><svg viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/></svg></button>
+  <button data-act="help" class="q" aria-label="Keyboard shortcuts" title="Shortcuts (?)">?</button>
 </nav>
 
 <div class="pop pdfmenu" id="pdfMenu" role="menu" hidden>
@@ -735,16 +746,18 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <a role="menuitem" href="?handout&amp;autoprint" target="_blank" rel="noopener"><b>Handout · A4</b><small>Two slides per A4 portrait page — for printing</small></a>
 </div>
 
+<div class="ovhint" id="ovHint" hidden>Scroll or drag sideways · click a slide or press Enter to open it · Esc to go back</div>
 <div class="scrim" id="scrim" hidden></div>
 <div class="pop keys" id="keysHelp" role="dialog" aria-modal="true" aria-labelledby="keysTitle" hidden>
   <h3 id="keysTitle">Keyboard shortcuts</h3>
   <dl>
-    <dt><kbd>→</kbd><kbd>Space</kbd></dt><dd>Next step or slide</dd>
-    <dt><kbd>←</kbd></dt><dd>Previous</dd>
-    <dt><kbd>Shift</kbd><kbd>←</kbd><kbd>→</kbd></dt><dd>First / last slide</dd>
+    <dt><kbd>→</kbd><kbd>Space</kbd></dt><dd>Next step</dd>
+    <dt><kbd>←</kbd></dt><dd>Previous step</dd>
+    <dt><kbd>↓</kbd><kbd>↑</kbd></dt><dd>Next / previous slide — skip the animations</dd>
+    <dt><kbd>Home</kbd><kbd>End</kbd></dt><dd>First / last slide · also <kbd>Shift</kbd>+<kbd>←</kbd><kbd>→</kbd></dd>
     <dt><kbd>G</kbd></dt><dd>Go to slide — type its number, then Enter</dd>
-    <dt><kbd>O</kbd></dt><dd>All slides</dd>
-    <dt><kbd>F</kbd></dt><dd>Full screen</dd>
+    <dt><kbd>O</kbd></dt><dd>All slides — scroll or drag sideways, Enter opens one</dd>
+    <dt><kbd>Enter</kbd><kbd>F</kbd></dt><dd>Full screen</dd>
     <dt><kbd>B</kbd></dt><dd>Black screen (pause)</dd>
     <dt><kbd>P</kbd></dt><dd>Download PDF</dd>
     <dt><kbd>?</kbd></dt><dd>This list</dd>
@@ -822,8 +835,11 @@ function initDeckbar(){
   bar.hidden=false;
   const prevB=bar.querySelector('[data-act=prev]'), nextB=bar.querySelector('[data-act=next]');
   const sync=()=>{
-    prevB.disabled=Reveal.isFirstSlide() && !Reveal.availableFragments().prev;
-    nextB.disabled=Reveal.isLastSlide() && !Reveal.availableFragments().next;
+    const atFirst=Reveal.isFirstSlide(), atLast=Reveal.isLastSlide();
+    prevB.disabled=atFirst && !Reveal.availableFragments().prev;
+    nextB.disabled=atLast && !Reveal.availableFragments().next;
+    bar.querySelector('[data-act=first]').disabled=atFirst;
+    bar.querySelector('[data-act=last]').disabled=atLast;
   };
   Reveal.on('slidechanged',sync); Reveal.on('fragmentshown',sync); Reveal.on('fragmenthidden',sync); sync();
   const closeAll=()=>{ menu.hidden=true; keys.hidden=true; scrim.hidden=true; };
@@ -831,11 +847,47 @@ function initDeckbar(){
   const toggleMenu=()=>{ const open=menu.hidden; closeAll(); menu.hidden=!open; if(open) menu.querySelector('a').focus(); };
   const fullscreen=()=>{ const el=document.documentElement;
     if(document.fullscreenElement) document.exitFullscreen(); else if(el.requestFullscreen) el.requestFullscreen(); };
-  const act={prev:()=>Reveal.prev(), next:()=>Reveal.next(), overview:()=>Reveal.toggleOverview(), fullscreen, pdf:toggleMenu, help:toggleKeys};
+  const last=()=>Reveal.getTotalSlides()-1;
+  const act={first:()=>Reveal.slide(0), prev:()=>Reveal.prev(), next:()=>Reveal.next(), last:()=>Reveal.slide(last()),
+             overview:()=>Reveal.toggleOverview(), fullscreen, pdf:toggleMenu, help:toggleKeys};
   bar.addEventListener('click',e=>{ const b=e.target.closest('button'); if(b && act[b.dataset.act]){ act[b.dataset.act](); if(b.dataset.act!=='pdf'&&b.dataset.act!=='help') closeAll(); } });
   scrim.addEventListener('click',closeAll);
   menu.addEventListener('click',()=>setTimeout(closeAll,50));
   Reveal.addKeyBinding({keyCode:80,key:'P',description:'Download PDF'},toggleMenu);
+  /* ↓ / ↑ : whole slide, skipping animations — the slide you land on is shown complete */
+  const jump=d=>{ const h=Reveal.getIndices().h+d; if(h<0||h>last()) return;
+    const n=Reveal.getSlide(h).querySelectorAll('.fragment').length; Reveal.slide(h,0,n?n-1:undefined); };
+  Reveal.addKeyBinding({keyCode:40,key:'↓',description:'Next slide, skip animations'},()=>{ if(Reveal.isOverview()) Reveal.right(); else jump(1); });
+  Reveal.addKeyBinding({keyCode:38,key:'↑',description:'Previous slide, skip animations'},()=>{ if(Reveal.isOverview()) Reveal.left(); else jump(-1); });
+  /* Enter : full screen — unless Enter already means something (overview pick, go-to-slide box, a popup) */
+  document.addEventListener('keydown',e=>{
+    if(e.key!=='Enter' || e.altKey || e.ctrlKey || e.metaKey) return;
+    const tag=(document.activeElement&&document.activeElement.tagName)||'';
+    if(/INPUT|TEXTAREA|BUTTON|A|SUMMARY/.test(tag) || !menu.hidden || !keys.hidden) return;
+    if(Reveal.isOverview()){ e.preventDefault(); e.stopImmediatePropagation(); Reveal.toggleOverview(false); return; }  /* open the picked slide */
+    e.preventDefault(); e.stopImmediatePropagation(); fullscreen();
+  },true);
+  /* overview: wheel / trackpad / drag moves sideways through the slides */
+  const hint=document.getElementById('ovHint');
+  Reveal.on('overviewshown',()=>{ hint.hidden=false; });
+  Reveal.on('overviewhidden',()=>{ hint.hidden=true; });
+  let acc=0;
+  window.addEventListener('wheel',e=>{
+    if(!Reveal.isOverview()) return;
+    e.preventDefault();
+    acc+=Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:e.deltaY;
+    while(acc>=60){ Reveal.right(); acc-=60; } while(acc<=-60){ Reveal.left(); acc+=60; }
+  },{passive:false});
+  const rv=document.querySelector('.reveal'); let dragX=null, moved=0;
+  rv.addEventListener('pointerdown',e=>{ if(Reveal.isOverview()&&e.button===0){ dragX=e.clientX; moved=0; } });
+  window.addEventListener('pointermove',e=>{
+    if(dragX===null) return;
+    const dx=e.clientX-dragX; if(Math.abs(dx)>8) rv.classList.add('dragging');
+    if(dx<=-90){ Reveal.right(); dragX=e.clientX; moved++; } else if(dx>=90){ Reveal.left(); dragX=e.clientX; moved++; }
+  });
+  window.addEventListener('pointerup',()=>{ dragX=null; rv.classList.remove('dragging'); });
+  /* a drag must not also count as a click that opens a slide */
+  rv.addEventListener('click',e=>{ if(moved){ e.stopPropagation(); e.preventDefault(); moved=0; } },true);
   Reveal.addKeyBinding({keyCode:191,key:'?',description:'Keyboard shortcuts'},toggleKeys);
   /* Esc closes an open popup — and stops there, so Reveal does not also open the overview */
   document.addEventListener('keydown',e=>{
