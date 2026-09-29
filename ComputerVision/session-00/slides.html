@@ -177,6 +177,16 @@ html.reading .pgno{display:none;}
 .tl div.key::before{background:var(--coral);border-color:var(--coral);}
 .tl b{display:block;font-family:var(--display);color:var(--ink);}
 
+/* criteria list + shared five-level scale (assignment rubric) */
+.crit{list-style:none;margin:0;padding:0;counter-reset:k;display:grid;gap:.35em;}
+.crit li{counter-increment:k;display:grid;grid-template-columns:1.7em 1fr;gap:.6em;align-items:center;background:var(--soft);border-radius:12px;padding:.42em .8em;margin:0;font-size:.66em;line-height:1.35;}
+.crit li::before{content:counter(k);width:1.6em;height:1.6em;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:.9em;}
+.scale{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.35em;margin-top:.6em;}
+.scale div{border-radius:12px;background:var(--c);color:#fff;padding:.45em .6em;font-size:.62em;line-height:1.25;}
+.reveal .scale b{display:block;font-family:var(--display);font-size:1.6em;line-height:1.1;color:#fff;}
+.reveal .crit,.reveal .checks{margin:0;}
+html.reading .crit li,html.reading .scale div{font-size:15px;}
+html.reading .scale{grid-template-columns:repeat(2,minmax(0,1fr));}
 /* checklist */
 .checks{list-style:none;margin:0;padding:0;display:grid;gap:.45em;}
 .cols .checks li{font-size:.6em;padding:.4em .6em;}
@@ -517,15 +527,22 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
 <!-- 15 · Assignment checklist -->
 <section>
   <p class="kicker">Assignment</p>
-  <h2 class="claim">Five checks, one point each</h2>
-  <ul class="checks">
-    <li><span><b>Right length &amp; engaging</b> — 10+ slides, 8+ minutes, at least one picture, no slide over ~6 lines</span><span class="pt">1</span></li>
-    <li><span><b>Interesting answers</b> — you answer questions from the class and the instructor well</span><span class="pt">1</span></li>
-    <li><span><b>Fluent</b> — you explain; you do not read the slides aloud, in the video or live</span><span class="pt">1</span></li>
-    <li><span><b>Polished slides</b> — pictures, equations, examples, little text, a clear flow, page numbers on every slide, and a title slide with names, student IDs and topic</span><span class="pt">1</span></li>
-    <li><span><b>On time</b> — video and slides one day before (timestamp)</span><span class="pt">1</span></li>
-  </ul>
-  <p class="lead" style="margin-top:.8em">Checks 2, 3 and 5 are why copying an AI answer does not work: you have to understand it to answer and to speak.</p>
+  <h2 class="claim">Five criteria, one scale</h2>
+  <ol class="crit">
+    <li><span><b>Right length &amp; engaging</b> — 10+ slides, 8+ minutes, at least one picture, no slide over ~6 lines</span></li>
+    <li><span><b>Interesting answers</b> — you answer questions from the class and the instructor well</span></li>
+    <li><span><b>Fluent</b> — you explain; you do not read the slides aloud, in the video or live</span></li>
+    <li><span><b>Polished slides</b> — pictures, equations, examples, little text, a clear flow, page numbers on every slide, and a title slide with names, student IDs and topic</span></li>
+    <li><span><b>On time</b> — video and slides one day before (timestamp)</span></li>
+  </ol>
+  <div class="scale" aria-label="Every criterion is scored on the same five levels">
+    <div style="--c:var(--teal)"><b>100%</b>Outstanding</div>
+    <div style="--c:#3d8f86"><b>75%</b>Good</div>
+    <div style="--c:var(--amber)"><b>50%</b>Fair</div>
+    <div style="--c:var(--coral)"><b>25%</b>Below average</div>
+    <div style="--c:#98a2b3"><b>0%</b>Not done</div>
+  </div>
+  <p class="lead" style="margin-top:.55em">Every criterion uses this scale. Criteria 2, 3 and 5 are why copying an AI answer does not work.</p>
 </section>
 
 <!-- 16 · First turns -->
