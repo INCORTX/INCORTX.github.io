@@ -179,6 +179,7 @@ html.reading .pgno{display:none;}
 
 /* checklist */
 .checks{list-style:none;margin:0;padding:0;display:grid;gap:.45em;}
+.cols .checks li{font-size:.6em;padding:.4em .6em;}
 .checks li{display:grid;grid-template-columns:2.2em 1fr auto;gap:.6em;align-items:center;background:var(--soft);border-radius:12px;padding:.5em .8em;margin:0;font-size:.74em;}
 .checks li::before{content:"✓";width:1.7em;height:1.7em;border-radius:50%;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;}
 .checks li span.pt{font-family:var(--display);font-weight:700;color:var(--teal);}
@@ -428,7 +429,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="blk" style="--c:var(--navy)"><h4>Motion</h4><div class="s"><i>8</i>Motion &amp; video</div></div>
   </div>
   <div class="after">
-    <div><b>Weeks 8–14 · Project</b><br>Kick-off in session 8, proposal in week 11, results and live demo in week 14</div>
+    <div><b>Weeks 9–14 · Project</b><br>Kick-off in session 8, proposal in week 11, results and live demo in week 14</div>
     <div><b>Week 15 · Final exam</b><br>Sessions 1–8, hand calculation</div>
   </div>
 </section>
@@ -439,7 +440,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <h2 class="claim">Learning comes before geometry — on purpose</h2>
   <div class="cards">
     <div class="card violet fragment"><span class="n">01</span><b>Convolution → CNN</b>The filters you design by hand in session 2 are what a CNN learns by itself in session 3.</div>
-    <div class="card coral fragment"><span class="n">02</span><b>Your project needs it</b>Meeting CNNs, ViT and CLIP by week 4 gives you half a term to decide what to build.</div>
+    <div class="card coral fragment"><span class="n">02</span><b>Your project needs it</b>Meeting CNNs, ViT and CLIP by session 4 gives you half a term to decide what to build.</div>
     <div class="card amber fragment"><span class="n">03</span><b>Geometry is not learned for you</b>Cameras, matching and depth follow fixed rules — we study them once you have learning to compare against.</div>
   </div>
 </section>
@@ -501,9 +502,9 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <h2 class="claim">Half the class presents every week</h2>
   <div class="halves">
     <div class="half" style="background:var(--teal)"><div class="h">Half A</div><div class="d">Topic sets T1 · T3 · T5 · T7</div>
-      <div class="dots"><span class="on">S2</span><span>S3</span><span class="on">S4</span><span>S5</span><span class="on">S6</span><span>S7</span><span class="on">S8</span><span>W9</span></div></div>
+      <div class="dots"><span class="on">S2</span><span>S3</span><span class="on">S4</span><span>S5</span><span class="on">S6</span><span>S7</span><span class="on">S8</span><span>W10</span></div></div>
     <div class="half" style="background:var(--navy)"><div class="h">Half B</div><div class="d">Topic sets T2 · T4 · T6 · T8</div>
-      <div class="dots"><span>S2</span><span class="on">S3</span><span>S4</span><span class="on">S5</span><span>S6</span><span class="on">S7</span><span>S8</span><span class="on">W9</span></div></div>
+      <div class="dots"><span>S2</span><span class="on">S3</span><span>S4</span><span class="on">S5</span><span>S6</span><span class="on">S7</span><span>S8</span><span class="on">W10</span></div></div>
   </div>
   <div class="cards c4">
     <div class="card"><b>4 times</b>Groups of 1–3 · the speaker rotates every time</div>
@@ -532,13 +533,13 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="kicker">Assignment · first turns</p>
   <h2 class="claim">Half A presents next week, half B the week after</h2>
   <div class="pipe">
-    <div class="st"><b>Today · week 1</b>Session 0, then session 1. At the end of session 1, half A takes a topic from set <b>T1</b></div>
+    <div class="st"><b>Session 1</b>At its end, half A takes a topic from set <b>T1</b></div>
     <div class="ar">→</div>
-    <div class="st"><b>Week 2 · session 2</b>Half A presents T1. Half B takes a topic from set <b>T2</b></div>
+    <div class="st"><b>Session 2</b>Half A presents T1. Half B takes a topic from set <b>T2</b></div>
     <div class="ar">→</div>
-    <div class="st"><b>Week 3 · session 3</b>Half B presents T2. Half A takes set <b>T3</b></div>
+    <div class="st"><b>Session 3</b>Half B presents T2. Half A takes set <b>T3</b></div>
     <div class="ar">→</div>
-    <div class="st"><b>… until week 9</b>Half B gives the last round (T8). Four turns for every group</div>
+    <div class="st"><b>… until week 10</b>After session 8, half B gives the last round (T8). Four turns for every group</div>
   </div>
   <div class="cards c4" style="margin-top:.9em">
     <div class="card teal"><b>One topic per group</b>No two groups in the same half pick the same topic</div>
@@ -553,8 +554,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="kicker">Project · 30 points</p>
   <h2 class="claim">Two or three ways to solve one real problem</h2>
   <div class="tl">
-    <div><b>Week 8</b>Kick-off</div>
-    <div><b>Weeks 9–10</b>Clinic</div>
+    <div><b>Week 9</b>Kick-off in session 8</div>
+    <div><b>Week 10</b>Clinic + last round</div>
     <div class="key"><b>Week 11</b>Proposal · 14.5</div>
     <div><b>Weeks 12–13</b>Build and test</div>
     <div class="key"><b>Week 14</b>Results + demo · 15.5</div>
@@ -571,6 +572,35 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
       <div class="card"><b>All 13 files of the term</b>Hand in all → 1.5 points · −0.1 per missing file</div>
     </div>
   </div>
+</section>
+
+<!-- 17b · Project grading -->
+<section>
+  <p class="kicker">Project · how it is graded</p>
+  <h2 class="claim">Most project points reward thinking, not a high score</h2>
+  <div class="cols">
+    <div>
+      <h3>Proposal · 14.5 · week 11</h3>
+      <ul class="checks">
+        <li><span><b>4 techniques</b>, each explained in your own words with a picture</span><span class="pt">4</span></li>
+        <li><span><b>2–3 solutions</b> — workflow, pros and cons</span><span class="pt">3</span></li>
+        <li><span><b>Q&amp;A</b> with the class and the instructor</span><span class="pt">2.5</span></li>
+        <li><span><b>Slides and talk</b> — 30+ slides, 20+ minutes, clear and engaging</span><span class="pt">2.5</span></li>
+        <li><span>Problem, data and parameters · creativity · on time</span><span class="pt">2.5</span></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Results · 15.5 · week 14</h3>
+      <ul class="checks">
+        <li><span><b>Analysis</b> — metrics, speed, why each solution behaves as it does</span><span class="pt">4.5</span></li>
+        <li><span><b>Notebook + live demo</b> — runs end to end; you explain every cell</span><span class="pt">3.5</span></li>
+        <li><span><b>Q&amp;A</b> with the class and the instructor</span><span class="pt">2.5</span></li>
+        <li><span><b>Slides and talk</b> — 20+ slides, 20+ minutes including the demo</span><span class="pt">2.5</span></li>
+        <li><span>All 13 files of the term · future work · creativity</span><span class="pt">2.5</span></li>
+      </ul>
+    </div>
+  </div>
+  <p class="lead" style="margin-top:.6em">A notebook that does not run to the end scores 0 for the demo. Full rubric: course page.</p>
 </section>
 
 <!-- 18 · Final exam -->
@@ -616,16 +646,16 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <div class="tscroll">
     <table class="tight">
       <tr><th>Week</th><th>Session</th><th>Presents</th></tr>
-      <tr class="hl"><td>1</td><td>0 · Orientation — form groups, halves A/B &nbsp;+&nbsp; 1 · Image formation &amp; sensing</td><td>—</td></tr>
-      <tr><td>2</td><td>2 · Image processing &amp; filtering</td><td>A · T1</td></tr>
-      <tr><td>3</td><td>3 · Neural networks → CNNs</td><td>B · T2</td></tr>
-      <tr><td>4</td><td>4 · Attention, ViT &amp; CLIP</td><td>A · T3</td></tr>
-      <tr><td>5</td><td>5 · Local features &amp; matching</td><td>B · T4</td></tr>
-      <tr><td>6</td><td>6 · Transforms, cameras, stereo</td><td>A · T5</td></tr>
-      <tr><td>7</td><td>7 · Detection &amp; segmentation</td><td>B · T6</td></tr>
-      <tr><td>8</td><td>8 · Motion &amp; video + project kick-off</td><td>A · T7</td></tr>
-      <tr><td>9</td><td>Last presentation round + project clinic</td><td>B · T8</td></tr>
-      <tr><td>10</td><td>Project clinic</td><td></td></tr>
+      <tr class="hl"><td>1</td><td>0 · Orientation — form groups, halves A/B</td><td>—</td></tr>
+      <tr><td>2</td><td>1 · Image formation &amp; sensing</td><td>—</td></tr>
+      <tr><td>3</td><td>2 · Image processing &amp; filtering</td><td>A · T1</td></tr>
+      <tr><td>4</td><td>3 · Neural networks → CNNs</td><td>B · T2</td></tr>
+      <tr><td>5</td><td>4 · Attention, ViT &amp; CLIP</td><td>A · T3</td></tr>
+      <tr><td>6</td><td>5 · Local features &amp; matching</td><td>B · T4</td></tr>
+      <tr><td>7</td><td>6 · Transforms, cameras, stereo</td><td>A · T5</td></tr>
+      <tr><td>8</td><td>7 · Detection &amp; segmentation</td><td>B · T6</td></tr>
+      <tr><td>9</td><td>8 · Motion &amp; video + project kick-off</td><td>A · T7</td></tr>
+      <tr><td>10</td><td>Last presentation round + project clinic</td><td>B · T8</td></tr>
       <tr class="hl"><td>11</td><td>Project 1 — proposal</td><td></td></tr>
       <tr><td>12–13</td><td>Build and test + clinic</td><td></td></tr>
       <tr class="hl"><td>14</td><td>Project 2 — results + demo</td><td></td></tr>
