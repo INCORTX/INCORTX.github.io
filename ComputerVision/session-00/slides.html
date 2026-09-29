@@ -9,7 +9,9 @@
   Pattern: COMP90086-style reveal.js deck (claim titles · Outline + Learning outcomes up front ·
   Summary + References at the end · live canvases) plus: fragments for step reveals ·
   .tryit (collapsible answer) · .flashback · .colab button · .src footer on every content slide ·
-  .term key terms with Thai meaning · reading mode on phones (≤760px: Reveal is not started;
+  .term key terms with Thai meaning · toolbar (prev · count · next · overview · fullscreen · PDF · shortcuts)
+  · exports: ?print-pdf = 16:9 PDF, ?handout = A4 portrait, 2 slides/page (append &autoprint to open the
+  print dialog) · reading mode on phones (≤760px: Reveal is not started;
   every slide stacks as a normal page at 17px, fragments shown, demos still live).
   Student-facing text is English; Thai only inside .th. Speaker script:
   Instructor_Materials/ComputerVision/Lecture_Scripts/session-00.md
@@ -186,6 +188,52 @@ html,body{background:var(--bg);}
 .reveal .slides>section:not(.title-slide)::after{content:"";position:absolute;left:4px;right:4px;bottom:46px;height:1px;background:var(--line);}
 .reveal .slides>section:not(.title-slide)::before{content:"Computer Vision · Session 0";position:absolute;right:4px;top:10px;font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#a0aab8;}
 html.reading .reveal .slides>section::before,html.reading .reveal .slides>section::after{display:none;}
+/* ---------- deck toolbar (replaces reveal's arrows + slide number) ---------- */
+.reveal .progress{height:4px;color:var(--teal);background:transparent;}
+.deckbar{position:fixed;left:16px;bottom:14px;z-index:40;display:flex;align-items:center;gap:2px;padding:4px;border-radius:999px;background:rgba(255,255,255,.94);border:1px solid var(--line);box-shadow:0 8px 24px -12px rgba(15,27,45,.35);font-family:var(--display);transition:opacity .35s;backdrop-filter:blur(6px);}
+.deckbar.idle{opacity:.18;}
+.deckbar:hover,.deckbar:focus-within{opacity:1;}
+.deckbar button{all:unset;box-sizing:border-box;width:44px;height:44px;border-radius:999px;display:flex;align-items:center;justify-content:center;color:var(--ink);cursor:pointer;}
+.deckbar button:hover{background:var(--soft);}
+.deckbar button:focus-visible{outline:2px solid var(--teal);outline-offset:1px;}
+.deckbar button[disabled]{opacity:.3;cursor:default;}
+.deckbar svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.deckbar .count{min-width:4.2em;text-align:center;font-size:14px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums;}
+.deckbar .sep{width:1px;height:24px;background:var(--line);margin:0 4px;}
+.deckbar .pdf{width:auto;padding:0 14px;font-size:13px;font-weight:700;letter-spacing:.04em;gap:6px;}
+.pop{position:fixed;z-index:50;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 16px 40px -16px rgba(15,27,45,.45);font-family:var(--font);color:var(--body);}
+.pop[hidden]{display:none;}
+.pdfmenu{left:16px;bottom:72px;padding:6px;min-width:300px;}
+.pdfmenu a{display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:10px;text-decoration:none;color:var(--ink);min-height:44px;box-sizing:border-box;}
+.pdfmenu a:hover,.pdfmenu a:focus-visible{background:var(--soft);outline:none;}
+.pdfmenu b{font-family:var(--display);font-size:15px;}
+.pdfmenu small{font-size:12.5px;color:var(--muted);}
+.keys{left:50%;top:50%;transform:translate(-50%,-50%);padding:22px 26px;width:min(92vw,460px);}
+.keys h3{margin:0 0 12px;font-family:var(--display);font-size:18px;color:var(--ink);}
+.keys dl{display:grid;grid-template-columns:auto 1fr;gap:9px 16px;margin:0;font-size:14.5px;align-items:center;}
+.keys dt{display:flex;gap:4px;justify-content:flex-end;}
+.keys dd{margin:0;}
+.keys kbd{font-family:var(--mono);font-size:12.5px;min-width:1.9em;text-align:center;padding:3px 7px;border-radius:6px;border:1px solid var(--line);border-bottom-width:2px;background:var(--soft);color:var(--ink);}
+.scrim{position:fixed;inset:0;z-index:45;background:rgba(15,27,45,.28);}
+.scrim[hidden]{display:none;}
+
+/* ---------- print: reveal ?print-pdf (16:9, one slide per page) ---------- */
+@media print{ .deckbar,.pop,.scrim,.readbar{display:none !important;} }
+
+/* ---------- A4 handout (?handout): two 16:9 slides per A4 portrait page ---------- */
+html.handout,html.handout body{height:auto;overflow:auto;background:#e9edf2;}
+html.handout .reveal{position:static;height:auto;overflow:visible;}
+html.handout .reveal .slides{position:static;width:1360px !important;height:auto !important;inset:auto;margin:24px auto;padding:0;transform:none !important;overflow:visible;pointer-events:auto;zoom:.53;}
+html.handout .reveal .slides>section{display:block !important;position:relative !important;width:1280px !important;height:720px !important;left:auto !important;top:auto !important;transform:none !important;opacity:1 !important;visibility:visible !important;margin:40px 40px 88px !important;background:#fff;box-shadow:0 0 0 36px #fff,0 0 0 37px #cfd6df;break-inside:avoid;}
+html.handout .reveal .slides>section{page-break-after:auto !important;break-after:auto !important;page-break-before:auto !important;}
+html.handout .reveal .slides>section:nth-child(2n){page-break-after:always !important;break-after:page !important;margin-bottom:40px !important;}
+html.handout .reveal .fragment{opacity:1 !important;visibility:visible !important;transform:none !important;}
+@media print{ html.handout,html.handout body{background:#fff;} html.handout .reveal .slides{margin:0 auto;} }
+
+/* ---------- phone reading mode: download links ---------- */
+.readbar{display:none;}
+html.reading .readbar{display:flex;gap:8px;flex-wrap:wrap;padding:12px 16px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(255,255,255,.96);z-index:5;font-family:var(--display);font-size:14px;}
+html.reading .readbar a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:999px;border:1px solid var(--line);color:var(--ink);text-decoration:none;font-weight:600;}
 html.reading,html.reading body{height:auto;overflow:auto;}
 html.reading .reveal{position:static;height:auto;overflow:visible;font-size:17px;}
 html.reading .reveal .slides{position:static;width:auto !important;height:auto !important;inset:auto;margin:0;padding:0 16px;transform:none !important;overflow:visible;pointer-events:auto;zoom:1 !important;}
@@ -663,6 +711,42 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
 </div>
 </div>
 
+<!-- phone reading mode: downloads -->
+<div class="readbar" aria-label="Download"><a href="?print-pdf&amp;autoprint">⤓ PDF · 16:9</a><a href="?handout&amp;autoprint">⤓ Handout · A4</a></div>
+
+<!-- deck toolbar -->
+<nav class="deckbar" id="deckbar" aria-label="Slide controls" hidden>
+  <button data-act="prev" aria-label="Previous slide" title="Previous (←)"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
+  <span class="count" id="deckCount" aria-live="polite">1 / 1</span>
+  <button data-act="next" aria-label="Next slide" title="Next (→ or Space)"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>
+  <span class="sep" aria-hidden="true"></span>
+  <button data-act="overview" aria-label="All slides" title="All slides (O)"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></button>
+  <button data-act="fullscreen" aria-label="Full screen" title="Full screen (F)"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+  <button data-act="pdf" class="pdf" aria-label="Download PDF" aria-haspopup="true" title="Download PDF (P)"><svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>PDF</button>
+  <button data-act="help" aria-label="Keyboard shortcuts" title="Shortcuts (?)"><svg viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/></svg></button>
+</nav>
+
+<div class="pop pdfmenu" id="pdfMenu" role="menu" hidden>
+  <a role="menuitem" href="?print-pdf&amp;autoprint" target="_blank" rel="noopener"><b>Slides · 16:9 PDF</b><small>One slide per page, exactly as on screen</small></a>
+  <a role="menuitem" href="?handout&amp;autoprint" target="_blank" rel="noopener"><b>Handout · A4</b><small>Two slides per A4 portrait page — for printing</small></a>
+</div>
+
+<div class="scrim" id="scrim" hidden></div>
+<div class="pop keys" id="keysHelp" role="dialog" aria-modal="true" aria-labelledby="keysTitle" hidden>
+  <h3 id="keysTitle">Keyboard shortcuts</h3>
+  <dl>
+    <dt><kbd>→</kbd><kbd>Space</kbd></dt><dd>Next step or slide</dd>
+    <dt><kbd>←</kbd></dt><dd>Previous</dd>
+    <dt><kbd>Home</kbd><kbd>End</kbd></dt><dd>First / last slide</dd>
+    <dt><kbd>O</kbd></dt><dd>All slides</dd>
+    <dt><kbd>F</kbd></dt><dd>Full screen</dd>
+    <dt><kbd>B</kbd></dt><dd>Black screen (pause)</dd>
+    <dt><kbd>P</kbd></dt><dd>Download PDF</dd>
+    <dt><kbd>?</kbd></dt><dd>This list</dd>
+    <dt><kbd>Esc</kbd></dt><dd>Close a popup · otherwise all slides</dd>
+  </dl>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/reveal.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
@@ -687,20 +771,71 @@ function initTitleArt(){
     ctx.fillText(v,c*s+s/2,r*s+s/2);
   }
 }
-/* phones: a readable page instead of a scaled-down 1280×720 slide */
+/* modes: ?handout → A4 handout · ?print-pdf → reveal PDF · phone → reading · else → slides */
+const Q=new URLSearchParams(location.search);
+const MODE = Q.has('handout') ? 'handout' : Q.has('print-pdf') ? 'pdf'
+           : window.matchMedia('(max-width: 760px)').matches ? 'reading' : 'slides';
+function autoprint(){ if(Q.has('autoprint')) setTimeout(()=>window.print(), 1200); }
+
 document.addEventListener('DOMContentLoaded',()=>{   /* after every const below exists */
-if(window.matchMedia('(max-width: 760px)').matches){
-  document.documentElement.classList.add('reading');
-  renderMath(); initDemos();
-}else{
+  if(MODE==='handout'){
+    document.documentElement.classList.add('handout');
+    /* reveal.css has its own print rules (20pt text, one section per page) — Reveal is not running here, so drop it */
+    document.querySelectorAll('link[href*="reveal.min.css"]').forEach(l=>l.disabled=true);
+    const st=document.createElement('style'); st.textContent='@page{size:A4 portrait;margin:10mm;}'; document.head.appendChild(st);
+    renderMath(); initDemos();
+    document.fonts.ready.then(autoprint);
+    return;
+  }
+  if(MODE==='reading'){
+    document.documentElement.classList.add('reading');
+    renderMath(); initDemos();
+    return;
+  }
   Reveal.initialize({
     width:1280, height:720, margin:0.06,
-    hash:true, slideNumber:'c/t', progress:true, center:false,
+    hash:true, progress:true, center:false,
+    controls:false, slideNumber:false, help:false,
     transition:'fade', transitionSpeed:'fast',
+    pdfSeparateFragments:false, pdfMaxPagesPerSlide:1,
     scrollActivationWidth:null
-  }).then(()=>{ renderMath(); initDemos(); });
-}
+  }).then(()=>{
+    renderMath(); initDemos();
+    if(MODE==='pdf'){ document.fonts.ready.then(autoprint); return; }
+    initDeckbar();
+  });
 });
+
+function initDeckbar(){
+  const bar=document.getElementById('deckbar'), count=document.getElementById('deckCount');
+  const menu=document.getElementById('pdfMenu'), keys=document.getElementById('keysHelp'), scrim=document.getElementById('scrim');
+  bar.hidden=false;
+  const prevB=bar.querySelector('[data-act=prev]'), nextB=bar.querySelector('[data-act=next]');
+  const sync=()=>{
+    count.textContent=`${Reveal.getSlidePastCount()+1} / ${Reveal.getTotalSlides()}`;
+    prevB.disabled=Reveal.isFirstSlide() && !Reveal.availableFragments().prev;
+    nextB.disabled=Reveal.isLastSlide() && !Reveal.availableFragments().next;
+  };
+  Reveal.on('slidechanged',sync); Reveal.on('fragmentshown',sync); Reveal.on('fragmenthidden',sync); sync();
+  const closeAll=()=>{ menu.hidden=true; keys.hidden=true; scrim.hidden=true; };
+  const toggleKeys=()=>{ const open=keys.hidden; closeAll(); keys.hidden=!open; scrim.hidden=!open; };
+  const toggleMenu=()=>{ const open=menu.hidden; closeAll(); menu.hidden=!open; if(open) menu.querySelector('a').focus(); };
+  const fullscreen=()=>{ const el=document.documentElement;
+    if(document.fullscreenElement) document.exitFullscreen(); else if(el.requestFullscreen) el.requestFullscreen(); };
+  const act={prev:()=>Reveal.prev(), next:()=>Reveal.next(), overview:()=>Reveal.toggleOverview(), fullscreen, pdf:toggleMenu, help:toggleKeys};
+  bar.addEventListener('click',e=>{ const b=e.target.closest('button'); if(b && act[b.dataset.act]){ act[b.dataset.act](); if(b.dataset.act!=='pdf'&&b.dataset.act!=='help') closeAll(); } });
+  scrim.addEventListener('click',closeAll);
+  menu.addEventListener('click',()=>setTimeout(closeAll,50));
+  Reveal.addKeyBinding({keyCode:80,key:'P',description:'Download PDF'},toggleMenu);
+  Reveal.addKeyBinding({keyCode:191,key:'?',description:'Keyboard shortcuts'},toggleKeys);
+  /* Esc closes an open popup — and stops there, so Reveal does not also open the overview */
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape' && (!menu.hidden || !keys.hidden)){ closeAll(); e.preventDefault(); e.stopImmediatePropagation(); }
+  },true);
+  /* fade the bar while presenting; any pointer movement brings it back */
+  let t; const wake=()=>{ bar.classList.remove('idle'); clearTimeout(t); t=setTimeout(()=>bar.classList.add('idle'),2500); };
+  ['pointermove','pointerdown','keydown'].forEach(ev=>document.addEventListener(ev,wake)); wake();
+}
 
 /* ---- a tiny 12×12 grayscale image drawn from numbers (slide: a computer sees numbers) ---- */
 const PIX = (()=>{
