@@ -16,142 +16,195 @@
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Sans+Thai:wght@400;500&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Anuphan:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/reset.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/reveal.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
 <style>
 :root{
-  --bg:#ffffff; --ink:#1b1f24; --muted:#5b6470; --soft:#f3f6f8; --line:#dde3e8;
-  --teal:#0e7c86; --teal-soft:#e3f3f4; --coral:#d9534f; --coral-soft:#fbeaea;
-  --amber:#b7791f; --amber-soft:#fdf3e1; --violet:#6b5bd2; --violet-soft:#efedfb;
-  --font:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
-  --font-th:'IBM Plex Sans Thai','Inter',sans-serif;
+  --bg:#ffffff; --ink:#0f1b2d; --body:#2b3645; --muted:#667085; --soft:#f5f7fa; --line:#e4e8ee;
+  --teal:#0f766e; --teal-soft:#e6f4f2; --coral:#e0533d; --coral-soft:#fdeeea;
+  --amber:#c97a06; --amber-soft:#fdf4e3; --violet:#6d5bd0; --violet-soft:#f0edfc; --navy:#0f1b2d;
+  --font:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --display:'Space Grotesk','Plus Jakarta Sans',sans-serif;
+  --font-th:'Anuphan','Plus Jakarta Sans',sans-serif;
   --mono:'JetBrains Mono',ui-monospace,monospace;
 }
 html,body{background:var(--bg);}
-.reveal{font-family:var(--font);color:var(--ink);font-size:34px;}
+.reveal{font-family:var(--font);color:var(--body);font-size:34px;}
 .reveal .slides{text-align:left;}
-.reveal .slides section{padding:0;box-sizing:border-box;}
-.reveal h1,.reveal h2,.reveal h3{font-family:var(--font);color:var(--ink);text-transform:none;letter-spacing:-0.01em;margin:0 0 .5em;}
-.reveal h1{font-size:2.2em;font-weight:800;line-height:1.1;}
-.reveal h2{font-size:1.45em;font-weight:700;line-height:1.2;}
-.reveal h3{font-size:1.05em;font-weight:600;color:var(--teal);}
-.reveal p,.reveal li{line-height:1.45;}
-.reveal ul,.reveal ol{margin:0 0 0 1.1em;}
-.reveal li{margin:.25em 0;}
-.reveal strong{font-weight:700;}
+.reveal .slides>section{height:100% !important;padding:6px 4px 64px !important;box-sizing:border-box;}
+.reveal h1,.reveal h2,.reveal h3,.reveal h4{font-family:var(--display);color:var(--ink);text-transform:none;letter-spacing:-0.02em;margin:0 0 .45em;}
+.reveal h1{font-size:2.6em;font-weight:700;line-height:1.02;}
+.reveal h2{font-size:1.5em;font-weight:700;line-height:1.12;}
+.reveal h3{font-size:.95em;font-weight:600;color:var(--teal);margin-bottom:.35em;}
+.reveal p,.reveal li{line-height:1.5;}
+.reveal ul,.reveal ol{margin:0 0 0 1.05em;}
+.reveal li{margin:.3em 0;padding-left:.15em;}
+.reveal ul li::marker{color:var(--teal);font-size:1.1em;}
+.reveal ol li::marker{color:var(--teal);font-weight:700;font-family:var(--display);}
+.reveal strong,.reveal b{font-weight:700;color:var(--ink);}
 .reveal a{color:var(--teal);text-decoration:underline;text-underline-offset:3px;}
-.reveal code{font-family:var(--mono);font-size:.85em;background:var(--soft);padding:.05em .3em;border-radius:4px;}
+.reveal code{font-family:var(--mono);font-size:.82em;background:var(--soft);padding:.05em .3em;border-radius:5px;}
 
-/* claim title: the sentence students should remember */
-.reveal h2.claim{border-left:8px solid var(--teal);padding-left:.55em;}
-.kicker{font-size:.55em;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin:0 0 .3em;}
+/* slide header: kicker + claim title */
+.kicker{display:flex;align-items:center;gap:.5em;font-family:var(--display);font-size:.5em;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin:0 0 .5em;}
+.kicker::before{content:"";width:1.8em;height:3px;border-radius:2px;background:var(--teal);}
+.reveal h2.claim{max-width:26em;}
+.lead{font-size:.8em;color:var(--muted);margin:-.2em 0 .8em;max-width:40em;}
 
-/* layout helpers — every multi-column layout collapses to one column in scroll view */
-.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.2em;align-items:start;}
+/* layout helpers */
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.4em;align-items:start;}
 .cols.c3{grid-template-columns:repeat(3,minmax(0,1fr));}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,11em),1fr));gap:.6em;}
-.card{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:.55em .7em;font-size:.74em;}
-.card b{display:block;font-size:1.05em;margin-bottom:.15em;}
-.card.teal{background:var(--teal-soft);border-color:#b9dfe2;}
-.card.coral{background:var(--coral-soft);border-color:#f1c4c2;}
-.card.amber{background:var(--amber-soft);border-color:#f0d9ad;}
-.card.violet{background:var(--violet-soft);border-color:#d3cdf4;}
-.small{font-size:.82em;}
+.cols.w64{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,10.5em),1fr));gap:.55em;}
+.cards.c4{grid-template-columns:repeat(4,minmax(0,1fr));}
+.cards.c5{grid-template-columns:repeat(5,minmax(0,1fr));}
+.cards.c5 .card{font-size:.66em;padding:.5em .65em .55em;}
+.card{position:relative;background:#fff;border:1px solid var(--line);border-top:4px solid var(--teal);border-radius:12px;padding:.6em .75em .65em;font-size:.74em;line-height:1.4;box-shadow:0 1px 2px rgba(15,27,45,.05),0 6px 16px -10px rgba(15,27,45,.18);}
+.card b{display:block;font-family:var(--display);font-size:1.12em;margin-bottom:.2em;color:var(--ink);}
+.card .n{display:block;font-family:var(--display);font-weight:700;color:#9aa6b5;font-size:.85em;letter-spacing:.06em;margin-bottom:.15em;}
+.card.teal{border-top-color:var(--teal);} .card.coral{border-top-color:var(--coral);}
+.card.amber{border-top-color:var(--amber);} .card.violet{border-top-color:var(--violet);} .card.navy{border-top-color:var(--navy);}
+.small{font-size:.84em;}
 .muted{color:var(--muted);}
 .center{text-align:center;}
+.spacer{height:.6em;}
 
-/* source footer — every content slide names where its content comes from */
-.src{position:absolute;left:0;bottom:-1.6em;font-size:.42em;color:var(--muted);}
-.src::before{content:"Source: ";font-weight:600;}
+/* source line: sits on the footer rule of every content slide */
+.src{position:absolute;left:4px;bottom:14px;font-size:.4em;color:var(--muted);max-width:70%;}
+.src::before{content:"Source · ";font-weight:700;color:var(--teal);}
+.deck-rule{position:absolute;left:4px;right:4px;bottom:46px;height:1px;background:var(--line);}
 
 /* key term with Thai meaning */
-.term{display:flex;flex-wrap:wrap;gap:.2em .6em;align-items:baseline;background:var(--teal-soft);border-radius:10px;padding:.4em .7em;font-size:.72em;margin:.35em 0;}
-.term b{font-size:1.05em;}
+.term{display:grid;grid-template-columns:auto 1fr;gap:.1em .6em;align-items:baseline;background:var(--teal-soft);border-radius:12px;padding:.5em .8em;font-size:.72em;margin:0 0 .5em;}
+.term b{font-family:var(--display);font-size:1.15em;}
+.term .th{justify-self:start;}
+.term .def{grid-column:1 / -1;color:var(--body);}
 .th{font-family:var(--font-th);color:var(--teal);font-weight:500;}
-.th::before{content:"· ";}
 
-/* Try it: question + collapsible answer (44px touch target) */
-.tryit{border:2px dashed var(--amber);border-radius:12px;padding:.5em .8em;background:var(--amber-soft);font-size:.72em;}
-.tryit .tag{font-weight:800;color:var(--amber);letter-spacing:.06em;text-transform:uppercase;font-size:.85em;}
-.tryit details summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:600;color:var(--amber);list-style:none;}
+/* Try it */
+.tryit{border:1px solid #f1d9a9;border-left:6px solid var(--amber);border-radius:12px;padding:.6em .85em;background:var(--amber-soft);font-size:.72em;}
+.tryit .tag{display:inline-block;font-family:var(--display);font-weight:700;color:#fff;background:var(--amber);border-radius:6px;padding:.05em .45em;letter-spacing:.08em;text-transform:uppercase;font-size:.8em;margin-right:.35em;}
+.tryit details summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:700;color:var(--amber);list-style:none;}
 .tryit details summary::-webkit-details-marker{display:none;}
-.tryit details summary::before{content:"▸ ";margin-right:.3em;}
-.tryit details[open] summary::before{content:"▾ ";}
+.tryit details summary::before{content:"▸";margin-right:.4em;}
+.tryit details[open] summary::before{content:"▾";}
 
-/* flashback to an earlier session */
-.flashback{border-left:6px solid var(--violet);background:var(--violet-soft);border-radius:0 10px 10px 0;padding:.4em .8em;font-size:.7em;}
-.flashback::before{content:"↩ Flashback";display:block;font-weight:800;color:var(--violet);font-size:.85em;letter-spacing:.04em;}
+/* flashback */
+.flashback{border:1px solid #d9d2f6;border-left:6px solid var(--violet);background:var(--violet-soft);border-radius:12px;padding:.55em .85em;font-size:.72em;}
+.flashback::before{content:"↩ Flashback";display:block;font-family:var(--display);font-weight:700;color:var(--violet);letter-spacing:.04em;margin-bottom:.15em;}
 
-/* Colab button: points at one section of this session's lab.ipynb */
-.colab{display:inline-flex;align-items:center;gap:.4em;min-height:44px;padding:0 .9em;border-radius:999px;background:#f9ab00;color:#1b1f24 !important;font-weight:700;font-size:.6em;text-decoration:none !important;}
+/* Colab button */
+.colab{display:inline-flex;align-items:center;gap:.4em;min-height:44px;padding:0 1em;border-radius:999px;background:#f9ab00;color:#1b1f24 !important;font-family:var(--display);font-weight:700;font-size:.62em;text-decoration:none !important;box-shadow:0 4px 12px -6px rgba(201,122,6,.6);}
 
-/* tables scroll instead of overflowing */
-.tscroll{overflow-x:auto;max-width:100%;}
-.reveal table{border-collapse:collapse;font-size:.68em;width:100%;}
-.reveal table th,.reveal table td{border-bottom:1px solid var(--line);padding:.35em .6em;text-align:left;vertical-align:top;}
-.reveal table th{background:var(--soft);font-weight:700;}
-.reveal table tr.hl td{background:var(--teal-soft);}
+/* tables */
+.tscroll{overflow-x:auto;max-width:100%;border:1px solid var(--line);border-radius:12px;}
+.reveal table{border-collapse:collapse;font-size:.66em;width:100%;}
+.reveal table th,.reveal table td{border:0;border-bottom:1px solid var(--line);padding:.45em .75em;text-align:left;vertical-align:top;}
+.reveal table th{background:var(--navy);color:#fff;font-family:var(--display);font-weight:600;letter-spacing:.02em;}
+.reveal table tr:nth-child(odd) td{background:#fafbfc;}
+.reveal table tr:last-child td{border-bottom:0;}
+.reveal table tr.hl td{background:var(--teal-soft);font-weight:600;color:var(--ink);}
 .reveal table.tight{font-size:.5em;}
+.reveal table.tight th,.reveal table.tight td{padding:.3em .7em;}
+.reveal table td.pt{font-family:var(--display);font-weight:700;color:var(--teal);text-align:center;width:3em;}
 
 /* title slide */
-.reveal .slides section.title-slide{padding-top:180px;}
-.title-slide h1{margin-bottom:.15em;font-size:2.6em;}
-.title-slide .sub{font-size:1.1em;color:var(--teal);font-weight:600;margin:0 0 1.2em;}
-.title-slide .who{font-size:.7em;color:var(--muted);line-height:1.5;}
+.reveal .slides>section.title-slide{padding:0 4px !important;}
+.title-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:1.5em;align-items:center;height:100%;}
+.title-slide .kicker{font-size:.55em;}
+.title-slide h1{margin:0 0 .25em;}
+.title-slide .sub{font-family:var(--display);font-size:1.15em;color:var(--teal);font-weight:600;margin:0 0 1.6em;}
+.title-slide .who{font-size:.68em;color:var(--muted);line-height:1.6;border-top:1px solid var(--line);padding-top:.8em;}
+.title-slide .who b{color:var(--ink);font-size:1.1em;}
+#titleArt{width:100%;height:auto;border-radius:18px;}
 
-/* outline / outcomes lists */
-.outline li,.outcomes li{font-size:.9em;}
-.outcomes li::marker{color:var(--teal);font-weight:700;}
+/* outline / outcomes */
+.outline{list-style:none;margin:0;padding:0;counter-reset:o;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6em 1.2em;}
+.outline li{counter-increment:o;display:flex;gap:.7em;align-items:flex-start;font-size:.82em;background:var(--soft);border-radius:12px;padding:.6em .8em;margin:0;}
+.outline li::before{content:counter(o,decimal-leading-zero);font-family:var(--display);font-weight:700;color:var(--teal);font-size:1.1em;line-height:1.35;}
+.outcomes{list-style:none;margin:0;padding:0;counter-reset:c;}
+.outcomes li{counter-increment:c;position:relative;padding:.45em 0 .45em 2.4em;margin:0;font-size:.84em;border-bottom:1px solid var(--line);}
+.outcomes li:last-child{border-bottom:0;}
+.outcomes li::before{content:counter(c);position:absolute;left:0;top:.42em;width:1.6em;height:1.6em;border-radius:50%;background:var(--teal);color:#fff;font-family:var(--display);font-weight:700;font-size:.85em;display:flex;align-items:center;justify-content:center;}
 
-/* grading bar */
-.gbar{display:flex;height:3.2em;border-radius:12px;overflow:hidden;margin:.4em 0 .6em;}
-.gbar div{display:flex;flex-direction:column;justify-content:center;align-items:center;color:#fff;font-weight:700;font-size:.62em;line-height:1.2;text-align:center;padding:0 .2em;}
-.gbar small{font-weight:500;font-size:.8em;opacity:.9;}
+/* grading */
+.gtiles{display:grid;grid-template-columns:40fr 30fr 20fr 10fr;gap:.4em;margin:.2em 0 .6em;}
+.gtile{border-radius:14px;padding:.6em .7em;color:#fff;min-height:9em;display:flex;flex-direction:column;justify-content:space-between;}
+.gtile .num{font-family:var(--display);font-size:2.4em;font-weight:700;line-height:1;}
+.gtile .lbl{font-family:var(--display);font-weight:600;font-size:.72em;}
+.gtile .det{font-size:.5em;opacity:.92;line-height:1.35;}
 
 /* course map */
-.map{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.5em;}
-.map .blk{border-radius:12px;padding:.5em .55em;font-size:.68em;border:1px solid var(--line);}
-.map .blk h4{margin:0 0 .3em;font-size:1.05em;}
-.map .blk ol{margin-left:1.2em;}
-.map .arrow{text-align:center;color:var(--muted);font-size:.6em;margin-top:.3em;}
+.map{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.55em;position:relative;}
+.map .blk{background:#fff;border:1px solid var(--line);border-radius:14px;padding:.7em .7em .8em;font-size:.68em;box-shadow:0 6px 16px -12px rgba(15,27,45,.25);}
+.map .blk h4{font-size:1.15em;margin:0 0 .5em;display:flex;align-items:center;gap:.4em;}
+.map .blk h4::before{content:"";width:.6em;height:.6em;border-radius:3px;background:var(--c);}
+.map .s{display:flex;gap:.5em;align-items:flex-start;margin:.35em 0;line-height:1.3;}
+.map .s i{font-style:normal;flex:0 0 1.6em;height:1.6em;border-radius:50%;background:var(--c);color:#fff;font-family:var(--display);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:.9em;}
+.after{display:flex;gap:.6em;margin-top:.8em;}
+.after div{flex:1;background:var(--soft);border-radius:12px;padding:.5em .8em;font-size:.66em;}
+.after b{font-family:var(--display);}
 
-/* pipeline (simple vision system) */
-.pipe{display:flex;flex-wrap:wrap;gap:.35em;align-items:stretch;}
-.pipe .st{flex:1 1 7em;background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:.45em .55em;font-size:.66em;}
-.pipe .st b{display:block;color:var(--teal);}
-.pipe .ar{align-self:center;color:var(--muted);font-weight:700;}
+/* pipeline */
+.pipe{display:flex;gap:.45em;align-items:stretch;counter-reset:p;}
+.pipe .st{flex:1 1 0;background:#fff;border:1px solid var(--line);border-radius:12px;padding:.6em .65em;font-size:.64em;line-height:1.35;box-shadow:0 6px 16px -12px rgba(15,27,45,.25);position:relative;}
+.pipe .st b{display:block;font-family:var(--display);color:var(--teal);font-size:1.1em;margin-bottom:.25em;}
+.pipe .ar{align-self:center;color:var(--teal);font-weight:700;font-size:.8em;}
 
 /* pixel demo */
-.pix-wrap{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.05fr) minmax(0,1fr);gap:.9em;align-items:start;}
-.pix-wrap canvas{width:100%;height:auto;max-height:430px;object-fit:contain;image-rendering:pixelated;border-radius:8px;border:1px solid var(--line);touch-action:manipulation;}
-.pix-readout{font-family:var(--mono);font-size:.6em;color:var(--muted);min-height:1.6em;}
+.pix-wrap{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.1fr) minmax(0,1fr);gap:1em;align-items:start;}
+.pix-wrap canvas{width:100%;height:auto;max-height:420px;object-fit:contain;image-rendering:pixelated;border-radius:12px;border:1px solid var(--line);touch-action:manipulation;}
+.pix-readout{font-family:var(--mono);font-size:.5em;color:var(--muted);min-height:1.6em;margin-top:.35em;}
 .slider{width:100%;accent-color:var(--teal);min-height:44px;}
 
 /* timeline */
-.tl{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:.3em;}
-.tl div{background:var(--soft);border-radius:8px;padding:.4em;font-size:.6em;border-top:5px solid var(--teal);}
-.tl div.key{border-top-color:var(--coral);background:var(--coral-soft);}
-.tl b{display:block;}
+.tl{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;position:relative;margin:.3em 0 .9em;}
+.tl::before{content:"";position:absolute;left:4%;right:4%;top:.95em;height:3px;background:var(--line);}
+.tl div{position:relative;text-align:center;font-size:.58em;padding:2.2em .3em 0;line-height:1.3;}
+.tl div::before{content:"";position:absolute;top:.35em;left:50%;transform:translateX(-50%);width:1.1em;height:1.1em;border-radius:50%;background:#fff;border:3px solid var(--teal);}
+.tl div.key::before{background:var(--coral);border-color:var(--coral);}
+.tl b{display:block;font-family:var(--display);color:var(--ink);}
+
+/* checklist */
+.checks{list-style:none;margin:0;padding:0;display:grid;gap:.45em;}
+.checks li{display:grid;grid-template-columns:2.2em 1fr auto;gap:.6em;align-items:center;background:var(--soft);border-radius:12px;padding:.5em .8em;margin:0;font-size:.74em;}
+.checks li::before{content:"✓";width:1.7em;height:1.7em;border-radius:50%;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;}
+.checks li span.pt{font-family:var(--display);font-weight:700;color:var(--teal);}
+
+/* halves */
+.halves{display:grid;grid-template-columns:1fr 1fr;gap:.8em;margin-bottom:.7em;}
+.half{border-radius:14px;padding:.7em .9em;color:#fff;}
+.half .h{font-family:var(--display);font-size:1.3em;font-weight:700;}
+.half .d{font-size:.66em;opacity:.95;margin-top:.2em;}
+.half .dots{display:flex;gap:.3em;margin-top:.5em;}
+.half .dots span{width:1.9em;height:1.9em;border-radius:8px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:.7em;}
+.half .dots span.on{background:#fff;color:var(--ink);}
 
 /* ---------- reading mode (phones ≤760px): no Reveal, slides stack as one page ---------- */
+.reveal .slides>section:not(.title-slide)::after{content:"";position:absolute;left:4px;right:4px;bottom:46px;height:1px;background:var(--line);}
+.reveal .slides>section:not(.title-slide)::before{content:"Computer Vision · Session 0";position:absolute;right:4px;top:10px;font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#a0aab8;}
+html.reading .reveal .slides>section::before,html.reading .reveal .slides>section::after{display:none;}
 html.reading,html.reading body{height:auto;overflow:auto;}
 html.reading .reveal{position:static;height:auto;overflow:visible;font-size:17px;}
 html.reading .reveal .slides{position:static;width:auto !important;height:auto !important;inset:auto;margin:0;padding:0 16px;transform:none !important;overflow:visible;pointer-events:auto;zoom:1 !important;}
 html.reading .reveal .slides>section{display:block !important;position:relative !important;width:auto !important;height:auto !important;left:auto !important;top:auto !important;transform:none !important;opacity:1 !important;visibility:visible !important;padding:28px 0 !important;border-bottom:1px solid var(--line);}
-html.reading .reveal .slides section.title-slide{padding-top:48px !important;}
 html.reading .reveal .fragment{opacity:1 !important;visibility:visible !important;transform:none !important;}
-html.reading .src{position:static;display:block;margin-top:.8em;}
-html.reading .cols,html.reading .cols.c3,html.reading .pix-wrap,html.reading .map{grid-template-columns:1fr;}
-html.reading .tl{grid-template-columns:repeat(2,minmax(0,1fr));}
+html.reading .src{position:static;display:block;margin-top:.9em;max-width:none;}
+html.reading .deck-rule{display:none;}
+html.reading .cols,html.reading .cols.c3,html.reading .cols.w64,html.reading .pix-wrap,html.reading .map,html.reading .title-grid,html.reading .outline,html.reading .halves,html.reading .cards.c4,html.reading .cards.c5{grid-template-columns:1fr;}
+html.reading .pipe{flex-direction:column;}
+html.reading .pipe .ar{transform:rotate(90deg);align-self:center;}
+html.reading .tl{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:.8em;}
+html.reading .tl::before{display:none;}
+html.reading .gtiles{grid-template-columns:1fr 1fr;}
 html.reading .pix-wrap canvas{max-height:none;}
-html.reading .pipe .ar{transform:rotate(90deg);}
+html.reading .title-grid{height:auto;}
 /* phone floor: nothing below 13px */
 html.reading .reveal table,html.reading .reveal table.tight{font-size:14px;}
-html.reading .card,html.reading .term,html.reading .tryit,html.reading .flashback,html.reading .pipe .st,html.reading .map .blk,html.reading .tl div{font-size:15px;}
-html.reading .src{font-size:13px;}
-html.reading .pix-readout,html.reading .kicker,html.reading .gbar div,html.reading .colab{font-size:13px;}
+html.reading .card,html.reading .term,html.reading .tryit,html.reading .flashback,html.reading .pipe .st,html.reading .map .blk,html.reading .tl div,html.reading .checks li,html.reading .after div,html.reading .outline li,html.reading .outcomes li{font-size:15px;}
+html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .colab,html.reading .gtile .det,html.reading .half .d{font-size:13px;}
 </style>
 </head>
 <body>
@@ -160,39 +213,47 @@ html.reading .pix-readout,html.reading .kicker,html.reading .gbar div,html.readi
 
 <!-- 1 · Title -->
 <section class="title-slide">
-  <p class="kicker">Session 0 · Orientation</p>
-  <h1>Computer Vision</h1>
-  <p class="sub">From Pixels to Foundation Models</p>
-  <p class="who">Dr. Wasu Kudisthalert (Neil)<br>classes.incortx.com/ComputerVision</p>
+  <div class="title-grid">
+    <div>
+      <p class="kicker">Session 0 · Orientation</p>
+      <h1>Computer<br>Vision</h1>
+      <p class="sub">From Pixels to Foundation Models</p>
+      <p class="who"><b>Dr. Wasu Kudisthalert (Neil)</b><br>classes.incortx.com/ComputerVision</p>
+    </div>
+    <canvas id="titleArt" width="720" height="720" aria-hidden="true"></canvas>
+  </div>
 </section>
 
 <!-- 2 · Outline -->
 <section>
+  <p class="kicker">Today</p>
   <h2>Outline</h2>
   <ol class="outline">
     <li>What a computer actually sees</li>
     <li>What vision is used for — and why it is hard</li>
     <li>A whole vision system on one slide</li>
     <li>The course map: 8 sessions</li>
-    <li>How you are assessed: final, assignment, project, participation</li>
-    <li>Today: form groups and pick your first topic</li>
+    <li>How you are assessed</li>
+    <li>Form groups and pick your first topic</li>
   </ol>
 </section>
 
 <!-- 3 · Learning outcomes (today) -->
 <section>
+  <p class="kicker">Today</p>
   <h2>Learning outcomes</h2>
-  <p class="small muted">By the end of today you can:</p>
+  <p class="lead">By the end of today you can:</p>
   <ol class="outcomes">
     <li><b>Explain</b> why an image is an array of numbers, and why that makes vision hard</li>
     <li><b>Describe</b> the path this course takes from pixels to foundation models</li>
     <li><b>Explain</b> how each part of your grade is earned</li>
-    <li><b>Join</b> a group, a half (A or B), and — for half A — pick your first topic</li>
+    <li><b>Join</b> a group and a half (A or B) — and, for half A, pick your first topic</li>
   </ol>
 </section>
 
 <!-- 4 · Hook: numbers, not objects -->
 <section>
+  <p class="kicker">What a computer sees</p>
   <h2 class="claim">A computer sees numbers, not objects</h2>
   <div class="pix-wrap">
     <div>
@@ -204,11 +265,10 @@ html.reading .pix-readout,html.reading .kicker,html.reading .gbar div,html.readi
       <p class="pix-readout center" id="pixOut">tap or hover a pixel</p>
     </div>
     <div>
-      <div class="term"><b>image</b><span class="th">ภาพ</span><span>a grid of numbers — here 12 × 12</span></div>
-      <div class="term"><b>pixel</b><span class="th">จุดภาพ</span><span>one number: 0 = black … 255 = white</span></div>
-      <div class="tryit" style="margin-top:.5em">
-      <span class="tag">Try it</span> What is the value at <b>row 2, column 5</b>? Is that pixel dark or bright?
-      <details><summary>Answer</summary>30 — close to 0, so it is dark: it is part of the top bar of the “7”. Rows and columns count from 0.</details>
+      <div class="term"><b>image</b><span class="th">ภาพ</span><span class="def">a grid of numbers — here 12 × 12</span></div>
+      <div class="term"><b>pixel</b><span class="th">จุดภาพ</span><span class="def">one number: 0 = black … 255 = white</span></div>
+      <div class="tryit"><span class="tag">Try it</span>What is the value at <b>row 2, column 5</b>? Is that pixel dark or bright?
+        <details><summary>Answer</summary>30 — close to 0, so it is dark: part of the top bar of the “7”. Rows and columns count from 0.</details>
       </div>
     </div>
   </div>
@@ -217,23 +277,25 @@ html.reading .pix-readout,html.reading .kicker,html.reading .gbar div,html.readi
 
 <!-- 5 · Vision is everywhere -->
 <section>
+  <p class="kicker">Applications</p>
   <h2 class="claim">Vision is already everywhere</h2>
-  <div class="cards">
-    <div class="card teal"><b>Driving</b>Find lanes, cars and pedestrians from on-board cameras</div>
-    <div class="card coral"><b>Medicine</b>Outline organs and lesions in scans for a doctor to check</div>
+  <div class="cards c4">
+    <div class="card teal"><b>Driving</b>Lanes, cars and pedestrians from on-board cameras</div>
+    <div class="card coral"><b>Medicine</b>Outline organs and lesions for a doctor to check</div>
     <div class="card amber"><b>Retail</b>Count and follow shoppers; checkout without a cashier</div>
-    <div class="card violet"><b>Traffic safety</b>Spot risky events in roadside camera video</div>
-    <div class="card"><b>Phones</b>Portrait blur, face unlock, AR filters</div>
+    <div class="card violet"><b>Traffic safety</b>Spot risky events in roadside video</div>
+    <div class="card navy"><b>Phones</b>Portrait blur, face unlock, AR filters</div>
     <div class="card teal"><b>Farms &amp; satellites</b>Crop health and land use seen from above</div>
     <div class="card coral"><b>Documents</b>Read text from photos and scans (OCR)</div>
     <div class="card amber"><b>Factories</b>Find defects on a production line</div>
   </div>
-  <p class="small muted" style="margin-top:.8em">Every one of these starts from the same thing: a grid of numbers.</p>
+  <p class="lead" style="margin-top:.9em">Every one of these starts from the same thing: a grid of numbers.</p>
   <p class="src">FP P12-03 (What is vision used for?) · Szeliski 2e ch. 1</p>
 </section>
 
 <!-- 6 · Humans make it look easy -->
 <section>
+  <p class="kicker">Why vision is hard</p>
   <h2 class="claim">Same “7”, new light — every number changes</h2>
   <div class="pix-wrap">
     <div>
@@ -244,77 +306,86 @@ html.reading .pix-readout,html.reading .kicker,html.reading .gbar div,html.readi
     <div>
       <canvas id="litNum" width="480" height="480" aria-label="the pixel values under changing light"></canvas>
     </div>
-  <ul class="small">
-    <li class="fragment">Drag the light: you still read “7”, but <b>every one of the 144 numbers changes</b>.</li>
-    <li class="fragment">Light, viewpoint, size, and other objects in front all change the numbers — not the object.</li>
-    <li class="fragment">Your visual system handles this without effort; a program has to be <b>taught</b> to.</li>
-  </ul>
+    <ul class="small">
+      <li class="fragment">Drag the light: you still read “7”, but <b>all 144 numbers change</b>.</li>
+      <li class="fragment">Light, viewpoint, size and objects in front all change the numbers — not the object.</li>
+      <li class="fragment">You handle this without effort; a program has to be <b>taught</b> to.</li>
+    </ul>
   </div>
   <p class="src">FP P12-04 (How do humans do it?) · TIF ch. 1, 3</p>
 </section>
 
 <!-- 7 · 1966 summer project -->
 <section>
+  <p class="kicker">A little history</p>
   <h2 class="claim">In 1966, vision was planned as a summer project</h2>
-  <blockquote style="font-size:.75em;border-left:6px solid var(--line);padding-left:.8em;margin:0 0 .8em;">
-    “The summer vision project is an attempt to use our summer workers effectively in the construction of a significant part of a visual system.”
-    <div class="small muted" style="margin-top:.3em">— Seymour Papert, MIT, 1966</div>
-  </blockquote>
-  <ul class="small">
-    <li class="fragment">The plan split vision into tasks for a group of MIT students — many of those tasks are still parts of computer vision today.</li>
-    <li class="fragment">The task proved to be <b>much harder than anybody expected</b>. Sixty years later, this course is what we have learned since.</li>
-  </ul>
+  <div class="cols w64">
+    <blockquote style="margin:0;font-family:var(--display);font-size:1em;line-height:1.35;color:var(--ink);border-left:6px solid var(--teal);padding:.2em 0 .2em .9em;">
+      “The summer vision project is an attempt to use our summer workers effectively in the construction of a significant part of a visual system.”
+      <div style="font-family:var(--font);font-size:.55em;color:var(--muted);margin-top:.7em;">— Seymour Papert, MIT, 1966</div>
+    </blockquote>
+    <div>
+      <div class="card teal fragment" style="margin-bottom:.6em"><b>The plan</b>Split vision into tasks for a group of MIT students — many of those tasks are still parts of computer vision today.</div>
+      <div class="card coral fragment"><b>What happened</b>It proved <b>much harder than anybody expected</b>. Sixty years later, this course is what we have learned since.</div>
+    </div>
+  </div>
   <p class="src">TIF §2.1</p>
 </section>
 
 <!-- 8 · A simple vision system -->
 <section>
+  <p class="kicker">A simple vision system</p>
   <h2 class="claim">A whole vision system fits on one slide — if the world is simple</h2>
-  <p class="small muted">The <b>blocks world</b> (Larry Roberts, 1963): flat-sided objects resting on a white ground plane. Goal: recover the 3D scene from one image.</p>
+  <p class="lead">The <b>blocks world</b> (Larry Roberts, 1963): flat-sided objects on a white ground plane. Goal: recover the 3D scene from one image.</p>
   <div class="pipe">
-    <div class="st"><b>1 · Image</b>Parallel (orthographic) projection turns the 3D blocks into a 2D image</div>
+    <div class="st"><b>1 · Image</b>Parallel (orthographic) projection turns the blocks into a 2D image</div>
     <div class="ar">→</div>
     <div class="st"><b>2 · Edges</b>Find where brightness changes</div>
     <div class="ar">→</div>
-    <div class="st"><b>3 · Edge types</b>Is the edge an occlusion, or a contact with the ground?</div>
+    <div class="st"><b>3 · Edge types</b>Occlusion, or contact with the ground?</div>
     <div class="ar">→</div>
     <div class="st"><b>4 · Surfaces</b>Figure vs ground; constraints propagate along edges</div>
     <div class="ar">→</div>
     <div class="st"><b>5 · 3D</b>Height of every point, inferred from the constraints</div>
   </div>
-  <p class="small fragment" style="margin-top:.8em">Every stage is hand-written for this toy world. Real scenes break these rules — so this course replaces hand rules with <b>learning</b> where it can, and keeps <b>geometry</b> where it must.</p>
+  <div class="flashback fragment" style="margin-top:.9em;border-left-color:var(--teal);background:var(--teal-soft);border-color:#bfe3de"><b style="font-family:var(--display)">Why this course exists</b><br>Every stage is hand-written for this toy world. Real scenes break these rules — so we replace hand rules with <b>learning</b> where we can, and keep <b>geometry</b> where we must.</div>
   <p class="src">TIF §2.2–2.6 (A Simple Vision System)</p>
 </section>
 
 <!-- 9 · Course map -->
 <section>
+  <p class="kicker">Course map</p>
   <h2 class="claim">Eight sessions, from pixels to motion</h2>
   <div class="map">
-    <div class="blk" style="background:var(--teal-soft)"><h4>Pixels</h4><ol start="1"><li>Image formation &amp; sensing</li><li>Image processing &amp; filtering</li></ol></div>
-    <div class="blk" style="background:var(--violet-soft)"><h4>Learning</h4><ol start="3"><li>Neural networks → CNNs</li><li>Attention, ViT &amp; CLIP</li></ol></div>
-    <div class="blk" style="background:var(--amber-soft)"><h4>Features &amp; geometry</h4><ol start="5"><li>Local features &amp; matching</li><li>Transforms, cameras, stereo</li></ol></div>
-    <div class="blk" style="background:var(--coral-soft)"><h4>Recognition</h4><ol start="7"><li>Detection &amp; segmentation</li></ol></div>
-    <div class="blk" style="background:var(--soft)"><h4>Motion</h4><ol start="8"><li>Motion &amp; video</li></ol></div>
+    <div class="blk" style="--c:var(--teal)"><h4>Pixels</h4><div class="s"><i>1</i>Image formation &amp; sensing</div><div class="s"><i>2</i>Image processing &amp; filtering</div></div>
+    <div class="blk" style="--c:var(--violet)"><h4>Learning</h4><div class="s"><i>3</i>Neural networks → CNNs</div><div class="s"><i>4</i>Attention, ViT &amp; CLIP</div></div>
+    <div class="blk" style="--c:var(--amber)"><h4>Features &amp; geometry</h4><div class="s"><i>5</i>Local features &amp; matching</div><div class="s"><i>6</i>Transforms, cameras, stereo</div></div>
+    <div class="blk" style="--c:var(--coral)"><h4>Recognition</h4><div class="s"><i>7</i>Detection &amp; segmentation</div></div>
+    <div class="blk" style="--c:var(--navy)"><h4>Motion</h4><div class="s"><i>8</i>Motion &amp; video</div></div>
   </div>
-  <p class="small" style="margin-top:.8em">Then: <b>project</b> (weeks 9–14) and the <b>final exam</b> (week 15).</p>
+  <div class="after">
+    <div><b>Weeks 9–14 · Project</b><br>Proposal in week 11, results and live demo in week 14</div>
+    <div><b>Week 15 · Final exam</b><br>Sessions 1–8, hand calculation</div>
+  </div>
   <p class="src">Course syllabus</p>
 </section>
 
 <!-- 10 · Why learning before geometry -->
 <section>
+  <p class="kicker">Course design</p>
   <h2 class="claim">Learning comes before geometry — on purpose</h2>
-  <ol class="small">
-    <li class="fragment"><b>Convolution leads straight into CNNs.</b> The filters you design by hand in session 2 are what a CNN learns by itself in session 3.</li>
-    <li class="fragment"><b>Your project will use pretrained models.</b> Meeting CNNs, ViT and CLIP by week 5 gives you half a term to think about what to build.</li>
-    <li class="fragment"><b>Geometry is what models do not learn for you.</b> Cameras, matching and depth follow fixed rules — we study them once you have the learning tools to compare against.</li>
-  </ol>
+  <div class="cards">
+    <div class="card violet fragment"><span class="n">01</span><b>Convolution → CNN</b>The filters you design by hand in session 2 are what a CNN learns by itself in session 3.</div>
+    <div class="card coral fragment"><span class="n">02</span><b>Your project needs it</b>Meeting CNNs, ViT and CLIP by week 5 gives you half a term to decide what to build.</div>
+    <div class="card amber fragment"><span class="n">03</span><b>Geometry is not learned for you</b>Cameras, matching and depth follow fixed rules — we study them once you have learning to compare against.</div>
+  </div>
   <p class="src">Course syllabus · order follows Melbourne COMP90086 (ViT/CLIP before local features and stereo)</p>
 </section>
 
 <!-- 11 · Course learning outcomes -->
 <section>
-  <h2>Course learning outcomes</h2>
-  <p class="small muted">By the end of the course you can:</p>
+  <p class="kicker">Course outcomes</p>
+  <h2>By the end of the course you can</h2>
   <ol class="outcomes">
     <li><b>Explain</b> how an image is formed and what information is lost</li>
     <li><b>Compute</b> the core operations by hand — convolution, CNN shapes, attention scores, corners, transforms, depth, IoU, optical flow</li>
@@ -328,23 +399,24 @@ html.reading .pix-readout,html.reading .kicker,html.reading .gbar div,html.readi
 
 <!-- 12 · How each session runs -->
 <section>
+  <p class="kicker">Session format</p>
   <h2 class="claim">Every session: one question, a few sub-topics, one notebook</h2>
   <div class="pipe">
     <div class="st"><b>Question</b>The problem the session solves</div>
     <div class="ar">→</div>
     <div class="st"><b>Sub-topics A–D</b>Idea first, formula second</div>
     <div class="ar">→</div>
-    <div class="st"><b>Try it</b>A small hand calculation — the same style as the final</div>
+    <div class="st"><b>Try it</b>A small hand calculation, in the style of the final</div>
     <div class="ar">→</div>
     <div class="st"><b>Lab section</b>Run it yourself in Colab</div>
     <div class="ar">→</div>
     <div class="st"><b>Summary</b>What to remember</div>
   </div>
-  <div class="cols" style="margin-top:.9em">
-    <div class="flashback">When an idea comes back from an earlier session, a flashback slide points to where you first met it.</div>
-    <div>
+  <div class="cols" style="margin-top:1em">
+    <div class="flashback">When an idea from an earlier session comes back, a flashback points to where you first met it.</div>
+    <div class="tryit" style="background:#fff;border-color:var(--line);border-left-color:#f9ab00">
       <span class="colab">▶ Open in Colab · §A</span>
-      <p class="small muted" style="margin-top:.3em">One <code>lab.ipynb</code> per session, one section per sub-topic. Runs on free Colab.</p>
+      <p style="margin:.5em 0 0">One <code>lab.ipynb</code> per session, one section per sub-topic. Runs on free Colab.</p>
     </div>
   </div>
   <p class="src">Course syllabus</p>
@@ -352,117 +424,115 @@ html.reading .pix-readout,html.reading .kicker,html.reading .gbar div,html.readi
 
 <!-- 13 · Grading -->
 <section>
+  <p class="kicker">Assessment</p>
   <h2 class="claim">Your grade: 100 points, four parts</h2>
-  <div class="gbar">
-    <div style="flex:40;background:var(--teal)">Final<small>40</small></div>
-    <div style="flex:30;background:var(--coral)">Project<small>30</small></div>
-    <div style="flex:20;background:var(--amber)">Assignment<small>20</small></div>
-    <div style="flex:10;background:var(--violet)">Part.<small>10</small></div>
+  <div class="gtiles">
+    <div class="gtile" style="background:var(--teal)"><span class="lbl">Final</span><span class="num">40</span><span class="det">Week 15 · sessions 1–8 · hand calculation + concepts</span></div>
+    <div class="gtile" style="background:var(--coral)"><span class="lbl">Project</span><span class="num">30</span><span class="det">Proposal 14.5 + results 15.5</span></div>
+    <div class="gtile" style="background:var(--amber)"><span class="lbl">Assignment</span><span class="num">20</span><span class="det">4 × 5 points</span></div>
+    <div class="gtile" style="background:var(--violet)"><span class="lbl">Part.</span><span class="num">10</span><span class="det">Questions</span></div>
   </div>
-  <div class="cards">
-    <div class="card teal"><b>Final · 40</b>Week 15 · sessions 1–8 · hand calculation + concepts</div>
-    <div class="card coral"><b>Project · 30</b>Proposal 14.5 + results 15.5 · weeks 11 and 14</div>
-    <div class="card amber"><b>Assignment · 20</b>Present 4 times × 5 points</div>
-    <div class="card violet"><b>Participation · 10</b>Good questions and in-class work</div>
-  </div>
-  <p class="small muted" style="margin-top:.7em">No midterm. No bonus points.</p>
+  <p class="lead">No midterm. No bonus points.</p>
   <p class="src">Course syllabus — grading</p>
 </section>
 
 <!-- 14 · Assignment: halves -->
 <section>
+  <p class="kicker">Assignment</p>
   <h2 class="claim">Half the class presents every week</h2>
-  <div class="tscroll">
-    <table>
-      <tr><th></th><th>Presents in session</th><th>Topic set</th></tr>
-      <tr><td><b>Half A</b></td><td>1 · 3 · 5 · 7</td><td>T0 · T2 · T4 · T6</td></tr>
-      <tr><td><b>Half B</b></td><td>2 · 4 · 6 · 8</td><td>T1 · T3 · T5 · T7</td></tr>
-    </table>
+  <div class="halves">
+    <div class="half" style="background:var(--teal)"><div class="h">Half A</div><div class="d">Topic sets T0 · T2 · T4 · T6</div>
+      <div class="dots"><span class="on">1</span><span>2</span><span class="on">3</span><span>4</span><span class="on">5</span><span>6</span><span class="on">7</span><span>8</span></div></div>
+    <div class="half" style="background:var(--navy)"><div class="h">Half B</div><div class="d">Topic sets T1 · T3 · T5 · T7</div>
+      <div class="dots"><span>1</span><span class="on">2</span><span>3</span><span class="on">4</span><span>5</span><span class="on">6</span><span>7</span><span class="on">8</span></div></div>
   </div>
-  <ul class="small" style="margin-top:.6em">
-    <li>Groups of 1–3 · every group presents <b>4 times</b> · the speaker rotates every time</li>
-    <li><b>Topic set Tn</b> builds on session n — handed out at the end of session n, presented at the start of session n+1</li>
-    <li>Send <b>10+ slides</b> and an <b>8+ minute video</b> one day before; then present live</li>
-    <li><b>No make-up rounds</b> — a missed turn costs 5 points</li>
-  </ul>
+  <div class="cards c4">
+    <div class="card"><b>4 times</b>Groups of 1–3 · the speaker rotates every time</div>
+    <div class="card"><b>Topic set Tn</b>Builds on session n · handed out at its end, presented next session</div>
+    <div class="card"><b>Send first</b>10+ slides and an 8+ minute video, one day before</div>
+    <div class="card coral"><b>No make-up</b>A missed turn costs 5 points</div>
+  </div>
   <p class="src">Course syllabus — Assignment</p>
 </section>
 
 <!-- 15 · Assignment checklist -->
 <section>
+  <p class="kicker">Assignment</p>
   <h2 class="claim">Five checks, one point each</h2>
-  <div class="tscroll">
-    <table>
-      <tr><th>#</th><th>Check</th><th>Pt</th></tr>
-      <tr><td>1</td><td><b>Right length</b> — 10+ slides and 8+ minutes (missing either = 0)</td><td>1</td></tr>
-      <tr><td>2</td><td><b>Interesting answers</b> — you answer questions from the class and the instructor well</td><td>1</td></tr>
-      <tr><td>3</td><td><b>Fluent</b> — you explain; you do not read the slides aloud, in the video or live</td><td>1</td></tr>
-      <tr><td>4</td><td><b>Engaging slides</b> — at least one picture or diagram, and no slide over ~6 lines</td><td>1</td></tr>
-      <tr><td>5</td><td><b>Submitted on time</b> — video and slides one day before (timestamp)</td><td>1</td></tr>
-    </table>
-  </div>
-  <p class="small muted" style="margin-top:.6em">Checks 2, 3 and 5 are why copying an AI answer does not work: you have to understand it to answer and to speak.</p>
+  <ul class="checks">
+    <li><span><b>Right length</b> — 10+ slides and 8+ minutes (missing either = 0)</span><span class="pt">1</span></li>
+    <li><span><b>Interesting answers</b> — you answer questions from the class and the instructor well</span><span class="pt">1</span></li>
+    <li><span><b>Fluent</b> — you explain; you do not read the slides aloud, in the video or live</span><span class="pt">1</span></li>
+    <li><span><b>Engaging slides</b> — at least one picture or diagram, no slide over ~6 lines</span><span class="pt">1</span></li>
+    <li><span><b>On time</b> — video and slides one day before (timestamp)</span><span class="pt">1</span></li>
+  </ul>
+  <p class="lead" style="margin-top:.8em">Checks 2, 3 and 5 are why copying an AI answer does not work: you have to understand it to answer and to speak.</p>
   <p class="src">Course syllabus — Assignment checklist</p>
 </section>
 
 <!-- 16 · T0 topics -->
 <section>
+  <p class="kicker">Assignment · topic set T0</p>
   <h2 class="claim">Half A: choose your first topic today</h2>
-  <p class="small muted">Topic set <b>T0 — vision in the real world</b> · present in session 1 · one topic per group</p>
-  <div class="cards">
-    <div class="card"><b>1</b>Human vision vs computer vision</div>
-    <div class="card"><b>2</b>Vision in self-driving cars</div>
-    <div class="card"><b>3</b>Vision in medicine</div>
-    <div class="card"><b>4</b>Vision in agriculture</div>
-    <div class="card"><b>5</b>Cashier-free stores and people counting</div>
-    <div class="card"><b>6</b>Traffic analytics and road safety</div>
-    <div class="card"><b>7</b>OCR and digitising documents</div>
-    <div class="card"><b>8</b>AR filters on phones</div>
-    <div class="card"><b>9</b>Satellite images</div>
-    <div class="card"><b>10</b>Vision and society — where it should and should not be used</div>
+  <p class="lead"><b>Vision in the real world</b> · present in session 1 · one topic per group</p>
+  <div class="cards c5">
+    <div class="card"><span class="n">01</span><b>Human vs computer vision</b></div>
+    <div class="card"><span class="n">02</span><b>Self-driving cars</b></div>
+    <div class="card"><span class="n">03</span><b>Medicine</b></div>
+    <div class="card"><span class="n">04</span><b>Agriculture</b></div>
+    <div class="card"><span class="n">05</span><b>Cashier-free stores</b>and people counting</div>
+    <div class="card"><span class="n">06</span><b>Traffic analytics</b>and road safety</div>
+    <div class="card"><span class="n">07</span><b>OCR</b>digitising documents</div>
+    <div class="card"><span class="n">08</span><b>AR filters</b>on phones</div>
+    <div class="card"><span class="n">09</span><b>Satellite images</b></div>
+    <div class="card"><span class="n">10</span><b>Vision &amp; society</b>where it should and should not be used</div>
   </div>
-  <p class="src">Course syllabus — topic set T0 (starting sources listed on the course page)</p>
+  <p class="src">Course syllabus — topic set T0 (starting sources on the course page)</p>
 </section>
 
 <!-- 17 · Project -->
 <section>
-  <h2 class="claim">The project: two or three ways to solve one real problem</h2>
+  <p class="kicker">Project · 30 points</p>
+  <h2 class="claim">Two or three ways to solve one real problem</h2>
   <div class="tl">
-    <div><b>Wk 9</b>Kick-off in session 8</div>
-    <div><b>Wk 10</b>Clinic</div>
-    <div class="key"><b>Wk 11</b>Proposal · 14.5</div>
-    <div><b>Wk 12–13</b>Build and test</div>
-    <div class="key"><b>Wk 14</b>Results + live demo · 15.5</div>
-    <div><b>Wk 15</b>Final exam</div>
+    <div><b>Week 9</b>Kick-off</div>
+    <div><b>Week 10</b>Clinic</div>
+    <div class="key"><b>Week 11</b>Proposal · 14.5</div>
+    <div><b>Weeks 12–13</b>Build and test</div>
+    <div class="key"><b>Week 14</b>Results + demo · 15.5</div>
+    <div><b>Week 15</b>Final exam</div>
   </div>
-  <ul class="small" style="margin-top:.7em">
-    <li>Real images or video → <b>2–3 solutions</b> that take different routes → test all of them</li>
-    <li>Measure <b>accuracy</b> and <b>speed / resources</b>, then pick one and justify it</li>
-    <li>Explain <b>4 techniques</b> you used, in your own words, with pictures</li>
-    <li>Graded on <b>design and analysis</b>, not on a high score — a weak result explained well beats a strong result you cannot explain</li>
-    <li>Hand in all 13 files of the term (4 × assignment, proposal, results) → 1.5 points, −0.1 per missing file</li>
-  </ul>
+  <div class="cols">
+    <ul class="small">
+      <li>Real images or video → <b>2–3 solutions</b> that take different routes</li>
+      <li>Measure <b>accuracy</b> and <b>speed</b>, then pick one and justify it</li>
+      <li>Explain the <b>4 techniques</b> you used, in your own words</li>
+    </ul>
+    <div>
+      <div class="card coral" style="margin-bottom:.5em"><b>Graded on design and analysis</b>A weak result explained well beats a strong result you cannot explain.</div>
+      <div class="card"><b>All 13 files of the term</b>Hand in all → 1.5 points · −0.1 per missing file</div>
+    </div>
+  </div>
   <p class="src">Course syllabus — Project</p>
 </section>
 
 <!-- 18 · Final exam -->
 <section>
+  <p class="kicker">Final exam · 40 points</p>
   <h2 class="claim">The final rewards what you practise in class</h2>
   <div class="cols">
-    <div>
-      <ul class="small">
-        <li><b>Week 15</b> · covers sessions 1–8</li>
-        <li>Hand calculation — <b>no calculator</b>; numbers are chosen to work out cleanly</li>
-        <li>Where a log or exp is needed, a table is given</li>
-        <li><b>One A4 cheat sheet</b>, handwritten</li>
-        <li>Questions follow the <b>Try it</b> slides — with new numbers</li>
-      </ul>
-    </div>
-    <div class="cards">
+    <ul class="small">
+      <li><b>Week 15</b> · covers sessions 1–8</li>
+      <li>Hand calculation — <b>no calculator</b>; numbers work out cleanly</li>
+      <li>A table is given when a log or exp is needed</li>
+      <li><b>One A4 cheat sheet</b>, handwritten</li>
+      <li>Questions look like the <b>Try it</b> slides — with new numbers</li>
+    </ul>
+    <div class="cards" style="grid-template-columns:1fr 1fr">
       <div class="card teal"><b>Session 2</b>Convolve a 3×3 kernel</div>
-      <div class="card violet"><b>Session 3–4</b>CNN output shapes · attention scores</div>
-      <div class="card amber"><b>Session 5–6</b>Harris response · depth from disparity</div>
-      <div class="card coral"><b>Session 7–8</b>IoU and NMS · optical flow</div>
+      <div class="card violet"><b>Sessions 3–4</b>CNN shapes · attention scores</div>
+      <div class="card amber"><b>Sessions 5–6</b>Harris response · depth from disparity</div>
+      <div class="card coral"><b>Sessions 7–8</b>IoU and NMS · optical flow</div>
     </div>
   </div>
   <p class="src">Course syllabus — Final</p>
@@ -470,25 +540,27 @@ html.reading .pix-readout,html.reading .kicker,html.reading .gbar div,html.readi
 
 <!-- 19 · Participation -->
 <section>
+  <p class="kicker">Participation · 10 points</p>
   <h2 class="claim">A good question is worth a point</h2>
   <div class="tscroll">
     <table>
       <tr><th>Your question…</th><th>Points</th></tr>
-      <tr><td>needs reasoning — “why…”, “what if…”, “how is it different from…” — and the answer is not on the slides</td><td><b>1</b></td></tr>
-      <tr><td>asks for more explanation or an example of what was presented</td><td><b>0.5</b></td></tr>
-      <tr><td>is already answered on the slides, or is off topic</td><td>0</td></tr>
+      <tr><td>needs reasoning — “why…”, “what if…”, “how is it different from…” — and the answer is not on the slides</td><td class="pt">1</td></tr>
+      <tr><td>asks for more explanation or an example of what was presented</td><td class="pt">0.5</td></tr>
+      <tr><td>is already answered on the slides, or is off topic</td><td class="pt">0</td></tr>
     </table>
   </div>
-  <p class="small" style="margin-top:.6em">Up to <b>10 points</b>. Questions alone rarely reach 10 — volunteering answers and taking part in class activities count too.</p>
+  <p class="lead" style="margin-top:.8em">Up to <b>10 points</b>. Questions alone rarely reach 10 — volunteering answers and taking part in class activities count too.</p>
   <p class="src">Course syllabus — Participation</p>
 </section>
 
 <!-- 20 · Schedule -->
 <section>
-  <h2>15-week schedule</h2>
+  <p class="kicker">Schedule</p>
+  <h2>15 weeks at a glance</h2>
   <div class="tscroll">
     <table class="tight">
-      <tr><th>Wk</th><th>Session</th><th>Presents</th></tr>
+      <tr><th>Week</th><th>Session</th><th>Presents</th></tr>
       <tr class="hl"><td>1</td><td>0 · Orientation — form groups, halves A/B</td><td>—</td></tr>
       <tr><td>2</td><td>1 · Image formation &amp; sensing</td><td>A · T0</td></tr>
       <tr><td>3</td><td>2 · Image processing &amp; filtering</td><td>B · T1</td></tr>
@@ -502,7 +574,7 @@ html.reading .pix-readout,html.reading .kicker,html.reading .gbar div,html.readi
       <tr class="hl"><td>11</td><td>Project 1 — proposal</td><td></td></tr>
       <tr><td>12–13</td><td>Build and test + clinic</td><td></td></tr>
       <tr class="hl"><td>14</td><td>Project 2 — results + demo</td><td></td></tr>
-      <tr class="hl"><td>15</td><td><b>Final exam</b></td><td></td></tr>
+      <tr class="hl"><td>15</td><td>Final exam</td><td></td></tr>
     </table>
   </div>
   <p class="src">Course syllabus</p>
@@ -510,21 +582,22 @@ html.reading .pix-readout,html.reading .kicker,html.reading .gbar div,html.readi
 
 <!-- 21 · Tools & resources -->
 <section>
+  <p class="kicker">Resources</p>
   <h2 class="claim">Everything runs in the browser</h2>
   <div class="cols">
-    <div>
-      <h3>Tools</h3>
-      <ul class="small">
+    <div class="card teal" style="font-size:.78em">
+      <b>Tools</b>
+      <ul style="margin-top:.3em">
         <li><b>Google Colab</b> — nothing to install</li>
         <li>NumPy · OpenCV · PyTorch</li>
         <li><code>timm</code> · Hugging Face <code>transformers</code> · Ultralytics YOLO</li>
         <li>Slides and notebooks: classes.incortx.com/ComputerVision</li>
       </ul>
     </div>
-    <div>
-      <h3>Read and watch</h3>
-      <ul class="small">
-        <li>Torralba, Isola &amp; Freeman — <i>Foundations of Computer Vision</i> (free online: <a href="https://visionbook.mit.edu/">visionbook.mit.edu</a>)</li>
+    <div class="card violet" style="font-size:.78em">
+      <b>Read and watch</b>
+      <ul style="margin-top:.3em">
+        <li>Torralba, Isola &amp; Freeman — <i>Foundations of Computer Vision</i> · free at <a href="https://visionbook.mit.edu/">visionbook.mit.edu</a></li>
         <li>Szeliski — <i>Computer Vision: Algorithms and Applications</i>, 2nd ed.</li>
         <li>Prince — <i>Understanding Deep Learning</i></li>
         <li>Shree Nayar — <a href="https://www.youtube.com/@firstprinciplesofcomputerv3258/playlists"><i>First Principles of Computer Vision</i></a> (videos)</li>
@@ -536,41 +609,45 @@ html.reading .pix-readout,html.reading .kicker,html.reading .gbar div,html.readi
 
 <!-- 22 · Today -->
 <section>
+  <p class="kicker">Today</p>
   <h2 class="claim">Before you leave today</h2>
-  <ol>
-    <li class="fragment">Form a group of <b>1–3</b></li>
-    <li class="fragment">Your group joins <b>half A</b> or <b>half B</b></li>
-    <li class="fragment">Half A: pick one <b>T0</b> topic — you present in session 1, next week</li>
-    <li class="fragment">Everyone: open Colab once and check you can sign in</li>
-  </ol>
+  <div class="cards c4">
+    <div class="card teal fragment"><span class="n">01</span><b>Form a group</b>1–3 people</div>
+    <div class="card violet fragment"><span class="n">02</span><b>Pick a half</b>A or B — equal sizes</div>
+    <div class="card amber fragment"><span class="n">03</span><b>Half A: pick a T0 topic</b>You present in session 1, next week</div>
+    <div class="card coral fragment"><span class="n">04</span><b>Open Colab</b>Check you can sign in</div>
+  </div>
 </section>
 
 <!-- 23 · Summary -->
 <section>
-  <h2>Summary</h2>
-  <ul class="small">
+  <p class="kicker">Summary</p>
+  <h2>What to remember</h2>
+  <ol class="outcomes">
     <li>A computer sees <b>numbers, not objects</b> — the same object under new light is all new numbers.</li>
     <li>Early vision was expected to take a summer; hand-written rules only work in simple worlds.</li>
     <li>This course goes <b>pixels → learning → features &amp; geometry → recognition → motion</b>.</li>
     <li>Grade: <b>final 40 · project 30 · assignment 20 · participation 10</b>.</li>
     <li>Half the class presents every week; every group presents <b>4 times</b>.</li>
-  </ul>
+  </ol>
 </section>
 
 <!-- 24 · Coming up -->
 <section>
-  <h2 class="claim">Next: where does an image come from?</h2>
-  <p>Session 1 follows light from the scene, through a lens, onto a sensor — and asks what is lost on the way.</p>
-  <ul class="small">
-    <li>Pinhole projection: why far things look small</li>
-    <li>Lenses, focal length and field of view</li>
-    <li>Sensors and colour: how light becomes those numbers</li>
-  </ul>
-  <p class="small muted">Half A opens the session with the T0 presentations.</p>
+  <p class="kicker">Next session</p>
+  <h2 class="claim">Where does an image come from?</h2>
+  <p class="lead" style="font-size:.9em;color:var(--body)">Session 1 follows light from the scene, through a lens, onto a sensor — and asks what is lost on the way.</p>
+  <div class="cards">
+    <div class="card teal"><b>Pinhole projection</b>Why far things look small</div>
+    <div class="card violet"><b>Lenses</b>Focal length and field of view</div>
+    <div class="card amber"><b>Sensors &amp; colour</b>How light becomes those numbers</div>
+  </div>
+  <p class="lead" style="margin-top:.9em">Half A opens the session with the T0 presentations.</p>
 </section>
 
 <!-- 25 · References -->
 <section>
+  <p class="kicker">References</p>
   <h2>References</h2>
   <ul class="small">
     <li>A. Torralba, P. Isola, W. T. Freeman. <i>Foundations of Computer Vision</i>. MIT Press, 2024 — ch. 1–3 (TIF).</li>
@@ -595,7 +672,19 @@ function renderMath(){
     });
   }
 }
-function initDemos(){ initPixelDemo(); initLightingDemo(); }
+function initDemos(){ initPixelDemo(); initLightingDemo(); initTitleArt(); }
+/* title art: the same 12×12 "7", every pixel labelled with its value */
+function initTitleArt(){
+  const cv=document.getElementById('titleArt'); if(!cv) return;
+  const ctx=cv.getContext('2d'), N=PIX.length, s=cv.width/N;
+  for(let r=0;r<N;r++) for(let c=0;c<N;c++){
+    const v=PIX[r][c], dark=v<128;
+    ctx.fillStyle=dark?(v<50?'#0f1b2d':'#0f766e'):'#f5f7fa'; ctx.fillRect(c*s+2,r*s+2,s-4,s-4);
+    ctx.fillStyle=dark?'rgba(255,255,255,.85)':'#c3cbd6';
+    ctx.font=`600 ${Math.floor(s*0.3)}px JetBrains Mono, monospace`; ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText(v,c*s+s/2,r*s+s/2);
+  }
+}
 /* phones: a readable page instead of a scaled-down 1280×720 slide */
 document.addEventListener('DOMContentLoaded',()=>{   /* after every const below exists */
 if(window.matchMedia('(max-width: 760px)').matches){
