@@ -14,7 +14,8 @@
   · ↓/↑ = whole slide skipping fragments · Enter = full screen · overview scrolls/drags sideways · page number
   in every slide footer, so it also prints
   · exports: ?print-pdf = 16:9 PDF, ?handout = A4 portrait, 2 slides/page (append &autoprint to open the
-  print dialog) · reading mode on phones (≤760px: Reveal is not started;
+  print dialog) · touch screens: bar always shown, no ? button, docked right when a phone is sideways;
+  ?present forces slides · reading mode on phones with a bottom bar + slide list (≤760px: Reveal is not started;
   every slide stacks as a normal page at 17px, fragments shown, demos still live).
   Student-facing text is English; Thai only inside .th. Speaker script:
   Instructor_Materials/ComputerVision/Lecture_Scripts/session-00.md
@@ -187,9 +188,18 @@ html.reading .pgno{display:none;}
 .reveal .crit,.reveal .checks{margin:0;}
 html.reading .crit li,html.reading .scale div{font-size:15px;}
 html.reading .scale{grid-template-columns:repeat(2,minmax(0,1fr));}
+.scale.mini{margin-top:.2em;}
+.scale.mini div{padding:.3em .55em;font-size:.5em;display:flex;align-items:baseline;gap:.45em;}
+.reveal .scale.mini b{display:inline;font-size:1.35em;}
+.reveal .levels{list-style:none;margin:0;padding:0;display:grid;gap:.32em;}
+.levels li{display:grid;grid-template-columns:4.2em 1fr;gap:.7em;align-items:center;background:var(--soft);border-radius:12px;padding:.38em .8em .38em .38em;margin:0;font-size:.64em;line-height:1.35;}
+.reveal .levels li>b{background:var(--c);color:#fff;border-radius:9px;text-align:center;font-family:var(--display);font-size:1.15em;padding:.2em 0;}
+html.reading .levels li{font-size:15px;grid-template-columns:3.6em 1fr;}
+html.reading .scale.mini{grid-template-columns:repeat(2,minmax(0,1fr));}
 /* checklist */
 .checks{list-style:none;margin:0;padding:0;display:grid;gap:.45em;}
-.cols .checks li{font-size:.6em;padding:.4em .6em;}
+.cols .checks li{font-size:.58em;padding:.3em .6em;}
+.cols .checks{gap:.35em;}
 .checks li{display:grid;grid-template-columns:2.2em 1fr auto;gap:.6em;align-items:center;background:var(--soft);border-radius:12px;padding:.5em .8em;margin:0;font-size:.74em;}
 .checks li::before{content:"✓";width:1.7em;height:1.7em;border-radius:50%;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;}
 .checks li span.pt{font-family:var(--display);font-weight:700;color:var(--teal);}
@@ -211,6 +221,8 @@ html.reading .reveal .slides>section::before,html.reading .reveal .slides>sectio
 .reveal .progress{height:4px;color:var(--teal);background:transparent;}
 .deckbar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:40;display:flex;align-items:center;gap:2px;padding:4px;border-radius:999px;background:rgba(255,255,255,.94);border:1px solid var(--line);box-shadow:0 8px 24px -12px rgba(15,27,45,.35);font-family:var(--display);transition:opacity .35s;backdrop-filter:blur(6px);}
 .deckbar.idle{opacity:0;pointer-events:none;}
+/* [hidden] loses to display:flex unless said again — the hidden desktop bar sat on top of the phone bar */
+.deckbar[hidden],html.reading .deckbar{display:none !important;}
 .deckbar:hover,.deckbar:focus-within{opacity:1;}
 .deckbar button{all:unset;box-sizing:border-box;width:44px;height:44px;border-radius:999px;display:flex;align-items:center;justify-content:center;color:var(--ink);cursor:pointer;}
 .deckbar button:hover{background:var(--soft);}
@@ -245,7 +257,7 @@ html.reading .reveal .slides>section::before,html.reading .reveal .slides>sectio
 .scrim[hidden]{display:none;}
 
 /* ---------- print: reveal ?print-pdf (16:9, one slide per page) ---------- */
-@media print{ .deckbar,.pop,.scrim,.readbar{display:none !important;} }
+@media print{ .deckbar,.pop,.scrim,.rbar{display:none !important;} }
 
 /* ---------- A4 handout (?handout): two 16:9 slides per A4 portrait page ---------- */
 html.handout,html.handout body{height:auto;overflow:auto;background:#e9edf2;}
@@ -257,10 +269,34 @@ html.handout .reveal .slides>section:nth-child(2n){page-break-after:always !impo
 html.handout .reveal .fragment{opacity:1 !important;visibility:visible !important;transform:none !important;}
 @media print{ html.handout,html.handout body{background:#fff;} html.handout .reveal .slides{margin:0 auto;} }
 
-/* ---------- phone reading mode: download links ---------- */
-.readbar{display:none;}
-html.reading .readbar{display:flex;gap:8px;flex-wrap:wrap;padding:12px 16px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(255,255,255,.96);z-index:5;font-family:var(--display);font-size:14px;}
-html.reading .readbar a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:999px;border:1px solid var(--line);color:var(--ink);text-decoration:none;font-weight:600;}
+/* ---------- phone reading mode: bottom bar ---------- */
+.rbar{display:none;}
+html.reading body{padding-bottom:calc(76px + env(safe-area-inset-bottom));}
+html.reading .rbar:not([hidden]){display:flex;position:fixed;left:8px;right:8px;bottom:calc(8px + env(safe-area-inset-bottom));z-index:40;align-items:center;justify-content:space-between;gap:2px;padding:4px;border-radius:999px;background:rgba(255,255,255,.96);border:1px solid var(--line);box-shadow:0 8px 24px -12px rgba(15,27,45,.35);font-family:var(--display);backdrop-filter:blur(6px);}
+.rbar button{all:unset;box-sizing:border-box;min-width:44px;height:44px;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:6px;color:var(--ink);cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.rbar button:active{background:var(--soft);}
+.rbar svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.rbar .pdf{padding:0 12px;font-size:13px;font-weight:700;}
+.rcount{font-size:14px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums;min-width:4em;text-align:center;}
+html.reading .pdfmenu{bottom:calc(68px + env(safe-area-inset-bottom));min-width:0;width:min(92vw,340px);}
+.slist{left:8px;right:8px;bottom:calc(68px + env(safe-area-inset-bottom));max-height:62vh;overflow:auto;padding:8px;}
+.slist-head{display:flex;justify-content:space-between;align-items:center;padding:6px 10px 10px;font-family:var(--display);}
+.slist-head a{font-size:14px;font-weight:600;color:var(--teal);text-decoration:none;min-height:44px;display:flex;align-items:center;}
+.slist ol{list-style:none;margin:0;padding:0;}
+.slist li a{display:flex;gap:10px;align-items:center;min-height:44px;padding:6px 10px;border-radius:10px;color:var(--ink);text-decoration:none;font-size:15px;line-height:1.3;}
+.slist li a:active,.slist li a.cur{background:var(--teal-soft);}
+.slist li i{font-style:normal;font-family:var(--display);font-weight:700;color:var(--muted);min-width:1.8em;}
+/* touch screens in slide mode: bar always visible, no keyboard-only button */
+html.touch .deckbar.idle{opacity:1;pointer-events:auto;}
+html.touch .deckbar [data-act=help]{display:none;}
+.deckbar [data-act=fullscreen].nofs{display:none;}
+/* phone held sideways: the slide leaves room at the sides, not below — dock the bar on the right */
+@media (hover:none) and (orientation:landscape) and (max-height:520px){
+  .deckbar{left:auto;right:6px;bottom:auto;top:50%;transform:translateY(-50%);flex-direction:column;padding:4px;}
+  .deckbar .sep{width:24px;height:1px;margin:4px 0;}
+  .deckbar .pdf{padding:0;width:44px;font-size:0;gap:0;}
+  .pdfmenu{left:auto;right:64px;transform:none;top:50%;bottom:auto;translate:0 -50%;}
+}
 html.reading,html.reading body{height:auto;overflow:auto;}
 html.reading .reveal{position:static;height:auto;overflow:visible;font-size:17px;}
 html.reading .reveal .slides{position:static;width:auto !important;height:auto !important;inset:auto;margin:0;padding:0 16px;transform:none !important;overflow:visible;pointer-events:auto;zoom:1 !important;}
@@ -500,10 +536,11 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <div class="gtiles">
     <div class="gtile" style="background:var(--teal)"><span class="lbl">Final</span><span class="num">40</span><span class="det">Week 15 · sessions 1–8 · hand calculation + concepts</span></div>
     <div class="gtile" style="background:var(--coral)"><span class="lbl">Project</span><span class="num">30</span><span class="det">Proposal + results</span></div>
-    <div class="gtile" style="background:var(--amber)"><span class="lbl">Assignment</span><span class="num">20</span><span class="det">4 × 5 points</span></div>
-    <div class="gtile" style="background:var(--violet)"><span class="lbl">Part.</span><span class="num">10</span><span class="det">Questions</span></div>
+    <div class="gtile" style="background:var(--amber)"><span class="lbl">Assignment</span><span class="num">20</span><span class="det">4 presentations</span></div>
+    <div class="gtile" style="background:var(--violet)"><span class="lbl">Part.</span><span class="num">10</span><span class="det">Questions + activities</span></div>
   </div>
-  <p class="lead">No midterm. No bonus points.</p>
+  <p class="lead" style="margin:0 0 .35em">No midterm. No bonus points. Every criterion of the assignment, the project and participation is scored on <b>one scale</b>:</p>
+  <div class="scale mini" aria-label="Scored on the course scale"><div style="--c:var(--teal)"><b>100%</b>Outstanding</div><div style="--c:#3d8f86"><b>75%</b>Good</div><div style="--c:var(--amber)"><b>50%</b>Fair</div><div style="--c:var(--coral)"><b>25%</b>Below average</div><div style="--c:#98a2b3"><b>0%</b>Not done</div></div>
 </section>
 
 <!-- 14 · Assignment: halves -->
@@ -542,7 +579,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div style="--c:var(--coral)"><b>25%</b>Below average</div>
     <div style="--c:#98a2b3"><b>0%</b>Not done</div>
   </div>
-  <p class="lead" style="margin-top:.55em">Every criterion uses this scale. Criteria 2, 3 and 5 are why copying an AI answer does not work.</p>
+  <p class="lead" style="margin-top:.55em">The same scale grades the project and participation. Criteria 2, 3 and 5 are why copying an AI answer does not work.</p>
 </section>
 
 <!-- 16 · First turns -->
@@ -617,7 +654,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
       </ul>
     </div>
   </div>
-  <p class="lead" style="margin-top:.6em">Your notebook must run from start to finish in the live demo. Full rubric: course page.</p>
+  <p class="lead" style="margin:.4em 0 .25em;font-size:.7em">Each criterion uses the course scale · the notebook must run start to finish in the live demo</p>
+  <div class="scale mini" aria-label="Scored on the course scale"><div style="--c:var(--teal)"><b>100%</b>Outstanding</div><div style="--c:#3d8f86"><b>75%</b>Good</div><div style="--c:var(--amber)"><b>50%</b>Fair</div><div style="--c:var(--coral)"><b>25%</b>Below average</div><div style="--c:#98a2b3"><b>0%</b>Not done</div></div>
 </section>
 
 <!-- 18 · Final exam -->
@@ -644,16 +682,16 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
 <!-- 19 · Participation -->
 <section>
   <p class="kicker">Participation · 10 points</p>
-  <h2 class="claim">A good question is worth a point</h2>
-  <div class="tscroll">
-    <table>
-      <tr><th>Your question…</th><th>Points</th></tr>
-      <tr><td>needs reasoning — “why…”, “what if…”, “how is it different from…” — and the answer is not on the slides</td><td class="pt">1</td></tr>
-      <tr><td>asks for more explanation or an example of what was presented</td><td class="pt">0.5</td></tr>
-      <tr><td>is already answered on the slides, or is off topic</td><td class="pt">0</td></tr>
-    </table>
-  </div>
-  <p class="lead" style="margin-top:.8em">Up to <b>10 points</b>. Questions alone rarely reach 10 — volunteering answers and taking part in class activities count too.</p>
+  <h2 class="claim">A good question earns full marks</h2>
+  <p class="lead" style="margin-bottom:.5em">Ask during the presentations. Each question is scored on the course scale:</p>
+  <ul class="levels">
+    <li style="--c:var(--teal)"><b>100%</b><span><b>Outstanding</b> — needs reasoning (“why…”, “what if…”, “how is it different from…”) and the answer is not on the slides</span></li>
+    <li style="--c:#3d8f86"><b>75%</b><span><b>Good</b> — asks for an explanation or an example of a key point</span></li>
+    <li style="--c:var(--amber)"><b>50%</b><span><b>Fair</b> — clears up a detail of what was presented</span></li>
+    <li style="--c:var(--coral)"><b>25%</b><span><b>Below average</b> — the answer is already on the slides</span></li>
+    <li style="--c:#98a2b3"><b>0%</b><span><b>Not done</b> — off topic, or no question</span></li>
+  </ul>
+  <p class="lead" style="margin-top:.6em">Questions alone rarely fill all 10 points — volunteering answers and class activities count too.</p>
 </section>
 
 <!-- 20 · Schedule -->
@@ -761,8 +799,19 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
 </div>
 </div>
 
-<!-- phone reading mode: downloads -->
-<div class="readbar" aria-label="Download"><a href="?print-pdf&amp;autoprint">⤓ PDF · 16:9</a><a href="?handout&amp;autoprint">⤓ Handout · A4</a></div>
+<!-- phone reading mode: bottom bar + slide list -->
+<nav class="rbar" id="rbar" aria-label="Page controls" hidden>
+  <button data-r="top" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M6 15l6-6 6 6M5 4h14"/></svg></button>
+  <button data-r="prev" aria-label="Previous slide"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
+  <span class="rcount" id="rCount">1 / 1</span>
+  <button data-r="next" aria-label="Next slide"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>
+  <button data-r="list" aria-label="All slides"><svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg></button>
+  <button data-r="pdf" class="pdf" aria-label="Download PDF"><svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>PDF</button>
+</nav>
+<div class="pop slist" id="sList" role="dialog" aria-label="All slides" hidden>
+  <div class="slist-head"><b>All slides</b><a href="?present">Open as slides ›</a></div>
+  <ol id="sListItems"></ol>
+</div>
 
 <!-- deck toolbar -->
 <nav class="deckbar" id="deckbar" aria-label="Slide controls" hidden>
@@ -828,7 +877,8 @@ function initTitleArt(){
 /* modes: ?handout → A4 handout · ?print-pdf → reveal PDF · phone → reading · else → slides */
 const Q=new URLSearchParams(location.search);
 const MODE = Q.has('handout') ? 'handout' : Q.has('print-pdf') ? 'pdf'
-           : window.matchMedia('(max-width: 760px)').matches ? 'reading' : 'slides';
+           : (window.matchMedia('(max-width: 760px)').matches && !Q.has('present')) ? 'reading' : 'slides';
+if(window.matchMedia('(hover: none)').matches) document.documentElement.classList.add('touch');
 function autoprint(){ if(Q.has('autoprint')) setTimeout(()=>window.print(), 1200); }
 
 function numberSlides(){
@@ -848,7 +898,7 @@ document.addEventListener('DOMContentLoaded',()=>{   /* after every const below 
   }
   if(MODE==='reading'){
     document.documentElement.classList.add('reading');
-    renderMath(); initDemos();
+    renderMath(); initDemos(); initReadingBar();
     return;
   }
   Reveal.initialize({
@@ -864,6 +914,32 @@ document.addEventListener('DOMContentLoaded',()=>{   /* after every const below 
     initDeckbar();
   });
 });
+
+function initReadingBar(){
+  const bar=document.getElementById('rbar'), count=document.getElementById('rCount');
+  const list=document.getElementById('sList'), items=document.getElementById('sListItems'), menu=document.getElementById('pdfMenu');
+  const secs=[...document.querySelectorAll('.reveal .slides>section')], N=secs.length;
+  bar.hidden=false;
+  let cur=0;
+  const title=s=>{ const h=s.querySelector('h1,h2'); if(!h) return 'Slide';
+    const d=document.createElement('div'); d.innerHTML=h.innerHTML.replace(/<br\s*\/?>/gi,' '); return d.textContent.replace(/\s+/g,' ').trim(); };
+  items.innerHTML=secs.map((s,i)=>`<li><a href="#" data-i="${i}"><i>${i+1}</i>${title(s)}</a></li>`).join('');
+  const go=i=>{ i=Math.max(0,Math.min(N-1,i)); secs[i].scrollIntoView({behavior:'smooth',block:'start'}); };
+  const closeAll=()=>{ list.hidden=true; menu.hidden=true; };
+  const show=()=>{ count.textContent=`${cur+1} / ${N}`;
+    bar.querySelector('[data-r=prev]').disabled=cur===0; bar.querySelector('[data-r=next]').disabled=cur===N-1;
+    items.querySelectorAll('a').forEach((a,i)=>a.classList.toggle('cur',i===cur)); };
+  /* current slide = the last section whose top has passed 40% of the screen */
+  const track=()=>{ const y=window.innerHeight*0.4; let k=0; secs.forEach((s,i)=>{ if(s.getBoundingClientRect().top<=y) k=i; }); if(k!==cur){ cur=k; show(); } };
+  window.addEventListener('scroll',track,{passive:true}); track(); show();
+  const act={top:()=>window.scrollTo({top:0,behavior:'smooth'}), prev:()=>go(cur-1), next:()=>go(cur+1),
+             list:()=>{ const o=list.hidden; closeAll(); list.hidden=!o; if(o){ const c=items.querySelector('a.cur'); if(c) c.scrollIntoView({block:'center'}); } },
+             pdf:()=>{ const o=menu.hidden; closeAll(); menu.hidden=!o; }};
+  bar.addEventListener('click',e=>{ const b=e.target.closest('button'); if(b&&act[b.dataset.r]) act[b.dataset.r](); });
+  items.addEventListener('click',e=>{ const a=e.target.closest('a[data-i]'); if(!a) return; e.preventDefault(); closeAll(); go(+a.dataset.i); });
+  menu.addEventListener('click',()=>setTimeout(closeAll,50));
+  document.addEventListener('click',e=>{ if(!e.target.closest('#rbar,#sList,#pdfMenu')) closeAll(); });
+}
 
 function initDeckbar(){
   const bar=document.getElementById('deckbar');
@@ -881,8 +957,12 @@ function initDeckbar(){
   const closeAll=()=>{ menu.hidden=true; keys.hidden=true; scrim.hidden=true; };
   const toggleKeys=()=>{ const open=keys.hidden; closeAll(); keys.hidden=!open; scrim.hidden=!open; };
   const toggleMenu=()=>{ const open=menu.hidden; closeAll(); menu.hidden=!open; if(open) menu.querySelector('a').focus(); };
+  /* iPhone Safari has no element full screen — hide the button there instead of leaving a dead one */
+  const fsOK=!!(document.fullscreenEnabled||document.webkitFullscreenEnabled);
+  if(!fsOK) bar.querySelector('[data-act=fullscreen]').classList.add('nofs');
   const fullscreen=()=>{ const el=document.documentElement;
-    if(document.fullscreenElement) document.exitFullscreen(); else if(el.requestFullscreen) el.requestFullscreen(); };
+    if(document.fullscreenElement||document.webkitFullscreenElement){ (document.exitFullscreen||document.webkitExitFullscreen).call(document); }
+    else if(el.requestFullscreen) el.requestFullscreen(); else if(el.webkitRequestFullscreen) el.webkitRequestFullscreen(); };
   const last=()=>Reveal.getTotalSlides()-1;
   const act={first:()=>Reveal.slide(0), prev:()=>Reveal.prev(), next:()=>Reveal.next(), last:()=>Reveal.slide(last()),
              overview:()=>Reveal.toggleOverview(), fullscreen, pdf:toggleMenu, help:toggleKeys};
@@ -929,7 +1009,8 @@ function initDeckbar(){
   document.addEventListener('keydown',e=>{
     if(e.key==='Escape' && (!menu.hidden || !keys.hidden)){ closeAll(); e.preventDefault(); e.stopImmediatePropagation(); }
   },true);
-  /* fade the bar while presenting; any pointer movement brings it back */
+  /* fade the bar while presenting; any pointer movement brings it back (touch screens: always shown) */
+  if(document.documentElement.classList.contains('touch')) return;
   let t; const wake=()=>{ bar.classList.remove('idle'); clearTimeout(t); t=setTimeout(()=>bar.classList.add('idle'),2500); };
   ['pointermove','pointerdown','keydown'].forEach(ev=>document.addEventListener(ev,wake)); wake();
 }
