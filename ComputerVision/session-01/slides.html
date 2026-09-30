@@ -195,6 +195,27 @@ html.reading .cols.today{grid-template-columns:1fr;}
 .keyidea.coral::before{color:var(--coral);}
 html.reading .after{flex-direction:column;}
 
+/* s6 · 1966 memo */
+.memo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:1.2em;align-items:start;}
+.mq{margin:0 0 .7em;font-family:var(--display);font-size:.72em;line-height:1.38;color:var(--ink);border-left:6px solid var(--teal);padding:.15em 0 .15em .8em;}
+.mq span{display:block;font-family:var(--font);font-size:.72em;color:var(--muted);margin-top:.5em;}
+.plan{display:grid;gap:.4em;}
+.plan div{display:grid;grid-template-columns:4.2em 1fr;gap:.6em;align-items:baseline;font-size:.6em;line-height:1.4;background:var(--soft);border-radius:10px;padding:.5em .75em;}
+.plan b{font-family:var(--display);color:var(--teal);}
+.reveal .mnote{margin:.55em 0 0;font-size:.52em;color:var(--muted);line-height:1.45;}
+.memo h3{margin-bottom:.3em;}
+.reveal .mgoals{list-style:none;margin:0 0 .55em;padding:0;counter-reset:mg;display:grid;gap:.35em;}
+.reveal .mgoals li{margin:0;}
+.mgoals li{counter-increment:mg;display:grid;grid-template-columns:1.7em 1fr;column-gap:.55em;font-size:.6em;line-height:1.35;border:1px solid var(--line);border-radius:10px;padding:.45em .7em;background:#fff;}
+.mgoals li::before{content:counter(mg);grid-row:1/4;align-self:start;width:1.7em;height:1.7em;border-radius:50%;background:var(--teal-soft);color:var(--teal);font-family:var(--display);font-weight:700;display:flex;align-items:center;justify-content:center;}
+.mgoals b{font-family:var(--display);color:var(--ink);}
+.mgoals span{color:var(--body);}
+.mgoals em{font-style:normal;font-family:var(--mono);font-size:.82em;color:var(--teal);margin-top:.15em;}
+.memo .card{font-size:.6em;margin-top:.7em;}
+html.reading .memo{grid-template-columns:1fr;}
+html.reading .mq{font-size:17px;}
+html.reading .plan div,html.reading .mgoals li,html.reading .memo .card{font-size:15px;}
+html.reading .reveal .mnote{font-size:13px;}
 /* pipeline */
 .pipe{display:flex;gap:.45em;align-items:stretch;counter-reset:p;}
 .pipe .st{flex:1 1 0;background:#fff;border:1px solid var(--line);border-radius:12px;padding:.6em .65em;font-size:.64em;line-height:1.35;box-shadow:0 6px 16px -12px rgba(15,27,45,.25);position:relative;}
@@ -504,14 +525,24 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
 <section>
   <p class="kicker">A little history</p>
   <h2 class="claim">In 1966, vision was planned as a summer project</h2>
-  <div class="cols w64">
-    <blockquote style="margin:0;font-family:var(--display);font-size:1em;line-height:1.35;color:var(--ink);border-left:6px solid var(--teal);padding:.2em 0 .2em .9em;">
-      “The summer vision project is an attempt to use our summer workers effectively in the construction of a significant part of a visual system.”
-      <div style="font-family:var(--font);font-size:.55em;color:var(--muted);margin-top:.7em;">— Seymour Papert, MIT, 1966</div>
-    </blockquote>
+  <div class="memo">
     <div>
-      <div class="card teal fragment" style="margin-bottom:.6em"><b>The plan</b>Split vision into tasks for a group of MIT students — many of those tasks are still parts of computer vision today.</div>
-      <div class="card coral fragment"><b>What happened</b>It proved <b>much harder than anybody expected</b>. Sixty years later, this course is what we have learned since.</div>
+      <blockquote class="mq">“The summer vision project is an attempt to use our summer workers effectively in the construction of a significant part of a visual system.”
+        <span>— Seymour Papert, MIT Vision Memo No. 100, July 1966</span></blockquote>
+      <div class="plan">
+        <div><b>July</b>Balls, bricks and cylinders that don’t overlap. Every face one plain colour; plain background.</div>
+        <div><b>August</b>Harder surfaces: a cigarette pack with writing, a battery. Then tools and cups.</div>
+      </div>
+      <p class="mnote">The work was split into 10 sub-tasks, (a)–(j), each owned by named students; Sussman coordinated the meetings.</p>
+    </div>
+    <div>
+      <h3>Three goals, in order</h3>
+      <ol class="mgoals fragment">
+        <li><b>Figure–ground</b><span>Split the picture into likely objects, likely background, and “chaos”</span><em>today: segmentation · session 8</em></li>
+        <li><b>Region description</b><span>Describe each region’s shape and surface</span><em>today: features · session 6</em></li>
+        <li><b>Object identification</b><span>Name each object from a vocabulary of known objects</span><em>today: recognition · sessions 4, 5, 8</em></li>
+      </ol>
+      <div class="card coral fragment"><b>What happened</b>It proved <strong>much harder than anybody expected</strong>. Sixty years on, those three goals are still this course.</div>
     </div>
   </div>
 </section>
