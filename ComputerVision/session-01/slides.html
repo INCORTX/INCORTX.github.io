@@ -129,16 +129,39 @@ html.reading .pgno{display:none;}
 .reveal table.tight th,.reveal table.tight td{padding:.3em .7em;}
 .reveal table td.pt{font-family:var(--display);font-weight:700;color:var(--teal);text-align:center;width:3em;}
 
-/* title slide */
-.reveal .slides>section.title-slide{padding:0 4px !important;}
-.title-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:1.5em;align-items:center;height:100%;}
-.title-slide .kicker{font-size:.55em;}
-.title-slide h1{margin:0 0 .25em;}
-.title-slide .sub{font-family:var(--display);font-size:1.15em;color:var(--teal);font-weight:600;margin:0 0 1.6em;}
-.title-slide .who{font-size:.68em;color:var(--muted);line-height:1.6;border-top:1px solid var(--line);padding-top:.8em;}
-.title-slide .who b{color:var(--ink);font-size:1.1em;}
-#titleArt{width:100%;height:auto;border-radius:18px;}
+/* title slide — dark cover */
+.reveal .slides>section.title-slide{padding:0 34px !important;background:#0b1626;color:#cbd5e1;}
+.title-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:2em;align-items:center;height:100%;}
+.title-slide .pill{display:inline-flex;align-items:center;gap:.6em;margin:0 0 1.1em;padding:.35em .9em;border:1px solid rgba(94,234,212,.35);border-radius:999px;background:rgba(45,212,191,.08);color:#5eead4;font-family:var(--display);font-weight:600;font-size:.46em;letter-spacing:.16em;text-transform:uppercase;}
+.title-slide .pill::before{content:"";width:.55em;height:.55em;border-radius:50%;background:#2dd4bf;box-shadow:0 0 0 .25em rgba(45,212,191,.2);}
+.reveal .title-slide h1{color:#fff;font-size:3em;line-height:.98;margin:0 0 .3em;letter-spacing:-.03em;}
+.title-slide .sub{font-family:var(--display);font-size:1.05em;color:#5eead4;font-weight:600;margin:0 0 1.9em;}
+.title-slide .who{border-top:1px solid rgba(255,255,255,.12);padding-top:.9em;}
+.title-slide .who p{margin:0;}
+.title-slide .name{font-family:var(--display);font-weight:700;font-size:.8em;color:#fff;}
+.title-slide .name span{font-weight:500;color:#94a3b8;}
+.title-slide .contact{display:flex;flex-wrap:wrap;gap:.2em 1.4em;margin-top:.35em !important;font-size:.58em;color:#94a3b8;}
+.title-slide .contact span+span::before{content:"";display:inline-block;width:.35em;height:.35em;border-radius:50%;background:#334155;margin:0 .9em 0 -.8em;vertical-align:middle;}
+.title-slide .art{margin:0;}
+@media print{#titleArt{box-shadow:0 0 0 1px rgba(255,255,255,.06);}}
+html.print-pdf #titleArt{box-shadow:0 0 0 1px rgba(255,255,255,.06);}
+#titleArt{width:100%;height:auto;border-radius:22px;box-shadow:0 30px 60px -30px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.06);}
+.title-slide figcaption{margin-top:.7em;text-align:center;font-family:var(--mono);font-size:.42em;color:#64748b;letter-spacing:.02em;}
+html.reading .reveal .slides>section.title-slide{padding:36px 18px !important;border-radius:0;}
+html.reading .title-slide .pill,html.reading .title-slide figcaption,html.reading .title-slide .contact{font-size:13px;}
+html.handout .reveal .slides>section.title-slide{background:#0b1626 !important;}
 
+/* slide 2: outline as a stepper, outcomes as verb cards */
+.cols.today{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:2em;}
+.reveal .steps{list-style:none;margin:0;padding:0;counter-reset:st;position:relative;}
+.steps::before{content:"";position:absolute;left:.93em;top:.9em;bottom:.9em;width:2px;background:linear-gradient(var(--teal),#b9dfe2);}
+.steps li{counter-increment:st;position:relative;margin:0;padding:.5em 0 .5em 2.7em;font-size:.8em;line-height:1.35;color:var(--ink);}
+.steps li::before{content:counter(st);position:absolute;left:0;top:50%;transform:translateY(-50%);width:1.9em;height:1.9em;border-radius:50%;background:#fff;border:2px solid var(--teal);color:var(--teal);font-family:var(--display);font-weight:700;font-size:.9em;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 4px #fff;}
+.goals{display:grid;gap:.5em;}
+.goal{display:grid;grid-template-columns:5.4em 1fr;gap:.8em;align-items:center;background:#fff;border:1px solid var(--line);border-left:5px solid var(--c);border-radius:12px;padding:.6em .85em;font-size:.72em;line-height:1.4;color:var(--ink);box-shadow:0 6px 16px -12px rgba(15,27,45,.25);}
+.goal .verb{justify-self:start;font-family:var(--display);font-weight:700;font-size:.78em;letter-spacing:.12em;text-transform:uppercase;color:var(--c);}
+html.reading .steps li,html.reading .goal{font-size:15px;}
+html.reading .cols.today{grid-template-columns:1fr;}
 /* outline / outcomes */
 .outline{list-style:none;margin:0;padding:0;counter-reset:o;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6em 1.2em;}
 .outline.one{grid-template-columns:1fr;gap:.4em;}
@@ -361,15 +384,21 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
 <div class="slides">
 
 <!-- 1 · Title -->
-<section class="title-slide">
+<section class="title-slide" data-background-color="#0b1626">
   <div class="title-grid">
-    <div>
-      <p class="kicker">Session 1 · Orientation</p>
+    <div class="title-text">
+      <p class="pill">Session 1 · Orientation</p>
       <h1>Computer<br>Vision</h1>
       <p class="sub">From Pixels to Foundation Models</p>
-      <p class="who"><b>Dr. Wasu Kudisthalert (Neil)</b><br>wasu.ku@kmitl.ac.th<br>classes.incortx.com/ComputerVision</p>
+      <div class="who">
+        <p class="name">Dr. Wasu Kudisthalert <span>(Neil)</span></p>
+        <p class="contact"><span>wasu.ku@kmitl.ac.th</span><span>classes.incortx.com/ComputerVision</span></p>
+      </div>
     </div>
-    <canvas id="titleArt" width="720" height="720" aria-hidden="true"></canvas>
+    <figure class="art">
+      <canvas id="titleArt" width="720" height="720" aria-hidden="true"></canvas>
+      <figcaption>An “N”, as a computer sees it — 144 numbers</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -377,10 +406,10 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
 <section>
   <p class="kicker">Today</p>
   <h2>Outline and learning outcomes</h2>
-  <div class="cols">
+  <div class="cols today">
     <div>
       <h3>Outline</h3>
-      <ol class="outline one">
+      <ol class="steps">
         <li>What a computer actually sees</li>
         <li>What vision is used for — and why it is hard</li>
         <li>A whole vision system on one slide</li>
@@ -390,12 +419,12 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     </div>
     <div>
       <h3>By the end of today you can</h3>
-      <ol class="outcomes">
-        <li><b>Explain</b> why an image is an array of numbers, and why that makes vision hard</li>
-        <li><b>Describe</b> the path from pixels to foundation models</li>
-        <li><b>Explain</b> how each part of your grade is earned</li>
-        <li><b>Join</b> a group and a half (A or B)</li>
-      </ol>
+      <div class="goals">
+        <div class="goal" style="--c:var(--teal)"><span class="verb">Explain</span><span>why an image is an array of numbers — and why that makes vision hard</span></div>
+        <div class="goal" style="--c:var(--violet)"><span class="verb">Describe</span><span>the path from pixels to foundation models</span></div>
+        <div class="goal" style="--c:var(--amber)"><span class="verb">Explain</span><span>how each part of your grade is earned</span></div>
+        <div class="goal" style="--c:var(--coral)"><span class="verb">Join</span><span>a group, and a half — A or B</span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -867,10 +896,14 @@ function initSliders(){
 function initTitleArt(){
   const cv=document.getElementById('titleArt'); if(!cv) return;
   const ctx=cv.getContext('2d'), N=PIX.length, s=cv.width/N;
+  ctx.fillStyle='#0f1f33'; ctx.fillRect(0,0,cv.width,cv.height);
   for(let r=0;r<N;r++) for(let c=0;c<N;c++){
-    const v=PIX[r][c], dark=v<128;
-    ctx.fillStyle=dark?(v<50?'#0f1b2d':'#0f766e'):'#f5f7fa'; ctx.fillRect(c*s+2,r*s+2,s-4,s-4);
-    ctx.fillStyle=dark?'rgba(255,255,255,.85)':'#c3cbd6';
+    const v=PIX[r][c], stroke=v<50, edge=!stroke&&v<128;
+    ctx.fillStyle=stroke?'#2dd4bf':(edge?'#0f766e':'#15283f');
+    if(stroke){ ctx.shadowColor='rgba(45,212,191,.55)'; ctx.shadowBlur=s*0.35; } else { ctx.shadowBlur=0; }
+    ctx.beginPath(); if(ctx.roundRect) ctx.roundRect(c*s+3,r*s+3,s-6,s-6,6); else ctx.rect(c*s+3,r*s+3,s-6,s-6); ctx.fill();
+    ctx.shadowBlur=0;
+    ctx.fillStyle=stroke?'#062b28':(edge?'#ccfbf1':'#2f4a68');
     ctx.font=`600 ${Math.floor(s*0.3)}px JetBrains Mono, monospace`; ctx.textAlign='center'; ctx.textBaseline='middle';
     ctx.fillText(v,c*s+s/2,r*s+s/2);
   }
