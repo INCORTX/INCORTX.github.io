@@ -298,7 +298,7 @@ html.touch .deckbar [data-act=help]{display:none;}
   .pdfmenu{left:auto;right:64px;transform:none;top:50%;bottom:auto;translate:0 -50%;}
 }
 html.reading,html.reading body{height:auto;overflow:auto;}
-html.reading .reveal{position:static;height:auto;overflow:visible;font-size:17px;}
+html.reading .reveal{position:static;height:auto;overflow:visible;font-size:17px;touch-action:auto;}
 html.reading .reveal .slides{position:static;width:auto !important;height:auto !important;inset:auto;margin:0;padding:0 16px;transform:none !important;overflow:visible;pointer-events:auto;zoom:1 !important;}
 html.reading .reveal .slides>section{display:block !important;position:relative !important;width:auto !important;height:auto !important;left:auto !important;top:auto !important;transform:none !important;opacity:1 !important;visibility:visible !important;padding:28px 0 !important;border-bottom:1px solid var(--line);}
 html.reading .reveal .fragment{opacity:1 !important;visibility:visible !important;transform:none !important;}
@@ -873,11 +873,12 @@ document.addEventListener('DOMContentLoaded',()=>{   /* after every const below 
     controls:false, slideNumber:false, help:false,
     transition:'fade', transitionSpeed:'fast',
     pdfSeparateFragments:false, pdfMaxPagesPerSlide:1,
-    scrollActivationWidth:null
+    scrollActivationWidth:null,
+    touch:false             /* swipes handled by initSwipe(): up/left = next, down/right = previous */
   }).then(()=>{
     renderMath(); initDemos();
     if(MODE==='pdf'){ document.fonts.ready.then(autoprint); return; }
-    initDeckbar();
+    initDeckbar(); initSwipe();
   });
 });
 
@@ -905,6 +906,24 @@ function initReadingBar(){
   items.addEventListener('click',e=>{ const a=e.target.closest('a[data-i]'); if(!a) return; e.preventDefault(); closeAll(); go(+a.dataset.i); });
   menu.addEventListener('click',()=>setTimeout(closeAll,50));
   document.addEventListener('click',e=>{ if(!e.target.closest('#rbar,#sList,#pdfMenu')) closeAll(); });
+}
+
+/* swipe in slide mode — reveal's own touch only knows up/down for vertical stacks, which this deck has none of */
+function initSwipe(){
+  const rv=document.querySelector('.reveal'); let sx=null, sy=0, st=0;
+  rv.addEventListener('touchstart',e=>{
+    if(e.touches.length!==1 || e.target.closest('input,canvas,button,a,details,.deckbar,.pop')){ sx=null; return; }
+    sx=e.touches[0].clientX; sy=e.touches[0].clientY; st=Date.now();
+  },{passive:true});
+  rv.addEventListener('touchmove',e=>{ if(sx!==null) e.preventDefault(); },{passive:false});   /* no page bounce while swiping */
+  rv.addEventListener('touchend',e=>{
+    if(sx===null) return;
+    const t=e.changedTouches[0], dx=t.clientX-sx, dy=t.clientY-sy; sx=null;
+    if(Date.now()-st>800 || Math.max(Math.abs(dx),Math.abs(dy))<40) return;   /* a tap or a slow drag, not a swipe */
+    const fwd = Math.abs(dy)>Math.abs(dx) ? dy<0 : dx<0;                      /* up or left = forward */
+    if(Reveal.isOverview()) fwd ? Reveal.right() : Reveal.left();
+    else fwd ? Reveal.next() : Reveal.prev();
+  },{passive:true});
 }
 
 function initDeckbar(){
@@ -961,7 +980,7 @@ function initDeckbar(){
     while(acc>=60){ Reveal.right(); acc-=60; } while(acc<=-60){ Reveal.left(); acc+=60; }
   },{passive:false});
   const rv=document.querySelector('.reveal'); let dragX=null, moved=0;
-  rv.addEventListener('pointerdown',e=>{ if(Reveal.isOverview()&&e.button===0){ dragX=e.clientX; moved=0; } });
+  rv.addEventListener('pointerdown',e=>{ if(Reveal.isOverview()&&e.button===0&&e.pointerType==='mouse'){ dragX=e.clientX; moved=0; } });   /* fingers use initSwipe() */
   window.addEventListener('pointermove',e=>{
     if(dragX===null) return;
     const dx=e.clientX-dragX; if(Math.abs(dx)>8) rv.classList.add('dragging');
