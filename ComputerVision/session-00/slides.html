@@ -168,7 +168,10 @@ html.reading .pgno{display:none;}
 .pix-wrap{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.1fr) minmax(0,1fr);gap:1em;align-items:start;}
 .pix-wrap canvas{width:100%;height:auto;max-height:420px;object-fit:contain;image-rendering:pixelated;border-radius:12px;border:1px solid var(--line);touch-action:manipulation;}
 .pix-readout{font-family:var(--mono);font-size:.5em;color:var(--muted);min-height:1.6em;margin-top:.35em;}
-.slider{width:100%;accent-color:var(--teal);min-height:44px;}
+.slider{width:100%;accent-color:var(--teal);min-height:44px;touch-action:none;cursor:pointer;}
+/* a thumb big enough for a finger */
+.slider::-webkit-slider-thumb{width:26px;height:26px;}
+.slider::-moz-range-thumb{width:26px;height:26px;}
 
 /* timeline */
 .tl{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;position:relative;margin:.3em 0 .9em;}
@@ -302,6 +305,9 @@ html.reading .reveal{position:static;height:auto;overflow:visible;font-size:17px
 html.reading .reveal .slides{position:static;width:auto !important;height:auto !important;inset:auto;margin:0;padding:0 16px;transform:none !important;overflow:visible;pointer-events:auto;zoom:1 !important;}
 html.reading .reveal .slides>section{display:block !important;position:relative !important;width:auto !important;height:auto !important;left:auto !important;top:auto !important;transform:none !important;opacity:1 !important;visibility:visible !important;padding:28px 0 !important;border-bottom:1px solid var(--line);}
 html.reading .reveal .fragment{opacity:1 !important;visibility:visible !important;transform:none !important;}
+/* reveal.css gives every non-current slide pointer-events:none — with Reveal not running that is every slide,
+   which made sliders, canvases, Try it answers and links dead on phones */
+html.reading .reveal .slides>section{pointer-events:auto !important;}
 html.reading .src{position:static;display:block;margin-top:.9em;max-width:none;}
 html.reading .deck-rule{display:none;}
 html.reading .cols,html.reading .cols.c3,html.reading .cols.w64,html.reading .pix-wrap,html.reading .map,html.reading .title-grid,html.reading .outline,html.reading .halves,html.reading .cards.c4,html.reading .cards.c5{grid-template-columns:1fr;}
@@ -827,7 +833,22 @@ function renderMath(){
     });
   }
 }
-function initDemos(){ initPixelDemo(); initLightingDemo(); initTitleArt(); }
+function initDemos(){ initPixelDemo(); initLightingDemo(); initTitleArt(); initSliders(); }
+/* range sliders: a finger anywhere on the track sets and drags the value.
+   Phones otherwise only move a native slider when the touch lands exactly on its thumb,
+   and a touch on the track scrolls the page instead. */
+function initSliders(){
+  document.querySelectorAll('input[type=range].slider').forEach(el=>{
+    const set=e=>{ const r=el.getBoundingClientRect(), lo=+el.min||0, hi=+el.max||100, st=+el.step||1;
+      const f=Math.min(1,Math.max(0,(e.clientX-r.left)/r.width));
+      const v=Math.round((lo+f*(hi-lo))/st)*st;
+      if(String(v)!==el.value){ el.value=v; el.dispatchEvent(new Event('input',{bubbles:true})); } };
+    el.addEventListener('pointerdown',e=>{ if(e.pointerType==='mouse') return;   /* the mouse already works natively */
+      e.preventDefault(); el.setPointerCapture(e.pointerId); set(e);
+      const move=ev=>set(ev), up=()=>{ el.removeEventListener('pointermove',move); el.removeEventListener('pointerup',up); el.removeEventListener('pointercancel',up); };
+      el.addEventListener('pointermove',move); el.addEventListener('pointerup',up); el.addEventListener('pointercancel',up); });
+  });
+}
 /* title art: the same 12×12 "7", every pixel labelled with its value */
 function initTitleArt(){
   const cv=document.getElementById('titleArt'); if(!cv) return;
