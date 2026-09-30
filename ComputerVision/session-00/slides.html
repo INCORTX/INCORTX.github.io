@@ -200,6 +200,20 @@ html.reading .scale{grid-template-columns:repeat(2,minmax(0,1fr));}
 .reveal .levels li>b{background:var(--c);color:#fff;border-radius:9px;text-align:center;font-family:var(--display);font-size:1.15em;padding:.2em 0;}
 html.reading .levels li{font-size:15px;grid-template-columns:3.6em 1fr;}
 html.reading .scale.mini{grid-template-columns:repeat(2,minmax(0,1fr));}
+/* project rubric: full criteria in small type */
+.tl.tl-sm{margin:.1em 0 .45em;}
+.tl.tl-sm div{font-size:.46em;padding-top:1.9em;}
+.tl.tl-sm::before{top:.75em;}
+.tl.tl-sm div::before{width:.95em;height:.95em;top:.25em;}
+.rubric{gap:1em;}
+.rubric h3{font-size:.56em;margin:0 0 .3em;}
+.reveal .rubric ol{list-style:none;margin:0;padding:0;counter-reset:rb;display:grid;gap:2px;}
+.rubric li{counter-increment:rb;display:grid;grid-template-columns:1.6em 1fr;gap:.4em;align-items:baseline;margin:0;padding:.13em .45em;border-radius:6px;font-size:.44em;line-height:1.28;background:var(--soft);}
+.rubric li::before{content:counter(rb);font-family:var(--display);font-weight:700;color:var(--teal);text-align:right;}
+html.reading .rubric li{font-size:14px;}
+html.reading .rubric h3{font-size:15px;}
+.rb-note{margin-top:.4em !important;font-size:.58em !important;}
+html.reading .rb-note{font-size:14px !important;}
 /* checklist */
 .checks{list-style:none;margin:0;padding:0;display:grid;gap:.45em;}
 .cols .checks li{font-size:.58em;padding:.3em .6em;}
@@ -602,7 +616,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
 <section>
   <p class="kicker">Project · 30 points</p>
   <h2 class="claim">Two or three ways to solve one real problem</h2>
-  <div class="tl">
+  <div class="tl tl-sm">
     <div class="key"><b>Week 8</b>Topic chosen</div>
     <div><b>Weeks 9–10</b>Clinic</div>
     <div class="key"><b>Week 11</b>Proposal</div>
@@ -610,25 +624,44 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="key"><b>Week 14</b>Demo</div>
     <div><b>Week 15</b>Final exam</div>
   </div>
-  <div class="cols">
+  <div class="cols rubric">
     <div>
-      <h3>Proposal</h3>
-      <ul class="checks">
-        <li><span><b>4 techniques</b>, each explained in your own words with a picture</span></li>
-        <li><span><b>2–3 solutions</b> that take different routes — pros and cons</span></li>
-        <li><span>Problem, data and parameters · slides and talk · Q&amp;A</span></li>
-      </ul>
+      <h3>Proposal · week 11 · video + slides</h3>
+      <ol>
+        <li><span><b>Problem</b> — where it comes from, what makes it hard, what your solution will output</span></li>
+        <li><span><b>Data</b> — where the dataset comes from and how it was collected</span></li>
+        <li><span><b>4 techniques</b> — each explained in depth: theory, why it fits here, one example picture</span></li>
+        <li><span><b>Parameter study</b> — every parameter, and how changing it changes the output</span></li>
+        <li><span><b>2–3 solutions</b> — workflow, pros and cons of each</span></li>
+        <li><span><b>Creativity</b> — an original idea, or a strong literature review</span></li>
+        <li><span><b>Slides</b> — 30+ pages, page numbers, at least one picture, no page over 6 lines</span></li>
+        <li><span><b>Slide design</b> — clear pictures and charts, consistent layout, a story that flows</span></li>
+        <li><span><b>Talk</b> — 20+ minutes; you explain, you do not read</span></li>
+        <li><span><b>Q&amp;A</b> — questions from the instructor and classmates</span></li>
+        <li><span><b>On time</b> — video and slides handed in by the deadline</span></li>
+      </ol>
     </div>
     <div>
-      <h3>Demo</h3>
-      <ul class="checks">
-        <li><span><b>Analysis</b> — accuracy, speed, why each solution behaves as it does</span></li>
-        <li><span><b>Live notebook</b> — runs start to finish; you explain every cell</span></li>
-        <li><span>Slides and talk · Q&amp;A · all 13 files of the term handed in</span></li>
-      </ul>
+      <h3>Demo · week 14 · slides + notebook + video</h3>
+      <ol>
+        <li><span><b>Accuracy</b> — a metric that fits the problem, and why; same data for every solution</span></li>
+        <li><span><b>Speed &amp; resources</b> — time, memory or parameter count of every solution</span></li>
+        <li><span><b>Per-solution analysis</b> — what each one got and why, using those numbers</span></li>
+        <li><span><b>Parameter settings</b> — the values each solution used, and why</span></li>
+        <li><span><b>Overall analysis</b> — the solution you pick and why; failure cases and limits</span></li>
+        <li><span><b>Future work</b> — what you would try next, and why</span></li>
+        <li><span><b>Creativity</b> — an original idea, or a strong literature review</span></li>
+        <li><span><b>Notebook + live demo</b> — one file, runs start to finish, every cell explained live</span></li>
+        <li><span><b>Clean code</b> — a section per solution, clear names, no repeated code</span></li>
+        <li><span><b>Slides</b> — 20+ pages, page numbers, at least one picture, no page over 6 lines</span></li>
+        <li><span><b>Slide design</b> — clear pictures and charts, consistent layout, a story that flows</span></li>
+        <li><span><b>Talk</b> — 20+ minutes including the demo</span></li>
+        <li><span><b>Q&amp;A</b> — questions from the instructor and classmates</span></li>
+        <li><span><b>All 13 files</b> — every assignment and project file of the term</span></li>
+      </ol>
     </div>
   </div>
-  <p class="lead" style="margin-top:.5em">Graded on design and analysis, not on a high score — each criterion on the course scale.</p>
+  <p class="lead rb-note">Every criterion uses the course scale. Graded on design and analysis, not on a high score.</p>
 </section>
 
 <!-- 18 · Final exam -->
