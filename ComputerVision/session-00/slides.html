@@ -8,8 +8,8 @@
   CV next-term deck template v1 (2026-09-29) — prototype on session 0.
   Pattern: COMP90086-style reveal.js deck (claim titles · Outline + Learning outcomes up front ·
   Summary + References at the end · live canvases) plus: fragments for step reveals ·
-  .tryit (collapsible answer) · .flashback · .colab button · .src = short academic citation on content slides only (no "Source" label, no internal
-  codes — those stay in the speaker script) ·
+  .tryit (collapsible answer) · .flashback · .colab button · no per-slide citations — sources are on the References slide; direct quotes name their author
+  in the slide itself; internal codes stay in the speaker script ·
   .term key terms with Thai meaning · toolbar bottom-centre, hidden while idle (first · prev · next · last · overview · fullscreen · PDF · ?)
   · ↓/↑ = whole slide skipping fragments · Enter = full screen · overview scrolls/drags sideways · page number
   in every slide footer, so it also prints
@@ -133,6 +133,7 @@ html.reading .pgno{display:none;}
 
 /* outline / outcomes */
 .outline{list-style:none;margin:0;padding:0;counter-reset:o;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6em 1.2em;}
+.outline.one{grid-template-columns:1fr;gap:.4em;}
 .outline li{counter-increment:o;display:flex;gap:.7em;align-items:flex-start;font-size:.82em;background:var(--soft);border-radius:12px;padding:.6em .8em;margin:0;}
 .outline li::before{content:counter(o,decimal-leading-zero);font-family:var(--display);font-weight:700;color:var(--teal);font-size:1.1em;line-height:1.35;}
 .outcomes{list-style:none;margin:0;padding:0;counter-reset:c;}
@@ -335,37 +336,37 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
       <p class="kicker">Session 0 · Orientation</p>
       <h1>Computer<br>Vision</h1>
       <p class="sub">From Pixels to Foundation Models</p>
-      <p class="who"><b>Dr. Wasu Kudisthalert (Neil)</b><br>classes.incortx.com/ComputerVision</p>
+      <p class="who"><b>Dr. Wasu Kudisthalert (Neil)</b><br>wasu.ku@kmitl.ac.th<br>classes.incortx.com/ComputerVision</p>
     </div>
     <canvas id="titleArt" width="720" height="720" aria-hidden="true"></canvas>
   </div>
 </section>
 
-<!-- 2 · Outline -->
+<!-- 2 · Today: outline + outcomes -->
 <section>
   <p class="kicker">Today</p>
-  <h2>Outline</h2>
-  <ol class="outline">
-    <li>What a computer actually sees</li>
-    <li>What vision is used for — and why it is hard</li>
-    <li>A whole vision system on one slide</li>
-    <li>The course map: 8 sessions</li>
-    <li>How you are assessed</li>
-    <li>Form groups — then session 1 starts</li>
-  </ol>
-</section>
-
-<!-- 3 · Learning outcomes (today) -->
-<section>
-  <p class="kicker">Today</p>
-  <h2>Learning outcomes</h2>
-  <p class="lead">By the end of today you can:</p>
-  <ol class="outcomes">
-    <li><b>Explain</b> why an image is an array of numbers, and why that makes vision hard</li>
-    <li><b>Describe</b> the path this course takes from pixels to foundation models</li>
-    <li><b>Explain</b> how each part of your grade is earned</li>
-    <li><b>Join</b> a group and a half (A or B) before session 1 begins</li>
-  </ol>
+  <h2>Outline and learning outcomes</h2>
+  <div class="cols">
+    <div>
+      <h3>Outline</h3>
+      <ol class="outline one">
+        <li>What a computer actually sees</li>
+        <li>What vision is used for — and why it is hard</li>
+        <li>A whole vision system on one slide</li>
+        <li>The course map: 8 sessions</li>
+        <li>How you are assessed</li>
+      </ol>
+    </div>
+    <div>
+      <h3>By the end of today you can</h3>
+      <ol class="outcomes">
+        <li><b>Explain</b> why an image is an array of numbers, and why that makes vision hard</li>
+        <li><b>Describe</b> the path from pixels to foundation models</li>
+        <li><b>Explain</b> how each part of your grade is earned</li>
+        <li><b>Join</b> a group and a half (A or B)</li>
+      </ol>
+    </div>
+  </div>
 </section>
 
 <!-- 4 · Hook: numbers, not objects -->
@@ -374,7 +375,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <h2 class="claim">A computer sees numbers, not objects</h2>
   <div class="pix-wrap">
     <div>
-      <canvas id="pixImg" width="360" height="360" aria-label="12 by 12 grayscale image of the digit 7"></canvas>
+      <canvas id="pixImg" width="360" height="360" aria-label="12 by 12 grayscale image of the letter N"></canvas>
       <p class="pix-readout center">what you see</p>
     </div>
     <div>
@@ -384,12 +385,11 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div>
       <div class="term"><b>image</b><span class="th">ภาพ</span><span class="def">a grid of numbers — here 12 × 12</span></div>
       <div class="term"><b>pixel</b><span class="th">จุดภาพ</span><span class="def">one number: 0 = black … 255 = white</span></div>
-      <div class="tryit"><span class="tag">Try it</span>What is the value at <b>row 2, column 5</b>? Is that pixel dark or bright?
-        <details><summary>Answer</summary>30 — close to 0, so it is dark: part of the top bar of the “7”. Rows and columns count from 0.</details>
+      <div class="tryit"><span class="tag">Try it</span>What is the value at <b>row 5, column 5</b>? Is that pixel dark or bright?
+        <details><summary>Answer</summary>30 — close to 0, so it is dark: part of the diagonal stroke of the “N”. Rows and columns count from 0.</details>
       </div>
     </div>
   </div>
-  <p class="src">Nayar, <i>First Principles of Computer Vision</i> · Torralba et al. (2024), ch. 1</p>
 </section>
 
 <!-- 5 · Vision is everywhere -->
@@ -407,16 +407,15 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card amber"><b>Factories</b>Find defects on a production line</div>
   </div>
   <p class="lead" style="margin-top:.9em">Every one of these starts from the same thing: a grid of numbers.</p>
-  <p class="src">Nayar, <i>First Principles of Computer Vision</i> · Szeliski (2022), ch. 1</p>
 </section>
 
 <!-- 6 · Humans make it look easy -->
 <section>
   <p class="kicker">Why vision is hard</p>
-  <h2 class="claim">Same “7”, new light — every number changes</h2>
+  <h2 class="claim">Same “N”, new light — every number changes</h2>
   <div class="pix-wrap">
     <div>
-      <canvas id="litImg" width="360" height="360" aria-label="the digit 7 under changing light"></canvas>
+      <canvas id="litImg" width="360" height="360" aria-label="the letter N under changing light"></canvas>
       <input class="slider" id="litGain" type="range" min="30" max="115" value="100" aria-label="light level">
       <p class="pix-readout center" id="litOut"></p>
     </div>
@@ -424,12 +423,11 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
       <canvas id="litNum" width="480" height="480" aria-label="the pixel values under changing light"></canvas>
     </div>
     <ul class="small">
-      <li class="fragment">Drag the light: you still read “7”, but <b>all 144 numbers change</b>.</li>
+      <li class="fragment">Drag the light: you still read “N”, but <b>all 144 numbers change</b>.</li>
       <li class="fragment">Light, viewpoint, size and objects in front all change the numbers — not the object.</li>
       <li class="fragment">You handle this without effort; a program has to be <b>taught</b> to.</li>
     </ul>
   </div>
-  <p class="src">Nayar, <i>First Principles of Computer Vision</i> · Torralba et al. (2024), ch. 1 &amp; 3</p>
 </section>
 
 <!-- 7 · 1966 summer project -->
@@ -446,7 +444,6 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
       <div class="card coral fragment"><b>What happened</b>It proved <b>much harder than anybody expected</b>. Sixty years later, this course is what we have learned since.</div>
     </div>
   </div>
-  <p class="src">Quoted in Torralba et al. (2024), §2.1</p>
 </section>
 
 <!-- 8 · A simple vision system -->
@@ -466,7 +463,6 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="st"><b>5 · 3D</b>Height of every point, inferred from the constraints</div>
   </div>
   <div class="flashback fragment" style="margin-top:.9em;border-left-color:var(--teal);background:var(--teal-soft);border-color:#bfe3de"><b style="font-family:var(--display)">Why this course exists</b><br>Every stage is hand-written for this toy world. Real scenes break these rules — so we replace hand rules with <b>learning</b> where we can, and keep <b>geometry</b> where we must.</div>
-  <p class="src">Torralba et al. (2024), §2.2–2.6</p>
 </section>
 
 <!-- 9 · Course map -->
@@ -481,7 +477,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="blk" style="--c:var(--navy)"><h4>Motion</h4><div class="s"><i>8</i>Motion &amp; video</div></div>
   </div>
   <div class="after">
-    <div><b>Weeks 9–14 · Project</b><br>Kick-off in session 8, proposal in week 11, results and live demo in week 14</div>
+    <div><b>Project</b><br>Topic by week 8, proposal in week 11, demo in week 14</div>
     <div><b>Week 15 · Final exam</b><br>Sessions 1–8, hand calculation</div>
   </div>
 </section>
@@ -541,7 +537,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <h2 class="claim">Your grade: 100 points, four parts</h2>
   <div class="gtiles">
     <div class="gtile" style="background:var(--teal)"><span class="lbl">Final</span><span class="num">40</span><span class="det">Week 15 · sessions 1–8 · hand calculation + concepts</span></div>
-    <div class="gtile" style="background:var(--coral)"><span class="lbl">Project</span><span class="num">30</span><span class="det">Proposal + results</span></div>
+    <div class="gtile" style="background:var(--coral)"><span class="lbl">Project</span><span class="num">30</span><span class="det">Proposal + demo</span></div>
     <div class="gtile" style="background:var(--amber)"><span class="lbl">Assignment</span><span class="num">20</span><span class="det">4 presentations</span></div>
     <div class="gtile" style="background:var(--violet)"><span class="lbl">Part.</span><span class="num">10</span><span class="det">Questions + activities</span></div>
   </div>
@@ -607,53 +603,32 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="kicker">Project · 30 points</p>
   <h2 class="claim">Two or three ways to solve one real problem</h2>
   <div class="tl">
-    <div><b>Week 9</b>Kick-off in session 8</div>
-    <div><b>Week 10</b>Clinic + last round</div>
+    <div class="key"><b>Week 8</b>Topic chosen</div>
+    <div><b>Weeks 9–10</b>Clinic</div>
     <div class="key"><b>Week 11</b>Proposal</div>
     <div><b>Weeks 12–13</b>Build and test</div>
-    <div class="key"><b>Week 14</b>Results + demo</div>
+    <div class="key"><b>Week 14</b>Demo</div>
     <div><b>Week 15</b>Final exam</div>
   </div>
   <div class="cols">
-    <ul class="small">
-      <li>Real images or video → <b>2–3 solutions</b> that take different routes</li>
-      <li>Measure <b>accuracy</b> and <b>speed</b>, then pick one and justify it</li>
-      <li>Explain the <b>4 techniques</b> you used, in your own words</li>
-    </ul>
     <div>
-      <div class="card coral" style="margin-bottom:.5em"><b>Graded on design and analysis</b>A weak result explained well beats a strong result you cannot explain.</div>
-      <div class="card"><b>All 13 files of the term</b>Every assignment and project file, handed in — each missing file costs points</div>
-    </div>
-  </div>
-</section>
-
-<!-- 17b · Project grading -->
-<section>
-  <p class="kicker">Project · 30 points · how it is graded</p>
-  <h2 class="claim">Most project points reward thinking, not a high score</h2>
-  <div class="cols">
-    <div>
-      <h3>Proposal · week 11</h3>
+      <h3>Proposal</h3>
       <ul class="checks">
         <li><span><b>4 techniques</b>, each explained in your own words with a picture</span></li>
-        <li><span><b>2–3 solutions</b> — workflow, pros and cons</span></li>
-        <li><span><b>Q&amp;A</b> with the class and the instructor</span></li>
-        <li><span><b>Slides and talk</b> — 30+ slides, 20+ minutes, clear and engaging</span></li>
-        <li><span>Problem, data and parameters · creativity · on time</span></li>
+        <li><span><b>2–3 solutions</b> that take different routes — pros and cons</span></li>
+        <li><span>Problem, data and parameters · slides and talk · Q&amp;A</span></li>
       </ul>
     </div>
     <div>
-      <h3>Results · week 14</h3>
+      <h3>Demo</h3>
       <ul class="checks">
-        <li><span><b>Analysis</b> — metrics, speed, why each solution behaves as it does</span></li>
-        <li><span><b>Notebook + live demo</b> — runs end to end; you explain every cell</span></li>
-        <li><span><b>Q&amp;A</b> with the class and the instructor</span></li>
-        <li><span><b>Slides and talk</b> — 20+ slides, 20+ minutes including the demo</span></li>
-        <li><span>All 13 files of the term · future work · creativity</span></li>
+        <li><span><b>Analysis</b> — accuracy, speed, why each solution behaves as it does</span></li>
+        <li><span><b>Live notebook</b> — runs start to finish; you explain every cell</span></li>
+        <li><span>Slides and talk · Q&amp;A · all 13 files of the term handed in</span></li>
       </ul>
     </div>
   </div>
-  <p class="lead" style="margin-top:.6em">Each criterion is scored on the course scale. Your notebook must run from start to finish in the live demo.</p>
+  <p class="lead" style="margin-top:.5em">Graded on design and analysis, not on a high score — each criterion on the course scale.</p>
 </section>
 
 <!-- 18 · Final exam -->
@@ -706,26 +681,14 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
       <tr><td>5</td><td>4 · Attention, ViT &amp; CLIP</td><td>A · T3</td></tr>
       <tr><td>6</td><td>5 · Local features &amp; matching</td><td>B · T4</td></tr>
       <tr><td>7</td><td>6 · Transforms, cameras, stereo</td><td>A · T5</td></tr>
-      <tr><td>8</td><td>7 · Detection &amp; segmentation</td><td>B · T6</td></tr>
-      <tr><td>9</td><td>8 · Motion &amp; video + project kick-off</td><td>A · T7</td></tr>
+      <tr class="hl"><td>8</td><td>7 · Detection &amp; segmentation · <b>project topic due</b></td><td>B · T6</td></tr>
+      <tr><td>9</td><td>8 · Motion &amp; video + project clinic</td><td>A · T7</td></tr>
       <tr><td>10</td><td>Last presentation round + project clinic</td><td>B · T8</td></tr>
       <tr class="hl"><td>11</td><td>Project 1 — proposal</td><td></td></tr>
       <tr><td>12–13</td><td>Build and test + clinic</td><td></td></tr>
-      <tr class="hl"><td>14</td><td>Project 2 — results + demo</td><td></td></tr>
+      <tr class="hl"><td>14</td><td>Project 2 — demo</td><td></td></tr>
       <tr class="hl"><td>15</td><td>Final exam</td><td></td></tr>
     </table>
-  </div>
-</section>
-
-<!-- 22 · Today -->
-<section>
-  <p class="kicker">Today</p>
-  <h2 class="claim">Before session 1 starts</h2>
-  <div class="cards c4">
-    <div class="card teal fragment"><span class="n">01</span><b>Form a group</b>1–3 people</div>
-    <div class="card violet fragment"><span class="n">02</span><b>Pick a half</b>A or B — equal sizes</div>
-    <div class="card amber fragment"><span class="n">03</span><b>Half A: pick a T1 topic</b>At the end of session 1 — you present next week</div>
-    <div class="card coral fragment"><span class="n">04</span><b>Open Colab</b>Check you can sign in</div>
   </div>
 </section>
 
@@ -849,7 +812,7 @@ function initSliders(){
       el.addEventListener('pointermove',move); el.addEventListener('pointerup',up); el.addEventListener('pointercancel',up); });
   });
 }
-/* title art: the same 12×12 "7", every pixel labelled with its value */
+/* title art: the same 12×12 "N", every pixel labelled with its value */
 function initTitleArt(){
   const cv=document.getElementById('titleArt'); if(!cv) return;
   const ctx=cv.getContext('2d'), N=PIX.length, s=cv.width/N;
@@ -933,7 +896,7 @@ function initReadingBar(){
 function initSwipe(){
   const rv=document.querySelector('.reveal'); let sx=null, sy=0, st=0;
   rv.addEventListener('touchstart',e=>{
-    if(e.touches.length!==1 || e.target.closest('input,canvas,button,a,details,.deckbar,.pop')){ sx=null; return; }
+    if(e.touches.length!==1 || e.target.closest('input,button,a,details,.deckbar,.pop')){ sx=null; return; }
     sx=e.touches[0].clientX; sy=e.touches[0].clientY; st=Date.now();
   },{passive:true});
   rv.addEventListener('touchmove',e=>{ if(sx!==null) e.preventDefault(); },{passive:false});   /* no page bounce while swiping */
@@ -1023,12 +986,11 @@ function initDeckbar(){
 
 /* ---- a tiny 12×12 grayscale image drawn from numbers (slide: a computer sees numbers) ---- */
 const PIX = (()=>{
-  // a dark "7" on a light background, values 0–255
+  // a dark "N" on a light background, values 0–255 (strokes 30, anti-aliased edge 70)
   const N=12, img=[];
   for(let r=0;r<N;r++){ const row=[]; for(let c=0;c<N;c++) row.push(220); img.push(row); }
-  for(let c=2;c<=9;c++){ img[2][c]=30; img[3][c]=40; }
-  const diag=[[4,8],[5,7],[6,7],[7,6],[8,5],[9,5],[10,4]];
-  diag.forEach(([r,c])=>{ img[r][c]=35; img[r][c+1]=70; });
+  for(let r=2;r<=9;r++){ img[r][2]=30; img[r][3]=30; img[r][8]=30; img[r][9]=30; }       // the two uprights
+  for(let r=2;r<=9;r++){ const c=3+Math.round((r-2)*5/7); img[r][c]=30; if(img[r][c+1]===220) img[r][c+1]=70; }  // the diagonal
   return img;
 })();
 
