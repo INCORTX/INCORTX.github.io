@@ -95,18 +95,22 @@ html.reading .pgno{display:none;}
 .th{font-family:var(--font-th);color:var(--teal);font-weight:500;}
 
 /* Try it */
-.tryit{border:1px solid #f1d9a9;border-left:6px solid var(--amber);border-radius:12px;padding:.6em .85em;background:var(--amber-soft);font-size:.72em;}
-.tryit .tag{display:inline-block;font-family:var(--display);font-weight:700;color:#fff;background:var(--amber);border-radius:6px;padding:.05em .45em;letter-spacing:.08em;text-transform:uppercase;font-size:.8em;margin-right:.35em;}
-.tryit details summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:700;color:var(--amber);list-style:none;}
+.tryit{border:1px solid #f1d9a9;border-left:6px solid var(--amber);border-radius:12px;padding:.65em .9em;background:var(--amber-soft);font-size:.72em;line-height:1.45;}
+.tryit .tag{display:table;font-family:var(--display);font-weight:700;color:var(--amber);letter-spacing:.14em;text-transform:uppercase;font-size:.62em;margin-bottom:.45em;}
+.tryit details summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-family:var(--display);font-weight:600;font-size:.85em;color:var(--amber);list-style:none;}
 .tryit details summary::-webkit-details-marker{display:none;}
-.tryit details summary::before{content:"▸";margin-right:.4em;}
-.tryit details[open] summary::before{content:"▾";}
+.tryit details summary::before{content:"";width:0;height:0;border-left:.42em solid currentColor;border-top:.3em solid transparent;border-bottom:.3em solid transparent;margin-right:.5em;transition:transform .15s;}
+.tryit details[open] summary::before{transform:rotate(90deg);}
 
 /* flashback */
-.flashback{border:1px solid #d9d2f6;border-left:6px solid var(--violet);background:var(--violet-soft);border-radius:12px;padding:.55em .85em;font-size:.72em;}
-.flashback::before{content:"↩ Flashback";display:block;font-family:var(--display);font-weight:700;color:var(--violet);letter-spacing:.04em;margin-bottom:.15em;}
+.flashback{border:1px solid #d9d2f6;border-left:6px solid var(--violet);background:var(--violet-soft);border-radius:12px;padding:.65em .9em;font-size:.72em;line-height:1.45;}
+.flashback::before{content:"Flashback";display:block;font-family:var(--display);font-weight:700;color:var(--violet);letter-spacing:.14em;text-transform:uppercase;font-size:.62em;margin-bottom:.4em;}
+/* key idea: same box shape, teal, label from data-label */
+.keyidea{border:1px solid #bfe3de;border-left:6px solid var(--teal);background:var(--teal-soft);border-radius:12px;padding:.65em .9em;font-size:.72em;line-height:1.45;}
+.keyidea::before{content:attr(data-label);display:block;font-family:var(--display);font-weight:700;color:var(--teal);letter-spacing:.14em;text-transform:uppercase;font-size:.62em;margin-bottom:.4em;}
 
 /* Colab button */
+.colab svg{width:.95em;height:.95em;fill:currentColor;}
 .colab{display:inline-flex;align-items:center;gap:.4em;min-height:44px;padding:0 1em;border-radius:999px;background:#f9ab00;color:#1b1f24 !important;font-family:var(--display);font-weight:700;font-size:.62em;text-decoration:none !important;box-shadow:0 4px 12px -6px rgba(201,122,6,.6);}
 
 /* tables */
@@ -342,7 +346,7 @@ html.reading .pix-wrap canvas{max-height:none;}
 html.reading .title-grid{height:auto;}
 /* phone floor: nothing below 13px */
 html.reading .reveal table,html.reading .reveal table.tight{font-size:14px;}
-html.reading .card,html.reading .term,html.reading .tryit,html.reading .flashback,html.reading .pipe .st,html.reading .map .blk,html.reading .tl div,html.reading .checks li,html.reading .after div,html.reading .outline li,html.reading .outcomes li{font-size:15px;}
+html.reading .card,html.reading .term,html.reading .tryit,html.reading .flashback,html.reading .keyidea,html.reading .pipe .st,html.reading .map .blk,html.reading .tl div,html.reading .checks li,html.reading .after div,html.reading .outline li,html.reading .outcomes li{font-size:15px;}
 html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .colab,html.reading .gtile .det,html.reading .half .d{font-size:13px;}
 </style>
 </head>
@@ -483,7 +487,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="ar">→</div>
     <div class="st"><b>5 · 3D</b>Height of every point, inferred from the constraints</div>
   </div>
-  <div class="flashback fragment" style="margin-top:.9em;border-left-color:var(--teal);background:var(--teal-soft);border-color:#bfe3de"><b style="font-family:var(--display)">Why this course exists</b><br>Every stage is hand-written for this toy world. Real scenes break these rules — so we replace hand rules with <b>learning</b> where we can, and keep <b>geometry</b> where we must.</div>
+  <div class="keyidea fragment" data-label="Why this course exists" style="margin-top:.9em">Every stage is hand-written for this toy world. Real scenes break these rules — so we replace hand rules with <b>learning</b> where we can, and keep <b>geometry</b> where we must.</div>
 </section>
 
 <!-- 9 · Course map -->
@@ -498,7 +502,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="blk" style="--c:var(--navy)"><h4>Motion</h4><div class="s"><i>9</i>Motion &amp; video</div></div>
   </div>
   <div class="after">
-    <div><b>Project</b><br>Topic by week 8, problem pitch in week 9, proposal in week 11, demo in week 14</div>
+    <div><b>Project</b><br>Topic by week 8, short problem pitch in week 9, proposal in week 11, demo in week 14</div>
     <div><b>Week 15 · Final exam</b><br>Sessions 2–9, hand calculation</div>
   </div>
 </section>
@@ -546,8 +550,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <div class="cols" style="margin-top:1em">
     <div class="flashback">When an idea from an earlier session comes back, a flashback points to where you first met it.</div>
     <div class="tryit" style="background:#fff;border-color:var(--line);border-left-color:#f9ab00">
-      <span class="colab">▶ Open in Colab · §A</span>
-      <p style="margin:.5em 0 0">One <code>lab.ipynb</code> per session, one section per sub-topic. Runs on free Colab.</p>
+      <span class="colab"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part A</span>
+      <p style="margin:.5em 0 0">One <code>lab.ipynb</code> per session. The button under each sub-topic opens that same notebook at its part — A, B, C or D. Runs on free Colab.</p>
     </div>
   </div>
 </section>
@@ -625,14 +629,14 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <h2 class="claim">Two or three ways to solve one real problem</h2>
   <div class="tl tl-sm tl7">
     <div class="key"><b>Week 8</b>Topic chosen</div>
-    <div class="key"><b>Week 9</b>Problem pitch</div>
+    <div class="key"><b>Week 9</b>Short problem pitch</div>
     <div><b>Week 10</b>Clinic</div>
     <div class="key"><b>Week 11</b>Proposal</div>
     <div><b>Weeks 12–13</b>Build and test</div>
     <div class="key"><b>Week 14</b>Demo</div>
     <div><b>Week 15</b>Final exam</div>
   </div>
-  <div class="pitch"><b>Week 9 · problem pitch</b> — short, then again in the proposal: <span><b>Input</b> what goes in</span><span><b>Output</b> what comes out</span><span><b>Problem</b> what must be solved</span><span><b>Challenge</b> what makes it hard</span></div>
+  <div class="pitch"><b>Week 9 · short problem pitch</b> — a few minutes per group, then again in the proposal: <span><b>Input</b> what goes in</span><span><b>Output</b> what comes out</span><span><b>Problem</b> what must be solved</span><span><b>Challenge</b> what makes it hard</span></div>
   <div class="cols rubric">
     <div>
       <h3>Proposal · week 11 · video + slides</h3>
@@ -723,7 +727,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
       <tr><td>6</td><td>6 · Local features &amp; matching</td><td>B · T5</td></tr>
       <tr><td>7</td><td>7 · Transforms, cameras, stereo</td><td>A · T6</td></tr>
       <tr class="hl"><td>8</td><td>8 · Detection &amp; segmentation · <b>project topic due</b></td><td>B · T7</td></tr>
-      <tr class="hl"><td>9</td><td>9 · Motion &amp; video · <b>project problem pitch</b></td><td>A · T8</td></tr>
+      <tr class="hl"><td>9</td><td>9 · Motion &amp; video · <b>short problem pitch</b></td><td>A · T8</td></tr>
       <tr><td>10</td><td>Last presentation round + project clinic</td><td>B · T9</td></tr>
       <tr class="hl"><td>11</td><td>Project 1 — proposal</td><td></td></tr>
       <tr><td>12–13</td><td>Build and test + clinic</td><td></td></tr>
