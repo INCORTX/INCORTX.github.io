@@ -201,6 +201,13 @@ html.reading .scale{grid-template-columns:repeat(2,minmax(0,1fr));}
 html.reading .levels li{font-size:15px;grid-template-columns:3.6em 1fr;}
 html.reading .scale.mini{grid-template-columns:repeat(2,minmax(0,1fr));}
 /* project rubric: full criteria in small type */
+.tl.tl7{grid-template-columns:repeat(7,minmax(0,1fr));}
+.pitch{display:flex;flex-wrap:wrap;align-items:center;gap:.3em .5em;background:var(--coral-soft);border:1px solid #f3c9c0;border-radius:10px;padding:.3em .6em;margin:0 0 .45em;font-size:.44em;line-height:1.3;}
+.pitch>b{font-family:var(--display);color:var(--coral);}
+.pitch span{background:#fff;border-radius:999px;padding:.1em .6em;border:1px solid #f3c9c0;}
+html.reading .pitch{font-size:14px;}
+html.reading .tl.tl7{grid-template-columns:repeat(3,minmax(0,1fr));}
+
 .tl.tl-sm{margin:.1em 0 .45em;}
 .tl.tl-sm div{font-size:.46em;padding-top:1.9em;}
 .tl.tl-sm::before{top:.75em;}
@@ -491,7 +498,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="blk" style="--c:var(--navy)"><h4>Motion</h4><div class="s"><i>9</i>Motion &amp; video</div></div>
   </div>
   <div class="after">
-    <div><b>Project</b><br>Topic by week 8, proposal in week 11, demo in week 14</div>
+    <div><b>Project</b><br>Topic by week 8, problem pitch in week 9, proposal in week 11, demo in week 14</div>
     <div><b>Week 15 · Final exam</b><br>Sessions 2–9, hand calculation</div>
   </div>
 </section>
@@ -614,16 +621,18 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
 
 <!-- 17 · Project -->
 <section>
-  <p class="kicker">Project · 30 points</p>
+  <p class="kicker">Project · 30 points · every criterion on the grading scale</p>
   <h2 class="claim">Two or three ways to solve one real problem</h2>
-  <div class="tl tl-sm">
+  <div class="tl tl-sm tl7">
     <div class="key"><b>Week 8</b>Topic chosen</div>
-    <div><b>Weeks 9–10</b>Clinic</div>
+    <div class="key"><b>Week 9</b>Problem pitch</div>
+    <div><b>Week 10</b>Clinic</div>
     <div class="key"><b>Week 11</b>Proposal</div>
     <div><b>Weeks 12–13</b>Build and test</div>
     <div class="key"><b>Week 14</b>Demo</div>
     <div><b>Week 15</b>Final exam</div>
   </div>
+  <div class="pitch"><b>Week 9 · problem pitch</b> — a short talk per group: <span><b>Input</b> what goes in</span><span><b>Output</b> what comes out</span><span><b>Problem</b> what must be solved</span><span><b>Challenge</b> what makes it hard</span></div>
   <div class="cols rubric">
     <div>
       <h3>Proposal · week 11 · video + slides</h3>
@@ -661,7 +670,6 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
       </ol>
     </div>
   </div>
-  <p class="lead rb-note">Every criterion is marked on the grading scale. Graded on design and analysis, not on a high score.</p>
 </section>
 
 <!-- 18 · Final exam -->
@@ -715,7 +723,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
       <tr><td>6</td><td>6 · Local features &amp; matching</td><td>B · T5</td></tr>
       <tr><td>7</td><td>7 · Transforms, cameras, stereo</td><td>A · T6</td></tr>
       <tr class="hl"><td>8</td><td>8 · Detection &amp; segmentation · <b>project topic due</b></td><td>B · T7</td></tr>
-      <tr><td>9</td><td>9 · Motion &amp; video + project clinic</td><td>A · T8</td></tr>
+      <tr class="hl"><td>9</td><td>9 · Motion &amp; video · <b>project problem pitch</b></td><td>A · T8</td></tr>
       <tr><td>10</td><td>Last presentation round + project clinic</td><td>B · T9</td></tr>
       <tr class="hl"><td>11</td><td>Project 1 — proposal</td><td></td></tr>
       <tr><td>12–13</td><td>Build and test + clinic</td><td></td></tr>
