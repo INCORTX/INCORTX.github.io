@@ -57,7 +57,11 @@ html,body{background:var(--bg);}
 .kicker{display:flex;align-items:center;gap:.5em;font-family:var(--display);font-size:.5em;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin:0 0 .5em;}
 .kicker::before{content:"";width:1.8em;height:3px;border-radius:2px;background:var(--teal);}
 .reveal h2.claim{max-width:26em;}
-.lead{font-size:.8em;color:var(--muted);margin:-.2em 0 .8em;max-width:40em;}
+.lead{font-size:.66em;line-height:1.5;color:#46505e;margin:-.15em 0 .8em;max-width:52em;text-wrap:pretty;}
+/* closing note under the content: small, with the kicker's teal rule in front */
+.takeaway{display:flex;align-items:baseline;gap:.7em;margin:.9em 0 0;font-size:.6em;line-height:1.5;font-weight:500;color:var(--muted);max-width:60em;text-wrap:pretty;}
+.takeaway::before{content:"";flex:0 0 1.8em;height:3px;border-radius:2px;background:var(--teal);transform:translateY(-.3em);}
+html.reading .lead,html.reading .takeaway{font-size:15px;}
 
 /* layout helpers */
 .cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.4em;align-items:start;}
@@ -433,7 +437,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card coral"><b>Documents</b>Read text from photos and scans (OCR)</div>
     <div class="card amber"><b>Factories</b>Find defects on a production line</div>
   </div>
-  <p class="lead" style="margin-top:.9em">Every one of these starts from the same thing: a grid of numbers.</p>
+  <p class="takeaway">Every one of these starts from the same thing: a grid of numbers.</p>
 </section>
 
 <!-- 6 · Humans make it look easy -->
@@ -568,7 +572,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="gtile" style="background:var(--amber)"><span class="lbl">Assignment</span><span class="num">20</span><span class="det">4 presentations</span></div>
     <div class="gtile" style="background:var(--violet)"><span class="lbl">Part.</span><span class="num">10</span><span class="det">Questions + activities</span></div>
   </div>
-  <p class="lead" style="margin:0 0 .35em">No midterm. No bonus points. Every criterion of the assignment, the project and participation is marked on the same <b>grading scale</b>:</p>
+  <p class="lead" style="margin:0 0 .45em">No midterm. No bonus points. Every criterion of the assignment, the project and participation is marked on the same <b>grading scale</b>:</p>
   <div class="scale mini" aria-label="The grading scale"><div style="--c:var(--teal)"><b>100%</b>Excellent</div><div style="--c:#3d8f86"><b>75%</b>Good</div><div style="--c:var(--amber)"><b>50%</b>Satisfactory</div><div style="--c:var(--coral)"><b>25%</b>Needs work</div><div style="--c:#98a2b3"><b>0%</b>Missing</div></div>
 </section>
 
@@ -601,7 +605,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <li><span><b>Polished slides</b> — pictures, equations, examples, little text, a clear flow, page numbers on every slide, and a title slide with names, student IDs and topic</span></li>
     <li><span><b>On time</b> — video and slides one day before (timestamp)</span></li>
   </ol>
-  <p class="lead" style="margin-top:.7em">Each criterion is marked on the grading scale. Criteria 2, 3 and 5 are why copying an AI answer does not work.</p>
+  <p class="takeaway">Each criterion is marked on the grading scale. Criteria 2, 3 and 5 are why copying an AI answer does not work.</p>
 </section>
 
 <!-- 16 · First turns -->
@@ -711,7 +715,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <li style="--c:var(--coral)"><b>25%</b><span><b>Needs work</b> — the answer is already on the slides</span></li>
     <li style="--c:#98a2b3"><b>0%</b><span><b>Missing</b> — off topic, or no question</span></li>
   </ul>
-  <p class="lead" style="margin-top:.6em">Questions alone rarely fill all 10 points — volunteering answers and class activities count too.</p>
+  <p class="takeaway">Questions alone rarely fill all 10 points — volunteering answers and class activities count too.</p>
 </section>
 
 <!-- 20 · Schedule -->
@@ -756,13 +760,13 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
 <section>
   <p class="kicker">Next · right after the break</p>
   <h2 class="claim">Session 2: where does an image come from?</h2>
-  <p class="lead" style="font-size:.9em;color:var(--body)">Session 2 follows light from the scene, through a lens, onto a sensor — and asks what is lost on the way.</p>
+  <p class="lead" style="font-size:.78em">Session 2 follows light from the scene, through a lens, onto a sensor — and asks what is lost on the way.</p>
   <div class="cards">
     <div class="card teal"><b>Pinhole projection</b>Why far things look small</div>
     <div class="card violet"><b>Lenses</b>Focal length and field of view</div>
     <div class="card amber"><b>Sensors &amp; colour</b>How light becomes those numbers</div>
   </div>
-  <p class="lead" style="margin-top:.9em">At the end of session 2, half A takes its first topic from set T2.</p>
+  <p class="takeaway">At the end of session 2, half A takes its first topic from set T2.</p>
 </section>
 
 <!-- 25 · References -->
