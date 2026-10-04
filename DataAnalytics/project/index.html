@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" style="color-scheme: dark;">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course Project | Data Analytics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg-void:#050811;--bg-deep:#0a101f;--text-primary:#f8fafc;--text-muted:#94a3b8;
+--glass-bg:rgba(15,23,42,.45);--glass-border:rgba(255,255,255,.08);--teal:#2dd4bf}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg-void);
+color:var(--text-primary);line-height:1.65;
+background-image:radial-gradient(circle at 15%% 0%%,rgba(13,148,136,.16),transparent 45%%),
+radial-gradient(circle at 85%% 100%%,rgba(76,29,149,.18),transparent 45%%);
+background-attachment:fixed;min-height:100vh}
+.wrap{max-width:900px;margin:0 auto;padding:4rem 1.5rem 5rem}
+.back{color:var(--text-muted);text-decoration:none;font-size:.85rem;letter-spacing:.06em;
+text-transform:uppercase}
+.back:hover{color:var(--teal)}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,6vw,3.6rem);font-weight:600;
+margin:1.6rem 0 .4rem;letter-spacing:-.01em}
+.lede{color:var(--text-muted);max-width:60ch;margin-bottom:.9rem}
+.note{background:var(--glass-bg);border:1px solid var(--glass-border);border-left:2px solid var(--teal);
+border-radius:8px;padding:.9rem 1.1rem;color:var(--text-muted);font-size:.9rem;margin:2rem 0 2.6rem}
+.note b{color:var(--text-primary);font-weight:600}
+.session{display:flex;gap:1.4rem;background:var(--glass-bg);border:1px solid var(--glass-border);
+border-radius:14px;padding:1.5rem 1.6rem;margin-bottom:1rem;backdrop-filter:blur(12px)}
+.session.pending{opacity:.5}
+.num{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--teal);
+line-height:1;min-width:2.2rem;padding-top:.2rem}
+.session.pending .num{color:var(--text-muted)}
+h2{font-size:1.12rem;font-weight:600;margin-bottom:.35rem}
+.desc{color:var(--text-muted);font-size:.92rem}
+.topics{color:var(--text-muted);font-size:.78rem;opacity:.75;margin-top:.5rem;letter-spacing:.02em}
+.links{margin-top:1rem;display:flex;gap:.6rem;flex-wrap:wrap}
+.btn{display:inline-block;padding:.45rem 1rem;border-radius:999px;font-size:.82rem;font-weight:500;
+text-decoration:none;border:1px solid var(--glass-border);color:var(--text-primary);
+transition:border-color .2s,transform .2s}
+.btn:hover{border-color:var(--teal);transform:translateY(-1px)}
+.btn.primary{background:rgba(45,212,191,.12);border-color:rgba(45,212,191,.35);color:var(--teal)}
+.btn.quiet{opacity:.6;font-size:.78rem}
+.soon{font-size:.8rem;color:var(--text-muted);font-style:italic}
+footer{margin-top:3.5rem;padding-top:1.6rem;border-top:1px solid var(--glass-border);
+color:var(--text-muted);font-size:.8rem}
+.lect{color:var(--teal);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;margin:0 0 .45rem}
+@media(max-width:560px){.session{flex-direction:column;gap:.6rem}.num{padding-top:0}}
+
+.wrap{max-width:860px}
+section{background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:14px;
+padding:1.6rem 1.8rem;margin-bottom:1rem;backdrop-filter:blur(12px)}
+section h2{display:flex;align-items:baseline;gap:.7rem;font-size:1.12rem;margin-bottom:.9rem}
+section h3{font-size:1rem;margin:1.4rem 0 .6rem}
+.sn{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--teal)}
+section p,section li{color:var(--text-muted);font-size:.94rem}
+section p{margin:.7rem 0}
+section b,section strong{color:var(--text-primary);font-weight:600}
+section ul{margin:.6rem 0 .6rem 1.2rem}
+section li{margin:.3rem 0}
+.goal{border-left:2px solid var(--teal);background:rgba(45,212,191,.07);border-radius:0 10px 10px 0;
+padding:1rem 1.2rem;margin:1.4rem 0 1.6rem;color:var(--text-muted)}
+.goal b{color:var(--text-primary)}
+.grade{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.6rem;margin:1.2rem 0 .4rem}
+.grade div{background:rgba(255,255,255,.04);border:1px solid var(--glass-border);border-radius:9px;
+padding:.65rem .8rem;font-size:.84rem;color:var(--text-muted)}
+.grade div.me{border-color:rgba(45,212,191,.45);background:rgba(45,212,191,.08)}
+.grade b{display:block;font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--teal);line-height:1.1}
+.split{color:var(--text-muted);font-size:.86rem;margin-bottom:1.6rem}
+pre{background:rgba(0,0,0,.35);border:1px solid var(--glass-border);border-radius:8px;padding:.9rem 1rem;
+white-space:pre-wrap;font-size:.84rem;color:var(--text-muted);margin:.8rem 0}
+.spec{border:1px solid rgba(251,191,36,.35);background:rgba(251,191,36,.07);color:#fcd34d;border-radius:8px;
+padding:.55rem .85rem;font-size:.86rem;font-weight:500;margin:.4rem 0 .8rem}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th,td{padding:.6rem .7rem;border-bottom:1px solid var(--glass-border);vertical-align:top;text-align:left;color:var(--text-muted)}
+th{color:var(--text-primary);font-weight:600;font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;
+border-bottom-color:rgba(45,212,191,.3)}
+td.id{width:3.2rem;color:var(--teal);font-weight:700;font-variant-numeric:tabular-nums}
+td b{color:var(--text-primary)}
+.d{color:var(--text-muted)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+code{background:rgba(255,255,255,.07);padding:.1rem .35rem;border-radius:4px;font-size:.86em}
+@media(max-width:640px){.two{grid-template-columns:1fr}section{padding:1.2rem}}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="../">&larr; Data Analytics</a>
+    <h1>Course Project</h1>
+    <p class="lede">Same group as your assignments &mdash; three or four people. Two presentations: a
+    proposal, then the results with the code run live.</p>
+
+    <div class="grade"><div><b>20</b>Lab</div><div><b>20</b>Assignments</div><div class="me"><b>20</b>Project</div><div><b>40</b>Final exam</div></div>
+    <p class="split">The project is <b>20 of the course&rsquo;s 100</b>: proposal <b>10</b> + results, code
+    &amp; demo <b>10</b>. It does not replace the final exam. How the points split across the items below
+    will be announced.</p>
+
+    <div class="goal">&#127919; <b>What the project is graded on:</b> experiment design, how you evaluate
+    what you built, your analysis, and your ideas and creativity &mdash; <b>not on how good the numbers turn
+    out.</b> A solution that scores poorly but is compared well and explained is worth more than a pretty
+    number nobody can trace.</div>
+
+    <section><h2><span class="sn">01</span>The task</h2>
+    <p>Pick <b>one real dataset</b>, propose <b>two or three solutions that take different routes</b>,
+    actually run every one of them, measure on both axes, and pick the best trade-off:</p>
+    <pre>real data &rarr; EDA + preparation &rarr; solution A / B / C (tree-based &middot; regression &middot; clustering &middot; neural network &hellip;) &rarr; accuracy + speed / resources &rarr; pick the best trade-off</pre>
+    <p><b>Must have:</b></p>
+    <ul>
+      <li><b>Four techniques</b> in use &mdash; from the course or from the literature, but <b>every one
+      explained in full, in your own words</b>: the theory &middot; what it does for this project &middot; an
+      example figure (e.g. &ldquo;median imputation because income is right-skewed&rdquo;, not &ldquo;because the
+      sample code had it&rdquo;)</li>
+      <li><b>Two or three solutions</b> &mdash; each with its own workflow, plus pros and cons</li>
+      <li><b>Measured on two axes</b> &mdash; accuracy (a metric that fits the task, the same one for every
+      solution on the same data, with a baseline beside it) and speed / resources (time, memory or parameter
+      count, <b>as numbers</b>)</li>
+      <li><b>Results need not be good</b> &mdash; the points are for the idea, the comparison, and the
+      analysis of why things came out the way they did</li>
+    </ul>
+    <p><b>Data you can use</b> &mdash; collect your own, or an open dataset: open government data
+    (data.go.th) &middot; the UCI Machine Learning Repository &middot; World Bank / Our World in Data &middot; air
+    quality, traffic or energy feeds &middot; sales or service logs you have permission to use &middot; a survey or
+    sensor log your group collects. <b>Not one of the topics from the session notebooks.</b></p>
+    </section>
+
+    <section><h2><span class="sn">02</span>Rubric</h2>
+    <h3>2.1 Proposal &mdash; 10 points</h3>
+    <div class="spec">Slides 30+ pages &middot; page numbers on every slide &middot; 20+ minutes &middot; submit clip + slide deck</div>
+    <table><tr><th>#</th><th>Criterion</th></tr>
+<tr><td class="id">P1</td><td><b>Why this problem</b> <span class="d">&mdash; where it comes from and what makes it hard · what the analysis will output, and who would use it</span></td></tr>
+<tr><td class="id">P2</td><td><b>Dataset</b> <span class="d">&mdash; where it comes from and how it was collected · what one row is · how many rows, and what is wrong with them</span></td></tr>
+<tr><td class="id">P3</td><td><b>Four techniques</b> <span class="d">&mdash; from the course or from the literature &mdash; but every one explained in full, in your own words: the theory · what it does for this project · an example figure</span></td></tr>
+<tr><td class="id">P4</td><td><b>Parameter study</b> <span class="d">&mdash; every parameter and the value you plan to use · how changing each one would move the output</span></td></tr>
+<tr><td class="id">P5</td><td><b>Two or three solutions</b> <span class="d">&mdash; workflow + pros and cons of each &mdash; two are required, a third is welcome</span></td></tr>
+<tr><td class="id">P6</td><td><b>Creativity</b> <span class="d">&mdash; an out-of-the-box idea, a strong concept, or a wide and interesting literature survey (any one)</span></td></tr>
+<tr><td class="id">P7</td><td><b>Slides</b> <span class="d">&mdash; <b>30+ pages</b> · page numbers on every slide · at least one image · no slide over 6 lines</span></td></tr>
+<tr><td class="id">P8</td><td><b>Slide design</b> <span class="d">&mdash; attractive, engaging and easy to follow: clear figures and charts · a consistent layout and colour scheme · a storyline that holds attention</span></td></tr>
+<tr><td class="id">P9</td><td><b>Delivery</b> <span class="d">&mdash; <b>20+ minutes</b> · explained, not read off the slides</span></td></tr>
+<tr><td class="id">P10</td><td><b>Q&amp;A</b> <span class="d">&mdash; questions from the instructor and classmates</span></td></tr>
+<tr><td class="id">P11</td><td><b>Submission</b> <span class="d">&mdash; clip + slide deck, on time</span></td></tr>
+    </table>
+
+    <h3>2.2 Results, code &amp; demo &mdash; 10 points</h3>
+    <div class="spec">Slides 20+ pages &middot; page numbers on every slide &middot; 20+ minutes including a live run of the notebook &middot; submit slide deck + .ipynb + clip</div>
+    <table><tr><th>#</th><th>Criterion</th></tr>
+<tr><td class="id">C1</td><td><b>Accuracy</b> <span class="d">&mdash; a metric that fits the task, and why · every solution measured with that metric on the same data · a baseline beside it</span></td></tr>
+<tr><td class="id">C2</td><td><b>Speed / resources</b> <span class="d">&mdash; training and prediction time, memory or parameter count for every solution &mdash; as numbers</span></td></tr>
+<tr><td class="id">C3</td><td><b>Analysis per solution</b> <span class="d">&mdash; what each solution got and why, from the numbers in C1 + C2</span></td></tr>
+<tr><td class="id">C4</td><td><b>Parameter setting</b> <span class="d">&mdash; the parameter values actually used for each solution, and why you chose them</span></td></tr>
+<tr><td class="id">C5</td><td><b>Overall analysis</b> <span class="d">&mdash; the final choice with reasons on both axes · where the whole project breaks or is limited</span></td></tr>
+<tr><td class="id">C6</td><td><b>Future work</b> <span class="d">&mdash; what you would try next, and why</span></td></tr>
+<tr><td class="id">C7</td><td><b>Creativity</b> <span class="d">&mdash; an out-of-the-box idea, a strong concept, or a wide and interesting literature survey (any one)</span></td></tr>
+<tr><td class="id">C8</td><td><b>Notebook + live demo</b> <span class="d">&mdash; every experiment in one file that runs end to end · <b>a live demo explaining every cell</b> · cells chain into the full experiment for every solution, no dead cells · <b>does not run = nothing for this item</b></span></td></tr>
+<tr><td class="id">C9</td><td><b>Clean notebook</b> <span class="d">&mdash; a section per solution with headings · meaningful variable / function names · no duplicated code</span></td></tr>
+<tr><td class="id">C10</td><td><b>Slides</b> <span class="d">&mdash; <b>20+ pages</b> · page numbers on every slide · at least one image · no slide over 6 lines</span></td></tr>
+<tr><td class="id">C11</td><td><b>Slide design</b> <span class="d">&mdash; attractive, engaging and easy to follow: clear figures and charts · a consistent layout and colour scheme · a storyline that holds attention</span></td></tr>
+<tr><td class="id">C12</td><td><b>Delivery</b> <span class="d">&mdash; <b>20+ minutes including the demo</b> · explained, not read</span></td></tr>
+<tr><td class="id">C13</td><td><b>Q&amp;A</b> <span class="d">&mdash; questions from the instructor and classmates</span></td></tr>
+<tr><td class="id">C14</td><td><b>Everything submitted</b> <span class="d">&mdash; proposal clip + slide PDF, and results clip + slide PDF + notebook + data + README &mdash; files, on time</span></td></tr>
+    </table>
+    <p><b>Group score</b> &mdash; everyone in the group gets the same points, Q&amp;A included; the instructor
+    may ask anyone in the group, so <b>everyone must understand the group&rsquo;s code and results</b>.<br>
+    <b>Running code is not a score</b> &mdash; if it doesn&rsquo;t run you can&rsquo;t submit (does not run = nothing
+    on C8). The points are for explaining what every cell does and reading your own results.</p>
+    </section>
+
+    <section><h2><span class="sn">03</span>Sample Q&amp;A &mdash; prepare for these</h2>
+    <div class="two">
+      <div><b>Proposal session</b><ul>
+        <li>Why these four techniques &mdash; and where did each one come from (which session, which paper)?</li>
+        <li>What really separates solution A from B? If they tie, which do you pick?</li>
+        <li>What about this dataset needs care before you use it?</li>
+      </ul></div>
+      <div><b>Results session</b><ul>
+        <li>What does this cell do? If you delete it, what changes?</li>
+        <li>Why this <code>max_depth</code> / k / learning rate / number of epochs?</li>
+        <li>Which cell produced the number on this slide?</li>
+        <li>Double this parameter &mdash; which way does the result move, and why?</li>
+        <li>Why wasn&rsquo;t the more accurate solution the one you chose (or the other way round)?</li>
+      </ul></div>
+    </div>
+    </section>
+
+    <section><h2><span class="sn">04</span>What to submit</h2>
+    <table><tr><th>Session</th><th>Files</th></tr>
+      <tr><td>Proposal</td><td>presentation clip + slide deck (PDF)</td></tr>
+      <tr><td>Results</td><td>slide deck (PDF) + one <code>.ipynb</code> with every experiment + presentation clip</td></tr>
+    </table>
+    <p>Also for the results session: the data &mdash; the actual files, or a link / download script that
+    yields the same set &middot; a short README &mdash; how to run it, and who did what. <b>Files, not links</b>,
+    the same rule as every assignment.</p>
+    </section>
+
+    <section><h2><span class="sn">05</span>AI and attribution</h2>
+    <p>You may use AI to help write code, <b>but you must understand every cell you submit</b> &mdash; the
+    demo (C8) and the Q&amp;A (C13) are where that is checked. If you use a pretrained model or borrow code
+    or data, cite the source on the slides and in the README (no citation = treated as copying).</p>
+    </section>
+
+    <footer>INCORTX Research Lab &middot; Data Analytics &middot; Project brief &middot; the same items as the
+    Computer Vision and Signal Processing projects; only the domain differs</footer>
+  </div>
+</body>
+</html>
