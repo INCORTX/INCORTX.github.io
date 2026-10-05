@@ -78,54 +78,79 @@ margin-bottom:.25rem}
 .cta{display:flex;gap:.6rem;flex-wrap:wrap;margin:1.2rem 0 0}
 @media(max-width:640px){section{padding:1.1rem}table{display:block;overflow-x:auto}}
 
+.wrap{max-width:780px}
+strong,b{font-weight:600}
+h2.plain{font-size:1.25rem;margin:2.4rem 0 .8rem;padding-top:1.4rem;border-top:1px solid var(--line)}
+.cta{margin-top:2rem}
+
+.cycle{list-style:none;margin:1.6rem 0 0;padding:0;border-left:2px solid var(--line)}
+.cycle li{position:relative;padding:0 0 1.5rem 1.6rem}
+.cycle li::before{content:counter(step);counter-increment:step;position:absolute;left:-.95rem;top:0;
+width:1.7rem;height:1.7rem;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;
+font-size:.85rem;display:flex;align-items:center;justify-content:center}
+.cycle{counter-reset:step}
+.cycle .when{display:block;font-weight:700;margin-bottom:.15rem}
+.cycle p{margin:0;color:var(--ink)}
+.cycle .due{display:inline-block;margin-top:.45rem;font-size:.86rem;font-weight:600;color:var(--accent);
+background:var(--accent-bg);border-radius:6px;padding:.15rem .55rem}
+.chain{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.45rem}
+.chain span{font-size:.8rem;border:1px solid var(--line);border-radius:6px;padding:.05rem .45rem;color:var(--muted)}
+.files{list-style:none;margin:.4rem 0 0;padding:0}
+.files li{display:flex;justify-content:space-between;gap:1rem;padding:.6rem 0;border-bottom:1px solid var(--line)}
+.files li span:last-child{color:var(--muted);font-size:.92rem;text-align:right}
+.fname{margin:1.4rem 0 .4rem;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:1.02rem;
+overflow-wrap:anywhere}
+.fname span{border-bottom:3px solid var(--accent-bg);padding:0 .05rem}
+.parts{display:flex;flex-wrap:wrap;gap:.3rem 1.1rem;font-size:.86rem;color:var(--muted);margin-bottom:1rem}
+.parts b{color:var(--ink);font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:600}
+.warn{border-left:3px solid var(--amber);background:var(--amber-bg);padding:.7rem 1rem;border-radius:0 8px 8px 0;
+font-size:.95rem}
+.marked{list-style:none;margin:.4rem 0 0;padding:0;columns:2 260px;column-gap:1.6rem}
+.marked li{break-inside:avoid;padding:.35rem 0;display:flex;gap:.6rem}
+.marked li span{color:var(--accent);font-weight:700;min-width:1.2rem}
+
 </style>
 </head>
 <body>
   <div class="wrap">
     <a class="back" href="../">&larr; Data Analytics</a>
     <h1>Every Assignment, Step by Step</h1>
-    <p class="lede">The same cycle runs for all six assignments. This page is everything you need each
-    week; the details are on <a href="../rules/">Rules &amp; Marking</a>.</p>
+    <p class="lede">The same cycle, six times. Everything you need each week is on this page.</p>
 
-    <section><h2><span class="sn">01</span>One cycle</h2>
-    <div class="steps">
-      <div><b class="k">In session N</b>45-minute demo, then <b>your hour</b> on your group&rsquo;s topic:
-      Question &rarr; EDA &rarr; Insight &rarr; Issue &rarr; Solution &rarr; Metric. Hand in the notebook as it
-      stands when the hour ends.</div>
-      <div><b class="k">At home</b>Finish the notebook, make <b>10+ slides</b>, record a <b>5+ minute
-      video in which every member speaks</b>, write a README. Hand in all four files <b>two days before
-      session N+1</b>.</div>
-      <div><b class="k">Start of session N+1</b><b>Two representatives</b> present for four minutes from
-      the notebook you handed in &mdash; no slides &mdash; then take questions about your code and your
-      work.</div>
-    </div>
-    <p><em>Session 1 has no presentation hour, so its work block is 120 minutes. Assignment 6 is presented
-    briefly at the end of session 6 itself, and handed in like the others.</em></p>
-    </section>
+    <ol class="cycle">
+      <li><span class="when">In session N</span>
+        <p>Watch the 45-minute demo, then spend an hour on your group&rsquo;s topic. Hand in the notebook as
+        it is when the hour ends.</p>
+        <div class="chain"><span>Question</span><span>EDA</span><span>Insight</span><span>Issue</span><span>Solution</span><span>Metric</span></div></li>
+      <li><span class="when">At home</span>
+        <p>Finish the notebook, make the slides, record the video &mdash; every member speaks &mdash; and
+        write a README.</p>
+        <span class="due">Due two days before session N+1</span></li>
+      <li><span class="when">Start of session N+1</span>
+        <p>Two of you present the notebook for four minutes, then answer questions.</p></li>
+    </ol>
+    <p><em>Session 1 has a 120-minute work block and nothing to present. Assignment 6 is presented briefly
+    at the end of session 6.</em></p>
 
-    <section><h2><span class="sn">02</span>Hand in four files, named by the rule</h2>
-    <table><tr><th>File</th><th>Format</th></tr>
-      <tr><td>Notebook</td><td><code>.ipynb</code> &mdash; in Colab: File &rarr; Download &rarr; .ipynb</td></tr>
-      <tr><td>Video, 5+ minutes</td><td><code>.mp4</code> (or <code>.mov</code>)</td></tr>
-      <tr><td>Slides, 10+ pages</td><td><code>.pdf</code> or <code>.pptx</code></td></tr>
-      <tr><td>README</td><td><code>.md</code> or <code>.txt</code> &mdash; data source, anything borrowed, where you used AI</td></tr>
-    </table>
-    <p><b>Name each file</b> <code>DA_ID_SLOT_Topic.ext</code> &mdash; ID is your group (<code>GA</code>&ndash;<code>GJ</code>)
-    or your 8-digit student ID if you work alone; SLOT is the assignment, <code>R1</code>&ndash;<code>R6</code>.</p>
-    <p>Group B, assignment 2: <code>DA_GB_R2_HousePriceRegression.ipynb</code> &middot;
-    <code>DA_GB_R2_HousePriceRegression.mp4</code> &middot; <code>DA_GB_R2_HousePriceRegression.pdf</code> &middot;
-    <code>DA_GB_R2_HousePriceRegression.md</code></p>
-    <blockquote><b>Four separate files, uploaded to Google Classroom &mdash; never a link, never a .zip.</b>
-    A link, a .zip, a late file or a wrongly named file counts as not handed in.</blockquote>
-    </section>
+    <h2 class="plain">Hand in four files</h2>
+    <ul class="files">
+      <li><span>Notebook</span><span><code>.ipynb</code></span></li>
+      <li><span>Video, 5 minutes or more</span><span><code>.mp4</code></span></li>
+      <li><span>Slides, 10 pages or more</span><span><code>.pdf</code> or <code>.pptx</code></span></li>
+      <li><span>README &mdash; data source, what you borrowed, where you used AI</span><span><code>.md</code></span></li>
+    </ul>
+    <p class="fname"><span>DA</span>_<span>GB</span>_<span>R2</span>_<span>HousePriceRegression</span><span>.ipynb</span></p>
+    <div class="parts"><span><b>DA</b> course</span><span><b>GB</b> your group (or 8-digit ID if alone)</span>
+    <span><b>R2</b> assignment 2</span><span><b>HousePriceRegression</b> your topic</span></div>
+    <p class="warn"><b>Files only, uploaded to Google Classroom.</b> No links, no .zip. A late or wrongly
+    named file counts as not handed in.</p>
 
-    <section><h2><span class="sn">03</span>What is marked</h2>
-    <ol><li>Presenting, at the start of the next session</li><li>Answering questions</li><li>Handing in every file on time</li><li>The video — fluent, and it analyses something</li><li>The slides — visualisation that is worth looking at</li><li>The homework checklist, complete</li><li>Length and duration</li></ol>
-    <p><b>You are not required to get a good result.</b> A model that loses to its own baseline scores just as
-    well, if you can say why.</p>
-    <div class="cta"><a class="btn primary" href="../rules/">Full rules &amp; marking</a>
+    <h2 class="plain">What is marked</h2>
+    <ul class="marked"><li><span>1</span>Presenting, at the start of the next session</li><li><span>2</span>Answering questions</li><li><span>3</span>Handing in every file on time</li><li><span>4</span>The video — fluent, and it analyses something</li><li><span>5</span>The slides — visualisation that is worth looking at</li><li><span>6</span>The homework checklist, complete</li><li><span>7</span>Length and duration</li></ul>
+    <p>You do not need a good result &mdash; a model that loses to its baseline scores just as well, if you
+    can say why.</p>
+    <div class="cta"><a class="btn primary" href="../rules/">Full rules</a>
     <a class="btn" href="../project/">Course project</a></div>
-    </section>
 
     <footer>INCORTX Research Lab &middot; Data Analytics</footer>
   </div>
