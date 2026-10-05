@@ -55,6 +55,14 @@ text-decoration:none;border:1px solid var(--line);color:var(--ink);background:va
 .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 .btn.primary:hover{color:#fff;opacity:.92}
 .more{display:inline-block;margin-top:.6rem;font-weight:600;text-decoration:none}
+.start{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin:1.4rem 0 .4rem}
+.start a{display:block;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+border-radius:12px;padding:.9rem 1rem}
+.start a:hover{border-color:var(--accent)}
+.start a.main{background:var(--accent);border-color:var(--accent);color:#fff}
+.start b{display:block;margin-bottom:.15rem}
+.start span{font-size:.86rem;color:var(--muted)}
+.start a.main span{color:#dbeafe}
 /* timeline */
 .cycle{list-style:none;margin:1rem 0 0 .9rem;padding:0;border-left:2px solid var(--line);counter-reset:s}
 .cycle li{position:relative;padding:0 0 1.3rem 1.5rem;margin:0}
@@ -77,6 +85,15 @@ border-bottom:1px solid var(--line);margin:0;align-items:baseline}
 .fname span{border-bottom:3px solid #bfdbfe}
 .parts{display:flex;flex-wrap:wrap;gap:.2rem 1rem;font-size:.85rem;color:var(--muted)}
 .parts b{color:var(--ink);font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:600}
+.examples{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin:1rem 0 .4rem}
+.examples div{border:1px solid var(--line);border-radius:10px;padding:.7rem .9rem;background:var(--card)}
+.examples b{display:block;color:var(--accent);margin-bottom:.3rem}
+.examples ul{list-style:none;margin:0;padding:0;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.8rem;
+line-height:1.55;overflow-wrap:anywhere}
+.examples li{margin:0}
+.examples li.h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:.74rem;font-weight:600;color:var(--muted);
+letter-spacing:.04em;text-transform:uppercase;margin-top:.45rem}
+.examples li.h:first-child{margin-top:0}
 /* marked */
 .marked{list-style:none;margin:.4rem 0;padding:0}
 .marked li{display:grid;grid-template-columns:1.6rem 11rem 1fr;gap:.6rem;padding:.5rem 0;
@@ -136,6 +153,8 @@ padding:.45rem .8rem;margin:.4rem 0 .6rem}
 footer{margin-top:3.5rem;padding-top:1.2rem;border-top:1px solid var(--line);color:var(--muted);font-size:.84rem}
 @media(max-width:640px){
  .files li{grid-template-columns:1fr;gap:.1rem}
+ .examples{grid-template-columns:1fr}
+ .start{grid-template-columns:1fr}
  .marked li{grid-template-columns:1.4rem 1fr}.marked .d{grid-column:2}
  details.rule>.body{padding:.2rem 1rem 1rem}
  .grade{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}
@@ -145,7 +164,7 @@ footer{margin-top:3.5rem;padding-top:1.2rem;border-top:1px solid var(--line);col
 <body>
 <header class="top"><div class="in">
   <a class="brand" href="../">Data Analytics <span>&middot; INCORTX</span></a>
-  <nav><a href="../">Home</a><a href="../rules/" class="on">Rules &amp; marking</a><a href="../project/">Project</a></nav>
+  <nav><a href="../">Home</a><a href="../week/">Step by step</a><a href="../rules/" class="on">Rules &amp; marking</a><a href="../project/">Project</a></nav>
 </div></header>
 <main class="wrap">
 <h1>Rules &amp; Marking</h1>

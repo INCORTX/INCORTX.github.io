@@ -1,6 +1,199 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><title>How every assignment works | Data Analytics</title>
-<meta http-equiv="refresh" content="0; url=../#how">
-<link rel="canonical" href="../#how">
-<script>location.replace('../#how' + (location.hash || ''));</script></head>
-<body style="font-family:system-ui,sans-serif;padding:40px"><p>Moved to <a href="../#how">How every assignment works</a>.</p></body></html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Step by Step | Data Analytics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Design system v2. Blue accent: CV pages are teal, DSP violet. Body text 15.5:1 at 17px. */
+:root{--bg:#f7f8fb;--card:#ffffff;--ink:#1e2433;--muted:#556074;--line:#e3e7ef;--soft:#f1f4f8;
+--accent:#1d4ed8;--accent-bg:#eff6ff;--amber:#b45309;--amber-bg:#fffbeb}
+*{margin:0;padding:0;box-sizing:border-box}
+html{color-scheme:light;scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--bg);
+color:var(--ink);line-height:1.6;font-size:17px}
+a{color:var(--accent)}
+.top{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);
+border-bottom:1px solid var(--line)}
+.top .in{max-width:820px;margin:0 auto;padding:.7rem 1.25rem;display:flex;align-items:center;gap:1rem;
+flex-wrap:wrap}
+.top .brand{font-weight:700;color:var(--ink);text-decoration:none;margin-right:auto}
+.top .brand span{color:var(--muted);font-weight:500}
+.top nav{display:flex;gap:.3rem;flex-wrap:wrap}
+.top nav a{font-size:.88rem;font-weight:600;color:var(--muted);text-decoration:none;padding:.3rem .7rem;
+border-radius:999px}
+.top nav a:hover{color:var(--ink);background:var(--soft)}
+.top nav a.on{color:var(--accent);background:var(--accent-bg)}
+.wrap{max-width:820px;margin:0 auto;padding:2.4rem 1.25rem 4rem}
+h1{font-size:clamp(2rem,5vw,2.6rem);line-height:1.15;letter-spacing:-.015em;margin-bottom:.5rem}
+.lede{color:var(--muted);font-size:1.05rem;max-width:60ch}
+h2{font-size:1.3rem;margin:2.8rem 0 .9rem;letter-spacing:-.005em;scroll-margin-top:4.5rem}
+h3{font-size:1.05rem;margin:1.6rem 0 .5rem}
+p{margin:.6rem 0}
+ul,ol{margin:.6rem 0 .6rem 1.3rem}
+li{margin:.25rem 0}
+strong,b{font-weight:600}
+em{color:var(--muted)}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;background:var(--soft);padding:.05rem .35rem;
+border-radius:4px;font-size:.85em;overflow-wrap:anywhere}
+pre{background:var(--soft);border-radius:8px;padding:.8rem 1rem;overflow-x:auto;margin:.8rem 0;font-size:.88rem}
+pre code{background:none;padding:0}
+table{width:100%;border-collapse:collapse;margin:.8rem 0;font-size:.94rem}
+th,td{padding:.55rem .65rem;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
+th{color:var(--muted);font-weight:600;font-size:.78rem;letter-spacing:.04em;text-transform:uppercase}
+blockquote{border-left:3px solid var(--accent);background:var(--accent-bg);padding:.7rem 1rem;
+border-radius:0 8px 8px 0;margin:.8rem 0}
+.small{font-size:.9rem;color:var(--muted)}
+.warn{border-left:3px solid var(--amber);background:var(--amber-bg);padding:.7rem 1rem;border-radius:0 8px 8px 0;
+margin:1rem 0;font-size:.96rem}
+.btn{display:inline-block;padding:.45rem 1rem;border-radius:999px;font-size:.88rem;font-weight:600;
+text-decoration:none;border:1px solid var(--line);color:var(--ink);background:var(--card)}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover{color:#fff;opacity:.92}
+.more{display:inline-block;margin-top:.6rem;font-weight:600;text-decoration:none}
+.start{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin:1.4rem 0 .4rem}
+.start a{display:block;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+border-radius:12px;padding:.9rem 1rem}
+.start a:hover{border-color:var(--accent)}
+.start a.main{background:var(--accent);border-color:var(--accent);color:#fff}
+.start b{display:block;margin-bottom:.15rem}
+.start span{font-size:.86rem;color:var(--muted)}
+.start a.main span{color:#dbeafe}
+/* timeline */
+.cycle{list-style:none;margin:1rem 0 0 .9rem;padding:0;border-left:2px solid var(--line);counter-reset:s}
+.cycle li{position:relative;padding:0 0 1.3rem 1.5rem;margin:0}
+.cycle li::before{counter-increment:s;content:counter(s);position:absolute;left:-.9rem;top:.05rem;width:1.6rem;
+height:1.6rem;border-radius:50%;background:var(--accent);color:#fff;font-size:.82rem;font-weight:700;
+display:flex;align-items:center;justify-content:center}
+.cycle b{display:block}
+.cycle p{margin:.1rem 0 0}
+.chips{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.5rem}
+.chips span{font-size:.8rem;border:1px solid var(--line);border-radius:6px;padding:.05rem .45rem;
+color:var(--muted);background:var(--card)}
+.due{display:inline-block;margin-top:.4rem;font-size:.85rem;font-weight:600;color:var(--accent);
+background:var(--accent-bg);border-radius:6px;padding:.1rem .55rem}
+/* files */
+.files{list-style:none;margin:.4rem 0;padding:0}
+.files li{display:grid;grid-template-columns:7rem 8rem 1fr;gap:.8rem;padding:.55rem 0;
+border-bottom:1px solid var(--line);margin:0;align-items:baseline}
+.files li span:last-child{color:var(--muted);font-size:.92rem}
+.fname{margin:1.2rem 0 .3rem;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:1rem;overflow-wrap:anywhere}
+.fname span{border-bottom:3px solid #bfdbfe}
+.parts{display:flex;flex-wrap:wrap;gap:.2rem 1rem;font-size:.85rem;color:var(--muted)}
+.parts b{color:var(--ink);font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:600}
+.examples{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin:1rem 0 .4rem}
+.examples div{border:1px solid var(--line);border-radius:10px;padding:.7rem .9rem;background:var(--card)}
+.examples b{display:block;color:var(--accent);margin-bottom:.3rem}
+.examples ul{list-style:none;margin:0;padding:0;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.8rem;
+line-height:1.55;overflow-wrap:anywhere}
+.examples li{margin:0}
+.examples li.h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:.74rem;font-weight:600;color:var(--muted);
+letter-spacing:.04em;text-transform:uppercase;margin-top:.45rem}
+.examples li.h:first-child{margin-top:0}
+/* marked */
+.marked{list-style:none;margin:.4rem 0;padding:0}
+.marked li{display:grid;grid-template-columns:1.6rem 11rem 1fr;gap:.6rem;padding:.5rem 0;
+border-bottom:1px solid var(--line);margin:0}
+.marked .n{color:var(--accent);font-weight:700}
+.marked .w{font-weight:600}
+.marked .d{color:var(--muted);font-size:.93rem}
+.scale{display:flex;flex-wrap:wrap;gap:.4rem;margin:.6rem 0}
+.scale span{border:1px solid var(--line);border-radius:999px;padding:.15rem .7rem;font-size:.88rem;background:var(--card)}
+.scale b{color:var(--accent)}
+/* sessions */
+.sessions{list-style:none;margin:.4rem 0;padding:0}
+.sessions li{display:grid;grid-template-columns:2.4rem 1fr;gap:.8rem;padding:1rem 0;
+border-bottom:1px solid var(--line);margin:0}
+.sessions .num{font-size:1.3rem;font-weight:700;color:var(--accent)}
+.sessions li.soon .num,.sessions li.soon .t{color:var(--muted)}
+.sessions .t{font-weight:700;font-size:1.05rem}
+.sessions .l{font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);
+margin:.1rem 0 .25rem}
+.sessions .d{margin:0}
+.sessions .links{display:flex;gap:.45rem;flex-wrap:wrap;margin-top:.6rem}
+.sessions .soontag{font-size:.85rem;color:var(--muted);font-style:italic;margin-top:.3rem}
+/* accordion */
+.toc{display:flex;flex-wrap:wrap;gap:.4rem;margin:1.4rem 0 .6rem}
+.toc a{font-size:.85rem;font-weight:600;background:var(--accent-bg);border-radius:999px;padding:.25rem .8rem;
+text-decoration:none}
+.tools{display:flex;justify-content:flex-end;margin:.2rem 0 .4rem}
+.tools button{font:inherit;font-size:.85rem;color:var(--muted);background:none;border:0;cursor:pointer;
+text-decoration:underline}
+details.rule{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:0 0 .6rem;scroll-margin-top:4.5rem}
+details.rule>summary{list-style:none;cursor:pointer;padding:.95rem 1.1rem;display:grid;
+grid-template-columns:1.8rem 1fr 1rem;column-gap:.6rem;align-items:baseline}
+details.rule>summary::-webkit-details-marker{display:none}
+details.rule .n{color:var(--accent);font-weight:700}
+details.rule .t{font-weight:700;font-size:1.05rem}
+details.rule .g{grid-column:2;color:var(--muted);font-size:.92rem;margin-top:.1rem}
+details.rule .c{grid-row:1;grid-column:3;color:var(--muted);transition:transform .15s}
+details.rule[open] .c{transform:rotate(90deg)}
+details.rule>.body{padding:.2rem 1.1rem 1.1rem 3.5rem;border-top:1px solid var(--line)}
+details.inner{border:1px solid var(--line);border-radius:10px;padding:.1rem .9rem;margin:.9rem 0;background:#fbfcfe}
+details.inner>summary{cursor:pointer;font-weight:600;color:var(--accent);padding:.5rem 0}
+/* project */
+.grade{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin:1.2rem 0 .3rem}
+.grade div{border:1px solid var(--line);border-radius:10px;padding:.5rem .7rem;background:var(--card);
+font-size:.85rem;color:var(--muted)}
+.grade div.me{border-color:var(--accent);background:var(--accent-bg)}
+.grade b{display:block;font-size:1.4rem;color:var(--ink)}
+.goal{border-left:3px solid var(--accent);background:var(--accent-bg);padding:.85rem 1.1rem;
+border-radius:0 10px 10px 0;margin:1.2rem 0}
+.crit{list-style:none;margin:.4rem 0;padding:0}
+.crit li{display:grid;grid-template-columns:2.6rem 1fr;gap:.5rem;padding:.5rem 0;border-bottom:1px solid var(--line);margin:0}
+.crit .id{color:var(--accent);font-weight:700}
+.crit .d{color:var(--muted)}
+.spec{font-size:.9rem;font-weight:600;color:var(--amber);background:var(--amber-bg);border-radius:8px;
+padding:.45rem .8rem;margin:.4rem 0 .6rem}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+footer{margin-top:3.5rem;padding-top:1.2rem;border-top:1px solid var(--line);color:var(--muted);font-size:.84rem}
+@media(max-width:640px){
+ .files li{grid-template-columns:1fr;gap:.1rem}
+ .examples{grid-template-columns:1fr}
+ .start{grid-template-columns:1fr}
+ .marked li{grid-template-columns:1.4rem 1fr}.marked .d{grid-column:2}
+ details.rule>.body{padding:.2rem 1rem 1rem}
+ .grade{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}
+ table{display:block;overflow-x:auto}}
+</style>
+</head>
+<body>
+<header class="top"><div class="in">
+  <a class="brand" href="../">Data Analytics <span>&middot; INCORTX</span></a>
+  <nav><a href="../">Home</a><a href="../week/" class="on">Step by step</a><a href="../rules/">Rules &amp; marking</a><a href="../project/">Project</a></nav>
+</div></header>
+<main class="wrap">
+<h1>Step by Step</h1>
+<p class="lede">The same cycle for all six assignments &mdash; everything you need each week.</p>
+
+<h2 id="how">How every assignment works</h2>
+<ol class="cycle"><li><b>In session N</b><p>Watch the 45-minute demo, then spend an hour on your group&rsquo;s topic. Hand in the notebook as it is when the hour ends.</p><div class="chips"><span>Question</span><span>EDA</span><span>Insight</span><span>Issue</span><span>Solution</span><span>Metric</span></div></li><li><b>At home</b><p>Finish the notebook, make the slides, record the video &mdash; every member speaks &mdash; and write a README.</p><span class="due">Due two days before session N+1</span></li><li><b>Start of session N+1</b><p>Two of you present the notebook for 5+ minutes, then take questions.</p></li></ol>
+<p class="small">Session 1: a 120-minute work block and nothing to present. Assignment 6: presented
+briefly at the end of session 6.</p>
+
+<h2 id="handin">Hand in four files</h2>
+<ul class="files"><li><span>Notebook</span><span><code>.ipynb</code></span><span>the one you present</span></li><li><span>Video</span><span><code>.mp4</code></span><span>5+ minutes, everyone speaks</span></li><li><span>Slides</span><span><code>.pdf / .pptx</code></span><span>10+ pages</span></li><li><span>README</span><span><code>.md / .txt</code></span><span>data source, anything borrowed, where you used AI</span></li></ul>
+<p class="fname"><span>DA</span>_<span>GB</span>_<span>R2</span>_<span>HousePriceRegression</span><span>.ipynb</span></p>
+<div class="parts"><span><b>DA</b> course</span><span><b>GB</b> group B &middot; or your 8-digit ID</span>
+<span><b>R2</b> assignment 2 (R1&ndash;R6 &middot; PROP &middot; RES)</span><span><b>HousePriceRegression</b> your topic</span></div>
+<div class="examples"><div><b>Group B</b><ul><li class="h">Assignment 2 (R2)</li><li>DA_GB_R2_HousePriceRegression.ipynb</li><li>DA_GB_R2_HousePriceRegression.mp4</li><li>DA_GB_R2_HousePriceRegression.pdf</li><li>DA_GB_R2_HousePriceRegression.md</li><li class="h">Project proposal (PROP)</li><li>DA_GB_PROP_AirQualityForecast.pdf</li><li>DA_GB_PROP_AirQualityForecast.mp4</li><li class="h">Project results (RES)</li><li>DA_GB_RES_AirQualityForecast.pdf</li><li>DA_GB_RES_AirQualityForecast.mp4</li><li>DA_GB_RES_AirQualityForecast.ipynb</li></ul></div><div><b>Working alone &middot; ID 69012345</b><ul><li class="h">Assignment 2 (R2)</li><li>DA_69012345_R2_HousePriceRegression.ipynb</li><li>DA_69012345_R2_HousePriceRegression.mp4</li><li>DA_69012345_R2_HousePriceRegression.pdf</li><li>DA_69012345_R2_HousePriceRegression.md</li><li class="h">Project proposal (PROP)</li><li>DA_69012345_PROP_AirQualityForecast.pdf</li><li>DA_69012345_PROP_AirQualityForecast.mp4</li><li class="h">Project results (RES)</li><li>DA_69012345_RES_AirQualityForecast.pdf</li><li>DA_69012345_RES_AirQualityForecast.mp4</li><li>DA_69012345_RES_AirQualityForecast.ipynb</li></ul></div></div>
+<p class="warn"><b>Files only, on Google Classroom.</b> No links, no .zip. A late or wrongly named file
+counts as not handed in.</p>
+
+<h2 id="marked">What is marked</h2>
+<ul class="marked"><li><span class="n">1</span><span class="w">Presenting</span><span class="d">all five steps, each opened on screen from the notebook you handed in &middot; top marks for an insight that changed your next step, a metric argued from your data, or doubt about your own result</span></li><li><span class="n">2</span><span class="w">Answering questions</span><span class="d">anyone in the group may be asked &mdash; about your code and your work</span></li><li><span class="n">3</span><span class="w">Every file, on time</span><span class="d">four files, correctly named, two days before the next session &mdash; all or nothing</span></li><li><span class="n">4</span><span class="w">The video</span><span class="d">everyone speaks, clear audio, explains rather than reads, and goes deeper than the live version</span></li><li><span class="n">5</span><span class="w">The slides</span><span class="d">charts titled, axes labelled, captioned &middot; one concrete example &middot; readable in the video</span></li><li><span class="n">6</span><span class="w">The homework</span><span class="d">model trained &middot; results beside the baseline &middot; two settings compared &middot; error analysis &middot; three limitations of your own data</span></li><li><span class="n">7</span><span class="w">Length</span><span class="d">slides 10+ pages &middot; video 5+ minutes</span></li></ul>
+<p>Each item is marked on one scale &mdash; points = full points &times; level:</p>
+<div class="scale"><span><b>100%</b> Excellent</span><span><b>75%</b> Good</span><span><b>50%</b> Satisfactory</span><span><b>25%</b> Needs work</span><span><b>0%</b> Missing</span></div>
+<p class="small">The mark belongs to the whole group. You do not need a good result &mdash; a model that
+loses to its baseline scores just as well, if you can say why.</p>
+<a class="more" href="../rules/">Full rules &rarr;</a>
+
+
+<footer>INCORTX Research Lab &middot; Data Analytics &middot; <a href="https://classes.incortx.com/">all courses</a></footer>
+</main>
+</body>
+</html>
