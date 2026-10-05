@@ -196,25 +196,26 @@ html.reading .cols.today{grid-template-columns:1fr;}
 html.reading .after{flex-direction:column;}
 
 /* s17 · hand-in */
-.handin{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1.2em;margin-top:.6em;}
-.reveal table.hintable{font-size:.56em;}
+.handin{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);gap:.8em;margin-top:.6em;align-items:start;}
+.reveal table.hintable{font-size:.54em;}
+.reveal table.hintable th,.reveal table.hintable td{padding:.22em .7em;}
 .reveal table.hintable td:nth-child(2){white-space:nowrap;}
-.reveal .fnames li.fh{font-family:var(--display);font-weight:600;color:var(--teal);font-size:.54em;margin-bottom:.15em;}
+.reveal .fnames li.fh{font-family:var(--display);font-weight:600;color:var(--teal);font-size:.5em;margin-bottom:.2em;white-space:normal;}
 .reveal .hcount{margin:.4em 0 .55em;font-size:.56em;color:var(--muted);}
 .reveal .hcount b{color:var(--ink);}
-.pattern{border:1px solid var(--line);border-radius:12px;padding:.55em .8em .6em;background:#fff;}
-.reveal .pat{margin:0 0 .35em;font-family:var(--mono);font-size:.74em;font-weight:600;color:var(--muted);letter-spacing:.01em;}
+.pattern{border:1px solid var(--line);border-radius:12px;padding:.45em .7em .5em;background:#fff;}
+.reveal .pat{margin:0 0 .25em;font-family:var(--mono);font-size:.66em;font-weight:600;color:var(--muted);letter-spacing:.01em;}
 .pat span{color:var(--teal);}
 .reveal .pattern ul{list-style:none;margin:0;padding:0;display:grid;gap:.12em;}
-.reveal .pattern li{display:grid;grid-template-columns:3.4em 1fr;gap:.5em;font-size:.52em;line-height:1.45;margin:0;}
+.reveal .pattern li{display:grid;grid-template-columns:3.2em 1fr;gap:.4em;font-size:.48em;line-height:1.35;margin:0;}
 .pattern li b{font-family:var(--display);color:var(--ink);}
-.reveal .fnames{list-style:none;margin:0 0 .6em;padding:.5em .75em;background:var(--soft);border-radius:12px;display:grid;gap:.15em;}
-.reveal .fnames li{margin:0;font-family:var(--mono);font-size:.5em;line-height:1.4;color:var(--ink);white-space:nowrap;}
+.reveal .fnames{list-style:none;margin:0;padding:.55em .7em;background:var(--soft);border-radius:12px;display:grid;gap:.15em;}
+.reveal .fnames li{margin:0;font-family:var(--mono);font-size:.42em;line-height:1.55;color:var(--ink);white-space:nowrap;}
 .reveal .solo{margin:.6em 0 0;font-size:.52em;line-height:1.5;color:var(--body);}
 .reveal .solo code{font-size:.9em;white-space:nowrap;}
 html.reading .handin{grid-template-columns:1fr;}
 html.reading .pattern li,html.reading .reveal .solo,html.reading .reveal .hcount{font-size:14px;}
-html.reading .reveal .fnames li{font-size:12.5px;white-space:normal;word-break:break-all;}
+html.reading .reveal .fnames li{font-size:12px;white-space:nowrap;}
 html.reading .reveal .pat{font-size:15px;}
 /* s6 · 1966 memo */
 .memo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:1.2em;align-items:start;}
@@ -784,8 +785,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <tr><td>Demo</td><td><code>DEMO</code></td><td>video + slides PDF + <code>.ipynb</code></td><td>by the deadline</td></tr>
     <tr class="hl"><td>Across the term</td><td></td><td>13 files</td><td></td></tr>
   </table>
-  <div class="cols handin">
-    <div>
+  <div class="handin">
     <div class="pattern">
       <p class="pat"><span>CV</span>_<span>ID</span>_<span>SLOT</span>_<span>Topic</span>.<span>ext</span></p>
       <ul>
@@ -796,20 +796,26 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
         <li><b>Rules</b><span>no spaces, no Thai · a resubmission ends in <code>_v2</code></span></li>
       </ul>
     </div>
-      <p class="solo"><b>Working alone?</b> Swap <code>G08</code> for your student ID.</p>
-    </div>
-    <div>
-      <ul class="fnames">
-        <li class="fh">Every file of group G08</li>
-        <li>CV_G08_R1_PinholeCamera.pdf</li>
-        <li>CV_G08_R1_PinholeCamera.mp4</li>
-        <li>CV_G08_PROP_LeafDiseaseDetection.pdf</li>
-        <li>CV_G08_PROP_LeafDiseaseDetection.mp4</li>
-        <li>CV_G08_DEMO_LeafDiseaseDetection.pdf</li>
-        <li>CV_G08_DEMO_LeafDiseaseDetection.mp4</li>
-        <li>CV_G08_DEMO_LeafDiseaseDetection.ipynb</li>
-      </ul>
-    </div>
+    <ul class="fnames">
+      <li class="fh">Group G08</li>
+      <li>CV_G08_R1_PinholeCamera.pdf</li>
+      <li>CV_G08_R1_PinholeCamera.mp4</li>
+      <li>CV_G08_PROP_LeafDiseaseDetection.pdf</li>
+      <li>CV_G08_PROP_LeafDiseaseDetection.mp4</li>
+      <li>CV_G08_DEMO_LeafDiseaseDetection.pdf</li>
+      <li>CV_G08_DEMO_LeafDiseaseDetection.mp4</li>
+      <li>CV_G08_DEMO_LeafDiseaseDetection.ipynb</li>
+    </ul>
+    <ul class="fnames">
+      <li class="fh">Working alone · student ID 69012345</li>
+      <li>CV_69012345_R1_PinholeCamera.pdf</li>
+      <li>CV_69012345_R1_PinholeCamera.mp4</li>
+      <li>CV_69012345_PROP_LeafDiseaseDetection.pdf</li>
+      <li>CV_69012345_PROP_LeafDiseaseDetection.mp4</li>
+      <li>CV_69012345_DEMO_LeafDiseaseDetection.pdf</li>
+      <li>CV_69012345_DEMO_LeafDiseaseDetection.mp4</li>
+      <li>CV_69012345_DEMO_LeafDiseaseDetection.ipynb</li>
+    </ul>
   </div>
   <p class="takeaway">Upload each file — no links (except a dataset, in the README), no .zip. A missing or wrongly named file counts as not submitted.</p>
 </section>
