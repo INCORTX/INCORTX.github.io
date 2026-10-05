@@ -8,26 +8,26 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* Light theme since 2026-10-05: the dark glass theme put #94a3b8 body text on #0f172a
+/* Light theme since 2026-10-05, accent blue #1d4ed8 (CV/DSP pages are teal): the dark glass theme put #94a3b8 body text on #0f172a
    (7:1) at 14-15px, with white bold runs that made every paragraph uneven to read. */
-:root{--bg:#f7f8fb;--card:#ffffff;--ink:#1e2433;--muted:#4b5567;--line:#e3e7ef;--teal:#0e7c86;
---teal-bg:#e8f6f7;--amber:#b45309;--amber-bg:#fffbeb;--amber-line:#fde68a}
+:root{--bg:#f7f8fb;--card:#ffffff;--ink:#1e2433;--muted:#4b5567;--line:#e3e7ef;--accent:#1d4ed8;
+--accent-bg:#eff6ff;--amber:#b45309;--amber-bg:#fffbeb;--amber-line:#fde68a}
 *{margin:0;padding:0;box-sizing:border-box}
 html{color-scheme:light}
 body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--bg);
 color:var(--ink);line-height:1.65;font-size:17px;min-height:100vh}
 .wrap{max-width:860px;margin:0 auto;padding:3rem 1.25rem 4.5rem}
 .back{color:var(--muted);text-decoration:none;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase}
-.back:hover{color:var(--teal)}
+.back:hover{color:var(--accent)}
 h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2.3rem,6vw,3.3rem);font-weight:600;
 margin:1.2rem 0 .4rem;letter-spacing:-.01em}
 .lede{color:var(--muted);max-width:62ch;margin-bottom:.9rem}
-.note{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:8px;
+.note{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;
 padding:.9rem 1.1rem;font-size:.96rem;margin:1.4rem 0 1.8rem}
 .session{display:flex;gap:1.3rem;background:var(--card);border:1px solid var(--line);border-radius:14px;
 padding:1.3rem 1.5rem;margin-bottom:.9rem}
 .session.pending{opacity:.55}
-.num{font-family:'Cormorant Garamond',Georgia,serif;font-size:2rem;color:var(--teal);line-height:1;
+.num{font-family:'Cormorant Garamond',Georgia,serif;font-size:2rem;color:var(--accent);line-height:1;
 min-width:2.2rem;padding-top:.15rem}
 .session.pending .num{color:var(--muted)}
 h2{font-size:1.15rem;font-weight:700;margin-bottom:.35rem}
@@ -36,23 +36,23 @@ h2{font-size:1.15rem;font-weight:700;margin-bottom:.35rem}
 .links{margin-top:.9rem;display:flex;gap:.55rem;flex-wrap:wrap}
 .btn{display:inline-block;padding:.45rem 1rem;border-radius:999px;font-size:.86rem;font-weight:600;
 text-decoration:none;border:1px solid var(--line);color:var(--ink);background:var(--card)}
-.btn:hover{border-color:var(--teal);color:var(--teal)}
-.btn.primary{background:var(--teal);border-color:var(--teal);color:#fff}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 .btn.primary:hover{color:#fff;opacity:.9}
 .btn.quiet{color:var(--muted);font-weight:500}
 .soon{font-size:.85rem;color:var(--muted);font-style:italic}
 footer{margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--line);color:var(--muted);font-size:.82rem}
-.lect{color:var(--teal);font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin:0 0 .4rem}
+.lect{color:var(--accent);font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin:0 0 .4rem}
 @media(max-width:560px){.session{flex-direction:column;gap:.5rem}.num{padding-top:0}}
 
 .start{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem;margin:1.6rem 0 2.2rem}
 .start a{display:block;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
 border-radius:14px;padding:1.1rem 1.2rem}
-.start a:hover{border-color:var(--teal)}
-.start a.main{background:var(--teal);border-color:var(--teal);color:#fff}
+.start a:hover{border-color:var(--accent)}
+.start a.main{background:var(--accent);border-color:var(--accent);color:#fff}
 .start b{display:block;font-size:1.05rem;margin-bottom:.2rem}
 .start span{font-size:.88rem;color:var(--muted)}
-.start a.main span{color:#e6fbfc}
+.start a.main span{color:#dbeafe}
 .label{color:var(--muted);font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
 margin:0 0 .8rem}</style>
 </head>
