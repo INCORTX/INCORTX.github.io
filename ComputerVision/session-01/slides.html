@@ -195,6 +195,27 @@ html.reading .cols.today{grid-template-columns:1fr;}
 .keyidea.coral::before{color:var(--coral);}
 html.reading .after{flex-direction:column;}
 
+/* s17 · hand-in */
+.handin{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1.2em;margin-top:.6em;}
+.reveal table.hintable{font-size:.56em;}
+.reveal table.hintable td:nth-child(2){white-space:nowrap;}
+.reveal .fnames li.fh{font-family:var(--display);font-weight:600;color:var(--teal);font-size:.54em;margin-bottom:.15em;}
+.reveal .hcount{margin:.4em 0 .55em;font-size:.56em;color:var(--muted);}
+.reveal .hcount b{color:var(--ink);}
+.pattern{border:1px solid var(--line);border-radius:12px;padding:.55em .8em .6em;background:#fff;}
+.reveal .pat{margin:0 0 .35em;font-family:var(--mono);font-size:.74em;font-weight:600;color:var(--muted);letter-spacing:.01em;}
+.pat span{color:var(--teal);}
+.reveal .pattern ul{list-style:none;margin:0;padding:0;display:grid;gap:.12em;}
+.reveal .pattern li{display:grid;grid-template-columns:3.4em 1fr;gap:.5em;font-size:.52em;line-height:1.45;margin:0;}
+.pattern li b{font-family:var(--display);color:var(--ink);}
+.reveal .fnames{list-style:none;margin:0 0 .6em;padding:.5em .75em;background:var(--soft);border-radius:12px;display:grid;gap:.15em;}
+.reveal .fnames li{margin:0;font-family:var(--mono);font-size:.5em;line-height:1.4;color:var(--ink);white-space:nowrap;}
+.reveal .solo{margin:.6em 0 0;font-size:.52em;line-height:1.5;color:var(--body);}
+.reveal .solo code{font-size:.9em;white-space:nowrap;}
+html.reading .handin{grid-template-columns:1fr;}
+html.reading .pattern li,html.reading .reveal .solo,html.reading .reveal .hcount{font-size:14px;}
+html.reading .reveal .fnames li{font-size:12.5px;white-space:normal;word-break:break-all;}
+html.reading .reveal .pat{font-size:15px;}
 /* s6 · 1966 memo */
 .memo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:1.2em;align-items:start;}
 .mq{margin:0 0 .7em;font-family:var(--display);font-size:.72em;line-height:1.38;color:var(--ink);border-left:6px solid var(--teal);padding:.15em 0 .15em .8em;}
@@ -460,7 +481,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   </div>
 </section>
 
-<!-- 4 · Hook: numbers, not objects -->
+<!-- 3 · Hook: numbers, not objects -->
 <section>
   <p class="kicker">What a computer sees</p>
   <h2 class="claim">A computer sees numbers, not objects</h2>
@@ -483,7 +504,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   </div>
 </section>
 
-<!-- 5 · Vision is everywhere -->
+<!-- 4 · Vision is everywhere -->
 <section>
   <p class="kicker">Applications</p>
   <h2 class="claim">Vision is already everywhere</h2>
@@ -500,7 +521,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="takeaway">Every one of these starts from the same thing: a grid of numbers.</p>
 </section>
 
-<!-- 6 · Humans make it look easy -->
+<!-- 5 · Humans make it look easy -->
 <section>
   <p class="kicker">Why vision is hard</p>
   <h2 class="claim">Same “N”, new light — every number changes</h2>
@@ -521,7 +542,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   </div>
 </section>
 
-<!-- 7 · 1966 summer project -->
+<!-- 6 · 1966 summer project -->
 <section>
   <p class="kicker">A little history</p>
   <h2 class="claim">In 1966, vision was planned as a summer project</h2>
@@ -547,7 +568,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   </div>
 </section>
 
-<!-- 8 · A simple vision system -->
+<!-- 7 · A simple vision system -->
 <section>
   <p class="kicker">A simple vision system</p>
   <h2 class="claim">A whole vision system fits on one slide — if the world is simple</h2>
@@ -566,7 +587,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <div class="keyidea fragment" data-label="Why this course exists" style="margin-top:.6em">Every stage is hand-written for this toy world. Real scenes break these rules — so we replace hand rules with <b>learning</b> where we can, and keep <b>geometry</b> where we must.</div>
 </section>
 
-<!-- 9 · Course map -->
+<!-- 8 · Course map -->
 <section>
   <p class="kicker">Course map</p>
   <h2 class="claim">Eight sessions, from pixels to motion</h2>
@@ -583,7 +604,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   </div>
 </section>
 
-<!-- 10 · Why learning before geometry -->
+<!-- 9 · Why learning before geometry -->
 <section>
   <p class="kicker">Course design</p>
   <h2 class="claim">Learning comes before geometry — on purpose</h2>
@@ -594,7 +615,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   </div>
 </section>
 
-<!-- 11 · Course learning outcomes -->
+<!-- 10 · Course learning outcomes -->
 <section>
   <p class="kicker">Course outcomes</p>
   <h2>By the end of the course you can</h2>
@@ -608,7 +629,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   </ol>
 </section>
 
-<!-- 12 · How each session runs -->
+<!-- 11 · How each session runs -->
 <section>
   <p class="kicker">Session format</p>
   <h2 class="claim">Every session: one question, a few sub-topics, one notebook</h2>
@@ -632,7 +653,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   </div>
 </section>
 
-<!-- 13 · Grading -->
+<!-- 12 · Grading -->
 <section>
   <p class="kicker">Assessment</p>
   <h2 class="claim">Your grade: 100 points, four parts</h2>
@@ -646,7 +667,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <div class="scale mini" aria-label="The grading scale"><div style="--c:var(--teal)"><b>100%</b>Excellent</div><div style="--c:#3d8f86"><b>75%</b>Good</div><div style="--c:var(--amber)"><b>50%</b>Satisfactory</div><div style="--c:var(--coral)"><b>25%</b>Needs work</div><div style="--c:#98a2b3"><b>0%</b>Missing</div></div>
 </section>
 
-<!-- 14 · Assignment: halves -->
+<!-- 13 · Assignment: halves -->
 <section>
   <p class="kicker">Assignment</p>
   <h2 class="claim">Half the class presents every week</h2>
@@ -664,7 +685,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   </div>
 </section>
 
-<!-- 15 · Assignment checklist -->
+<!-- 14 · Assignment checklist -->
 <section>
   <p class="kicker">Assignment</p>
   <h2 class="claim">Five criteria for every presentation</h2>
@@ -678,7 +699,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="takeaway">Each criterion is marked on the grading scale. Criteria 2, 3 and 5 are why copying an AI answer does not work.</p>
 </section>
 
-<!-- 16 · First turns -->
+<!-- 15 · First turns -->
 <section>
   <p class="kicker">Assignment · first turns</p>
   <h2 class="claim">Half A presents next week, half B the week after</h2>
@@ -699,7 +720,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   </div>
 </section>
 
-<!-- 17 · Project -->
+<!-- 16 · Project -->
 <section>
   <p class="kicker">Project · 30 points · every criterion on the grading scale</p>
   <h2 class="claim">Two or three ways to solve one real problem</h2>
@@ -750,6 +771,47 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
       </ol>
     </div>
   </div>
+</section>
+
+<!-- 17 · How to hand in -->
+<section>
+  <p class="kicker">Hand-in · every piece of work</p>
+  <h2 class="claim">Hand in files, named one way — or they don’t count</h2>
+  <table class="tight hintable">
+    <tr><th>Work</th><th>SLOT</th><th>Files</th><th>When</th></tr>
+    <tr><td>Assignment, rounds 1–4</td><td><code>R1</code>–<code>R4</code></td><td>video + slides PDF</td><td>1 day before you present</td></tr>
+    <tr><td>Proposal</td><td><code>PROP</code></td><td>video + slides PDF</td><td>by the deadline</td></tr>
+    <tr><td>Demo</td><td><code>DEMO</code></td><td>video + slides PDF + <code>.ipynb</code></td><td>by the deadline</td></tr>
+    <tr class="hl"><td>Across the term</td><td></td><td>13 files</td><td></td></tr>
+  </table>
+  <div class="cols handin">
+    <div>
+    <div class="pattern">
+      <p class="pat"><span>CV</span>_<span>ID</span>_<span>SLOT</span>_<span>Topic</span>.<span>ext</span></p>
+      <ul>
+        <li><b>ID</b><span>group <code>G08</code> · working alone: your 8-digit student ID</span></li>
+        <li><b>SLOT</b><span><code>R1</code>–<code>R4</code> · <code>PROP</code> · <code>DEMO</code></span></li>
+        <li><b>Topic</b><span>English, CamelCase, about 30 characters</span></li>
+        <li><b>ext</b><span><code>.pdf</code> slides · <code>.mp4</code> video · <code>.ipynb</code> notebook</span></li>
+        <li><b>Rules</b><span>no spaces, no Thai · a resubmission ends in <code>_v2</code></span></li>
+      </ul>
+    </div>
+      <p class="solo"><b>Working alone?</b> Swap <code>G08</code> for your student ID.</p>
+    </div>
+    <div>
+      <ul class="fnames">
+        <li class="fh">Every file of group G08</li>
+        <li>CV_G08_R1_PinholeCamera.pdf</li>
+        <li>CV_G08_R1_PinholeCamera.mp4</li>
+        <li>CV_G08_PROP_LeafDiseaseDetection.pdf</li>
+        <li>CV_G08_PROP_LeafDiseaseDetection.mp4</li>
+        <li>CV_G08_DEMO_LeafDiseaseDetection.pdf</li>
+        <li>CV_G08_DEMO_LeafDiseaseDetection.mp4</li>
+        <li>CV_G08_DEMO_LeafDiseaseDetection.ipynb</li>
+      </ul>
+    </div>
+  </div>
+  <p class="takeaway">Upload each file — no links (except a dataset, in the README), no .zip. A missing or wrongly named file counts as not submitted.</p>
 </section>
 
 <!-- 18 · Final exam -->
@@ -813,7 +875,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   </div>
 </section>
 
-<!-- 23 · Summary -->
+<!-- 21 · Summary -->
 <section>
   <p class="kicker">Summary</p>
   <h2>What to remember</h2>
@@ -826,7 +888,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   </ol>
 </section>
 
-<!-- 24 · Coming up -->
+<!-- 22 · Coming up -->
 <section>
   <p class="kicker">Next · right after the break</p>
   <h2 class="claim">Session 2: where does an image come from?</h2>
@@ -839,7 +901,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="takeaway">At the end of session 2, half A takes its first topic from set T2.</p>
 </section>
 
-<!-- 25 · References -->
+<!-- 23 · References -->
 <section>
   <p class="kicker">References</p>
   <h2>References</h2>
