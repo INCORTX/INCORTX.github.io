@@ -77,6 +77,15 @@ border-bottom:1px solid var(--line);margin:0;align-items:baseline}
 .fname span{border-bottom:3px solid #bfdbfe}
 .parts{display:flex;flex-wrap:wrap;gap:.2rem 1rem;font-size:.85rem;color:var(--muted)}
 .parts b{color:var(--ink);font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:600}
+.examples{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin:1rem 0 .4rem}
+.examples div{border:1px solid var(--line);border-radius:10px;padding:.7rem .9rem;background:var(--card)}
+.examples b{display:block;color:var(--accent);margin-bottom:.3rem}
+.examples ul{list-style:none;margin:0;padding:0;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.8rem;
+line-height:1.55;overflow-wrap:anywhere}
+.examples li{margin:0}
+.examples li.h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:.74rem;font-weight:600;color:var(--muted);
+letter-spacing:.04em;text-transform:uppercase;margin-top:.45rem}
+.examples li.h:first-child{margin-top:0}
 /* marked */
 .marked{list-style:none;margin:.4rem 0;padding:0}
 .marked li{display:grid;grid-template-columns:1.6rem 11rem 1fr;gap:.6rem;padding:.5rem 0;
@@ -136,6 +145,7 @@ padding:.45rem .8rem;margin:.4rem 0 .6rem}
 footer{margin-top:3.5rem;padding-top:1.2rem;border-top:1px solid var(--line);color:var(--muted);font-size:.84rem}
 @media(max-width:640px){
  .files li{grid-template-columns:1fr;gap:.1rem}
+ .examples{grid-template-columns:1fr}
  .marked li{grid-template-columns:1.4rem 1fr}.marked .d{grid-column:2}
  details.rule>.body{padding:.2rem 1rem 1rem}
  .grade{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}
@@ -161,7 +171,8 @@ briefly at the end of session 6.</p>
 <ul class="files"><li><span>Notebook</span><span><code>.ipynb</code></span><span>the one you present</span></li><li><span>Video</span><span><code>.mp4</code></span><span>5+ minutes, everyone speaks</span></li><li><span>Slides</span><span><code>.pdf / .pptx</code></span><span>10+ pages</span></li><li><span>README</span><span><code>.md / .txt</code></span><span>data source, anything borrowed, where you used AI</span></li></ul>
 <p class="fname"><span>DA</span>_<span>GB</span>_<span>R2</span>_<span>HousePriceRegression</span><span>.ipynb</span></p>
 <div class="parts"><span><b>DA</b> course</span><span><b>GB</b> group B &middot; or your 8-digit ID</span>
-<span><b>R2</b> assignment 2</span><span><b>HousePriceRegression</b> your topic</span></div>
+<span><b>R2</b> assignment 2 (R1&ndash;R6 &middot; PROP &middot; RES)</span><span><b>HousePriceRegression</b> your topic</span></div>
+<div class="examples"><div><b>Group B</b><ul><li class="h">Assignment 2 (R2)</li><li>DA_GB_R2_HousePriceRegression.ipynb</li><li>DA_GB_R2_HousePriceRegression.mp4</li><li>DA_GB_R2_HousePriceRegression.pdf</li><li>DA_GB_R2_HousePriceRegression.md</li><li class="h">Project proposal (PROP)</li><li>DA_GB_PROP_AirQualityForecast.pdf</li><li>DA_GB_PROP_AirQualityForecast.mp4</li><li class="h">Project results (RES)</li><li>DA_GB_RES_AirQualityForecast.pdf</li><li>DA_GB_RES_AirQualityForecast.mp4</li><li>DA_GB_RES_AirQualityForecast.ipynb</li></ul></div><div><b>Working alone &middot; ID 69012345</b><ul><li class="h">Assignment 2 (R2)</li><li>DA_69012345_R2_HousePriceRegression.ipynb</li><li>DA_69012345_R2_HousePriceRegression.mp4</li><li>DA_69012345_R2_HousePriceRegression.pdf</li><li>DA_69012345_R2_HousePriceRegression.md</li><li class="h">Project proposal (PROP)</li><li>DA_69012345_PROP_AirQualityForecast.pdf</li><li>DA_69012345_PROP_AirQualityForecast.mp4</li><li class="h">Project results (RES)</li><li>DA_69012345_RES_AirQualityForecast.pdf</li><li>DA_69012345_RES_AirQualityForecast.mp4</li><li>DA_69012345_RES_AirQualityForecast.ipynb</li></ul></div></div>
 <p class="warn"><b>Files only, on Google Classroom.</b> No links, no .zip. A late or wrongly named file
 counts as not handed in.</p>
 
