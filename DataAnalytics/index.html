@@ -6,151 +6,177 @@
 <title>Data Analytics | INCORTX</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* Light theme since 2026-10-05, accent blue #1d4ed8 (CV/DSP pages are teal): the dark glass theme put #94a3b8 body text on #0f172a
-   (7:1) at 14-15px, with white bold runs that made every paragraph uneven to read. */
-:root{--bg:#f7f8fb;--card:#ffffff;--ink:#1e2433;--muted:#4b5567;--line:#e3e7ef;--accent:#1d4ed8;
---accent-bg:#eff6ff;--amber:#b45309;--amber-bg:#fffbeb;--amber-line:#fde68a}
+/* Design system v2. Blue accent: CV pages are teal, DSP violet. Body text 15.5:1 at 17px. */
+:root{--bg:#f7f8fb;--card:#ffffff;--ink:#1e2433;--muted:#556074;--line:#e3e7ef;--soft:#f1f4f8;
+--accent:#1d4ed8;--accent-bg:#eff6ff;--amber:#b45309;--amber-bg:#fffbeb}
 *{margin:0;padding:0;box-sizing:border-box}
-html{color-scheme:light}
+html{color-scheme:light;scroll-behavior:smooth}
 body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--bg);
-color:var(--ink);line-height:1.65;font-size:17px;min-height:100vh}
-.wrap{max-width:860px;margin:0 auto;padding:3rem 1.25rem 4.5rem}
-.back{color:var(--muted);text-decoration:none;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase}
-.back:hover{color:var(--accent)}
-h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2.3rem,6vw,3.3rem);font-weight:600;
-margin:1.2rem 0 .4rem;letter-spacing:-.01em}
-.lede{color:var(--muted);max-width:62ch;margin-bottom:.9rem}
-.note{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;
-padding:.9rem 1.1rem;font-size:.96rem;margin:1.4rem 0 1.8rem}
-.session{display:flex;gap:1.3rem;background:var(--card);border:1px solid var(--line);border-radius:14px;
-padding:1.3rem 1.5rem;margin-bottom:.9rem}
-.session.pending{opacity:.55}
-.num{font-family:'Cormorant Garamond',Georgia,serif;font-size:2rem;color:var(--accent);line-height:1;
-min-width:2.2rem;padding-top:.15rem}
-.session.pending .num{color:var(--muted)}
-h2{font-size:1.15rem;font-weight:700;margin-bottom:.35rem}
-.desc{font-size:.97rem}
-.topics{color:var(--muted);font-size:.84rem;margin-top:.5rem}
-.links{margin-top:.9rem;display:flex;gap:.55rem;flex-wrap:wrap}
-.btn{display:inline-block;padding:.45rem 1rem;border-radius:999px;font-size:.86rem;font-weight:600;
+color:var(--ink);line-height:1.6;font-size:17px}
+a{color:var(--accent)}
+.top{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);
+border-bottom:1px solid var(--line)}
+.top .in{max-width:820px;margin:0 auto;padding:.7rem 1.25rem;display:flex;align-items:center;gap:1rem;
+flex-wrap:wrap}
+.top .brand{font-weight:700;color:var(--ink);text-decoration:none;margin-right:auto}
+.top .brand span{color:var(--muted);font-weight:500}
+.top nav{display:flex;gap:.3rem;flex-wrap:wrap}
+.top nav a{font-size:.88rem;font-weight:600;color:var(--muted);text-decoration:none;padding:.3rem .7rem;
+border-radius:999px}
+.top nav a:hover{color:var(--ink);background:var(--soft)}
+.top nav a.on{color:var(--accent);background:var(--accent-bg)}
+.wrap{max-width:820px;margin:0 auto;padding:2.4rem 1.25rem 4rem}
+h1{font-size:clamp(2rem,5vw,2.6rem);line-height:1.15;letter-spacing:-.015em;margin-bottom:.5rem}
+.lede{color:var(--muted);font-size:1.05rem;max-width:60ch}
+h2{font-size:1.3rem;margin:2.8rem 0 .9rem;letter-spacing:-.005em;scroll-margin-top:4.5rem}
+h3{font-size:1.05rem;margin:1.6rem 0 .5rem}
+p{margin:.6rem 0}
+ul,ol{margin:.6rem 0 .6rem 1.3rem}
+li{margin:.25rem 0}
+strong,b{font-weight:600}
+em{color:var(--muted)}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;background:var(--soft);padding:.05rem .35rem;
+border-radius:4px;font-size:.85em;overflow-wrap:anywhere}
+pre{background:var(--soft);border-radius:8px;padding:.8rem 1rem;overflow-x:auto;margin:.8rem 0;font-size:.88rem}
+pre code{background:none;padding:0}
+table{width:100%;border-collapse:collapse;margin:.8rem 0;font-size:.94rem}
+th,td{padding:.55rem .65rem;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
+th{color:var(--muted);font-weight:600;font-size:.78rem;letter-spacing:.04em;text-transform:uppercase}
+blockquote{border-left:3px solid var(--accent);background:var(--accent-bg);padding:.7rem 1rem;
+border-radius:0 8px 8px 0;margin:.8rem 0}
+.small{font-size:.9rem;color:var(--muted)}
+.warn{border-left:3px solid var(--amber);background:var(--amber-bg);padding:.7rem 1rem;border-radius:0 8px 8px 0;
+margin:1rem 0;font-size:.96rem}
+.btn{display:inline-block;padding:.45rem 1rem;border-radius:999px;font-size:.88rem;font-weight:600;
 text-decoration:none;border:1px solid var(--line);color:var(--ink);background:var(--card)}
 .btn:hover{border-color:var(--accent);color:var(--accent)}
 .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
-.btn.primary:hover{color:#fff;opacity:.9}
-.btn.quiet{color:var(--muted);font-weight:500}
-.soon{font-size:.85rem;color:var(--muted);font-style:italic}
-footer{margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--line);color:var(--muted);font-size:.82rem}
-.lect{color:var(--accent);font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin:0 0 .4rem}
-@media(max-width:560px){.session{flex-direction:column;gap:.5rem}.num{padding-top:0}}
-
-.start{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem;margin:1.6rem 0 2.2rem}
-.start a{display:block;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
-border-radius:14px;padding:1.1rem 1.2rem}
-.start a:hover{border-color:var(--accent)}
-.start a.main{background:var(--accent);border-color:var(--accent);color:#fff}
-.start b{display:block;font-size:1.05rem;margin-bottom:.2rem}
-.start span{font-size:.88rem;color:var(--muted)}
-.start a.main span{color:#dbeafe}
-.label{color:var(--muted);font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-margin:0 0 .8rem}</style>
+.btn.primary:hover{color:#fff;opacity:.92}
+.more{display:inline-block;margin-top:.6rem;font-weight:600;text-decoration:none}
+/* timeline */
+.cycle{list-style:none;margin:1rem 0 0 .9rem;padding:0;border-left:2px solid var(--line);counter-reset:s}
+.cycle li{position:relative;padding:0 0 1.3rem 1.5rem;margin:0}
+.cycle li::before{counter-increment:s;content:counter(s);position:absolute;left:-.9rem;top:.05rem;width:1.6rem;
+height:1.6rem;border-radius:50%;background:var(--accent);color:#fff;font-size:.82rem;font-weight:700;
+display:flex;align-items:center;justify-content:center}
+.cycle b{display:block}
+.cycle p{margin:.1rem 0 0}
+.chips{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.5rem}
+.chips span{font-size:.8rem;border:1px solid var(--line);border-radius:6px;padding:.05rem .45rem;
+color:var(--muted);background:var(--card)}
+.due{display:inline-block;margin-top:.4rem;font-size:.85rem;font-weight:600;color:var(--accent);
+background:var(--accent-bg);border-radius:6px;padding:.1rem .55rem}
+/* files */
+.files{list-style:none;margin:.4rem 0;padding:0}
+.files li{display:grid;grid-template-columns:7rem 8rem 1fr;gap:.8rem;padding:.55rem 0;
+border-bottom:1px solid var(--line);margin:0;align-items:baseline}
+.files li span:last-child{color:var(--muted);font-size:.92rem}
+.fname{margin:1.2rem 0 .3rem;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:1rem;overflow-wrap:anywhere}
+.fname span{border-bottom:3px solid #bfdbfe}
+.parts{display:flex;flex-wrap:wrap;gap:.2rem 1rem;font-size:.85rem;color:var(--muted)}
+.parts b{color:var(--ink);font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:600}
+/* marked */
+.marked{list-style:none;margin:.4rem 0;padding:0}
+.marked li{display:grid;grid-template-columns:1.6rem 11rem 1fr;gap:.6rem;padding:.5rem 0;
+border-bottom:1px solid var(--line);margin:0}
+.marked .n{color:var(--accent);font-weight:700}
+.marked .w{font-weight:600}
+.marked .d{color:var(--muted);font-size:.93rem}
+.scale{display:flex;flex-wrap:wrap;gap:.4rem;margin:.6rem 0}
+.scale span{border:1px solid var(--line);border-radius:999px;padding:.15rem .7rem;font-size:.88rem;background:var(--card)}
+.scale b{color:var(--accent)}
+/* sessions */
+.sessions{list-style:none;margin:.4rem 0;padding:0}
+.sessions li{display:grid;grid-template-columns:2.4rem 1fr;gap:.8rem;padding:1rem 0;
+border-bottom:1px solid var(--line);margin:0}
+.sessions .num{font-size:1.3rem;font-weight:700;color:var(--accent)}
+.sessions li.soon .num,.sessions li.soon .t{color:var(--muted)}
+.sessions .t{font-weight:700;font-size:1.05rem}
+.sessions .l{font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);
+margin:.1rem 0 .25rem}
+.sessions .d{margin:0}
+.sessions .links{display:flex;gap:.45rem;flex-wrap:wrap;margin-top:.6rem}
+.sessions .soontag{font-size:.85rem;color:var(--muted);font-style:italic;margin-top:.3rem}
+/* accordion */
+.toc{display:flex;flex-wrap:wrap;gap:.4rem;margin:1.4rem 0 .6rem}
+.toc a{font-size:.85rem;font-weight:600;background:var(--accent-bg);border-radius:999px;padding:.25rem .8rem;
+text-decoration:none}
+.tools{display:flex;justify-content:flex-end;margin:.2rem 0 .4rem}
+.tools button{font:inherit;font-size:.85rem;color:var(--muted);background:none;border:0;cursor:pointer;
+text-decoration:underline}
+details.rule{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:0 0 .6rem;scroll-margin-top:4.5rem}
+details.rule>summary{list-style:none;cursor:pointer;padding:.95rem 1.1rem;display:grid;
+grid-template-columns:1.8rem 1fr 1rem;column-gap:.6rem;align-items:baseline}
+details.rule>summary::-webkit-details-marker{display:none}
+details.rule .n{color:var(--accent);font-weight:700}
+details.rule .t{font-weight:700;font-size:1.05rem}
+details.rule .g{grid-column:2;color:var(--muted);font-size:.92rem;margin-top:.1rem}
+details.rule .c{grid-row:1;grid-column:3;color:var(--muted);transition:transform .15s}
+details.rule[open] .c{transform:rotate(90deg)}
+details.rule>.body{padding:.2rem 1.1rem 1.1rem 3.5rem;border-top:1px solid var(--line)}
+details.inner{border:1px solid var(--line);border-radius:10px;padding:.1rem .9rem;margin:.9rem 0;background:#fbfcfe}
+details.inner>summary{cursor:pointer;font-weight:600;color:var(--accent);padding:.5rem 0}
+/* project */
+.grade{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin:1.2rem 0 .3rem}
+.grade div{border:1px solid var(--line);border-radius:10px;padding:.5rem .7rem;background:var(--card);
+font-size:.85rem;color:var(--muted)}
+.grade div.me{border-color:var(--accent);background:var(--accent-bg)}
+.grade b{display:block;font-size:1.4rem;color:var(--ink)}
+.goal{border-left:3px solid var(--accent);background:var(--accent-bg);padding:.85rem 1.1rem;
+border-radius:0 10px 10px 0;margin:1.2rem 0}
+.crit{list-style:none;margin:.4rem 0;padding:0}
+.crit li{display:grid;grid-template-columns:2.6rem 1fr;gap:.5rem;padding:.5rem 0;border-bottom:1px solid var(--line);margin:0}
+.crit .id{color:var(--accent);font-weight:700}
+.crit .d{color:var(--muted)}
+.spec{font-size:.9rem;font-weight:600;color:var(--amber);background:var(--amber-bg);border-radius:8px;
+padding:.45rem .8rem;margin:.4rem 0 .6rem}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+footer{margin-top:3.5rem;padding-top:1.2rem;border-top:1px solid var(--line);color:var(--muted);font-size:.84rem}
+@media(max-width:640px){
+ .files li{grid-template-columns:1fr;gap:.1rem}
+ .marked li{grid-template-columns:1.4rem 1fr}.marked .d{grid-column:2}
+ details.rule>.body{padding:.2rem 1rem 1rem}
+ .grade{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}
+ table{display:block;overflow-x:auto}}
+</style>
 </head>
 <body>
-  <div class="wrap">
-    <a class="back" href="../">&larr; INCORTX Classes</a>
-    <h1>Data Analytics</h1>
-    <p class="lede">Lab sessions running alongside the lecture course, from raw files to models you can
-    defend. Every session is an assignment for your group of three or four, and every one is marked the
-    same way.</p>
+<header class="top"><div class="in">
+  <a class="brand" href="">Data Analytics <span>&middot; INCORTX</span></a>
+  <nav><a href="" class="on">Home</a><a href="rules/">Rules &amp; marking</a><a href="project/">Project</a></nav>
+</div></header>
+<main class="wrap">
+<h1>Data Analytics</h1>
+<p class="lede">Hands-on lab sessions alongside the lectures. Every session is an assignment for your
+group of 3&ndash;4, marked the same way.</p>
 
-    <div class="start">
-      <a class="main" href="week/"><b>Every assignment, step by step</b><span>What happens in the session,
-      what to hand in, how to name each file, what is marked</span></a>
-      <a href="rules/"><b>Rules &amp; marking</b><span>The full rules: presenting, questions, the slide
-      deck, what goes wrong</span></a>
-      <a href="project/"><b>Course project</b><span>Proposal and results &mdash; the brief and the
-      rubric</span></a>
-    </div>
+<h2 id="how">How every assignment works</h2>
+<ol class="cycle"><li><b>In session N</b><p>Watch the 45-minute demo, then spend an hour on your group&rsquo;s topic. Hand in the notebook as it is when the hour ends.</p><div class="chips"><span>Question</span><span>EDA</span><span>Insight</span><span>Issue</span><span>Solution</span><span>Metric</span></div></li><li><b>At home</b><p>Finish the notebook, make the slides, record the video &mdash; every member speaks &mdash; and write a README.</p><span class="due">Due two days before session N+1</span></li><li><b>Start of session N+1</b><p>Two of you present the notebook for 5+ minutes, then take questions.</p></li></ol>
+<p class="small">Session 1: a 120-minute work block and nothing to present. Assignment 6: presented
+briefly at the end of session 6.</p>
 
-    <p class="label">Sessions</p>
-      <article class="session ">
-        <div class="num">01</div>
-        <div class="body">
-          <h2>From Raw Data to a First Model</h2>
-          <p class="lect">Follows lectures 2–3 · Supervised learning &amp; model evaluation</p>
-          <p class="desc">Preprocessing and supervised learning. A baseline you have to beat, a Pipeline with no leakage, and why accuracy on its own will lie to you.</p>
-          <p class="topics">Missing values · Target leakage · Decision trees · Imbalance &amp; choosing a metric · Baselines · Confusion matrix · Cross-validation</p>
-          <div class="links">
-            <a class="btn primary" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/master/DataAnalytics/session-01/lab_01.ipynb" target="_blank" rel="noopener">Open in Colab</a>
-            <a class="btn" href="https://nbviewer.org/urls/classes.incortx.com/DataAnalytics/session-01/lab_01.ipynb" target="_blank" rel="noopener">Preview</a>
-            <a class="btn quiet" href="session-01/lab_01.ipynb" download>Download</a>
-          </div>
-        </div>
-      </article>
-      <article class="session ">
-        <div class="num">02</div>
-        <div class="body">
-          <h2>Predicting a Number, and Measuring It Honestly</h2>
-          <p class="lect">Follows lecture 4 · Regression analysis</p>
-          <p class="desc">The least-squares line from the lecture, fitted on real data — then its residual analysis done for real: the plot, the ceiling it exposes, the outlier rule, and what correlated columns do to the coefficients.</p>
-          <p class="topics">Linear regression · R² &amp; a baseline · Residual plots · A target that hit a ceiling · Standardised residuals · Multicollinearity</p>
-          <div class="links">
-            <a class="btn primary" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/master/DataAnalytics/session-02/lab_02.ipynb" target="_blank" rel="noopener">Open in Colab</a>
-            <a class="btn" href="https://nbviewer.org/urls/classes.incortx.com/DataAnalytics/session-02/lab_02.ipynb" target="_blank" rel="noopener">Preview</a>
-            <a class="btn quiet" href="session-02/lab_02.ipynb" download>Download</a>
-          </div>
-        </div>
-      </article>
-      <article class="session ">
-        <div class="num">03</div>
-        <div class="body">
-          <h2>What Groups With What</h2>
-          <p class="lect">Follows lecture 5 · Unsupervised learning</p>
-          <p class="desc">The lecture’s eight-point k-Means example run step by step, then the same two moves on real penguins — a model that always answers, even when the groups are not there — and how to tell a cluster that means something from one that only looks like it does, when nobody handed you an answer key.</p>
-          <p class="topics">k-Means, step by step · Every k gets an answer · The elbow · A hidden answer key · Feature scaling</p>
-          <div class="links">
-            <a class="btn primary" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/master/DataAnalytics/session-03/lab_03.ipynb" target="_blank" rel="noopener">Open in Colab</a>
-            <a class="btn" href="https://nbviewer.org/urls/classes.incortx.com/DataAnalytics/session-03/lab_03.ipynb" target="_blank" rel="noopener">Preview</a>
-            <a class="btn quiet" href="session-03/lab_03.ipynb" download>Download</a>
-          </div>
-        </div>
-      </article>
-      <article class="session ">
-        <div class="num">04</div>
-        <div class="body">
-          <h2>The Machine Picks Its Own Features</h2>
-          <p class="lect">Follows lectures 6–7 · ANN &amp; CNN</p>
-          <p class="desc">Lecture 6’s neuron and the four-line training loop, in PyTorch, on the titanic rows from session 1 — a network that loses to the tree, and the validation curve that says why — then Lecture 7’s convolution on the slide’s own numbers, a dense layer that falls apart when every picture moves two pixels, and a CNN that does not.</p>
-          <p class="topics">A neuron, by the slides · The training loop · Learning curve · Convolution · The two-pixel test · Feature maps</p>
-          <div class="links">
-            <a class="btn primary" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/master/DataAnalytics/session-04/lab_04.ipynb" target="_blank" rel="noopener">Open in Colab</a>
-            <a class="btn" href="https://nbviewer.org/urls/classes.incortx.com/DataAnalytics/session-04/lab_04.ipynb" target="_blank" rel="noopener">Preview</a>
-            <a class="btn quiet" href="session-04/lab_04.ipynb" download>Download</a>
-          </div>
-        </div>
-      </article>
-      <article class="session pending">
-        <div class="num">05</div>
-        <div class="body">
-          <h2>Making Things Up, and Data That Has an Order</h2>
-          <p class="lect">Follows lectures 8–10 · Autoencoders, GANs, RNNs</p>
-          <p class="desc">Autoencoders, GANs, and recurrent networks on Thai text — three architectures that fail in three different ways, and a loss curve that goes down while the pictures get no better.</p>
-          <p class="topics">Autoencoder · Latent space · GAN · Mode collapse · RNN / LSTM · Thai sentiment · A baseline the LSTM has to beat</p>
-          <div class="links"><span class="soon">Not published yet</span></div>
-        </div>
-      </article>
-      <article class="session pending">
-        <div class="num">06</div>
-        <div class="body">
-          <h2>Maps, Agents, and a Last Word in the Room</h2>
-          <p class="lect">Follows lectures 11–12 · Self-organising maps &amp; deep RL</p>
-          <p class="desc">Self-organising maps on the data you clustered in session 3, and an agent that learns from reward alone — then, since there is no next session, each group presents its last assignment briefly in the room before finishing it at home.</p>
-          <p class="topics">Self-organising maps · U-matrix · Q-learning · Exploration vs exploitation · Preliminary presentation</p>
-          <div class="links"><span class="soon">Not published yet</span></div>
-        </div>
-      </article>
-    <footer>INCORTX Research Lab &middot; Data Analytics</footer>
-  </div>
+<h2 id="handin">Hand in four files</h2>
+<ul class="files"><li><span>Notebook</span><span><code>.ipynb</code></span><span>the one you present</span></li><li><span>Video</span><span><code>.mp4</code></span><span>5+ minutes, everyone speaks</span></li><li><span>Slides</span><span><code>.pdf / .pptx</code></span><span>10+ pages</span></li><li><span>README</span><span><code>.md / .txt</code></span><span>data source, anything borrowed, where you used AI</span></li></ul>
+<p class="fname"><span>DA</span>_<span>GB</span>_<span>R2</span>_<span>HousePriceRegression</span><span>.ipynb</span></p>
+<div class="parts"><span><b>DA</b> course</span><span><b>GB</b> group B &middot; or your 8-digit ID</span>
+<span><b>R2</b> assignment 2</span><span><b>HousePriceRegression</b> your topic</span></div>
+<p class="warn"><b>Files only, on Google Classroom.</b> No links, no .zip. A late or wrongly named file
+counts as not handed in.</p>
+
+<h2 id="marked">What is marked</h2>
+<ul class="marked"><li><span class="n">1</span><span class="w">Presenting</span><span class="d">all five steps, each opened on screen from the notebook you handed in &middot; top marks for an insight that changed your next step, a metric argued from your data, or doubt about your own result</span></li><li><span class="n">2</span><span class="w">Answering questions</span><span class="d">anyone in the group may be asked &mdash; about your code and your work</span></li><li><span class="n">3</span><span class="w">Every file, on time</span><span class="d">four files, correctly named, two days before the next session &mdash; all or nothing</span></li><li><span class="n">4</span><span class="w">The video</span><span class="d">everyone speaks, clear audio, explains rather than reads, and goes deeper than the live version</span></li><li><span class="n">5</span><span class="w">The slides</span><span class="d">charts titled, axes labelled, captioned &middot; one concrete example &middot; readable in the video</span></li><li><span class="n">6</span><span class="w">The homework</span><span class="d">model trained &middot; results beside the baseline &middot; two settings compared &middot; error analysis &middot; three limitations of your own data</span></li><li><span class="n">7</span><span class="w">Length</span><span class="d">slides 10+ pages &middot; video 5+ minutes</span></li></ul>
+<p>Each item is marked on one scale &mdash; points = full points &times; level:</p>
+<div class="scale"><span><b>100%</b> Excellent</span><span><b>75%</b> Good</span><span><b>50%</b> Satisfactory</span><span><b>25%</b> Needs work</span><span><b>0%</b> Missing</span></div>
+<p class="small">The mark belongs to the whole group. You do not need a good result &mdash; a model that
+loses to its baseline scores just as well, if you can say why.</p>
+<a class="more" href="rules/">Full rules &rarr;</a>
+
+<h2 id="sessions">Sessions</h2>
+<ul class="sessions"><li class=""><span class="num">01</span><div><div class="t">From Raw Data to a First Model</div><div class="l">Follows lectures 2–3 · Supervised learning &amp; model evaluation</div><p class="d">A baseline to beat, a Pipeline without leakage, and why accuracy alone lies.</p><div class="links"><a class="btn primary" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/master/DataAnalytics/session-01/lab_01.ipynb" target="_blank" rel="noopener">Open in Colab</a><a class="btn" href="https://nbviewer.org/urls/classes.incortx.com/DataAnalytics/session-01/lab_01.ipynb" target="_blank" rel="noopener">Preview</a><a class="btn" href="session-01/lab_01.ipynb" download>Download</a></div></div></li><li class=""><span class="num">02</span><div><div class="t">Predicting a Number, and Measuring It Honestly</div><div class="l">Follows lecture 4 · Regression analysis</div><p class="d">The least-squares line on real data, and its residuals read properly.</p><div class="links"><a class="btn primary" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/master/DataAnalytics/session-02/lab_02.ipynb" target="_blank" rel="noopener">Open in Colab</a><a class="btn" href="https://nbviewer.org/urls/classes.incortx.com/DataAnalytics/session-02/lab_02.ipynb" target="_blank" rel="noopener">Preview</a><a class="btn" href="session-02/lab_02.ipynb" download>Download</a></div></div></li><li class=""><span class="num">03</span><div><div class="t">What Groups With What</div><div class="l">Follows lecture 5 · Unsupervised learning</div><p class="d">k-Means step by step, and how to tell a real cluster from one that only looks real.</p><div class="links"><a class="btn primary" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/master/DataAnalytics/session-03/lab_03.ipynb" target="_blank" rel="noopener">Open in Colab</a><a class="btn" href="https://nbviewer.org/urls/classes.incortx.com/DataAnalytics/session-03/lab_03.ipynb" target="_blank" rel="noopener">Preview</a><a class="btn" href="session-03/lab_03.ipynb" download>Download</a></div></div></li><li class=""><span class="num">04</span><div><div class="t">The Machine Picks Its Own Features</div><div class="l">Follows lectures 6–7 · ANN &amp; CNN</div><p class="d">A neuron and its training loop in PyTorch, then convolution and a CNN.</p><div class="links"><a class="btn primary" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/master/DataAnalytics/session-04/lab_04.ipynb" target="_blank" rel="noopener">Open in Colab</a><a class="btn" href="https://nbviewer.org/urls/classes.incortx.com/DataAnalytics/session-04/lab_04.ipynb" target="_blank" rel="noopener">Preview</a><a class="btn" href="session-04/lab_04.ipynb" download>Download</a></div></div></li><li class="soon"><span class="num">05</span><div><div class="t">Making Things Up, and Data That Has an Order</div><div class="l">Follows lectures 8–10 · Autoencoders, GANs, RNNs</div><p class="d">Autoencoders, GANs and RNNs &mdash; three ways a model can fail.</p><p class="soontag">Not published yet</p></div></li><li class="soon"><span class="num">06</span><div><div class="t">Maps, Agents, and a Last Word in the Room</div><div class="l">Follows lectures 11–12 · Self-organising maps &amp; deep RL</div><p class="d">Self-organising maps, an agent that learns from reward, and the last presentation.</p><p class="soontag">Not published yet</p></div></li></ul>
+
+<footer>INCORTX Research Lab &middot; Data Analytics &middot; <a href="https://classes.incortx.com/">all courses</a></footer>
+</main>
 </body>
 </html>

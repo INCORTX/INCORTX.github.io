@@ -6,225 +6,214 @@
 <title>Course Project | Data Analytics</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* Light theme since 2026-10-05, accent blue #1d4ed8 (CV/DSP pages are teal): the dark glass theme put #94a3b8 body text on #0f172a
-   (7:1) at 14-15px, with white bold runs that made every paragraph uneven to read. */
-:root{--bg:#f7f8fb;--card:#ffffff;--ink:#1e2433;--muted:#4b5567;--line:#e3e7ef;--accent:#1d4ed8;
---accent-bg:#eff6ff;--amber:#b45309;--amber-bg:#fffbeb;--amber-line:#fde68a}
+/* Design system v2. Blue accent: CV pages are teal, DSP violet. Body text 15.5:1 at 17px. */
+:root{--bg:#f7f8fb;--card:#ffffff;--ink:#1e2433;--muted:#556074;--line:#e3e7ef;--soft:#f1f4f8;
+--accent:#1d4ed8;--accent-bg:#eff6ff;--amber:#b45309;--amber-bg:#fffbeb}
 *{margin:0;padding:0;box-sizing:border-box}
-html{color-scheme:light}
+html{color-scheme:light;scroll-behavior:smooth}
 body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--bg);
-color:var(--ink);line-height:1.65;font-size:17px;min-height:100vh}
-.wrap{max-width:860px;margin:0 auto;padding:3rem 1.25rem 4.5rem}
-.back{color:var(--muted);text-decoration:none;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase}
-.back:hover{color:var(--accent)}
-h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2.3rem,6vw,3.3rem);font-weight:600;
-margin:1.2rem 0 .4rem;letter-spacing:-.01em}
-.lede{color:var(--muted);max-width:62ch;margin-bottom:.9rem}
-.note{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;
-padding:.9rem 1.1rem;font-size:.96rem;margin:1.4rem 0 1.8rem}
-.session{display:flex;gap:1.3rem;background:var(--card);border:1px solid var(--line);border-radius:14px;
-padding:1.3rem 1.5rem;margin-bottom:.9rem}
-.session.pending{opacity:.55}
-.num{font-family:'Cormorant Garamond',Georgia,serif;font-size:2rem;color:var(--accent);line-height:1;
-min-width:2.2rem;padding-top:.15rem}
-.session.pending .num{color:var(--muted)}
-h2{font-size:1.15rem;font-weight:700;margin-bottom:.35rem}
-.desc{font-size:.97rem}
-.topics{color:var(--muted);font-size:.84rem;margin-top:.5rem}
-.links{margin-top:.9rem;display:flex;gap:.55rem;flex-wrap:wrap}
-.btn{display:inline-block;padding:.45rem 1rem;border-radius:999px;font-size:.86rem;font-weight:600;
+color:var(--ink);line-height:1.6;font-size:17px}
+a{color:var(--accent)}
+.top{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);
+border-bottom:1px solid var(--line)}
+.top .in{max-width:820px;margin:0 auto;padding:.7rem 1.25rem;display:flex;align-items:center;gap:1rem;
+flex-wrap:wrap}
+.top .brand{font-weight:700;color:var(--ink);text-decoration:none;margin-right:auto}
+.top .brand span{color:var(--muted);font-weight:500}
+.top nav{display:flex;gap:.3rem;flex-wrap:wrap}
+.top nav a{font-size:.88rem;font-weight:600;color:var(--muted);text-decoration:none;padding:.3rem .7rem;
+border-radius:999px}
+.top nav a:hover{color:var(--ink);background:var(--soft)}
+.top nav a.on{color:var(--accent);background:var(--accent-bg)}
+.wrap{max-width:820px;margin:0 auto;padding:2.4rem 1.25rem 4rem}
+h1{font-size:clamp(2rem,5vw,2.6rem);line-height:1.15;letter-spacing:-.015em;margin-bottom:.5rem}
+.lede{color:var(--muted);font-size:1.05rem;max-width:60ch}
+h2{font-size:1.3rem;margin:2.8rem 0 .9rem;letter-spacing:-.005em;scroll-margin-top:4.5rem}
+h3{font-size:1.05rem;margin:1.6rem 0 .5rem}
+p{margin:.6rem 0}
+ul,ol{margin:.6rem 0 .6rem 1.3rem}
+li{margin:.25rem 0}
+strong,b{font-weight:600}
+em{color:var(--muted)}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;background:var(--soft);padding:.05rem .35rem;
+border-radius:4px;font-size:.85em;overflow-wrap:anywhere}
+pre{background:var(--soft);border-radius:8px;padding:.8rem 1rem;overflow-x:auto;margin:.8rem 0;font-size:.88rem}
+pre code{background:none;padding:0}
+table{width:100%;border-collapse:collapse;margin:.8rem 0;font-size:.94rem}
+th,td{padding:.55rem .65rem;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
+th{color:var(--muted);font-weight:600;font-size:.78rem;letter-spacing:.04em;text-transform:uppercase}
+blockquote{border-left:3px solid var(--accent);background:var(--accent-bg);padding:.7rem 1rem;
+border-radius:0 8px 8px 0;margin:.8rem 0}
+.small{font-size:.9rem;color:var(--muted)}
+.warn{border-left:3px solid var(--amber);background:var(--amber-bg);padding:.7rem 1rem;border-radius:0 8px 8px 0;
+margin:1rem 0;font-size:.96rem}
+.btn{display:inline-block;padding:.45rem 1rem;border-radius:999px;font-size:.88rem;font-weight:600;
 text-decoration:none;border:1px solid var(--line);color:var(--ink);background:var(--card)}
 .btn:hover{border-color:var(--accent);color:var(--accent)}
 .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
-.btn.primary:hover{color:#fff;opacity:.9}
-.btn.quiet{color:var(--muted);font-weight:500}
-.soon{font-size:.85rem;color:var(--muted);font-style:italic}
-footer{margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--line);color:var(--muted);font-size:.82rem}
-.lect{color:var(--accent);font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin:0 0 .4rem}
-@media(max-width:560px){.session{flex-direction:column;gap:.5rem}.num{padding-top:0}}
-
-
-section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.5rem 1.7rem;
-margin-bottom:1rem}
-section h2{display:flex;align-items:baseline;gap:.7rem;font-size:1.22rem;margin-bottom:.8rem}
-section h3{font-size:1.04rem;margin:1.4rem 0 .5rem}
-.sn{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.6rem;color:var(--accent)}
-section p{margin:.7rem 0}
-section ul,section ol{margin:.6rem 0 .6rem 1.3rem}
-section li{margin:.3rem 0}
-strong,b{font-weight:700}
-em{color:var(--muted)}
-section a,.lede a{color:var(--accent);font-weight:600}
-table{width:100%;border-collapse:collapse;margin:.8rem 0;font-size:.93rem}
-th,td{padding:.55rem .7rem;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
-th{color:var(--muted);font-weight:700;font-size:.76rem;letter-spacing:.05em;text-transform:uppercase;
-background:#f1f4f8}
-blockquote{margin:.9rem 0;padding:.75rem 1rem;border-left:3px solid var(--accent);background:var(--accent-bg);
-border-radius:0 8px 8px 0;font-size:.96rem}
-code{background:#eef1f6;padding:.08rem .35rem;border-radius:4px;font-size:.85em;color:#0f3d5c;
-overflow-wrap:anywhere}
-pre{background:#f1f4f8;border:1px solid var(--line);border-radius:8px;padding:.85rem 1rem;overflow-x:auto;
-margin:.8rem 0}
-pre code{background:none;padding:0;font-size:.86rem;color:var(--ink)}
-details{border:1px solid var(--line);border-radius:10px;padding:.15rem 1rem;margin:.9rem 0;background:#fbfcfe}
-details summary{cursor:pointer;font-weight:700;padding:.6rem 0;color:var(--accent)}
-details[open]{padding-bottom:.5rem}
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem;margin:.8rem 0}
-.steps div{border:1px solid var(--line);border-radius:12px;padding:.9rem 1rem;background:#fbfcfe}
-.steps b.k{display:block;color:var(--accent);font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;
-margin-bottom:.25rem}
-.cta{display:flex;gap:.6rem;flex-wrap:wrap;margin:1.2rem 0 0}
-.scale{display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0 .6rem}
-.scale span{border:1px solid var(--line);border-radius:999px;padding:.2rem .7rem;font-size:.88rem;background:var(--card)}
+.btn.primary:hover{color:#fff;opacity:.92}
+.more{display:inline-block;margin-top:.6rem;font-weight:600;text-decoration:none}
+/* timeline */
+.cycle{list-style:none;margin:1rem 0 0 .9rem;padding:0;border-left:2px solid var(--line);counter-reset:s}
+.cycle li{position:relative;padding:0 0 1.3rem 1.5rem;margin:0}
+.cycle li::before{counter-increment:s;content:counter(s);position:absolute;left:-.9rem;top:.05rem;width:1.6rem;
+height:1.6rem;border-radius:50%;background:var(--accent);color:#fff;font-size:.82rem;font-weight:700;
+display:flex;align-items:center;justify-content:center}
+.cycle b{display:block}
+.cycle p{margin:.1rem 0 0}
+.chips{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.5rem}
+.chips span{font-size:.8rem;border:1px solid var(--line);border-radius:6px;padding:.05rem .45rem;
+color:var(--muted);background:var(--card)}
+.due{display:inline-block;margin-top:.4rem;font-size:.85rem;font-weight:600;color:var(--accent);
+background:var(--accent-bg);border-radius:6px;padding:.1rem .55rem}
+/* files */
+.files{list-style:none;margin:.4rem 0;padding:0}
+.files li{display:grid;grid-template-columns:7rem 8rem 1fr;gap:.8rem;padding:.55rem 0;
+border-bottom:1px solid var(--line);margin:0;align-items:baseline}
+.files li span:last-child{color:var(--muted);font-size:.92rem}
+.fname{margin:1.2rem 0 .3rem;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:1rem;overflow-wrap:anywhere}
+.fname span{border-bottom:3px solid #bfdbfe}
+.parts{display:flex;flex-wrap:wrap;gap:.2rem 1rem;font-size:.85rem;color:var(--muted)}
+.parts b{color:var(--ink);font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:600}
+/* marked */
+.marked{list-style:none;margin:.4rem 0;padding:0}
+.marked li{display:grid;grid-template-columns:1.6rem 11rem 1fr;gap:.6rem;padding:.5rem 0;
+border-bottom:1px solid var(--line);margin:0}
+.marked .n{color:var(--accent);font-weight:700}
+.marked .w{font-weight:600}
+.marked .d{color:var(--muted);font-size:.93rem}
+.scale{display:flex;flex-wrap:wrap;gap:.4rem;margin:.6rem 0}
+.scale span{border:1px solid var(--line);border-radius:999px;padding:.15rem .7rem;font-size:.88rem;background:var(--card)}
 .scale b{color:var(--accent)}
-@media(max-width:640px){section{padding:1.1rem}table{display:block;overflow-x:auto}}
-
-.goal{border-left:3px solid var(--accent);background:var(--accent-bg);border-radius:0 10px 10px 0;
-padding:1rem 1.2rem;margin:1.4rem 0 1.6rem}
-.grade{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.6rem;margin:1.2rem 0 .4rem}
-.grade div{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:.65rem .8rem;
-font-size:.86rem;color:var(--muted)}
+/* sessions */
+.sessions{list-style:none;margin:.4rem 0;padding:0}
+.sessions li{display:grid;grid-template-columns:2.4rem 1fr;gap:.8rem;padding:1rem 0;
+border-bottom:1px solid var(--line);margin:0}
+.sessions .num{font-size:1.3rem;font-weight:700;color:var(--accent)}
+.sessions li.soon .num,.sessions li.soon .t{color:var(--muted)}
+.sessions .t{font-weight:700;font-size:1.05rem}
+.sessions .l{font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);
+margin:.1rem 0 .25rem}
+.sessions .d{margin:0}
+.sessions .links{display:flex;gap:.45rem;flex-wrap:wrap;margin-top:.6rem}
+.sessions .soontag{font-size:.85rem;color:var(--muted);font-style:italic;margin-top:.3rem}
+/* accordion */
+.toc{display:flex;flex-wrap:wrap;gap:.4rem;margin:1.4rem 0 .6rem}
+.toc a{font-size:.85rem;font-weight:600;background:var(--accent-bg);border-radius:999px;padding:.25rem .8rem;
+text-decoration:none}
+.tools{display:flex;justify-content:flex-end;margin:.2rem 0 .4rem}
+.tools button{font:inherit;font-size:.85rem;color:var(--muted);background:none;border:0;cursor:pointer;
+text-decoration:underline}
+details.rule{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:0 0 .6rem;scroll-margin-top:4.5rem}
+details.rule>summary{list-style:none;cursor:pointer;padding:.95rem 1.1rem;display:grid;
+grid-template-columns:1.8rem 1fr 1rem;column-gap:.6rem;align-items:baseline}
+details.rule>summary::-webkit-details-marker{display:none}
+details.rule .n{color:var(--accent);font-weight:700}
+details.rule .t{font-weight:700;font-size:1.05rem}
+details.rule .g{grid-column:2;color:var(--muted);font-size:.92rem;margin-top:.1rem}
+details.rule .c{grid-row:1;grid-column:3;color:var(--muted);transition:transform .15s}
+details.rule[open] .c{transform:rotate(90deg)}
+details.rule>.body{padding:.2rem 1.1rem 1.1rem 3.5rem;border-top:1px solid var(--line)}
+details.inner{border:1px solid var(--line);border-radius:10px;padding:.1rem .9rem;margin:.9rem 0;background:#fbfcfe}
+details.inner>summary{cursor:pointer;font-weight:600;color:var(--accent);padding:.5rem 0}
+/* project */
+.grade{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin:1.2rem 0 .3rem}
+.grade div{border:1px solid var(--line);border-radius:10px;padding:.5rem .7rem;background:var(--card);
+font-size:.85rem;color:var(--muted)}
 .grade div.me{border-color:var(--accent);background:var(--accent-bg)}
-.grade b{display:block;font-family:'Cormorant Garamond',Georgia,serif;font-size:1.7rem;color:var(--accent);line-height:1.1}
-.split{color:var(--muted);font-size:.9rem;margin-bottom:1.6rem}
-.spec{border:1px solid var(--amber-line);background:var(--amber-bg);color:var(--amber);border-radius:8px;
-padding:.55rem .85rem;font-size:.88rem;font-weight:600;margin:.4rem 0 .8rem}
-td.id{width:3.2rem;color:var(--accent);font-weight:700;font-variant-numeric:tabular-nums}
-.d{color:var(--muted)}
+.grade b{display:block;font-size:1.4rem;color:var(--ink)}
+.goal{border-left:3px solid var(--accent);background:var(--accent-bg);padding:.85rem 1.1rem;
+border-radius:0 10px 10px 0;margin:1.2rem 0}
+.crit{list-style:none;margin:.4rem 0;padding:0}
+.crit li{display:grid;grid-template-columns:2.6rem 1fr;gap:.5rem;padding:.5rem 0;border-bottom:1px solid var(--line);margin:0}
+.crit .id{color:var(--accent);font-weight:700}
+.crit .d{color:var(--muted)}
+.spec{font-size:.9rem;font-weight:600;color:var(--amber);background:var(--amber-bg);border-radius:8px;
+padding:.45rem .8rem;margin:.4rem 0 .6rem}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
-@media(max-width:640px){.two{grid-template-columns:1fr}}
+footer{margin-top:3.5rem;padding-top:1.2rem;border-top:1px solid var(--line);color:var(--muted);font-size:.84rem}
+@media(max-width:640px){
+ .files li{grid-template-columns:1fr;gap:.1rem}
+ .marked li{grid-template-columns:1.4rem 1fr}.marked .d{grid-column:2}
+ details.rule>.body{padding:.2rem 1rem 1rem}
+ .grade{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}
+ table{display:block;overflow-x:auto}}
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <a class="back" href="../">&larr; Data Analytics</a>
-    <h1>Course Project</h1>
-    <p class="lede">Same group as your assignments &mdash; three or four people. Two presentations: a
-    proposal, then the results with the code run live.</p>
+<header class="top"><div class="in">
+  <a class="brand" href="../">Data Analytics <span>&middot; INCORTX</span></a>
+  <nav><a href="../">Home</a><a href="../rules/">Rules &amp; marking</a><a href="../project/" class="on">Project</a></nav>
+</div></header>
+<main class="wrap">
+<h1>Course Project</h1>
+<p class="lede">Same group as your assignments. Two presentations: a proposal, then the results with the
+code run live.</p>
+<div class="grade"><div><b>20</b>Lab</div><div><b>20</b>Assignments</div><div class="me"><b>20</b>Project</div><div><b>40</b>Final exam</div></div>
+<p class="small">The project is 20 of the course&rsquo;s 100 &mdash; proposal 10 + results, code &amp; demo
+10. It does not replace the final exam.</p>
+<div class="goal"><b>Graded on</b> experiment design, how you evaluate what you built, your analysis,
+and your ideas &mdash; <b>not on how good the numbers are.</b></div>
 
-    <div class="grade"><div><b>20</b>Lab</div><div><b>20</b>Assignments</div><div class="me"><b>20</b>Project</div><div><b>40</b>Final exam</div></div>
-    <p class="split">The project is <b>20 of the course&rsquo;s 100</b>: proposal <b>10</b> + results, code
-    &amp; demo <b>10</b>. It does not replace the final exam. How the points split across the items below
-    will be announced.</p>
+<h2>The task</h2>
+<p>Pick <b>one real dataset</b> (not a topic from the session notebooks), propose <b>two or three
+solutions that take different routes</b>, run every one, measure <b>accuracy</b> and <b>speed /
+resources</b>, and pick the best trade-off.</p>
+<ul>
+<li><b>Four techniques</b>, from the course or the literature &mdash; each explained in your own words:
+theory, its role here, an example figure.</li>
+<li><b>Accuracy</b> &mdash; one metric that fits the task, the same for every solution, with a baseline beside it.</li>
+<li><b>Speed / resources</b> &mdash; time, memory or parameter count, as numbers.</li>
+</ul>
+<p class="small">Data ideas: data.go.th &middot; UCI ML Repository &middot; World Bank / Our World in Data
+&middot; air quality, traffic or energy feeds &middot; logs you are allowed to use &middot; a survey or sensor
+log your group collects.</p>
 
-    <div class="goal">&#127919; <b>What the project is graded on:</b> experiment design, how you evaluate
-    what you built, your analysis, and your ideas and creativity &mdash; <b>not on how good the numbers turn
-    out.</b> A solution that scores poorly but is compared well and explained is worth more than a pretty
-    number nobody can trace.</div>
+<h2>Rubric</h2>
+<p>Every criterion is marked on one scale &mdash; points = the item&rsquo;s full points &times; the level:</p>
+<div class="scale"><span><b>100%</b> Excellent</span><span><b>75%</b> Good</span><span><b>50%</b> Satisfactory</span><span><b>25%</b> Needs work</span><span><b>0%</b> Missing</span></div>
+<p class="small">Counted directly instead: C14 (files) and P11 (on time).</p>
+<h3>Proposal &mdash; 10 points</h3>
+<p class="spec">30+ slides with page numbers &middot; 20+ minutes &middot; hand in clip + slides</p>
+<ul class="crit"><li><span class="id">P1</span><span><b>Why this problem</b> <span class="d">&mdash; where it comes from and what makes it hard · what the analysis will output, and who would use it</span></span></li><li><span class="id">P2</span><span><b>Dataset</b> <span class="d">&mdash; where it comes from and how it was collected · what one row is · how many rows, and what is wrong with them</span></span></li><li><span class="id">P3</span><span><b>Four techniques</b> <span class="d">&mdash; from the course or from the literature &mdash; but every one explained in full, in your own words: the theory · what it does for this project · an example figure</span></span></li><li><span class="id">P4</span><span><b>Parameter study</b> <span class="d">&mdash; every parameter and the value you plan to use · how changing each one would move the output</span></span></li><li><span class="id">P5</span><span><b>Two or three solutions</b> <span class="d">&mdash; workflow + pros and cons of each &mdash; two are required, a third is welcome</span></span></li><li><span class="id">P6</span><span><b>Creativity</b> <span class="d">&mdash; an out-of-the-box idea, a strong concept, or a wide and interesting literature survey (any one)</span></span></li><li><span class="id">P7</span><span><b>Slides</b> <span class="d">&mdash; <b>30+ pages</b> · page numbers on every slide · at least one image · no slide over 6 lines</span></span></li><li><span class="id">P8</span><span><b>Slide design</b> <span class="d">&mdash; attractive, engaging and easy to follow: clear figures and charts · a consistent layout and colour scheme · a storyline that holds attention</span></span></li><li><span class="id">P9</span><span><b>Delivery</b> <span class="d">&mdash; <b>20+ minutes</b> · explained, not read off the slides</span></span></li><li><span class="id">P10</span><span><b>Q&amp;A</b> <span class="d">&mdash; questions from the instructor and classmates</span></span></li><li><span class="id">P11</span><span><b>Submission</b> <span class="d">&mdash; clip + slide deck, on time</span></span></li></ul>
+<h3>Results, code &amp; demo &mdash; 10 points</h3>
+<p class="spec">20+ slides with page numbers &middot; 20+ minutes including a live run &middot; hand in slides + .ipynb + clip</p>
+<ul class="crit"><li><span class="id">C1</span><span><b>Accuracy</b> <span class="d">&mdash; a metric that fits the task, and why · every solution measured with that metric on the same data · a baseline beside it</span></span></li><li><span class="id">C2</span><span><b>Speed / resources</b> <span class="d">&mdash; training and prediction time, memory or parameter count for every solution &mdash; as numbers</span></span></li><li><span class="id">C3</span><span><b>Analysis per solution</b> <span class="d">&mdash; what each solution got and why, from the numbers in C1 + C2</span></span></li><li><span class="id">C4</span><span><b>Parameter setting</b> <span class="d">&mdash; the parameter values actually used for each solution, and why you chose them</span></span></li><li><span class="id">C5</span><span><b>Overall analysis</b> <span class="d">&mdash; the final choice with reasons on both axes · where the whole project breaks or is limited</span></span></li><li><span class="id">C6</span><span><b>Future work</b> <span class="d">&mdash; what you would try next, and why</span></span></li><li><span class="id">C7</span><span><b>Creativity</b> <span class="d">&mdash; an out-of-the-box idea, a strong concept, or a wide and interesting literature survey (any one)</span></span></li><li><span class="id">C8</span><span><b>Notebook + live demo</b> <span class="d">&mdash; every experiment in one file that runs end to end · <b>a live demo explaining every cell</b> · cells chain into the full experiment for every solution, no dead cells · <b>does not run = nothing for this item</b></span></span></li><li><span class="id">C9</span><span><b>Clean notebook</b> <span class="d">&mdash; a section per solution with headings · meaningful variable / function names · no duplicated code</span></span></li><li><span class="id">C10</span><span><b>Slides</b> <span class="d">&mdash; <b>20+ pages</b> · page numbers on every slide · at least one image · no slide over 6 lines</span></span></li><li><span class="id">C11</span><span><b>Slide design</b> <span class="d">&mdash; attractive, engaging and easy to follow: clear figures and charts · a consistent layout and colour scheme · a storyline that holds attention</span></span></li><li><span class="id">C12</span><span><b>Delivery</b> <span class="d">&mdash; <b>20+ minutes including the demo</b> · explained, not read</span></span></li><li><span class="id">C13</span><span><b>Q&amp;A</b> <span class="d">&mdash; questions from the instructor and classmates</span></span></li><li><span class="id">C14</span><span><b>Everything submitted</b> <span class="d">&mdash; proposal clip + slide PDF, and results clip + slide PDF + notebook + data + README &mdash; files, on time</span></span></li></ul>
+<p class="small">The same points for everyone in the group. Code that does not run scores nothing on C8.</p>
 
-    <section><h2><span class="sn">01</span>The task</h2>
-    <p>Pick <b>one real dataset</b>, propose <b>two or three solutions that take different routes</b>,
-    actually run every one of them, measure on both axes, and pick the best trade-off:</p>
-    <pre>real data &rarr; EDA + preparation &rarr; solution A / B / C (tree-based &middot; regression &middot; clustering &middot; neural network &hellip;) &rarr; accuracy + speed / resources &rarr; pick the best trade-off</pre>
-    <p><b>Must have:</b></p>
-    <ul>
-      <li><b>Four techniques</b> in use &mdash; from the course or from the literature, but <b>every one
-      explained in full, in your own words</b>: the theory &middot; what it does for this project &middot; an
-      example figure (e.g. &ldquo;median imputation because income is right-skewed&rdquo;, not &ldquo;because the
-      sample code had it&rdquo;)</li>
-      <li><b>Two or three solutions</b> &mdash; each with its own workflow, plus pros and cons</li>
-      <li><b>Measured on two axes</b> &mdash; accuracy (a metric that fits the task, the same one for every
-      solution on the same data, with a baseline beside it) and speed / resources (time, memory or parameter
-      count, <b>as numbers</b>)</li>
-      <li><b>Results need not be good</b> &mdash; the points are for the idea, the comparison, and the
-      analysis of why things came out the way they did</li>
-    </ul>
-    <p><b>Data you can use</b> &mdash; collect your own, or an open dataset: open government data
-    (data.go.th) &middot; the UCI Machine Learning Repository &middot; World Bank / Our World in Data &middot; air
-    quality, traffic or energy feeds &middot; sales or service logs you have permission to use &middot; a survey or
-    sensor log your group collects. <b>Not one of the topics from the session notebooks.</b></p>
-    </section>
+<h2>Questions to prepare</h2>
+<details class="inner"><summary>Proposal and results &mdash; sample questions</summary>
+<div class="two"><div><b>Proposal</b><ul>
+<li>Why these four techniques, and where did each come from?</li>
+<li>What really separates solution A from B? If they tie, which do you pick?</li>
+<li>What about this dataset needs care before you use it?</li></ul></div>
+<div><b>Results</b><ul>
+<li>What does this cell do? What changes without it?</li>
+<li>Why this <code>max_depth</code> / k / learning rate / number of epochs?</li>
+<li>Which cell produced the number on this slide?</li>
+<li>Double this parameter &mdash; which way does the result move, and why?</li>
+<li>Why was the more accurate solution not the one you chose (or the other way round)?</li></ul></div></div>
+</details>
 
-    <section><h2><span class="sn">02</span>Rubric</h2>
-    <p><b>Every criterion is marked on one grading scale</b> &mdash; points = the item&rsquo;s full points &times; the level:</p>
-    <div class="scale"><span><b>100%</b> Excellent</span><span><b>75%</b> Good</span><span><b>50%</b> Satisfactory</span><span><b>25%</b> Needs work</span><span><b>0%</b> Missing</span></div>
-    <p class="d">Counted directly instead: C14 (files) and on-time submission (P11).</p>
-    <h3>2.1 Proposal &mdash; 10 points</h3>
-    <div class="spec">Slides 30+ pages &middot; page numbers on every slide &middot; 20+ minutes &middot; submit clip + slide deck</div>
-    <table><tr><th>#</th><th>Criterion</th></tr>
-<tr><td class="id">P1</td><td><b>Why this problem</b> <span class="d">&mdash; where it comes from and what makes it hard · what the analysis will output, and who would use it</span></td></tr>
-<tr><td class="id">P2</td><td><b>Dataset</b> <span class="d">&mdash; where it comes from and how it was collected · what one row is · how many rows, and what is wrong with them</span></td></tr>
-<tr><td class="id">P3</td><td><b>Four techniques</b> <span class="d">&mdash; from the course or from the literature &mdash; but every one explained in full, in your own words: the theory · what it does for this project · an example figure</span></td></tr>
-<tr><td class="id">P4</td><td><b>Parameter study</b> <span class="d">&mdash; every parameter and the value you plan to use · how changing each one would move the output</span></td></tr>
-<tr><td class="id">P5</td><td><b>Two or three solutions</b> <span class="d">&mdash; workflow + pros and cons of each &mdash; two are required, a third is welcome</span></td></tr>
-<tr><td class="id">P6</td><td><b>Creativity</b> <span class="d">&mdash; an out-of-the-box idea, a strong concept, or a wide and interesting literature survey (any one)</span></td></tr>
-<tr><td class="id">P7</td><td><b>Slides</b> <span class="d">&mdash; <b>30+ pages</b> · page numbers on every slide · at least one image · no slide over 6 lines</span></td></tr>
-<tr><td class="id">P8</td><td><b>Slide design</b> <span class="d">&mdash; attractive, engaging and easy to follow: clear figures and charts · a consistent layout and colour scheme · a storyline that holds attention</span></td></tr>
-<tr><td class="id">P9</td><td><b>Delivery</b> <span class="d">&mdash; <b>20+ minutes</b> · explained, not read off the slides</span></td></tr>
-<tr><td class="id">P10</td><td><b>Q&amp;A</b> <span class="d">&mdash; questions from the instructor and classmates</span></td></tr>
-<tr><td class="id">P11</td><td><b>Submission</b> <span class="d">&mdash; clip + slide deck, on time</span></td></tr>
-    </table>
+<h2>What to hand in</h2>
+<ul class="files">
+<li><span>Proposal</span><span><code>.pdf</code> <code>.mp4</code></span><span>slides + presentation clip</span></li>
+<li><span>Results</span><span><code>.pdf</code> <code>.mp4</code> <code>.ipynb</code></span><span>slides + clip + one notebook with every experiment</span></li>
+<li><span>Also</span><span>README</span><span>how to run it, who did what &middot; the data, or a link / script to get it</span></li>
+</ul>
+<p>Same file names as every assignment: <code>DA_GB_PROP_AirQualityForecast.pdf</code> &middot;
+<code>DA_GB_RES_AirQualityForecast.ipynb</code> &middot; working alone: <code>DA_69012345_RES_&hellip;</code></p>
+<p class="warn"><b>Files, not links and not a .zip</b> &mdash; the dataset is the one thing that may be a
+link. A wrongly named file counts as not submitted (C14).</p>
 
-    <h3>2.2 Results, code &amp; demo &mdash; 10 points</h3>
-    <div class="spec">Slides 20+ pages &middot; page numbers on every slide &middot; 20+ minutes including a live run of the notebook &middot; submit slide deck + .ipynb + clip</div>
-    <table><tr><th>#</th><th>Criterion</th></tr>
-<tr><td class="id">C1</td><td><b>Accuracy</b> <span class="d">&mdash; a metric that fits the task, and why · every solution measured with that metric on the same data · a baseline beside it</span></td></tr>
-<tr><td class="id">C2</td><td><b>Speed / resources</b> <span class="d">&mdash; training and prediction time, memory or parameter count for every solution &mdash; as numbers</span></td></tr>
-<tr><td class="id">C3</td><td><b>Analysis per solution</b> <span class="d">&mdash; what each solution got and why, from the numbers in C1 + C2</span></td></tr>
-<tr><td class="id">C4</td><td><b>Parameter setting</b> <span class="d">&mdash; the parameter values actually used for each solution, and why you chose them</span></td></tr>
-<tr><td class="id">C5</td><td><b>Overall analysis</b> <span class="d">&mdash; the final choice with reasons on both axes · where the whole project breaks or is limited</span></td></tr>
-<tr><td class="id">C6</td><td><b>Future work</b> <span class="d">&mdash; what you would try next, and why</span></td></tr>
-<tr><td class="id">C7</td><td><b>Creativity</b> <span class="d">&mdash; an out-of-the-box idea, a strong concept, or a wide and interesting literature survey (any one)</span></td></tr>
-<tr><td class="id">C8</td><td><b>Notebook + live demo</b> <span class="d">&mdash; every experiment in one file that runs end to end · <b>a live demo explaining every cell</b> · cells chain into the full experiment for every solution, no dead cells · <b>does not run = nothing for this item</b></span></td></tr>
-<tr><td class="id">C9</td><td><b>Clean notebook</b> <span class="d">&mdash; a section per solution with headings · meaningful variable / function names · no duplicated code</span></td></tr>
-<tr><td class="id">C10</td><td><b>Slides</b> <span class="d">&mdash; <b>20+ pages</b> · page numbers on every slide · at least one image · no slide over 6 lines</span></td></tr>
-<tr><td class="id">C11</td><td><b>Slide design</b> <span class="d">&mdash; attractive, engaging and easy to follow: clear figures and charts · a consistent layout and colour scheme · a storyline that holds attention</span></td></tr>
-<tr><td class="id">C12</td><td><b>Delivery</b> <span class="d">&mdash; <b>20+ minutes including the demo</b> · explained, not read</span></td></tr>
-<tr><td class="id">C13</td><td><b>Q&amp;A</b> <span class="d">&mdash; questions from the instructor and classmates</span></td></tr>
-<tr><td class="id">C14</td><td><b>Everything submitted</b> <span class="d">&mdash; proposal clip + slide PDF, and results clip + slide PDF + notebook + data + README &mdash; files, on time</span></td></tr>
-    </table>
-    <p><b>Group score</b> &mdash; everyone in the group gets the same points, Q&amp;A included; the instructor
-    may ask anyone in the group, so <b>everyone must understand the group&rsquo;s code and results</b>.<br>
-    <b>Running code is not a score</b> &mdash; if it doesn&rsquo;t run you can&rsquo;t submit (does not run = nothing
-    on C8). The points are for explaining what every cell does and reading your own results.</p>
-    </section>
+<h2>AI and sources</h2>
+<p>AI may help write code, but you must understand every cell &mdash; the demo (C8) and Q&amp;A (C13)
+check it. Cite any pretrained model, code or data you borrow on the slides and in the README; no
+citation counts as copying.</p>
 
-    <section><h2><span class="sn">03</span>Sample Q&amp;A &mdash; prepare for these</h2>
-    <div class="two">
-      <div><b>Proposal session</b><ul>
-        <li>Why these four techniques &mdash; and where did each one come from (which session, which paper)?</li>
-        <li>What really separates solution A from B? If they tie, which do you pick?</li>
-        <li>What about this dataset needs care before you use it?</li>
-      </ul></div>
-      <div><b>Results session</b><ul>
-        <li>What does this cell do? If you delete it, what changes?</li>
-        <li>Why this <code>max_depth</code> / k / learning rate / number of epochs?</li>
-        <li>Which cell produced the number on this slide?</li>
-        <li>Double this parameter &mdash; which way does the result move, and why?</li>
-        <li>Why wasn&rsquo;t the more accurate solution the one you chose (or the other way round)?</li>
-      </ul></div>
-    </div>
-    </section>
-
-    <section><h2><span class="sn">04</span>What to submit</h2>
-    <table><tr><th>Session</th><th>Files</th></tr>
-      <tr><td>Proposal</td><td>presentation clip + slide deck (PDF)</td></tr>
-      <tr><td>Results</td><td>slide deck (PDF) + one <code>.ipynb</code> with every experiment + presentation clip</td></tr>
-    </table>
-    <p>Also for the results session: the data &mdash; the actual files, or a link / download script that
-    yields the same set &middot; a short README &mdash; how to run it, and who did what. <b>Files, not links and not a .zip</b>,
-    the same rule as every assignment &mdash; the dataset is the one thing that may be a link.</p>
-    <h3>File naming</h3>
-    <p>Same rule as every assignment: <code>DA_ID_SLOT_Topic.ext</code> &middot; ID = your group
-    (<code>GB</code>) or your 8-digit student ID &middot; SLOT = <code>PROP</code> or <code>RES</code>.</p>
-    <p>Group B: <code>DA_GB_PROP_AirQualityForecast.pdf</code> &middot; <code>DA_GB_PROP_AirQualityForecast.mp4</code>
-    &middot; <code>DA_GB_RES_AirQualityForecast.pdf</code> &middot; <code>DA_GB_RES_AirQualityForecast.mp4</code>
-    &middot; <code>DA_GB_RES_AirQualityForecast.ipynb</code><br>
-    Working alone (student ID 69012345): <code>DA_69012345_PROP_AirQualityForecast.pdf</code> &middot; &hellip;
-    &middot; <code>DA_69012345_RES_AirQualityForecast.ipynb</code><br>
-    No spaces, no Thai &middot; <b>a wrongly named file counts as not submitted (C14)</b>.</p>
-    </section>
-
-    <section><h2><span class="sn">05</span>AI and attribution</h2>
-    <p>You may use AI to help write code, <b>but you must understand every cell you submit</b> &mdash; the
-    demo (C8) and the Q&amp;A (C13) are where that is checked. If you use a pretrained model or borrow code
-    or data, cite the source on the slides and in the README (no citation = treated as copying).</p>
-    </section>
-
-    <footer>INCORTX Research Lab &middot; Data Analytics &middot; Project brief &middot; the same items as the
-    Computer Vision and Signal Processing projects; only the domain differs</footer>
-  </div>
+<footer>INCORTX Research Lab &middot; Data Analytics &middot; <a href="https://classes.incortx.com/">all courses</a></footer>
+</main>
 </body>
 </html>
