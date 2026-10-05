@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Every Assignment, Step by Step | Data Analytics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Light theme since 2026-10-05: the dark glass theme put #94a3b8 body text on #0f172a
+   (7:1) at 14-15px, with white bold runs that made every paragraph uneven to read. */
+:root{--bg:#f7f8fb;--card:#ffffff;--ink:#1e2433;--muted:#4b5567;--line:#e3e7ef;--teal:#0e7c86;
+--teal-bg:#e8f6f7;--amber:#b45309;--amber-bg:#fffbeb;--amber-line:#fde68a}
+*{margin:0;padding:0;box-sizing:border-box}
+html{color-scheme:light}
+body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--bg);
+color:var(--ink);line-height:1.65;font-size:17px;min-height:100vh}
+.wrap{max-width:860px;margin:0 auto;padding:3rem 1.25rem 4.5rem}
+.back{color:var(--muted);text-decoration:none;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase}
+.back:hover{color:var(--teal)}
+h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2.3rem,6vw,3.3rem);font-weight:600;
+margin:1.2rem 0 .4rem;letter-spacing:-.01em}
+.lede{color:var(--muted);max-width:62ch;margin-bottom:.9rem}
+.note{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:8px;
+padding:.9rem 1.1rem;font-size:.96rem;margin:1.4rem 0 1.8rem}
+.session{display:flex;gap:1.3rem;background:var(--card);border:1px solid var(--line);border-radius:14px;
+padding:1.3rem 1.5rem;margin-bottom:.9rem}
+.session.pending{opacity:.55}
+.num{font-family:'Cormorant Garamond',Georgia,serif;font-size:2rem;color:var(--teal);line-height:1;
+min-width:2.2rem;padding-top:.15rem}
+.session.pending .num{color:var(--muted)}
+h2{font-size:1.15rem;font-weight:700;margin-bottom:.35rem}
+.desc{font-size:.97rem}
+.topics{color:var(--muted);font-size:.84rem;margin-top:.5rem}
+.links{margin-top:.9rem;display:flex;gap:.55rem;flex-wrap:wrap}
+.btn{display:inline-block;padding:.45rem 1rem;border-radius:999px;font-size:.86rem;font-weight:600;
+text-decoration:none;border:1px solid var(--line);color:var(--ink);background:var(--card)}
+.btn:hover{border-color:var(--teal);color:var(--teal)}
+.btn.primary{background:var(--teal);border-color:var(--teal);color:#fff}
+.btn.primary:hover{color:#fff;opacity:.9}
+.btn.quiet{color:var(--muted);font-weight:500}
+.soon{font-size:.85rem;color:var(--muted);font-style:italic}
+footer{margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--line);color:var(--muted);font-size:.82rem}
+.lect{color:var(--teal);font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin:0 0 .4rem}
+@media(max-width:560px){.session{flex-direction:column;gap:.5rem}.num{padding-top:0}}
+
+
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.5rem 1.7rem;
+margin-bottom:1rem}
+section h2{display:flex;align-items:baseline;gap:.7rem;font-size:1.22rem;margin-bottom:.8rem}
+section h3{font-size:1.04rem;margin:1.4rem 0 .5rem}
+.sn{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.6rem;color:var(--teal)}
+section p{margin:.7rem 0}
+section ul,section ol{margin:.6rem 0 .6rem 1.3rem}
+section li{margin:.3rem 0}
+strong,b{font-weight:700}
+em{color:var(--muted)}
+section a,.lede a{color:var(--teal);font-weight:600}
+table{width:100%;border-collapse:collapse;margin:.8rem 0;font-size:.93rem}
+th,td{padding:.55rem .7rem;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
+th{color:var(--muted);font-weight:700;font-size:.76rem;letter-spacing:.05em;text-transform:uppercase;
+background:#f1f4f8}
+blockquote{margin:.9rem 0;padding:.75rem 1rem;border-left:3px solid var(--teal);background:var(--teal-bg);
+border-radius:0 8px 8px 0;font-size:.96rem}
+code{background:#eef1f6;padding:.08rem .35rem;border-radius:4px;font-size:.85em;color:#0f3d5c;
+overflow-wrap:anywhere}
+pre{background:#f1f4f8;border:1px solid var(--line);border-radius:8px;padding:.85rem 1rem;overflow-x:auto;
+margin:.8rem 0}
+pre code{background:none;padding:0;font-size:.86rem;color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;padding:.15rem 1rem;margin:.9rem 0;background:#fbfcfe}
+details summary{cursor:pointer;font-weight:700;padding:.6rem 0;color:var(--teal)}
+details[open]{padding-bottom:.5rem}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem;margin:.8rem 0}
+.steps div{border:1px solid var(--line);border-radius:12px;padding:.9rem 1rem;background:#fbfcfe}
+.steps b.k{display:block;color:var(--teal);font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;
+margin-bottom:.25rem}
+.cta{display:flex;gap:.6rem;flex-wrap:wrap;margin:1.2rem 0 0}
+@media(max-width:640px){section{padding:1.1rem}table{display:block;overflow-x:auto}}
+
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="../">&larr; Data Analytics</a>
+    <h1>Every Assignment, Step by Step</h1>
+    <p class="lede">The same cycle runs for all six assignments. This page is everything you need each
+    week; the details are on <a href="../rules/">Rules &amp; Marking</a>.</p>
+
+    <section><h2><span class="sn">01</span>One cycle</h2>
+    <div class="steps">
+      <div><b class="k">In session N</b>45-minute demo, then <b>your hour</b> on your group&rsquo;s topic:
+      Question &rarr; EDA &rarr; Insight &rarr; Issue &rarr; Solution &rarr; Metric. Hand in the notebook as it
+      stands when the hour ends.</div>
+      <div><b class="k">At home</b>Finish the notebook, make <b>10+ slides</b>, record a <b>5+ minute
+      video in which every member speaks</b>, write a README. Hand in all four files <b>two days before
+      session N+1</b>.</div>
+      <div><b class="k">Start of session N+1</b><b>Two representatives</b> present for four minutes from
+      the notebook you handed in &mdash; no slides &mdash; then take questions about your code and your
+      work.</div>
+    </div>
+    <p><em>Session 1 has no presentation hour, so its work block is 120 minutes. Assignment 6 is presented
+    briefly at the end of session 6 itself, and handed in like the others.</em></p>
+    </section>
+
+    <section><h2><span class="sn">02</span>Hand in four files, named by the rule</h2>
+    <table><tr><th>File</th><th>Format</th></tr>
+      <tr><td>Notebook</td><td><code>.ipynb</code> &mdash; in Colab: File &rarr; Download &rarr; .ipynb</td></tr>
+      <tr><td>Video, 5+ minutes</td><td><code>.mp4</code> (or <code>.mov</code>)</td></tr>
+      <tr><td>Slides, 10+ pages</td><td><code>.pdf</code> or <code>.pptx</code></td></tr>
+      <tr><td>README</td><td><code>.md</code> or <code>.txt</code> &mdash; data source, anything borrowed, where you used AI</td></tr>
+    </table>
+    <p><b>Name each file</b> <code>DA_ID_SLOT_Topic.ext</code> &mdash; ID is your group (<code>GA</code>&ndash;<code>GJ</code>)
+    or your 8-digit student ID if you work alone; SLOT is the assignment, <code>R1</code>&ndash;<code>R6</code>.</p>
+    <p>Group B, assignment 2: <code>DA_GB_R2_HousePriceRegression.ipynb</code> &middot;
+    <code>DA_GB_R2_HousePriceRegression.mp4</code> &middot; <code>DA_GB_R2_HousePriceRegression.pdf</code> &middot;
+    <code>DA_GB_R2_HousePriceRegression.md</code></p>
+    <blockquote><b>Files, uploaded to Google Classroom &mdash; never links.</b> A link, a late file or a
+    wrongly named file counts as not handed in.</blockquote>
+    </section>
+
+    <section><h2><span class="sn">03</span>What is marked</h2>
+    <ol><li>Presenting, at the start of the next session</li><li>Answering questions</li><li>Handing in every file on time</li><li>The video — fluent, and it analyses something</li><li>The slides — visualisation that is worth looking at</li><li>The homework checklist, complete</li><li>Length and duration</li></ol>
+    <p><b>You are not required to get a good result.</b> A model that loses to its own baseline scores just as
+    well, if you can say why.</p>
+    <div class="cta"><a class="btn primary" href="../rules/">Full rules &amp; marking</a>
+    <a class="btn" href="../project/">Course project</a></div>
+    </section>
+
+    <footer>INCORTX Research Lab &middot; Data Analytics</footer>
+  </div>
+</body>
+</html>
