@@ -30,6 +30,10 @@
   .two { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
   @media (max-width:700px) { .two { grid-template-columns:1fr; } h1 { font-size:28px; } }
   footer { margin-top:48px; color:var(--muted); font-size:13px; }
+  .scale{display:flex;flex-wrap:wrap;gap:.4rem;margin:.4rem 0 .5rem}
+  .scale span{border:1px solid var(--line);border-radius:999px;padding:.2rem .7rem;font-size:.9rem;background:#fff}
+  .scale b{color:var(--teal)}
+  code{overflow-wrap:anywhere}
 </style>
 </head>
 <body>
@@ -53,6 +57,9 @@
   <p><b>Data you can use</b> — shoot your own, or an open dataset: everyday photos / panoramas · CCTV / traffic cameras · medical images (X-ray, retina, MRI) · satellite / drone imagery · production-line images (defect checks) · agriculture (leaves / produce) · handwriting / documents</p>
 
   <h2>2. Rubric</h2>
+  <p><b>Every criterion is marked on one grading scale</b> &mdash; points = the item&rsquo;s full points &times; the level:</p>
+  <div class="scale"><span><b>100%</b> Excellent</span><span><b>75%</b> Good</span><span><b>50%</b> Satisfactory</span><span><b>25%</b> Needs work</span><span><b>0%</b> Missing</span></div>
+  <p class="d" style="color:var(--muted)">Counted directly instead: C14 (files) and on-time submission (P11).</p>
   <h3>2.1 Proposal — 14.5 points</h3>
   <div class="spec">Slides 30+ pages · page numbers on every slide · 20+ minutes · submit clip + slide deck</div>
   <table>

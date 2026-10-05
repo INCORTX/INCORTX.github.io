@@ -76,6 +76,9 @@ details[open]{padding-bottom:.5rem}
 .steps b.k{display:block;color:var(--accent);font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;
 margin-bottom:.25rem}
 .cta{display:flex;gap:.6rem;flex-wrap:wrap;margin:1.2rem 0 0}
+.scale{display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0 .6rem}
+.scale span{border:1px solid var(--line);border-radius:999px;padding:.2rem .7rem;font-size:.88rem;background:var(--card)}
+.scale b{color:var(--accent)}
 @media(max-width:640px){section{padding:1.1rem}table{display:block;overflow-x:auto}}
 
 .goal{border-left:3px solid var(--accent);background:var(--accent-bg);border-radius:0 10px 10px 0;
@@ -135,6 +138,9 @@ td.id{width:3.2rem;color:var(--accent);font-weight:700;font-variant-numeric:tabu
     </section>
 
     <section><h2><span class="sn">02</span>Rubric</h2>
+    <p><b>Every criterion is marked on one grading scale</b> &mdash; points = the item&rsquo;s full points &times; the level:</p>
+    <div class="scale"><span><b>100%</b> Excellent</span><span><b>75%</b> Good</span><span><b>50%</b> Satisfactory</span><span><b>25%</b> Needs work</span><span><b>0%</b> Missing</span></div>
+    <p class="d">Counted directly instead: C14 (files) and on-time submission (P11).</p>
     <h3>2.1 Proposal &mdash; 10 points</h3>
     <div class="spec">Slides 30+ pages &middot; page numbers on every slide &middot; 20+ minutes &middot; submit clip + slide deck</div>
     <table><tr><th>#</th><th>Criterion</th></tr>
