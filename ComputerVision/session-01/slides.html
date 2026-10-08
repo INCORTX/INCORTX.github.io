@@ -11,7 +11,7 @@
   .tryit (collapsible answer) · .flashback · .colab button · no per-slide citations — sources are on the References slide; direct quotes name their author
   in the slide itself; internal codes stay in the speaker script ·
   .term key terms with Thai meaning · toolbar bottom-centre, hidden while idle (first · prev · next · last · overview · fullscreen · PDF · ?)
-  · ↓/↑ = whole slide skipping fragments · Enter = full screen · overview scrolls/drags sideways · page number
+  · ↓/↑ = whole slide skipping fragments · Enter = full screen · all slides = photo-album grid (#album: arrows, Enter, scroll/drag) · page number
   in every slide footer, so it also prints
   · exports: ?print-pdf = 16:9 PDF, ?handout = A4 portrait, 2 slides/page (append &autoprint to open the
   print dialog) · touch screens: bar always shown, no ? button, docked right when a phone is sideways;
@@ -358,12 +358,33 @@ html.reading .reveal .slides>section::before,html.reading .reveal .slides>sectio
 .keys dt{display:flex;gap:4px;justify-content:flex-end;}
 .keys dd{margin:0;}
 .keys kbd{font-family:var(--mono);font-size:12.5px;min-width:1.9em;text-align:center;padding:3px 7px;border-radius:6px;border:1px solid var(--line);border-bottom-width:2px;background:var(--soft);color:var(--ink);}
-.ovhint{position:fixed;left:50%;top:18px;transform:translateX(-50%);z-index:40;background:var(--navy);color:#fff;font-family:var(--display);font-size:14px;font-weight:600;padding:10px 18px;border-radius:999px;box-shadow:0 8px 24px -12px rgba(15,27,45,.5);}
-.ovhint[hidden]{display:none;}
-.reveal.overview .slides{cursor:grab;}
-.reveal.overview .slides>section{box-shadow:0 0 0 2px var(--line);}
-.reveal.overview .slides>section.present{box-shadow:0 0 0 22px var(--teal) !important;}
-.reveal.overview.dragging .slides{cursor:grabbing;}
+/* all slides = photo album: a grid of live clones of every slide, scaled to thumbnails */
+.album{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;background:#eef1f5;font-family:var(--display);}
+.album[hidden]{display:none;}
+html.album-open .deckbar{display:none;}
+.ahead{display:flex;align-items:center;gap:14px;padding:14px 22px;background:#fff;border-bottom:1px solid var(--line);}
+.ahead h2{margin:0;font-size:18px;font-weight:700;color:var(--ink);letter-spacing:-.01em;}
+.ahead h2 span{color:var(--muted);font-weight:500;margin-left:.4em;}
+.ahead p{margin:0 0 0 auto;font-family:var(--font);font-size:13px;color:var(--muted);}
+.ahead button{flex:none;width:36px;height:36px;border:0;border-radius:50%;background:var(--soft);color:var(--ink);cursor:pointer;display:grid;place-items:center;}
+.ahead button:hover{background:var(--teal-soft);color:var(--teal);}
+.ahead button svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;}
+.agrid{flex:1;overflow-y:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px 18px;align-content:start;padding:22px;overscroll-behavior:contain;touch-action:pan-y;}
+.agrid.dragging{cursor:grabbing;user-select:none;}
+.thumb{display:block;cursor:pointer;border-radius:12px;outline:none;}
+.tframe{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:10px;background:#fff;box-shadow:0 1px 2px rgba(15,27,45,.08),0 8px 20px -14px rgba(15,27,45,.35);transition:box-shadow .15s,transform .15s;}
+.thumb:hover .tframe{transform:translateY(-2px);box-shadow:0 0 0 2px #b9dfe2,0 12px 26px -14px rgba(15,27,45,.4);}
+.thumb.sel .tframe{box-shadow:0 0 0 4px var(--teal),0 12px 26px -14px rgba(15,27,45,.4);}
+.thumb.now .tn::after{content:"current";margin-left:.5em;padding:1px 7px;border-radius:999px;background:var(--teal-soft);color:var(--teal);font-size:11px;font-weight:600;letter-spacing:.04em;}
+.tcap{display:flex;align-items:baseline;gap:8px;margin-top:8px;font-size:13px;line-height:1.3;}
+.tn{flex:none;font-weight:700;color:var(--teal);}
+.tt{color:var(--body);font-family:var(--font);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.album .reveal{position:absolute;left:0;top:0;width:1280px;height:720px;transform-origin:0 0;transform:scale(var(--s,.2));overflow:hidden;pointer-events:none;background:#fff;}
+.album .reveal .slides{position:absolute;inset:0;width:1280px;height:720px;margin:0;transform:none !important;zoom:1;perspective:none;pointer-events:none;}
+.album .reveal .slides>section{display:block !important;position:absolute !important;inset:0;width:1280px !important;height:720px !important;opacity:1 !important;visibility:visible !important;transform:none !important;pointer-events:none !important;}
+.album .reveal .fragment{opacity:1 !important;visibility:visible !important;transform:none !important;}
+@media (max-width:600px){.agrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 10px;padding:12px;}.ahead p{display:none;}}
+@media print{.album{display:none !important;}}
 .scrim{position:fixed;inset:0;z-index:45;background:rgba(15,27,45,.28);}
 .scrim[hidden]{display:none;}
 
@@ -955,7 +976,14 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <a role="menuitem" href="?handout&amp;autoprint" target="_blank" rel="noopener"><b>Handout · A4</b><small>Two slides per A4 portrait page — for printing</small></a>
 </div>
 
-<div class="ovhint" id="ovHint" hidden>Scroll or drag sideways · click a slide or press Enter to open it · Esc to go back</div>
+<div class="album" id="album" role="dialog" aria-modal="true" aria-label="All slides" hidden>
+  <div class="ahead">
+    <h2>All slides<span id="albumCount"></span></h2>
+    <p>Arrow keys move · Enter or click opens · scroll or drag · Esc goes back</p>
+    <button type="button" id="albumClose" aria-label="Back to the slide" title="Back (Esc)"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="agrid" id="albumGrid"></div>
+</div>
 <div class="scrim" id="scrim" hidden></div>
 <div class="pop keys" id="keysHelp" role="dialog" aria-modal="true" aria-labelledby="keysTitle" hidden>
   <h3 id="keysTitle">Keyboard shortcuts</h3>
@@ -965,7 +993,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <dt><kbd>↓</kbd><kbd>↑</kbd></dt><dd>Next / previous slide — skip the animations</dd>
     <dt><kbd>Home</kbd><kbd>End</kbd></dt><dd>First / last slide · also <kbd>Shift</kbd>+<kbd>←</kbd><kbd>→</kbd></dd>
     <dt><kbd>G</kbd></dt><dd>Go to slide — type its number, then Enter</dd>
-    <dt><kbd>O</kbd></dt><dd>All slides — scroll or drag sideways, Enter opens one</dd>
+    <dt><kbd>O</kbd></dt><dd>All slides — arrows move, Enter opens, scroll or drag</dd>
     <dt><kbd>Enter</kbd><kbd>F</kbd></dt><dd>Full screen</dd>
     <dt><kbd>B</kbd></dt><dd>Black screen (pause)</dd>
     <dt><kbd>P</kbd></dt><dd>Download PDF</dd>
@@ -1049,12 +1077,13 @@ document.addEventListener('DOMContentLoaded',()=>{   /* after every const below 
     controls:false, slideNumber:false, help:false,
     transition:'fade', transitionSpeed:'fast',
     pdfSeparateFragments:false, pdfMaxPagesPerSlide:1,
+    overview:false,         /* our own album view replaces reveal's one-row overview */
     scrollActivationWidth:null,
     touch:false             /* swipes handled by initSwipe(): up/left = next, down/right = previous */
   }).then(()=>{
     renderMath(); initDemos();
     if(MODE==='pdf'){ document.fonts.ready.then(autoprint); return; }
-    initDeckbar(); initSwipe();
+    initDeckbar(); initSwipe(); initAlbum();
   });
 });
 
@@ -1097,8 +1126,7 @@ function initSwipe(){
     const t=e.changedTouches[0], dx=t.clientX-sx, dy=t.clientY-sy; sx=null;
     if(Date.now()-st>800 || Math.max(Math.abs(dx),Math.abs(dy))<40) return;   /* a tap or a slow drag, not a swipe */
     const fwd = Math.abs(dy)>Math.abs(dx) ? dy<0 : dx<0;                      /* up or left = forward */
-    if(Reveal.isOverview()) fwd ? Reveal.right() : Reveal.left();
-    else fwd ? Reveal.next() : Reveal.prev();
+    fwd ? Reveal.next() : Reveal.prev();
   },{passive:true});
 }
 
@@ -1126,7 +1154,7 @@ function initDeckbar(){
     else if(el.requestFullscreen) el.requestFullscreen(); else if(el.webkitRequestFullscreen) el.webkitRequestFullscreen(); };
   const last=()=>Reveal.getTotalSlides()-1;
   const act={first:()=>Reveal.slide(0), prev:()=>Reveal.prev(), next:()=>Reveal.next(), last:()=>Reveal.slide(last()),
-             overview:()=>Reveal.toggleOverview(), fullscreen, pdf:toggleMenu, help:toggleKeys};
+             overview:()=>toggleAlbum(), fullscreen, pdf:toggleMenu, help:toggleKeys};
   bar.addEventListener('click',e=>{ const b=e.target.closest('button'); if(b && act[b.dataset.act]){ act[b.dataset.act](); if(b.dataset.act!=='pdf'&&b.dataset.act!=='help') closeAll(); } });
   scrim.addEventListener('click',closeAll);
   menu.addEventListener('click',()=>setTimeout(closeAll,50));
@@ -1134,39 +1162,18 @@ function initDeckbar(){
   /* ↓ / ↑ : whole slide, skipping animations — the slide you land on is shown complete */
   const jump=d=>{ const h=Reveal.getIndices().h+d; if(h<0||h>last()) return;
     const n=Reveal.getSlide(h).querySelectorAll('.fragment').length; Reveal.slide(h,0,n?n-1:undefined); };
-  Reveal.addKeyBinding({keyCode:40,key:'↓',description:'Next slide, skip animations'},()=>{ if(Reveal.isOverview()) Reveal.right(); else jump(1); });
-  Reveal.addKeyBinding({keyCode:38,key:'↑',description:'Previous slide, skip animations'},()=>{ if(Reveal.isOverview()) Reveal.left(); else jump(-1); });
-  /* Enter : full screen — unless Enter already means something (overview pick, go-to-slide box, a popup) */
+  Reveal.addKeyBinding({keyCode:40,key:'↓',description:'Next slide, skip animations'},()=>jump(1));
+  Reveal.addKeyBinding({keyCode:38,key:'↑',description:'Previous slide, skip animations'},()=>jump(-1));
+  /* Enter : full screen — unless Enter already means something (go-to-slide box, a popup; the album handles its own) */
   document.addEventListener('keydown',e=>{
     if(e.key!=='Enter' || e.altKey || e.ctrlKey || e.metaKey) return;
     const tag=(document.activeElement&&document.activeElement.tagName)||'';
     if(/INPUT|TEXTAREA|BUTTON|A|SUMMARY/.test(tag) || !menu.hidden || !keys.hidden) return;
-    if(Reveal.isOverview()){ e.preventDefault(); e.stopImmediatePropagation(); Reveal.toggleOverview(false); return; }  /* open the picked slide */
+    if(document.documentElement.classList.contains('album-open')) return;   /* Enter opens the picked tile there */
     e.preventDefault(); e.stopImmediatePropagation(); fullscreen();
   },true);
-  /* overview: wheel / trackpad / drag moves sideways through the slides */
-  const hint=document.getElementById('ovHint');
-  Reveal.on('overviewshown',()=>{ hint.hidden=false; });
-  Reveal.on('overviewhidden',()=>{ hint.hidden=true; });
-  let acc=0;
-  window.addEventListener('wheel',e=>{
-    if(!Reveal.isOverview()) return;
-    e.preventDefault();
-    acc+=Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:e.deltaY;
-    while(acc>=60){ Reveal.right(); acc-=60; } while(acc<=-60){ Reveal.left(); acc+=60; }
-  },{passive:false});
-  const rv=document.querySelector('.reveal'); let dragX=null, moved=0;
-  rv.addEventListener('pointerdown',e=>{ if(Reveal.isOverview()&&e.button===0&&e.pointerType==='mouse'){ dragX=e.clientX; moved=0; } });   /* fingers use initSwipe() */
-  window.addEventListener('pointermove',e=>{
-    if(dragX===null) return;
-    const dx=e.clientX-dragX; if(Math.abs(dx)>8) rv.classList.add('dragging');
-    if(dx<=-90){ Reveal.right(); dragX=e.clientX; moved++; } else if(dx>=90){ Reveal.left(); dragX=e.clientX; moved++; }
-  });
-  window.addEventListener('pointerup',()=>{ dragX=null; rv.classList.remove('dragging'); });
-  /* a drag must not also count as a click that opens a slide */
-  rv.addEventListener('click',e=>{ if(moved){ e.stopPropagation(); e.preventDefault(); moved=0; } },true);
   Reveal.addKeyBinding({keyCode:191,key:'?',description:'Keyboard shortcuts'},toggleKeys);
-  /* Esc closes an open popup — and stops there, so Reveal does not also open the overview */
+  /* Esc closes an open popup — and stops there, so it does not also open the album */
   document.addEventListener('keydown',e=>{
     if(e.key==='Escape' && (!menu.hidden || !keys.hidden)){ closeAll(); e.preventDefault(); e.stopImmediatePropagation(); }
   },true);
@@ -1174,6 +1181,84 @@ function initDeckbar(){
   if(document.documentElement.classList.contains('touch')) return;
   let t; const wake=()=>{ bar.classList.remove('idle'); clearTimeout(t); t=setTimeout(()=>bar.classList.add('idle'),2500); };
   ['pointermove','pointerdown','keydown'].forEach(ev=>document.addEventListener(ev,wake)); wake();
+}
+
+/* ---- all slides as a photo album: every slide cloned into a scaled 16:9 tile ---- */
+let toggleAlbum=()=>{};
+function initAlbum(){
+  const al=document.getElementById('album'), grid=document.getElementById('albumGrid');
+  let sel=0, cols=1, tiles=[], dragY=null, dragged=false, startTop=0;
+  const titleOf=s=>{ const h=s.querySelector('h1,h2'); if(!h) return '';
+    const c=h.cloneNode(true); c.querySelectorAll('br').forEach(b=>b.replaceWith(' ')); return c.textContent.replace(/\s+/g,' ').trim(); };
+  function build(){
+    const secs=Reveal.getSlides(); grid.textContent=''; tiles=[];
+    document.getElementById('albumCount').textContent=' · '+secs.length;
+    secs.forEach((s,i)=>{
+      const t=document.createElement('div'); t.className='thumb'; t.dataset.i=i; t.setAttribute('role','button');
+      const title=titleOf(s); t.setAttribute('aria-label',`Slide ${i+1}${title?': '+title:''}`);
+      const fr=document.createElement('div'); fr.className='tframe';
+      const rv=document.createElement('div'); rv.className='reveal'; rv.inert=true;
+      const sl=document.createElement('div'); sl.className='slides';
+      const c=s.cloneNode(true);
+      c.classList.remove('present','past','future'); ['hidden','style','aria-hidden'].forEach(a=>c.removeAttribute(a));
+      c.querySelectorAll('.fragment').forEach(f=>f.classList.add('visible'));        /* a tile shows the finished slide */
+      c.querySelectorAll('[id]').forEach(e=>{ if(!e.closest('svg')) e.removeAttribute('id'); });
+      const oc=s.querySelectorAll('canvas');                                          /* canvases clone blank — copy their pixels */
+      c.querySelectorAll('canvas').forEach((k,j)=>{ try{ k.getContext('2d').drawImage(oc[j],0,0); }catch(_){} });
+      sl.appendChild(c); rv.appendChild(sl); fr.appendChild(rv); t.appendChild(fr);
+      const cap=document.createElement('div'); cap.className='tcap';
+      cap.innerHTML=`<span class="tn">${i+1}</span><span class="tt"></span>`; cap.lastChild.textContent=title||'Title';
+      t.appendChild(cap); grid.appendChild(t); tiles.push(t);
+    });
+  }
+  function fit(){
+    const f=grid.querySelector('.tframe'); if(f) al.style.setProperty('--s',f.clientWidth/1280);
+    cols=getComputedStyle(grid).gridTemplateColumns.split(' ').length||1;
+  }
+  function mark(scroll){
+    tiles.forEach((t,i)=>t.classList.toggle('sel',i===sel));
+    if(scroll && tiles[sel]) tiles[sel].scrollIntoView({block:scroll===true?'nearest':scroll});
+  }
+  function open(){
+    build(); al.hidden=false; document.documentElement.classList.add('album-open');
+    const cur=Reveal.getIndices().h; sel=cur; tiles[cur].classList.add('now');
+    fit(); mark('center');
+  }
+  function close(go){
+    al.hidden=true; document.documentElement.classList.remove('album-open'); grid.textContent=''; tiles=[];
+    if(go!==undefined) Reveal.slide(go);
+  }
+  toggleAlbum=()=>{ al.hidden ? open() : close(); };
+  window.addEventListener('resize',()=>{ if(!al.hidden) fit(); });
+  document.getElementById('albumClose').addEventListener('click',()=>close());
+  Reveal.addKeyBinding({keyCode:79,key:'O',description:'All slides'},toggleAlbum);
+  Reveal.addKeyBinding({keyCode:27,key:'Esc',description:'All slides'},toggleAlbum);
+  /* while the album is open, every key belongs to it — Reveal must not move the deck underneath */
+  document.addEventListener('keydown',e=>{
+    if(al.hidden || e.metaKey || e.ctrlKey || e.altKey) return;
+    const n=tiles.length, k=e.key;
+    const move=d=>{ sel=Math.max(0,Math.min(n-1,sel+d)); mark(true); };
+    if(k==='ArrowRight') move(1); else if(k==='ArrowLeft') move(-1);
+    else if(k==='ArrowDown') move(cols); else if(k==='ArrowUp') move(-cols);
+    else if(k==='Home'){ sel=0; mark(true); } else if(k==='End'){ sel=n-1; mark(true); }
+    else if(k==='Enter'||k===' ') close(sel);
+    else if(k==='Escape'||k==='o'||k==='O') close();
+    else if(k==='PageDown'||k==='PageUp') return;                                  /* let the grid scroll */
+    else return;
+    e.preventDefault(); e.stopImmediatePropagation();
+  },true);
+  /* click / tap opens a tile; a mouse drag scrolls the grid (fingers and wheels scroll natively) */
+  grid.addEventListener('pointerdown',e=>{ if(e.pointerType==='mouse'&&e.button===0){ dragY=e.clientY; startTop=grid.scrollTop; dragged=false; } });
+  window.addEventListener('pointermove',e=>{
+    if(dragY===null) return; const dy=e.clientY-dragY;
+    if(Math.abs(dy)>6){ dragged=true; grid.classList.add('dragging'); }
+    if(dragged) grid.scrollTop=startTop-dy;
+  });
+  window.addEventListener('pointerup',()=>{ dragY=null; grid.classList.remove('dragging'); });
+  grid.addEventListener('click',e=>{
+    if(dragged){ dragged=false; return; }
+    const t=e.target.closest('.thumb'); if(t) close(+t.dataset.i);
+  });
 }
 
 /* ---- a tiny 12×12 grayscale image drawn from numbers (slide: a computer sees numbers) ---- */
