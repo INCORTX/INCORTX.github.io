@@ -354,9 +354,10 @@ html.reading .reveal .slides>section::before,html.reading .reveal .slides>sectio
 .keys{left:50%;top:50%;transform:translate(-50%,-50%);padding:22px 26px;width:min(92vw,520px);}
 .keys h3{margin:0 0 12px;font-family:var(--display);font-size:18px;color:var(--ink);}
 .keys dd kbd{font-size:11.5px;padding:1px 5px;}
-.keys dl{display:grid;grid-template-columns:auto 1fr;gap:9px 16px;margin:0;font-size:14.5px;align-items:center;}
+.keys dl{display:grid;grid-template-columns:7.6em 1fr;gap:9px 16px;margin:0;font-size:14.5px;align-items:center;}
 .keys dt{display:flex;gap:4px;justify-content:flex-end;}
 .keys dd{margin:0;}
+.keys h4{margin:16px 0 10px;padding-top:12px;border-top:1px solid var(--line);font-family:var(--display);font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);}
 .keys kbd{font-family:var(--mono);font-size:12.5px;min-width:1.9em;text-align:center;padding:3px 7px;border-radius:6px;border:1px solid var(--line);border-bottom-width:2px;background:var(--soft);color:var(--ink);}
 /* all slides = photo album: a grid of live clones of every slide, scaled to thumbnails */
 .album{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;background:#eef1f5;font-family:var(--display);}
@@ -985,10 +986,17 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <dt><kbd>G</kbd></dt><dd>Go to slide — type its number, then Enter</dd>
     <dt><kbd>O</kbd></dt><dd>All slides — arrows move, Enter opens, scroll or drag</dd>
     <dt><kbd>Enter</kbd><kbd>F</kbd></dt><dd>Full screen</dd>
-    <dt><kbd>B</kbd></dt><dd>Black screen (pause)</dd>
+    <dt><kbd>B</kbd><kbd>.</kbd></dt><dd>Black screen (pause) — press again to come back</dd>
     <dt><kbd>P</kbd></dt><dd>Download PDF</dd>
     <dt><kbd>?</kbd></dt><dd>This list</dd>
     <dt><kbd>Esc</kbd></dt><dd>Close a popup · otherwise all slides</dd>
+  </dl>
+  <h4>Presenter remote</h4>
+  <dl>
+    <dt><kbd>PgDn</kbd><kbd>PgUp</kbd></dt><dd>Next / previous step</dd>
+    <dt><kbd>F5</kbd></dt><dd>Start button — full screen, never a reload</dd>
+    <dt><kbd>.</kbd></dt><dd>Blank button — black screen, press again to return</dd>
+    <dt><kbd>Esc</kbd></dt><dd>Stop button — leaves full screen</dd>
   </dl>
 </div>
 
@@ -1151,6 +1159,13 @@ function initDeckbar(){
     const n=Reveal.getSlide(h).querySelectorAll('.fragment').length; Reveal.slide(h,0,n?n-1:undefined); };
   Reveal.addKeyBinding({keyCode:40,key:'↓',description:'Next slide, skip animations'},()=>jump(1));
   Reveal.addKeyBinding({keyCode:38,key:'↑',description:'Previous slide, skip animations'},()=>jump(-1));
+  /* presenter remotes: the start button sends F5 (or Shift+F5) — enter full screen instead of reloading the page;
+     next/previous send PageDown/PageUp and blank sends "." or B — reveal handles those itself */
+  document.addEventListener('keydown',e=>{
+    if(e.key!=='F5' || e.ctrlKey || e.metaKey || e.altKey) return;
+    e.preventDefault(); e.stopImmediatePropagation();
+    if(!(document.fullscreenElement||document.webkitFullscreenElement)) fullscreen();
+  },true);
   /* Enter : full screen — unless Enter already means something (go-to-slide box, a popup; the album handles its own) */
   document.addEventListener('keydown',e=>{
     if(e.key!=='Enter' || e.altKey || e.ctrlKey || e.metaKey) return;
