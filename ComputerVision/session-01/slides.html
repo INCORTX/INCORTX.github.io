@@ -254,6 +254,24 @@ html.reading .bwpipe svg.bw{height:150px;margin:0 auto .5em;}
 /* pixel demo */
 .pix-wrap{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.1fr) minmax(0,1fr);gap:1em;align-items:start;}
 .pix-wrap canvas{width:100%;height:auto;max-height:420px;object-fit:contain;image-rendering:pixelated;border-radius:12px;border:1px solid var(--line);touch-action:manipulation;}
+/* s5 · light */
+.litlab{display:flex;justify-content:space-between;align-items:baseline;margin-top:.45em;font-size:.48em;color:var(--muted);}
+.litlab b{font-family:var(--mono);font-weight:600;color:var(--ink);font-size:1.1em;}
+.lit .slider{min-height:36px;}
+.lcmp h3{margin:0 0 .45em;}
+.lcmp dl{display:grid;grid-template-columns:1fr auto;gap:.3em .8em;margin:0 0 .7em;font-size:.56em;align-items:baseline;}
+.lcmp dt{color:var(--muted);}
+.lcmp dd{margin:0;font-family:var(--mono);color:var(--muted);white-space:nowrap;}
+.lcmp dd i{font-style:normal;color:var(--teal);}
+.lcmp dd b{color:var(--ink);font-size:1.15em;}
+.lcmp .rule{border:1px solid var(--line);border-left:5px solid var(--teal);border-radius:10px;padding:.5em .75em .55em;background:#fff;font-size:.6em;line-height:1.4;}
+.lcmp .rule .tag{display:block;font-family:var(--display);font-weight:700;font-size:.72em;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:.2em;}
+.lcmp .rule p{margin:0;}
+.lcmp .verdict{margin-top:.35em !important;font-weight:600;color:var(--ink);}
+.lcmp .rule.bad{border-left-color:var(--coral);}
+.lcmp .rule.bad .verdict{color:var(--coral);}
+html.reading .litlab,html.reading .lcmp dl{font-size:14px;}
+html.reading .lcmp .rule{font-size:15px;}
 .pix-readout{font-family:var(--mono);font-size:.5em;color:var(--muted);min-height:1.6em;margin-top:.35em;}
 .slider{width:100%;accent-color:var(--teal);min-height:44px;touch-action:none;cursor:pointer;}
 /* a thumb big enough for a finger */
@@ -542,21 +560,26 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
 <section>
   <p class="kicker">Why vision is hard</p>
   <h2 class="claim">Same “N”, new light — every number changes</h2>
-  <div class="pix-wrap">
+  <div class="pix-wrap lit">
     <div>
       <canvas id="litImg" width="360" height="360" aria-label="the letter N under changing light"></canvas>
+      <label class="litlab" for="litGain"><span>dim</span><b id="litPct">light 100%</b><span>bright</span></label>
       <input class="slider" id="litGain" type="range" min="30" max="115" value="100" aria-label="light level">
-      <p class="pix-readout center" id="litOut"></p>
     </div>
     <div>
       <canvas id="litNum" width="480" height="480" aria-label="the pixel values under changing light"></canvas>
+      <p class="pix-readout center">shaded = what the rule calls ink</p>
     </div>
-    <ul class="small">
-      <li class="fragment">Drag the light: you still read “N”, but <b>all 144 numbers change</b>.</li>
-      <li class="fragment">Light, viewpoint, size and objects in front all change the numbers — not the object.</li>
-      <li class="fragment">You handle this without effort; a program has to be <b>taught</b> to.</li>
-    </ul>
+    <div class="lcmp">
+      <h3>Normal light → now</h3>
+      <dl>
+        <dt>Background · row 0, col 0</dt><dd>220 <i>→</i> <b id="litBg">220</b></dd>
+        <dt>Stroke · row 5, col 5</dt><dd>30 <i>→</i> <b id="litSt">30</b></dd>
+      </dl>
+      <div class="rule"><span class="tag">A fixed rule</span><p>“value below <b>100</b> = ink”</p><p class="verdict" id="litRule"></p></div>
+    </div>
   </div>
+  <p class="takeaway"><span>You still read “N” at every light level — the numbers, and any fixed rule on them, do not. Viewpoint, size and objects in front do the same. That is why a program has to be <b>taught</b> to see.</span></p>
 </section>
 
 <!-- 6 · 1966 summer project -->
@@ -1298,14 +1321,14 @@ function drawGray(canvas,img,gain,pick){
   }
   if(pick){ ctx.strokeStyle='#d9534f'; ctx.lineWidth=Math.max(2,s/8); ctx.strokeRect(pick[1]*s+1,pick[0]*s+1,s-2,s-2); }
 }
-function drawNumbers(canvas,img,gain,pick){
+function drawNumbers(canvas,img,gain,pick,thr=128){   /* cells below thr are shaded */
   const N=img.length, ctx=canvas.getContext('2d'), s=canvas.width/N;
   ctx.fillStyle='#ffffff'; ctx.fillRect(0,0,canvas.width,canvas.height);
   ctx.font=`${Math.floor(s*0.36)}px JetBrains Mono, monospace`; ctx.textAlign='center'; ctx.textBaseline='middle';
   for(let r=0;r<N;r++) for(let c=0;c<N;c++){
     const v=Math.max(0,Math.min(255,Math.round(img[r][c]*gain)));
     const hit=pick&&pick[0]===r&&pick[1]===c;
-    ctx.fillStyle=hit?'#fbeaea':(v<128?'#e3f3f4':'#ffffff'); ctx.fillRect(c*s,r*s,s,s);
+    ctx.fillStyle=hit?'#fbeaea':(v<thr?'#e3f3f4':'#ffffff'); ctx.fillRect(c*s,r*s,s,s);
     ctx.fillStyle=hit?'#d9534f':'#1b1f24'; ctx.fillText(v,c*s+s/2,r*s+s/2);
   }
   ctx.strokeStyle='#dde3e8'; ctx.lineWidth=1;
@@ -1331,10 +1354,16 @@ function initPixelDemo(){
 }
 /* ---- same object, different light: every number changes (slide: humans make it look easy) ---- */
 function initLightingDemo(){
-  const a=document.getElementById('litImg'), b=document.getElementById('litNum'), s=document.getElementById('litGain'), out=document.getElementById('litOut');
+  const a=document.getElementById('litImg'), b=document.getElementById('litNum'), s=document.getElementById('litGain');
   if(!a||!b||!s) return;
-  const draw=()=>{ const g=s.value/100; drawGray(a,PIX,g,null); drawNumbers(b,PIX,g,null);
-    out.textContent=`light × ${g.toFixed(2)}  ·  top-left pixel = ${Math.round(Math.min(255,PIX[0][0]*g))}`; };
+  const pct=document.getElementById('litPct'), bg=document.getElementById('litBg'), st=document.getElementById('litSt'), rule=document.getElementById('litRule');
+  const THR=100, N=PIX.length, val=(v,g)=>Math.max(0,Math.min(255,Math.round(v*g)));
+  const letter=PIX.flat().filter(v=>v<THR).length;                 /* cells that really are the N: 30s and 70s */
+  const draw=()=>{ const g=s.value/100; drawGray(a,PIX,g,null); drawNumbers(b,PIX,g,null,THR);
+    pct.textContent=`light ${s.value}%`; bg.textContent=val(PIX[0][0],g); st.textContent=val(PIX[5][5],g);
+    const ink=PIX.flat().filter(v=>val(v,g)<THR).length, ok=ink===letter;
+    rule.textContent= ok ? `✓ finds the N — ${ink} cells` : `✗ marks ${ink} of ${N*N} cells — the whole picture`;
+    rule.parentNode.classList.toggle('bad',!ok); };
   s.addEventListener('input',draw); draw();
 }
 </script>
