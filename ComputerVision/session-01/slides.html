@@ -361,7 +361,10 @@ html.reading .reveal .slides>section::before,html.reading .reveal .slides>sectio
 /* all slides = photo album: a grid of live clones of every slide, scaled to thumbnails */
 .album{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;background:#eef1f5;font-family:var(--display);}
 .album[hidden]{display:none;}
-html.album-open .deckbar{display:none;}
+html.album-open .deckbar,html.album-open .rbar{display:none !important;}
+html.album-open body{overflow:hidden;}
+.aslides{display:none;}
+html.reading .aslides{display:flex;align-items:center;min-height:36px;margin-left:auto;font-size:14px;font-weight:600;color:var(--teal);text-decoration:none;}
 .ahead{display:flex;align-items:center;gap:14px;padding:14px 22px;background:#fff;border-bottom:1px solid var(--line);}
 .ahead h2{margin:0;font-size:18px;font-weight:700;color:var(--ink);letter-spacing:-.01em;}
 .ahead h2 span{color:var(--muted);font-weight:500;margin-left:.4em;}
@@ -373,17 +376,14 @@ html.album-open .deckbar{display:none;}
 .agrid.dragging{cursor:grabbing;user-select:none;}
 .thumb{display:block;cursor:pointer;border-radius:12px;outline:none;}
 .tframe{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:10px;background:#fff;box-shadow:0 1px 2px rgba(15,27,45,.08),0 8px 20px -14px rgba(15,27,45,.35);transition:box-shadow .15s,transform .15s;}
-.thumb:hover .tframe{transform:translateY(-2px);box-shadow:0 0 0 2px #b9dfe2,0 12px 26px -14px rgba(15,27,45,.4);}
+@media (hover:hover){.thumb:hover .tframe{transform:translateY(-2px);box-shadow:0 0 0 2px #b9dfe2,0 12px 26px -14px rgba(15,27,45,.4);}}
 .thumb.sel .tframe{box-shadow:0 0 0 4px var(--teal),0 12px 26px -14px rgba(15,27,45,.4);}
 .thumb.now .tn::after{content:"current";margin-left:.5em;padding:1px 7px;border-radius:999px;background:var(--teal-soft);color:var(--teal);font-size:11px;font-weight:600;letter-spacing:.04em;}
 .tcap{display:flex;align-items:baseline;gap:8px;margin-top:8px;font-size:13px;line-height:1.3;}
 .tn{flex:none;font-weight:700;color:var(--teal);}
 .tt{color:var(--body);font-family:var(--font);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.album .reveal{position:absolute;left:0;top:0;width:1280px;height:720px;transform-origin:0 0;transform:scale(var(--s,.2));overflow:hidden;pointer-events:none;background:#fff;}
-.album .reveal .slides{position:absolute;inset:0;width:1280px;height:720px;margin:0;transform:none !important;zoom:1;perspective:none;pointer-events:none;}
-.album .reveal .slides>section{display:block !important;position:absolute !important;inset:0;width:1280px !important;height:720px !important;opacity:1 !important;visibility:visible !important;transform:none !important;pointer-events:none !important;}
-.album .reveal .fragment{opacity:1 !important;visibility:visible !important;transform:none !important;}
-@media (max-width:600px){.agrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 10px;padding:12px;}.ahead p{display:none;}}
+.tframe>.thost{position:absolute;inset:0;}
+@media (max-width:600px){.agrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 10px;padding:12px 12px calc(16px + env(safe-area-inset-bottom));}.ahead{padding:10px 12px;gap:10px;}.ahead p{display:none;}.ahead h2{font-size:16px;}.tcap{font-size:12px;}}
 @media print{.album{display:none !important;}}
 .scrim{position:fixed;inset:0;z-index:45;background:rgba(15,27,45,.28);}
 .scrim[hidden]{display:none;}
@@ -411,13 +411,6 @@ html.reading .rbar:not([hidden]){display:flex;position:fixed;left:8px;right:8px;
 .rbar .pdf{padding:0 12px;font-size:13px;font-weight:700;}
 .rcount{font-size:14px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums;min-width:4em;text-align:center;}
 html.reading .pdfmenu{bottom:calc(68px + env(safe-area-inset-bottom));min-width:0;width:min(92vw,340px);}
-.slist{left:8px;right:8px;bottom:calc(68px + env(safe-area-inset-bottom));max-height:62vh;overflow:auto;padding:8px;}
-.slist-head{display:flex;justify-content:space-between;align-items:center;padding:6px 10px 10px;font-family:var(--display);}
-.slist-head a{font-size:14px;font-weight:600;color:var(--teal);text-decoration:none;min-height:44px;display:flex;align-items:center;}
-.slist ol{list-style:none;margin:0;padding:0;}
-.slist li a{display:flex;gap:10px;align-items:center;min-height:44px;padding:6px 10px;border-radius:10px;color:var(--ink);text-decoration:none;font-size:15px;line-height:1.3;}
-.slist li a:active,.slist li a.cur{background:var(--teal-soft);}
-.slist li i{font-style:normal;font-family:var(--display);font-weight:700;color:var(--muted);min-width:1.8em;}
 /* touch screens in slide mode: bar always visible, no keyboard-only button */
 html.touch .deckbar.idle{opacity:1;pointer-events:auto;}
 html.touch .deckbar [data-act=help]{display:none;}
@@ -944,19 +937,15 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
 </div>
 </div>
 
-<!-- phone reading mode: bottom bar + slide list -->
+<!-- phone reading mode: bottom bar (its grid button opens the album) -->
 <nav class="rbar" id="rbar" aria-label="Page controls" hidden>
   <button data-r="top" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M6 15l6-6 6 6M5 4h14"/></svg></button>
   <button data-r="prev" aria-label="Previous slide"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
   <span class="rcount" id="rCount">1 / 1</span>
   <button data-r="next" aria-label="Next slide"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>
-  <button data-r="list" aria-label="All slides"><svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg></button>
+  <button data-r="list" aria-label="All slides"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg></button>
   <button data-r="pdf" class="pdf" aria-label="Download PDF"><svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>PDF</button>
 </nav>
-<div class="pop slist" id="sList" role="dialog" aria-label="All slides" hidden>
-  <div class="slist-head"><b>All slides</b><a href="?present">Open as slides ›</a></div>
-  <ol id="sListItems"></ol>
-</div>
 
 <!-- deck toolbar -->
 <nav class="deckbar" id="deckbar" aria-label="Slide controls" hidden>
@@ -980,6 +969,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <div class="ahead">
     <h2>All slides<span id="albumCount"></span></h2>
     <p>Arrow keys move · Enter or click opens · scroll or drag · Esc goes back</p>
+    <a class="aslides" href="?present">Open as slides ›</a>
     <button type="button" id="albumClose" aria-label="Back to the slide" title="Back (Esc)"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   </div>
   <div class="agrid" id="albumGrid"></div>
@@ -1083,34 +1073,31 @@ document.addEventListener('DOMContentLoaded',()=>{   /* after every const below 
   }).then(()=>{
     renderMath(); initDemos();
     if(MODE==='pdf'){ document.fonts.ready.then(autoprint); return; }
-    initDeckbar(); initSwipe(); initAlbum();
+    initDeckbar(); initSwipe();
+    initAlbum({slides:()=>Reveal.getSlides(), current:()=>Reveal.getIndices().h, go:i=>Reveal.slide(i), keys:true});
   });
 });
 
 function initReadingBar(){
   const bar=document.getElementById('rbar'), count=document.getElementById('rCount');
-  const list=document.getElementById('sList'), items=document.getElementById('sListItems'), menu=document.getElementById('pdfMenu');
+  const menu=document.getElementById('pdfMenu');
   const secs=[...document.querySelectorAll('.reveal .slides>section')], N=secs.length;
   bar.hidden=false;
   let cur=0;
-  const title=s=>{ const h=s.querySelector('h1,h2'); if(!h) return 'Slide';
-    const d=document.createElement('div'); d.innerHTML=h.innerHTML.replace(/<br\s*\/?>/gi,' '); return d.textContent.replace(/\s+/g,' ').trim(); };
-  items.innerHTML=secs.map((s,i)=>`<li><a href="#" data-i="${i}"><i>${i+1}</i>${title(s)}</a></li>`).join('');
   const go=i=>{ i=Math.max(0,Math.min(N-1,i)); secs[i].scrollIntoView({behavior:'smooth',block:'start'}); };
-  const closeAll=()=>{ list.hidden=true; menu.hidden=true; };
+  const closeAll=()=>{ menu.hidden=true; };
   const show=()=>{ count.textContent=`${cur+1} / ${N}`;
-    bar.querySelector('[data-r=prev]').disabled=cur===0; bar.querySelector('[data-r=next]').disabled=cur===N-1;
-    items.querySelectorAll('a').forEach((a,i)=>a.classList.toggle('cur',i===cur)); };
+    bar.querySelector('[data-r=prev]').disabled=cur===0; bar.querySelector('[data-r=next]').disabled=cur===N-1; };
   /* current slide = the last section whose top has passed 40% of the screen */
   const track=()=>{ const y=window.innerHeight*0.4; let k=0; secs.forEach((s,i)=>{ if(s.getBoundingClientRect().top<=y) k=i; }); if(k!==cur){ cur=k; show(); } };
   window.addEventListener('scroll',track,{passive:true}); track(); show();
   const act={top:()=>window.scrollTo({top:0,behavior:'smooth'}), prev:()=>go(cur-1), next:()=>go(cur+1),
-             list:()=>{ const o=list.hidden; closeAll(); list.hidden=!o; if(o){ const c=items.querySelector('a.cur'); if(c) c.scrollIntoView({block:'center'}); } },
+             list:()=>{ closeAll(); toggleAlbum(); },
              pdf:()=>{ const o=menu.hidden; closeAll(); menu.hidden=!o; }};
   bar.addEventListener('click',e=>{ const b=e.target.closest('button'); if(b&&act[b.dataset.r]) act[b.dataset.r](); });
-  items.addEventListener('click',e=>{ const a=e.target.closest('a[data-i]'); if(!a) return; e.preventDefault(); closeAll(); go(+a.dataset.i); });
   menu.addEventListener('click',()=>setTimeout(closeAll,50));
-  document.addEventListener('click',e=>{ if(!e.target.closest('#rbar,#sList,#pdfMenu')) closeAll(); });
+  document.addEventListener('click',e=>{ if(!e.target.closest('#rbar,#pdfMenu')) closeAll(); });
+  initAlbum({slides:()=>secs, current:()=>cur, go:i=>secs[i].scrollIntoView({block:'start'})});
 }
 
 /* swipe in slide mode — reveal's own touch only knows up/down for vertical stacks, which this deck has none of */
@@ -1183,21 +1170,35 @@ function initDeckbar(){
   ['pointermove','pointerdown','keydown'].forEach(ev=>document.addEventListener(ev,wake)); wake();
 }
 
-/* ---- all slides as a photo album: every slide cloned into a scaled 16:9 tile ---- */
+/* ---- all slides as a photo album: every slide cloned into a scaled 16:9 tile ----
+   each tile renders in its own shadow root with the deck's slide CSS, so phone reading-mode rules
+   (html.reading …) cannot restyle it — on a phone the tiles still show the real 16:9 slide */
 let toggleAlbum=()=>{};
-function initAlbum(){
+function initAlbum(src){
   const al=document.getElementById('album'), grid=document.getElementById('albumGrid');
   let sel=0, cols=1, tiles=[], dragY=null, dragged=false, startTop=0;
+  /* the stylesheets a tile needs: reveal reset + core, KaTeX, this deck's <style>, then tile overrides */
+  const links=[...document.querySelectorAll('link[rel=stylesheet]')].filter(l=>!/fonts\.googleapis/.test(l.href)).map(l=>l.href);
+  const tileCSS=document.querySelector('style').textContent+`
+    .reveal{position:absolute;left:0;top:0;width:1280px;height:720px;transform-origin:0 0;transform:scale(var(--s,.2));overflow:hidden;pointer-events:none;background:#fff;}
+    .reveal .slides{position:absolute;inset:0;width:1280px;height:720px;margin:0;transform:none !important;zoom:1;perspective:none;pointer-events:none;text-align:left;}
+    .reveal .slides>section{display:block !important;position:absolute !important;inset:0;width:1280px !important;height:720px !important;opacity:1 !important;visibility:visible !important;transform:none !important;pointer-events:none !important;}
+    .reveal .fragment{opacity:1 !important;visibility:visible !important;transform:none !important;}`;
+  let sheet=null; try{ sheet=new CSSStyleSheet(); sheet.replaceSync(tileCSS); }catch(_){ sheet=null; }
   const titleOf=s=>{ const h=s.querySelector('h1,h2'); if(!h) return '';
     const c=h.cloneNode(true); c.querySelectorAll('br').forEach(b=>b.replaceWith(' ')); return c.textContent.replace(/\s+/g,' ').trim(); };
   function build(){
-    const secs=Reveal.getSlides(); grid.textContent=''; tiles=[];
+    const secs=src.slides(); grid.textContent=''; tiles=[];
     document.getElementById('albumCount').textContent=' · '+secs.length;
     secs.forEach((s,i)=>{
       const t=document.createElement('div'); t.className='thumb'; t.dataset.i=i; t.setAttribute('role','button');
       const title=titleOf(s); t.setAttribute('aria-label',`Slide ${i+1}${title?': '+title:''}`);
       const fr=document.createElement('div'); fr.className='tframe';
-      const rv=document.createElement('div'); rv.className='reveal'; rv.inert=true;
+      const host=document.createElement('div'); host.className='thost'; host.inert=true;
+      const root=host.attachShadow({mode:'open'});
+      links.forEach(h=>{ const l=document.createElement('link'); l.rel='stylesheet'; l.href=h; root.appendChild(l); });
+      if(sheet) root.adoptedStyleSheets=[sheet]; else { const st=document.createElement('style'); st.textContent=tileCSS; root.appendChild(st); }
+      const rv=document.createElement('div'); rv.className='reveal';
       const sl=document.createElement('div'); sl.className='slides';
       const c=s.cloneNode(true);
       c.classList.remove('present','past','future'); ['hidden','style','aria-hidden'].forEach(a=>c.removeAttribute(a));
@@ -1205,7 +1206,7 @@ function initAlbum(){
       c.querySelectorAll('[id]').forEach(e=>{ if(!e.closest('svg')) e.removeAttribute('id'); });
       const oc=s.querySelectorAll('canvas');                                          /* canvases clone blank — copy their pixels */
       c.querySelectorAll('canvas').forEach((k,j)=>{ try{ k.getContext('2d').drawImage(oc[j],0,0); }catch(_){} });
-      sl.appendChild(c); rv.appendChild(sl); fr.appendChild(rv); t.appendChild(fr);
+      sl.appendChild(c); rv.appendChild(sl); root.appendChild(rv); fr.appendChild(host); t.appendChild(fr);
       const cap=document.createElement('div'); cap.className='tcap';
       cap.innerHTML=`<span class="tn">${i+1}</span><span class="tt"></span>`; cap.lastChild.textContent=title||'Title';
       t.appendChild(cap); grid.appendChild(t); tiles.push(t);
@@ -1221,18 +1222,20 @@ function initAlbum(){
   }
   function open(){
     build(); al.hidden=false; document.documentElement.classList.add('album-open');
-    const cur=Reveal.getIndices().h; sel=cur; tiles[cur].classList.add('now');
+    const cur=src.current(); sel=cur; tiles[cur].classList.add('now');
     fit(); mark('center');
   }
   function close(go){
     al.hidden=true; document.documentElement.classList.remove('album-open'); grid.textContent=''; tiles=[];
-    if(go!==undefined) Reveal.slide(go);
+    if(go!==undefined) src.go(go);
   }
   toggleAlbum=()=>{ al.hidden ? open() : close(); };
   window.addEventListener('resize',()=>{ if(!al.hidden) fit(); });
   document.getElementById('albumClose').addEventListener('click',()=>close());
-  Reveal.addKeyBinding({keyCode:79,key:'O',description:'All slides'},toggleAlbum);
-  Reveal.addKeyBinding({keyCode:27,key:'Esc',description:'All slides'},toggleAlbum);
+  if(src.keys){
+    Reveal.addKeyBinding({keyCode:79,key:'O',description:'All slides'},toggleAlbum);
+    Reveal.addKeyBinding({keyCode:27,key:'Esc',description:'All slides'},toggleAlbum);
+  }
   /* while the album is open, every key belongs to it — Reveal must not move the deck underneath */
   document.addEventListener('keydown',e=>{
     if(al.hidden || e.metaKey || e.ctrlKey || e.altKey) return;
