@@ -184,10 +184,19 @@ html.reading .cols.today{grid-template-columns:1fr;}
 
 /* course map */
 .map{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.55em;position:relative;}
-.map .blk{background:#fff;border:1px solid var(--line);border-radius:14px;padding:.7em .7em .8em;font-size:.68em;box-shadow:0 6px 16px -12px rgba(15,27,45,.25);}
+.map .blk{background:#fff;border:1px solid var(--line);border-radius:14px;padding:.6em .65em .65em;font-size:.62em;box-shadow:0 6px 16px -12px rgba(15,27,45,.25);}
 .map .blk h4{font-size:1.15em;margin:0 0 .5em;display:flex;align-items:center;gap:.4em;}
 .map .blk h4::before{content:"";width:.6em;height:.6em;border-radius:3px;background:var(--c);}
 .map .s{display:flex;gap:.5em;align-items:flex-start;margin:.35em 0;line-height:1.3;}
+.map .blk{display:flex;flex-direction:column;}
+.map .fw{margin-top:auto;padding-top:.5em;border-top:1px dashed var(--line);display:flex;flex-direction:column;gap:.2em;font-size:.86em;line-height:1.3;color:var(--body);}
+.map .s+.fw,.map .s+.s+.fw{margin-top:auto;}
+.map .fw b{font-family:var(--display);font-size:.78em;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.1em;}
+.map .fw .nw{white-space:nowrap;}
+html.reading .map .fw{font-size:14px;}
+html.reading .map .fw b{font-size:12px;}
+.map .fw em{font-style:normal;font-weight:600;color:var(--ink);}
+.map .fw i{font-style:normal;display:inline-grid;place-items:center;width:1.45em;height:1.45em;border-radius:50%;background:var(--soft);color:var(--ink);font-family:var(--display);font-weight:700;font-size:.85em;margin-left:.15em;}
 .map .s i{font-style:normal;flex:0 0 1.6em;height:1.6em;border-radius:50%;background:var(--c);color:#fff;font-family:var(--display);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:.9em;}
 .after{display:flex;gap:.6em;margin-top:.8em;}
 .after>.keyidea{flex:1;font-size:.66em;}
@@ -593,14 +602,14 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="kicker">Course map</p>
   <h2 class="claim">Eight sessions, from pixels to motion</h2>
   <div class="map">
-    <div class="blk" style="--c:var(--teal)"><h4>Pixels</h4><div class="s"><i>2</i>Image formation &amp; sensing</div><div class="s"><i>3</i>Image processing &amp; filtering</div></div>
-    <div class="blk" style="--c:var(--violet)"><h4>Learning</h4><div class="s"><i>4</i>Neural networks → CNNs</div><div class="s"><i>5</i>Attention, ViT &amp; CLIP</div></div>
-    <div class="blk" style="--c:var(--amber)"><h4>Features &amp; geometry</h4><div class="s"><i>6</i>Local features &amp; matching</div><div class="s"><i>7</i>Transforms, cameras, stereo</div></div>
-    <div class="blk" style="--c:var(--coral)"><h4>Recognition</h4><div class="s"><i>8</i>Detection &amp; segmentation</div></div>
-    <div class="blk" style="--c:var(--navy)"><h4>Motion</h4><div class="s"><i>9</i>Motion &amp; video</div></div>
+    <div class="blk" style="--c:var(--teal)"><h4>Pixels</h4><div class="s"><i>2</i>Image formation &amp; sensing</div><div class="s"><i>3</i>Image processing &amp; filtering</div><div class="fw"><b>Carries forward</b><span><em>convolution</em> → <span class="nw">CNNs <i>4</i></span></span><span><em>gradients</em> → <span class="nw">corners <i>6</i></span></span><span><em>pinhole camera</em> → <span class="nw">camera matrix <i>7</i></span></span></div></div>
+    <div class="blk" style="--c:var(--violet)"><h4>Learning</h4><div class="s"><i>4</i>Neural networks → CNNs</div><div class="s"><i>5</i>Attention, ViT &amp; CLIP</div><div class="fw"><b>Carries forward</b><span><em>upsampling</em> → <span class="nw">segmentation <i>8</i></span></span><span><em>CLIP</em> → <span class="nw">find by text <i>8</i></span></span></div></div>
+    <div class="blk" style="--c:var(--amber)"><h4>Features &amp; geometry</h4><div class="s"><i>6</i>Local features &amp; matching</div><div class="s"><i>7</i>Transforms, cameras, stereo</div><div class="fw"><b>Carries forward</b><span><em>RANSAC</em> → <span class="nw">stitching <i>7</i></span></span><span><em>corner matrix</em> → <span class="nw">flow <i>9</i></span></span></div></div>
+    <div class="blk" style="--c:var(--coral)"><h4>Recognition</h4><div class="s"><i>8</i>Detection &amp; segmentation</div><div class="fw"><b>Carries forward</b><span><em>IoU</em> → <span class="nw">tracking <i>9</i></span></span></div></div>
+    <div class="blk" style="--c:var(--navy)"><h4>Motion</h4><div class="s"><i>9</i>Motion &amp; video</div><div class="fw"><b>Carries forward</b><span><em>all of it</em> → your project</span></div></div>
   </div>
   <div class="after">
-    <div class="keyidea coral" data-label="Project · weeks 8–14">Topic by week 8, short problem pitch in week 9, proposal in week 11, demo in week 14</div>
+    <div class="keyidea coral" data-label="Project · weeks 8–14">Topic wk 8 · pitch wk 9 · proposal wk 11 · demo wk 14</div>
     <div class="keyidea" data-label="Final exam · week 15">Sessions 2–9, hand calculation</div>
   </div>
 </section>
