@@ -278,6 +278,10 @@ html.reading .part-open{display:block !important;}
 html.reading .po-strip{position:static;grid-template-columns:1fr 1fr;margin-bottom:1em;font-size:13px;}
 html.reading .po-q{font-size:18px;}
 html.reading .po-out{font-size:15px;}
+.reveal .more{margin:.9em 0 0;font-size:.56em;}
+.reveal .more a{color:var(--teal);font-weight:600;text-decoration:none;border-bottom:2px solid var(--teal-soft);}
+.reveal .more a:hover{border-bottom-color:var(--teal);}
+html.reading .reveal .more{font-size:15px;}
 .photo{margin:0;}
 .photo img{display:block;width:100%;height:auto;max-height:430px;object-fit:contain;border-radius:12px;border:1px solid var(--line);background:#fff;}
 .photo figcaption{margin-top:.4em;font-family:var(--mono);font-size:.4em;color:var(--muted);text-align:center;}
@@ -551,7 +555,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <h2 class="claim">One question, four parts</h2>
   <div class="qband"><span>The question</span>How does a camera turn a 3D scene into numbers — and what does it lose on the way?</div>
   <div class="parts">
-    <div class="on"><b><i>A</i>Pinhole</b>Why far things look small, and where depth goes</div>
+    <div><b><i>A</i>Pinhole</b>Why far things look small, and where depth goes</div>
     <div><b><i>B</i>Lenses</b>Bright and sharp at once; field of view</div>
     <div><b><i>C</i>Sensors</b>Light becomes numbers: pixels, noise, range</div>
     <div><b><i>D</i>Colour</b>One chip, three colours: the Bayer filter</div>
@@ -736,6 +740,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card violet"><b>Assignment T7 · One photo + a model</b>A network trained on many scenes learns to guess depth from a single image.</div>
   </div>
   <div class="keyidea" data-label="Part A in one line" style="margin-top:1em"><span>x = f · X / Z — far things shrink, parallel lines meet, and depth is lost.</span></div>
+  <p class="more"><a href="../practice/#s2a">More practice · Session 2 A — practice bank with worked solutions →</a></p>
   <p class="takeaway"><span>Next · B: a lens makes the picture bright and sharp at once.</span></p>
   <aside class="notes"><p>🇹🇭 สรุป A ด้วยกล่อง key idea แล้วต่อ B</p><p>🇬🇧 Wrap up A with the key-idea box, then go on to B.</p></aside>
 </section>
@@ -869,6 +874,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card violet"><b>f sets the view</b>FOV = 2 · arctan(w / 2f). Longer f, narrower view.</div>
     <div class="card amber"><b>Aperture sets depth of field</b>Smaller opening: more in focus, less light.</div>
   </div>
+  <p class="more"><a href="../practice/#s2b">More practice · Session 2 B — practice bank with worked solutions →</a></p>
   <p class="takeaway"><span>Next · C: the sensor turns that light into numbers.</span></p>
   <aside class="notes"><p>🇹🇭 สรุป B สามข้อ แล้วต่อ C</p><p>🇬🇧 Wrap up B in three points, then go on to C.</p></aside>
 </section>
@@ -911,7 +917,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     </div>
     <div class="say">
       <button class="tog" id="camBtn" type="button">Use my camera</button>
-      <p>Drag the slider: fewer pixels across, and each cell shows its <b>number</b> (0 = black … 255 = white).</p>
+      <p>Every cell is <b>one number</b> (0 = black … 255 = white). With more pixels the digits move into a <b>magnifier</b> — point at the picture to move it.</p>
       <p>Move your hand in front of the camera — every number changes, every frame.</p>
       <p style="color:var(--muted);font-size:.85em">The picture stays in your browser; nothing is sent anywhere. No camera? You see a photo instead.</p>
     </div>
@@ -1019,6 +1025,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card violet"><b>Bit depth</b>How many levels each number can take: 2<sup>b</sup>.</div>
     <div class="card amber"><b>Light</b>Too little: noise (SNR = √N). Too much contrast: clipping.</div>
   </div>
+  <p class="more"><a href="../practice/#s2c">More practice · Session 2 C — practice bank with worked solutions →</a></p>
   <p class="takeaway"><span>Next · D: one chip, three colours.</span></p>
   <aside class="notes"><p>🇹🇭 สรุป C สามข้อ แล้วต่อ D</p><p>🇬🇧 Wrap up C in three points, then go on to D.</p></aside>
 </section>
@@ -1537,16 +1544,27 @@ function cover(ctx,im,w,h,mirror){ const ar=w/h, iw=im.videoWidth||im.naturalWid
 function initCam(){
   const cv=document.getElementById('camCv'), sl=document.getElementById('camN'), btn=document.getElementById('camBtn'), out=document.getElementById('camOut'); if(!cv) return;
   const ctx=cv.getContext('2d'), sm=document.createElement('canvas'), sc=sm.getContext('2d',{willReadFrequently:true});
-  let src=null, video=null, stream=null, raf=0, live=false;
+  let src=null, video=null, stream=null, raf=0, live=false, focus=[.5,.5];
+  const aim=e=>{ const r=cv.getBoundingClientRect(); focus=[Math.min(1,Math.max(0,(e.clientX-r.left)/r.width)),Math.min(1,Math.max(0,(e.clientY-r.top)/r.height))]; if(!live) draw(); };
+  cv.addEventListener('pointermove',aim); cv.addEventListener('pointerdown',aim);
   const draw=()=>{
     const n=+sl.value, m=Math.round(n*cv.height/cv.width); sm.width=n; sm.height=m; if(!src||!cover(sc,src,n,m,live)) return;
     let d; try{ d=sc.getImageData(0,0,n,m).data; }catch(e){ out.textContent='Open this deck from the website to run the demo'; return; }
-    const cw=cv.width/n, ch=cv.height/m, show=n<=24;
-    ctx.font=`600 ${Math.floor(cw*0.34)}px "JetBrains Mono",monospace`; ctx.textAlign='center'; ctx.textBaseline='middle';
-    for(let y=0;y<m;y++) for(let x=0;x<n;x++){ const i=(y*n+x)*4, v=Math.round(.299*d[i]+.587*d[i+1]+.114*d[i+2]);
+    const cw=cv.width/n, ch=cv.height/m, show=n<=24, V=(x,y)=>{ const i=(y*n+x)*4; return Math.round(.299*d[i]+.587*d[i+1]+.114*d[i+2]); };
+    ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.font=`600 ${Math.floor(cw*0.34)}px "JetBrains Mono",monospace`;
+    for(let y=0;y<m;y++) for(let x=0;x<n;x++){ const v=V(x,y);
       ctx.fillStyle=`rgb(${v},${v},${v})`; ctx.fillRect(x*cw,y*ch,Math.ceil(cw),Math.ceil(ch));
       if(show){ ctx.fillStyle=v>128?'#0f1b2d':'#ffffff'; ctx.fillText(v,x*cw+cw/2,y*ch+ch/2); } }
-    out.textContent=`${n} × ${m} = ${n*m} numbers, each 0–255${live?' · live':' · photo'}`; cv.dataset.drawn=n;
+    if(!show){                                   /* cells too small for digits: a loupe keeps 7 × 5 numbers on screen */
+      const LX=7, LY=5, cx=Math.min(n-LX,Math.max(0,Math.round(focus[0]*n-LX/2))), cy=Math.min(m-LY,Math.max(0,Math.round(focus[1]*m-LY/2)));
+      ctx.strokeStyle='#e0533d'; ctx.lineWidth=3; ctx.strokeRect(cx*cw,cy*ch,LX*cw,LY*ch);
+      const s=32, bw=LX*s, bh=LY*s, bx=focus[0]>.5?10:cv.width-bw-10, by=10;
+      ctx.fillStyle='#0f1b2d'; ctx.fillRect(bx-4,by-4,bw+8,bh+8);
+      ctx.font='600 12px "JetBrains Mono",monospace';
+      for(let y=0;y<LY;y++) for(let x=0;x<LX;x++){ const v=V(cx+x,cy+y);
+        ctx.fillStyle=`rgb(${v},${v},${v})`; ctx.fillRect(bx+x*s,by+y*s,s-1,s-1);
+        ctx.fillStyle=v>128?'#0f1b2d':'#ffffff'; ctx.fillText(v,bx+x*s+s/2,by+y*s+s/2); } }
+    out.textContent=`${n} × ${m} = ${n*m} numbers${show?', each 0–255':' · box = red patch'}${live?' · live':' · photo'}`; cv.dataset.drawn=n;
   };
   const loop=()=>{ draw(); raf=requestAnimationFrame(loop); };
   const stop=()=>{ cancelAnimationFrame(raf); if(stream) stream.getTracks().forEach(t=>t.stop()); stream=null; live=false; src=photo; btn.textContent='Use my camera'; draw(); };

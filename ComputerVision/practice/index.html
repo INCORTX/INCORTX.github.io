@@ -1591,7 +1591,7 @@
         width: 100%
       }
     }
-  </style>
+  .bank-sess{margin:2em 0 .3em;font-size:1.5em}.bank-part{margin:1.4em 0 .6em;color:#0f766e;font-size:1.1em}</style>
 </head>
 
 <body>
@@ -1606,46 +1606,18 @@
         <th>⭐⭐⭐</th>
       </tr>
       <tr>
-        <td>Session 1</td>
-        <td>8</td>
-        <td>3</td>
-        <td>3</td>
-        <td>2</td>
-      </tr>
-      <tr>
         <td>Session 2</td>
-        <td>10</td>
-        <td>3</td>
+        <td>14</td>
+        <td>7</td>
         <td>5</td>
         <td>2</td>
-      </tr>
-      <tr>
-        <td>Session 3</td>
-        <td>11</td>
-        <td>4</td>
-        <td>5</td>
-        <td>2</td>
-      </tr>
-      <tr>
-        <td>Session 4</td>
-        <td>13</td>
-        <td>5</td>
-        <td>5</td>
-        <td>3</td>
-      </tr>
-      <tr>
-        <td>Session 5</td>
-        <td>8</td>
-        <td>2</td>
-        <td>3</td>
-        <td>3</td>
       </tr>
       <tr class="tot">
         <td><strong>Total</strong></td>
-        <td><strong>50</strong></td>
-        <td><strong>17</strong></td>
-        <td><strong>21</strong></td>
-        <td><strong>12</strong></td>
+        <td><strong>14</strong></td>
+        <td><strong>7</strong></td>
+        <td><strong>5</strong></td>
+        <td><strong>2</strong></td>
       </tr>
     </table>
     <details class="answer" id="ref">
@@ -1656,1804 +1628,197 @@
         <p><strong>Reading arctan:</strong> find the ratio in the tan θ column and read the angle on the left — tan θ = 1 ⇒ θ = 45°. A gradient with $G_x = G_y$ therefore points at 45°. Every direction you are asked to name is one of the rows above; if your ratio is not in the tan θ column, re-check the arithmetic rather than reaching for a calculator.</p><p><strong>† forward only.</strong> tan repeats every 180°, but arctan answers only within −90° to 90°: tan 180° = 0 is true, yet arctan(0) = 0°, not 180°. Read backwards only from the 0°–90° rows.</p><p><strong>Negative ratios:</strong> arctan(−x) = −arctan(x), so arctan(−1) = −45°.</p><p><strong>Pythagorean triples</strong> — these give the <strong>magnitude</strong> $\sqrt{G_x^2+G_y^2}$ as a whole number, not an angle: 3-4-5 · 5-12-13 · 6-8-10 · 8-15-17 · 7-24-25 · 20-21-29 — and any multiple, e.g. 24-32-<strong>40</strong>. Magnitude and direction are separate questions; read the direction from the tan θ column above.</p><p><strong>Square roots:</strong> √2 ≈ 1.414 · √3 ≈ 1.732 · √5 ≈ 2.236 · √8 ≈ 2.828 · √32 ≈ 5.657</p><p><strong>Powers of two</strong> (bit depth, pyramid levels): $2^4 = 16$ · $2^6 = 64$ · $2^8 = 256$ · $2^{10} = 1024$ · $2^{24} = 16{,}777{,}216$ · log₂ 8 = 3 · log₂ 16 = 4 · log₂ 256 = 8</p>
       </div>
     </details>
-    <div class="item">
-      <div class="ihead"><span class="iid">001</span><span class="stars s1">⭐</span><span class="topic">Session 1: Pinhole / perspective projection</span><span class="meta">1 pts · ⏱ ~2 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> A pinhole camera has focal length $f = 35\text{ mm}$. An object of height $Y = 4\text{ m}$ stands at distance $Z = 20\text{ m}$ from the camera. Find the image height $y$ on the sensor (in mm).
-        <div class="fig"><svg viewBox="0 0 720 330" aria-label="pinhole projection">
-  <defs><marker id="ah-001" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748B"/></marker></defs>
-  <line x1="40.0" y1="165.0" x2="690.0" y2="165.0" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="8 8"/>
-  <line x1="560.0" y1="87.0" x2="560.0" y2="165.0" stroke="#0E7C86" stroke-width="8"/>
-  <text x="600" y="126" font-family="IBM Plex Mono" font-size="26" fill="#0F766E" text-anchor="start" font-weight="700">Y</text>
-  <text x="600" y="154" font-family="IBM Plex Mono" font-size="22" fill="#64748B" text-anchor="start">= 4 m</text>
-  <line x1="250.0" y1="30.0" x2="250.0" y2="300.0" stroke="#94A3B8" stroke-width="3"/>
-  <circle cx="250.0" cy="165.0" r="7" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="3"/>
-  <text x="250" y="24" font-family="IBM Plex Sans" font-size="21" fill="#64748B" text-anchor="middle">pinhole</text>
-  <line x1="560.0" y1="87.0" x2="250.0" y2="165.0" stroke="#64748B" stroke-width="2" stroke-dasharray="6 6"/>
-  <line x1="250.0" y1="165.0" x2="120.0" y2="205.0" stroke="#64748B" stroke-width="2" stroke-dasharray="6 6"/>
-  <line x1="120.0" y1="165.0" x2="120.0" y2="205.0" stroke="#F97316" stroke-width="8"/>
-  <text x="96" y="193" font-family="IBM Plex Mono" font-size="26" fill="#C2410C" text-anchor="end" font-weight="700">y</text>
-  <line x1="250.0" y1="290.0" x2="560.0" y2="290.0" stroke="#94A3B8" stroke-width="2"/>
-  <text x="405" y="314" font-family="IBM Plex Mono" font-size="23" fill="#64748B" text-anchor="middle">Z = 20 m</text>
-  <line x1="120.0" y1="290.0" x2="250.0" y2="290.0" stroke="#94A3B8" stroke-width="2"/>
-  <text x="185" y="314" font-family="IBM Plex Mono" font-size="23" fill="#64748B" text-anchor="middle">f = 35 mm</text>
-</svg></div>
+    <h2 class="bank-sess" id="s2">Session 2 · Image Formation &amp; Sensing</h2>
+    <h3 class="bank-part" id="s2a">A · Pinhole &amp; perspective</h3>
+    <div class="item" id="p001">
+      <div class="ihead"><span class="iid">001</span><span class="stars s1">⭐</span><span class="topic">Session 2 A: Perspective projection</span><span class="meta">1 pts · ⏱ ~2 min</span></div>
+      <div class="problem"><span class="lab">Problem</span> A camera with focal length $f = 28\text{ mm}$ photographs a person $X = 1.75\text{ m}$ tall standing $Z = 7\text{ m}$ away. How tall is the person on the image plane?
       </div>
       <details class="answer">
         <summary>Show solution</summary>
-        <div class="soln">Step 1: use the perspective projection formula $y = \dfrac{fY}{Z}$. The ratio $Y/Z$ is dimensionless, so $y$ comes out in the same unit as $f$ — millimetres.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$fY = 35 \times 4 = 140$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$y = \dfrac{140}{20} = 7$<br>
-→ the image on the sensor is 7 mm tall [1]<br>
-<strong>Answer:</strong> $y = 7\text{ mm}$
+        <div class="soln">Step 1: use $x = f\,\dfrac{X}{Z}$. The metres in $X/Z$ cancel, so $x$ comes out in millimetres, like $f$.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$x = 28 \times \dfrac{1.75}{7} = 28 \times 0.25 = 7$<br>
+→ the person is 7 mm tall on the image plane [1]<br>
+<strong>Answer:</strong> $x = 7\text{ mm}$<br>
+<strong>Common mistake:</strong> mixing units — keep $f$ in mm and both $X$ and $Z$ in m.
         </div>
       </details>
     </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">002</span><span class="stars s3">⭐⭐⭐</span><span class="topic">Session 1: Pinhole — solving for the distance</span><span class="meta">4 pts · ⏱ ~6 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> A camera with focal length $f = 24\text{ mm}$ photographs a building of height $Y = 40\text{ m}$, which appears $y = 8\text{ mm}$ tall on the sensor. <strong>(a)</strong> How far away is the building ($Z$)? <strong>(b)</strong> The camera then moves back to <strong>twice</strong> that distance — what is the new image height?
-        <div class="fig"><svg viewBox="0 0 720 330" aria-label="pinhole projection">
-  <defs><marker id="ah-002" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748B"/></marker></defs>
-  <line x1="40.0" y1="165.0" x2="690.0" y2="165.0" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="8 8"/>
-  <line x1="560.0" y1="87.0" x2="560.0" y2="165.0" stroke="#0E7C86" stroke-width="8"/>
-  <text x="600" y="126" font-family="IBM Plex Mono" font-size="26" fill="#0F766E" text-anchor="start" font-weight="700">Y</text>
-  <text x="600" y="154" font-family="IBM Plex Mono" font-size="22" fill="#64748B" text-anchor="start">= 40 m</text>
-  <line x1="250.0" y1="30.0" x2="250.0" y2="300.0" stroke="#94A3B8" stroke-width="3"/>
-  <circle cx="250.0" cy="165.0" r="7" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="3"/>
-  <text x="250" y="24" font-family="IBM Plex Sans" font-size="21" fill="#64748B" text-anchor="middle">pinhole</text>
-  <line x1="560.0" y1="87.0" x2="250.0" y2="165.0" stroke="#64748B" stroke-width="2" stroke-dasharray="6 6"/>
-  <line x1="250.0" y1="165.0" x2="120.0" y2="205.0" stroke="#64748B" stroke-width="2" stroke-dasharray="6 6"/>
-  <line x1="120.0" y1="165.0" x2="120.0" y2="205.0" stroke="#F97316" stroke-width="8"/>
-  <text x="96" y="193" font-family="IBM Plex Mono" font-size="26" fill="#C2410C" text-anchor="end" font-weight="700">y</text>
-  <text x="96" y="221" font-family="IBM Plex Mono" font-size="22" fill="#64748B" text-anchor="end">= 8 mm</text>
-  <line x1="250.0" y1="290.0" x2="560.0" y2="290.0" stroke="#94A3B8" stroke-width="2"/>
-  <text x="405" y="314" font-family="IBM Plex Mono" font-size="23" fill="#64748B" text-anchor="middle">Z = ?</text>
-  <line x1="120.0" y1="290.0" x2="250.0" y2="290.0" stroke="#94A3B8" stroke-width="2"/>
-  <text x="185" y="314" font-family="IBM Plex Mono" font-size="23" fill="#64748B" text-anchor="middle">f = 24 mm</text>
-</svg></div>
+    <div class="item" id="p002">
+      <div class="ihead"><span class="iid">002</span><span class="stars s2">⭐⭐</span><span class="topic">Session 2 A: Solving for the distance</span><span class="meta">3 pts · ⏱ ~5 min</span></div>
+      <div class="problem"><span class="lab">Problem</span> A tree $X = 12\text{ m}$ tall appears $x = 6\text{ mm}$ tall through a lens with $f = 50\text{ mm}$. <strong>(a)</strong> How far away is the tree? <strong>(b)</strong> You walk until you are $25\text{ m}$ from the tree. How tall is it on the image now?
       </div>
       <details class="answer">
         <summary>Show solution</summary>
-        <div class="soln"><strong>(a)</strong> Finding $Z$<br>
-Step 1: rearrange $y = \dfrac{fY}{Z}$ into $Z = \dfrac{fY}{y}$. Here $f$ and $y$ are both in mm, so those units cancel and the answer carries the unit of $Y$ (metres).<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$fY = 24 \times 40 = 960$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$Z = \dfrac{960}{8} = 120$<br>
-→ the building is 120 m away [2]<br>
-<strong>(b)</strong> At twice the distance, $Z' = 2 \times 120 = 240\text{ m}$<br>
-Step 1: substitute back into the same formula<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$y' = \dfrac{24 \times 40}{240} = \dfrac{960}{240} = 4$<br>
-→ 4 mm — doubling the distance halves the image [2]<br>
-<strong>Answer:</strong> (a) $Z = 120\text{ m}$ · (b) $y' = 4\text{ mm}$<br>
-<strong>Common mistake:</strong> inverting the rearrangement and getting an absurdly small $Z$. Remember image size is inversely proportional to distance: double $Z$, halve $y$.
+        <div class="soln"><strong>(a)</strong> Step 1: rearrange $x = f\,\dfrac{X}{Z}$ into $Z = \dfrac{fX}{x}$. The mm of $f$ and $x$ cancel; $Z$ is in metres.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$Z = \dfrac{50 \times 12}{6} = \dfrac{600}{6} = 100$<br>
+→ the tree is 100 m away [1.5]<br>
+<strong>(b)</strong> Step 1: same formula with $Z = 25\text{ m}$<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$x = 50 \times \dfrac{12}{25} = \dfrac{600}{25} = 24$<br>
+→ 24 mm: four times closer, four times taller [1.5]<br>
+<strong>Answer:</strong> (a) $Z = 100\text{ m}$ · (b) $x = 24\text{ mm}$
         </div>
       </details>
     </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">003</span><span class="stars s2">⭐⭐</span><span class="topic">Session 1: Digital image storage size</span><span class="meta">3 pts · ⏱ ~4 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> A colour <strong>RGB</strong> image with 8 bits per channel has resolution $1500 \times 400$ pixels. Compute its uncompressed storage size in MB.
-        <div class="fig"><svg viewBox="0 0 640 300" aria-label="image storage">
-  <rect x="60" y="46" width="400" height="190" rx="8" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="260" y="130" font-family="IBM Plex Mono" font-size="44" fill="#1A1A2E" text-anchor="middle" font-weight="700">1500 × 400</text>
-  <text x="260" y="172" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">pixels</text>
-  <text x="260" y="34" font-family="IBM Plex Sans" font-size="21" fill="#64748B" text-anchor="middle">one frame</text>
-  <text x="260" y="268" font-family="IBM Plex Sans" font-size="24" fill="#0F766E" text-anchor="middle">RGB · 3 channels · 8-bit</text>
-  <rect x="500" y="78" width="90" height="90" rx="4" fill="#FCA5A5" stroke="#FFFFFF" stroke-width="2"/>
-  <rect x="514" y="92" width="90" height="90" rx="4" fill="#86EFAC" stroke="#FFFFFF" stroke-width="2"/>
-  <rect x="528" y="106" width="90" height="90" rx="4" fill="#93C5FD" stroke="#FFFFFF" stroke-width="2"/>
-</svg></div>
+    <div class="item" id="p003">
+      <div class="ihead"><span class="iid">003</span><span class="stars s2">⭐⭐</span><span class="topic">Session 2 A: Depth is lost</span><span class="meta">2 pts · ⏱ ~4 min</span></div>
+      <div class="problem"><span class="lab">Problem</span> A camera with $f = 40\text{ mm}$ sees a post $2\text{ m}$ tall at $8\text{ m}$. <strong>(a)</strong> How tall is the post on the image? <strong>(b)</strong> A tower $5\text{ m}$ tall would give exactly the same image. How far away would it have to stand?
       </div>
       <details class="answer">
         <summary>Show solution</summary>
-        <div class="soln">Step 1: an 8-bit RGB pixel takes 3 bytes (one per channel), so size $=$ width $\times$ height $\times$ channels $\times$ bytes.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;pixels $= 1500 \times 400 = 600{,}000$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;bytes $= 600{,}000 \times 3 = 1{,}800{,}000$<br>
-→ 1,800,000 bytes in total [2]<br>
-Step 2: convert to MB, using $1\text{ MB} = 10^{6}$ bytes<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\dfrac{1{,}800{,}000}{1{,}000{,}000} = 1.8$<br>
-→ the file is 1.8 MB [1]<br>
-<strong>Answer:</strong> $1.8\text{ MB}$<br>
-<strong>Common mistake:</strong> forgetting the 3 channels and treating it as grayscale — that under-counts by a factor of three.
+        <div class="soln"><strong>(a)</strong> Step 1: $x = f\,\dfrac{X}{Z} = 40 \times \dfrac{2}{8} = 10$<br>
+→ 10 mm [1]<br>
+<strong>(b)</strong> Step 1: the image only depends on the ratio $X/Z$, so the tower needs the same ratio $\dfrac{2}{8} = \dfrac{1}{4}$<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$\dfrac{5}{Z} = \dfrac{1}{4} \;\Rightarrow\; Z = 20$<br>
+→ 20 m away — from the image alone you cannot tell the post from the tower [1]<br>
+<strong>Answer:</strong> (a) $10\text{ mm}$ · (b) $Z = 20\text{ m}$
         </div>
       </details>
     </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">004</span><span class="stars s1">⭐</span><span class="topic">Session 1: Bit depth &amp; representable values</span><span class="meta">1 pts · ⏱ ~1 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> A grayscale pixel is stored using <strong>6 bits</strong>. How many distinct gray levels can it represent?
+    <div class="item" id="p004">
+      <div class="ihead"><span class="iid">004</span><span class="stars s1">⭐</span><span class="topic">Session 2 A: Pinhole size: light and blur</span><span class="meta">2 pts · ⏱ ~3 min</span></div>
+      <div class="problem"><span class="lab">Problem</span> A pinhole camera's hole is widened from $0.5\text{ mm}$ to $1.5\text{ mm}$ across. <strong>(a)</strong> How many times more light comes in? <strong>(b)</strong> What happens to the blur of each scene point?
       </div>
       <details class="answer">
         <summary>Show solution</summary>
-        <div class="soln">Step 1: the number of representable values is $2^{\text{bits}}$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$2^{6} = 64$<br>
-→ 64 gray levels (the values $0$ through $63$) [1]<br>
-<strong>Answer:</strong> $64$ levels
+        <div class="soln"><strong>(a)</strong> Step 1: light grows with the hole's <strong>area</strong>, which grows with the square of its width<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$\left(\dfrac{1.5}{0.5}\right)^2 = 3^2 = 9$<br>
+→ 9 times more light [1]<br>
+<strong>(b)</strong> Step 1: each scene point now lands as a disc about as wide as the hole — 3 times wider — so the picture is 3 times blurrier [1]<br>
+<strong>Answer:</strong> (a) $\times 9$ light · (b) blur discs $3\times$ wider<br>
+<strong>Common mistake:</strong> answering $\times 3$ for (a) — light follows the area, not the width.
         </div>
       </details>
     </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">005</span><span class="stars s2">⭐⭐</span><span class="topic">Session 1: Color spaces (RGB→grayscale)</span><span class="meta">3 pts · ⏱ ~4 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> Two pixels have RGB values $A = (120, 200, 60)$ and $B = (90, 90, 240)$. Compute the grayscale value of each (rounded to the nearest integer) and state which pixel is brighter.
-        <div class="fig"><svg viewBox="0 0 520 250" aria-label="rgb pixels">
-  <rect x="40" y="40" width="200" height="110" rx="10" fill="rgb(120,200,60)" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="140" y="26" font-family="IBM Plex Sans" font-size="24" fill="#64748B" text-anchor="middle" font-weight="600">A</text>
-  <text x="140" y="186" font-family="IBM Plex Mono" font-size="26" fill="#1A1A2E" text-anchor="middle">(120, 200, 60)</text>
-  <text x="140" y="218" font-family="IBM Plex Sans" font-size="20" fill="#64748B" text-anchor="middle">R  G  B</text>
-  <rect x="280" y="40" width="200" height="110" rx="10" fill="rgb(90,90,240)" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="380" y="26" font-family="IBM Plex Sans" font-size="24" fill="#64748B" text-anchor="middle" font-weight="600">B</text>
-  <text x="380" y="186" font-family="IBM Plex Mono" font-size="26" fill="#1A1A2E" text-anchor="middle">(90, 90, 240)</text>
-  <text x="380" y="218" font-family="IBM Plex Sans" font-size="20" fill="#64748B" text-anchor="middle">R  G  B</text>
-</svg></div>
+    <div class="item" id="p005">
+      <div class="ihead"><span class="iid">005</span><span class="stars s3">⭐⭐⭐</span><span class="topic">Session 2 A: Why parallel lines meet</span><span class="meta">3 pts · ⏱ ~5 min</span></div>
+      <div class="problem"><span class="lab">Problem</span> Two straight rails are $1.5\text{ m}$ apart. A camera with $f = 20\text{ mm}$ looks along them. <strong>(a)</strong> How far apart are the rails on the image where they are $10\text{ m}$ away? <strong>(b)</strong> Where they are $100\text{ m}$ away? <strong>(c)</strong> Use your answers to explain why the rails meet at a point in the photo.
       </div>
       <details class="answer">
         <summary>Show solution</summary>
-        <div class="soln">Step 1: apply the luminosity weights to pixel $A = (120, 200, 60)$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$0.299 \times 120 = 35.88$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$0.587 \times 200 = 117.40$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$0.114 \times 60 = 6.84$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;total $= 160.12 \approx 160$<br>
-→ $A$ has gray value $160$ [1]<br>
-Step 2: the same for pixel $B = (90, 90, 240)$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$0.299 \times 90 = 26.91$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$0.587 \times 90 = 52.83$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$0.114 \times 240 = 27.36$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;total $= 107.10 \approx 107$<br>
-→ $B$ has gray value $107$ [1]<br>
-Step 3: compare — $160 &gt; 107$<br>
-→ $A$ is brighter, even though $B$ has far more blue: blue carries the smallest weight [1]<br>
-<strong>Answer:</strong> $A = 160$, $B = 107$; $A$ is brighter<br>
-<strong>Common mistake:</strong> swapping the weights, usually R and G. Remember <strong>green weighs most</strong> (0.587) and blue least (0.114).
+        <div class="soln"><strong>(a)</strong> Step 1: the gap is an object of size $X = 1.5\text{ m}$, so $x = f\,\dfrac{X}{Z} = 20 \times \dfrac{1.5}{10} = 3$<br>
+→ 3 mm [1]<br>
+<strong>(b)</strong> Step 1: $x = 20 \times \dfrac{1.5}{100} = 0.3$<br>
+→ 0.3 mm [1]<br>
+<strong>(c)</strong> Step 1: the gap on the image is $f \cdot 1.5 / Z$. As $Z$ grows without limit the gap shrinks toward 0, so far away both rails land on the same point — the <strong>vanishing point</strong> [1]<br>
+<strong>Answer:</strong> (a) $3\text{ mm}$ · (b) $0.3\text{ mm}$ · (c) the gap $\to 0$ as $Z \to \infty$
         </div>
       </details>
     </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">006</span><span class="stars s1">⭐</span><span class="topic">Session 1: Color spaces (HSV under changing light)</span><span class="meta">2 pts · ⏱ ~3 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> A camera sees the same green leaf twice: in direct sunlight its pixel reads $(60, 180, 75)$, and in shade the same leaf reads $(33, 99, 41)$. <strong>(a)</strong> What happens to the three RGB numbers when the light drops? <strong>(b)</strong> Which colour space makes "select all the green pixels" work in both shots, and which single component carries the colour there?
-        <div class="fig"><svg viewBox="0 0 600 290" aria-label="same colour in light and shade">
-  <text x="300" y="30" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">the same green, two lighting conditions</text>
-  <text x="165" y="68" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">in light</text>
-  <rect x="60" y="84" width="210" height="110" rx="10" fill="rgb(60,180,75)" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="165" y="226" font-family="IBM Plex Mono" font-size="25" fill="#1A1A2E" text-anchor="middle">(60, 180, 75)</text>
-  <text x="435" y="68" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">in shade</text>
-  <rect x="330" y="84" width="210" height="110" rx="10" fill="rgb(33,99,41)" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="435" y="226" font-family="IBM Plex Mono" font-size="25" fill="#1A1A2E" text-anchor="middle">(33, 99, 41)</text>
-  <text x="300" y="268" font-family="IBM Plex Sans" font-size="21" fill="#64748B" text-anchor="middle">which colour space keeps them together?</text>
-</svg></div>
+    <h3 class="bank-part" id="s2b">B · Lenses</h3>
+    <div class="item" id="p006">
+      <div class="ihead"><span class="iid">006</span><span class="stars s1">⭐</span><span class="topic">Session 2 B: Field of view</span><span class="meta">2 pts · ⏱ ~3 min</span></div>
+      <div class="problem"><span class="lab">Problem</span> A sensor is $w = 24\text{ mm}$ wide and the lens has $f = 12\text{ mm}$. What is the horizontal field of view?
       </div>
       <details class="answer">
         <summary>Show solution</summary>
-        <div class="soln">Step 1: compare the two readings channel by channel<br>
-&nbsp;&nbsp;&nbsp;&nbsp;R: $60 \rightarrow 33$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;G: $180 \rightarrow 99$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;B: $75 \rightarrow 41$<br>
-→ <strong>all three drop together</strong>, by roughly the same proportion — so "green" has no single fixed RGB value [1]<br>
-Step 2: pick a colour space that separates colour from brightness<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<strong>HSV</strong> splits <strong>H (hue — which colour)</strong> from <strong>V (value — how bright)</strong><br>
-&nbsp;&nbsp;&nbsp;&nbsp;A lighting change moves V; H barely shifts (both readings sit at hue $\approx 127$–$128^\circ$)<br>
-→ a range on <strong>H</strong> alone selects the leaf in sunlight and in shade [1]<br>
-<strong>Answer:</strong> (a) all of R, G, B drop together · (b) use <strong>HSV</strong> and threshold on <strong>H (hue)</strong><br>
-<strong>Common mistake:</strong> assuming "green" is one RGB value and thresholding on G alone — as the light changes G moves with it and the mask collapses.
+        <div class="soln">Step 1: half the view: $\tan\dfrac{\text{FOV}}{2} = \dfrac{w}{2f} = \dfrac{24}{24} = 1$, so the half-angle is $45^\circ$ [1]<br>
+Step 2: $\text{FOV} = 2 \times 45^\circ = 90^\circ$ [1]<br>
+<strong>Answer:</strong> $90^\circ$
         </div>
       </details>
     </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">007</span><span class="stars s2">⭐⭐</span><span class="topic">Session 1: Image sampling &amp; aliasing</span><span class="meta">2 pts · ⏱ ~3 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> An image of resolution $1600 \times 1200$ is downsampled by a factor of <strong>8</strong> in each dimension <strong>with no anti-aliasing (low-pass) filter</strong>. <strong>(a)</strong> Give the new dimensions. <strong>(b)</strong> In one sentence, explain what visual problem may appear.
+    <div class="item" id="p007">
+      <div class="ihead"><span class="iid">007</span><span class="stars s2">⭐⭐</span><span class="topic">Session 2 B: Choosing a focal length</span><span class="meta">2 pts · ⏱ ~4 min</span></div>
+      <div class="problem"><span class="lab">Problem</span> A sensor is $36\text{ mm}$ wide. Which focal length gives a $120^\circ$ field of view? (Use $\tan 60^\circ \approx 1.73$.)
       </div>
       <details class="answer">
         <summary>Show solution</summary>
-        <div class="soln"><strong>(a)</strong> New dimensions<br>
-Step 1: divide each axis by the downsampling factor<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\dfrac{1600}{8} = 200$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\dfrac{1200}{8} = 150$<br>
-→ the new image is $200 \times 150$ [1]<br>
-<strong>(b)</strong> What goes wrong<br>
-Step 1: sampling too coarsely without removing high frequencies first means fine detail (thin stripes, grids, texture) cannot be represented and folds back as a false low-frequency pattern.<br>
-→ <strong>aliasing</strong> — visible as moiré patterns or jagged edges, because content above the new Nyquist limit is misread as a lower frequency [1]<br>
-<strong>Answer:</strong> (a) $200 \times 150$ · (b) aliasing / false moiré patterns<br>
-<strong>Common mistake:</strong> assuming downsampling merely makes the image "sharper and smaller". Without pre-blurring it invents detail that was never there.
+        <div class="soln">Step 1: the half-angle is $60^\circ$, so $\dfrac{w}{2f} = \tan 60^\circ \approx 1.73$ [1]<br>
+Step 2: $f = \dfrac{w}{2 \times 1.73} = \dfrac{18}{1.73} \approx 10.4$<br>
+→ about 10 mm — a very wide-angle lens [1]<br>
+<strong>Answer:</strong> $f \approx 10.4\text{ mm}$
         </div>
       </details>
     </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">008</span><span class="stars s3">⭐⭐⭐</span><span class="topic">Session 1: Image sampling (Nyquist pixel spacing)</span><span class="meta">5 pts · ⏱ ~6 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> A camera photographs a striped shirt whose pattern repeats every $6\text{ mm}$. <strong>(a)</strong> What is the largest pixel spacing (measured on the object) that still records the stripes? <strong>(b)</strong> Instead the sensor's pixels land $4\text{ mm}$ apart on the shirt — does the pattern survive, and what appears if it does not? <strong>(c)</strong> How many samples per period does the $4\text{ mm}$ spacing give?
-        <div class="fig"><svg viewBox="0 0 660 300" aria-label="striped pattern and sampling grid">
-  <rect x="60" y="50" width="540" height="170" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <rect x="60" y="52" width="40" height="166" rx="0" fill="#334155" stroke="none" stroke-width="0"/>
-  <rect x="140" y="52" width="40" height="166" rx="0" fill="#334155" stroke="none" stroke-width="0"/>
-  <rect x="220" y="52" width="40" height="166" rx="0" fill="#334155" stroke="none" stroke-width="0"/>
-  <rect x="300" y="52" width="40" height="166" rx="0" fill="#334155" stroke="none" stroke-width="0"/>
-  <rect x="380" y="52" width="40" height="166" rx="0" fill="#334155" stroke="none" stroke-width="0"/>
-  <rect x="460" y="52" width="40" height="166" rx="0" fill="#334155" stroke="none" stroke-width="0"/>
-  <rect x="540" y="52" width="40" height="166" rx="0" fill="#334155" stroke="none" stroke-width="0"/>
-  <line x1="60.0" y1="246.0" x2="140.0" y2="246.0" stroke="#F97316" stroke-width="4"/>
-  <text x="100" y="276" font-family="IBM Plex Mono" font-size="23" fill="#C2410C" text-anchor="middle">one period = 6 mm</text>
-  <text x="330" y="30" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">how far apart may the samples be?</text>
-</svg></div>
+    <div class="item" id="p008">
+      <div class="ihead"><span class="iid">008</span><span class="stars s3">⭐⭐⭐</span><span class="topic">Session 2 B: Dolly zoom</span><span class="meta">3 pts · ⏱ ~6 min</span></div>
+      <div class="problem"><span class="lab">Problem</span> A camera with $f = 16\text{ mm}$ films a person $4\text{ m}$ away. A wall stands $40\text{ m}$ behind the person. The camera backs away until it is $10\text{ m}$ from the person. <strong>(a)</strong> Which focal length keeps the person the same size? <strong>(b)</strong> By how many times does the wall grow on the image?
       </div>
       <details class="answer">
         <summary>Show solution</summary>
-        <div class="soln"><strong>(a)</strong> The largest usable spacing<br>
-Step 1: state the Nyquist condition for images — you need at least <strong>2 samples per period</strong> of the finest detail.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;spacing $\le \dfrac{\text{period}}{2}$<br>
-Step 2: substitute the period of $6\text{ mm}$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;spacing $\le \dfrac{6}{2} = 3\text{ mm}$<br>
-→ pixels must be no more than $3\text{ mm}$ apart [2]<br>
-<strong>(b)</strong> At $4\text{ mm}$ spacing<br>
-Step 1: compare with the limit just found<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$4 &gt; 3$ → the sampling is too coarse and the pattern is lost<br>
-Step 2: name what appears instead<br>
-&nbsp;&nbsp;&nbsp;&nbsp;the fine stripes fold into a false low-frequency pattern — <strong>moiré / aliasing</strong> (or jagged edges)<br>
-→ what you record is a pattern the shirt does not have [2]<br>
-<strong>(c)</strong> Samples per period<br>
-Step 1: divide the period by the spacing<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\dfrac{6}{4} = 1.5$ samples per period<br>
-→ only $1.5 &lt; 2$, which is exactly why part (b) fails [1]<br>
-<strong>Answer:</strong> (a) $\le 3\text{ mm}$ · (b) no — moiré / aliasing appears · (c) $1.5$ samples per period<br>
-<strong>Common mistake:</strong> using one sample per period (spacing $=$ period). Two per period is the minimum. Also do not confuse pixel spacing with sampling rate — wider spacing means a <em>lower</em> rate.
+        <div class="soln"><strong>(a)</strong> Step 1: the person's size is $f \cdot X / Z$, so keep $f / Z$ fixed<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$\dfrac{f}{10} = \dfrac{16}{4} \;\Rightarrow\; f = 40\text{ mm}$ [1]<br>
+<strong>(b)</strong> Step 1: the wall's distance changes from $4 + 40 = 44\text{ m}$ to $10 + 40 = 50\text{ m}$. Its size goes with $f / Z$:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;before $\dfrac{16}{44} = \dfrac{4}{11}$, after $\dfrac{40}{50} = \dfrac{4}{5}$ [1]<br>
+Step 2: ratio $\dfrac{4/5}{4/11} = \dfrac{11}{5} = 2.2$<br>
+→ the wall looks 2.2 times bigger while the person stays the same [1]<br>
+<strong>Answer:</strong> (a) $f = 40\text{ mm}$ · (b) $\times 2.2$
         </div>
       </details>
     </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">009</span><span class="stars s2">⭐⭐</span><span class="topic">Session 2: Point operation — contrast + brightness with clipping</span><span class="meta">3 pts · ⏱ ~5 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> Apply the affine point operation $out = 1.2\,p + 20$ to the two pixels $p = 100$ and $p = 200$, then clip to $[0, 255]$.
-        <div class="fig"><svg viewBox="0 0 520 400" aria-label="transfer function">
-  <line x1="90.0" y1="330.0" x2="410.0" y2="330.0" stroke="#94A3B8" stroke-width="2"/>
-  <line x1="90.0" y1="330.0" x2="90.0" y2="10.0" stroke="#94A3B8" stroke-width="2"/>
-  <text x="240" y="372" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">input</text>
-  <text x="20" y="180" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="start">output</text>
-  <text x="78" y="354" font-family="IBM Plex Mono" font-size="20" fill="#64748B" text-anchor="end">0</text>
-  <text x="390" y="354" font-family="IBM Plex Mono" font-size="20" fill="#64748B" text-anchor="middle">255</text>
-  <text x="78" y="30" font-family="IBM Plex Mono" font-size="20" fill="#64748B" text-anchor="end">255</text>
-  <line x1="90.0" y1="330.0" x2="390.0" y2="30.0" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="6 6"/>
-  <polyline points="90.0,306.5 93.5,302.2 97.1,298.0 100.6,293.8 104.1,289.5 107.6,285.3 111.2,281.1 114.7,276.8 118.2,272.6 121.8,268.4 125.3,264.1 128.8,259.9 132.4,255.6 135.9,251.4 139.4,247.2 142.9,242.9 146.5,238.7 150.0,234.5 153.5,230.2 157.1,226.0 160.6,221.8 164.1,217.5 167.6,213.3 171.2,209.1 174.7,204.8 178.2,200.6 181.8,196.4 185.3,192.1 188.8,187.9 192.4,183.6 195.9,179.4 199.4,175.2 202.9,170.9 206.5,166.7 210.0,162.5 213.5,158.2 217.1,154.0 220.6,149.8 224.1,145.5 227.6,141.3 231.2,137.1 234.7,132.8 238.2,128.6 241.8,124.4 245.3,120.1 248.8,115.9 252.4,111.6 255.9,107.4 259.4,103.2 262.9,98.9 266.5,94.7 270.0,90.5 273.5,86.2 277.1,82.0 280.6,77.8 284.1,73.5 287.6,69.3 291.2,65.1 294.7,60.8 298.2,56.6 301.8,52.4 305.3,48.1 308.8,43.9 312.4,39.6 315.9,35.4 319.4,31.2 322.9,30.0 326.5,30.0 330.0,30.0 333.5,30.0 337.1,30.0 340.6,30.0 344.1,30.0 347.6,30.0 351.2,30.0 354.7,30.0 358.2,30.0 361.8,30.0 365.3,30.0 368.8,30.0 372.4,30.0 375.9,30.0 379.4,30.0 382.9,30.0 386.5,30.0 390.0,30.0" fill="none" stroke="#0E7C86" stroke-width="4" stroke-linejoin="round"/>
-  <text x="260" y="24" font-family="IBM Plex Sans" font-size="21" fill="#64748B" text-anchor="middle">out = 1.2·in + 20</text>
-</svg></div>
+    <div class="item" id="p009">
+      <div class="ihead"><span class="iid">009</span><span class="stars s1">⭐</span><span class="topic">Session 2 B: Aperture: light and depth of field</span><span class="meta">2 pts · ⏱ ~3 min</span></div>
+      <div class="problem"><span class="lab">Problem</span> A photographer changes the aperture from f/2.8 to f/5.6 (same lens, same focus). <strong>(a)</strong> What happens to the light reaching the sensor? <strong>(b)</strong> What happens to the depth of field?
       </div>
       <details class="answer">
         <summary>Show solution</summary>
-        <div class="soln">Step 1: pixel $p = 100$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$1.2 \times 100 + 20 = 120 + 20 = 140$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$140$ is inside the range → no clipping [1]<br>
-Step 2: pixel $p = 200$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$1.2 \times 200 + 20 = 240 + 20 = 260$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$260 &gt; 255$ → clip to $255$ [1]<br>
-Step 3: collect the results<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$100 \to 140$, $200 \to 255$<br>
-→ a gain above 1 stretches contrast while $+20$ lifts brightness [1]<br>
-<strong>Answer:</strong> $100 \to 140$, $200 \to 255$<br>
-<strong>Common mistake:</strong> leaving 260 unclipped, or adding before multiplying.
+        <div class="soln"><strong>(a)</strong> Step 1: the opening's width is $f/N$; going from $N = 2.8$ to $N = 5.6$ halves the width, so the area — and the light — falls to $\left(\tfrac12\right)^2 = \tfrac14$ [1]<br>
+<strong>(b)</strong> Step 1: the blur circle of an out-of-focus point shrinks with the opening (half as wide), so more of the scene looks sharp: <strong>more</strong> depth of field [1]<br>
+<strong>Answer:</strong> (a) $\tfrac14$ of the light · (b) depth of field increases
         </div>
       </details>
     </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">010</span><span class="stars s2">⭐⭐</span><span class="topic">Session 2: Point operation — contrast about mid-gray</span><span class="meta">4 pts · ⏱ ~5 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> Contrast is applied about mid-gray using $out = a\,(in - 128) + 128$ with $a = 1.5$. <strong>(a)</strong> Compute the output for $in = 64$, $in = 128$ and $in = 192$. <strong>(b)</strong> State what happens to the pixel sitting exactly at $128$, and why this form is preferred over plain $out = a \cdot in$.
-        <div class="fig"><svg viewBox="0 0 520 400" aria-label="transfer function">
-  <line x1="90.0" y1="330.0" x2="410.0" y2="330.0" stroke="#94A3B8" stroke-width="2"/>
-  <line x1="90.0" y1="330.0" x2="90.0" y2="10.0" stroke="#94A3B8" stroke-width="2"/>
-  <text x="240" y="372" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">input</text>
-  <text x="20" y="180" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="start">output</text>
-  <text x="78" y="354" font-family="IBM Plex Mono" font-size="20" fill="#64748B" text-anchor="end">0</text>
-  <text x="390" y="354" font-family="IBM Plex Mono" font-size="20" fill="#64748B" text-anchor="middle">255</text>
-  <text x="78" y="30" font-family="IBM Plex Mono" font-size="20" fill="#64748B" text-anchor="end">255</text>
-  <line x1="90.0" y1="330.0" x2="390.0" y2="30.0" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="6 6"/>
-  <circle cx="240.6" cy="179.4" r="8" fill="#F97316" stroke="none" stroke-width="2"/>
-  <text x="255" y="165" font-family="IBM Plex Sans" font-size="20" fill="#C2410C" text-anchor="start">pivot (128,128)</text>
-  <polyline points="90.0,330.0 93.5,330.0 97.1,330.0 100.6,330.0 104.1,330.0 107.6,330.0 111.2,330.0 114.7,330.0 118.2,330.0 121.8,330.0 125.3,330.0 128.8,330.0 132.4,330.0 135.9,330.0 139.4,330.0 142.9,325.9 146.5,320.6 150.0,315.3 153.5,310.0 157.1,304.7 160.6,299.4 164.1,294.1 167.6,288.8 171.2,283.5 174.7,278.2 178.2,272.9 181.8,267.6 185.3,262.4 188.8,257.1 192.4,251.8 195.9,246.5 199.4,241.2 202.9,235.9 206.5,230.6 210.0,225.3 213.5,220.0 217.1,214.7 220.6,209.4 224.1,204.1 227.6,198.8 231.2,193.5 234.7,188.2 238.2,182.9 241.8,177.6 245.3,172.4 248.8,167.1 252.4,161.8 255.9,156.5 259.4,151.2 262.9,145.9 266.5,140.6 270.0,135.3 273.5,130.0 277.1,124.7 280.6,119.4 284.1,114.1 287.6,108.8 291.2,103.5 294.7,98.2 298.2,92.9 301.8,87.6 305.3,82.4 308.8,77.1 312.4,71.8 315.9,66.5 319.4,61.2 322.9,55.9 326.5,50.6 330.0,45.3 333.5,40.0 337.1,34.7 340.6,30.0 344.1,30.0 347.6,30.0 351.2,30.0 354.7,30.0 358.2,30.0 361.8,30.0 365.3,30.0 368.8,30.0 372.4,30.0 375.9,30.0 379.4,30.0 382.9,30.0 386.5,30.0 390.0,30.0" fill="none" stroke="#0E7C86" stroke-width="4" stroke-linejoin="round"/>
-  <text x="260" y="24" font-family="IBM Plex Sans" font-size="21" fill="#64748B" text-anchor="middle">out = 1.5·(in − 128) + 128</text>
-</svg></div>
+    <h3 class="bank-part" id="s2c">C · Sensors</h3>
+    <div class="item" id="p010">
+      <div class="ihead"><span class="iid">010</span><span class="stars s1">⭐</span><span class="topic">Session 2 C: Image size in bytes</span><span class="meta">2 pts · ⏱ ~3 min</span></div>
+      <div class="problem"><span class="lab">Problem</span> <strong>(a)</strong> How many bytes does a $1920 \times 1080$ greyscale image take at 8 bits per pixel, before compression? <strong>(b)</strong> And in colour, with 3 numbers per pixel?
       </div>
       <details class="answer">
         <summary>Show solution</summary>
-        <div class="soln"><strong>(a)</strong> Substituting pixel by pixel<br>
-Step 1: $in = 64$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$64 - 128 = -64$ · $1.5 \times (-64) = -96$ · $-96 + 128 = 32$<br>
-→ $64 \to 32$ (darker) [1]<br>
-Step 2: $in = 128$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$128 - 128 = 0$ · $1.5 \times 0 = 0$ · $0 + 128 = 128$<br>
-→ $128 \to 128$ (unmoved) [1]<br>
-Step 3: $in = 192$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$192 - 128 = 64$ · $1.5 \times 64 = 96$ · $96 + 128 = 224$<br>
-→ $192 \to 224$ (brighter) [1]<br>
-<strong>(b)</strong> Why this form<br>
-Step 1: mid-gray $128$ is the <strong>pivot</strong>. Values below it are pushed down and values above are pushed up, so the gap between dark and light widens — contrast rises — while the overall brightness stays put.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;With plain $out = a \cdot in$ the pivot sits at $0$, so the whole image also brightens: $1.5 \times 192 = 288$ clips to $255$ even though no brightness change was intended.<br>
-→ pivoting at $128$ changes contrast only, without dragging brightness along [1]<br>
-<strong>Answer:</strong> $64 \to 32$, $128 \to 128$, $192 \to 224$; mid-gray is the pivot, so contrast rises without shifting overall brightness<br>
-<strong>Common mistake:</strong> forgetting to subtract 128 before multiplying (giving $1.5 \times 64 = 96$ instead of 32), or forgetting to add it back afterwards.
+        <div class="soln"><strong>(a)</strong> Step 1: one byte per pixel: $1920 \times 1080 = 2\,073\,600$ bytes ≈ 2.1 MB [1]<br>
+<strong>(b)</strong> Step 1: three bytes per pixel: $2\,073\,600 \times 3 = 6\,220\,800$ bytes ≈ 6.2 MB [1]<br>
+<strong>Answer:</strong> (a) ≈ 2.1 MB · (b) ≈ 6.2 MB
         </div>
       </details>
     </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">011</span><span class="stars s3">⭐⭐⭐</span><span class="topic">Session 2: Histogram equalization (full table)</span><span class="meta">6 pts · ⏱ ~9 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> A $5\times5$ image ($N = 25$ pixels) uses $L = 8$ gray levels ($0..7$) with the histogram below. Build the CDF and compute the equalized level for <strong>every</strong> gray level.
-<pre>
-level : 0  1  2  3  4  5  6  7
-count : 5  4  8  8  0  0  0  0
-</pre>
-        <div class="fig"><svg viewBox="0 0 754.0 400" aria-label="histogram">
-  <line x1="66.0" y1="300.0" x2="704.0" y2="300.0" stroke="#94A3B8" stroke-width="2"/>
-  <text x="392" y="366" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">gray level</text>
-  <rect x="80" y="162" width="60" height="138" rx="3" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <text x="110" y="150" font-family="IBM Plex Mono" font-size="22" fill="#0F766E" text-anchor="middle">5</text>
-  <text x="110" y="330" font-family="IBM Plex Mono" font-size="22" fill="#64748B" text-anchor="middle">0</text>
-  <rect x="158" y="190" width="60" height="110" rx="3" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <text x="188" y="178" font-family="IBM Plex Mono" font-size="22" fill="#0F766E" text-anchor="middle">4</text>
-  <text x="188" y="330" font-family="IBM Plex Mono" font-size="22" fill="#64748B" text-anchor="middle">1</text>
-  <rect x="236" y="80" width="60" height="220" rx="3" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <text x="266" y="68" font-family="IBM Plex Mono" font-size="22" fill="#0F766E" text-anchor="middle">8</text>
-  <text x="266" y="330" font-family="IBM Plex Mono" font-size="22" fill="#64748B" text-anchor="middle">2</text>
-  <rect x="314" y="80" width="60" height="220" rx="3" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <text x="344" y="68" font-family="IBM Plex Mono" font-size="22" fill="#0F766E" text-anchor="middle">8</text>
-  <text x="344" y="330" font-family="IBM Plex Mono" font-size="22" fill="#64748B" text-anchor="middle">3</text>
-  <text x="422" y="288" font-family="IBM Plex Mono" font-size="22" fill="#0F766E" text-anchor="middle">0</text>
-  <text x="422" y="330" font-family="IBM Plex Mono" font-size="22" fill="#64748B" text-anchor="middle">4</text>
-  <text x="500" y="288" font-family="IBM Plex Mono" font-size="22" fill="#0F766E" text-anchor="middle">0</text>
-  <text x="500" y="330" font-family="IBM Plex Mono" font-size="22" fill="#64748B" text-anchor="middle">5</text>
-  <text x="578" y="288" font-family="IBM Plex Mono" font-size="22" fill="#0F766E" text-anchor="middle">0</text>
-  <text x="578" y="330" font-family="IBM Plex Mono" font-size="22" fill="#64748B" text-anchor="middle">6</text>
-  <text x="656" y="288" font-family="IBM Plex Mono" font-size="22" fill="#0F766E" text-anchor="middle">0</text>
-  <text x="656" y="330" font-family="IBM Plex Mono" font-size="22" fill="#64748B" text-anchor="middle">7</text>
-  <text x="12" y="190" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="start">count</text>
-  <polyline points="110.0,256.0 188.0,220.8 266.0,150.4 344.0,80.0 422.0,80.0 500.0,80.0 578.0,80.0 656.0,80.0" fill="none" stroke="#F97316" stroke-width="3" stroke-linejoin="round"/>
-  <circle cx="110.0" cy="256.0" r="6" fill="#F97316" stroke="none" stroke-width="2"/>
-  <circle cx="188.0" cy="220.8" r="6" fill="#F97316" stroke="none" stroke-width="2"/>
-  <circle cx="266.0" cy="150.4" r="6" fill="#F97316" stroke="none" stroke-width="2"/>
-  <circle cx="344.0" cy="80.0" r="6" fill="#F97316" stroke="none" stroke-width="2"/>
-  <circle cx="422.0" cy="80.0" r="6" fill="#F97316" stroke="none" stroke-width="2"/>
-  <circle cx="500.0" cy="80.0" r="6" fill="#F97316" stroke="none" stroke-width="2"/>
-  <circle cx="578.0" cy="80.0" r="6" fill="#F97316" stroke="none" stroke-width="2"/>
-  <circle cx="656.0" cy="80.0" r="6" fill="#F97316" stroke="none" stroke-width="2"/>
-  <text x="714" y="34" font-family="IBM Plex Sans" font-size="22" fill="#C2410C" text-anchor="end">CDF</text>
-  <text x="377" y="26" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">N = 25 pixels</text>
-</svg></div>
+    <div class="item" id="p011">
+      <div class="ihead"><span class="iid">011</span><span class="stars s1">⭐</span><span class="topic">Session 2 C: Bit depth and levels</span><span class="meta">2 pts · ⏱ ~2 min</span></div>
+      <div class="problem"><span class="lab">Problem</span> <strong>(a)</strong> How many levels can a 12-bit sensor record? <strong>(b)</strong> What is the smallest number of bits that gives at least 1000 levels?
       </div>
       <details class="answer">
         <summary>Show solution</summary>
-        <div class="soln">Step 1: accumulate the CDF from left to right<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\text{CDF}(0)=5$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\text{CDF}(1)=5+4=9$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\text{CDF}(2)=9+8=17$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\text{CDF}(3)=17+8=25$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\text{CDF}(4..7)=25$ — a run of zero counts leaves the CDF flat; it never resets<br>
-→ CDF $= [5, 9, 17, 25, 25, 25, 25, 25]$ [2]<br>
-Step 2: read off what the formula needs<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\text{CDF}_{\min} = 5$ (the smallest non-zero CDF), $N = 25$, $L-1 = 7$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\text{new} = \text{round}\!\left(\dfrac{\text{CDF} - 5}{25 - 5} \times 7\right) = \text{round}\!\left(\dfrac{(\text{CDF} - 5) \times 7}{20}\right)$ [1]<br>
-Step 3: apply it level by level<br>
-&nbsp;&nbsp;&nbsp;&nbsp;level 0: $\text{round}\!\left(\tfrac{0 \times 7}{20}\right) = 0$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;level 1: $\text{round}\!\left(\tfrac{4 \times 7}{20}\right) = \text{round}(1.4) = 1$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;level 2: $\text{round}\!\left(\tfrac{12 \times 7}{20}\right) = \text{round}(4.2) = 4$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;level 3: $\text{round}\!\left(\tfrac{20 \times 7}{20}\right) = 7$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;levels 4–7: the CDF is still $25$, so they all map to $7$ [2]<br>
-Step 4: collect the mapping<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$0\to0,\ 1\to1,\ 2\to4,\ 3\to7,\ 4\to7,\ 5\to7,\ 6\to7,\ 7\to7$<br>
-→ levels that were bunched into $0..3$ are stretched across the full range $0..7$ [1]<br>
-<strong>Answer:</strong> mapping $= [0, 1, 4, 7, 7, 7, 7, 7]$<br>
-<strong>Common mistake:</strong> <strong>omitting $\text{CDF}_{\min}$</strong>. Using $\text{round}(\text{CDF}/N \times 7)$ gives $[1, 3, 5, 7, \dots]$, where the darkest level never reaches 0 — a correct equalization must push it exactly to 0. Also: using $L$ instead of $L-1$, or resetting the CDF at levels whose count is 0.
+        <div class="soln"><strong>(a)</strong> Step 1: $b$ bits give $2^b$ levels: $2^{12} = 4096$ [1]<br>
+<strong>(b)</strong> Step 1: $2^9 = 512 &lt; 1000$ and $2^{10} = 1024 \ge 1000$, so 10 bits [1]<br>
+<strong>Answer:</strong> (a) 4096 · (b) 10 bits
         </div>
       </details>
     </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">012</span><span class="stars s1">⭐</span><span class="topic">Session 2: Correlation vs convolution (concept)</span><span class="meta">1 pts · ⏱ ~2 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> State in one sentence the operational difference between correlation and convolution when applying a kernel to an image.
+    <div class="item" id="p012">
+      <div class="ihead"><span class="iid">012</span><span class="stars s2">⭐⭐</span><span class="topic">Session 2 C: Shot noise</span><span class="meta">3 pts · ⏱ ~4 min</span></div>
+      <div class="problem"><span class="lab">Problem</span> In dim light, a pixel expects $N = 400$ photons. <strong>(a)</strong> How large is the random variation (the noise)? <strong>(b)</strong> What is the signal-to-noise ratio? <strong>(c)</strong> How many photons are needed to <strong>double</strong> that ratio?
       </div>
       <details class="answer">
         <summary>Show solution</summary>
-        <div class="soln">Step 1: name the one step that differs<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<strong>correlation</strong> — lay the kernel over the patch as it is, then multiply and sum<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<strong>convolution</strong> — rotate the kernel by $180^\circ$ first (flip both horizontally and vertically), then multiply and sum<br>
-→ for a symmetric kernel the flip changes nothing, so the two give identical results [1]<br>
-<strong>Answer:</strong> convolution flips the kernel $180^\circ$ before doing what correlation does
+        <div class="soln"><strong>(a)</strong> Step 1: photon counts vary by $\sqrt{N} = \sqrt{400} = 20$ [1]<br>
+<strong>(b)</strong> Step 1: $\text{SNR} = \dfrac{N}{\sqrt N} = \sqrt{N} = 20$ [1]<br>
+<strong>(c)</strong> Step 1: $\text{SNR} = \sqrt N = 40 \Rightarrow N = 1600$ — four times the light, e.g. a four-times-longer exposure [1]<br>
+<strong>Answer:</strong> (a) ±20 photons · (b) 20 · (c) 1600 photons<br>
+<strong>Common mistake:</strong> doubling $N$ to double the SNR — the SNR grows only with $\sqrt N$.
         </div>
       </details>
     </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">013</span><span class="stars s2">⭐⭐</span><span class="topic">Session 2: 2D convolution — the kernel flip</span><span class="meta">4 pts · ⏱ ~5 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> Apply the <strong>asymmetric</strong> kernel $K$ below to the patch $P$ by <strong>convolution</strong>, and give the output at the centre pixel. Show the kernel you actually multiply by, and every product.<br>
-$$P = \begin{bmatrix}12&amp;5&amp;9\\7&amp;20&amp;3\\15&amp;8&amp;11\end{bmatrix} \qquad K = \begin{bmatrix}1&amp;0&amp;2\\3&amp;1&amp;0\\0&amp;2&amp;1\end{bmatrix}$$
-        <div class="fig"><svg viewBox="0 0 586 314" aria-label="patch and kernel">
-  <text x="144" y="28" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">patch</text>
-  <text x="442" y="28" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">K (asymmetric)</text>
-  <rect x="30" y="40" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="68" y="86" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">12</text>
-  <rect x="106" y="40" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="144" y="86" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">5</text>
-  <rect x="182" y="40" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="220" y="86" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">9</text>
-  <rect x="30" y="116" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="68" y="162" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">7</text>
-  <rect x="106" y="116" width="76" height="76" rx="0" fill="#E6F5F4" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="144" y="162" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle" font-weight="700">20</text>
-  <rect x="182" y="116" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="220" y="162" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">3</text>
-  <rect x="30" y="192" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="68" y="238" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">15</text>
-  <rect x="106" y="192" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="144" y="238" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">8</text>
-  <rect x="182" y="192" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="220" y="238" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">11</text>
-  <text x="293" y="164" font-family="IBM Plex Sans" font-size="34" fill="#64748B" text-anchor="middle">⊛</text>
-  <rect x="328" y="40" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="366" y="86" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">1</text>
-  <rect x="404" y="40" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="442" y="86" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">0</text>
-  <rect x="480" y="40" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="518" y="86" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">2</text>
-  <rect x="328" y="116" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="366" y="162" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">3</text>
-  <rect x="404" y="116" width="76" height="76" rx="0" fill="#EDE9FE" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="442" y="162" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">1</text>
-  <rect x="480" y="116" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="518" y="162" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">0</text>
-  <rect x="328" y="192" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="366" y="238" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">0</text>
-  <rect x="404" y="192" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="442" y="238" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">2</text>
-  <rect x="480" y="192" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="518" y="238" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">1</text>
-  <text x="293" y="302" font-family="IBM Plex Sans" font-size="21" fill="#64748B" text-anchor="middle">multiply each overlapping pair, then add</text>
-</svg></div>
+    <div class="item" id="p013">
+      <div class="ihead"><span class="iid">013</span><span class="stars s2">⭐⭐</span><span class="topic">Session 2 C: Dynamic range</span><span class="meta">2 pts · ⏱ ~3 min</span></div>
+      <div class="problem"><span class="lab">Problem</span> A scene's brightest part is 2000 times brighter than its darkest. Can <strong>(a)</strong> an 8-bit image and <strong>(b)</strong> a 12-bit image hold both ends without clipping? Count the darkest non-black level as 1.
       </div>
       <details class="answer">
         <summary>Show solution</summary>
-        <div class="soln">Step 1: convolution rotates the kernel by $180^\circ$ first — reverse the rows <strong>and</strong> the columns<br>
-$$K_{\text{flip}} = \begin{bmatrix}1&amp;2&amp;0\\0&amp;1&amp;3\\2&amp;0&amp;1\end{bmatrix}$$<br>
-→ flip shown with both axes reversed [1]<br>
-Step 2: lay $K_{\text{flip}}$ over $P$ and multiply position by position<br>
-&nbsp;&nbsp;&nbsp;&nbsp;row 1: $12(1) + 5(2) + 9(0) = 22$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;row 2: $7(0) + 20(1) + 3(3) = 29$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;row 3: $15(2) + 8(0) + 11(1) = 41$<br>
-→ all three row products [1.5]<br>
-Step 3: add the rows<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$22 + 29 + 41 = 92$<br>
-→ [1]<br>
-Step 4: check what skipping the flip would have cost<br>
-&nbsp;&nbsp;&nbsp;&nbsp;using $K$ as it is (correlation) gives $30 + 41 + 27 = 98$ — a different number, because $K$ is asymmetric<br>
-→ [0.5]<br>
-<strong>Answer:</strong> centre output $= 92$ (correlation would give 98)<br>
-<strong>Common mistake:</strong> skipping the flip and reporting 98; flipping along one axis only, which is a mirror rather than a $180^\circ$ rotation; assuming `cv2.filter2D` convolves — it correlates, so its output matches the 98.
+        <div class="soln"><strong>(a)</strong> Step 1: 8 bits run from 1 to 255 — a range of 255 : 1 &lt; 2000 : 1, so one end must clip [1]<br>
+<strong>(b)</strong> Step 1: 12 bits run from 1 to 4095 — 4095 : 1 &gt; 2000 : 1, so both ends fit [1]<br>
+<strong>Answer:</strong> (a) no · (b) yes
         </div>
       </details>
     </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">014</span><span class="stars s3">⭐⭐⭐</span><span class="topic">Session 2: Correlation vs convolution (full computation)</span><span class="meta">5 pts · ⏱ ~8 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> For the asymmetric kernel<br>
-$$K = \begin{bmatrix}1&amp;2&amp;3\\4&amp;5&amp;6\\7&amp;8&amp;9\end{bmatrix}$$<br>
-and the patch $P$ below, compute (a) the correlation output and (b) the convolution output at the centre. Show every product.
-<pre>
-P =
-1 0 2
-0 3 0
-4 0 1
-</pre>
-        <div class="fig"><svg viewBox="0 0 586 314" aria-label="patch and kernel">
-  <text x="144" y="28" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">patch</text>
-  <text x="442" y="28" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">kernel K</text>
-  <rect x="30" y="40" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="68" y="86" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">1</text>
-  <rect x="106" y="40" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="144" y="86" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">0</text>
-  <rect x="182" y="40" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="220" y="86" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">2</text>
-  <rect x="30" y="116" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="68" y="162" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">0</text>
-  <rect x="106" y="116" width="76" height="76" rx="0" fill="#E6F5F4" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="144" y="162" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle" font-weight="700">3</text>
-  <rect x="182" y="116" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="220" y="162" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">0</text>
-  <rect x="30" y="192" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="68" y="238" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">4</text>
-  <rect x="106" y="192" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="144" y="238" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">0</text>
-  <rect x="182" y="192" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="220" y="238" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">1</text>
-  <text x="293" y="164" font-family="IBM Plex Sans" font-size="34" fill="#64748B" text-anchor="middle">⊛</text>
-  <rect x="328" y="40" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="366" y="86" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">1</text>
-  <rect x="404" y="40" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="442" y="86" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">2</text>
-  <rect x="480" y="40" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="518" y="86" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">3</text>
-  <rect x="328" y="116" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="366" y="162" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">4</text>
-  <rect x="404" y="116" width="76" height="76" rx="0" fill="#EDE9FE" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="442" y="162" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">5</text>
-  <rect x="480" y="116" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="518" y="162" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">6</text>
-  <rect x="328" y="192" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="366" y="238" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">7</text>
-  <rect x="404" y="192" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="442" y="238" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">8</text>
-  <rect x="480" y="192" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="518" y="238" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">9</text>
-  <text x="293" y="302" font-family="IBM Plex Sans" font-size="21" fill="#64748B" text-anchor="middle">multiply each overlapping pair, then add</text>
-</svg></div>
+    <div class="item" id="p014">
+      <div class="ihead"><span class="iid">014</span><span class="stars s1">⭐</span><span class="topic">Session 2 C: Resolution</span><span class="meta">2 pts · ⏱ ~2 min</span></div>
+      <div class="problem"><span class="lab">Problem</span> A camera's image is $1000 \times 750$ pixels. A newer model doubles both the width and the height. <strong>(a)</strong> How many pixels does each image have? <strong>(b)</strong> How many times more numbers must be stored?
       </div>
       <details class="answer">
         <summary>Show solution</summary>
-        <div class="soln">Step 1: <strong>correlation</strong> — lay $K$ over $P$ as it is, multiply and sum<br>
-&nbsp;&nbsp;&nbsp;&nbsp;row 1: $1\times1=1,\ \ 2\times0=0,\ \ 3\times2=6$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;row 2: $4\times0=0,\ \ 5\times3=15,\ \ 6\times0=0$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;row 3: $7\times4=28,\ \ 8\times0=0,\ \ 9\times1=9$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;sum: $1+6+15+28+9 = 59$<br>
-Step 2: <strong>convolution</strong> — rotate $K$ by $180^\circ$ first<br>
-$$K_{\text{flip}} = \begin{bmatrix}9&amp;8&amp;7\\6&amp;5&amp;4\\3&amp;2&amp;1\end{bmatrix}$$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;row 1: $9\times1=9,\ \ 8\times0=0,\ \ 7\times2=14$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;row 2: $6\times0=0,\ \ 5\times3=15,\ \ 4\times0=0$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;row 3: $3\times4=12,\ \ 2\times0=0,\ \ 1\times1=1$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;sum: $9+14+15+12+1 = 51$<br>
-Step 3: compare<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$59 \ne 51$ — the kernel is asymmetric, so the flip matters [5]<br>
-<strong>Answer:</strong> correlation $= 59$, convolution $= 51$<br>
-<strong>Common mistake:</strong> skipping the flip, or flipping along one axis only. Note `cv2.filter2D` performs <strong>correlation</strong>, so compare against 59 when checking a hand calculation in code.
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">015</span><span class="stars s2">⭐⭐</span><span class="topic">Session 2: Thresholding + foreground count</span><span class="meta">3 pts · ⏱ ~5 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> Binarize the $3\times3$ image below with threshold $T = 140$ (foreground $= 255$ if $p \ge T$, else background $= 0$). Then count the foreground pixels.
-<pre>
- 70 155 210
-115 145  55
-185  95 165
-</pre>
-        <div class="fig"><svg viewBox="0 0 421.92 368" aria-label="pixel patch">
-  <rect x="79" y="30" width="88" height="88" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="123" y="82" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">70</text>
-  <rect x="167" y="30" width="88" height="88" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="211" y="82" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">155</text>
-  <rect x="255" y="30" width="88" height="88" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="299" y="82" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">210</text>
-  <rect x="79" y="118" width="88" height="88" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="123" y="170" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">115</text>
-  <rect x="167" y="118" width="88" height="88" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="211" y="170" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">145</text>
-  <rect x="255" y="118" width="88" height="88" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="299" y="170" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">55</text>
-  <rect x="79" y="206" width="88" height="88" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="123" y="258" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">185</text>
-  <rect x="167" y="206" width="88" height="88" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="211" y="258" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">95</text>
-  <rect x="255" y="206" width="88" height="88" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="299" y="258" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">165</text>
-  <text x="211" y="354" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">threshold each pixel at T = 140</text>
-</svg></div>
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: compare each pixel against $T = 140$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;row 1: $70\to0,\ \ 155\to255,\ \ 210\to255$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;row 2: $115\to0,\ \ 145\to255,\ \ 55\to0$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;row 3: $185\to255,\ \ 95\to0,\ \ 165\to255$<br>
-Step 2: count the foreground pixels (value $255$)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$155,\ 210,\ 145,\ 185,\ 165 \Rightarrow$ 5 pixels<br>
-→ foreground 5, background 4 [3]<br>
-<strong>Answer:</strong> foreground $= 5$ pixels<br>
-<strong>Common mistake:</strong> mishandling the boundary case $p = T$ — here $\ge$ counts as foreground, so state the rule before you start.
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">016</span><span class="stars s1">⭐</span><span class="topic">Session 2: Thresholding — Otsu &amp; adaptive</span><span class="meta">2 pts · ⏱ ~3 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> A scanned page is binarized. <strong>(a)</strong> What does Otsu's method read in order to pick the threshold $T$ automatically, and what feature of it does the chosen $T$ sit at? <strong>(b)</strong> The next page is photographed with a shadow across one half, so a single global $T$ loses the text in the dark half. Name the method that fixes this and state in one sentence how it differs from a global threshold.
-        <div class="fig"><svg viewBox="0 0 520 400" aria-label="transfer function">
-  <line x1="90.0" y1="330.0" x2="410.0" y2="330.0" stroke="#94A3B8" stroke-width="2"/>
-  <line x1="90.0" y1="330.0" x2="90.0" y2="10.0" stroke="#94A3B8" stroke-width="2"/>
-  <text x="240" y="372" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">input</text>
-  <text x="20" y="180" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="start">output</text>
-  <text x="78" y="354" font-family="IBM Plex Mono" font-size="20" fill="#64748B" text-anchor="end">0</text>
-  <text x="390" y="354" font-family="IBM Plex Mono" font-size="20" fill="#64748B" text-anchor="middle">255</text>
-  <text x="78" y="30" font-family="IBM Plex Mono" font-size="20" fill="#64748B" text-anchor="end">255</text>
-  <line x1="90.0" y1="330.0" x2="390.0" y2="30.0" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="6 6"/>
-  <line x1="242.9" y1="330.0" x2="242.9" y2="30.0" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="5 5"/>
-  <text x="255" y="312" font-family="IBM Plex Mono" font-size="22" fill="#C2410C" text-anchor="start">T = 130</text>
-  <polyline points="90.0,330.0 242.9,330.0 242.9,30.0 390.0,30.0" fill="none" stroke="#0E7C86" stroke-width="4" stroke-linejoin="round"/>
-  <text x="260" y="24" font-family="IBM Plex Sans" font-size="21" fill="#64748B" text-anchor="middle">a single step at T</text>
-</svg></div>
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: what Otsu reads<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Otsu reads the image's <strong>histogram</strong>, tries every candidate $T$, and keeps the one that <strong>separates the dark and bright groups most strongly</strong>.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;The winning $T$ therefore lands in the <strong>valley between the two humps</strong> of the histogram.<br>
-→ Otsu picks $T$ automatically from the histogram; you never set it by hand [1]<br>
-Step 2: the shadowed page<br>
-&nbsp;&nbsp;&nbsp;&nbsp;One $T$ cannot serve the whole image, because the lit half and the shadowed half occupy different intensity ranges.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;The fix is <strong>adaptive thresholding</strong> — compute a separate $T$ for <strong>each small region</strong> (an $11\times11$ window, say) instead of one value for the whole image.<br>
-→ text in the shadowed half is still separated from its local background [1]<br>
-<strong>Answer:</strong> (a) it reads the <strong>histogram</strong>; $T$ sits in the <strong>valley between the two humps</strong> · (b) <strong>adaptive thresholding</strong>, which computes $T$ per region rather than once globally<br>
-<strong>Common mistake:</strong> believing Otsu also solves uneven lighting. Otsu is still <strong>global</strong> — it picks one $T$ well, but only when the lighting is even.
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">017</span><span class="stars s1">⭐</span><span class="topic">Session 2: Gamma correction</span><span class="meta">2 pts · ⏱ ~3 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> Apply gamma correction $out = 255\,(in/255)^{\gamma}$ with $in = 204$ and $\gamma = 2$. Give the result rounded to the nearest integer.
-        <div class="fig"><svg viewBox="0 0 520 400" aria-label="transfer function">
-  <line x1="90.0" y1="330.0" x2="410.0" y2="330.0" stroke="#94A3B8" stroke-width="2"/>
-  <line x1="90.0" y1="330.0" x2="90.0" y2="10.0" stroke="#94A3B8" stroke-width="2"/>
-  <text x="240" y="372" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">input</text>
-  <text x="20" y="180" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="start">output</text>
-  <text x="78" y="354" font-family="IBM Plex Mono" font-size="20" fill="#64748B" text-anchor="end">0</text>
-  <text x="390" y="354" font-family="IBM Plex Mono" font-size="20" fill="#64748B" text-anchor="middle">255</text>
-  <text x="78" y="30" font-family="IBM Plex Mono" font-size="20" fill="#64748B" text-anchor="end">255</text>
-  <line x1="90.0" y1="330.0" x2="390.0" y2="30.0" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="6 6"/>
-  <polyline points="90.0,330.0 93.5,330.0 97.1,329.8 100.6,329.6 104.1,329.3 107.6,329.0 111.2,328.5 114.7,328.0 118.2,327.3 121.8,326.6 125.3,325.8 128.8,325.0 132.4,324.0 135.9,323.0 139.4,321.9 142.9,320.7 146.5,319.4 150.0,318.0 153.5,316.5 157.1,315.0 160.6,313.4 164.1,311.7 167.6,309.9 171.2,308.0 174.7,306.1 178.2,304.0 181.8,301.9 185.3,299.7 188.8,297.4 192.4,295.1 195.9,292.6 199.4,290.1 202.9,287.5 206.5,284.8 210.0,282.0 213.5,279.1 217.1,276.2 220.6,273.2 224.1,270.0 227.6,266.8 231.2,263.6 234.7,260.2 238.2,256.8 241.8,253.2 245.3,249.6 248.8,245.9 252.4,242.1 255.9,238.3 259.4,234.3 262.9,230.3 266.5,226.2 270.0,222.0 273.5,217.7 277.1,213.4 280.6,208.9 284.1,204.4 287.6,199.8 291.2,195.1 294.7,190.3 298.2,185.5 301.8,180.5 305.3,175.5 308.8,170.4 312.4,165.2 315.9,159.9 319.4,154.6 322.9,149.1 326.5,143.6 330.0,138.0 333.5,132.3 337.1,126.5 340.6,120.7 344.1,114.7 347.6,108.7 351.2,102.6 354.7,96.4 358.2,90.2 361.8,83.8 365.3,77.4 368.8,70.9 372.4,64.3 375.9,57.6 379.4,50.8 382.9,44.0 386.5,37.0 390.0,30.0" fill="none" stroke="#0E7C86" stroke-width="4" stroke-linejoin="round"/>
-  <text x="260" y="24" font-family="IBM Plex Sans" font-size="21" fill="#64748B" text-anchor="middle">out = 255·(in/255)^2</text>
-</svg></div>
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: normalise the input to $[0,1]$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$in/255 = 204/255 = 0.8$<br>
-Step 2: raise to $\gamma$, then scale back by $255$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$0.8^{2} = 0.64$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$out = 255 \times 0.64 = 163.2 \approx 163$<br>
-→ $\gamma &gt; 1$ darkens the image [2]<br>
-<strong>Answer:</strong> $out \approx 163$<br>
-<strong>Common mistake:</strong> raising the raw 0–255 value to the power without normalising first.
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">018</span><span class="stars s2">⭐⭐</span><span class="topic">Session 2: Image arithmetic — alpha blending (RGB)</span><span class="meta">3 pts · ⏱ ~5 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> Blend the two colour pixels $A = (200,120,80)$ and $B = (100,80,160)$ with $\alpha = 0.25$ using $out = \alpha A + (1-\alpha)B$ per channel.
-        <div class="fig"><svg viewBox="0 0 640 250" aria-label="alpha blending">
-  <text x="320" y="32" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">blend two pixels</text>
-  <rect x="60" y="60" width="160" height="110" rx="8" fill="rgb(200,120,80)" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="140" y="200" font-family="IBM Plex Mono" font-size="26" fill="#1A1A2E" text-anchor="middle">A = (200, 120, 80)</text>
-  <rect x="420" y="60" width="160" height="110" rx="8" fill="rgb(100,80,160)" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="500" y="200" font-family="IBM Plex Mono" font-size="26" fill="#1A1A2E" text-anchor="middle">B = (100, 80, 160)</text>
-  <text x="320" y="118" font-family="IBM Plex Mono" font-size="26" fill="#C2410C" text-anchor="middle">α = 0.25</text>
-  <text x="320" y="236" font-family="IBM Plex Mono" font-size="23" fill="#64748B" text-anchor="middle">out = α·A + (1−α)·B</text>
-</svg></div>
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: the weights are $\alpha = 0.25$ on $A$ and $1-\alpha = 0.75$ on $B$ — work one channel at a time<br>
-&nbsp;&nbsp;&nbsp;&nbsp;R: $0.25\times200 + 0.75\times100 = 50 + 75 = 125$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;G: $0.25\times120 + 0.75\times80 = 30 + 60 = 90$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;B: $0.25\times80 + 0.75\times160 = 20 + 120 = 140$<br>
-→ each channel blends independently; the weights sum to 1 so brightness stays balanced [3]<br>
-<strong>Answer:</strong> $out = (125,\ 90,\ 140)$<br>
-<strong>Common mistake:</strong> putting $\alpha$ on the wrong image — $(1-\alpha)$ belongs to $B$.
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">019</span><span class="stars s2">⭐⭐</span><span class="topic">Session 3: Linear filters (apply box blur)</span><span class="meta">3 pts · ⏱ ~3 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> Apply a $3\times3$ box blur to the centre pixel of the patch below. Report the new centre value.<br>
-$$\begin{bmatrix} 20 &amp; 40 &amp; 60 \\ 80 &amp; 100 &amp; 120 \\ 140 &amp; 160 &amp; 180 \end{bmatrix}$$
-        <div class="fig"><svg viewBox="0 0 458.88000000000005 368" aria-label="pixel patch">
-  <rect x="97" y="30" width="88" height="88" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="141" y="82" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">20</text>
-  <rect x="185" y="30" width="88" height="88" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="229" y="82" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">40</text>
-  <rect x="273" y="30" width="88" height="88" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="317" y="82" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">60</text>
-  <rect x="97" y="118" width="88" height="88" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="141" y="170" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">80</text>
-  <rect x="185" y="118" width="88" height="88" rx="0" fill="#E6F5F4" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="229" y="170" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle" font-weight="700">100</text>
-  <rect x="273" y="118" width="88" height="88" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="317" y="170" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">120</text>
-  <rect x="97" y="206" width="88" height="88" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="141" y="258" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">140</text>
-  <rect x="185" y="206" width="88" height="88" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="229" y="258" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">160</text>
-  <rect x="273" y="206" width="88" height="88" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="317" y="258" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">180</text>
-  <text x="229" y="354" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">apply a 3×3 box blur to the centre</text>
-</svg></div>
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: add all 9 pixel values<br>
-&nbsp;&nbsp;&nbsp;&nbsp;row 1: $20+40+60 = 120$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;row 2: $80+100+120 = 300$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;row 3: $140+160+180 = 480$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;total $= 120+300+480 = 900$ [1]<br>
-Step 2: normalise — divide by the number of cells<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$900 \div 9 = 100$ [1]<br>
-Step 3: replace the centre<br>
-&nbsp;&nbsp;&nbsp;&nbsp;old centre $= 100$ → new centre $= 100$<br>
-→ when the surrounding values are linearly symmetric, the mean equals the original centre exactly [1]<br>
-<strong>Answer:</strong> new centre pixel $= 100$<br>
-<strong>Common mistake:</strong> forgetting to divide by 9 (leaving 900), or dividing by 8 and omitting the centre pixel.
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">020</span><span class="stars s2">⭐⭐</span><span class="topic">Session 3: Linear filters (σ → kernel size)</span><span class="meta">4 pts · ⏱ ~4 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> A Gaussian blur is built with spread $\sigma = 2\text{ px}$, using the $\pm 3\sigma$ rule (the kernel must reach $3\sigma$ on each side of the centre). <strong>(a)</strong> How many pixels does the kernel reach on each side? <strong>(b)</strong> What is the full kernel size (it must be odd so a centre pixel exists)? <strong>(c)</strong> Repeat for $\sigma = 3$.
-        <div class="fig"><svg viewBox="0 0 620 320" aria-label="Gaussian spread and the +-3 sigma reach">
-  <line x1="50.0" y1="240.0" x2="570.0" y2="240.0" stroke="#94A3B8" stroke-width="2"/>
-  <polyline points="60.0,239.9 62.5,239.9 65.0,239.9 67.5,239.9 70.0,239.9 72.5,239.9 75.0,239.9 77.5,239.8 80.0,239.8 82.5,239.8 85.0,239.7 87.5,239.7 90.0,239.7 92.5,239.6 95.0,239.5 97.5,239.5 100.0,239.4 102.5,239.3 105.0,239.2 107.5,239.1 110.0,239.0 112.5,238.8 115.0,238.7 117.5,238.5 120.0,238.3 122.5,238.1 125.0,237.9 127.5,237.6 130.0,237.3 132.5,237.0 135.0,236.6 137.5,236.2 140.0,235.8 142.5,235.3 145.0,234.8 147.5,234.2 150.0,233.6 152.5,232.9 155.0,232.1 157.5,231.3 160.0,230.5 162.5,229.5 165.0,228.5 167.5,227.4 170.0,226.2 172.5,224.9 175.0,223.5 177.5,222.0 180.0,220.5 182.5,218.8 185.0,217.0 187.5,215.1 190.0,213.1 192.5,211.0 195.0,208.7 197.5,206.4 200.0,203.9 202.5,201.3 205.0,198.5 207.5,195.7 210.0,192.7 212.5,189.7 215.0,186.5 217.5,183.1 220.0,179.7 222.5,176.2 225.0,172.6 227.5,168.9 230.0,165.1 232.5,161.2 235.0,157.3 237.5,153.3 240.0,149.2 242.5,145.1 245.0,141.0 247.5,136.9 250.0,132.8 252.5,128.7 255.0,124.6 257.5,120.5 260.0,116.6 262.5,112.6 265.0,108.8 267.5,105.1 270.0,101.5 272.5,98.0 275.0,94.7 277.5,91.5 280.0,88.5 282.5,85.7 285.0,83.1 287.5,80.7 290.0,78.5 292.5,76.5 295.0,74.8 297.5,73.4 300.0,72.2 302.5,71.2 305.0,70.5 307.5,70.1 310.0,70.0 312.5,70.1 315.0,70.5 317.5,71.2 320.0,72.2 322.5,73.4 325.0,74.8 327.5,76.5 330.0,78.5 332.5,80.7 335.0,83.1 337.5,85.7 340.0,88.5 342.5,91.5 345.0,94.7 347.5,98.0 350.0,101.5 352.5,105.1 355.0,108.8 357.5,112.6 360.0,116.6 362.5,120.5 365.0,124.6 367.5,128.7 370.0,132.8 372.5,136.9 375.0,141.0 377.5,145.1 380.0,149.2 382.5,153.3 385.0,157.3 387.5,161.2 390.0,165.1 392.5,168.9 395.0,172.6 397.5,176.2 400.0,179.7 402.5,183.1 405.0,186.5 407.5,189.7 410.0,192.7 412.5,195.7 415.0,198.5 417.5,201.3 420.0,203.9 422.5,206.4 425.0,208.7 427.5,211.0 430.0,213.1 432.5,215.1 435.0,217.0 437.5,218.8 440.0,220.5 442.5,222.0 445.0,223.5 447.5,224.9 450.0,226.2 452.5,227.4 455.0,228.5 457.5,229.5 460.0,230.5 462.5,231.3 465.0,232.1 467.5,232.9 470.0,233.6 472.5,234.2 475.0,234.8 477.5,235.3 480.0,235.8 482.5,236.2 485.0,236.6 487.5,237.0 490.0,237.3 492.5,237.6 495.0,237.9 497.5,238.1 500.0,238.3 502.5,238.5 505.0,238.7 507.5,238.8 510.0,239.0 512.5,239.1 515.0,239.2 517.5,239.3 520.0,239.4 522.5,239.5 525.0,239.5 527.5,239.6 530.0,239.7 532.5,239.7 535.0,239.7 537.5,239.8 540.0,239.8 542.5,239.8 545.0,239.9 547.5,239.9 550.0,239.9 552.5,239.9 555.0,239.9 557.5,239.9 560.0,239.9" fill="none" stroke="#0E7C86" stroke-width="4" stroke-linejoin="round"/>
-  <line x1="122.5" y1="240.0" x2="122.5" y2="64.0" stroke="#F97316" stroke-width="2" stroke-dasharray="6 6"/>
-  <text x="122" y="274" font-family="IBM Plex Mono" font-size="23" fill="#C2410C" text-anchor="middle">−3σ</text>
-  <line x1="497.5" y1="240.0" x2="497.5" y2="64.0" stroke="#F97316" stroke-width="2" stroke-dasharray="6 6"/>
-  <text x="498" y="274" font-family="IBM Plex Mono" font-size="23" fill="#C2410C" text-anchor="middle">+3σ</text>
-  <line x1="310.0" y1="240.0" x2="310.0" y2="64.0" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="4 6"/>
-  <text x="310" y="274" font-family="IBM Plex Mono" font-size="22" fill="#64748B" text-anchor="middle">0</text>
-  <text x="310" y="32" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">σ = 2 px — how wide must the kernel be?</text>
-  <text x="310" y="302" font-family="IBM Plex Sans" font-size="21" fill="#64748B" text-anchor="middle">99.7% of the weight lies inside ±3σ</text>
-</svg></div>
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln"><strong>(a)</strong> Reach on each side<br>
-Step 1: the $\pm 3\sigma$ rule — $99.7\%$ of the weight lies inside that span, and beyond it less than $0.3\%$ remains, which is safe to discard<br>
-&nbsp;&nbsp;&nbsp;&nbsp;reach $= 3\sigma = 3 \times 2 = 6$ pixels per side<br>
-→ 6 pixels left and 6 right [1]<br>
-<strong>(b)</strong> Full kernel size<br>
-Step 1: add both sides plus the centre pixel<br>
-&nbsp;&nbsp;&nbsp;&nbsp;size $= 6\ (\text{left}) + 6\ (\text{right}) + 1\ (\text{centre}) = 13$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;13 is already odd, so it can be used directly<br>
-→ a $13 \times 13$ kernel (about $6\sigma$, rounded to an odd number) [2]<br>
-<strong>(c)</strong> For $\sigma = 3$<br>
-Step 1: the same procedure<br>
-&nbsp;&nbsp;&nbsp;&nbsp;reach $= 3 \times 3 = 9$ per side · size $= 9 + 9 + 1 = 19$<br>
-→ a $19 \times 19$ kernel [1]<br>
-<strong>Answer:</strong> (a) $6$ pixels per side · (b) $13 \times 13$ · (c) $19 \times 19$<br>
-<strong>Common mistake:</strong> treating $\sigma$ <strong>as</strong> the kernel size. $\sigma$ is the <em>spread of the weights</em>; the kernel size follows from it ($\approx 6\sigma+1$). Also, forgetting the $+1$ gives 12, an even size with no centre pixel.
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">021</span><span class="stars s2">⭐⭐</span><span class="topic">Session 3: Nonlinear (median on salt-and-pepper)</span><span class="meta">3 pts · ⏱ ~3 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> This $3\times3$ patch carries salt-and-pepper noise (the $0$ and $255$ values). Compute the median-filtered centre value and compare it with the mean.<br>
-$$\begin{bmatrix} 100 &amp; 0 &amp; 110 \\ 255 &amp; 120 &amp; 105 \\ 0 &amp; 130 &amp; 115 \end{bmatrix}$$
-        <div class="fig"><svg viewBox="0 0 471.20000000000005 368" aria-label="pixel patch">
-  <rect x="104" y="30" width="88" height="88" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="148" y="82" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">100</text>
-  <rect x="192" y="30" width="88" height="88" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="236" y="82" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">0</text>
-  <rect x="280" y="30" width="88" height="88" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="324" y="82" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">110</text>
-  <rect x="104" y="118" width="88" height="88" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="148" y="170" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">255</text>
-  <rect x="192" y="118" width="88" height="88" rx="0" fill="#E6F5F4" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="236" y="170" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle" font-weight="700">120</text>
-  <rect x="280" y="118" width="88" height="88" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="324" y="170" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">105</text>
-  <rect x="104" y="206" width="88" height="88" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="148" y="258" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">0</text>
-  <rect x="192" y="206" width="88" height="88" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="236" y="258" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">130</text>
-  <rect x="280" y="206" width="88" height="88" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="324" y="258" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">115</text>
-  <text x="236" y="354" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">salt-and-pepper: two 0s and one 255</text>
-</svg></div>
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: sort all 9 values<br>
-&nbsp;&nbsp;&nbsp;&nbsp;original: $100, 0, 110, 255, 120, 105, 0, 130, 115$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;sorted: $0, 0, 100, 105, \mathbf{110}, 115, 120, 130, 255$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;median $=$ the 5th value $= 110$ [2]<br>
-Step 2: compute the mean for comparison<br>
-&nbsp;&nbsp;&nbsp;&nbsp;sum $= 0+0+100+105+110+115+120+130+255 = 935$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;mean $= 935 \div 9 \approx 103.9$<br>
-→ the median ($110$) sits in the middle of the real pixels ($100$–$130$), while the mean ($\approx 103.9$) is dragged down because two zeros pull harder than one 255 lifts [1]<br>
-<strong>Answer:</strong> median $= 110$ (mean $\approx 103.9$, distorted by the noise)<br>
-<strong>Common mistake:</strong> forgetting to include both zeros when sorting, or thinking the noise must be removed before taking the median — it does not, sorting handles it.
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">022</span><span class="stars s2">⭐⭐</span><span class="topic">Session 3: Bilateral vs Gaussian (edge preservation)</span><span class="meta">3 pts · ⏱ ~3 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> Consider a pixel on a sharp edge: its left neighbours are near intensity $40$ and its right neighbours near $210$. Explain what a Gaussian blur does to this edge, what a bilateral filter does, and why.
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: the Gaussian at this edge<br>
-&nbsp;&nbsp;&nbsp;&nbsp;A Gaussian weights neighbours by <strong>distance only</strong>, so both sides contribute fully.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;The centre is pulled toward $\approx (40+210)/2 \approx 125$ → the edge smears [1]<br>
-Step 2: the bilateral at the same edge<br>
-&nbsp;&nbsp;&nbsp;&nbsp;If the centre sits on the $\approx 40$ side, the neighbours at $210$ differ hugely in intensity, so their <strong>range weight</strong> is near zero.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;The average is then dominated by the $40$ side → the centre stays near $40$ [1]<br>
-Step 3: state the reason<br>
-&nbsp;&nbsp;&nbsp;&nbsp;The extra <strong>range kernel</strong> cancels the influence of pixels across an edge.<br>
-→ a bilateral filter still smooths noise <em>within</em> a region, but never averages <em>across</em> the boundary — unlike a Gaussian, which blurs the edge along with everything else [1]<br>
-<strong>Answer:</strong> the Gaussian averages across the edge and blurs it (centre $\approx 125$); the bilateral gives near-zero weight to the dissimilar side, so the centre stays near $40$ and the edge stays sharp<br>
-<strong>Common mistake:</strong> believing a bilateral filter does not blur at all. It does — just only among pixels of similar intensity.
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">023</span><span class="stars s3">⭐⭐⭐</span><span class="topic">Session 3: Sharpening (unsharp mask with amount)</span><span class="meta">4 pts · ⏱ ~4 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> Use the weighted unsharp mask $\text{sharp} = \text{original} + \alpha\,(\text{original} - \text{blurred})$ with amount $\alpha = 1.5$. At one pixel the original is $90$ and the blurred value is $120$. Compute the result, clipping to $[0, 255]$ if needed.
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: write the weighted form<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\text{sharp} = \text{original} + \alpha(\text{original} - \text{blurred})$ [1]<br>
-Step 2: find the detail (the mask)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$90 - 120 = -30$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;the negative sign says this pixel is <em>darker</em> than its blurred surroundings — it sits on the dark side of an edge [1]<br>
-Step 3: scale by the amount and add back<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\alpha \cdot (-30) = 1.5 \times (-30) = -45$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$90 + (-45) = 45$ [1]<br>
-Step 4: check for clipping<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$45$ lies inside $[0,255]$ → no clipping<br>
-→ the dark side of the edge is pushed darker ($90 \to 45$), which is exactly how edge contrast increases [1]<br>
-<strong>Answer:</strong> sharpened value $= 45$<br>
-<strong>Common mistake:</strong> multiplying $\alpha$ by the original instead of by the detail, or forgetting that the detail can be negative.
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">024</span><span class="stars s1">⭐</span><span class="topic">Session 3: Fourier (low / high-pass)</span><span class="meta">2 pts · ⏱ ~2 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> In the 2D Fourier magnitude spectrum of an image (assume it is centred), where do the low and high frequencies appear? Which region does a low-pass filter keep?
-        <div class="fig"><svg viewBox="0 0 460 400" aria-label="2-D magnitude spectrum">
-  <defs><radialGradient id="sg-024"><stop offset="0%" stop-color="#FFFFFF"/><stop offset="18%" stop-color="#94A3B8"/><stop offset="55%" stop-color="#334155"/><stop offset="100%" stop-color="#0F172A"/></radialGradient></defs>
-  <rect x="60" y="40" width="340" height="320" rx="6" fill="url(#sg-024)" stroke="#CBD5E1" stroke-width="2"/>
-  <defs><marker id="ao-024" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#F97316"/></marker></defs>
-  <line x1="230.0" y1="200.0" x2="395.0" y2="200.0" stroke="#F97316" stroke-width="2" stroke-dasharray="5 5"/>
-  <circle cx="230.0" cy="200.0" r="26" fill="none" stroke="#F97316" stroke-width="2"/>
-  <text x="230" y="32" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">centred magnitude spectrum</text>
-  <text x="326" y="186" font-family="IBM Plex Sans" font-size="21" fill="#FFFFFF" text-anchor="middle">outer</text>
-  <text x="230" y="258" font-family="IBM Plex Sans" font-size="21" fill="#FFFFFF" text-anchor="middle">centre</text>
-  <text x="230" y="386" font-family="IBM Plex Sans" font-size="21" fill="#64748B" text-anchor="middle">distance from the centre = frequency</text>
-</svg></div>
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: locate the frequencies in a centred spectrum<br>
-&nbsp;&nbsp;&nbsp;&nbsp;low frequencies → the <strong>centre</strong> (smooth areas, broad structure)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;high frequencies → the <strong>outer ring</strong> (edges, fine texture, noise) [1]<br>
-Step 2: what a low-pass keeps<br>
-&nbsp;&nbsp;&nbsp;&nbsp;a low-pass keeps a disc around the centre and discards the outer ring → the result is a blurred image<br>
-→ the opposite of a high-pass, which keeps the outer ring and leaves only edges [1]<br>
-<strong>Answer:</strong> low at the centre, high on the outside; a low-pass keeps the centre
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">025</span><span class="stars s1">⭐</span><span class="topic">Session 3: Sampling (aliased frequency)</span><span class="meta">2 pts · ⏱ ~3 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> A 1-D signal at $f = 90\text{ Hz}$ is sampled at $f_s = 100\text{ Hz}$. <strong>(a)</strong> What is this sampler's Nyquist frequency? <strong>(b)</strong> Does the signal alias? <strong>(c)</strong> If so, what false frequency does it come back as?
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: <strong>(a)</strong> the sampler's Nyquist frequency<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$f_{\text{Nyquist}} = \dfrac{f_s}{2} = \dfrac{100}{2} = 50\text{ Hz}$ [0.5]<br>
-Step 2: <strong>(b)</strong> test for aliasing<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$f = 90\text{ Hz} &gt; 50\text{ Hz}$ → above the limit, so <strong>it aliases</strong> [0.5]<br>
-Step 3: <strong>(c)</strong> find the false frequency<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$f_{\text{alias}} = |f_s - f| = |100 - 90| = 10\text{ Hz}$<br>
-→ the $90\text{ Hz}$ signal reappears as a false $10\text{ Hz}$ wave, and the samples are <em>identical</em> to those of a real $10\text{ Hz}$ signal — the two can never be told apart afterwards [1]<br>
-<strong>Answer:</strong> (a) $50\text{ Hz}$ · (b) yes, it aliases · (c) $10\text{ Hz}$<br>
-<strong>Common mistake:</strong> comparing $f$ against $f_s$ (100) instead of $f_s/2$ (50) and concluding there is no aliasing.
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">026</span><span class="stars s3">⭐⭐⭐</span><span class="topic">Session 3: Sampling / Nyquist</span><span class="meta">5 pts · ⏱ ~5 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> One row of an image contains a maximum spatial frequency of $30$ cycles per row. <strong>(a)</strong> What is the minimum sampling rate (samples per row) needed to represent it without aliasing? <strong>(b)</strong> The row is currently sampled at $100$ samples/row and you want to downsample by a factor of $2$ — what is the new rate, and what is the highest frequency it can represent? <strong>(c)</strong> What pre-filtering must you apply before downsampling?
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: state the Nyquist rule<br>
-&nbsp;&nbsp;&nbsp;&nbsp;the Nyquist rate is $2\times$ the highest frequency present → $f_s \ge 2 f_{\max}$ [1]<br>
-Step 2: <strong>(a)</strong> the minimum rate<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$f_{\max} = 30$ → Nyquist rate $= 2 \times 30 = 60$ samples/row [1]<br>
-Step 3: <strong>(b)</strong> the rate after halving<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$100 \div 2 = 50$ samples/row [1]<br>
-Step 4: <strong>(b)</strong> the new ceiling<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$50 \div 2 = 25$ cycles/row<br>
-&nbsp;&nbsp;&nbsp;&nbsp;note the signal still contains up to $30 &gt; 25$ → doing nothing means it will alias [1]<br>
-Step 5: <strong>(c)</strong> the required pre-filter<br>
-&nbsp;&nbsp;&nbsp;&nbsp;apply a low-pass that removes everything above $25$ cycles/row (the <em>new</em> Nyquist) <strong>before</strong> downsampling<br>
-→ that discards the $25$–$30$ band so there is nothing left to fold back [1]<br>
-<strong>Answer:</strong> (a) $60$ samples/row · (b) new rate $50$, ceiling $25$ cycles/row · (c) low-pass above $25$ cycles/row, applied first<br>
-<strong>Common mistake:</strong> confusing the sampling rate ($f_s$) with the Nyquist frequency ($f_s/2$); forgetting that halving the rate drops the ceiling to 25, not 30; or setting the filter cutoff at the old limit.
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">027</span><span class="stars s2">⭐⭐</span><span class="topic">Session 3: Separable filters (efficiency)</span><span class="meta">4 pts · ⏱ ~4 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> A separable $7\times7$ filter is applied to a $1200\times900$ image. Compare the multiplications per pixel and the total multiplications for (a) the naive 2D convolution and (b) the separable (two 1D passes) implementation.
-        <div class="fig"><svg viewBox="0 0 640 260" aria-label="separable filter cost">
-  <rect x="50" y="60" width="240" height="140" rx="8" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="170" y="96" font-family="IBM Plex Sans" font-size="23" fill="#64748B" text-anchor="middle">direct 2-D</text>
-  <text x="170" y="152" font-family="IBM Plex Mono" font-size="42" fill="#1A1A2E" text-anchor="middle" font-weight="700">7 × 7</text>
-  <rect x="350" y="60" width="240" height="140" rx="8" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <text x="470" y="96" font-family="IBM Plex Sans" font-size="23" fill="#0F766E" text-anchor="middle">separable</text>
-  <text x="470" y="152" font-family="IBM Plex Mono" font-size="42" fill="#1A1A2E" text-anchor="middle" font-weight="700">7 + 7</text>
-  <text x="320" y="32" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">multiplications per pixel</text>
-  <text x="320" y="232" font-family="IBM Plex Sans" font-size="21" fill="#64748B" text-anchor="middle">same blur, two ways of paying for it</text>
-</svg></div>
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: cost per pixel, direct 2D<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$k^2 = 7 \times 7 = 49$ multiplies/pixel [1]<br>
-Step 2: cost per pixel, separable (one horizontal pass plus one vertical)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$2k = 2 \times 7 = 14$ multiplies/pixel [1]<br>
-Step 3: total for the direct method<br>
-&nbsp;&nbsp;&nbsp;&nbsp;pixels $= 1200 \times 900 = 1{,}080{,}000$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;2D total $= 1{,}080{,}000 \times 49 = 52{,}920{,}000$ multiplies [1]<br>
-Step 4: total for the separable method, and the ratio<br>
-&nbsp;&nbsp;&nbsp;&nbsp;separable total $= 1{,}080{,}000 \times 14 = 15{,}120{,}000$ multiplies<br>
-&nbsp;&nbsp;&nbsp;&nbsp;ratio $= 49 / 14 = 3.5$<br>
-→ separable is $3.5\times$ cheaper for the identical blur [1]<br>
-<strong>Answer:</strong> 2D $= 49$/pixel ($52{,}920{,}000$ total); separable $= 14$/pixel ($15{,}120{,}000$ total); $3.5\times$ faster<br>
-<strong>Common mistake:</strong> writing $k^2$ where $2k$ belongs. Separable <strong>adds</strong> two passes; it does not square.
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">028</span><span class="stars s1">⭐</span><span class="topic">Session 3: Image pyramids (level sizes)</span><span class="meta">2 pts · ⏱ ~2 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> A Gaussian pyramid starts from a base image of $1024\times768$. Each level halves both width and height. Give the dimensions of levels 1, 2 and 3.
-        <div class="fig"><svg viewBox="0 0 640 330" aria-label="image pyramid">
-  <rect x="60" y="80" width="170" height="170" rx="4" fill="#FFFFFF" stroke="#0F766E" stroke-width="2"/>
-  <text x="145" y="280" font-family="IBM Plex Mono" font-size="22" fill="#64748B" text-anchor="middle">L0</text>
-  <text x="145" y="308" font-family="IBM Plex Mono" font-size="21" fill="#0F766E" text-anchor="middle">1024×768</text>
-  <rect x="274" y="165" width="85" height="85" rx="4" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <text x="316" y="280" font-family="IBM Plex Mono" font-size="22" fill="#64748B" text-anchor="middle">L1</text>
-  <text x="316" y="308" font-family="IBM Plex Mono" font-size="21" fill="#0F766E" text-anchor="middle">?</text>
-  <rect x="403" y="208" width="42" height="42" rx="4" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <text x="424" y="280" font-family="IBM Plex Mono" font-size="22" fill="#64748B" text-anchor="middle">L2</text>
-  <text x="424" y="308" font-family="IBM Plex Mono" font-size="21" fill="#0F766E" text-anchor="middle">?</text>
-  <rect x="490" y="229" width="21" height="21" rx="4" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <text x="500" y="280" font-family="IBM Plex Mono" font-size="22" fill="#64748B" text-anchor="middle">L3</text>
-  <text x="500" y="308" font-family="IBM Plex Mono" font-size="21" fill="#0F766E" text-anchor="middle">?</text>
-  <text x="320" y="32" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">blur, then halve — repeat</text>
-</svg></div>
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: halve both axes at each level<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Level 0 (base): $1024 \times 768$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Level 1: $512 \times 384$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Level 2: $256 \times 192$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Level 3: $128 \times 96$ [1]<br>
-Step 2: check how the pixel count falls<br>
-&nbsp;&nbsp;&nbsp;&nbsp;each level keeps $1/4$ of the previous one (both axes halve)<br>
-→ level 3 holds $1/64$ of the base image's pixels [1]<br>
-<strong>Answer:</strong> L1 $= 512\times384$, L2 $= 256\times192$, L3 $= 128\times96$
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">029</span><span class="stars s1">⭐</span><span class="topic">Session 3: Image pyramids (Laplacian level)</span><span class="meta">2 pts · ⏱ ~2 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> At one pixel of a Laplacian pyramid the Gaussian level reads $G_0 = 150$ and the expanded next level reads $\text{expand}(G_1) = 120$. <strong>(a)</strong> Compute $L_0$. <strong>(b)</strong> Show that $G_0$ comes back exactly when the pyramid is collapsed.
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: <strong>(a)</strong> the Laplacian level is the detail lost in blurring and shrinking<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$L_0 = G_0 - \text{expand}(G_1) = 150 - 120 = 30$<br>
-→ 30 is what gets stored at this level [1]<br>
-Step 2: <strong>(b)</strong> collapse and check<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$G_0 = L_0 + \text{expand}(G_1) = 30 + 120 = 150$ ✓<br>
-→ exactly the original, so a Laplacian pyramid reconstructs losslessly as long as the coarsest Gaussian level is kept too [1]<br>
-<strong>Answer:</strong> (a) $L_0 = 30$ · (b) $30 + 120 = 150 = G_0$ ✓<br>
-<strong>Common mistake:</strong> subtracting the wrong way round, or forgetting to expand the coarser level to full size before subtracting.
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">030</span><span class="stars s1">⭐</span><span class="topic">Session 4: Image derivative (neighbour difference)</span><span class="meta">2 pts · ⏱ ~3 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> A 1-D intensity profile along one image row is $I = [\,1,\ 4,\ 6,\ 10,\ 9\,]$ (positions $p_1 \dots p_5$). Using the neighbour difference $G_x[p] = I[p+1] - I[p-1]$, compute $G_x$ at $p_2$, $p_3$ and $p_4$, and say which position looks most like an edge.
-        <div class="fig"><svg viewBox="0 0 528.0 360" aria-label="1-D profile">
-  <line x1="50.0" y1="268.0" x2="478.0" y2="268.0" stroke="#94A3B8" stroke-width="2"/>
-  <polyline points="80.0,250.4 172.0,197.6 264.0,162.4 356.0,92.0 448.0,109.6" fill="none" stroke="#CBD5E1" stroke-width="3" stroke-linejoin="round"/>
-  <circle cx="80.0" cy="250.4" r="9" fill="#0F766E" stroke="none" stroke-width="2"/>
-  <text x="80" y="230" font-family="IBM Plex Mono" font-size="23" fill="#0F766E" text-anchor="middle">1</text>
-  <text x="80" y="324" font-family="IBM Plex Mono" font-size="21" fill="#64748B" text-anchor="middle">p1</text>
-  <circle cx="172.0" cy="197.6" r="9" fill="#0F766E" stroke="none" stroke-width="2"/>
-  <text x="172" y="178" font-family="IBM Plex Mono" font-size="23" fill="#0F766E" text-anchor="middle">4</text>
-  <text x="172" y="324" font-family="IBM Plex Mono" font-size="21" fill="#64748B" text-anchor="middle">p2</text>
-  <circle cx="264.0" cy="162.4" r="9" fill="#0F766E" stroke="none" stroke-width="2"/>
-  <text x="264" y="142" font-family="IBM Plex Mono" font-size="23" fill="#0F766E" text-anchor="middle">6</text>
-  <text x="264" y="324" font-family="IBM Plex Mono" font-size="21" fill="#64748B" text-anchor="middle">p3</text>
-  <circle cx="356.0" cy="92.0" r="9" fill="#0F766E" stroke="none" stroke-width="2"/>
-  <text x="356" y="72" font-family="IBM Plex Mono" font-size="23" fill="#0F766E" text-anchor="middle">10</text>
-  <text x="356" y="324" font-family="IBM Plex Mono" font-size="21" fill="#64748B" text-anchor="middle">p4</text>
-  <circle cx="448.0" cy="109.6" r="9" fill="#0F766E" stroke="none" stroke-width="2"/>
-  <text x="448" y="90" font-family="IBM Plex Mono" font-size="23" fill="#0F766E" text-anchor="middle">9</text>
-  <text x="448" y="324" font-family="IBM Plex Mono" font-size="21" fill="#64748B" text-anchor="middle">p5</text>
-  <text x="264" y="34" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">intensity along one row</text>
-</svg></div>
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: write the difference formula — it compares the neighbours on either side of the position of interest<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$G_x[p] = I[p+1] - I[p-1]$ [1]<br>
-Step 2: substitute position by position<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$G_x[p_2] = I[p_3] - I[p_1] = 6 - 1 = 5$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$G_x[p_3] = I[p_4] - I[p_2] = 10 - 4 = 6$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$G_x[p_4] = I[p_5] - I[p_3] = 9 - 6 = 3$<br>
-Step 3: read the result<br>
-&nbsp;&nbsp;&nbsp;&nbsp;the largest value is $6$ at $p_3$ → intensity changes fastest there, so that is the most edge-like position<br>
-→ an edge is a <strong>peak in the derivative</strong>, not the brightest pixel [1]<br>
-<strong>Answer:</strong> $G_x[p_2] = 5,\ G_x[p_3] = 6,\ G_x[p_4] = 3$ → the edge is at $p_3$<br>
-<strong>Common mistake:</strong> using the one-sided difference $I[p] - I[p-1]$, or picking the position where $I$ is largest ($p_4 = 10$) instead of where $G_x$ is largest.
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">031</span><span class="stars s1">⭐</span><span class="topic">Session 4: Gradient magnitude</span><span class="meta">1 pts · ⏱ ~2 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> At a pixel the image gradient components are $G_x = 5$ and $G_y = 12$. Compute the gradient magnitude.
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: substitute into $|\nabla I| = \sqrt{G_x^2+G_y^2}$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$G_x^2 = 25$ · $G_y^2 = 144$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$25 + 144 = 169$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\sqrt{169} = 13$<br>
-→ a $(5, 12, 13)$ Pythagorean triple, so the answer is a whole number [1]<br>
-<strong>Answer:</strong> $\sqrt{G_x^2+G_y^2} = 13$
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">032</span><span class="stars s1">⭐</span><span class="topic">Session 4: Gradient direction</span><span class="meta">1 pts · ⏱ ~2 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> A pixel has $G_x = 6$ and $G_y = 6$. Find the gradient direction $\theta$ in degrees.
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: with $G_x = G_y$ the ratio is 1<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\tan\theta = \dfrac{G_y}{G_x} = \dfrac{6}{6} = 1$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\theta = 45^\circ$<br>
-→ the gradient points $45^\circ$ from the $x$ axis, and the edge itself runs perpendicular to it [1]<br>
-<strong>Answer:</strong> $\theta = 45^\circ$
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">033</span><span class="stars s3">⭐⭐⭐</span><span class="topic">Session 4: Sobel Gx, Gy + magnitude</span><span class="meta">5 pts · ⏱ ~6 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> For the patch below apply both Sobel kernels. <strong>(a)</strong> Compute $G_x$ (show the row products). <strong>(b)</strong> Compute $G_y$ (show the row products). <strong>(c)</strong> Compute the gradient magnitude. <strong>(d)</strong> Give the gradient direction in degrees, and say which way the edge itself runs.<br>
-$$P = \begin{bmatrix} 4 &amp; 8 &amp; 12 \\ 8 &amp; 12 &amp; 16 \\ 12 &amp; 16 &amp; 20 \end{bmatrix}$$
-        <div class="fig"><svg viewBox="0 0 586 314" aria-label="patch and kernel">
-  <text x="144" y="28" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">patch</text>
-  <text x="442" y="28" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">Sobel-x</text>
-  <rect x="30" y="40" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="68" y="86" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">4</text>
-  <rect x="106" y="40" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="144" y="86" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">8</text>
-  <rect x="182" y="40" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="220" y="86" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">12</text>
-  <rect x="30" y="116" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="68" y="162" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">8</text>
-  <rect x="106" y="116" width="76" height="76" rx="0" fill="#E6F5F4" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="144" y="162" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle" font-weight="700">12</text>
-  <rect x="182" y="116" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="220" y="162" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">16</text>
-  <rect x="30" y="192" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="68" y="238" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">12</text>
-  <rect x="106" y="192" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="144" y="238" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">16</text>
-  <rect x="182" y="192" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="220" y="238" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">20</text>
-  <text x="293" y="164" font-family="IBM Plex Sans" font-size="34" fill="#64748B" text-anchor="middle">⊛</text>
-  <rect x="328" y="40" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="366" y="86" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">−1</text>
-  <rect x="404" y="40" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="442" y="86" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">0</text>
-  <rect x="480" y="40" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="518" y="86" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">1</text>
-  <rect x="328" y="116" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="366" y="162" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">−2</text>
-  <rect x="404" y="116" width="76" height="76" rx="0" fill="#EDE9FE" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="442" y="162" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">0</text>
-  <rect x="480" y="116" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="518" y="162" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">2</text>
-  <rect x="328" y="192" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="366" y="238" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">−1</text>
-  <rect x="404" y="192" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="442" y="238" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">0</text>
-  <rect x="480" y="192" width="76" height="76" rx="0" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="518" y="238" font-family="IBM Plex Mono" font-size="22" fill="#1A1A2E" text-anchor="middle">1</text>
-  <text x="293" y="302" font-family="IBM Plex Sans" font-size="21" fill="#64748B" text-anchor="middle">multiply each overlapping pair, then add</text>
-</svg></div>
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: <strong>(a)</strong> $G_x$ — the middle column of the kernel is zero<br>
-&nbsp;&nbsp;&nbsp;&nbsp;top row: $(-1)(4) + (1)(12) = 8$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;middle row: $(-2)(8) + (2)(16) = -16 + 32 = 16$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;bottom row: $(-1)(12) + (1)(20) = 8$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$G_x = 8 + 16 + 8 = 32$ [1]<br>
-Step 2: <strong>(b)</strong> $G_y$ — the middle <em>row</em> of the kernel is zero<br>
-&nbsp;&nbsp;&nbsp;&nbsp;top row: $(-1)(4) + (-2)(8) + (-1)(12) = -32$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;bottom row: $(1)(12) + (2)(16) + (1)(20) = 64$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$G_y = 64 - 32 = 32$ [1]<br>
-Step 3: <strong>(c)</strong> the magnitude<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$G_x^2 = 1024$ · $G_y^2 = 1024$, so the sum is $2 \times 1024$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;pull the square out rather than reaching for a calculator: $\sqrt{2 \times 32^2} = 32\sqrt2$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$32 \times 1.414 \approx 45.2$ [1.5]<br>
-Step 4: <strong>(d)</strong> direction, and the edge<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\tan\theta = \dfrac{G_y}{G_x} = \dfrac{32}{32} = 1 \Rightarrow \theta = 45^\circ$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;an edge always lies <strong>perpendicular</strong> to the gradient, so the edge runs at $45^\circ + 90^\circ = 135^\circ$<br>
-→ direction read off the tan θ column, and the edge perpendicular to it [1.5]<br>
-<strong>Answer:</strong> $G_x = 32$, $G_y = 32$, magnitude $= 32\sqrt2 \approx 45.2$, direction $45^\circ$, edge at $135^\circ$ — perpendicular to the gradient<br>
-<strong>Common mistake:</strong> adding before squaring; claiming the edge is parallel to the gradient — it is perpendicular; answering $\theta = 45^\circ$ for the <em>edge</em> when $45^\circ$ is the gradient.
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">034</span><span class="stars s2">⭐⭐</span><span class="topic">Session 4: Canny pipeline (five steps)</span><span class="meta">2 pts · ⏱ ~3 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> List the <strong>five</strong> steps of the Canny edge detector in the correct order, and state in one line what step ③ and step ⑤ each contribute.
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: put the five steps in order<br>
-&nbsp;&nbsp;&nbsp;&nbsp;① <strong>Gaussian smoothing</strong> — blur first, so noise is not read as edges<br>
-&nbsp;&nbsp;&nbsp;&nbsp;② <strong>Gradient (Sobel)</strong> — get $G_x, G_y$, hence magnitude $\sqrt{G_x^2+G_y^2}$ and direction $\mathrm{atan2}(G_y, G_x)$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;③ <strong>Non-maximum suppression</strong> — thin the edges<br>
-&nbsp;&nbsp;&nbsp;&nbsp;④ <strong>Double threshold</strong> — split pixels into strong / weak / discard using $T_{high}$ and $T_{low}$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;⑤ <strong>Hysteresis</strong> — link the edges [1]<br>
-Step 2: what ③ and ⑤ each contribute<br>
-&nbsp;&nbsp;&nbsp;&nbsp;③ NMS keeps only the crest along the gradient direction, turning a band several pixels wide into a <strong>1-pixel ridge</strong><br>
-&nbsp;&nbsp;&nbsp;&nbsp;⑤ Hysteresis keeps a <strong>weak</strong> pixel only if a chain connects it to a <strong>strong</strong> one, producing continuous contours and dropping isolated weak specks [1]<br>
-<strong>Answer:</strong> Gaussian smooth → Gradient (Sobel) → NMS → Double threshold → Hysteresis · ③ thins edges to 1 pixel · ⑤ links edges and drops isolated weak pixels<br>
-<strong>Common mistake:</strong> swapping NMS and thresholding (NMS must come <strong>first</strong>, or the edges never thin), dropping the initial Gaussian, or merging ④ and ⑤ and calling it four steps.
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">035</span><span class="stars s3">⭐⭐⭐</span><span class="topic">Session 4: NMS + hysteresis thresholding</span><span class="meta">6 pts · ⏱ ~8 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> A 1-D gradient-magnitude response is $[\,4,\ 9,\ 6,\ 11,\ 15,\ 10,\ 3,\ 8,\ 13,\ 5\,]$ (positions $n=1..10$). <strong>(a)</strong> Apply non-maximum suppression (keep a value only if it is $\ge$ both neighbours, else 0). <strong>(b)</strong> Then apply the Canny double thresholds $T_{high}=12$, $T_{low}=7$: mark strong ($\ge T_{high}$), weak ($T_{low}\le \cdot &lt; T_{high}$) and discard ($&lt; T_{low}$). <strong>(c)</strong> With hysteresis (a weak pixel survives only if adjacent to a strong edge), give the final edge positions.
-        <div class="fig"><svg viewBox="0 0 960 300" aria-label="gradient magnitudes across an edge">
-  <text x="480" y="44" font-family="IBM Plex Sans" font-size="30" fill="#64748B" text-anchor="middle">gradient magnitude along the row</text>
-  <rect x="60" y="80" width="84" height="96" rx="0" fill="rgb(223,231,244)" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="102" y="142" font-family="IBM Plex Mono" font-size="36" fill="#1A1A2E" text-anchor="middle" font-weight="600">4</text>
-  <text x="102" y="210" font-family="IBM Plex Mono" font-size="26" fill="#64748B" text-anchor="middle">n=1</text>
-  <rect x="144" y="80" width="84" height="96" rx="0" fill="rgb(183,201,231)" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="186" y="142" font-family="IBM Plex Mono" font-size="36" fill="#1A1A2E" text-anchor="middle" font-weight="600">9</text>
-  <text x="186" y="210" font-family="IBM Plex Mono" font-size="26" fill="#64748B" text-anchor="middle">n=2</text>
-  <rect x="228" y="80" width="84" height="96" rx="0" fill="rgb(207,219,239)" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="270" y="142" font-family="IBM Plex Mono" font-size="36" fill="#1A1A2E" text-anchor="middle" font-weight="600">6</text>
-  <text x="270" y="210" font-family="IBM Plex Mono" font-size="26" fill="#64748B" text-anchor="middle">n=3</text>
-  <rect x="312" y="80" width="84" height="96" rx="0" fill="rgb(167,189,225)" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="354" y="142" font-family="IBM Plex Mono" font-size="36" fill="#1A1A2E" text-anchor="middle" font-weight="600">11</text>
-  <text x="354" y="210" font-family="IBM Plex Mono" font-size="26" fill="#64748B" text-anchor="middle">n=4</text>
-  <rect x="396" y="80" width="84" height="96" rx="0" fill="rgb(135,165,215)" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="438" y="142" font-family="IBM Plex Mono" font-size="36" fill="#1A1A2E" text-anchor="middle" font-weight="600">15</text>
-  <text x="438" y="210" font-family="IBM Plex Mono" font-size="26" fill="#64748B" text-anchor="middle">n=5</text>
-  <rect x="480" y="80" width="84" height="96" rx="0" fill="rgb(175,195,228)" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="522" y="142" font-family="IBM Plex Mono" font-size="36" fill="#1A1A2E" text-anchor="middle" font-weight="600">10</text>
-  <text x="522" y="210" font-family="IBM Plex Mono" font-size="26" fill="#64748B" text-anchor="middle">n=6</text>
-  <rect x="564" y="80" width="84" height="96" rx="0" fill="rgb(231,237,247)" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="606" y="142" font-family="IBM Plex Mono" font-size="36" fill="#1A1A2E" text-anchor="middle" font-weight="600">3</text>
-  <text x="606" y="210" font-family="IBM Plex Mono" font-size="26" fill="#64748B" text-anchor="middle">n=7</text>
-  <rect x="648" y="80" width="84" height="96" rx="0" fill="rgb(191,207,233)" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="690" y="142" font-family="IBM Plex Mono" font-size="36" fill="#1A1A2E" text-anchor="middle" font-weight="600">8</text>
-  <text x="690" y="210" font-family="IBM Plex Mono" font-size="26" fill="#64748B" text-anchor="middle">n=8</text>
-  <rect x="732" y="80" width="84" height="96" rx="0" fill="rgb(151,177,220)" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="774" y="142" font-family="IBM Plex Mono" font-size="36" fill="#1A1A2E" text-anchor="middle" font-weight="600">13</text>
-  <text x="774" y="210" font-family="IBM Plex Mono" font-size="26" fill="#64748B" text-anchor="middle">n=9</text>
-  <rect x="816" y="80" width="84" height="96" rx="0" fill="rgb(215,225,241)" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="858" y="142" font-family="IBM Plex Mono" font-size="36" fill="#1A1A2E" text-anchor="middle" font-weight="600">5</text>
-  <text x="858" y="210" font-family="IBM Plex Mono" font-size="26" fill="#64748B" text-anchor="middle">n=10</text>
-  <text x="480" y="268" font-family="IBM Plex Sans" font-size="28" fill="#64748B" text-anchor="middle">compare each pixel with its left &amp; right neighbour</text>
-</svg></div>
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: find the local maxima for NMS<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$n=2$: $9$ vs $4$ and $6$ → $\ge$ both → keep<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$n=5$: $15$ vs $11$ and $10$ → $\ge$ both → keep<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$n=9$: $13$ vs $8$ and $5$ → $\ge$ both → keep<br>
-&nbsp;&nbsp;&nbsp;&nbsp;every other position loses to a neighbour → set to 0 [2]<br>
-Step 2: write the array after NMS<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$[\,0,\ 9,\ 0,\ 0,\ 15,\ 0,\ 0,\ 0,\ 13,\ 0\,]$ [1]<br>
-Step 3: classify with the double threshold ($T_{high}=12,\ T_{low}=7$)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$15 \ge 12$ → strong ($n=5$)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$13 \ge 12$ → strong ($n=9$) [1]<br>
-Step 4: identify the weak pixels<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$9$ falls in $7 \le 9 &lt; 12$ → weak ($n=2$) [1]<br>
-Step 5: apply hysteresis<br>
-&nbsp;&nbsp;&nbsp;&nbsp;the weak pixel at $n=2$ touches no strong pixel → discarded<br>
-→ the final edges are at $n=5$ and $n=9$ [1]<br>
-<strong>Answer:</strong> after NMS $[0,9,0,0,15,0,0,0,13,0]$; final edges at $n=5$ and $n=9$<br>
-<strong>Common mistake:</strong> keeping weak edges that are not connected to a strong one, or thresholding before NMS, which leaves the edges thick.
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">036</span><span class="stars s2">⭐⭐</span><span class="topic">Session 4: Harris response R</span><span class="meta">3 pts · ⏱ ~4 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> A window has structure matrix<br>
-$$M = \begin{bmatrix} 8 &amp; 0 \\ 0 &amp; 2 \end{bmatrix}$$<br>
-with $k = 0.04$. Compute the Harris response $R$.
-        <div class="fig"><svg viewBox="0 0 420 210" aria-label="structure matrix">
-  <text x="60" y="118" font-family="IBM Plex Mono" font-size="32" fill="#1A1A2E" text-anchor="end">M =</text>
-  <line x1="96.0" y1="42.0" x2="82.0" y2="42.0" stroke="#1A1A2E" stroke-width="3"/>
-  <line x1="82.0" y1="42.0" x2="82.0" y2="168.0" stroke="#1A1A2E" stroke-width="3"/>
-  <line x1="82.0" y1="168.0" x2="96.0" y2="168.0" stroke="#1A1A2E" stroke-width="3"/>
-  <line x1="324.0" y1="42.0" x2="338.0" y2="42.0" stroke="#1A1A2E" stroke-width="3"/>
-  <line x1="338.0" y1="42.0" x2="338.0" y2="168.0" stroke="#1A1A2E" stroke-width="3"/>
-  <line x1="338.0" y1="168.0" x2="324.0" y2="168.0" stroke="#1A1A2E" stroke-width="3"/>
-  <text x="150" y="92" font-family="IBM Plex Mono" font-size="32" fill="#1A1A2E" text-anchor="middle">8</text>
-  <text x="270" y="92" font-family="IBM Plex Mono" font-size="32" fill="#1A1A2E" text-anchor="middle">0</text>
-  <text x="150" y="152" font-family="IBM Plex Mono" font-size="32" fill="#1A1A2E" text-anchor="middle">0</text>
-  <text x="270" y="152" font-family="IBM Plex Mono" font-size="32" fill="#1A1A2E" text-anchor="middle">2</text>
-</svg></div>
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: write the Harris response formula<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$R = \det(M) - k\ [\mathrm{trace}(M)]^2$<br>
-→ formula [1]<br>
-Step 2: compute $R$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\det(M) = 8 \times 2 = 16$ (the matrix is diagonal)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\mathrm{trace}(M) = 8 + 2 = 10$, so $k(10)^2 = 0.04 \times 100 = 4$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$R = 16 - 4 = 12$<br>
-→ computation [1.5]<br>
-Step 3: classify the window from the sign of $R$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$R &gt; 0$ → a <strong>corner</strong> — both diagonal entries are large, so intensity changes in both directions<br>
-→ classification [0.5]<br>
-<strong>Answer:</strong> $R = 12$ (corner)<br>
-<strong>Common mistake:</strong> forgetting to square the trace before multiplying by $k$, or summing instead of multiplying inside the determinant.
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">037</span><span class="stars s2">⭐⭐</span><span class="topic">Session 4: Harris response from the gradient sums</span><span class="meta">4 pts · ⏱ ~5 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> Inside a small window a corner detector collects the per-pixel gradients. Their sums are $\sum G_x^2 = 5$, $\sum G_y^2 = 4$ and $\sum G_x G_y = 2$. Using $k = 0.04$ and the corner score $R = (A\cdot B - C^2) - k\,(A+B)^2$ with $A = \sum G_x^2$, $B = \sum G_y^2$, $C = \sum G_x G_y$: <strong>(a)</strong> compute $R$; <strong>(b)</strong> classify the window.
-        <div class="fig"><svg viewBox="0 0 660 250" aria-label="flat, edge and corner windows">
-  <rect x="40" y="50" width="160" height="130" rx="6" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="2"/>
-  <text x="120" y="34" font-family="IBM Plex Sans" font-size="24" fill="#64748B" text-anchor="middle" font-weight="600">flat</text>
-  <rect x="92" y="92" width="56" height="56" rx="3" fill="none" stroke="#F97316" stroke-width="3"/>
-  <rect x="240" y="50" width="160" height="130" rx="6" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="2"/>
-  <rect x="240" y="50" width="78" height="130" rx="0" fill="#334155" stroke="none" stroke-width="0"/>
-  <text x="320" y="34" font-family="IBM Plex Sans" font-size="24" fill="#64748B" text-anchor="middle" font-weight="600">edge</text>
-  <rect x="292" y="92" width="56" height="56" rx="3" fill="none" stroke="#F97316" stroke-width="3"/>
-  <rect x="440" y="50" width="160" height="130" rx="6" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="2"/>
-  <rect x="440" y="50" width="78" height="130" rx="0" fill="#334155" stroke="none" stroke-width="0"/>
-  <rect x="518" y="50" width="82" height="64" rx="0" fill="#334155" stroke="none" stroke-width="0"/>
-  <text x="520" y="34" font-family="IBM Plex Sans" font-size="24" fill="#64748B" text-anchor="middle" font-weight="600">corner</text>
-  <rect x="492" y="92" width="56" height="56" rx="3" fill="none" stroke="#F97316" stroke-width="3"/>
-  <text x="330" y="222" font-family="IBM Plex Sans" font-size="21" fill="#64748B" text-anchor="middle">nudge the orange window — how much do the pixels change?</text>
-</svg></div>
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: match the three sums to $A$, $B$, $C$ in the score<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$A = \sum G_x^2 = 5$ (left–right change) · $B = \sum G_y^2 = 4$ (up–down change) · $C = \sum G_x G_y = 2$ (diagonal coupling)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$R = (A\cdot B - C^2) - k\ (A+B)^2$<br>
-→ formula [1.5]<br>
-Step 2: compute $R$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$A\cdot B - C^2 = 20 - 4 = 16$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$k(A+B)^2 = 0.04 \times 81 = 3.24$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$R = 16 - 3.24 = 12.76$<br>
-→ computation [1.75]<br>
-Step 3: classify the window from the sign of $R$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$R \gg 0$ → <strong>corner</strong> — intensity changes strongly in both directions · for an edge the first term would be $\approx 0$ and the penalty would drive $R$ negative<br>
-→ classification [0.75]<br>
-<strong>Answer:</strong> $R = 12.76$ → <strong>corner</strong><br>
-<strong>Common mistake:</strong> forgetting to square $C$ (using $20-2$), forgetting to square $(A+B)$ before multiplying by $k$, or folding $C$ into the trace — the trace is $A+B$ only.
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">038</span><span class="stars s1">⭐</span><span class="topic">Session 4: Scale-space (which level matches?)</span><span class="meta">2 pts · ⏱ ~3 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> A detector has a fixed window of $32\text{ px}$ that never changes size. The object in the photo is $256\text{ px}$ across. Each pyramid level halves both sides. At which level do the object and the window match, and what is the object's size at each level down to it?
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: use the size ratio — the object halves at every level<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\text{level} = \log_2\!\left(\dfrac{\text{object}}{\text{window}}\right) = \log_2\!\left(\dfrac{256}{32}\right) = \log_2 8 = 3$ [1]<br>
-Step 2: walk the levels to confirm<br>
-&nbsp;&nbsp;&nbsp;&nbsp;L0: $256$ px · L1: $128$ px · L2: $64$ px · L3: $\mathbf{32}$ px<br>
-&nbsp;&nbsp;&nbsp;&nbsp;at L3 the object matches the $32$ px window exactly<br>
-→ we never resize the <em>window</em>; we shrink the <em>image</em> until the object lands on the window's fixed size [1]<br>
-<strong>Answer:</strong> level <strong>3</strong> · object sizes $256 \to 128 \to 64 \to 32$ px<br>
-<strong>Common mistake:</strong> dividing directly ($256/32 = 8$) and answering level 8. It must be $\log_2$, because each level halves. When the ratio is not a power of two (a 200 px object gives $2.6$) the object falls between levels — which is why real systems also blur in $\times\sqrt{2}$ steps.
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">039</span><span class="stars s3">⭐⭐⭐</span><span class="topic">Session 4: LoG / DoG zero-crossing (full profile)</span><span class="meta">5 pts · ⏱ ~7 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> A 1-D intensity profile is $I = [\,2,\ 2,\ 3,\ 6,\ 10,\ 13,\ 14,\ 14\,]$ (indices $n = 0..7$). <strong>(a)</strong> Compute $I''[n] = I[n-1] - 2I[n] + I[n+1]$ for $n = 1..6$. <strong>(b)</strong> Locate the edge via the zero-crossing. <strong>(c)</strong> Explain what the sign of $I''$ on each side of the edge means.
-        <div class="fig"><svg viewBox="0 0 804.0 360" aria-label="1-D profile">
-  <line x1="50.0" y1="268.0" x2="754.0" y2="268.0" stroke="#94A3B8" stroke-width="2"/>
-  <polyline points="80.0,242.9 172.0,242.9 264.0,230.3 356.0,192.6 448.0,142.3 540.0,104.6 632.0,92.0 724.0,92.0" fill="none" stroke="#CBD5E1" stroke-width="3" stroke-linejoin="round"/>
-  <circle cx="80.0" cy="242.9" r="9" fill="#0F766E" stroke="none" stroke-width="2"/>
-  <text x="80" y="223" font-family="IBM Plex Mono" font-size="23" fill="#0F766E" text-anchor="middle">2</text>
-  <text x="80" y="324" font-family="IBM Plex Mono" font-size="21" fill="#64748B" text-anchor="middle">n=0</text>
-  <circle cx="172.0" cy="242.9" r="9" fill="#0F766E" stroke="none" stroke-width="2"/>
-  <text x="172" y="223" font-family="IBM Plex Mono" font-size="23" fill="#0F766E" text-anchor="middle">2</text>
-  <text x="172" y="324" font-family="IBM Plex Mono" font-size="21" fill="#64748B" text-anchor="middle">n=1</text>
-  <circle cx="264.0" cy="230.3" r="9" fill="#0F766E" stroke="none" stroke-width="2"/>
-  <text x="264" y="210" font-family="IBM Plex Mono" font-size="23" fill="#0F766E" text-anchor="middle">3</text>
-  <text x="264" y="324" font-family="IBM Plex Mono" font-size="21" fill="#64748B" text-anchor="middle">n=2</text>
-  <circle cx="356.0" cy="192.6" r="9" fill="#0F766E" stroke="none" stroke-width="2"/>
-  <text x="356" y="173" font-family="IBM Plex Mono" font-size="23" fill="#0F766E" text-anchor="middle">6</text>
-  <text x="356" y="324" font-family="IBM Plex Mono" font-size="21" fill="#64748B" text-anchor="middle">n=3</text>
-  <circle cx="448.0" cy="142.3" r="9" fill="#0F766E" stroke="none" stroke-width="2"/>
-  <text x="448" y="122" font-family="IBM Plex Mono" font-size="23" fill="#0F766E" text-anchor="middle">10</text>
-  <text x="448" y="324" font-family="IBM Plex Mono" font-size="21" fill="#64748B" text-anchor="middle">n=4</text>
-  <circle cx="540.0" cy="104.6" r="9" fill="#0F766E" stroke="none" stroke-width="2"/>
-  <text x="540" y="85" font-family="IBM Plex Mono" font-size="23" fill="#0F766E" text-anchor="middle">13</text>
-  <text x="540" y="324" font-family="IBM Plex Mono" font-size="21" fill="#64748B" text-anchor="middle">n=5</text>
-  <circle cx="632.0" cy="92.0" r="9" fill="#0F766E" stroke="none" stroke-width="2"/>
-  <text x="632" y="72" font-family="IBM Plex Mono" font-size="23" fill="#0F766E" text-anchor="middle">14</text>
-  <text x="632" y="324" font-family="IBM Plex Mono" font-size="21" fill="#64748B" text-anchor="middle">n=6</text>
-  <circle cx="724.0" cy="92.0" r="9" fill="#0F766E" stroke="none" stroke-width="2"/>
-  <text x="724" y="72" font-family="IBM Plex Mono" font-size="23" fill="#0F766E" text-anchor="middle">14</text>
-  <text x="724" y="324" font-family="IBM Plex Mono" font-size="21" fill="#64748B" text-anchor="middle">n=7</text>
-  <text x="402" y="34" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">intensity across an edge</text>
-</svg></div>
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: <strong>(a)</strong> compute the second derivative (the LoG/DoG approximation)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$I''[1] = 2 - 4 + 3 = 1$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$I''[2] = 2 - 6 + 6 = 2$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$I''[3] = 3 - 12 + 10 = 1$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$I''[4] = 6 - 20 + 13 = -1$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$I''[5] = 10 - 26 + 14 = -2$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$I''[6] = 13 - 28 + 14 = -1$ [2]<br>
-Step 2: <strong>(b)</strong> find the sign change<br>
-&nbsp;&nbsp;&nbsp;&nbsp;the sign flips from $+1$ (at $n=3$) to $-1$ (at $n=4$)<br>
-→ the edge lies between $n=3$ and $n=4$ [1]<br>
-Step 3: give the sub-pixel position<br>
-&nbsp;&nbsp;&nbsp;&nbsp;approximately $n \approx 3.5$, where $I''$ crosses zero [1]<br>
-Step 4: <strong>(c)</strong> interpret the signs<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$I'' &gt; 0$ marks the concave-up side (the dark foot of the edge); $I'' &lt; 0$ marks the concave-down side (the bright shoulder); the crossing itself sits where the slope is steepest — the true edge position [1]<br>
-<strong>Answer:</strong> edge at the zero-crossing between $n=3$ and $n=4$ ($n \approx 3.5$)<br>
-<strong>Common mistake:</strong> reporting the position where $|I''|$ is largest instead of where it changes sign, or concluding there is no edge because no sample is exactly zero.
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">040</span><span class="stars s2">⭐⭐</span><span class="topic">Session 4: Blob scale σ* = r/√2</span><span class="meta">4 pts · ⏱ ~5 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> A normalized LoG detector is swept over $\sigma$ and its response at a spot's centre peaks at $\sigma^* = 6$. The matched scale obeys $\sigma^* = r/\sqrt{2}$. <strong>(a)</strong> What is the spot's radius $r$? <strong>(b)</strong> A second spot is known to have radius $r = 28\text{ px}$ — at which $\sigma$ will its response peak? (Use $\sqrt{2} \approx 1.414$.)
-        <div class="fig"><svg viewBox="0 0 520 360" aria-label="LoG response vs sigma">
-  <line x1="90.0" y1="280.0" x2="486.0" y2="280.0" stroke="#94A3B8" stroke-width="2"/>
-  <line x1="90.0" y1="280.0" x2="90.0" y2="64.0" stroke="#94A3B8" stroke-width="2"/>
-  <text x="280" y="342" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">σ (hat width)</text>
-  <text x="30" y="180" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="start">response</text>
-  <text x="260" y="32" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">normalised LoG response at the blob centre</text>
-  <line x1="128.0" y1="280.0" x2="128.0" y2="270.1" stroke="#0E7C86" stroke-width="7"/>
-  <circle cx="128.0" cy="270.1" r="9" fill="#0F766E" stroke="none" stroke-width="2"/>
-  <text x="128" y="252" font-family="IBM Plex Mono" font-size="22" fill="#0F766E" text-anchor="middle">9</text>
-  <text x="128" y="310" font-family="IBM Plex Mono" font-size="21" fill="#64748B" text-anchor="middle">2</text>
-  <line x1="204.0" y1="280.0" x2="204.0" y2="198.2" stroke="#0E7C86" stroke-width="7"/>
-  <circle cx="204.0" cy="198.2" r="9" fill="#0F766E" stroke="none" stroke-width="2"/>
-  <text x="204" y="180" font-family="IBM Plex Mono" font-size="22" fill="#0F766E" text-anchor="middle">74</text>
-  <text x="204" y="310" font-family="IBM Plex Mono" font-size="21" fill="#64748B" text-anchor="middle">4</text>
-  <line x1="280.0" y1="280.0" x2="280.0" y2="80.0" stroke="#0E7C86" stroke-width="7"/>
-  <circle cx="280.0" cy="80.0" r="9" fill="#0F766E" stroke="none" stroke-width="2"/>
-  <text x="280" y="62" font-family="IBM Plex Mono" font-size="22" fill="#0F766E" text-anchor="middle">181</text>
-  <text x="280" y="310" font-family="IBM Plex Mono" font-size="21" fill="#64748B" text-anchor="middle">6</text>
-  <line x1="356.0" y1="280.0" x2="356.0" y2="147.4" stroke="#0E7C86" stroke-width="7"/>
-  <circle cx="356.0" cy="147.4" r="9" fill="#0F766E" stroke="none" stroke-width="2"/>
-  <text x="356" y="129" font-family="IBM Plex Mono" font-size="22" fill="#0F766E" text-anchor="middle">120</text>
-  <text x="356" y="310" font-family="IBM Plex Mono" font-size="21" fill="#64748B" text-anchor="middle">9</text>
-  <line x1="432.0" y1="280.0" x2="432.0" y2="222.5" stroke="#0E7C86" stroke-width="7"/>
-  <circle cx="432.0" cy="222.5" r="9" fill="#0F766E" stroke="none" stroke-width="2"/>
-  <text x="432" y="205" font-family="IBM Plex Mono" font-size="22" fill="#0F766E" text-anchor="middle">52</text>
-  <text x="432" y="310" font-family="IBM Plex Mono" font-size="21" fill="#64748B" text-anchor="middle">13</text>
-</svg></div>
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: <strong>(a)</strong> rearrange $\sigma^* = \dfrac{r}{\sqrt2}$ into $r = \sigma^* \cdot \sqrt2$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$r = 6 \times 1.414 = 8.484$<br>
-→ $r \approx 8.5\text{ px}$ [2]<br>
-Step 2: <strong>(b)</strong> apply the formula directly<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\sigma^* = \dfrac{28}{1.414} = 19.80$<br>
-→ the response peaks at $\sigma^* \approx 19.8$ [1]<br>
-Step 3: sanity-check the direction<br>
-&nbsp;&nbsp;&nbsp;&nbsp;the LoG "hat" is always <strong>wider</strong> than the blob it matches, so $\sigma^* &lt; r$ must hold — and it does in both parts ($6 &lt; 8.5$ and $19.8 &lt; 28$) ✓ [1]<br>
-<strong>Answer:</strong> (a) $r \approx 8.5\text{ px}$ · (b) $\sigma^* \approx 19.8$<br>
-<strong>Common mistake:</strong> reporting $r = 6$. A detector never measures the radius directly — it reports the winning $\sigma$, which you must convert. Also easy to multiply where you should divide.
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">041</span><span class="stars s2">⭐⭐</span><span class="topic">Session 4: Scale-space extremum (26 neighbours)</span><span class="meta">3 pts · ⏱ ~4 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> A DoG response stack is searched for keypoints. At one candidate pixel the values are: on its own rung the candidate is $187.5$ and the largest of its 8 neighbours is $187.0$; on the rung <strong>below</strong> the largest of the 9 values is $138.0$; on the rung <strong>above</strong> the largest of the 9 is $154.6$. <strong>(a)</strong> How many neighbours in total must the candidate beat? <strong>(b)</strong> Does it survive? <strong>(c)</strong> Why must the rungs above and below be compared in full $3\times3$ rather than only at the same $(x,y)$?
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: <strong>(a)</strong> count the neighbours in the response stack<br>
-&nbsp;&nbsp;&nbsp;&nbsp;its own rung: $9 - 1 = 8$ (excluding itself)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;rung below: $9$ · rung above: $9$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;total $= 8 + 9 + 9 = \mathbf{26}$ [1]<br>
-Step 2: <strong>(b)</strong> compare against the strongest rival on each rung<br>
-&nbsp;&nbsp;&nbsp;&nbsp;own rung: $187.5 &gt; 187.0$ ✓<br>
-&nbsp;&nbsp;&nbsp;&nbsp;rung below: $187.5 &gt; 138.0$ ✓<br>
-&nbsp;&nbsp;&nbsp;&nbsp;rung above: $187.5 &gt; 154.6$ ✓<br>
-&nbsp;&nbsp;&nbsp;&nbsp;beating all three maxima means beating all 26 → <strong>it survives</strong> as a keypoint $(x, y, \sigma)$ [1]<br>
-Step 3: <strong>(c)</strong> why the full $3\times3$ on the neighbouring rungs<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Comparing only the same $(x,y)$ above and below would let the centre of a blob win at <em>every</em> nearby $\sigma$, so its size could never be pinned down.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Testing the full $3\times3$ on both rungs makes the winner a maximum in $(x, y, \sigma)$ jointly → <strong>one blob yields one keypoint</strong>, with a definite scale, instead of a cluster [1]<br>
-<strong>Answer:</strong> (a) $26$ ($8+9+9$) · (b) it survives · (c) so the peak is a maximum in position <strong>and</strong> scale at once — one blob, one keypoint, one size<br>
-<strong>Common mistake:</strong> answering $27$ (counting the candidate itself) or $10$ (checking the neighbouring rungs at a single point), or forgetting that it must beat <strong>every</strong> rung, not just its own.
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">042</span><span class="stars s1">⭐</span><span class="topic">Session 4: Descriptor (orientation histogram)</span><span class="meta">2 pts · ⏱ ~3 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> Inside one descriptor cell, four pixels have (gradient magnitude, direction): $(5,\ 10^\circ)$, $(3,\ 95^\circ)$, $(4,\ 20^\circ)$, $(2,\ 190^\circ)$. The histogram has <strong>8 bins of $45^\circ$</strong> (bin 0 covers $0^\circ$–$45^\circ$, bin 1 covers $45^\circ$–$90^\circ$, and so on). Fill in the histogram and give the winning bin.
-        <div class="fig"><svg viewBox="0 0 620 330" aria-label="4x4 cells of 8 bins">
-  <text x="150" y="34" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">4 × 4 spatial cells</text>
-  <text x="470" y="34" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">8 orientation bins</text>
-  <rect x="40" y="60" width="54" height="54" rx="0" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <rect x="94" y="60" width="54" height="54" rx="0" fill="#FFFFFF" stroke="#0F766E" stroke-width="2"/>
-  <rect x="148" y="60" width="54" height="54" rx="0" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <rect x="202" y="60" width="54" height="54" rx="0" fill="#FFFFFF" stroke="#0F766E" stroke-width="2"/>
-  <rect x="40" y="114" width="54" height="54" rx="0" fill="#FFFFFF" stroke="#0F766E" stroke-width="2"/>
-  <rect x="94" y="114" width="54" height="54" rx="0" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <rect x="148" y="114" width="54" height="54" rx="0" fill="#FFFFFF" stroke="#0F766E" stroke-width="2"/>
-  <rect x="202" y="114" width="54" height="54" rx="0" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <rect x="40" y="168" width="54" height="54" rx="0" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <rect x="94" y="168" width="54" height="54" rx="0" fill="#FFFFFF" stroke="#0F766E" stroke-width="2"/>
-  <rect x="148" y="168" width="54" height="54" rx="0" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <rect x="202" y="168" width="54" height="54" rx="0" fill="#FFFFFF" stroke="#0F766E" stroke-width="2"/>
-  <rect x="40" y="222" width="54" height="54" rx="0" fill="#FFFFFF" stroke="#0F766E" stroke-width="2"/>
-  <rect x="94" y="222" width="54" height="54" rx="0" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <rect x="148" y="222" width="54" height="54" rx="0" fill="#FFFFFF" stroke="#0F766E" stroke-width="2"/>
-  <rect x="202" y="222" width="54" height="54" rx="0" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <line x1="470.0" y1="168.0" x2="546.0" y2="168.0" stroke="#7C3AED" stroke-width="4"/>
-  <circle cx="546.0" cy="168.0" r="6" fill="#7C3AED" stroke="none" stroke-width="2"/>
-  <line x1="470.0" y1="168.0" x2="523.7" y2="221.7" stroke="#7C3AED" stroke-width="4"/>
-  <circle cx="523.7" cy="221.7" r="6" fill="#7C3AED" stroke="none" stroke-width="2"/>
-  <line x1="470.0" y1="168.0" x2="470.0" y2="244.0" stroke="#7C3AED" stroke-width="4"/>
-  <circle cx="470.0" cy="244.0" r="6" fill="#7C3AED" stroke="none" stroke-width="2"/>
-  <line x1="470.0" y1="168.0" x2="416.3" y2="221.7" stroke="#7C3AED" stroke-width="4"/>
-  <circle cx="416.3" cy="221.7" r="6" fill="#7C3AED" stroke="none" stroke-width="2"/>
-  <line x1="470.0" y1="168.0" x2="394.0" y2="168.0" stroke="#7C3AED" stroke-width="4"/>
-  <circle cx="394.0" cy="168.0" r="6" fill="#7C3AED" stroke="none" stroke-width="2"/>
-  <line x1="470.0" y1="168.0" x2="416.3" y2="114.3" stroke="#7C3AED" stroke-width="4"/>
-  <circle cx="416.3" cy="114.3" r="6" fill="#7C3AED" stroke="none" stroke-width="2"/>
-  <line x1="470.0" y1="168.0" x2="470.0" y2="92.0" stroke="#7C3AED" stroke-width="4"/>
-  <circle cx="470.0" cy="92.0" r="6" fill="#7C3AED" stroke="none" stroke-width="2"/>
-  <line x1="470.0" y1="168.0" x2="523.7" y2="114.3" stroke="#7C3AED" stroke-width="4"/>
-  <circle cx="523.7" cy="114.3" r="6" fill="#7C3AED" stroke="none" stroke-width="2"/>
-  <circle cx="470.0" cy="168.0" r="7" fill="#1A1A2E" stroke="none" stroke-width="2"/>
-  <text x="310" y="314" font-family="IBM Plex Sans" font-size="21" fill="#64748B" text-anchor="middle">one histogram per cell — laid end to end</text>
-</svg></div>
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: find each direction's bin, using bin index $= \lfloor \theta / 45 \rfloor$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$10^\circ \Rightarrow \lfloor 10/45 \rfloor = 0$ → bin 0<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$95^\circ \Rightarrow \lfloor 95/45 \rfloor = 2$ → bin 2<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$20^\circ \Rightarrow \lfloor 20/45 \rfloor = 0$ → bin 0<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$190^\circ \Rightarrow \lfloor 190/45 \rfloor = 4$ → bin 4 [1]<br>
-Step 2: each pixel votes its <strong>gradient magnitude</strong>, not a count of 1<br>
-&nbsp;&nbsp;&nbsp;&nbsp;bin 0: $5 + 4 = 9$ · bin 2: $3$ · bin 4: $2$ · all others: $0$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;histogram $= [\,9,\ 0,\ 3,\ 0,\ 2,\ 0,\ 0,\ 0\,]$<br>
-Step 3: read the winner<br>
-&nbsp;&nbsp;&nbsp;&nbsp;bin 0 ($0^\circ$–$45^\circ$) scores $9$, the highest → that is this cell's dominant direction<br>
-→ doing this for all 16 cells and laying them end to end gives the $16 \times 8 = 128$-number descriptor [1]<br>
-<strong>Answer:</strong> $[9,\ 0,\ 3,\ 0,\ 2,\ 0,\ 0,\ 0]$ → bin 0 ($0^\circ$–$45^\circ$) wins with $9$<br>
-<strong>Common mistake:</strong> counting pixels ($[2,0,1,0,1,\dots]$) instead of summing magnitudes, or binning an angle on the wrong side of a bin edge.
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">043</span><span class="stars s1">⭐</span><span class="topic">Session 5: SIFT descriptor length</span><span class="meta">1 pts · ⏱ ~1 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> A standard SIFT descriptor is built from a $4\times4$ grid of cells, each holding an 8-bin orientation histogram. What is the total length (dimension) of the descriptor vector?
-        <div class="fig"><svg viewBox="0 0 620 330" aria-label="4x4 cells of 8 bins">
-  <text x="150" y="34" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">4 × 4 spatial cells</text>
-  <text x="470" y="34" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">8 orientation bins</text>
-  <rect x="40" y="60" width="54" height="54" rx="0" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <rect x="94" y="60" width="54" height="54" rx="0" fill="#FFFFFF" stroke="#0F766E" stroke-width="2"/>
-  <rect x="148" y="60" width="54" height="54" rx="0" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <rect x="202" y="60" width="54" height="54" rx="0" fill="#FFFFFF" stroke="#0F766E" stroke-width="2"/>
-  <rect x="40" y="114" width="54" height="54" rx="0" fill="#FFFFFF" stroke="#0F766E" stroke-width="2"/>
-  <rect x="94" y="114" width="54" height="54" rx="0" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <rect x="148" y="114" width="54" height="54" rx="0" fill="#FFFFFF" stroke="#0F766E" stroke-width="2"/>
-  <rect x="202" y="114" width="54" height="54" rx="0" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <rect x="40" y="168" width="54" height="54" rx="0" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <rect x="94" y="168" width="54" height="54" rx="0" fill="#FFFFFF" stroke="#0F766E" stroke-width="2"/>
-  <rect x="148" y="168" width="54" height="54" rx="0" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <rect x="202" y="168" width="54" height="54" rx="0" fill="#FFFFFF" stroke="#0F766E" stroke-width="2"/>
-  <rect x="40" y="222" width="54" height="54" rx="0" fill="#FFFFFF" stroke="#0F766E" stroke-width="2"/>
-  <rect x="94" y="222" width="54" height="54" rx="0" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <rect x="148" y="222" width="54" height="54" rx="0" fill="#FFFFFF" stroke="#0F766E" stroke-width="2"/>
-  <rect x="202" y="222" width="54" height="54" rx="0" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <line x1="470.0" y1="168.0" x2="546.0" y2="168.0" stroke="#7C3AED" stroke-width="4"/>
-  <circle cx="546.0" cy="168.0" r="6" fill="#7C3AED" stroke="none" stroke-width="2"/>
-  <line x1="470.0" y1="168.0" x2="523.7" y2="221.7" stroke="#7C3AED" stroke-width="4"/>
-  <circle cx="523.7" cy="221.7" r="6" fill="#7C3AED" stroke="none" stroke-width="2"/>
-  <line x1="470.0" y1="168.0" x2="470.0" y2="244.0" stroke="#7C3AED" stroke-width="4"/>
-  <circle cx="470.0" cy="244.0" r="6" fill="#7C3AED" stroke="none" stroke-width="2"/>
-  <line x1="470.0" y1="168.0" x2="416.3" y2="221.7" stroke="#7C3AED" stroke-width="4"/>
-  <circle cx="416.3" cy="221.7" r="6" fill="#7C3AED" stroke="none" stroke-width="2"/>
-  <line x1="470.0" y1="168.0" x2="394.0" y2="168.0" stroke="#7C3AED" stroke-width="4"/>
-  <circle cx="394.0" cy="168.0" r="6" fill="#7C3AED" stroke="none" stroke-width="2"/>
-  <line x1="470.0" y1="168.0" x2="416.3" y2="114.3" stroke="#7C3AED" stroke-width="4"/>
-  <circle cx="416.3" cy="114.3" r="6" fill="#7C3AED" stroke="none" stroke-width="2"/>
-  <line x1="470.0" y1="168.0" x2="470.0" y2="92.0" stroke="#7C3AED" stroke-width="4"/>
-  <circle cx="470.0" cy="92.0" r="6" fill="#7C3AED" stroke="none" stroke-width="2"/>
-  <line x1="470.0" y1="168.0" x2="523.7" y2="114.3" stroke="#7C3AED" stroke-width="4"/>
-  <circle cx="523.7" cy="114.3" r="6" fill="#7C3AED" stroke="none" stroke-width="2"/>
-  <circle cx="470.0" cy="168.0" r="7" fill="#1A1A2E" stroke="none" stroke-width="2"/>
-  <text x="310" y="314" font-family="IBM Plex Sans" font-size="21" fill="#64748B" text-anchor="middle">one histogram per cell — laid end to end</text>
-</svg></div>
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: multiply the number of cells by the bins per cell<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$4\times4 = 16$ cells<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$16 \times 8 = 128$<br>
-→ the SIFT descriptor is a 128-value float vector [1]<br>
-<strong>Answer:</strong> $128$ dimensions
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">044</span><span class="stars s1">⭐</span><span class="topic">Session 5: Hamming distance</span><span class="meta">2 pts · ⏱ ~2 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> Two ORB-style binary descriptors (shortened to 8 bits for hand calculation) are $A = 10110010$ and $B = 10011010$. <strong>(a)</strong> Compute the Hamming distance. <strong>(b)</strong> A full ORB descriptor is 256 bits — what is the largest Hamming distance two of them could have?
-        <div class="fig"><svg viewBox="0 0 512 200" aria-label="two binary descriptors">
-  <text x="100" y="88" font-family="IBM Plex Mono" font-size="26" fill="#1A1A2E" text-anchor="end">A =</text>
-  <text x="100" y="148" font-family="IBM Plex Mono" font-size="26" fill="#1A1A2E" text-anchor="end">B =</text>
-  <text x="256" y="34" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">two binary descriptors</text>
-  <rect x="120" y="60" width="44" height="40" rx="3" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <text x="142" y="88" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">1</text>
-  <rect x="164" y="60" width="44" height="40" rx="3" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <text x="186" y="88" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">0</text>
-  <rect x="208" y="60" width="44" height="40" rx="3" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <text x="230" y="88" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">1</text>
-  <rect x="252" y="60" width="44" height="40" rx="3" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <text x="274" y="88" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">1</text>
-  <rect x="296" y="60" width="44" height="40" rx="3" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <text x="318" y="88" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">0</text>
-  <rect x="340" y="60" width="44" height="40" rx="3" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <text x="362" y="88" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">0</text>
-  <rect x="384" y="60" width="44" height="40" rx="3" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <text x="406" y="88" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">1</text>
-  <rect x="428" y="60" width="44" height="40" rx="3" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <text x="450" y="88" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">0</text>
-  <rect x="120" y="120" width="44" height="40" rx="3" fill="#EDE9FE" stroke="#7C3AED" stroke-width="2"/>
-  <text x="142" y="148" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">1</text>
-  <rect x="164" y="120" width="44" height="40" rx="3" fill="#EDE9FE" stroke="#7C3AED" stroke-width="2"/>
-  <text x="186" y="148" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">0</text>
-  <rect x="208" y="120" width="44" height="40" rx="3" fill="#EDE9FE" stroke="#7C3AED" stroke-width="2"/>
-  <text x="230" y="148" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">0</text>
-  <rect x="252" y="120" width="44" height="40" rx="3" fill="#EDE9FE" stroke="#7C3AED" stroke-width="2"/>
-  <text x="274" y="148" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">1</text>
-  <rect x="296" y="120" width="44" height="40" rx="3" fill="#EDE9FE" stroke="#7C3AED" stroke-width="2"/>
-  <text x="318" y="148" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">1</text>
-  <rect x="340" y="120" width="44" height="40" rx="3" fill="#EDE9FE" stroke="#7C3AED" stroke-width="2"/>
-  <text x="362" y="148" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">0</text>
-  <rect x="384" y="120" width="44" height="40" rx="3" fill="#EDE9FE" stroke="#7C3AED" stroke-width="2"/>
-  <text x="406" y="148" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">1</text>
-  <rect x="428" y="120" width="44" height="40" rx="3" fill="#EDE9FE" stroke="#7C3AED" stroke-width="2"/>
-  <text x="450" y="148" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">0</text>
-  <text x="256" y="188" font-family="IBM Plex Sans" font-size="21" fill="#64748B" text-anchor="middle">count the positions that disagree</text>
-</svg></div>
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: <strong>(a)</strong> compare position by position and count the <strong>differences</strong><br>
-&nbsp;&nbsp;&nbsp;&nbsp;$A$: 1 0 1 1 0 0 1 0<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$B$: 1 0 0 1 1 0 1 0<br>
-&nbsp;&nbsp;&nbsp;&nbsp;position 3: $1 \ne 0$ <strong>differs</strong> · position 5: $0 \ne 1$ <strong>differs</strong> · all others match [1]<br>
-Step 2: total the differences<br>
-&nbsp;&nbsp;&nbsp;&nbsp;2 positions differ → Hamming distance $= 2$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(a machine computes this as XOR followed by a population count, which is why it is so fast — no multiplication at all) [0.5]<br>
-Step 3: <strong>(b)</strong> the maximum possible<br>
-&nbsp;&nbsp;&nbsp;&nbsp;at most every bit differs → $256$ [0.5]<br>
-<strong>Answer:</strong> (a) $2$ · (b) $256$<br>
-<strong>Common mistake:</strong> counting the positions that <strong>match</strong>, or reaching for SSD/Euclidean distance — a binary descriptor uses Hamming only.
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">045</span><span class="stars s2">⭐⭐</span><span class="topic">Session 5: Scale, rotation &amp; brightness invariance</span><span class="meta">3 pts · ⏱ ~3 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> An image is (i) zoomed in by 2×, (ii) rotated by 30°, and (iii) photographed again with the lights turned up $1.6\times$. For each change, state whether a SIFT keypoint and descriptor is designed to stay invariant, and justify it using the mechanism SIFT relies on.
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: the zoom (a scale change)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;SIFT searches for keypoints across a scale-space (DoG over several octaves) and records the $\sigma$ at which each one peaks.<br>
-→ <strong>invariant to scale</strong>, because the patch is cropped in proportion to that characteristic scale [1]<br>
-Step 2: the $30^\circ$ rotation<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Each keypoint is assigned a dominant orientation, and the patch is rotated onto it before the descriptor is built.<br>
-→ <strong>invariant to rotation</strong>, because every histogram is measured from that same reference direction [1]<br>
-Step 3: the $1.6\times$ brightening<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Every gradient grows by the same factor $1.6$, so the 128-vector gets longer but does not change direction.<br>
-→ <strong>invariant to brightness</strong>, because the final step <strong>divides the vector by its own length</strong>, which cancels the common factor [1]<br>
-<strong>Answer:</strong> invariant in all three cases — scale, rotation and brightness<br>
-<strong>Common mistake:</strong> assuming SIFT is fully invariant to any affine change or large viewpoint shift. It is only partly so: a genuine change of viewpoint foreshortens the surface, and matches fall away.
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">046</span><span class="stars s2">⭐⭐</span><span class="topic">Session 5: NCC — pattern, not brightness</span><span class="meta">4 pts · ⏱ ~5 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> Two 3-pixel patches are $\mathbf{a} = [2,\ 4,\ 6]$ and $\mathbf{b} = [5,\ 9,\ 13]$. Compute their NCC using $\text{NCC} = \dfrac{\mathbf{a}' \cdot \mathbf{b}'}{\lVert \mathbf{a}' \rVert\,\lVert \mathbf{b}' \rVert}$ where $\mathbf{a}' = \mathbf{a} - \bar{a}$. State what the answer says about the two patches.
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: subtract each patch's mean — this removes brightness<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\bar{a} = \dfrac{2+4+6}{3} = 4 \Rightarrow \mathbf{a}' = [-2,\ 0,\ 2]$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\bar{b} = \dfrac{5+9+13}{3} = 9 \Rightarrow \mathbf{b}' = [-4,\ 0,\ 4]$ [1]<br>
-Step 2: measure each centred vector's length — that length <strong>is</strong> its contrast<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\lVert \mathbf{a}' \rVert = \sqrt{(-2)^2 + 0^2 + 2^2} = \sqrt{8}$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\lVert \mathbf{b}' \rVert = \sqrt{(-4)^2 + 0^2 + 4^2} = \sqrt{32}$ [1]<br>
-Step 3: take the dot product and divide by both lengths<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\mathbf{a}' \cdot \mathbf{b}' = (-2)(-4) + (0)(0) + (2)(4) = 16$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\lVert \mathbf{a}' \rVert \lVert \mathbf{b}' \rVert = \sqrt{8}\sqrt{32} = \sqrt{256} = 16$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\text{NCC} = \dfrac{16}{16} = 1.0$ [1]<br>
-Step 4: interpret<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\text{NCC} = +1$ means an <strong>identical pattern</strong>. Indeed $\mathbf{b} = 2\mathbf{a} + 1$ — the same patch, brighter and with more contrast.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Subtracting the mean removes brightness and dividing by the length removes contrast, leaving only the shape of the pattern — where SSD would report a huge distance for this pair.<br>
-→ NCC is <strong>larger</strong> for a better match, the opposite of SSD and SAD [1]<br>
-<strong>Answer:</strong> $\text{NCC} = 1.0$ — the same pattern, differing only in brightness and contrast<br>
-<strong>Common mistake:</strong> forgetting to subtract the mean, or picking the <strong>smallest</strong> NCC out of habit from SSD. With NCC you take the largest.
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">047</span><span class="stars s3">⭐⭐⭐</span><span class="topic">Session 5: SSD + ratio decision</span><span class="meta">4 pts · ⏱ ~5 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> Query descriptor $\mathbf{q} = [1,\ 2,\ 2]$ is matched against two candidates $\mathbf{A} = [5,\ 2,\ 2]$ and $\mathbf{B} = [7,\ 10,\ 2]$. <strong>(a)</strong> Compute the Euclidean distance from $\mathbf{q}$ to each candidate. <strong>(b)</strong> Apply Lowe's ratio test (threshold $0.75$) and decide keep or reject.
-        <div class="fig"><svg viewBox="0 0 471.20000000000005 220" aria-label="two descriptors">
-  <text x="158" y="96" font-family="IBM Plex Mono" font-size="28" fill="#1A1A2E" text-anchor="end">q =</text>
-  <text x="158" y="168" font-family="IBM Plex Mono" font-size="28" fill="#1A1A2E" text-anchor="end">A =</text>
-  <rect x="178" y="60" width="82" height="52" rx="4" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <text x="219" y="96" font-family="IBM Plex Mono" font-size="26" fill="#1A1A2E" text-anchor="middle">1</text>
-  <rect x="260" y="60" width="82" height="52" rx="4" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <text x="301" y="96" font-family="IBM Plex Mono" font-size="26" fill="#1A1A2E" text-anchor="middle">2</text>
-  <rect x="342" y="60" width="82" height="52" rx="4" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <text x="383" y="96" font-family="IBM Plex Mono" font-size="26" fill="#1A1A2E" text-anchor="middle">2</text>
-  <rect x="178" y="132" width="82" height="52" rx="4" fill="#EDE9FE" stroke="#7C3AED" stroke-width="2"/>
-  <text x="219" y="168" font-family="IBM Plex Mono" font-size="26" fill="#1A1A2E" text-anchor="middle">5</text>
-  <rect x="260" y="132" width="82" height="52" rx="4" fill="#EDE9FE" stroke="#7C3AED" stroke-width="2"/>
-  <text x="301" y="168" font-family="IBM Plex Mono" font-size="26" fill="#1A1A2E" text-anchor="middle">2</text>
-  <rect x="342" y="132" width="82" height="52" rx="4" fill="#EDE9FE" stroke="#7C3AED" stroke-width="2"/>
-  <text x="383" y="168" font-family="IBM Plex Mono" font-size="26" fill="#1A1A2E" text-anchor="middle">2</text>
-  <text x="236" y="32" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">compare them component by component</text>
-</svg></div>
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: distance to $\mathbf{A}$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;differences: $1-5=-4,\ 2-2=0,\ 2-2=0$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\text{SSD} = 16+0+0 = 16$ → $d_A = \sqrt{16} = 4$<br>
-Step 2: distance to $\mathbf{B}$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;differences: $1-7=-6,\ 2-10=-8,\ 2-2=0$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\text{SSD} = 36+64+0 = 100$ → $d_B = \sqrt{100} = 10$<br>
-Step 3: identify the two nearest neighbours<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$d_1 = d_A = 4$ (nearest), $d_2 = d_B = 10$ (runner-up) [2.5]<br>
-Step 4: apply the ratio test<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$d_1/d_2 = 4/10 = 0.4$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$0.4 &lt; 0.75$ → <strong>KEEP</strong> — the winner is clearly better than the runner-up, so the match is unambiguous [1.5]<br>
-<strong>Answer:</strong> $d_A=4,\ d_B=10$, ratio $=0.4$ → KEEP (match $\mathbf{q}$ to $\mathbf{A}$)<br>
-<strong>Common mistake:</strong> feeding the raw SSD values ($16, 100$) into the ratio. The $0.75$ threshold belongs to the L2 distance; squaring the distances would square the ratio too.
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">048</span><span class="stars s3">⭐⭐⭐</span><span class="topic">Session 5: Hough line (45° diagonal)</span><span class="meta">5 pts · ⏱ ~5 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> Edge points $(1,5)$ and $(4,2)$ lie on the same straight line. <strong>(a)</strong> Using $\rho = x\cos\theta + y\sin\theta$ with $\theta = 45^\circ$, show that both points vote for the same $\rho$ and give its exact value. <strong>(b)</strong> Explain in one sentence why sharing a $(\rho,\theta)$ cell means they are collinear.
-        <div class="fig"><svg viewBox="0 0 512.0 522.0" aria-label="edge points in image space">
-  <text x="256" y="36" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">edge points (image space)</text>
-  <line x1="100.0" y1="92.0" x2="422.0" y2="92.0" stroke="#E2E8F0" stroke-width="1.5"/>
-  <line x1="100.0" y1="92.0" x2="100.0" y2="414.0" stroke="#E2E8F0" stroke-width="1.5"/>
-  <line x1="100.0" y1="138.0" x2="422.0" y2="138.0" stroke="#E2E8F0" stroke-width="1.5"/>
-  <line x1="146.0" y1="92.0" x2="146.0" y2="414.0" stroke="#E2E8F0" stroke-width="1.5"/>
-  <line x1="100.0" y1="184.0" x2="422.0" y2="184.0" stroke="#E2E8F0" stroke-width="1.5"/>
-  <line x1="192.0" y1="92.0" x2="192.0" y2="414.0" stroke="#E2E8F0" stroke-width="1.5"/>
-  <line x1="100.0" y1="230.0" x2="422.0" y2="230.0" stroke="#E2E8F0" stroke-width="1.5"/>
-  <line x1="238.0" y1="92.0" x2="238.0" y2="414.0" stroke="#E2E8F0" stroke-width="1.5"/>
-  <line x1="100.0" y1="276.0" x2="422.0" y2="276.0" stroke="#E2E8F0" stroke-width="1.5"/>
-  <line x1="284.0" y1="92.0" x2="284.0" y2="414.0" stroke="#E2E8F0" stroke-width="1.5"/>
-  <line x1="100.0" y1="322.0" x2="422.0" y2="322.0" stroke="#E2E8F0" stroke-width="1.5"/>
-  <line x1="330.0" y1="92.0" x2="330.0" y2="414.0" stroke="#E2E8F0" stroke-width="1.5"/>
-  <line x1="100.0" y1="368.0" x2="422.0" y2="368.0" stroke="#E2E8F0" stroke-width="1.5"/>
-  <line x1="376.0" y1="92.0" x2="376.0" y2="414.0" stroke="#E2E8F0" stroke-width="1.5"/>
-  <line x1="100.0" y1="414.0" x2="422.0" y2="414.0" stroke="#E2E8F0" stroke-width="1.5"/>
-  <line x1="422.0" y1="92.0" x2="422.0" y2="414.0" stroke="#E2E8F0" stroke-width="1.5"/>
-  <line x1="100.0" y1="92.0" x2="442.0" y2="92.0" stroke="#94A3B8" stroke-width="2.5"/>
-  <line x1="100.0" y1="92.0" x2="100.0" y2="434.0" stroke="#94A3B8" stroke-width="2.5"/>
-  <text x="456" y="100" font-family="IBM Plex Mono" font-size="22" fill="#64748B" text-anchor="middle">x</text>
-  <text x="94" y="460" font-family="IBM Plex Mono" font-size="22" fill="#64748B" text-anchor="middle">y</text>
-  <text x="86" y="80" font-family="IBM Plex Mono" font-size="19" fill="#64748B" text-anchor="end">(0,0)</text>
-  <circle cx="146.0" cy="322.0" r="10" fill="#0E7C86" stroke="none" stroke-width="2"/>
-  <text x="162" y="308" font-family="IBM Plex Mono" font-size="20" fill="#0F766E" text-anchor="start">(1,5)</text>
-  <circle cx="284.0" cy="184.0" r="10" fill="#0E7C86" stroke="none" stroke-width="2"/>
-  <text x="300" y="170" font-family="IBM Plex Mono" font-size="20" fill="#0F766E" text-anchor="start">(4,2)</text>
-  <text x="256" y="504" font-family="IBM Plex Mono" font-size="24" fill="#1A1A2E" text-anchor="middle">ρ = x·cos θ + y·sin θ</text>
-</svg></div>
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: substitute $\theta=45^\circ$, where the table gives $\cos 45^\circ = \sin 45^\circ = 0.707$ (exactly $\tfrac{\sqrt2}{2}$)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\rho = 0.707(x + y)$<br>
-Step 2: the first point $(1,5)$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$x+y = 1+5 = 6$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\rho = 0.707 \times 6 = 4.24$ (exactly $3\sqrt2$)<br>
-Step 3: the second point $(4,2)$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$x+y = 4+2 = 6$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\rho = 0.707 \times 6 = 4.24$ (exactly $3\sqrt2$)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;both give $\rho \approx 4.24$ — the same accumulator cell [3]<br>
-Step 4: <strong>(b)</strong> why that means collinear<br>
-&nbsp;&nbsp;&nbsp;&nbsp;In Hough space each image point traces a sinusoid. Points that share a $(\rho,\theta)$ cell have sinusoids passing through that same cell, and $(\rho,\theta)$ names exactly one line — so that one line passes through all of them.<br>
-→ the tally in a cell counts how many edge points agree on that line [2]<br>
-<strong>Answer:</strong> $\rho = 3\sqrt2\ (\approx 4.24)$ at $\theta=45^\circ$; a shared cell means one line passes through both points<br>
-<strong>Common mistake:</strong> dropping the $\tfrac{\sqrt2}{2}$ and answering $\rho=6$ — that is $x+y$, not the perpendicular distance.
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">049</span><span class="stars s2">⭐⭐</span><span class="topic">Session 5: Hough — the threshold picks the lines</span><span class="meta">3 pts · ⏱ ~4 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> After Hough voting the six strongest accumulator bins hold $540,\ 388,\ 297,\ 291,\ 246,\ 233$ votes. <strong>(a)</strong> How many lines are drawn at a vote threshold of $300$? <strong>(b)</strong> How many at $240$? <strong>(c)</strong> A classmate suggests simply taking the maximum bin instead of using a threshold — what is wrong with that?
-        <div class="fig"><svg viewBox="0 0 650.0 350" aria-label="accumulator bins">
-  <line x1="56.0" y1="270.0" x2="610.0" y2="270.0" stroke="#94A3B8" stroke-width="2"/>
-  <text x="325" y="32" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">strongest accumulator bins (vote counts)</text>
-  <rect x="70" y="80" width="68" height="190" rx="3" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <text x="104" y="68" font-family="IBM Plex Mono" font-size="22" fill="#0F766E" text-anchor="middle">540</text>
-  <text x="104" y="300" font-family="IBM Plex Mono" font-size="20" fill="#64748B" text-anchor="middle">#1</text>
-  <rect x="160" y="133" width="68" height="137" rx="3" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <text x="194" y="121" font-family="IBM Plex Mono" font-size="22" fill="#0F766E" text-anchor="middle">388</text>
-  <text x="194" y="300" font-family="IBM Plex Mono" font-size="20" fill="#64748B" text-anchor="middle">#2</text>
-  <rect x="250" y="166" width="68" height="104" rx="3" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <text x="284" y="154" font-family="IBM Plex Mono" font-size="22" fill="#0F766E" text-anchor="middle">297</text>
-  <text x="284" y="300" font-family="IBM Plex Mono" font-size="20" fill="#64748B" text-anchor="middle">#3</text>
-  <rect x="340" y="168" width="68" height="102" rx="3" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <text x="374" y="156" font-family="IBM Plex Mono" font-size="22" fill="#0F766E" text-anchor="middle">291</text>
-  <text x="374" y="300" font-family="IBM Plex Mono" font-size="20" fill="#64748B" text-anchor="middle">#4</text>
-  <rect x="430" y="183" width="68" height="87" rx="3" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <text x="464" y="171" font-family="IBM Plex Mono" font-size="22" fill="#0F766E" text-anchor="middle">246</text>
-  <text x="464" y="300" font-family="IBM Plex Mono" font-size="20" fill="#64748B" text-anchor="middle">#5</text>
-  <rect x="520" y="188" width="68" height="82" rx="3" fill="#E6F5F4" stroke="#0F766E" stroke-width="2"/>
-  <text x="554" y="176" font-family="IBM Plex Mono" font-size="22" fill="#0F766E" text-anchor="middle">233</text>
-  <text x="554" y="300" font-family="IBM Plex Mono" font-size="20" fill="#64748B" text-anchor="middle">#6</text>
-  <text x="325" y="330" font-family="IBM Plex Sans" font-size="21" fill="#64748B" text-anchor="middle">every bin above the threshold becomes a line</text>
-</svg></div>
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: <strong>(a)</strong> count the bins clearing $300$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$540 \ge 300$ ✓ · $388 \ge 300$ ✓ · $297 &lt; 300$ ✗ · the rest are smaller still ✗<br>
-→ <strong>2 lines</strong> [1]<br>
-Step 2: <strong>(b)</strong> count the bins clearing $240$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$540,\ 388,\ 297,\ 291,\ 246$ all clear it · $233 &lt; 240$ ✗<br>
-→ <strong>5 lines</strong> [1]<br>
-Step 3: <strong>(c)</strong> why the maximum alone fails<br>
-&nbsp;&nbsp;&nbsp;&nbsp;There is only one maximum bin, so that approach always returns exactly <strong>one line</strong>, no matter how many the image contains.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;A building façade has dozens of straight edges; keeping <em>every</em> bin above a threshold is the only way to find them all. There is no single correct threshold — a low one invents lines, a high one loses real ones. [1]<br>
-<strong>Answer:</strong> (a) $2$ lines · (b) $5$ lines · (c) the maximum bin always yields one line, so every other line in the image is missed<br>
-<strong>Common mistake:</strong> counting $297$ as clearing $300$, or reading the rule as "top-N" rather than "every bin above the threshold".
-        </div>
-      </details>
-    </div>
-    <div class="item">
-      <div class="ihead"><span class="iid">050</span><span class="stars s3">⭐⭐⭐</span><span class="topic">Session 5: Hough — a bin back to a line</span><span class="meta">5 pts · ⏱ ~6 min</span></div>
-      <div class="problem"><span class="lab">Problem</span> A Hough accumulator's winning bin is $\rho = 100$, $\theta = 60^\circ$. <strong>(a)</strong> Find the foot of the perpendicular — the point where the perpendicular dropped from the origin meets the line. <strong>(b)</strong> At what angle does the line <strong>itself</strong> run? <strong>(c)</strong> A classmate draws a horizontal line at $y = 100$ — explain the two mistakes. (Use $\cos 60^\circ = 0.5$, $\sin 60^\circ = 0.866$.)
-        <div class="fig"><svg viewBox="0 0 580 500" aria-label="a bin in rho-theta space">
-  <defs><marker id="ao-050" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#F97316"/></marker></defs>
-  <text x="290" y="36" font-family="IBM Plex Sans" font-size="22" fill="#64748B" text-anchor="middle">one winning accumulator bin</text>
-  <line x1="130.0" y1="100.0" x2="510.0" y2="100.0" stroke="#94A3B8" stroke-width="2.5"/>
-  <line x1="130.0" y1="100.0" x2="130.0" y2="400.0" stroke="#94A3B8" stroke-width="2.5"/>
-  <text x="526" y="108" font-family="IBM Plex Mono" font-size="22" fill="#64748B" text-anchor="middle">x</text>
-  <text x="104" y="416" font-family="IBM Plex Mono" font-size="22" fill="#64748B" text-anchor="middle">y</text>
-  <text x="114" y="86" font-family="IBM Plex Mono" font-size="19" fill="#64748B" text-anchor="end">(0,0)</text>
-  <path d="M 192.0 100.0 A 62 62 0 0 1 161.0 153.7" fill="none" stroke="#64748B" stroke-width="2"/>
-  <text x="226" y="140" font-family="IBM Plex Mono" font-size="23" fill="#64748B" text-anchor="start">θ = 60°</text>
-  <line x1="130.0" y1="100.0" x2="240.0" y2="290.5" stroke="#F97316" stroke-width="3" marker-end="url(#ao-050)"/>
-  <text x="114" y="250" font-family="IBM Plex Mono" font-size="24" fill="#C2410C" text-anchor="end">ρ = 100</text>
-  <circle cx="240.0" cy="290.5" r="9" fill="#F97316" stroke="none" stroke-width="2"/>
-  <text x="258" y="321" font-family="IBM Plex Sans" font-size="22" fill="#C2410C" text-anchor="start">foot = ?</text>
-  <text x="290" y="456" font-family="IBM Plex Sans" font-size="21" fill="#64748B" text-anchor="middle">ρ walks along θ from the origin to the foot;</text>
-  <text x="290" y="482" font-family="IBM Plex Sans" font-size="21" fill="#64748B" text-anchor="middle">the line itself is perpendicular there</text>
-</svg></div>
-      </div>
-      <details class="answer">
-        <summary>Show solution</summary>
-        <div class="soln">Step 1: <strong>(a)</strong> walk a distance $\rho$ from the origin along the direction $\theta$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$x_0 = \rho\cos\theta = 100 \times 0.5 = 50$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$y_0 = \rho\sin\theta = 100 \times 0.866 = 86.6$<br>
-→ the foot is at $(50,\ 86.6)$ [2]<br>
-Step 2: <strong>(b)</strong> the line's own angle<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$\theta$ is the direction of the <strong>perpendicular</strong>, so the line turns a further $90^\circ$<br>
-&nbsp;&nbsp;&nbsp;&nbsp;line angle $= \theta + 90^\circ = 60^\circ + 90^\circ = 150^\circ$<br>
-→ a $150^\circ$ line through $(50,\ 86.6)$ [1]<br>
-Step 3: <strong>(c)</strong> the first mistake<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<strong>$\rho$ is not a $y$ coordinate.</strong> $\rho = 100$ is the <em>perpendicular distance from the origin</em>, not a height — the foot is $(50, 86.6)$, not $(0, 100)$.<br>
-Step 4: <strong>(c)</strong> the second mistake<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<strong>$\theta$ is not the line's angle.</strong> The line runs at $150^\circ$, neither horizontal ($0^\circ$) nor $60^\circ$.<br>
-→ both numbers describe the <strong>perpendicular</strong>, not the line [2]<br>
-<strong>Answer:</strong> (a) foot $= (50,\ 86.6)$ · (b) the line runs at $150^\circ$ · (c) $\rho$ is not a $y$ coordinate and $\theta$ is not the line's angle — both belong to the perpendicular<br>
-<strong>Common mistake:</strong> reading $\rho$ as a height and drawing $y = \rho$, drawing the line at $\theta$ instead of $\theta + 90^\circ$, or swapping $\cos$ and $\sin$ when locating the foot.
+        <div class="soln"><strong>(a)</strong> Step 1: $1000 \times 750 = 750\,000$ and $2000 \times 1500 = 3\,000\,000$ [1]<br>
+<strong>(b)</strong> Step 1: $\dfrac{3\,000\,000}{750\,000} = 4$ — doubling both sides gives four times the pixels [1]<br>
+<strong>Answer:</strong> (a) 750 000 and 3 000 000 · (b) $\times 4$
         </div>
       </details>
     </div>
