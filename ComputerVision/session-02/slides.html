@@ -261,6 +261,15 @@ html.reading .reveal .mnote{font-size:14px;}
 .say b{color:var(--ink);}
 .demo-out{font-family:var(--mono);font-size:.5em;color:var(--muted);margin-top:.35em;display:flex;justify-content:space-between;gap:.6em;flex-wrap:wrap;}
 .demo-out b{color:var(--ink);font-weight:600;}
+.photo{margin:0;}
+.photo img{display:block;width:100%;height:auto;max-height:430px;object-fit:contain;border-radius:12px;border:1px solid var(--line);background:#fff;}
+.photo figcaption{margin-top:.4em;font-family:var(--mono);font-size:.4em;color:var(--muted);text-align:center;}
+.fig.short{max-height:300px;}
+.tog{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:.4em;margin:.2em 0 .7em;padding:.45em .9em;border-radius:999px;background:var(--teal);color:#fff;font-family:var(--display);font-weight:600;font-size:.8em;}
+.tog:hover{filter:brightness(1.1);}
+html.reading .photo figcaption{font-size:12px;}
+.democv{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);}
+#fovSvg{max-height:270px;}
 .hole canvas{display:block;width:100%;height:auto;max-height:360px;border-radius:12px;border:1px solid var(--line);background:#000;}
 .eq{font-size:.82em;margin:.2em 0 0;}
 .worked{border:1px solid var(--line);border-left:5px solid var(--amber);border-radius:10px;padding:.5em .8em;font-size:.6em;line-height:1.55;background:#fff;}
@@ -564,7 +573,23 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 กด → สองครั้ง: รังสี แล้วภาพกลับหัว · ถาม: ทำไมกลับหัว? (รังสีไขว้กันที่รู)</p><p>🇬🇧 Press → twice: rays, then the flipped image. Ask: why upside down? (rays cross at the hole)</p></aside>
 </section>
 
-<!-- 5 · Hole size -->
+<!-- 5 · Frisius 1544 -->
+<section>
+  <p class="kicker">A · Pinhole &amp; perspective</p>
+  <h2 class="claim">People have watched the sky this way for 500 years</h2>
+  <div class="split">
+    <figure class="photo"><img src="img/frisius_1545.jpg" alt="Woodcut: rays from the eclipsed sun pass through a hole in a wall and form its image on the opposite wall" loading="lazy">
+      <figcaption>Gemma Frisius, 1545 · public domain</figcaption></figure>
+    <div class="say">
+      <p>The solar eclipse of <b>24 January 1544</b>, drawn by Gemma Frisius — the first published picture of a <b>camera obscura</b>.</p>
+      <p>A hole in one wall, the sun’s image on the other: the dark box of the last slide, as big as a room.</p>
+      <p class="fragment">Still the safe way to watch an eclipse: a <b>pinhole projector</b> — never look at the sun directly.</p>
+    </div>
+  </div>
+  <aside class="notes"><p>🇹🇭 ภาษาละตินบนภาพ: Solis deliquium = สุริยุปราคา · 1544 · 24 มกราคม · Lovanii = เมือง Leuven · ชวนคุย: ใครเคยดูสุริยุปราคาด้วยรูเข็ม?</p><p>🇬🇧 The Latin reads: solar eclipse, 1544, 24 January, Leuven. Ask: who has watched an eclipse through a pinhole?</p></aside>
+</section>
+
+<!-- 6 · Hole size -->
 <section>
   <p class="kicker">A · Pinhole &amp; perspective</p>
   <h2 class="claim">Big hole: blurry. Small hole: dark.</h2>
@@ -584,7 +609,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ลากจาก 1 mm ไปเล็กสุด (มืด) แล้วไปใหญ่สุด (เบลอ) · twice the width = 4× light</p><p>🇬🇧 Drag from 1 mm to smallest (dark), then largest (blurry). Twice the width = 4× the light.</p></aside>
 </section>
 
-<!-- 6 · Similar triangles -->
+<!-- 7 · Similar triangles -->
 <section>
   <p class="kicker">A · Pinhole &amp; perspective</p>
   <h2 class="claim">Two similar triangles give the formula</h2>
@@ -600,7 +625,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 กด → ทีละชั้น: รังสี → สามเหลี่ยมฝั่งวัตถุ → ฝั่งภาพ+สูตร · ย้ำ: มุมเท่ากัน อัตราส่วนด้านเท่ากัน</p><p>🇬🇧 Press → layer by layer: ray, object triangle, image triangle + formula. Same angles, same side ratios.</p></aside>
 </section>
 
-<!-- 7 · Twice as far -->
+<!-- 8 · Twice as far -->
 <section>
   <p class="kicker">A · Pinhole &amp; perspective</p>
   <h2 class="claim">Twice as far, half as big</h2>
@@ -618,7 +643,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ลาก Z จาก 10 ไป 20: ภาพเหลือครึ่ง · ถาม: ถ้าไป 40 m ล่ะ? (2.25 mm)</p><p>🇬🇧 Drag Z from 10 to 20: the image halves. Ask: at 40 m? (2.25 mm)</p></aside>
 </section>
 
-<!-- 8 · Try it -->
+<!-- 9 · Try it -->
 <section>
   <p class="kicker">A · Pinhole &amp; perspective</p>
   <h2 class="claim">Try it: how tall is the car on the image?</h2>
@@ -632,7 +657,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ให้เวลา 1 นาที · แบบนี้คือรูปแบบข้อสอบ Final (เปลี่ยนตัวเลข)</p><p>🇬🇧 Give one minute. This is the final-exam format, with other numbers.</p></aside>
 </section>
 
-<!-- 9 · Vanishing point -->
+<!-- 10 · Vanishing point -->
 <section>
   <p class="kicker">A · Pinhole &amp; perspective</p>
   <h2 class="claim">Parallel lines meet at one point</h2>
@@ -647,7 +672,24 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ชี้ราง: ห่างเท่าเดิมในโลกจริง แต่บนภาพแคบลงตาม 1/Z · กด → ให้เห็นเส้นขอบฟ้า</p><p>🇬🇧 Point at the rails: constant gap in the world, shrinking as 1/Z on the image. Press → for the horizon.</p></aside>
 </section>
 
-<!-- 10 · Depth is lost -->
+<!-- 11 · Real photo -->
+<section>
+  <p class="kicker">A · Pinhole &amp; perspective</p>
+  <h2 class="claim">In a real photo, a program can find that point</h2>
+  <div class="split">
+    <figure class="photo"><img id="vpImg" src="img/perspective_photo.jpg" data-alt="img/perspective_vp.jpg" alt="A pergola walkway in Tennoji Park, Osaka, seen straight down its length" loading="lazy">
+      <figcaption>Tennoji Park, Osaka · photo: Laitche, public domain</figcaption></figure>
+    <div class="say">
+      <p>The pergola’s edges are parallel in the world. On the photo they all aim at one spot.</p>
+      <button class="tog" id="vpTog" type="button">Show the lines a program found</button>
+      <p class="fragment">OpenCV found <b>73</b> straight edges; <b>37</b> of them pass within about 1% of the image width of one point — the <b>vanishing point</b>.</p>
+      <p class="fragment" style="color:var(--muted);font-size:.86em">The recipe: edges (session 3) → straight lines → the point most lines agree on (RANSAC, session 6).</p>
+    </div>
+  </div>
+  <aside class="notes"><p>🇹🇭 กดปุ่มสลับภาพ · เส้นเหลือง = ที่ OpenCV เจอ · เส้นแดง = ต่อไปถึงจุดรวม</p><p>🇬🇧 Press the button: yellow = segments OpenCV found, red = their extensions to the common point.</p></aside>
+</section>
+
+<!-- 12 · Depth is lost -->
 <section>
   <p class="kicker">A · Pinhole &amp; perspective</p>
   <h2 class="claim">A photo cannot tell near-and-small from far-and-big</h2>
@@ -658,7 +700,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 กด → ทีละวัตถุ แล้วภาพเดียวกัน · ถาม: ถ้าเห็นแค่ภาพ บอกได้ไหมว่าอันไหนจริง?</p><p>🇬🇧 Press → for each object, then the shared image. Ask: from the image alone, which one is it?</p></aside>
 </section>
 
-<!-- 11 · Winning depth back -->
+<!-- 13 · Winning depth back -->
 <section>
   <p class="kicker">A · Pinhole &amp; perspective</p>
   <h2 class="claim">Depth is lost — later, we win it back</h2>
@@ -671,14 +713,144 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 สรุป A ด้วยกล่อง key idea แล้วต่อ B</p><p>🇬🇧 Wrap up A with the key-idea box, then go on to B.</p></aside>
 </section>
 
-<!-- 12 · References -->
+<!-- 14 · Lens gathers light -->
+<section>
+  <p class="kicker">B · Lenses</p>
+  <h2 class="claim">A lens gathers a cone of light into one point</h2>
+  <div class="split">
+    <div><svg class="fig" viewBox="0 0 760 290" role="img" aria-label="Many rays from one point pass through a lens and meet again at one image point"><line x1="20" y1="150" x2="740" y2="150" stroke="#c9d1db" stroke-width="2"/><path d="M380,55 Q402,150 380,245 Q358,150 380,55Z" fill="rgba(56,189,248,.18)" stroke="#38bdf8" stroke-width="2"/><line x1="584.7" y1="40" x2="584.7" y2="270" stroke="#9aa6b5" stroke-width="2" stroke-dasharray="5 5"/><circle cx="90" cy="100" r="7" fill="#f9ab00"/><text x="90" y="84" class="lb" text-anchor="middle">one point</text><g class="fragment" data-fragment-index="1"><line x1="90" y1="100" x2="380" y2="70" stroke="#f9c74f" stroke-width="2"/><line x1="90" y1="100" x2="380" y2="100" stroke="#f9c74f" stroke-width="2"/><line x1="90" y1="100" x2="380" y2="130" stroke="#f9c74f" stroke-width="2"/><line x1="90" y1="100" x2="380" y2="160" stroke="#f9c74f" stroke-width="2"/><line x1="90" y1="100" x2="380" y2="190" stroke="#f9c74f" stroke-width="2"/><line x1="90" y1="100" x2="380" y2="220" stroke="#f9c74f" stroke-width="2"/></g><g class="fragment" data-fragment-index="2"><line x1="380" y1="70" x2="584.7" y2="185.3" stroke="#f9c74f" stroke-width="2"/><line x1="380" y1="100" x2="584.7" y2="185.3" stroke="#f9c74f" stroke-width="2"/><line x1="380" y1="130" x2="584.7" y2="185.3" stroke="#f9c74f" stroke-width="2"/><line x1="380" y1="160" x2="584.7" y2="185.3" stroke="#f9c74f" stroke-width="2"/><line x1="380" y1="190" x2="584.7" y2="185.3" stroke="#f9c74f" stroke-width="2"/><line x1="380" y1="220" x2="584.7" y2="185.3" stroke="#f9c74f" stroke-width="2"/><circle cx="584.7" cy="185.3" r="7" fill="#e0533d"/><text x="596.7" y="215.3" class="lb">one point again</text></g></svg></div>
+    <div class="say">
+      <p>Part A’s trade-off: a small hole is sharp but dark; a big hole is bright but blurry.</p>
+      <p class="fragment" data-fragment-index="1">A lens lets <b>many rays</b> from one point in — so the image is <b>bright</b>.</p>
+      <p class="fragment" data-fragment-index="2">Glass bends them to meet at <b>one point</b> again — so the image is <b>sharp</b>.</p>
+    </div>
+  </div>
+  <aside class="notes"><p>🇹🇭 ย้อนหน้า 5 (รูเข็ม) แล้วกด → สองครั้ง: รังสีหลายเส้นเข้า → มารวมที่จุดเดียว</p><p>🇬🇧 Recall slide 5, then press → twice: many rays in, one point out.</p></aside>
+</section>
+
+<!-- 15 · Focal point -->
+<section>
+  <p class="kicker">B · Lenses</p>
+  <h2 class="claim">Parallel rays meet at the focal point</h2>
+  <div class="split">
+    <div><svg class="fig" viewBox="0 0 760 270" role="img" aria-label="Parallel rays pass through a lens and meet at the focal point, a distance f behind it"><line x1="20" y1="150" x2="740" y2="150" stroke="#c9d1db" stroke-width="2"/><path d="M300,50 Q322,150 300,250 Q278,150 300,50Z" fill="rgba(56,189,248,.18)" stroke="#38bdf8" stroke-width="2"/><circle cx="500" cy="150" r="7" fill="#e0533d"/><text x="512" y="136" class="lb">focal point</text><line x1="300" y1="220" x2="500" y2="220" stroke="#0f1b2d" stroke-width="1.5"/><line x1="300" y1="212" x2="300" y2="228" stroke="#0f1b2d" stroke-width="1.5"/><line x1="500" y1="212" x2="500" y2="228" stroke="#0f1b2d" stroke-width="1.5"/><text x="400.0" y="248" class="lb big" text-anchor="middle">f</text><g class="fragment" data-fragment-index="1"><line x1="40" y1="70" x2="300" y2="70" stroke="#f9c74f" stroke-width="2"/><line x1="300" y1="70" x2="500" y2="150" stroke="#f9c74f" stroke-width="2"/><line x1="40" y1="110" x2="300" y2="110" stroke="#f9c74f" stroke-width="2"/><line x1="300" y1="110" x2="500" y2="150" stroke="#f9c74f" stroke-width="2"/><line x1="40" y1="150" x2="300" y2="150" stroke="#f9c74f" stroke-width="2"/><line x1="300" y1="150" x2="500" y2="150" stroke="#f9c74f" stroke-width="2"/><line x1="40" y1="190" x2="300" y2="190" stroke="#f9c74f" stroke-width="2"/><line x1="300" y1="190" x2="500" y2="150" stroke="#f9c74f" stroke-width="2"/><line x1="40" y1="230" x2="300" y2="230" stroke="#f9c74f" stroke-width="2"/><line x1="300" y1="230" x2="500" y2="150" stroke="#f9c74f" stroke-width="2"/><text x="40" y="52" class="lb">light from far away arrives parallel</text></g></svg></div>
+    <div class="say">
+      <div class="term"><b>focal length f</b><span class="th">ทางยาวโฟกัส</span><span class="def">lens to the point where parallel rays meet</span></div>
+      <p class="fragment" data-fragment-index="1" style="margin-top:.8em">Light from a <b>far</b> scene arrives almost parallel, so its image forms about <b>f</b> behind the lens.</p>
+      <p class="fragment">That is why part A’s formula still works with a lens: <b>x = f · X / Z</b>.</p>
+    </div>
+  </div>
+  <aside class="notes"><p>🇹🇭 เน้น: กล้องที่ถ่ายของไกล ภาพเกิดที่ระยะ f → สูตรเดิมของ A ใช้ต่อได้</p><p>🇬🇧 Stress: for distant scenes the image sits at f, so part A's formula carries over.</p></aside>
+</section>
+
+<!-- 16 · Field of view -->
+<section>
+  <p class="kicker">B · Lenses</p>
+  <h2 class="claim">Longer focal length, narrower view</h2>
+  <div class="split even">
+    <div><svg class="fig" id="fovSvg" viewBox="0 0 760 300" role="img" aria-label="Top view: the camera's field of view as a wedge over a row of objects"><g id="fovObjs"></g><path id="fovWedge" d="" fill="rgba(15,118,110,.12)" stroke="#0f766e" stroke-width="2"/><rect x="366" y="268" width="28" height="22" rx="4" fill="#0f1b2d"/><text id="fovAng" x="380" y="250" class="lb big" text-anchor="middle"></text></svg>
+      <input class="slider" id="fovF" type="range" min="12" max="200" value="50" aria-label="focal length in mm">
+      <div class="demo-out"><span>f <b id="fovFv">50 mm</b></span><span>sensor width <b>36 mm</b></span><span>view <b id="fovDeg">39.6°</b></span></div>
+    </div>
+    <div>
+      <canvas id="fovPrev" class="democv" width="480" height="250" data-src="img/landscape.jpg" aria-label="what the camera sees at this focal length"></canvas>
+      <p class="pix-readout center">what the camera sees · photo counts as 12 mm</p>
+      <div class="eq" style="margin-top:-.3em">$$\text{FOV}=2\arctan\frac{w}{2f}$$</div>
+    </div>
+  </div>
+  <aside class="notes"><p>🇹🇭 ลาก f: 18 mm = มุมกว้าง (90°) · 50 mm ≈ ตาคน · 200 mm = tele ซูม · w = ความกว้าง sensor</p><p>🇬🇧 Drag f: 18 mm is wide (90°), 50 mm is close to the eye, 200 mm is a zoom. w is the sensor width.</p></aside>
+</section>
+
+<!-- 17 · Try it FOV -->
+<section>
+  <p class="kicker">B · Lenses</p>
+  <h2 class="claim">Try it: how wide does the camera see?</h2>
+  <div class="split">
+    <div class="tryit"><span class="tag">Try it</span>A sensor is <b>36 mm</b> wide.
+      <ol style="margin:.5em 0 0 1.1em"><li>With <b>f = 18 mm</b>, what is the field of view?</li><li>Which <b>f</b> gives a <b>60°</b> view? (tan 30° ≈ 0.58)</li></ol>
+      <details><summary>Answer</summary>1. w / 2f = 36 / 36 = 1 → arctan 1 = 45° → FOV = <b>90°</b> · 2. half-angle 30°: 36 / 2f = 0.58 → f = 18 / 0.58 ≈ <b>31 mm</b>.</details>
+    </div>
+    <div class="say"><p>Use <b>FOV = 2 · arctan(w / 2f)</b>.</p><p>Work with the <b>half-angle</b>: tan(FOV / 2) = w / 2f.</p><p>In the exam the numbers are chosen so the angle is one you know — 30°, 45°, 60°.</p></div>
+  </div>
+  <aside class="notes"><p>🇹🇭 ให้เวลา 1–2 นาที · ข้อ 2 ต้องคิดย้อนจากมุม</p><p>🇬🇧 Give one to two minutes; question 2 works backwards from the angle.</p></aside>
+</section>
+
+<!-- 18 · Dolly zoom -->
+<section>
+  <p class="kicker">B · Lenses</p>
+  <h2 class="claim">Walk back and zoom in: the subject stays, the world changes</h2>
+  <div class="split">
+    <figure class="photo"><img src="img/dolly.webp" alt="Animation: the camera backs away from a person while the focal length grows; the person keeps the same size while the trees behind grow" loading="lazy">
+      <figcaption>rendered with x = f·X/Z by a short Python program</figcaption></figure>
+    <div class="say">
+      <p>The camera moves back from <b>3 m</b> to <b>18 m</b> while <b>f</b> grows from <b>12</b> to <b>72 mm</b>.</p>
+      <p><b>f / Z</b> of the person stays the same — so the person stays the same size.</p>
+      <p class="fragment">The trees are much farther away: their <b>Z</b> barely changes, so the longer <b>f</b> makes them grow. Film makers call it a <b>dolly zoom</b>.</p>
+    </div>
+  </div>
+  <aside class="notes"><p>🇹🇭 ภาพเคลื่อนไหววนเอง · ชี้คน (ขนาดคงที่) เทียบต้นไม้ (ใหญ่ขึ้น) · เทคนิคนี้รู้จักจากหนัง Vertigo (Hitchcock, 1958)</p><p>🇬🇧 The animation loops. Point at the person (constant) versus the trees (growing). Known from Hitchcock's Vertigo (1958).</p></aside>
+</section>
+
+<!-- 19 · Blur circle -->
+<section>
+  <p class="kicker">B · Lenses</p>
+  <h2 class="claim">Only one distance is perfectly sharp</h2>
+  <svg class="fig short" viewBox="0 0 760 280" role="img" aria-label="A point at the focus distance lands as a point on the sensor; a nearer point lands as a blur disc"><line x1="20" y1="150" x2="740" y2="150" stroke="#c9d1db" stroke-width="2"/><path d="M330,70 Q352,150 330,230 Q308,150 330,70Z" fill="rgba(56,189,248,.18)" stroke="#38bdf8" stroke-width="2"/><line x1="560" y1="40" x2="560" y2="260" stroke="#0f1b2d" stroke-width="4"/><text x="570" y="56" class="lb">sensor</text><g><line x1="119.2" y1="150" x2="330" y2="80" stroke="#0f766e" stroke-width="2.2"/><line x1="119.2" y1="150" x2="330" y2="220" stroke="#0f766e" stroke-width="2.2"/><line x1="330" y1="80" x2="560" y2="150" stroke="#0f766e" stroke-width="2.2"/><line x1="330" y1="220" x2="560" y2="150" stroke="#0f766e" stroke-width="2.2"/><circle cx="119.2" cy="150" r="7" fill="#0f766e"/><text x="119.2" y="132" class="lb" text-anchor="middle" fill="#0f766e">in focus</text></g><g class="fragment"><line x1="180" y1="150" x2="330" y2="80" stroke="#e0533d" stroke-width="2.2"/><line x1="180" y1="150" x2="330" y2="220" stroke="#e0533d" stroke-width="2.2"/><line x1="330" y1="80" x2="560" y2="119.0" stroke="#e0533d" stroke-width="2.2"/><line x1="330" y1="220" x2="560" y2="181.0" stroke="#e0533d" stroke-width="2.2"/><line x1="560" y1="119.0" x2="560" y2="181.0" stroke="#e0533d" stroke-width="10" stroke-linecap="round" opacity=".55"/><circle cx="180" cy="150" r="7" fill="#e0533d"/><text x="180" y="202" class="lb" text-anchor="middle" fill="#e0533d">nearer</text><text x="574" y="207.0" class="lb" fill="#e0533d">a disc — blur</text></g></svg>
+  <div class="split even" style="margin-top:.2em">
+    <div class="say"><p>A lens focuses <b>one distance</b>: those points land as points.</p></div>
+    <div class="say fragment"><p>A nearer (or farther) point lands as a <b>disc</b> — the <b>blur circle</b>. Wider lens opening, bigger disc.</p></div>
+  </div>
+  <aside class="notes"><p>🇹🇭 ชี้เส้นเขียว (โฟกัส = จุด) แล้วกด → เส้นแดง (ใกล้กว่า = วง)</p><p>🇬🇧 Point at the teal rays (in focus, a point), then press → for the red ones (nearer, a disc).</p></aside>
+</section>
+
+<!-- 20 · Depth of field -->
+<section>
+  <p class="kicker">B · Lenses</p>
+  <h2 class="claim">A smaller aperture: more in focus, less light</h2>
+  <div class="split">
+    <div>
+      <canvas id="dofCv" class="democv" width="480" height="260" aria-label="three objects at 1, 2 and 6 metres; the camera focuses at 2 metres"></canvas>
+      <input class="slider" id="dofN" type="range" min="0" max="6" step="1" value="0" aria-label="aperture f-number">
+      <div class="demo-out"><span>aperture <b id="dofNv">f/1.8</b></span><span>light <b id="dofLt">×1.00</b></span></div>
+    </div>
+    <div class="say">
+      <p><b>Drag the aperture</b> — the camera focuses at <b>2 m</b>.</p>
+      <p>A smaller opening makes every blur circle smaller, so near and far look sharper: more <b>depth of field</b>.</p>
+      <p>The price is light — the same trade as part A’s pinhole.</p>
+      <p class="pix-readout" id="dofOut" style="text-align:left;font-size:.8em"></p>
+    </div>
+  </div>
+  <aside class="notes"><p>🇹🇭 f/1.8 = เปิดกว้าง ฉากหน้า/หลังเบลอ (portrait) · f/16 = ชัดทั้งภาพแต่แสงน้อย</p><p>🇬🇧 f/1.8 is wide open: blurry foreground and background (portrait look). f/16: all sharp, little light.</p></aside>
+</section>
+
+<!-- 21 · Part B summary -->
+<section>
+  <p class="kicker">B · Lenses</p>
+  <h2 class="claim">A lens: bright, sharp, and a choice of view</h2>
+  <div class="cards">
+    <div class="card"><b>Bright and sharp</b>Many rays in, one point out — for the distance in focus.</div>
+    <div class="card violet"><b>f sets the view</b>FOV = 2 · arctan(w / 2f). Longer f, narrower view.</div>
+    <div class="card amber"><b>Aperture sets depth of field</b>Smaller opening: more in focus, less light.</div>
+  </div>
+  <p class="takeaway"><span>Next · C: the sensor turns that light into numbers.</span></p>
+  <aside class="notes"><p>🇹🇭 สรุป B สามข้อ แล้วต่อ C</p><p>🇬🇧 Wrap up B in three points, then go on to C.</p></aside>
+</section>
+
+<!-- 22 · References -->
 <section>
   <p class="kicker">References</p>
-  <h2 class="claim">Where part A comes from</h2>
+  <h2 class="claim">Where parts A and B come from</h2>
   <ul class="small" style="font-size:.62em;line-height:1.6">
-    <li>S. K. Nayar. <i>First Principles of Computer Vision</i> — Image Formation: pinhole and perspective projection.</li>
-    <li>R. Szeliski (2022). <i>Computer Vision: Algorithms and Applications</i>, 2nd ed., §2.1.</li>
-    <li>A. Torralba, P. Isola &amp; W. T. Freeman (2024). <i>Foundations of Computer Vision</i>, ch. 5 — free at visionbook.mit.edu.</li>
+    <li>S. K. Nayar. <i>First Principles of Computer Vision</i> — Image Formation: pinhole and perspective projection; lenses; depth of field.</li>
+    <li>R. Szeliski (2022). <i>Computer Vision: Algorithms and Applications</i>, 2nd ed., §2.1–2.2.</li>
+    <li>A. Torralba, P. Isola &amp; W. T. Freeman (2024). <i>Foundations of Computer Vision</i>, ch. 5–6 — free at visionbook.mit.edu.</li>
+  </ul>
+  <h3 style="margin-top:.8em">Images</h3>
+  <ul class="small" style="font-size:.56em;line-height:1.6">
+    <li>Gemma Frisius (1545), camera obscura woodcut, <i>De Radio Astronomica et Geometrica</i> — public domain, via Wikimedia Commons.</li>
+    <li>Laitche, “One point perspective”, Tennoji Park, Osaka — public domain, via Wikimedia Commons. Lines and vanishing point: our OpenCV program.</li>
+    <li>Wilfredor, “Panoramic view of Jacques-Cartier National Park from the Wolves peak” — CC0, via Wikimedia Commons.</li>
+    <li>Dolly-zoom animation and all diagrams: drawn by programs written for this course.</li>
   </ul>
 </section>
 
@@ -760,7 +932,7 @@ function renderMath(){
     });
   }
 }
-function initDemos(){ initFlashN(); initHoleDemo(); initDistDemo(); initSliders(); }
+function initDemos(){ initFlashN(); initHoleDemo(); initDistDemo(); initFovDemo(); initDofDemo(); initVpToggle(); initSliders(); }
 /* range sliders: a finger anywhere on the track sets and drags the value.
    Phones otherwise only move a native slider when the touch lands exactly on its thumb,
    and a touch on the track scrolls the page instead. */
@@ -1131,6 +1303,61 @@ function initDistDemo(){
     el('dImg').setAttribute('y2',150+img);
     el('dZ').setAttribute('x',zx); el('dZ').textContent=`Z = ${Z} m`;
     out.innerHTML=`x = 50 mm × 1.8 m ÷ ${Z} m = <b>${(+x.toFixed(2)).toString()} mm</b>`;
+  };
+  sl.addEventListener('input',draw); draw();
+}
+/* field of view: FOV = 2·atan(w/2f), w = 36 mm; a row of objects 10 m ahead, 3 m apart */
+function initFovDemo(){
+  const sl=document.getElementById('fovF'), cv=document.getElementById('fovPrev'); if(!sl||!cv) return;
+  const W=36, Z=10, cam=[380,280], px=20, cols=['#0f766e','#6d5bd0','#c97a06','#e0533d','#0f1b2d','#e0533d','#c97a06','#6d5bd0','#0f766e'];
+  const objs=[-12,-9,-6,-3,0,3,6,9,12].map((x,i)=>({x,c:cols[i],h:[3,4,2.5,3.5,4.5,3.5,2.5,4,3][i]}));
+  const g=document.getElementById('fovObjs'), wedge=document.getElementById('fovWedge'), ang=document.getElementById('fovAng'), ctx=cv.getContext('2d');
+  const photo=new Image(); photo.onload=()=>draw(); photo.src=cv.dataset.src;
+  g.innerHTML=objs.map((o,i)=>`<circle id="fo${i}" cx="${cam[0]+o.x*px}" cy="${cam[1]-Z*px}" r="11" fill="${o.c}"/>`).join('');
+  const draw=()=>{
+    const f=+sl.value, half=Math.atan(W/(2*f)), deg=2*half*180/Math.PI, R=330;
+    const dx=R*Math.sin(half), dy=R*Math.cos(half);
+    wedge.setAttribute('d',`M${cam[0]},${cam[1]} L${cam[0]-dx},${cam[1]-dy} A${R},${R} 0 0 1 ${cam[0]+dx},${cam[1]-dy} Z`);
+    ang.textContent=deg.toFixed(1)+'°'; document.getElementById('fovDeg').textContent=deg.toFixed(1)+'°'; document.getElementById('fovFv').textContent=f+' mm';
+    objs.forEach((o,i)=>document.getElementById('fo'+i).setAttribute('opacity',Math.abs(Math.atan(o.x/Z))<=half?1:.18));
+    /* the picture: the photo counts as taken at 12 mm; focal length f keeps the centre 12/f of it */
+    if(photo.complete&&photo.naturalWidth){ const k=12/f, ar=cv.width/cv.height, ph=photo.naturalHeight, pw=Math.min(photo.naturalWidth,ph*ar);
+      const sw=pw*k, sh=sw/ar; ctx.drawImage(photo,(photo.naturalWidth-sw)/2,(ph-sh)/2,sw,sh,0,0,cv.width,cv.height); cv.dataset.drawn=f; }
+  };
+  sl.addEventListener('input',draw); draw();
+}
+/* real photo: swap between the photo and the program's lines */
+function initVpToggle(){
+  const b=document.getElementById('vpTog'), im=document.getElementById('vpImg'); if(!b||!im) return;
+  const a=im.getAttribute('src'), alt=im.dataset.alt; new Image().src=alt;
+  b.addEventListener('click',()=>{ const on=im.getAttribute('src')===a; im.setAttribute('src',on?alt:a); b.textContent=on?'Show the photo only':'Show the lines a program found'; });
+}
+/* depth of field: thin lens f = 50 mm focused at 2 m; blur circle c = A·f·|z−s| / (z·(s−f)), A = f/N */
+function initDofDemo(){
+  const sl=document.getElementById('dofN'), cv=document.getElementById('dofCv'); if(!sl||!cv) return;
+  const Ns=[1.8,2.8,4,5.6,8,11,16], f=50, s=2000, W=240, H=130, ctx=cv.getContext('2d');
+  const layers=[ {z:6000,col:[47,158,110],lab:'6 m',shape:(c)=>{c.beginPath();c.moveTo(190,30);c.lineTo(222,100);c.lineTo(158,100);c.fill();c.fillRect(186,100,8,14);}},
+                 {z:2000,col:[224,83,61],lab:'2 m · focus',shape:(c)=>{c.beginPath();c.arc(120,40,11,0,7);c.fill();c.fillRect(108,54,24,56);}},
+                 {z:1000,col:[109,91,208],lab:'1 m',shape:(c)=>{c.beginPath();c.arc(48,82,30,0,7);c.fill();}} ];
+  const masks=layers.map(L=>{ const o=document.createElement('canvas'); o.width=W; o.height=H; const c=o.getContext('2d'); c.fillStyle='#000'; L.shape(c);
+    const d=c.getImageData(0,0,W,H).data, m=new Float32Array(W*H); for(let i=0;i<W*H;i++) m[i]=d[i*4+3]/255; return m; });
+  const box=(src,r)=>{ if(r<1) return src; const a=new Float32Array(W*H), b=new Float32Array(W*H);
+    for(let y=0;y<H;y++) for(let x=0;x<W;x++){ let t=0,n=0; for(let k=-r;k<=r;k++){ const xx=x+k; if(xx>=0&&xx<W){ t+=src[y*W+xx]; n++; } } a[y*W+x]=t/n; }
+    for(let y=0;y<H;y++) for(let x=0;x<W;x++){ let t=0,n=0; for(let k=-r;k<=r;k++){ const yy=y+k; if(yy>=0&&yy<H){ t+=a[yy*W+x]; n++; } } b[y*W+x]=t/n; }
+    return b; };
+  const off=document.createElement('canvas'); off.width=W; off.height=H; const oc=off.getContext('2d');
+  const blurMM=(N,z)=>(f/N)*f*Math.abs(z-s)/(z*(s-f));
+  const draw=()=>{
+    const N=Ns[+sl.value], img=oc.createImageData(W,H), D=img.data;
+    for(let y=0;y<H;y++) for(let x=0;x<W;x++){ const i=(y*W+x)*4, sky=y<H*.7; D[i]=sky?232:233; D[i+1]=sky?241:238; D[i+2]=sky?248:243; D[i+3]=255; }
+    layers.forEach((L,k)=>{ const r=Math.round(Math.min(12,blurMM(N,L.z)*8)), m=box(box(masks[k],r),r);
+      for(let i=0;i<W*H;i++){ const a=m[i]; if(a>0){ D[i*4]=D[i*4]*(1-a)+L.col[0]*a; D[i*4+1]=D[i*4+1]*(1-a)+L.col[1]*a; D[i*4+2]=D[i*4+2]*(1-a)+L.col[2]*a; } } });
+    oc.putImageData(img,0,0); ctx.imageSmoothingEnabled=true; ctx.drawImage(off,0,0,cv.width,cv.height);
+    ctx.font='600 15px "Space Grotesk",sans-serif'; ctx.fillStyle='#46505e'; ctx.textAlign='center';
+    [[96,'1 m'],[240,'2 m · focus'],[380,'6 m']].forEach(([x,t])=>ctx.fillText(t,x,cv.height-10));
+    document.getElementById('dofNv').textContent='f/'+N;
+    document.getElementById('dofLt').textContent='×'+((1.8/N)**2).toFixed(N<3?2:3);
+    document.getElementById('dofOut').textContent=`blur circle · 1 m: ${blurMM(N,1000).toFixed(2)} mm · 6 m: ${blurMM(N,6000).toFixed(2)} mm`;
   };
   sl.addEventListener('input',draw); draw();
 }
