@@ -944,10 +944,10 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
 
 <!-- deck toolbar -->
 <nav class="deckbar" id="deckbar" aria-label="Slide controls" hidden>
-  <button data-act="first" aria-label="First slide" title="First slide (Home · Shift+←)"><svg viewBox="0 0 24 24"><path d="M6 5v14M18 18l-6-6 6-6"/></svg></button>
+  <button data-act="first" aria-label="First slide" title="First slide (Home · Shift+↑)"><svg viewBox="0 0 24 24"><path d="M6 5v14M18 18l-6-6 6-6"/></svg></button>
   <button data-act="prev" aria-label="Previous slide" title="Previous (←)"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
   <button data-act="next" aria-label="Next slide" title="Next (→ or Space)"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>
-  <button data-act="last" aria-label="Last slide" title="Last slide (End · Shift+→)"><svg viewBox="0 0 24 24"><path d="M18 5v14M6 18l6-6-6-6"/></svg></button>
+  <button data-act="last" aria-label="Last slide" title="Last slide (End · Shift+↓)"><svg viewBox="0 0 24 24"><path d="M18 5v14M6 18l6-6-6-6"/></svg></button>
   <span class="sep" aria-hidden="true"></span>
   <button data-act="overview" aria-label="All slides" title="All slides (O)"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></button>
   <button data-act="fullscreen" aria-label="Full screen" title="Full screen (Enter · F)"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
@@ -976,7 +976,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <dt><kbd>→</kbd><kbd>Space</kbd></dt><dd>Next step</dd>
     <dt><kbd>←</kbd></dt><dd>Previous step</dd>
     <dt><kbd>↓</kbd><kbd>↑</kbd></dt><dd>Next / previous slide — skip the animations</dd>
-    <dt><kbd>Home</kbd><kbd>End</kbd></dt><dd>First / last slide · also <kbd>Shift</kbd>+<kbd>←</kbd><kbd>→</kbd></dd>
+    <dt><kbd>Home</kbd><kbd>End</kbd></dt><dd>First / last slide · also <kbd>Shift</kbd>+<kbd>↑</kbd><kbd>↓</kbd></dd>
     <dt><kbd>G</kbd></dt><dd>Go to slide — type its number, then Enter</dd>
     <dt><kbd>O</kbd></dt><dd>All slides — arrows move, Enter opens, scroll or drag</dd>
     <dt><kbd>Enter</kbd><kbd>F</kbd></dt><dd>Full screen</dd>
@@ -1142,6 +1142,18 @@ function initDeckbar(){
     if(document.fullscreenElement||document.webkitFullscreenElement){ (document.exitFullscreen||document.webkitExitFullscreen).call(document); }
     else if(el.requestFullscreen) el.requestFullscreen(); else if(el.webkitRequestFullscreen) el.webkitRequestFullscreen(); };
   const last=()=>Reveal.getTotalSlides()-1;
+  /* Shift+↑/↓ = first/last slide · Shift+←/→ = previous/next topic (a topic = a run of sections with the same data-part) */
+  document.addEventListener('keydown',e=>{
+    if(!e.shiftKey||e.ctrlKey||e.metaKey||e.altKey||document.documentElement.classList.contains('album-open')) return;
+    const k=e.key; if(!/^Arrow(Up|Down|Left|Right)$/.test(k)) return;
+    if(/INPUT|TEXTAREA/.test((document.activeElement||{}).tagName||'')) return;
+    e.preventDefault(); e.stopImmediatePropagation();
+    if(k==='ArrowUp') return Reveal.slide(0);
+    if(k==='ArrowDown') return Reveal.slide(last());
+    const sl=Reveal.getSlides(), starts=sl.map((x,i)=>x.dataset.part&&(i===0||sl[i-1].dataset.part!==x.dataset.part)?i:-1).filter(i=>i>=0);
+    const h=Reveal.getIndices().h, t=k==='ArrowRight'?starts.find(i=>i>h):[...starts].reverse().find(i=>i<h);
+    if(t!==undefined) Reveal.slide(t);
+  },true);
   const act={first:()=>Reveal.slide(0), prev:()=>Reveal.prev(), next:()=>Reveal.next(), last:()=>Reveal.slide(last()),
              overview:()=>toggleAlbum(), fullscreen, pdf:toggleMenu, help:toggleKeys};
   bar.addEventListener('click',e=>{ const b=e.target.closest('button'); if(b && act[b.dataset.act]){ act[b.dataset.act](); if(b.dataset.act!=='pdf'&&b.dataset.act!=='help') closeAll(); } });

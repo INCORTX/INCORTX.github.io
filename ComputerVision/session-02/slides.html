@@ -261,6 +261,23 @@ html.reading .reveal .mnote{font-size:14px;}
 .say b{color:var(--ink);}
 .demo-out{font-family:var(--mono);font-size:.5em;color:var(--muted);margin-top:.35em;display:flex;justify-content:space-between;gap:.6em;flex-wrap:wrap;}
 .demo-out b{color:var(--ink);font-weight:600;}
+.part-open{display:flex !important;flex-direction:column;justify-content:center;}
+.po-strip{position:absolute;top:44px;left:4px;right:4px;display:grid;grid-template-columns:repeat(4,1fr);gap:.4em;font-family:var(--display);font-size:.5em;}
+.po-strip span{display:flex;align-items:center;gap:.5em;padding:.45em .7em;border-radius:999px;background:var(--soft);color:var(--muted);}
+.po-strip b{display:inline-grid;place-items:center;width:1.7em;height:1.7em;border-radius:50%;background:#fff;color:var(--muted);}
+.po-strip span.done{color:var(--body);}
+.po-strip span.done b{background:var(--teal-soft);color:var(--teal);}
+.po-strip span.on{background:var(--teal);color:#fff;}
+.po-strip span.on b{background:#fff;color:var(--teal);}
+.reveal .po-letter{margin:0;font-family:var(--display);font-weight:700;font-size:3.2em;line-height:1;color:var(--teal);}
+.part-open .claim{font-size:1.9em;margin:.1em 0 .3em;}
+.reveal .po-q{margin:0 0 1.2em;font-family:var(--display);font-size:.95em;color:var(--body);max-width:24em;}
+.reveal .po-out{margin:0;max-width:34em;border-left:5px solid var(--teal);padding:.3em 0 .3em .8em;font-size:.62em;line-height:1.5;color:var(--body);}
+.po-out span{display:block;font-family:var(--display);font-weight:700;font-size:.8em;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:.15em;}
+html.reading .part-open{display:block !important;}
+html.reading .po-strip{position:static;grid-template-columns:1fr 1fr;margin-bottom:1em;font-size:13px;}
+html.reading .po-q{font-size:18px;}
+html.reading .po-out{font-size:15px;}
 .photo{margin:0;}
 .photo img{display:block;width:100%;height:auto;max-height:430px;object-fit:contain;border-radius:12px;border:1px solid var(--line);background:#fff;}
 .photo figcaption{margin-top:.4em;font-family:var(--mono);font-size:.4em;color:var(--muted);text-align:center;}
@@ -543,8 +560,18 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 อ่านคำถามของคาบ แล้วบอกว่าวันนี้เริ่มที่ A</p><p>🇬🇧 Read the session question; today starts with A.</p></aside>
 </section>
 
-<!-- 3 · Flashback -->
-<section>
+<!-- 3 · Part A opener -->
+<section class="part-open" data-part="A">
+  <div class="po-strip"><span class="on"><b>A</b>Pinhole</span><span class=""><b>B</b>Lenses</span><span class=""><b>C</b>Sensors</span><span class=""><b>D</b>Colour</span></div>
+  <p class="po-letter">A</p>
+  <h2 class="claim">Pinhole &amp; perspective</h2>
+  <p class="po-q">Why do far things look small — and where does depth go?</p>
+  <p class="po-out"><span>By the end of this part</span>Compute where a 3D point lands on the image, and explain why depth is lost.</p>
+  <aside class="notes"><p>🇹🇭 หน้าเปิด topic: อ่านคำถามของ part แล้วเข้าเนื้อหา</p><p>🇬🇧 Part opener: read the question for this part, then go in.</p></aside>
+</section>
+
+<!-- 4 · Flashback -->
+<section data-part="A">
   <p class="kicker">A · Pinhole &amp; perspective</p>
   <h2 class="claim">An image is a grid of numbers — where do they come from?</h2>
   <div class="split even">
@@ -558,8 +585,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ถามห้อง: ตัวเลขแต่ละตัววัดอะไร? (แสงที่ตกลงตรงนั้น)</p><p>🇬🇧 Ask: what does each number measure? (the light that landed there)</p></aside>
 </section>
 
-<!-- 4 · Camera obscura -->
-<section>
+<!-- 5 · Camera obscura -->
+<section data-part="A">
   <p class="kicker">A · Pinhole &amp; perspective</p>
   <h2 class="claim">A hole in a dark box makes a picture</h2>
   <div class="split">
@@ -573,8 +600,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 กด → สองครั้ง: รังสี แล้วภาพกลับหัว · ถาม: ทำไมกลับหัว? (รังสีไขว้กันที่รู)</p><p>🇬🇧 Press → twice: rays, then the flipped image. Ask: why upside down? (rays cross at the hole)</p></aside>
 </section>
 
-<!-- 5 · Frisius 1544 -->
-<section>
+<!-- 6 · Frisius 1544 -->
+<section data-part="A">
   <p class="kicker">A · Pinhole &amp; perspective</p>
   <h2 class="claim">People have watched the sky this way for 500 years</h2>
   <div class="split">
@@ -589,8 +616,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ภาษาละตินบนภาพ: Solis deliquium = สุริยุปราคา · 1544 · 24 มกราคม · Lovanii = เมือง Leuven · ชวนคุย: ใครเคยดูสุริยุปราคาด้วยรูเข็ม?</p><p>🇬🇧 The Latin reads: solar eclipse, 1544, 24 January, Leuven. Ask: who has watched an eclipse through a pinhole?</p></aside>
 </section>
 
-<!-- 6 · Hole size -->
-<section>
+<!-- 7 · Hole size -->
+<section data-part="A">
   <p class="kicker">A · Pinhole &amp; perspective</p>
   <h2 class="claim">Big hole: blurry. Small hole: dark.</h2>
   <div class="split">
@@ -609,8 +636,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ลากจาก 1 mm ไปเล็กสุด (มืด) แล้วไปใหญ่สุด (เบลอ) · twice the width = 4× light</p><p>🇬🇧 Drag from 1 mm to smallest (dark), then largest (blurry). Twice the width = 4× the light.</p></aside>
 </section>
 
-<!-- 7 · Similar triangles -->
-<section>
+<!-- 8 · Similar triangles -->
+<section data-part="A">
   <p class="kicker">A · Pinhole &amp; perspective</p>
   <h2 class="claim">Two similar triangles give the formula</h2>
   <div class="split">
@@ -625,8 +652,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 กด → ทีละชั้น: รังสี → สามเหลี่ยมฝั่งวัตถุ → ฝั่งภาพ+สูตร · ย้ำ: มุมเท่ากัน อัตราส่วนด้านเท่ากัน</p><p>🇬🇧 Press → layer by layer: ray, object triangle, image triangle + formula. Same angles, same side ratios.</p></aside>
 </section>
 
-<!-- 8 · Twice as far -->
-<section>
+<!-- 9 · Twice as far -->
+<section data-part="A">
   <p class="kicker">A · Pinhole &amp; perspective</p>
   <h2 class="claim">Twice as far, half as big</h2>
   <svg class="fig" id="distSvg" viewBox="0 0 760 300" role="img" aria-label="Side view: a person at distance Z, a pinhole, and the image on the image plane"><line x1="20" y1="150" x2="740" y2="150" stroke="#c9d1db" stroke-width="2"/><line x1="620" y1="10" x2="620" y2="290" stroke="#9aa6b5" stroke-width="2" stroke-dasharray="5 5"/><text x="628" y="26" class="lb">image plane</text><circle cx="520" cy="150" r="6" fill="#0f1b2d"/><line id="dPerson" x1="0" y1="150" x2="0" y2="90" stroke="#0f1b2d" stroke-width="6" stroke-linecap="round"/><line id="dRay" x1="0" y1="90" x2="620" y2="150" stroke="#f9ab00" stroke-width="2.5"/><line id="dImg" x1="620" y1="150" x2="620" y2="150" stroke="#e0533d" stroke-width="6" stroke-linecap="round"/><text id="dZ" x="0" y="180" class="lb" text-anchor="middle"></text><text x="570" y="140" class="lb" text-anchor="middle">f</text></svg>
@@ -643,8 +670,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ลาก Z จาก 10 ไป 20: ภาพเหลือครึ่ง · ถาม: ถ้าไป 40 m ล่ะ? (2.25 mm)</p><p>🇬🇧 Drag Z from 10 to 20: the image halves. Ask: at 40 m? (2.25 mm)</p></aside>
 </section>
 
-<!-- 9 · Try it -->
-<section>
+<!-- 10 · Try it -->
+<section data-part="A">
   <p class="kicker">A · Pinhole &amp; perspective</p>
   <h2 class="claim">Try it: how tall is the car on the image?</h2>
   <div class="split">
@@ -657,8 +684,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ให้เวลา 1 นาที · แบบนี้คือรูปแบบข้อสอบ Final (เปลี่ยนตัวเลข)</p><p>🇬🇧 Give one minute. This is the final-exam format, with other numbers.</p></aside>
 </section>
 
-<!-- 10 · Vanishing point -->
-<section>
+<!-- 11 · Vanishing point -->
+<section data-part="A">
   <p class="kicker">A · Pinhole &amp; perspective</p>
   <h2 class="claim">Parallel lines meet at one point</h2>
   <div class="split">
@@ -672,8 +699,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ชี้ราง: ห่างเท่าเดิมในโลกจริง แต่บนภาพแคบลงตาม 1/Z · กด → ให้เห็นเส้นขอบฟ้า</p><p>🇬🇧 Point at the rails: constant gap in the world, shrinking as 1/Z on the image. Press → for the horizon.</p></aside>
 </section>
 
-<!-- 11 · Real photo -->
-<section>
+<!-- 12 · Real photo -->
+<section data-part="A">
   <p class="kicker">A · Pinhole &amp; perspective</p>
   <h2 class="claim">In a real photo, a program can find that point</h2>
   <div class="split">
@@ -689,8 +716,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 กดปุ่มสลับภาพ · เส้นเหลือง = ที่ OpenCV เจอ · เส้นแดง = ต่อไปถึงจุดรวม</p><p>🇬🇧 Press the button: yellow = segments OpenCV found, red = their extensions to the common point.</p></aside>
 </section>
 
-<!-- 12 · Depth is lost -->
-<section>
+<!-- 13 · Depth is lost -->
+<section data-part="A">
   <p class="kicker">A · Pinhole &amp; perspective</p>
   <h2 class="claim">A photo cannot tell near-and-small from far-and-big</h2>
   <svg class="fig" viewBox="0 0 760 280" role="img" aria-label="Objects 1, 2 and 4 metres tall at 5, 10 and 20 metres lie on one ray and give the same image"><line x1="30" y1="170" x2="730" y2="170" stroke="#c9d1db" stroke-width="2"/><line x1="680" y1="60" x2="680" y2="250" stroke="#9aa6b5" stroke-width="2" stroke-dasharray="5 5"/><circle cx="600" cy="170" r="6" fill="#0f1b2d"/><line x1="120" y1="74.0" x2="680" y2="186.0" stroke="#f9ab00" stroke-width="2.5"/><g class="fragment" data-fragment-index="1"><line x1="480" y1="170" x2="480" y2="146.0" stroke="#0f766e" stroke-width="6" stroke-linecap="round"/><text x="480" y="196" class="lb" text-anchor="middle" fill="#0f766e">1 m tall</text><text x="480" y="216" class="lb" text-anchor="middle" fill="#0f766e">5 m away</text></g><g class="fragment" data-fragment-index="2"><line x1="360" y1="170" x2="360" y2="122.0" stroke="#6d5bd0" stroke-width="6" stroke-linecap="round"/><text x="360" y="196" class="lb" text-anchor="middle" fill="#6d5bd0">2 m tall</text><text x="360" y="216" class="lb" text-anchor="middle" fill="#6d5bd0">10 m away</text></g><g class="fragment" data-fragment-index="3"><line x1="120" y1="170" x2="120" y2="74.0" stroke="#e0533d" stroke-width="6" stroke-linecap="round"/><text x="120" y="196" class="lb" text-anchor="middle" fill="#e0533d">4 m tall</text><text x="120" y="216" class="lb" text-anchor="middle" fill="#e0533d">20 m away</text></g><g class="fragment" data-fragment-index="4"><line x1="680" y1="170" x2="680" y2="186.0" stroke="#0f1b2d" stroke-width="6" stroke-linecap="round"/><text x="692" y="192.0" class="lb">10 mm</text></g></svg>
@@ -700,8 +727,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 กด → ทีละวัตถุ แล้วภาพเดียวกัน · ถาม: ถ้าเห็นแค่ภาพ บอกได้ไหมว่าอันไหนจริง?</p><p>🇬🇧 Press → for each object, then the shared image. Ask: from the image alone, which one is it?</p></aside>
 </section>
 
-<!-- 13 · Winning depth back -->
-<section>
+<!-- 14 · Winning depth back -->
+<section data-part="A">
   <p class="kicker">A · Pinhole &amp; perspective</p>
   <h2 class="claim">Depth is lost — later, we win it back</h2>
   <div class="wins">
@@ -713,8 +740,18 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 สรุป A ด้วยกล่อง key idea แล้วต่อ B</p><p>🇬🇧 Wrap up A with the key-idea box, then go on to B.</p></aside>
 </section>
 
-<!-- 14 · Lens gathers light -->
-<section>
+<!-- 15 · Part B opener -->
+<section class="part-open" data-part="B">
+  <div class="po-strip"><span class="done"><b>A</b>Pinhole</span><span class="on"><b>B</b>Lenses</span><span class=""><b>C</b>Sensors</span><span class=""><b>D</b>Colour</span></div>
+  <p class="po-letter">B</p>
+  <h2 class="claim">Lenses</h2>
+  <p class="po-q">How can a picture be bright and sharp at once?</p>
+  <p class="po-out"><span>By the end of this part</span>Explain how focal length sets the field of view, and how the aperture sets depth of field.</p>
+  <aside class="notes"><p>🇹🇭 หน้าเปิด topic: อ่านคำถามของ part แล้วเข้าเนื้อหา</p><p>🇬🇧 Part opener: read the question for this part, then go in.</p></aside>
+</section>
+
+<!-- 16 · Lens gathers light -->
+<section data-part="B">
   <p class="kicker">B · Lenses</p>
   <h2 class="claim">A lens gathers a cone of light into one point</h2>
   <div class="split">
@@ -728,8 +765,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ย้อนหน้า 5 (รูเข็ม) แล้วกด → สองครั้ง: รังสีหลายเส้นเข้า → มารวมที่จุดเดียว</p><p>🇬🇧 Recall slide 5, then press → twice: many rays in, one point out.</p></aside>
 </section>
 
-<!-- 15 · Focal point -->
-<section>
+<!-- 17 · Focal point -->
+<section data-part="B">
   <p class="kicker">B · Lenses</p>
   <h2 class="claim">Parallel rays meet at the focal point</h2>
   <div class="split">
@@ -743,8 +780,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 เน้น: กล้องที่ถ่ายของไกล ภาพเกิดที่ระยะ f → สูตรเดิมของ A ใช้ต่อได้</p><p>🇬🇧 Stress: for distant scenes the image sits at f, so part A's formula carries over.</p></aside>
 </section>
 
-<!-- 16 · Field of view -->
-<section>
+<!-- 18 · Field of view -->
+<section data-part="B">
   <p class="kicker">B · Lenses</p>
   <h2 class="claim">Longer focal length, narrower view</h2>
   <div class="split even">
@@ -761,8 +798,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ลาก f: 18 mm = มุมกว้าง (90°) · 50 mm ≈ ตาคน · 200 mm = tele ซูม · w = ความกว้าง sensor</p><p>🇬🇧 Drag f: 18 mm is wide (90°), 50 mm is close to the eye, 200 mm is a zoom. w is the sensor width.</p></aside>
 </section>
 
-<!-- 17 · Try it FOV -->
-<section>
+<!-- 19 · Try it FOV -->
+<section data-part="B">
   <p class="kicker">B · Lenses</p>
   <h2 class="claim">Try it: how wide does the camera see?</h2>
   <div class="split">
@@ -775,8 +812,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ให้เวลา 1–2 นาที · ข้อ 2 ต้องคิดย้อนจากมุม</p><p>🇬🇧 Give one to two minutes; question 2 works backwards from the angle.</p></aside>
 </section>
 
-<!-- 18 · Dolly zoom -->
-<section>
+<!-- 20 · Dolly zoom -->
+<section data-part="B">
   <p class="kicker">B · Lenses</p>
   <h2 class="claim">Walk back and zoom in: the subject stays, the world changes</h2>
   <div class="split">
@@ -791,8 +828,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ภาพเคลื่อนไหววนเอง · ชี้คน (ขนาดคงที่) เทียบต้นไม้ (ใหญ่ขึ้น) · เทคนิคนี้รู้จักจากหนัง Vertigo (Hitchcock, 1958)</p><p>🇬🇧 The animation loops. Point at the person (constant) versus the trees (growing). Known from Hitchcock's Vertigo (1958).</p></aside>
 </section>
 
-<!-- 19 · Blur circle -->
-<section>
+<!-- 21 · Blur circle -->
+<section data-part="B">
   <p class="kicker">B · Lenses</p>
   <h2 class="claim">Only one distance is perfectly sharp</h2>
   <svg class="fig short" viewBox="0 0 760 280" role="img" aria-label="A point at the focus distance lands as a point on the sensor; a nearer point lands as a blur disc"><line x1="20" y1="150" x2="740" y2="150" stroke="#c9d1db" stroke-width="2"/><path d="M330,70 Q352,150 330,230 Q308,150 330,70Z" fill="rgba(56,189,248,.18)" stroke="#38bdf8" stroke-width="2"/><line x1="560" y1="40" x2="560" y2="260" stroke="#0f1b2d" stroke-width="4"/><text x="570" y="56" class="lb">sensor</text><g><line x1="119.2" y1="150" x2="330" y2="80" stroke="#0f766e" stroke-width="2.2"/><line x1="119.2" y1="150" x2="330" y2="220" stroke="#0f766e" stroke-width="2.2"/><line x1="330" y1="80" x2="560" y2="150" stroke="#0f766e" stroke-width="2.2"/><line x1="330" y1="220" x2="560" y2="150" stroke="#0f766e" stroke-width="2.2"/><circle cx="119.2" cy="150" r="7" fill="#0f766e"/><text x="119.2" y="132" class="lb" text-anchor="middle" fill="#0f766e">in focus</text></g><g class="fragment"><line x1="180" y1="150" x2="330" y2="80" stroke="#e0533d" stroke-width="2.2"/><line x1="180" y1="150" x2="330" y2="220" stroke="#e0533d" stroke-width="2.2"/><line x1="330" y1="80" x2="560" y2="119.0" stroke="#e0533d" stroke-width="2.2"/><line x1="330" y1="220" x2="560" y2="181.0" stroke="#e0533d" stroke-width="2.2"/><line x1="560" y1="119.0" x2="560" y2="181.0" stroke="#e0533d" stroke-width="10" stroke-linecap="round" opacity=".55"/><circle cx="180" cy="150" r="7" fill="#e0533d"/><text x="180" y="202" class="lb" text-anchor="middle" fill="#e0533d">nearer</text><text x="574" y="207.0" class="lb" fill="#e0533d">a disc — blur</text></g></svg>
@@ -803,8 +840,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ชี้เส้นเขียว (โฟกัส = จุด) แล้วกด → เส้นแดง (ใกล้กว่า = วง)</p><p>🇬🇧 Point at the teal rays (in focus, a point), then press → for the red ones (nearer, a disc).</p></aside>
 </section>
 
-<!-- 20 · Depth of field -->
-<section>
+<!-- 22 · Depth of field -->
+<section data-part="B">
   <p class="kicker">B · Lenses</p>
   <h2 class="claim">A smaller aperture: more in focus, less light</h2>
   <div class="split">
@@ -823,8 +860,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 f/1.8 = เปิดกว้าง ฉากหน้า/หลังเบลอ (portrait) · f/16 = ชัดทั้งภาพแต่แสงน้อย</p><p>🇬🇧 f/1.8 is wide open: blurry foreground and background (portrait look). f/16: all sharp, little light.</p></aside>
 </section>
 
-<!-- 21 · Part B summary -->
-<section>
+<!-- 23 · Part B summary -->
+<section data-part="B">
   <p class="kicker">B · Lenses</p>
   <h2 class="claim">A lens: bright, sharp, and a choice of view</h2>
   <div class="cards">
@@ -836,8 +873,18 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 สรุป B สามข้อ แล้วต่อ C</p><p>🇬🇧 Wrap up B in three points, then go on to C.</p></aside>
 </section>
 
-<!-- 22 · Sensor -->
-<section>
+<!-- 24 · Part C opener -->
+<section class="part-open" data-part="C">
+  <div class="po-strip"><span class="done"><b>A</b>Pinhole</span><span class="done"><b>B</b>Lenses</span><span class="on"><b>C</b>Sensors</span><span class=""><b>D</b>Colour</span></div>
+  <p class="po-letter">C</p>
+  <h2 class="claim">Sensors</h2>
+  <p class="po-q">How does light become numbers — and what limits them?</p>
+  <p class="po-out"><span>By the end of this part</span>Explain resolution, bit depth, noise and dynamic range — and compute an image’s size.</p>
+  <aside class="notes"><p>🇹🇭 หน้าเปิด topic: อ่านคำถามของ part แล้วเข้าเนื้อหา</p><p>🇬🇧 Part opener: read the question for this part, then go in.</p></aside>
+</section>
+
+<!-- 25 · Sensor -->
+<section data-part="C">
   <p class="kicker">C · Sensors</p>
   <h2 class="claim">A sensor is a grid of tiny light buckets</h2>
   <div class="split">
@@ -852,8 +899,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ถามห้อง: มือถือของทุกคนมีกี่ล้านพิกเซล? (12, 48, 50 MP…) = จำนวนถังแสง</p><p>🇬🇧 Ask: how many megapixels does your phone have? That is the number of buckets.</p></aside>
 </section>
 
-<!-- 23 · Live camera -->
-<section>
+<!-- 26 · Live camera -->
+<section data-part="C">
   <p class="kicker">C · Sensors</p>
   <h2 class="claim">Live: your camera, as numbers</h2>
   <div class="split">
@@ -872,8 +919,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 กดปุ่มให้เบราว์เซอร์ขอสิทธิ์กล้อง · ลาก slider ไปซ้ายสุด (8 ช่อง) ให้เห็นตัวเลข · โบกมือให้ตัวเลขเปลี่ยน</p><p>🇬🇧 Press the button and allow the camera. Slide to 8 across to see the numbers; wave a hand to change them.</p></aside>
 </section>
 
-<!-- 24 · Resolution -->
-<section>
+<!-- 27 · Resolution -->
+<section data-part="C">
   <p class="kicker">C · Sensors</p>
   <h2 class="claim">More pixels, more detail</h2>
   <div class="split">
@@ -891,8 +938,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ลากจากหยาบสุด → ละเอียดสุด · ถาม: ต้องกี่พิกเซลถึงเห็นว่าเป็นซุ้มทางเดิน?</p><p>🇬🇧 Drag from coarsest to finest. Ask: how many pixels before you recognise the walkway?</p></aside>
 </section>
 
-<!-- 25 · Bit depth -->
-<section>
+<!-- 28 · Bit depth -->
+<section data-part="C">
   <p class="kicker">C · Sensors</p>
   <h2 class="claim">Fewer bits, fewer levels — and visible bands</h2>
   <div class="split">
@@ -911,8 +958,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ลาก 8 → 4 → 2 → 1 bit · ดูท้องฟ้ากับแถบเทาด้านล่าง</p><p>🇬🇧 Drag 8 → 4 → 2 → 1 bit; watch the sky and the grey ramp below.</p></aside>
 </section>
 
-<!-- 26 · Shot noise -->
-<section>
+<!-- 29 · Shot noise -->
+<section data-part="C">
   <p class="kicker">C · Sensors</p>
   <h2 class="claim">Few photons, grainy picture</h2>
   <div class="split">
@@ -930,8 +977,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ลากจากแสงน้อยสุด (1 photon) → มาก · 100 photons → SNR 10 · 10,000 → 100</p><p>🇬🇧 Drag from 1 photon upwards: 100 photons give SNR 10, 10,000 give 100.</p></aside>
 </section>
 
-<!-- 27 · Dynamic range -->
-<section>
+<!-- 30 · Dynamic range -->
+<section data-part="C">
   <p class="kicker">C · Sensors</p>
   <h2 class="claim">One exposure cannot hold the window and the room</h2>
   <div class="split">
@@ -949,8 +996,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ลาก exposure −6 → +2 · ดู % ที่ขาว/ดำสนิท · HDR (ถ่ายหลาย exposure แล้วรวม) เป็นหัวข้อ T2</p><p>🇬🇧 Drag exposure from −6 to +2 and watch the clipped percentages. HDR — merging several exposures — is a T2 topic.</p></aside>
 </section>
 
-<!-- 28 · Try it -->
-<section>
+<!-- 31 · Try it -->
+<section data-part="C">
   <p class="kicker">C · Sensors</p>
   <h2 class="claim">Try it: how big is a photo?</h2>
   <div class="split">
@@ -963,8 +1010,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ให้เวลา 1 นาที · ต่อ: ทำไมไฟล์ JPEG จริงเล็กกว่ามาก? (บีบอัด)</p><p>🇬🇧 Give one minute. Follow-up: why is the real JPEG much smaller? (compression)</p></aside>
 </section>
 
-<!-- 29 · Part C summary -->
-<section>
+<!-- 32 · Part C summary -->
+<section data-part="C">
   <p class="kicker">C · Sensors</p>
   <h2 class="claim">A sensor turns light into a grid of limited numbers</h2>
   <div class="cards">
@@ -976,7 +1023,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 สรุป C สามข้อ แล้วต่อ D</p><p>🇬🇧 Wrap up C in three points, then go on to D.</p></aside>
 </section>
 
-<!-- 30 · References -->
+<!-- 33 · References -->
 <section>
   <p class="kicker">References</p>
   <h2 class="claim">Where parts A, B and C come from</h2>
@@ -1010,10 +1057,10 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
 
 <!-- deck toolbar -->
 <nav class="deckbar" id="deckbar" aria-label="Slide controls" hidden>
-  <button data-act="first" aria-label="First slide" title="First slide (Home · Shift+←)"><svg viewBox="0 0 24 24"><path d="M6 5v14M18 18l-6-6 6-6"/></svg></button>
+  <button data-act="first" aria-label="First slide" title="First slide (Home · Shift+↑)"><svg viewBox="0 0 24 24"><path d="M6 5v14M18 18l-6-6 6-6"/></svg></button>
   <button data-act="prev" aria-label="Previous slide" title="Previous (←)"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
   <button data-act="next" aria-label="Next slide" title="Next (→ or Space)"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>
-  <button data-act="last" aria-label="Last slide" title="Last slide (End · Shift+→)"><svg viewBox="0 0 24 24"><path d="M18 5v14M6 18l6-6-6-6"/></svg></button>
+  <button data-act="last" aria-label="Last slide" title="Last slide (End · Shift+↓)"><svg viewBox="0 0 24 24"><path d="M18 5v14M6 18l6-6-6-6"/></svg></button>
   <span class="sep" aria-hidden="true"></span>
   <button data-act="overview" aria-label="All slides" title="All slides (O)"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></button>
   <button data-act="fullscreen" aria-label="Full screen" title="Full screen (Enter · F)"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
@@ -1042,7 +1089,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <dt><kbd>→</kbd><kbd>Space</kbd></dt><dd>Next step</dd>
     <dt><kbd>←</kbd></dt><dd>Previous step</dd>
     <dt><kbd>↓</kbd><kbd>↑</kbd></dt><dd>Next / previous slide — skip the animations</dd>
-    <dt><kbd>Home</kbd><kbd>End</kbd></dt><dd>First / last slide · also <kbd>Shift</kbd>+<kbd>←</kbd><kbd>→</kbd></dd>
+    <dt><kbd>Home</kbd><kbd>End</kbd></dt><dd>First / last slide · also <kbd>Shift</kbd>+<kbd>↑</kbd><kbd>↓</kbd></dd>
+    <dt><kbd>Shift</kbd>+<kbd>←</kbd><kbd>→</kbd></dt><dd>Previous / next topic — A, B, C, D</dd>
     <dt><kbd>G</kbd></dt><dd>Go to slide — type its number, then Enter</dd>
     <dt><kbd>O</kbd></dt><dd>All slides — arrows move, Enter opens, scroll or drag</dd>
     <dt><kbd>Enter</kbd><kbd>F</kbd></dt><dd>Full screen</dd>
@@ -1212,6 +1260,18 @@ function initDeckbar(){
     if(document.fullscreenElement||document.webkitFullscreenElement){ (document.exitFullscreen||document.webkitExitFullscreen).call(document); }
     else if(el.requestFullscreen) el.requestFullscreen(); else if(el.webkitRequestFullscreen) el.webkitRequestFullscreen(); };
   const last=()=>Reveal.getTotalSlides()-1;
+  /* Shift+↑/↓ = first/last slide · Shift+←/→ = previous/next topic (a topic = a run of sections with the same data-part) */
+  document.addEventListener('keydown',e=>{
+    if(!e.shiftKey||e.ctrlKey||e.metaKey||e.altKey||document.documentElement.classList.contains('album-open')) return;
+    const k=e.key; if(!/^Arrow(Up|Down|Left|Right)$/.test(k)) return;
+    if(/INPUT|TEXTAREA/.test((document.activeElement||{}).tagName||'')) return;
+    e.preventDefault(); e.stopImmediatePropagation();
+    if(k==='ArrowUp') return Reveal.slide(0);
+    if(k==='ArrowDown') return Reveal.slide(last());
+    const sl=Reveal.getSlides(), starts=sl.map((x,i)=>x.dataset.part&&(i===0||sl[i-1].dataset.part!==x.dataset.part)?i:-1).filter(i=>i>=0);
+    const h=Reveal.getIndices().h, t=k==='ArrowRight'?starts.find(i=>i>h):[...starts].reverse().find(i=>i<h);
+    if(t!==undefined) Reveal.slide(t);
+  },true);
   const act={first:()=>Reveal.slide(0), prev:()=>Reveal.prev(), next:()=>Reveal.next(), last:()=>Reveal.slide(last()),
              overview:()=>toggleAlbum(), fullscreen, pdf:toggleMenu, help:toggleKeys};
   bar.addEventListener('click',e=>{ const b=e.target.closest('button'); if(b && act[b.dataset.act]){ act[b.dataset.act](); if(b.dataset.act!=='pdf'&&b.dataset.act!=='help') closeAll(); } });
