@@ -62,6 +62,17 @@ h2{font:700 22px var(--display);color:var(--ink);margin:0 0 14px}
   .ses .num{width:44px;height:44px;font-size:20px}
   .acts{grid-column:1/-1;justify-content:flex-start}
 }
+.note{margin:-6px 0 14px;font-size:14.5px;color:var(--body)}
+.tsets{display:grid;gap:12px}
+.tset{border:1px solid var(--line);border-radius:16px;padding:16px 18px;background:#fff}
+.tset.soon{background:var(--soft);color:var(--muted)}
+.tset h3{margin:0 0 4px;font:700 18px var(--display);color:var(--ink)}
+.tset.soon h3{color:var(--muted)}
+.tset .who{font-size:13.5px;color:var(--muted);margin:0 0 10px}
+.tset ol{margin:0;padding-left:1.3em;display:grid;grid-template-columns:1fr 1fr;gap:6px 22px}
+.tset li{font-size:14.5px}
+.tset li a{display:block;font-size:12.5px;text-decoration:none}
+@media (max-width:760px){.tset ol{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -85,6 +96,10 @@ h2{font:700 22px var(--display);color:var(--ink);margin:0 0 14px}
   <h2>Sessions</h2>
   <div class="sessions" id="sessions"></div>
 
+  <h2 style="margin-top:34px">Assignment topics</h2>
+  <p class="note">Every session after the first has a topic set. The set <b>T<i>n</i></b> builds on session <i>n</i>; one half of the class presents it in the next session, one group per topic. Each topic links to a short starting lecture — go beyond it.</p>
+  <div class="tsets" id="tsets"></div>
+
   <p class="foot">Slides open in the browser — on a phone they turn into a scrolling page. Press <b>?</b> inside a deck for its keyboard shortcuts.</p>
 </div>
 
@@ -103,6 +118,7 @@ const SESSIONS = [
   {n:8, week:8, title:'Detection & segmentation', q:'What is there, where, and which pixels — and can a prompt answer without training?', slides:null, lab:null, parts:[]},
   {n:9, week:9, title:'Motion & video', q:'What moves, which way — and how do we follow the same object across frames?', slides:null, lab:null, parts:[]},
 ];
+const TSETS = [{"set": "T2", "builds": 2, "half": "A", "in": "session 3", "topics": [{"t": "Wide-angle and fisheye cameras", "v": "Wide Angle Cameras", "u": "https://www.youtube.com/watch?v=oYOpEkaeq_o"}, {"t": "HDR imaging and the camera response", "v": "Camera Response and HDR Imaging", "u": "https://www.youtube.com/watch?v=95DNdbxaIXE"}, {"t": "Animal eyes — how nature designs cameras", "v": "Animal Eyes", "u": "https://www.youtube.com/watch?v=fTF0TRtVwEY"}, {"t": "A brief history of imaging", "v": "A Brief History of Imaging", "u": "https://www.youtube.com/watch?v=SWs9LQzpcN8"}, {"t": "Depth from focus and defocus", "v": "Depth from Defocus — overview", "u": "https://www.youtube.com/watch?v=_PfKnkGAcuc"}, {"t": "Structured light and time-of-flight", "v": "Active Illumination Methods — overview", "u": "https://www.youtube.com/watch?v=BpiQvQ0HrQs"}, {"t": "Radiometry and reflectance", "v": "Radiometry and Reflectance — overview", "u": "https://www.youtube.com/watch?v=BEGMPLcnM2Q"}, {"t": "Photometric stereo", "v": "Photometric Stereo — overview", "u": "https://www.youtube.com/watch?v=BfdwTytaBYI"}]}, {"set": "T3", "builds": 3, "half": "B", "in": "session 4", "topics": []}, {"set": "T4", "builds": 4, "half": "A", "in": "session 5", "topics": []}, {"set": "T5", "builds": 5, "half": "B", "in": "session 6", "topics": []}, {"set": "T6", "builds": 6, "half": "A", "in": "session 7", "topics": []}, {"set": "T7", "builds": 7, "half": "B", "in": "session 8", "topics": []}, {"set": "T8", "builds": 8, "half": "A", "in": "session 9", "topics": []}, {"set": "T9", "builds": 9, "half": "B", "in": "week 10", "topics": []}];
 const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 document.getElementById('sessions').innerHTML = SESSIONS.map(s=>{
   const ready=!!s.slides;
@@ -117,6 +133,13 @@ document.getElementById('sessions').innerHTML = SESSIONS.map(s=>{
     <div class="num">${s.n}</div>
     <div><p class="t">${esc(s.title)}<small>week ${s.week}</small></p><p class="q">${esc(s.q)}</p>${parts}</div>
     <div class="acts">${acts}</div></div>`;
+}).join('');
+document.getElementById('tsets').innerHTML = TSETS.map(s=>{
+  const who=`Builds on session ${s.builds} · half ${s.half} presents in ${s.in}`;
+  return s.topics.length
+    ? `<div class="tset" id="${s.set.toLowerCase()}"><h3>${s.set}</h3><p class="who">${who}</p><ol>${s.topics.map(x=>
+        `<li>${esc(x.t)}<a href="${x.u}" target="_blank" rel="noopener">Start: ${esc(x.v)} (Nayar)</a></li>`).join('')}</ol></div>`
+    : `<div class="tset soon" id="${s.set.toLowerCase()}"><h3>${s.set}</h3><p class="who">${who} · topics are released after session ${s.builds}</p></div>`;
 }).join('');
 </script>
 </body>

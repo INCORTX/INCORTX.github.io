@@ -291,6 +291,13 @@ html.reading .reveal .more{font-size:15px;}
 .chbtns button.on{background:var(--teal);border-color:var(--teal);color:#fff;}
 .demo-out .sw{display:inline-block;width:2.2em;height:1.2em;border-radius:4px;border:1px solid var(--line);}
 .steps.recap li{font-size:.7em;}
+.reveal .tset{list-style:none;margin:.2em 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.45em .8em;}
+.reveal .tset li{margin:0;display:grid;grid-template-columns:1.6em 1fr;column-gap:.5em;align-items:baseline;border:1px solid var(--line);border-radius:12px;padding:.45em .7em;font-size:.56em;line-height:1.35;background:#fff;}
+.tset .tn{grid-row:1/3;font-family:var(--display);font-weight:700;color:var(--teal);font-size:1.2em;}
+.tset .tt{font-family:var(--display);font-weight:600;color:var(--ink);}
+.tset a{font-size:.85em;color:var(--teal);text-decoration:none;}
+html.reading .reveal .tset{grid-template-columns:1fr;}
+html.reading .reveal .tset li{font-size:15px;}
 .reveal sup{vertical-align:super;font-size:.68em;line-height:0;}
 html.reading .chbtns button{font-size:14px;}
 .photo{margin:0;}
@@ -1166,7 +1173,25 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ทวน 4 ข้อ ตามลำดับ A–D</p><p>🇬🇧 Recap the four lines, A to D.</p></aside>
 </section>
 
-<!-- 41 · Next session -->
+<!-- 41 · Assignment T2 -->
+<section>
+  <p class="kicker">Assignment · topic set T2</p>
+  <h2 class="claim">Half A: pick a T2 topic today — you present it in session 3</h2>
+  <ol class="tset">
+      <li><span class="tn">1</span><span class="tt">Wide-angle and fisheye cameras</span><a href="https://www.youtube.com/watch?v=oYOpEkaeq_o" target="_blank" rel="noopener">Start: Wide Angle Cameras</a></li>
+      <li><span class="tn">2</span><span class="tt">HDR imaging and the camera response</span><a href="https://www.youtube.com/watch?v=95DNdbxaIXE" target="_blank" rel="noopener">Start: Camera Response and HDR Imaging</a></li>
+      <li><span class="tn">3</span><span class="tt">Animal eyes — how nature designs cameras</span><a href="https://www.youtube.com/watch?v=fTF0TRtVwEY" target="_blank" rel="noopener">Start: Animal Eyes</a></li>
+      <li><span class="tn">4</span><span class="tt">A brief history of imaging</span><a href="https://www.youtube.com/watch?v=SWs9LQzpcN8" target="_blank" rel="noopener">Start: A Brief History of Imaging</a></li>
+      <li><span class="tn">5</span><span class="tt">Depth from focus and defocus</span><a href="https://www.youtube.com/watch?v=_PfKnkGAcuc" target="_blank" rel="noopener">Start: Depth from Defocus — overview</a></li>
+      <li><span class="tn">6</span><span class="tt">Structured light and time-of-flight</span><a href="https://www.youtube.com/watch?v=BpiQvQ0HrQs" target="_blank" rel="noopener">Start: Active Illumination Methods — overview</a></li>
+      <li><span class="tn">7</span><span class="tt">Radiometry and reflectance</span><a href="https://www.youtube.com/watch?v=BEGMPLcnM2Q" target="_blank" rel="noopener">Start: Radiometry and Reflectance — overview</a></li>
+      <li><span class="tn">8</span><span class="tt">Photometric stereo</span><a href="https://www.youtube.com/watch?v=BfdwTytaBYI" target="_blank" rel="noopener">Start: Photometric Stereo — overview</a></li>
+  </ol>
+  <p class="takeaway"><span>One group per topic. Each links to a short starting lecture (Nayar, <i>First Principles of Computer Vision</i>) — go beyond it. All topic sets: the course home page.</span></p>
+  <aside class="notes"><p>🇹🇭 ครึ่ง A เลือกหัวข้อ กลุ่มละหนึ่งหัวข้อ ไม่ซ้ำกัน · ส่งไฟล์ตามกำหนดก่อนคาบ 3 · ครึ่ง B รอ T3 หลังคาบ 3</p><p>🇬🇧 Half A picks one topic per group, no repeats; files due before session 3. Half B gets T3 after session 3.</p></aside>
+</section>
+
+<!-- 42 · Next session -->
 <section>
   <p class="kicker">Next · Session 3</p>
   <h2 class="claim">Now that an image is numbers, what can we do to them?</h2>
@@ -1180,7 +1205,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ปิดคาบ: ปูทางคาบ 3</p><p>🇬🇧 Close the session and set up session 3.</p></aside>
 </section>
 
-<!-- 42 · References -->
+<!-- 43 · References -->
 <section>
   <p class="kicker">References</p>
   <h2 class="claim">Where session 2 comes from</h2>
