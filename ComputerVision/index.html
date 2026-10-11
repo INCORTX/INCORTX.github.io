@@ -19,7 +19,7 @@
 html,body{margin:0;background:var(--bg);color:var(--body);font-family:var(--font);}
 a{color:var(--teal)}
 .wrap{max-width:1040px;margin:0 auto;padding:40px 24px 64px;}
-.top{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:28px;align-items:end;margin-bottom:28px;}
+.top{margin-bottom:24px;}
 .pill{display:inline-flex;align-items:center;gap:.5em;padding:.35em .9em;border-radius:999px;background:var(--teal-soft);color:var(--teal);font:600 12px var(--display);letter-spacing:.14em;text-transform:uppercase;}
 .pill::before{content:"";width:.5em;height:.5em;border-radius:50%;background:var(--teal)}
 h1{font:700 clamp(36px,6vw,56px)/1 var(--display);color:var(--ink);letter-spacing:-.03em;margin:.35em 0 .25em}
@@ -62,17 +62,16 @@ h2{font:700 22px var(--display);color:var(--ink);margin:0 0 14px}
   .ses .num{width:44px;height:44px;font-size:20px}
   .acts{grid-column:1/-1;justify-content:flex-start}
 }
-.note{margin:-6px 0 14px;font-size:14.5px;color:var(--body)}
-.tsets{display:grid;gap:12px}
-.tset{border:1px solid var(--line);border-radius:16px;padding:16px 18px;background:#fff}
-.tset.soon{background:var(--soft);color:var(--muted)}
-.tset h3{margin:0 0 4px;font:700 18px var(--display);color:var(--ink)}
-.tset.soon h3{color:var(--muted)}
-.tset .who{font-size:13.5px;color:var(--muted);margin:0 0 10px}
-.tset ol{margin:0;padding-left:1.3em;display:grid;grid-template-columns:1fr 1fr;gap:6px 22px}
-.tset li{font-size:14.5px}
-.tset li a{display:block;font-size:12.5px;text-decoration:none}
-@media (max-width:760px){.tset ol{grid-template-columns:1fr}}
+.tsetbox{margin-top:12px;border-top:1px dashed var(--line);padding-top:10px}
+.tsetbox summary{cursor:pointer;font:600 14px var(--display);color:var(--teal);list-style:none;display:inline-flex;align-items:center;gap:6px}
+.tsetbox summary::-webkit-details-marker{display:none}
+.tsetbox summary::before{content:"";width:0;height:0;border-left:6px solid var(--teal);border-top:4px solid transparent;border-bottom:4px solid transparent;transition:transform .15s}
+.tsetbox[open] summary::before{transform:rotate(90deg)}
+.tsetbox summary span{font:500 13px var(--font);color:var(--muted)}
+.tsetbox ol{margin:10px 0 0;padding-left:1.3em;display:grid;grid-template-columns:1fr 1fr;gap:6px 22px}
+.tsetbox li{font-size:14px}
+.tsetbox li a{display:block;font-size:12.5px;text-decoration:none}
+@media (max-width:760px){.tsetbox ol{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -81,11 +80,7 @@ h2{font:700 22px var(--display);color:var(--ink);margin:0 0 14px}
     <div>
       <span class="pill">Computer Vision</span>
       <h1>From <em>pixels</em> to foundation models</h1>
-      <p class="sub">Slides, labs and practice for every session.</p>
-    </div>
-    <div class="quick">
-      <a class="qa" href="practice/"><i>?</i><div><b>Practice bank</b><span>Exam-style questions with worked solutions</span></div></a>
-      <a class="qa" href="session-01/slides.html"><i>1</i><div><b>Start here</b><span>Session 1 — how the course works</span></div></a>
+      <p class="sub">Slides, labs, practice and assignment topics for every session.</p>
     </div>
   </div>
 
@@ -96,10 +91,6 @@ h2{font:700 22px var(--display);color:var(--ink);margin:0 0 14px}
   <h2>Sessions</h2>
   <div class="sessions" id="sessions"></div>
 
-  <h2 style="margin-top:34px">Assignment topics</h2>
-  <p class="note">Every session after the first has a topic set. The set <b>T<i>n</i></b> builds on session <i>n</i>; one half of the class presents it in the next session, one group per topic. Each topic links to a short starting lecture — go beyond it.</p>
-  <div class="tsets" id="tsets"></div>
-
   <p class="foot">Slides open in the browser — on a phone they turn into a scrolling page. Press <b>?</b> inside a deck for its keyboard shortcuts.</p>
 </div>
 
@@ -109,6 +100,7 @@ h2{font:700 22px var(--display);color:var(--ink);margin:0 0 14px}
 const SESSIONS = [
   {n:1, week:1, title:'Orientation', q:'What does a computer see — and how does this course work?', slides:'session-01/slides.html', lab:null, parts:[]},
   {n:2, week:2, title:'Image formation & sensing', q:'Where does an image come from — and what is lost on the way?', slides:'session-02/slides.html', lab:null,
+   tset:{"set": "T2", "half": "A", "in": "session 3", "topics": [{"t": "Wide-angle and fisheye cameras", "v": "Wide Angle Cameras", "u": "https://www.youtube.com/watch?v=oYOpEkaeq_o"}, {"t": "HDR imaging and the camera response", "v": "Camera Response and HDR Imaging", "u": "https://www.youtube.com/watch?v=95DNdbxaIXE"}, {"t": "Animal eyes — how nature designs cameras", "v": "Animal Eyes", "u": "https://www.youtube.com/watch?v=fTF0TRtVwEY"}, {"t": "A brief history of imaging", "v": "A Brief History of Imaging", "u": "https://www.youtube.com/watch?v=SWs9LQzpcN8"}, {"t": "Depth from focus and defocus", "v": "Depth from Defocus — overview", "u": "https://www.youtube.com/watch?v=_PfKnkGAcuc"}, {"t": "Structured light and time-of-flight", "v": "Active Illumination Methods — overview", "u": "https://www.youtube.com/watch?v=BpiQvQ0HrQs"}, {"t": "Radiometry and reflectance", "v": "Radiometry and Reflectance — overview", "u": "https://www.youtube.com/watch?v=BEGMPLcnM2Q"}, {"t": "Photometric stereo", "v": "Photometric Stereo — overview", "u": "https://www.youtube.com/watch?v=BfdwTytaBYI"}]},
    parts:[['A','Pinhole'],['B','Lenses'],['C','Sensors'],['D','Colour']]},
   {n:3, week:3, title:'Image processing & filtering', q:'How can weighting the neighbours blur, find edges and remove noise?', slides:null, lab:null, parts:[]},
   {n:4, week:4, title:'Neural networks → CNNs', q:'If we do not design the kernel, how does the data choose it?', slides:null, lab:null, parts:[]},
@@ -118,7 +110,6 @@ const SESSIONS = [
   {n:8, week:8, title:'Detection & segmentation', q:'What is there, where, and which pixels — and can a prompt answer without training?', slides:null, lab:null, parts:[]},
   {n:9, week:9, title:'Motion & video', q:'What moves, which way — and how do we follow the same object across frames?', slides:null, lab:null, parts:[]},
 ];
-const TSETS = [{"set": "T2", "builds": 2, "half": "A", "in": "session 3", "topics": [{"t": "Wide-angle and fisheye cameras", "v": "Wide Angle Cameras", "u": "https://www.youtube.com/watch?v=oYOpEkaeq_o"}, {"t": "HDR imaging and the camera response", "v": "Camera Response and HDR Imaging", "u": "https://www.youtube.com/watch?v=95DNdbxaIXE"}, {"t": "Animal eyes — how nature designs cameras", "v": "Animal Eyes", "u": "https://www.youtube.com/watch?v=fTF0TRtVwEY"}, {"t": "A brief history of imaging", "v": "A Brief History of Imaging", "u": "https://www.youtube.com/watch?v=SWs9LQzpcN8"}, {"t": "Depth from focus and defocus", "v": "Depth from Defocus — overview", "u": "https://www.youtube.com/watch?v=_PfKnkGAcuc"}, {"t": "Structured light and time-of-flight", "v": "Active Illumination Methods — overview", "u": "https://www.youtube.com/watch?v=BpiQvQ0HrQs"}, {"t": "Radiometry and reflectance", "v": "Radiometry and Reflectance — overview", "u": "https://www.youtube.com/watch?v=BEGMPLcnM2Q"}, {"t": "Photometric stereo", "v": "Photometric Stereo — overview", "u": "https://www.youtube.com/watch?v=BfdwTytaBYI"}]}, {"set": "T3", "builds": 3, "half": "B", "in": "session 4", "topics": []}, {"set": "T4", "builds": 4, "half": "A", "in": "session 5", "topics": []}, {"set": "T5", "builds": 5, "half": "B", "in": "session 6", "topics": []}, {"set": "T6", "builds": 6, "half": "A", "in": "session 7", "topics": []}, {"set": "T7", "builds": 7, "half": "B", "in": "session 8", "topics": []}, {"set": "T8", "builds": 8, "half": "A", "in": "session 9", "topics": []}, {"set": "T9", "builds": 9, "half": "B", "in": "week 10", "topics": []}];
 const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 document.getElementById('sessions').innerHTML = SESSIONS.map(s=>{
   const ready=!!s.slides;
@@ -129,17 +120,12 @@ document.getElementById('sessions').innerHTML = SESSIONS.map(s=>{
       + (s.lab ? `<a class="btn alt" href="${s.lab}">Lab</a>` : (s.n>1 ? `<span class="btn off">Lab soon</span>` : ''))
       + (s.parts.length ? `<a class="btn alt" href="practice/#s${s.n}">Practice</a>` : '')
     : `<span class="btn off">Coming</span>`;
+  const tset = s.tset ? `<details class="tsetbox"><summary>Assignment topics · ${s.tset.set} <span>— half ${s.tset.half} presents in ${s.tset.in}</span></summary><ol>${s.tset.topics.map(x=>
+      `<li>${esc(x.t)}<a href="${x.u}" target="_blank" rel="noopener">Start: ${esc(x.v)} (Nayar)</a></li>`).join('')}</ol></details>` : '';
   return `<div class="ses${ready?'':' soon'}" id="session-${s.n}">
     <div class="num">${s.n}</div>
-    <div><p class="t">${esc(s.title)}<small>week ${s.week}</small></p><p class="q">${esc(s.q)}</p>${parts}</div>
+    <div><p class="t">${esc(s.title)}<small>week ${s.week}</small></p><p class="q">${esc(s.q)}</p>${parts}${tset}</div>
     <div class="acts">${acts}</div></div>`;
-}).join('');
-document.getElementById('tsets').innerHTML = TSETS.map(s=>{
-  const who=`Builds on session ${s.builds} · half ${s.half} presents in ${s.in}`;
-  return s.topics.length
-    ? `<div class="tset" id="${s.set.toLowerCase()}"><h3>${s.set}</h3><p class="who">${who}</p><ol>${s.topics.map(x=>
-        `<li>${esc(x.t)}<a href="${x.u}" target="_blank" rel="noopener">Start: ${esc(x.v)} (Nayar)</a></li>`).join('')}</ol></div>`
-    : `<div class="tset soon" id="${s.set.toLowerCase()}"><h3>${s.set}</h3><p class="who">${who} · topics are released after session ${s.builds}</p></div>`;
 }).join('');
 </script>
 </body>

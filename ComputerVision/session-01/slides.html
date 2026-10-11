@@ -1066,6 +1066,11 @@ document.addEventListener('DOMContentLoaded',()=>{   /* after every const below 
   if(MODE==='reading'){
     document.documentElement.classList.add('reading');
     renderMath(); initDemos(); initReadingBar();
+    /* deep links (#/part-b or #/12) also work on a phone: scroll to that section */
+    const hm=location.hash.match(/^#\/([\w-]+)/);
+    if(hm){ const secs=[...document.querySelectorAll('.reveal .slides>section')];
+      const el=/^\d+$/.test(hm[1]) ? secs[+hm[1]] : document.getElementById(hm[1]);
+      if(el) requestAnimationFrame(()=>el.scrollIntoView({block:'start'})); }
     return;
   }
   Reveal.initialize({

@@ -47,6 +47,7 @@ h2.sess{font:700 26px var(--display);color:var(--ink);margin:30px 0 4px}
 .answer summary{cursor:pointer;font:600 14px var(--display);color:var(--teal)}
 .soln{margin-top:8px;padding:10px 14px;border-radius:10px;background:var(--soft)}
 .hidden{display:none}
+[id]{scroll-margin-top:72px}
 .katex-display{overflow-x:auto;overflow-y:hidden}
 @media (max-width:600px){.prog{width:100%;margin-left:0}}
 </style>
@@ -270,6 +271,11 @@ document.querySelectorAll('.chip[data-k]').forEach(c=>c.addEventListener('click'
   else { state[c.dataset.k]=c.dataset.v; document.querySelectorAll(`.chip[data-k="${c.dataset.k}"]`).forEach(x=>x.classList.toggle('on',x===c)); }
   refresh(); }));
 refresh();
+/* a link like practice/#s2 or #s2b opens on that session (filtered) and lands on that part, after the maths has been typeset */
+(function(){ const m=location.hash.match(/^#s(\d+)([a-z]?)$/); if(!m) return;
+  const chip=document.querySelector(`.chip[data-k="sess"][data-v="${m[1]}"]`); if(chip) chip.click();
+  const el=document.getElementById(location.hash.slice(1)); if(el) requestAnimationFrame(()=>el.scrollIntoView({block:'start'}));
+})();
 </script>
 </body>
 </html>
