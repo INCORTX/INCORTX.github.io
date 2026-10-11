@@ -836,13 +836,153 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 สรุป B สามข้อ แล้วต่อ C</p><p>🇬🇧 Wrap up B in three points, then go on to C.</p></aside>
 </section>
 
-<!-- 22 · References -->
+<!-- 22 · Sensor -->
+<section>
+  <p class="kicker">C · Sensors</p>
+  <h2 class="claim">A sensor is a grid of tiny light buckets</h2>
+  <div class="split">
+    <figure class="photo"><img src="img/sensor.jpg" alt="An early CMOS image sensor chip held in the palm of a hand" loading="lazy">
+      <figcaption>one of the first CMOS (active pixel) sensors · public domain</figcaption></figure>
+    <div class="say">
+      <p>Behind the lens sits a chip covered in millions of <b>photosites</b>.</p>
+      <p class="fragment">During the exposure each one collects light, like a bucket in the rain.</p>
+      <p class="fragment">At the end, each bucket’s count becomes <b>one number</b> — one <b>pixel</b>. That is where session 1’s grid comes from.</p>
+    </div>
+  </div>
+  <aside class="notes"><p>🇹🇭 ถามห้อง: มือถือของทุกคนมีกี่ล้านพิกเซล? (12, 48, 50 MP…) = จำนวนถังแสง</p><p>🇬🇧 Ask: how many megapixels does your phone have? That is the number of buckets.</p></aside>
+</section>
+
+<!-- 23 · Live camera -->
+<section>
+  <p class="kicker">C · Sensors</p>
+  <h2 class="claim">Live: your camera, as numbers</h2>
+  <div class="split">
+    <div>
+      <canvas id="camCv" class="democv" width="480" height="300" data-src="img/landscape.jpg" aria-label="the camera image as a grid of numbers"></canvas>
+      <input class="slider" id="camN" type="range" min="8" max="96" step="4" value="16" aria-label="pixels across">
+      <div class="demo-out"><span id="camOut"></span></div>
+    </div>
+    <div class="say">
+      <button class="tog" id="camBtn" type="button">Use my camera</button>
+      <p>Drag the slider: fewer pixels across, and each cell shows its <b>number</b> (0 = black … 255 = white).</p>
+      <p>Move your hand in front of the camera — every number changes, every frame.</p>
+      <p style="color:var(--muted);font-size:.85em">The picture stays in your browser; nothing is sent anywhere. No camera? You see a photo instead.</p>
+    </div>
+  </div>
+  <aside class="notes"><p>🇹🇭 กดปุ่มให้เบราว์เซอร์ขอสิทธิ์กล้อง · ลาก slider ไปซ้ายสุด (8 ช่อง) ให้เห็นตัวเลข · โบกมือให้ตัวเลขเปลี่ยน</p><p>🇬🇧 Press the button and allow the camera. Slide to 8 across to see the numbers; wave a hand to change them.</p></aside>
+</section>
+
+<!-- 24 · Resolution -->
+<section>
+  <p class="kicker">C · Sensors</p>
+  <h2 class="claim">More pixels, more detail</h2>
+  <div class="split">
+    <div>
+      <canvas id="resCv" class="democv" width="480" height="300" data-src="img/perspective_photo.jpg" aria-label="the same photo at a chosen resolution"></canvas>
+      <input class="slider" id="resN" type="range" min="0" max="6" step="1" value="2" aria-label="resolution">
+      <div class="demo-out"><span id="resOut"></span></div>
+    </div>
+    <div class="say">
+      <div class="term"><b>resolution</b><span class="th">ความละเอียด</span><span class="def">how many pixels across and down</span></div>
+      <p style="margin-top:.8em">Each pixel holds <b>one</b> brightness. Detail smaller than a pixel is averaged away.</p>
+      <p class="fragment">Doubling the pixels across <b>and</b> down gives <b>4×</b> the numbers to store.</p>
+    </div>
+  </div>
+  <aside class="notes"><p>🇹🇭 ลากจากหยาบสุด → ละเอียดสุด · ถาม: ต้องกี่พิกเซลถึงเห็นว่าเป็นซุ้มทางเดิน?</p><p>🇬🇧 Drag from coarsest to finest. Ask: how many pixels before you recognise the walkway?</p></aside>
+</section>
+
+<!-- 25 · Bit depth -->
+<section>
+  <p class="kicker">C · Sensors</p>
+  <h2 class="claim">Fewer bits, fewer levels — and visible bands</h2>
+  <div class="split">
+    <div>
+      <canvas id="bitCv" class="democv" width="480" height="270" data-src="img/landscape.jpg" aria-label="the photo stored with the chosen number of bits per channel"></canvas>
+      <canvas id="bitBar" class="democv" width="480" height="28" style="margin-top:.35em" aria-label="a smooth grey ramp at the same bit depth"></canvas>
+      <input class="slider" id="bitB" type="range" min="1" max="8" step="1" value="8" aria-label="bits per channel">
+      <div class="demo-out"><span id="bitOut"></span></div>
+    </div>
+    <div class="say">
+      <p>Each number is stored with a fixed number of <b>bits</b>: <b>b</b> bits give <b>2<sup>b</sup></b> levels.</p>
+      <p>8 bits = 256 levels: smooth. 4 bits = 16 levels: the sky turns into <b>bands</b>.</p>
+      <p class="fragment">Camera sensors often record 10–14 bits; a JPEG keeps 8.</p>
+    </div>
+  </div>
+  <aside class="notes"><p>🇹🇭 ลาก 8 → 4 → 2 → 1 bit · ดูท้องฟ้ากับแถบเทาด้านล่าง</p><p>🇬🇧 Drag 8 → 4 → 2 → 1 bit; watch the sky and the grey ramp below.</p></aside>
+</section>
+
+<!-- 26 · Shot noise -->
+<section>
+  <p class="kicker">C · Sensors</p>
+  <h2 class="claim">Few photons, grainy picture</h2>
+  <div class="split">
+    <div>
+      <canvas id="noiseCv" class="democv" width="480" height="300" data-src="img/perspective_photo.jpg" aria-label="the photo as recorded with the chosen amount of light"></canvas>
+      <input class="slider" id="noiseN" type="range" min="0" max="6" step="1" value="2" aria-label="light: photons per white pixel">
+      <div class="demo-out"><span id="noiseOut"></span></div>
+    </div>
+    <div class="say">
+      <p>Light arrives as <b>photons</b>, and how many land in a bucket is random.</p>
+      <p>If a pixel expects <b>N</b> photons, it gets N ± <b>√N</b>. The signal-to-noise ratio is <b>√N</b>.</p>
+      <p class="fragment">Dim light → small N → <b>grain</b>. That is why night photos look noisy.</p>
+    </div>
+  </div>
+  <aside class="notes"><p>🇹🇭 ลากจากแสงน้อยสุด (1 photon) → มาก · 100 photons → SNR 10 · 10,000 → 100</p><p>🇬🇧 Drag from 1 photon upwards: 100 photons give SNR 10, 10,000 give 100.</p></aside>
+</section>
+
+<!-- 27 · Dynamic range -->
+<section>
+  <p class="kicker">C · Sensors</p>
+  <h2 class="claim">One exposure cannot hold the window and the room</h2>
+  <div class="split">
+    <div>
+      <canvas id="drCv" class="democv" width="480" height="300" aria-label="a room with a bright window at the chosen exposure"></canvas>
+      <input class="slider" id="drEv" type="range" min="-6" max="2" step="1" value="0" aria-label="exposure in stops">
+      <div class="demo-out"><span id="drOut"></span></div>
+    </div>
+    <div class="say">
+      <div class="term"><b>dynamic range</b><span class="th">ช่วงความสว่าง</span><span class="def">brightest ÷ darkest a sensor can record</span></div>
+      <p style="margin-top:.8em">This scene spans about <b>1000 : 1</b>. Eight bits hold only <b>255 : 1</b>.</p>
+      <p class="fragment">Expose for the room: the window turns pure white. Expose for the window: the room turns pure black. Either way, detail is <b>clipped</b>.</p>
+    </div>
+  </div>
+  <aside class="notes"><p>🇹🇭 ลาก exposure −6 → +2 · ดู % ที่ขาว/ดำสนิท · HDR (ถ่ายหลาย exposure แล้วรวม) เป็นหัวข้อ T2</p><p>🇬🇧 Drag exposure from −6 to +2 and watch the clipped percentages. HDR — merging several exposures — is a T2 topic.</p></aside>
+</section>
+
+<!-- 28 · Try it -->
+<section>
+  <p class="kicker">C · Sensors</p>
+  <h2 class="claim">Try it: how big is a photo?</h2>
+  <div class="split">
+    <div class="tryit"><span class="tag">Try it</span>
+      <ol style="margin:.3em 0 0 1.1em"><li>A <b>12-megapixel</b> colour photo stores <b>3</b> numbers per pixel, <b>8 bits</b> each. How many bytes, before compression?</li><li>How many grey levels does a <b>10-bit</b> sensor record?</li></ol>
+      <details><summary>Answer</summary>1. 12,000,000 × 3 × 1 byte = <b>36,000,000 bytes ≈ 36 MB</b> · 2. 2<sup>10</sup> = <b>1024</b> levels.</details>
+    </div>
+    <div class="say"><p>8 bits = 1 byte.</p><p>Pixels × numbers per pixel × bytes per number.</p><p>A JPEG of the same photo is usually a few MB — compression is another story.</p></div>
+  </div>
+  <aside class="notes"><p>🇹🇭 ให้เวลา 1 นาที · ต่อ: ทำไมไฟล์ JPEG จริงเล็กกว่ามาก? (บีบอัด)</p><p>🇬🇧 Give one minute. Follow-up: why is the real JPEG much smaller? (compression)</p></aside>
+</section>
+
+<!-- 29 · Part C summary -->
+<section>
+  <p class="kicker">C · Sensors</p>
+  <h2 class="claim">A sensor turns light into a grid of limited numbers</h2>
+  <div class="cards">
+    <div class="card"><b>Resolution</b>How many numbers: pixels across × down.</div>
+    <div class="card violet"><b>Bit depth</b>How many levels each number can take: 2<sup>b</sup>.</div>
+    <div class="card amber"><b>Light</b>Too little: noise (SNR = √N). Too much contrast: clipping.</div>
+  </div>
+  <p class="takeaway"><span>Next · D: one chip, three colours.</span></p>
+  <aside class="notes"><p>🇹🇭 สรุป C สามข้อ แล้วต่อ D</p><p>🇬🇧 Wrap up C in three points, then go on to D.</p></aside>
+</section>
+
+<!-- 30 · References -->
 <section>
   <p class="kicker">References</p>
-  <h2 class="claim">Where parts A and B come from</h2>
+  <h2 class="claim">Where parts A, B and C come from</h2>
   <ul class="small" style="font-size:.62em;line-height:1.6">
-    <li>S. K. Nayar. <i>First Principles of Computer Vision</i> — Image Formation: pinhole and perspective projection; lenses; depth of field.</li>
-    <li>R. Szeliski (2022). <i>Computer Vision: Algorithms and Applications</i>, 2nd ed., §2.1–2.2.</li>
+    <li>S. K. Nayar. <i>First Principles of Computer Vision</i> — Image Formation: pinhole and perspective projection; lenses; depth of field; image sensors.</li>
+    <li>R. Szeliski (2022). <i>Computer Vision: Algorithms and Applications</i>, 2nd ed., §2.1–2.3.</li>
     <li>A. Torralba, P. Isola &amp; W. T. Freeman (2024). <i>Foundations of Computer Vision</i>, ch. 5–6 — free at visionbook.mit.edu.</li>
   </ul>
   <h3 style="margin-top:.8em">Images</h3>
@@ -850,7 +990,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <li>Gemma Frisius (1545), camera obscura woodcut, <i>De Radio Astronomica et Geometrica</i> — public domain, via Wikimedia Commons.</li>
     <li>Laitche, “One point perspective”, Tennoji Park, Osaka — public domain, via Wikimedia Commons. Lines and vanishing point: our OpenCV program.</li>
     <li>Wilfredor, “Panoramic view of Jacques-Cartier National Park from the Wolves peak” — CC0, via Wikimedia Commons.</li>
-    <li>Dolly-zoom animation and all diagrams: drawn by programs written for this course.</li>
+    <li>Early CMOS (active pixel) sensor prototype — public domain, via Wikimedia Commons.</li>
+    <li>Dolly-zoom animation, room-and-window scene and all diagrams: drawn by programs written for this course.</li>
   </ul>
 </section>
 
@@ -932,7 +1073,7 @@ function renderMath(){
     });
   }
 }
-function initDemos(){ initFlashN(); initHoleDemo(); initDistDemo(); initFovDemo(); initDofDemo(); initVpToggle(); initSliders(); }
+function initDemos(){ initFlashN(); initHoleDemo(); initDistDemo(); initFovDemo(); initDofDemo(); initVpToggle(); initCam(); initRes(); initBits(); initNoise(); initDR(); initSliders(); }
 /* range sliders: a finger anywhere on the track sets and drags the value.
    Phones otherwise only move a native slider when the touch lands exactly on its thumb,
    and a touch on the track scrolls the page instead. */
@@ -1324,6 +1465,97 @@ function initFovDemo(){
     if(photo.complete&&photo.naturalWidth){ const k=12/f, ar=cv.width/cv.height, ph=photo.naturalHeight, pw=Math.min(photo.naturalWidth,ph*ar);
       const sw=pw*k, sh=sw/ar; ctx.drawImage(photo,(photo.naturalWidth-sw)/2,(ph-sh)/2,sw,sh,0,0,cv.width,cv.height); cv.dataset.drawn=f; }
   };
+  sl.addEventListener('input',draw); draw();
+}
+/* ---- part C ---- */
+const loadImg=(src,cb)=>{ const im=new Image(); im.onload=()=>cb(im); im.src=src; return im; };
+/* cover-crop an image into a w×h canvas context */
+function cover(ctx,im,w,h,mirror){ const ar=w/h, iw=im.videoWidth||im.naturalWidth, ih=im.videoHeight||im.naturalHeight; if(!iw) return false;
+  let sw=iw, sh=iw/ar; if(sh>ih){ sh=ih; sw=ih*ar; }
+  ctx.save(); if(mirror){ ctx.translate(w,0); ctx.scale(-1,1); } ctx.drawImage(im,(iw-sw)/2,(ih-sh)/2,sw,sh,0,0,w,h); ctx.restore(); return true; }
+/* live camera → grid of grey numbers; falls back to a photo */
+function initCam(){
+  const cv=document.getElementById('camCv'), sl=document.getElementById('camN'), btn=document.getElementById('camBtn'), out=document.getElementById('camOut'); if(!cv) return;
+  const ctx=cv.getContext('2d'), sm=document.createElement('canvas'), sc=sm.getContext('2d',{willReadFrequently:true});
+  let src=null, video=null, stream=null, raf=0, live=false;
+  const draw=()=>{
+    const n=+sl.value, m=Math.round(n*cv.height/cv.width); sm.width=n; sm.height=m; if(!src||!cover(sc,src,n,m,live)) return;
+    let d; try{ d=sc.getImageData(0,0,n,m).data; }catch(e){ out.textContent='Open this deck from the website to run the demo'; return; }
+    const cw=cv.width/n, ch=cv.height/m, show=n<=24;
+    ctx.font=`600 ${Math.floor(cw*0.34)}px "JetBrains Mono",monospace`; ctx.textAlign='center'; ctx.textBaseline='middle';
+    for(let y=0;y<m;y++) for(let x=0;x<n;x++){ const i=(y*n+x)*4, v=Math.round(.299*d[i]+.587*d[i+1]+.114*d[i+2]);
+      ctx.fillStyle=`rgb(${v},${v},${v})`; ctx.fillRect(x*cw,y*ch,Math.ceil(cw),Math.ceil(ch));
+      if(show){ ctx.fillStyle=v>128?'#0f1b2d':'#ffffff'; ctx.fillText(v,x*cw+cw/2,y*ch+ch/2); } }
+    out.textContent=`${n} × ${m} = ${n*m} numbers, each 0–255${live?' · live':' · photo'}`; cv.dataset.drawn=n;
+  };
+  const loop=()=>{ draw(); raf=requestAnimationFrame(loop); };
+  const stop=()=>{ cancelAnimationFrame(raf); if(stream) stream.getTracks().forEach(t=>t.stop()); stream=null; live=false; src=photo; btn.textContent='Use my camera'; draw(); };
+  const photo=loadImg(cv.dataset.src,im=>{ if(!live){ src=im; draw(); } });
+  btn.addEventListener('click',async()=>{
+    if(live){ stop(); return; }
+    try{ stream=await navigator.mediaDevices.getUserMedia({video:{width:640,height:480},audio:false});
+      video=document.createElement('video'); video.muted=true; video.playsInline=true; video.srcObject=stream; await video.play();
+      src=video; live=true; btn.textContent='Stop the camera'; loop();
+    }catch(e){ out.textContent='No camera available — showing a photo'; src=photo; draw(); }
+  });
+  sl.addEventListener('input',()=>{ if(!live) draw(); });
+  if(window.Reveal&&Reveal.on) Reveal.on('slidechanged',()=>{ if(live&&!cv.closest('section').classList.contains('present')) stop(); });
+  document.addEventListener('visibilitychange',()=>{ if(document.hidden&&live) stop(); });
+}
+/* resolution: downsample, then blow up without smoothing */
+function initRes(){
+  const cv=document.getElementById('resCv'), sl=document.getElementById('resN'); if(!cv) return;
+  const Ns=[8,16,32,64,128,240,480], ctx=cv.getContext('2d'), sm=document.createElement('canvas'), sc=sm.getContext('2d');
+  const draw=im=>{ const n=Ns[+sl.value], m=Math.round(n*cv.height/cv.width); sm.width=n; sm.height=m; sc.imageSmoothingEnabled=true; cover(sc,im,n,m);
+    ctx.imageSmoothingEnabled=false; ctx.drawImage(sm,0,0,cv.width,cv.height);
+    document.getElementById('resOut').textContent=`${n} × ${m} = ${(n*m).toLocaleString('en')} pixels`; cv.dataset.drawn=n; };
+  loadImg(cv.dataset.src,im=>{ draw(im); sl.addEventListener('input',()=>draw(im)); });
+}
+/* bit depth: quantise every channel to 2^b levels */
+function initBits(){
+  const cv=document.getElementById('bitCv'), bar=document.getElementById('bitBar'), sl=document.getElementById('bitB'); if(!cv) return;
+  const ctx=cv.getContext('2d',{willReadFrequently:true}), bx=bar.getContext('2d');
+  const q=(v,L)=>Math.round(v/255*(L-1))*255/(L-1);
+  let base=null;
+  const draw=()=>{ const b=+sl.value, L=2**b;
+    if(base){ const img=new ImageData(new Uint8ClampedArray(base.data),base.width,base.height), d=img.data;
+      for(let i=0;i<d.length;i+=4){ d[i]=q(d[i],L); d[i+1]=q(d[i+1],L); d[i+2]=q(d[i+2],L); } ctx.putImageData(img,0,0); cv.dataset.drawn=b; }
+    for(let x=0;x<bar.width;x++){ const v=q(x/(bar.width-1)*255,L); bx.fillStyle=`rgb(${v},${v},${v})`; bx.fillRect(x,0,1,bar.height); }
+    document.getElementById('bitOut').textContent=`${b} bit${b>1?'s':''} → 2^${b} = ${L} levels per channel`; };
+  loadImg(cv.dataset.src,im=>{ cover(ctx,im,cv.width,cv.height); try{ base=ctx.getImageData(0,0,cv.width,cv.height); }catch(e){ base=null; } draw(); });
+  sl.addEventListener('input',draw); draw();
+}
+/* shot noise: each pixel counts Poisson(N·v) photons; shown value = count / N */
+function initNoise(){
+  const cv=document.getElementById('noiseCv'), sl=document.getElementById('noiseN'); if(!cv) return;
+  const Ns=[1,4,16,64,256,1024,4096], ctx=cv.getContext('2d',{willReadFrequently:true});
+  let grey=null;
+  const gauss=()=>{ let u=0,v=0; while(!u) u=Math.random(); v=Math.random(); return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); };
+  const poisson=l=>{ if(l>30) return Math.max(0,Math.round(l+Math.sqrt(l)*gauss())); let L=Math.exp(-l),k=0,p=1; do{ k++; p*=Math.random(); }while(p>L); return k-1; };
+  const draw=()=>{ const N=Ns[+sl.value];
+    if(grey){ const img=ctx.createImageData(cv.width,cv.height), d=img.data;
+      for(let i=0;i<grey.length;i++){ const v=Math.min(255,poisson(N*grey[i]/255)/N*255); d[i*4]=d[i*4+1]=d[i*4+2]=v; d[i*4+3]=255; }
+      ctx.putImageData(img,0,0); cv.dataset.drawn=N; }
+    document.getElementById('noiseOut').textContent=`white pixel: ${N.toLocaleString('en')} photon${N>1?'s':''} · SNR = √${N} = ${Math.sqrt(N)}`; };
+  loadImg(cv.dataset.src,im=>{ cover(ctx,im,cv.width,cv.height); let d; try{ d=ctx.getImageData(0,0,cv.width,cv.height).data; }catch(e){ return; }
+    grey=new Float32Array(cv.width*cv.height); for(let i=0;i<grey.length;i++) grey[i]=.299*d[i*4]+.587*d[i*4+1]+.114*d[i*4+2]; draw(); });
+  sl.addEventListener('input',draw); draw();
+}
+/* dynamic range: a room (radiance 2–20) with a window (200–2000); 8-bit value = clamp(radiance · gain) */
+function initDR(){
+  const cv=document.getElementById('drCv'), sl=document.getElementById('drEv'); if(!cv) return;
+  const W=cv.width, H=cv.height, R=new Float32Array(W*H), ctx=cv.getContext('2d');
+  for(let y=0;y<H;y++) for(let x=0;x<W;x++){
+    let r=2+18*(1-y/H)*(0.6+0.4*Math.cos((x-240)/180));                    /* the room: 2 … 20 */
+    if(x>300&&x<440&&y>40&&y<200){ r=200+1800*(1-(y-40)/160)*(0.7+0.3*Math.sin(x/20)); /* the window: 200 … 2000 */
+      if(Math.hypot(x-400,y-80)<18) r=2000; }
+    if(y>210&&y<250&&x>60&&x<260) r=6+4*Math.sin(x/9);                     /* a table in the shadows */
+    if(x>300&&x<440&&(y===40||y===199||x===301||x===439||x===370)) r=3;    /* window frame */
+    R[y*W+x]=r; }
+  const draw=()=>{ const ev=+sl.value, gain=2**ev*255/40, img=ctx.createImageData(W,H), d=img.data; let hi=0, lo=0;
+    for(let i=0;i<R.length;i++){ const v=R[i]*gain; if(v>=255) hi++; if(v<1) lo++; const c=Math.min(255,Math.round(v)); d[i*4]=c; d[i*4+1]=Math.min(255,Math.round(c*.97)); d[i*4+2]=Math.min(255,Math.round(c*.9)); d[i*4+3]=255; }
+    ctx.putImageData(img,0,0); cv.dataset.drawn=ev;
+    document.getElementById('drOut').textContent=`exposure ${ev>0?'+':''}${ev} · pure white ${(100*hi/R.length).toFixed(0)}% · pure black ${(100*lo/R.length).toFixed(0)}%`; };
   sl.addEventListener('input',draw); draw();
 }
 /* real photo: swap between the photo and the program's lines */
