@@ -4,13 +4,120 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Computer Vision</title>
-<!-- The course folder opens session 0. Relative, so it works under / and under /dev/. -->
-<meta http-equiv="refresh" content="0; url=session-01/slides.html">
-<link rel="canonical" href="session-01/slides.html">
-<script>location.replace('session-01/slides.html' + location.hash);</script>
-<style>body{font-family:system-ui,sans-serif;margin:2rem;color:#0f1b2d;background:#fff}a{color:#0f766e}</style>
+<!--
+  Course home: every session's slides, lab and practice in one place.
+  To add a session: fill in its entry in SESSIONS below (slides / lab / parts). Links are relative,
+  so the page works under / and under /dev/.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#ffffff;--ink:#0f1b2d;--body:#2b3645;--muted:#667085;--soft:#f5f7fa;--line:#e4e8ee;--teal:#0f766e;--teal-soft:#e6f4f2;
+  --coral:#e0533d;--amber:#c97a06;--violet:#6d5bd0;--display:'Space Grotesk','Plus Jakarta Sans',sans-serif;--font:'Plus Jakarta Sans',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace;}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--body);font-family:var(--font);}
+a{color:var(--teal)}
+.wrap{max-width:1040px;margin:0 auto;padding:40px 24px 64px;}
+.top{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:28px;align-items:end;margin-bottom:28px;}
+.pill{display:inline-flex;align-items:center;gap:.5em;padding:.35em .9em;border-radius:999px;background:var(--teal-soft);color:var(--teal);font:600 12px var(--display);letter-spacing:.14em;text-transform:uppercase;}
+.pill::before{content:"";width:.5em;height:.5em;border-radius:50%;background:var(--teal)}
+h1{font:700 clamp(36px,6vw,56px)/1 var(--display);color:var(--ink);letter-spacing:-.03em;margin:.35em 0 .25em}
+h1 em{font-style:normal;color:var(--teal)}
+.sub{font:500 18px var(--display);color:var(--body);margin:0}
+.quick{display:grid;gap:10px}
+.qa{display:flex;align-items:center;gap:14px;padding:14px 16px;border:1px solid var(--line);border-radius:14px;text-decoration:none;color:var(--ink);background:#fff;transition:border-color .15s,box-shadow .15s}
+.qa:hover{border-color:var(--teal);box-shadow:0 8px 20px -14px rgba(15,27,45,.4)}
+.qa b{display:block;font:700 16px var(--display)}
+.qa span{font-size:13.5px;color:var(--muted)}
+.qa i{flex:none;width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:var(--teal-soft);color:var(--teal);font:700 18px var(--display);font-style:normal}
+.milestones{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 30px;padding:14px 16px;border-radius:14px;background:var(--soft);font-size:13.5px}
+.milestones b{font-family:var(--display);color:var(--ink);margin-right:4px}
+.milestones span{padding:4px 10px;border-radius:999px;background:#fff;border:1px solid var(--line)}
+h2{font:700 22px var(--display);color:var(--ink);margin:0 0 14px}
+.sessions{display:grid;gap:12px}
+.ses{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:18px;align-items:center;padding:18px 20px;border:1px solid var(--line);border-radius:16px;background:#fff}
+.ses .num{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--teal);color:#fff;font:700 24px var(--display)}
+.ses .t{font:700 18px var(--display);color:var(--ink);margin:0}
+.ses .t small{font:500 13px var(--font);color:var(--muted);margin-left:8px}
+.ses .q{margin:4px 0 0;font-size:14.5px;color:var(--body);line-height:1.45}
+.parts{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.parts a{display:inline-flex;align-items:center;gap:6px;padding:4px 10px 4px 4px;border-radius:999px;border:1px solid var(--line);text-decoration:none;color:var(--body);font-size:13px}
+.parts a b{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--teal-soft);color:var(--teal);font:700 12px var(--display)}
+.parts a:hover{border-color:var(--teal)}
+.acts{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:10px;font:600 14px var(--display);text-decoration:none;white-space:nowrap}
+.btn.main{background:var(--teal);color:#fff}
+.btn.main:hover{filter:brightness(1.1)}
+.btn.alt{border:1px solid var(--line);color:var(--ink);background:#fff}
+.btn.alt:hover{border-color:var(--teal)}
+.btn.off{border:1px dashed var(--line);color:var(--muted);cursor:default}
+.ses.soon{background:var(--soft)}
+.ses.soon .num{background:#c9d1db}
+.ses.soon .t{color:var(--muted)}
+.foot{margin-top:36px;font-size:13px;color:var(--muted)}
+@media (max-width:760px){
+  .top{grid-template-columns:1fr}
+  .ses{grid-template-columns:48px minmax(0,1fr);gap:14px;padding:16px}
+  .ses .num{width:44px;height:44px;font-size:20px}
+  .acts{grid-column:1/-1;justify-content:flex-start}
+}
+</style>
 </head>
 <body>
-<p>Opening <a href="session-01/slides.html">Computer Vision · Session 1</a>…</p>
+<div class="wrap">
+  <div class="top">
+    <div>
+      <span class="pill">Computer Vision</span>
+      <h1>From <em>pixels</em> to foundation models</h1>
+      <p class="sub">Slides, labs and practice for every session.</p>
+    </div>
+    <div class="quick">
+      <a class="qa" href="practice/"><i>?</i><div><b>Practice bank</b><span>Exam-style questions with worked solutions</span></div></a>
+      <a class="qa" href="session-01/slides.html"><i>1</i><div><b>Start here</b><span>Session 1 — how the course works</span></div></a>
+    </div>
+  </div>
+
+  <div class="milestones">
+    <b>Key weeks</b><span>Week 8 · project topic</span><span>Week 9 · problem pitch</span><span>Week 11 · proposal</span><span>Week 14 · demo</span><span>Week 15 · final exam</span>
+  </div>
+
+  <h2>Sessions</h2>
+  <div class="sessions" id="sessions"></div>
+
+  <p class="foot">Slides open in the browser — on a phone they turn into a scrolling page. Press <b>?</b> inside a deck for its keyboard shortcuts.</p>
+</div>
+
+<script>
+/* One entry per session. slides / lab: a link, or null while it is not published yet. parts: [letter, name] — each links to
+   that part's opener in the deck (#/part-x) and to its questions in the practice bank (#s<n><x>). */
+const SESSIONS = [
+  {n:1, week:1, title:'Orientation', q:'What does a computer see — and how does this course work?', slides:'session-01/slides.html', lab:null, parts:[]},
+  {n:2, week:2, title:'Image formation & sensing', q:'Where does an image come from — and what is lost on the way?', slides:'session-02/slides.html', lab:null,
+   parts:[['A','Pinhole'],['B','Lenses'],['C','Sensors'],['D','Colour']]},
+  {n:3, week:3, title:'Image processing & filtering', q:'How can weighting the neighbours blur, find edges and remove noise?', slides:null, lab:null, parts:[]},
+  {n:4, week:4, title:'Neural networks → CNNs', q:'If we do not design the kernel, how does the data choose it?', slides:null, lab:null, parts:[]},
+  {n:5, week:5, title:'Attention, ViT & CLIP', q:'How can a model look beyond the neighbours — and name things it never saw in training?', slides:null, lab:null, parts:[]},
+  {n:6, week:6, title:'Local features & matching', q:'Do two images show the same point — and how do we trust matches when most are wrong?', slides:null, lab:null, parts:[]},
+  {n:7, week:7, title:'Transforms, cameras, stereo', q:'How are two views of one scene related — and how do two cameras measure depth?', slides:null, lab:null, parts:[]},
+  {n:8, week:8, title:'Detection & segmentation', q:'What is there, where, and which pixels — and can a prompt answer without training?', slides:null, lab:null, parts:[]},
+  {n:9, week:9, title:'Motion & video', q:'What moves, which way — and how do we follow the same object across frames?', slides:null, lab:null, parts:[]},
+];
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+document.getElementById('sessions').innerHTML = SESSIONS.map(s=>{
+  const ready=!!s.slides;
+  const parts=s.parts.length ? `<div class="parts">${s.parts.map(([L,name])=>
+    `<a href="${s.slides}#/part-${L.toLowerCase()}" title="Slides: part ${L}"><b>${L}</b>${esc(name)}</a>`).join('')}</div>` : '';
+  const acts = ready
+    ? `<a class="btn main" href="${s.slides}">Slides</a>`
+      + (s.lab ? `<a class="btn alt" href="${s.lab}">Lab</a>` : (s.n>1 ? `<span class="btn off">Lab soon</span>` : ''))
+      + (s.parts.length ? `<a class="btn alt" href="practice/#s${s.n}">Practice</a>` : '')
+    : `<span class="btn off">Coming</span>`;
+  return `<div class="ses${ready?'':' soon'}" id="session-${s.n}">
+    <div class="num">${s.n}</div>
+    <div><p class="t">${esc(s.title)}<small>week ${s.week}</small></p><p class="q">${esc(s.q)}</p>${parts}</div>
+    <div class="acts">${acts}</div></div>`;
+}).join('');
+</script>
 </body>
 </html>

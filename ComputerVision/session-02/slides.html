@@ -239,6 +239,10 @@ html.reading .memo{grid-template-columns:1fr;}
 html.reading .mq{font-size:17px;}
 html.reading .memo-end{font-size:15px;}
 html.reading .reveal .mnote{font-size:14px;}
+.reveal .more{margin:.9em 0 0;font-size:.56em;}
+.reveal .more a{color:var(--teal);font-weight:600;text-decoration:none;border-bottom:2px solid var(--teal-soft);}
+.reveal .more a:hover{border-bottom-color:var(--teal);}
+html.reading .reveal .more{font-size:15px;}
 /* ===== session 2 ===== */
 .fig{display:block;width:100%;height:auto;}
 #distSvg{max-height:330px;}
@@ -549,7 +553,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
       </div>
     </div>
     <figure class="art">
-      <svg viewBox="0 0 680 320" role="img" aria-label="A tree, a dark box with a small hole, and the tree upside down on the back wall"><rect x="420" y="60" width="240" height="240" rx="10" fill="#0f1b2d"/><line x1="10" y1="260" x2="390" y2="260" stroke="#c9d1db" stroke-width="2"/><rect x="52" y="190" width="16" height="70" rx="3" fill="#8a6a43"/><circle cx="60" cy="150" r="55" fill="#2f9e6e"/><rect x="419" y="175" width="10" height="10" fill="#fff"/><g><line x1="60" y1="95" x2="660" y2="236.7" stroke="#f9c74f" stroke-width="2.5"/><line x1="60" y1="260" x2="660" y2="126.7" stroke="#f9c74f" stroke-width="2.5"/><circle cx="60" cy="95" r="5" fill="#f9c74f"/><circle cx="60" cy="260" r="5" fill="#f9c74f"/></g><g><rect x="612.0" y="126.7" width="10.7" height="46.7" rx="2" fill="#c49a6c"/><circle cx="617.3" cy="200.0" r="36.7" fill="#5fd3a0"/></g></svg>
+      <svg viewBox="0 0 680 320" role="img" aria-label="A tree, a dark box with a small hole, and the tree upside down on the back wall"><rect x="420" y="60" width="240" height="240" rx="10" fill="#0f1b2d"/><line x1="10" y1="260" x2="390" y2="260" stroke="#c9d1db" stroke-width="2"/><rect x="52" y="190" width="16" height="70" rx="3" fill="#8a6a43"/><circle cx="60" cy="150" r="55" fill="#2f9e6e"/><rect x="418" y="173" width="12" height="14" fill="#fff"/><circle cx="424" cy="180" r="22" fill="rgba(249,199,79,.4)"/><circle cx="424" cy="180" r="10" fill="#f9c74f" stroke="#0f1b2d" stroke-width="2.5"/><g><line x1="60" y1="95" x2="660" y2="236.7" stroke="#f9c74f" stroke-width="2.5"/><line x1="60" y1="260" x2="660" y2="126.7" stroke="#f9c74f" stroke-width="2.5"/><circle cx="60" cy="95" r="5" fill="#f9c74f"/><circle cx="60" cy="260" r="5" fill="#f9c74f"/></g><g><rect x="612.0" y="126.7" width="10.7" height="46.7" rx="2" fill="#c49a6c"/><circle cx="617.3" cy="200.0" r="36.7" fill="#5fd3a0"/></g></svg>
       <figcaption>A hole in a dark box already makes a picture</figcaption>
     </figure>
   </div>
@@ -562,17 +566,17 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <h2 class="claim">One question, four parts</h2>
   <div class="qband"><span>The question</span>How does a camera turn a 3D scene into numbers — and what does it lose on the way?</div>
   <div class="parts">
-    <div><b><i>A</i>Pinhole</b>Why far things look small, and where depth goes</div>
-    <div><b><i>B</i>Lenses</b>Bright and sharp at once; field of view</div>
-    <div><b><i>C</i>Sensors</b>Light becomes numbers: pixels, noise, range</div>
-    <div><b><i>D</i>Colour</b>One chip, three colours: the Bayer filter</div>
+    <div><b><i>A</i>Pinhole</b>Why do far things look small — and where does depth go?</div>
+    <div><b><i>B</i>Lenses</b>How can a picture be bright and sharp at once?</div>
+    <div><b><i>C</i>Sensors</b>How does light become numbers — and what limits them?</div>
+    <div><b><i>D</i>Colour</b>A photosite only counts light — so where does colour come from?</div>
   </div>
   <p class="takeaway"><span>Each part ends in the same notebook — <code>lab.ipynb</code>, one section per part.</span></p>
   <aside class="notes"><p>🇹🇭 อ่านคำถามของคาบ แล้วบอกว่าวันนี้เริ่มที่ A</p><p>🇬🇧 Read the session question; today starts with A.</p></aside>
 </section>
 
 <!-- 3 · Part A opener -->
-<section class="part-open" data-part="A">
+<section class="part-open" id="part-a" data-part="A">
   <div class="po-strip"><span class="on"><b>A</b>Pinhole</span><span class=""><b>B</b>Lenses</span><span class=""><b>C</b>Sensors</span><span class=""><b>D</b>Colour</span></div>
   <p class="po-letter">A</p>
   <h2 class="claim">Pinhole &amp; perspective</h2>
@@ -601,7 +605,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="kicker">A · Pinhole &amp; perspective</p>
   <h2 class="claim">A hole in a dark box makes a picture</h2>
   <div class="split">
-    <div><svg class="fig" viewBox="0 0 680 310" role="img" aria-label="Rays from the top and bottom of a tree cross at a pinhole and land upside down on the back wall of a dark box"><rect x="420" y="60" width="240" height="240" rx="10" fill="#0f1b2d"/><line x1="10" y1="260" x2="390" y2="260" stroke="#c9d1db" stroke-width="2"/><rect x="52" y="190" width="16" height="70" rx="3" fill="#8a6a43"/><circle cx="60" cy="150" r="55" fill="#2f9e6e"/><rect x="419" y="175" width="10" height="10" fill="#fff"/><text x="412" y="124" class="lb" text-anchor="end">pinhole</text><line x1="406" y1="130" x2="422" y2="172" stroke="#9aa6b5" stroke-width="1.5"/><text x="200.0" y="290" class="lb" text-anchor="middle">scene</text><text x="540.0" y="50" class="lb" text-anchor="middle">dark box</text><g class="fragment" data-fragment-index="1"><line x1="60" y1="95" x2="660" y2="236.7" stroke="#f9c74f" stroke-width="2.5"/><line x1="60" y1="260" x2="660" y2="126.7" stroke="#f9c74f" stroke-width="2.5"/><circle cx="60" cy="95" r="5" fill="#f9c74f"/><circle cx="60" cy="260" r="5" fill="#f9c74f"/></g><g class="fragment" data-fragment-index="2"><rect x="612.0" y="126.7" width="10.7" height="46.7" rx="2" fill="#c49a6c"/><circle cx="617.3" cy="200.0" r="36.7" fill="#5fd3a0"/></g><g class="fragment" data-fragment-index="2"><text x="434" y="88" class="lb lt">image, upside down</text></g></svg></div>
+    <div><svg class="fig" viewBox="0 0 680 310" role="img" aria-label="Rays from the top and bottom of a tree cross at a pinhole and land upside down on the back wall of a dark box"><rect x="420" y="60" width="240" height="240" rx="10" fill="#0f1b2d"/><line x1="10" y1="260" x2="390" y2="260" stroke="#c9d1db" stroke-width="2"/><rect x="52" y="190" width="16" height="70" rx="3" fill="#8a6a43"/><circle cx="60" cy="150" r="55" fill="#2f9e6e"/><rect x="418" y="173" width="12" height="14" fill="#fff"/><circle cx="424" cy="180" r="22" fill="rgba(249,199,79,.4)"/><circle cx="424" cy="180" r="10" fill="#f9c74f" stroke="#0f1b2d" stroke-width="2.5"/><text x="412" y="124" class="lb" text-anchor="end">pinhole</text><line x1="406" y1="130" x2="422" y2="172" stroke="#9aa6b5" stroke-width="1.5"/><text x="200.0" y="290" class="lb" text-anchor="middle">scene</text><text x="540.0" y="50" class="lb" text-anchor="middle">dark box</text><g class="fragment" data-fragment-index="1"><line x1="60" y1="95" x2="660" y2="236.7" stroke="#f9c74f" stroke-width="2.5"/><line x1="60" y1="260" x2="660" y2="126.7" stroke="#f9c74f" stroke-width="2.5"/><circle cx="60" cy="95" r="5" fill="#f9c74f"/><circle cx="60" cy="260" r="5" fill="#f9c74f"/></g><g class="fragment" data-fragment-index="2"><rect x="612.0" y="126.7" width="10.7" height="46.7" rx="2" fill="#c49a6c"/><circle cx="617.3" cy="200.0" r="36.7" fill="#5fd3a0"/></g><g class="fragment" data-fragment-index="2"><text x="434" y="88" class="lb lt">image, upside down</text></g></svg></div>
     <div class="say">
       <div class="term"><b>pinhole camera</b><span class="th">กล้องรูเข็ม</span><span class="def">a dark box with one small hole — no lens</span></div>
       <p class="fragment" data-fragment-index="1" style="margin-top:.8em">Light travels in <b>straight lines</b>. Each point of the tree sends one ray through the hole.</p>
@@ -753,7 +757,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
 </section>
 
 <!-- 15 · Part B opener -->
-<section class="part-open" data-part="B">
+<section class="part-open" id="part-b" data-part="B">
   <div class="po-strip"><span class="done"><b>A</b>Pinhole</span><span class="on"><b>B</b>Lenses</span><span class=""><b>C</b>Sensors</span><span class=""><b>D</b>Colour</span></div>
   <p class="po-letter">B</p>
   <h2 class="claim">Lenses</h2>
@@ -887,7 +891,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
 </section>
 
 <!-- 24 · Part C opener -->
-<section class="part-open" data-part="C">
+<section class="part-open" id="part-c" data-part="C">
   <div class="po-strip"><span class="done"><b>A</b>Pinhole</span><span class="done"><b>B</b>Lenses</span><span class="on"><b>C</b>Sensors</span><span class=""><b>D</b>Colour</span></div>
   <p class="po-letter">C</p>
   <h2 class="claim">Sensors</h2>
@@ -1038,7 +1042,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
 </section>
 
 <!-- 33 · Part D opener -->
-<section class="part-open" data-part="D">
+<section class="part-open" id="part-d" data-part="D">
   <div class="po-strip"><span class="done"><b>A</b>Pinhole</span><span class="done"><b>B</b>Lenses</span><span class="done"><b>C</b>Sensors</span><span class="on"><b>D</b>Colour</span></div>
   <p class="po-letter">D</p>
   <h2 class="claim">Colour</h2>
