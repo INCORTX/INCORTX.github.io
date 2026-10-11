@@ -1607,16 +1607,16 @@
       </tr>
       <tr>
         <td>Session 2</td>
-        <td>14</td>
+        <td>19</td>
+        <td>10</td>
         <td>7</td>
-        <td>5</td>
         <td>2</td>
       </tr>
       <tr class="tot">
         <td><strong>Total</strong></td>
-        <td><strong>14</strong></td>
+        <td><strong>19</strong></td>
+        <td><strong>10</strong></td>
         <td><strong>7</strong></td>
-        <td><strong>5</strong></td>
         <td><strong>2</strong></td>
       </tr>
     </table>
@@ -1819,6 +1819,71 @@ Step 2: ratio $\dfrac{4/5}{4/11} = \dfrac{11}{5} = 2.2$<br>
         <div class="soln"><strong>(a)</strong> Step 1: $1000 \times 750 = 750\,000$ and $2000 \times 1500 = 3\,000\,000$ [1]<br>
 <strong>(b)</strong> Step 1: $\dfrac{3\,000\,000}{750\,000} = 4$ — doubling both sides gives four times the pixels [1]<br>
 <strong>Answer:</strong> (a) 750 000 and 3 000 000 · (b) $\times 4$
+        </div>
+      </details>
+    </div>
+    <h3 class="bank-part" id="s2d">D · Colour</h3>
+    <div class="item" id="p015">
+      <div class="ihead"><span class="iid">015</span><span class="stars s1">⭐</span><span class="topic">Session 2 D: Bayer filter counts</span><span class="meta">2 pts · ⏱ ~3 min</span></div>
+      <div class="problem"><span class="lab">Problem</span> A camera's Bayer sensor has $6000 \times 4000$ photosites. How many of them measure <strong>(a)</strong> green, <strong>(b)</strong> red, <strong>(c)</strong> blue?
+      </div>
+      <details class="answer">
+        <summary>Show solution</summary>
+        <div class="soln">Step 1: $6000 \times 4000 = 24\,000\,000$ photosites; each $2 \times 2$ tile holds 1 R, 2 G, 1 B, so half are green [1]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;green $= 12\,000\,000$<br>
+Step 2: red and blue take a quarter each: $6\,000\,000$ red and $6\,000\,000$ blue [1]<br>
+<strong>Answer:</strong> (a) 12 000 000 · (b) 6 000 000 · (c) 6 000 000
+        </div>
+      </details>
+    </div>
+    <div class="item" id="p016">
+      <div class="ihead"><span class="iid">016</span><span class="stars s1">⭐</span><span class="topic">Session 2 D: How many colours</span><span class="meta">2 pts · ⏱ ~2 min</span></div>
+      <div class="problem"><span class="lab">Problem</span> How many different colours can one pixel hold with <strong>(a)</strong> 6 bits per channel and <strong>(b)</strong> 10 bits per channel?
+      </div>
+      <details class="answer">
+        <summary>Show solution</summary>
+        <div class="soln"><strong>(a)</strong> Step 1: each channel has $2^6 = 64$ levels; three channels multiply: $64^3 = 2^{18} = 262\,144$ [1]<br>
+<strong>(b)</strong> Step 1: $\left(2^{10}\right)^3 = 2^{30} = 1\,073\,741\,824$ — about a billion [1]<br>
+<strong>Answer:</strong> (a) 262 144 · (b) $2^{30} \approx 1.07$ billion
+        </div>
+      </details>
+    </div>
+    <div class="item" id="p017">
+      <div class="ihead"><span class="iid">017</span><span class="stars s1">⭐</span><span class="topic">Session 2 D: Mixing light</span><span class="meta">1.5 pts · ⏱ ~2 min</span></div>
+      <div class="problem"><span class="lab">Problem</span> Name the colour of each pixel: <strong>(a)</strong> $(255, 0, 255)$ <strong>(b)</strong> $(0, 255, 255)$ <strong>(c)</strong> $(128, 128, 128)$.
+      </div>
+      <details class="answer">
+        <summary>Show solution</summary>
+        <div class="soln">Step 1: light adds. Red + blue = <strong>magenta</strong> [0.5]<br>
+Step 2: green + blue = <strong>cyan</strong> [0.5]<br>
+Step 3: three equal values = a <strong>grey</strong> — halfway between black and white [0.5]<br>
+<strong>Answer:</strong> (a) magenta · (b) cyan · (c) mid grey<br>
+<strong>Common mistake:</strong> mixing like paint (red + green = brown) — these are amounts of light.
+        </div>
+      </details>
+    </div>
+    <div class="item" id="p018">
+      <div class="ihead"><span class="iid">018</span><span class="stars s2">⭐⭐</span><span class="topic">Session 2 D: Demosaicing by hand</span><span class="meta">2 pts · ⏱ ~4 min</span></div>
+      <div class="problem"><span class="lab">Problem</span> A photosite under a <strong>red</strong> filter reads 180. Its four green neighbours (up, down, left, right) read 100, 110, 90 and 120; its four blue neighbours (the diagonals) read 40, 60, 50 and 50. Using the average of the neighbours, what $(R, G, B)$ does this pixel get?
+      </div>
+      <details class="answer">
+        <summary>Show solution</summary>
+        <div class="soln">Step 1: green is the average of the four green neighbours: $\dfrac{100 + 110 + 90 + 120}{4} = \dfrac{420}{4} = 105$ [1]<br>
+Step 2: blue is the average of the four blue neighbours: $\dfrac{40 + 60 + 50 + 50}{4} = \dfrac{200}{4} = 50$; red is measured directly [1]<br>
+<strong>Answer:</strong> $(R, G, B) = (180, 105, 50)$
+        </div>
+      </details>
+    </div>
+    <div class="item" id="p019">
+      <div class="ihead"><span class="iid">019</span><span class="stars s2">⭐⭐</span><span class="topic">Session 2 D: Rotating hue</span><span class="meta">1.5 pts · ⏱ ~2 min</span></div>
+      <div class="problem"><span class="lab">Problem</span> In HSV, pure red has hue $0^\circ$, pure green $120^\circ$ and pure blue $240^\circ$. Every hue in a photo is turned by $+120^\circ$. What do <strong>(a)</strong> red, <strong>(b)</strong> green and <strong>(c)</strong> blue become?
+      </div>
+      <details class="answer">
+        <summary>Show solution</summary>
+        <div class="soln">Step 1: $0^\circ + 120^\circ = 120^\circ$ → green [0.5]<br>
+Step 2: $120^\circ + 120^\circ = 240^\circ$ → blue [0.5]<br>
+Step 3: $240^\circ + 120^\circ = 360^\circ = 0^\circ$ → red — hue goes round a circle [0.5]<br>
+<strong>Answer:</strong> (a) green · (b) blue · (c) red
         </div>
       </details>
     </div>

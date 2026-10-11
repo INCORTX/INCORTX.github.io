@@ -1142,7 +1142,7 @@ function initDeckbar(){
     if(document.fullscreenElement||document.webkitFullscreenElement){ (document.exitFullscreen||document.webkitExitFullscreen).call(document); }
     else if(el.requestFullscreen) el.requestFullscreen(); else if(el.webkitRequestFullscreen) el.webkitRequestFullscreen(); };
   const last=()=>Reveal.getTotalSlides()-1;
-  /* Shift+↑/↓ = first/last slide · Shift+←/→ = previous/next topic (a topic = a run of sections with the same data-part) */
+  /* Shift+↑/↓ = first/last slide · Shift+←/→ = previous/next topic (a run of sections with the same data-part), then first/last */
   document.addEventListener('keydown',e=>{
     if(!e.shiftKey||e.ctrlKey||e.metaKey||e.altKey||document.documentElement.classList.contains('album-open')) return;
     const k=e.key; if(!/^Arrow(Up|Down|Left|Right)$/.test(k)) return;
@@ -1152,7 +1152,7 @@ function initDeckbar(){
     if(k==='ArrowDown') return Reveal.slide(last());
     const sl=Reveal.getSlides(), starts=sl.map((x,i)=>x.dataset.part&&(i===0||sl[i-1].dataset.part!==x.dataset.part)?i:-1).filter(i=>i>=0);
     const h=Reveal.getIndices().h, t=k==='ArrowRight'?starts.find(i=>i>h):[...starts].reverse().find(i=>i<h);
-    if(t!==undefined) Reveal.slide(t);
+    Reveal.slide(t!==undefined ? t : (k==='ArrowRight' ? last() : 0));   /* no topic left that way: go to the end */
   },true);
   const act={first:()=>Reveal.slide(0), prev:()=>Reveal.prev(), next:()=>Reveal.next(), last:()=>Reveal.slide(last()),
              overview:()=>toggleAlbum(), fullscreen, pdf:toggleMenu, help:toggleKeys};

@@ -282,6 +282,13 @@ html.reading .po-out{font-size:15px;}
 .reveal .more a{color:var(--teal);font-weight:600;text-decoration:none;border-bottom:2px solid var(--teal-soft);}
 .reveal .more a:hover{border-bottom-color:var(--teal);}
 html.reading .reveal .more{font-size:15px;}
+.chbtns{display:flex;gap:.35em;margin:.45em 0 0;flex-wrap:wrap;}
+.chbtns button{all:unset;cursor:pointer;padding:.3em .8em;border-radius:999px;border:1px solid var(--line);font-family:var(--display);font-weight:600;font-size:.5em;color:var(--body);background:#fff;}
+.chbtns button.on{background:var(--teal);border-color:var(--teal);color:#fff;}
+.demo-out .sw{display:inline-block;width:2.2em;height:1.2em;border-radius:4px;border:1px solid var(--line);}
+.steps.recap li{font-size:.7em;}
+.reveal sup{vertical-align:super;font-size:.68em;line-height:0;}
+html.reading .chbtns button{font-size:14px;}
 .photo{margin:0;}
 .photo img{display:block;width:100%;height:auto;max-height:430px;object-fit:contain;border-radius:12px;border:1px solid var(--line);background:#fff;}
 .photo figcaption{margin-top:.4em;font-family:var(--mono);font-size:.4em;color:var(--muted);text-align:center;}
@@ -917,7 +924,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     </div>
     <div class="say">
       <button class="tog" id="camBtn" type="button">Use my camera</button>
-      <p>Every cell is <b>one number</b> (0 = black … 255 = white). With more pixels the digits move into a <b>magnifier</b> — point at the picture to move it.</p>
+      <p>Every cell is <b>one number</b> (0 = black … 255 = white). Drag the slider: more pixels, smaller cells — the numbers shrink with them.</p>
       <p>Move your hand in front of the camera — every number changes, every frame.</p>
       <p style="color:var(--muted);font-size:.85em">The picture stays in your browser; nothing is sent anywhere. No camera? You see a photo instead.</p>
     </div>
@@ -1030,14 +1037,153 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 สรุป C สามข้อ แล้วต่อ D</p><p>🇬🇧 Wrap up C in three points, then go on to D.</p></aside>
 </section>
 
-<!-- 33 · References -->
+<!-- 33 · Part D opener -->
+<section class="part-open" data-part="D">
+  <div class="po-strip"><span class="done"><b>A</b>Pinhole</span><span class="done"><b>B</b>Lenses</span><span class="done"><b>C</b>Sensors</span><span class="on"><b>D</b>Colour</span></div>
+  <p class="po-letter">D</p>
+  <h2 class="claim">Colour</h2>
+  <p class="po-q">A photosite only counts light — so where does colour come from?</p>
+  <p class="po-out"><span>By the end of this part</span>Explain how a single-chip sensor records colour, and how a colour becomes three numbers.</p>
+  <aside class="notes"><p>🇹🇭 หน้าเปิด topic: อ่านคำถามของ part แล้วเข้าเนื้อหา</p><p>🇬🇧 Part opener: read the question for this part, then go in.</p></aside>
+</section>
+
+<!-- 34 · Three numbers -->
+<section data-part="D">
+  <p class="kicker">D · Colour</p>
+  <h2 class="claim">A colour pixel is three numbers</h2>
+  <div class="split">
+    <div>
+      <canvas id="rgbCv" class="democv" width="480" height="300" data-src="img/perspective_photo.jpg" aria-label="the photo, or one of its colour channels"></canvas>
+      <div class="chbtns" id="rgbBtns"><button data-ch="all" class="on">Colour</button><button data-ch="0">R</button><button data-ch="1">G</button><button data-ch="2">B</button></div>
+      <div class="demo-out"><span id="rgbOut">point at the photo</span><span class="sw" id="rgbSw"></span></div>
+    </div>
+    <div class="say">
+      <p>Each pixel stores <b>(R, G, B)</b>: how much red, green and blue light.</p>
+      <p>Press <b>R</b>, <b>G</b> or <b>B</b>: each channel is just a grey image — session 1’s grid, three times.</p>
+      <p class="fragment">Why three? Our eyes have three kinds of colour cells (cones), so three numbers are enough to match what we see.</p>
+    </div>
+  </div>
+  <aside class="notes"><p>🇹🇭 กด R: กระเบื้องแดงสว่าง ท้องฟ้ามืด · กด B: กลับกัน · ชี้เมาส์ดูค่า (R, G, B)</p><p>🇬🇧 Press R: the red tiles are bright, the sky dark. Press B: the opposite. Point to read (R, G, B).</p></aside>
+</section>
+
+<!-- 35 · Bayer -->
+<section data-part="D">
+  <p class="kicker">D · Colour</p>
+  <h2 class="claim">One chip, three colours: a filter on every photosite</h2>
+  <div class="split">
+    <div><svg class="fig" viewBox="0 0 476 360" role="img" aria-label="A Bayer colour filter mosaic: a repeating 2 by 2 tile of red, green, green, blue filters"><rect x="6" y="6" width="54" height="54" rx="6" fill="#e0533d"/><text x="33.0" y="43.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">R</text><rect x="64" y="6" width="54" height="54" rx="6" fill="#2f9e6e"/><text x="91.0" y="43.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">G</text><rect x="122" y="6" width="54" height="54" rx="6" fill="#e0533d"/><text x="149.0" y="43.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">R</text><rect x="180" y="6" width="54" height="54" rx="6" fill="#2f9e6e"/><text x="207.0" y="43.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">G</text><rect x="238" y="6" width="54" height="54" rx="6" fill="#e0533d"/><text x="265.0" y="43.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">R</text><rect x="296" y="6" width="54" height="54" rx="6" fill="#2f9e6e"/><text x="323.0" y="43.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">G</text><rect x="354" y="6" width="54" height="54" rx="6" fill="#e0533d"/><text x="381.0" y="43.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">R</text><rect x="412" y="6" width="54" height="54" rx="6" fill="#2f9e6e"/><text x="439.0" y="43.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">G</text><rect x="6" y="64" width="54" height="54" rx="6" fill="#2f9e6e"/><text x="33.0" y="101.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">G</text><rect x="64" y="64" width="54" height="54" rx="6" fill="#3b6fd8"/><text x="91.0" y="101.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">B</text><rect x="122" y="64" width="54" height="54" rx="6" fill="#2f9e6e"/><text x="149.0" y="101.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">G</text><rect x="180" y="64" width="54" height="54" rx="6" fill="#3b6fd8"/><text x="207.0" y="101.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">B</text><rect x="238" y="64" width="54" height="54" rx="6" fill="#2f9e6e"/><text x="265.0" y="101.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">G</text><rect x="296" y="64" width="54" height="54" rx="6" fill="#3b6fd8"/><text x="323.0" y="101.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">B</text><rect x="354" y="64" width="54" height="54" rx="6" fill="#2f9e6e"/><text x="381.0" y="101.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">G</text><rect x="412" y="64" width="54" height="54" rx="6" fill="#3b6fd8"/><text x="439.0" y="101.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">B</text><rect x="6" y="122" width="54" height="54" rx="6" fill="#e0533d"/><text x="33.0" y="159.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">R</text><rect x="64" y="122" width="54" height="54" rx="6" fill="#2f9e6e"/><text x="91.0" y="159.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">G</text><rect x="122" y="122" width="54" height="54" rx="6" fill="#e0533d"/><text x="149.0" y="159.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">R</text><rect x="180" y="122" width="54" height="54" rx="6" fill="#2f9e6e"/><text x="207.0" y="159.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">G</text><rect x="238" y="122" width="54" height="54" rx="6" fill="#e0533d"/><text x="265.0" y="159.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">R</text><rect x="296" y="122" width="54" height="54" rx="6" fill="#2f9e6e"/><text x="323.0" y="159.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">G</text><rect x="354" y="122" width="54" height="54" rx="6" fill="#e0533d"/><text x="381.0" y="159.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">R</text><rect x="412" y="122" width="54" height="54" rx="6" fill="#2f9e6e"/><text x="439.0" y="159.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">G</text><rect x="6" y="180" width="54" height="54" rx="6" fill="#2f9e6e"/><text x="33.0" y="217.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">G</text><rect x="64" y="180" width="54" height="54" rx="6" fill="#3b6fd8"/><text x="91.0" y="217.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">B</text><rect x="122" y="180" width="54" height="54" rx="6" fill="#2f9e6e"/><text x="149.0" y="217.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">G</text><rect x="180" y="180" width="54" height="54" rx="6" fill="#3b6fd8"/><text x="207.0" y="217.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">B</text><rect x="238" y="180" width="54" height="54" rx="6" fill="#2f9e6e"/><text x="265.0" y="217.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">G</text><rect x="296" y="180" width="54" height="54" rx="6" fill="#3b6fd8"/><text x="323.0" y="217.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">B</text><rect x="354" y="180" width="54" height="54" rx="6" fill="#2f9e6e"/><text x="381.0" y="217.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">G</text><rect x="412" y="180" width="54" height="54" rx="6" fill="#3b6fd8"/><text x="439.0" y="217.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">B</text><rect x="6" y="238" width="54" height="54" rx="6" fill="#e0533d"/><text x="33.0" y="275.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">R</text><rect x="64" y="238" width="54" height="54" rx="6" fill="#2f9e6e"/><text x="91.0" y="275.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">G</text><rect x="122" y="238" width="54" height="54" rx="6" fill="#e0533d"/><text x="149.0" y="275.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">R</text><rect x="180" y="238" width="54" height="54" rx="6" fill="#2f9e6e"/><text x="207.0" y="275.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">G</text><rect x="238" y="238" width="54" height="54" rx="6" fill="#e0533d"/><text x="265.0" y="275.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">R</text><rect x="296" y="238" width="54" height="54" rx="6" fill="#2f9e6e"/><text x="323.0" y="275.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">G</text><rect x="354" y="238" width="54" height="54" rx="6" fill="#e0533d"/><text x="381.0" y="275.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">R</text><rect x="412" y="238" width="54" height="54" rx="6" fill="#2f9e6e"/><text x="439.0" y="275.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">G</text><rect x="6" y="296" width="54" height="54" rx="6" fill="#2f9e6e"/><text x="33.0" y="333.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">G</text><rect x="64" y="296" width="54" height="54" rx="6" fill="#3b6fd8"/><text x="91.0" y="333.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">B</text><rect x="122" y="296" width="54" height="54" rx="6" fill="#2f9e6e"/><text x="149.0" y="333.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">G</text><rect x="180" y="296" width="54" height="54" rx="6" fill="#3b6fd8"/><text x="207.0" y="333.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">B</text><rect x="238" y="296" width="54" height="54" rx="6" fill="#2f9e6e"/><text x="265.0" y="333.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">G</text><rect x="296" y="296" width="54" height="54" rx="6" fill="#3b6fd8"/><text x="323.0" y="333.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">B</text><rect x="354" y="296" width="54" height="54" rx="6" fill="#2f9e6e"/><text x="381.0" y="333.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">G</text><rect x="412" y="296" width="54" height="54" rx="6" fill="#3b6fd8"/><text x="439.0" y="333.0" text-anchor="middle" fill="#fff" style="font:700 28px var(--display)">B</text><rect class="fragment" data-fragment-index="1" x="2" y="2" width="120" height="120" rx="9" fill="none" stroke="#0f1b2d" stroke-width="5"/></svg></div>
+    <div class="say">
+      <p>A photosite counts light — it cannot tell colours apart.</p>
+      <p>So each one gets a tiny <b>colour filter</b>: it measures only red, only green or only blue.</p>
+      <div class="term"><b>Bayer filter</b><span class="th">ฟิลเตอร์ Bayer</span><span class="def">a repeating 2 × 2 tile: R G / G B</span></div>
+      <p class="fragment" data-fragment-index="1" style="margin-top:.7em">One tile: <b>1 red · 2 green · 1 blue</b> — green twice, because our eyes are most sensitive to it.</p>
+    </div>
+  </div>
+  <aside class="notes"><p>🇹🇭 กด → ให้เห็น tile 2×2 · ถาม: แต่ละพิกเซลวัดได้กี่สีจาก 3? (1 สี)</p><p>🇬🇧 Press → for the 2 × 2 tile. Ask: how many of the three colours does each photosite measure? (one)</p></aside>
+</section>
+
+<!-- 36 · Demosaic -->
+<section data-part="D">
+  <p class="kicker">D · Colour</p>
+  <h2 class="claim">The other two colours are guessed from the neighbours</h2>
+  <div class="split">
+    <div>
+      <canvas id="demCv" class="democv" width="480" height="280" data-src="img/perspective_photo.jpg" aria-label="a close-up of the photo: original, as the mosaic records it, or rebuilt"></canvas>
+      <div class="chbtns" id="demBtns"><button data-st="orig">Original</button><button data-st="mosaic" class="on">Sensor records</button><button data-st="demosaic">Rebuilt</button></div>
+    </div>
+    <div class="say">
+      <p>A close-up of the pergola photo, <b>4× enlarged</b>.</p>
+      <p><b>Sensor records</b>: one colour per photosite — a mosaic.</p>
+      <p><b>Rebuilt</b>: each missing colour is the <b>average of its nearest neighbours</b> of that colour. This is <b>demosaicing</b>.</p>
+      <p class="fragment">Look at sharp edges: the guess can leave thin false colours — a real camera uses smarter guesses.</p>
+    </div>
+  </div>
+  <aside class="notes"><p>🇹🇭 กดสามปุ่มตามลำดับ · ชี้ขอบเสา: มีสีเพี้ยนเล็กน้อยหลัง rebuild</p><p>🇬🇧 Press the three buttons in turn. Point at the pillar edges: small false colours after rebuilding.</p></aside>
+</section>
+
+<!-- 37 · HSV -->
+<section data-part="D">
+  <p class="kicker">D · Colour</p>
+  <h2 class="claim">Same colour, other numbers: hue, saturation, value</h2>
+  <div class="split">
+    <div>
+      <canvas id="hsvCv" class="democv" width="480" height="300" data-src="img/perspective_photo.jpg" aria-label="the photo with every hue rotated"></canvas>
+      <input class="slider" id="hsvH" type="range" min="0" max="360" step="15" value="0" aria-label="hue shift in degrees">
+      <div class="demo-out"><span id="hsvOut">hue shift 0°</span><span id="hsvPx">point at the photo</span></div>
+    </div>
+    <div class="say">
+      <div class="term"><b>colour space</b><span class="th">ปริภูมิสี</span><span class="def">a way to write a colour as numbers</span></div>
+      <p style="margin-top:.7em"><b>HSV</b> splits a colour into <b>hue</b> (which colour, 0–360°), <b>saturation</b> (how pure) and <b>value</b> (how bright).</p>
+      <p>Drag the slider: every hue turns, but brightness stays — hard to do with R, G and B directly.</p>
+    </div>
+  </div>
+  <aside class="notes"><p>🇹🇭 ลาก hue 120°: แดงกลายเป็นเขียว · ชี้เมาส์ดูค่า RGB กับ HSV ของพิกเซลเดียวกัน</p><p>🇬🇧 Drag to 120°: red becomes green. Point to compare RGB and HSV for the same pixel.</p></aside>
+</section>
+
+<!-- 38 · Try it -->
+<section data-part="D">
+  <p class="kicker">D · Colour</p>
+  <h2 class="claim">Try it: count the colours</h2>
+  <div class="split">
+    <div class="tryit"><span class="tag">Try it</span>
+      <ol style="margin:.3em 0 0 1.1em"><li>A Bayer sensor has <b>4000 × 3000</b> photosites. How many measure green? Red? Blue?</li><li>With <b>8 bits</b> per channel, how many different colours can one pixel hold?</li><li>Which colour is <b>(255, 255, 0)</b>?</li></ol>
+      <details><summary>Answer</summary>1. 12,000,000 in all: green <b>6,000,000</b> · red <b>3,000,000</b> · blue <b>3,000,000</b> · 2. 256³ = 2<sup>24</sup> = <b>16,777,216</b> · 3. red + green light = <b>yellow</b>.</details>
+    </div>
+    <div class="say"><p>A 2 × 2 tile holds 1 R, 2 G, 1 B.</p><p>Each channel has 2<sup>8</sup> = 256 levels; colours multiply.</p><p>Light adds: red + green = yellow, all three = white.</p></div>
+  </div>
+  <aside class="notes"><p>🇹🇭 ให้เวลา 1–2 นาที · ข้อ 3: ผสมแสง ไม่ใช่ผสมสีน้ำ</p><p>🇬🇧 Give one to two minutes. Question 3 mixes light, not paint.</p></aside>
+</section>
+
+<!-- 39 · Part D summary -->
+<section data-part="D">
+  <p class="kicker">D · Colour</p>
+  <h2 class="claim">Colour: three numbers, measured one at a time</h2>
+  <div class="cards">
+    <div class="card"><b>Three numbers</b>(R, G, B) per pixel — three grey images.</div>
+    <div class="card violet"><b>Bayer mosaic</b>Each photosite measures one colour: 1 R, 2 G, 1 B per tile.</div>
+    <div class="card amber"><b>Demosaicing</b>The two missing colours are guessed from neighbours.</div>
+  </div>
+  <p class="more"><a href="../practice/#s2d">More practice · Session 2 D — practice bank with worked solutions →</a></p>
+  <p class="takeaway"><span>Other colour spaces, like HSV, write the same colour with different numbers.</span></p>
+  <aside class="notes"><p>🇹🇭 สรุป D แล้วไปหน้าสรุปทั้งคาบ</p><p>🇬🇧 Wrap up D, then the session summary.</p></aside>
+</section>
+
+<!-- 40 · Session summary -->
+<section>
+  <p class="kicker">Session 2 · what to remember</p>
+  <h2 class="claim">From a 3D scene to a grid of numbers</h2>
+  <ol class="steps recap">
+    <li><span><b>Pinhole:</b> x = f · X / Z — far things shrink, parallel lines meet, depth is lost.</span></li>
+    <li><span><b>Lenses:</b> bright and sharp at one distance; f sets the view, the aperture sets depth of field.</span></li>
+    <li><span><b>Sensors:</b> resolution × bit depth numbers, limited by noise and dynamic range.</span></li>
+    <li><span><b>Colour:</b> a Bayer mosaic measures one colour per photosite; demosaicing fills in the rest.</span></li>
+  </ol>
+  <p class="more"><a href="../practice/#s2">All session 2 practice →</a></p>
+  <aside class="notes"><p>🇹🇭 ทวน 4 ข้อ ตามลำดับ A–D</p><p>🇬🇧 Recap the four lines, A to D.</p></aside>
+</section>
+
+<!-- 41 · Next session -->
+<section>
+  <p class="kicker">Next · Session 3</p>
+  <h2 class="claim">Now that an image is numbers, what can we do to them?</h2>
+  <div class="split">
+    <div class="say">
+      <p>Session 3 — <b>image processing &amp; filtering</b>: change pixels one by one, then mix each pixel with its neighbours (<b>convolution</b>).</p>
+      <p>That one operation blurs, sharpens and finds edges — and in session 4 it becomes the heart of a <b>CNN</b>.</p>
+    </div>
+    <div class="flashback">Keep from today: an image is a grid of numbers, R, G and B are three such grids, and every number carries some noise.</div>
+  </div>
+  <aside class="notes"><p>🇹🇭 ปิดคาบ: ปูทางคาบ 3</p><p>🇬🇧 Close the session and set up session 3.</p></aside>
+</section>
+
+<!-- 42 · References -->
 <section>
   <p class="kicker">References</p>
-  <h2 class="claim">Where parts A, B and C come from</h2>
+  <h2 class="claim">Where session 2 comes from</h2>
   <ul class="small" style="font-size:.62em;line-height:1.6">
-    <li>S. K. Nayar. <i>First Principles of Computer Vision</i> — Image Formation: pinhole and perspective projection; lenses; depth of field; image sensors.</li>
+    <li>S. K. Nayar. <i>First Principles of Computer Vision</i> — Image Formation: pinhole and perspective projection; lenses; depth of field; image sensors; colour.</li>
     <li>R. Szeliski (2022). <i>Computer Vision: Algorithms and Applications</i>, 2nd ed., §2.1–2.3.</li>
-    <li>A. Torralba, P. Isola &amp; W. T. Freeman (2024). <i>Foundations of Computer Vision</i>, ch. 5–6 — free at visionbook.mit.edu.</li>
+    <li>A. Torralba, P. Isola &amp; W. T. Freeman (2024). <i>Foundations of Computer Vision</i>, ch. 5–6, 8 — free at visionbook.mit.edu.</li>
   </ul>
   <h3 style="margin-top:.8em">Images</h3>
   <ul class="small" style="font-size:.56em;line-height:1.6">
@@ -1045,7 +1191,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <li>Laitche, “One point perspective”, Tennoji Park, Osaka — public domain, via Wikimedia Commons. Lines and vanishing point: our OpenCV program.</li>
     <li>Wilfredor, “Panoramic view of Jacques-Cartier National Park from the Wolves peak” — CC0, via Wikimedia Commons.</li>
     <li>Early CMOS (active pixel) sensor prototype — public domain, via Wikimedia Commons.</li>
-    <li>Dolly-zoom animation, room-and-window scene and all diagrams: drawn by programs written for this course.</li>
+    <li>Dolly-zoom animation, room-and-window scene, mosaic and demosaicing, and all diagrams: drawn by programs written for this course.</li>
   </ul>
 </section>
 
@@ -1097,7 +1243,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <dt><kbd>←</kbd></dt><dd>Previous step</dd>
     <dt><kbd>↓</kbd><kbd>↑</kbd></dt><dd>Next / previous slide — skip the animations</dd>
     <dt><kbd>Home</kbd><kbd>End</kbd></dt><dd>First / last slide · also <kbd>Shift</kbd>+<kbd>↑</kbd><kbd>↓</kbd></dd>
-    <dt><kbd>Shift</kbd>+<kbd>←</kbd><kbd>→</kbd></dt><dd>Previous / next topic — A, B, C, D</dd>
+    <dt><kbd>Shift</kbd>+<kbd>←</kbd><kbd>→</kbd></dt><dd>Previous / next topic — A, B, C, D — then first / last slide</dd>
     <dt><kbd>G</kbd></dt><dd>Go to slide — type its number, then Enter</dd>
     <dt><kbd>O</kbd></dt><dd>All slides — arrows move, Enter opens, scroll or drag</dd>
     <dt><kbd>Enter</kbd><kbd>F</kbd></dt><dd>Full screen</dd>
@@ -1128,7 +1274,7 @@ function renderMath(){
     });
   }
 }
-function initDemos(){ initFlashN(); initHoleDemo(); initDistDemo(); initFovDemo(); initDofDemo(); initVpToggle(); initCam(); initRes(); initBits(); initNoise(); initDR(); initSliders(); }
+function initDemos(){ initFlashN(); initHoleDemo(); initDistDemo(); initFovDemo(); initDofDemo(); initVpToggle(); initCam(); initRes(); initBits(); initNoise(); initDR(); initRGB(); initDemosaic(); initHSV(); initSliders(); }
 /* range sliders: a finger anywhere on the track sets and drags the value.
    Phones otherwise only move a native slider when the touch lands exactly on its thumb,
    and a touch on the track scrolls the page instead. */
@@ -1267,7 +1413,7 @@ function initDeckbar(){
     if(document.fullscreenElement||document.webkitFullscreenElement){ (document.exitFullscreen||document.webkitExitFullscreen).call(document); }
     else if(el.requestFullscreen) el.requestFullscreen(); else if(el.webkitRequestFullscreen) el.webkitRequestFullscreen(); };
   const last=()=>Reveal.getTotalSlides()-1;
-  /* Shift+↑/↓ = first/last slide · Shift+←/→ = previous/next topic (a topic = a run of sections with the same data-part) */
+  /* Shift+↑/↓ = first/last slide · Shift+←/→ = previous/next topic (a run of sections with the same data-part), then first/last */
   document.addEventListener('keydown',e=>{
     if(!e.shiftKey||e.ctrlKey||e.metaKey||e.altKey||document.documentElement.classList.contains('album-open')) return;
     const k=e.key; if(!/^Arrow(Up|Down|Left|Right)$/.test(k)) return;
@@ -1277,7 +1423,7 @@ function initDeckbar(){
     if(k==='ArrowDown') return Reveal.slide(last());
     const sl=Reveal.getSlides(), starts=sl.map((x,i)=>x.dataset.part&&(i===0||sl[i-1].dataset.part!==x.dataset.part)?i:-1).filter(i=>i>=0);
     const h=Reveal.getIndices().h, t=k==='ArrowRight'?starts.find(i=>i>h):[...starts].reverse().find(i=>i<h);
-    if(t!==undefined) Reveal.slide(t);
+    Reveal.slide(t!==undefined ? t : (k==='ArrowRight' ? last() : 0));   /* no topic left that way: go to the end */
   },true);
   const act={first:()=>Reveal.slide(0), prev:()=>Reveal.prev(), next:()=>Reveal.next(), last:()=>Reveal.slide(last()),
              overview:()=>toggleAlbum(), fullscreen, pdf:toggleMenu, help:toggleKeys};
@@ -1544,27 +1690,16 @@ function cover(ctx,im,w,h,mirror){ const ar=w/h, iw=im.videoWidth||im.naturalWid
 function initCam(){
   const cv=document.getElementById('camCv'), sl=document.getElementById('camN'), btn=document.getElementById('camBtn'), out=document.getElementById('camOut'); if(!cv) return;
   const ctx=cv.getContext('2d'), sm=document.createElement('canvas'), sc=sm.getContext('2d',{willReadFrequently:true});
-  let src=null, video=null, stream=null, raf=0, live=false, focus=[.5,.5];
-  const aim=e=>{ const r=cv.getBoundingClientRect(); focus=[Math.min(1,Math.max(0,(e.clientX-r.left)/r.width)),Math.min(1,Math.max(0,(e.clientY-r.top)/r.height))]; if(!live) draw(); };
-  cv.addEventListener('pointermove',aim); cv.addEventListener('pointerdown',aim);
+  let src=null, video=null, stream=null, raf=0, live=false;
   const draw=()=>{
     const n=+sl.value, m=Math.round(n*cv.height/cv.width); sm.width=n; sm.height=m; if(!src||!cover(sc,src,n,m,live)) return;
     let d; try{ d=sc.getImageData(0,0,n,m).data; }catch(e){ out.textContent='Open this deck from the website to run the demo'; return; }
-    const cw=cv.width/n, ch=cv.height/m, show=n<=24, V=(x,y)=>{ const i=(y*n+x)*4; return Math.round(.299*d[i]+.587*d[i+1]+.114*d[i+2]); };
-    ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.font=`600 ${Math.floor(cw*0.34)}px "JetBrains Mono",monospace`;
-    for(let y=0;y<m;y++) for(let x=0;x<n;x++){ const v=V(x,y);
+    const cw=cv.width/n, ch=cv.height/m, fs=Math.max(1,cw*0.34);
+    ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.font=`600 ${fs}px "JetBrains Mono",monospace`;
+    for(let y=0;y<m;y++) for(let x=0;x<n;x++){ const i=(y*n+x)*4, v=Math.round(.299*d[i]+.587*d[i+1]+.114*d[i+2]);
       ctx.fillStyle=`rgb(${v},${v},${v})`; ctx.fillRect(x*cw,y*ch,Math.ceil(cw),Math.ceil(ch));
-      if(show){ ctx.fillStyle=v>128?'#0f1b2d':'#ffffff'; ctx.fillText(v,x*cw+cw/2,y*ch+ch/2); } }
-    if(!show){                                   /* cells too small for digits: a loupe keeps 7 × 5 numbers on screen */
-      const LX=7, LY=5, cx=Math.min(n-LX,Math.max(0,Math.round(focus[0]*n-LX/2))), cy=Math.min(m-LY,Math.max(0,Math.round(focus[1]*m-LY/2)));
-      ctx.strokeStyle='#e0533d'; ctx.lineWidth=3; ctx.strokeRect(cx*cw,cy*ch,LX*cw,LY*ch);
-      const s=32, bw=LX*s, bh=LY*s, bx=focus[0]>.5?10:cv.width-bw-10, by=10;
-      ctx.fillStyle='#0f1b2d'; ctx.fillRect(bx-4,by-4,bw+8,bh+8);
-      ctx.font='600 12px "JetBrains Mono",monospace';
-      for(let y=0;y<LY;y++) for(let x=0;x<LX;x++){ const v=V(cx+x,cy+y);
-        ctx.fillStyle=`rgb(${v},${v},${v})`; ctx.fillRect(bx+x*s,by+y*s,s-1,s-1);
-        ctx.fillStyle=v>128?'#0f1b2d':'#ffffff'; ctx.fillText(v,bx+x*s+s/2,by+y*s+s/2); } }
-    out.textContent=`${n} × ${m} = ${n*m} numbers${show?', each 0–255':' · box = red patch'}${live?' · live':' · photo'}`; cv.dataset.drawn=n;
+      ctx.fillStyle=v>128?'#0f1b2d':'#ffffff'; ctx.fillText(v,x*cw+cw/2,y*ch+ch/2); }
+    out.textContent=`${n} × ${m} = ${n*m} numbers, each 0–255${live?' · live':' · photo'}`; cv.dataset.drawn=n;
   };
   const loop=()=>{ draw(); raf=requestAnimationFrame(loop); };
   const stop=()=>{ cancelAnimationFrame(raf); if(stream) stream.getTracks().forEach(t=>t.stop()); stream=null; live=false; src=photo; btn.textContent='Use my camera'; draw(); };
@@ -1635,6 +1770,59 @@ function initDR(){
     ctx.putImageData(img,0,0); cv.dataset.drawn=ev;
     document.getElementById('drOut').textContent=`exposure ${ev>0?'+':''}${ev} · pure white ${(100*hi/R.length).toFixed(0)}% · pure black ${(100*lo/R.length).toFixed(0)}%`; };
   sl.addEventListener('input',draw); draw();
+}
+/* ---- part D ---- */
+function pickButtons(id,cb){ const g=document.getElementById(id); if(!g) return; g.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b) return;
+  g.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b)); cb(b); }); }
+/* RGB channels: one channel shown as a grey image; pointer reads (R, G, B) */
+function initRGB(){
+  const cv=document.getElementById('rgbCv'); if(!cv) return; const ctx=cv.getContext('2d',{willReadFrequently:true}); let base=null, ch='all';
+  const draw=()=>{ if(!base) return; const img=new ImageData(new Uint8ClampedArray(base.data),base.width,base.height), d=img.data;
+    if(ch!=='all'){ const c=+ch; for(let i=0;i<d.length;i+=4){ const v=d[i+c]; d[i]=d[i+1]=d[i+2]=v; } } ctx.putImageData(img,0,0); cv.dataset.drawn=ch; };
+  loadImg(cv.dataset.src,im=>{ cover(ctx,im,cv.width,cv.height); try{ base=ctx.getImageData(0,0,cv.width,cv.height); }catch(e){ return; } draw(); });
+  pickButtons('rgbBtns',b=>{ ch=b.dataset.ch; draw(); });
+  const read=e=>{ if(!base) return; const r=cv.getBoundingClientRect(), x=Math.floor((e.clientX-r.left)/r.width*cv.width), y=Math.floor((e.clientY-r.top)/r.height*cv.height);
+    if(x<0||y<0||x>=cv.width||y>=cv.height) return; const i=(y*cv.width+x)*4, d=base.data;
+    document.getElementById('rgbOut').textContent=`(R, G, B) = (${d[i]}, ${d[i+1]}, ${d[i+2]})`; document.getElementById('rgbSw').style.background=`rgb(${d[i]},${d[i+1]},${d[i+2]})`; };
+  cv.addEventListener('pointermove',read); cv.addEventListener('pointerdown',read);
+}
+/* Bayer mosaic (RGGB) and bilinear demosaicing of a close-up, enlarged 4× */
+function initDemosaic(){
+  const cv=document.getElementById('demCv'); if(!cv) return; const ctx=cv.getContext('2d'), K=4, w=cv.width/K, h=cv.height/K;
+  const sm=document.createElement('canvas'); sm.width=w; sm.height=h; const sc=sm.getContext('2d',{willReadFrequently:true}); let views=null, st='mosaic';
+  const chan=(x,y)=>(y%2===0)?(x%2===0?0:1):(x%2===0?1:2);                 /* R G / G B */
+  const build=im=>{ const iw=im.naturalWidth, ih=im.naturalHeight; sc.drawImage(im,iw*.12,ih*.18,w*2.2,h*2.2,0,0,w,h);   /* a crop with pillar edges */
+    let o; try{ o=sc.getImageData(0,0,w,h); }catch(e){ return; }
+    const m=new ImageData(w,h), r=new ImageData(w,h), O=o.data, M=m.data, R=r.data;
+    for(let y=0;y<h;y++) for(let x=0;x<w;x++){ const i=(y*w+x)*4, c=chan(x,y); M[i]=M[i+1]=M[i+2]=0; M[i+c]=O[i+c]; M[i+3]=255; }
+    for(let y=0;y<h;y++) for(let x=0;x<w;x++){ const i=(y*w+x)*4; R[i+3]=255;
+      for(let c=0;c<3;c++){ if(chan(x,y)===c){ R[i+c]=M[i+c]; continue; } let s=0,n=0;
+        for(let dy=-1;dy<=1;dy++) for(let dx=-1;dx<=1;dx++){ const xx=x+dx, yy=y+dy; if(xx<0||yy<0||xx>=w||yy>=h) continue; if(chan(xx,yy)===c){ s+=M[(yy*w+xx)*4+c]; n++; } }
+        R[i+c]=n?s/n:0; } }
+    views={orig:o,mosaic:m,demosaic:r}; draw(); };
+  const draw=()=>{ if(!views) return; sc.putImageData(views[st],0,0); ctx.imageSmoothingEnabled=false; ctx.drawImage(sm,0,0,cv.width,cv.height); cv.dataset.drawn=st; };
+  loadImg(cv.dataset.src,build);
+  pickButtons('demBtns',b=>{ st=b.dataset.st; draw(); });
+}
+/* HSV: rotate every hue; pointer shows RGB and HSV of one pixel */
+function rgb2hsv(r,g,b){ r/=255; g/=255; b/=255; const mx=Math.max(r,g,b), mn=Math.min(r,g,b), d=mx-mn; let h=0;
+  if(d){ if(mx===r) h=((g-b)/d)%6; else if(mx===g) h=(b-r)/d+2; else h=(r-g)/d+4; h*=60; if(h<0) h+=360; }
+  return [h, mx?d/mx:0, mx]; }
+function hsv2rgb(h,s,v){ const c=v*s, x=c*(1-Math.abs((h/60)%2-1)), m=v-c; let r=0,g=0,b=0;
+  if(h<60)[r,g,b]=[c,x,0]; else if(h<120)[r,g,b]=[x,c,0]; else if(h<180)[r,g,b]=[0,c,x]; else if(h<240)[r,g,b]=[0,x,c]; else if(h<300)[r,g,b]=[x,0,c]; else [r,g,b]=[c,0,x];
+  return [(r+m)*255,(g+m)*255,(b+m)*255]; }
+function initHSV(){
+  const cv=document.getElementById('hsvCv'), sl=document.getElementById('hsvH'); if(!cv) return; const ctx=cv.getContext('2d',{willReadFrequently:true}); let base=null, hsv=null, cur=null;
+  const draw=()=>{ if(!hsv) return; const sh=+sl.value, img=ctx.createImageData(cv.width,cv.height), d=img.data;
+    for(let i=0,j=0;i<d.length;i+=4,j+=3){ const [r,g,b]=hsv2rgb((hsv[j]+sh)%360,hsv[j+1],hsv[j+2]); d[i]=r; d[i+1]=g; d[i+2]=b; d[i+3]=255; }
+    ctx.putImageData(img,0,0); cur=img; cv.dataset.drawn=sh; document.getElementById('hsvOut').textContent=`hue shift ${sh}°`; };
+  loadImg(cv.dataset.src,im=>{ cover(ctx,im,cv.width,cv.height); try{ base=ctx.getImageData(0,0,cv.width,cv.height); }catch(e){ return; }
+    hsv=new Float32Array(cv.width*cv.height*3); for(let i=0,j=0;i<base.data.length;i+=4,j+=3){ const [h,s,v]=rgb2hsv(base.data[i],base.data[i+1],base.data[i+2]); hsv[j]=h; hsv[j+1]=s; hsv[j+2]=v; } draw(); });
+  sl.addEventListener('input',draw);
+  const read=e=>{ if(!cur) return; const r=cv.getBoundingClientRect(), x=Math.floor((e.clientX-r.left)/r.width*cv.width), y=Math.floor((e.clientY-r.top)/r.height*cv.height);
+    if(x<0||y<0||x>=cv.width||y>=cv.height) return; const i=(y*cv.width+x)*4, d=cur.data, [h,s,v]=rgb2hsv(d[i],d[i+1],d[i+2]);
+    document.getElementById('hsvPx').textContent=`RGB (${d[i]}, ${d[i+1]}, ${d[i+2]}) · HSV (${Math.round(h)}°, ${s.toFixed(2)}, ${v.toFixed(2)})`; };
+  cv.addEventListener('pointermove',read); cv.addEventListener('pointerdown',read);
 }
 /* real photo: swap between the photo and the program's lines */
 function initVpToggle(){
