@@ -59,7 +59,7 @@ h2.sess{font:700 26px var(--display);color:var(--ink);margin:30px 0 4px}
   <h1>Practice bank</h1>
   <p class="lead">Exam-style questions, session by session, with worked solutions. Work each one by hand first — no calculator needed — then open the solution and compare step by step; the mark for each step is in [ ].</p>
 
-  <div class="bar"><button class="chip on" data-k="sess" data-v="all">All sessions</button><button class="chip" data-k="sess" data-v="2">Session 2</button><span class="sep"></span><button class="chip on" data-k="stars" data-v="all">Any level</button><button class="chip" data-k="stars" data-v="1">⭐</button><button class="chip" data-k="stars" data-v="2">⭐⭐</button><button class="chip" data-k="stars" data-v="3">⭐⭐⭐</button><span class="sep"></span><button class="chip" data-k="hide">Hide done</button><button class="chip" data-k="open">Open all solutions</button><span class="prog" id="prog"></span></div>
+  <div class="bar"><button class="chip on" data-k="sess" data-v="all">All sessions</button><button class="chip" data-k="sess" data-v="2">Session 2</button><button class="chip" data-k="sess" data-v="3">Session 3</button><span class="sep"></span><button class="chip on" data-k="stars" data-v="all">Any level</button><button class="chip" data-k="stars" data-v="1">⭐</button><button class="chip" data-k="stars" data-v="2">⭐⭐</button><button class="chip" data-k="stars" data-v="3">⭐⭐⭐</button><span class="sep"></span><button class="chip" data-k="hide">Hide done</button><button class="chip" data-k="open">Open all solutions</button><span class="prog" id="prog"></span></div>
   <details class="ref"><summary>Reference values — sin / cos / tan, roots, powers of two</summary><table class="cov"><tr><th>θ (rad)</th><th>θ (deg)</th><th>sin θ</th><th>cos θ</th><th>tan θ</th></tr><tr><td>0</td><td>0°</td><td>0</td><td>1</td><td>0</td></tr><tr><td>π/6</td><td>30°</td><td>0.500</td><td>0.866</td><td>0.577</td></tr><tr><td>π/4</td><td>45°</td><td>0.707</td><td>0.707</td><td>1</td></tr><tr><td>π/3</td><td>60°</td><td>0.866</td><td>0.500</td><td>1.732</td></tr><tr><td>π/2</td><td>90°</td><td>1</td><td>0</td><td>undefined</td></tr><tr><td>π</td><td>180°</td><td>0</td><td>−1</td><td>0 †</td></tr><tr><td>3π/2</td><td>270°</td><td>−1</td><td>0</td><td>undefined</td></tr><tr><td>2π</td><td>360°</td><td>0</td><td>1</td><td>0 †</td></tr></table><p><strong>Reading arctan:</strong> find the ratio in the tan θ column and read the angle on the left — tan θ = 1 ⇒ θ = 45°. A gradient with $G_x = G_y$ therefore points at 45°. Every direction you are asked to name is one of the rows above; if your ratio is not in the tan θ column, re-check the arithmetic rather than reaching for a calculator.</p><p><strong>† forward only.</strong> tan repeats every 180°, but arctan answers only within −90° to 90°: tan 180° = 0 is true, yet arctan(0) = 0°, not 180°. Read backwards only from the 0°–90° rows.</p><p><strong>Negative ratios:</strong> arctan(−x) = −arctan(x), so arctan(−1) = −45°.</p><p><strong>Pythagorean triples</strong> — these give the <strong>magnitude</strong> $\sqrt{G_x^2+G_y^2}$ as a whole number, not an angle: 3-4-5 · 5-12-13 · 6-8-10 · 8-15-17 · 7-24-25 · 20-21-29 — and any multiple, e.g. 24-32-<strong>40</strong>. Magnitude and direction are separate questions; read the direction from the tan θ column above.</p><p><strong>Square roots:</strong> √2 ≈ 1.414 · √3 ≈ 1.732 · √5 ≈ 2.236 · √8 ≈ 2.828 · √32 ≈ 5.657</p><p><strong>Powers of two</strong> (bit depth, pyramid levels): $2^4 = 16$ · $2^6 = 64$ · $2^8 = 256$ · $2^{10} = 1024$ · $2^{24} = 16{,}777{,}216$ · log₂ 8 = 3 · log₂ 16 = 4 · log₂ 256 = 8</p></details>
   <h2 class="sess" id="s2" data-sess="2">Session 2 · Image Formation &amp; Sensing</h2>
   <div class="parthead" id="s2a" data-group="2A"><h3>A · Pinhole &amp; perspective</h3><span class="pc"></span><a href="../session-02/slides.html#/part-a">Slides for this part →</a></div>
@@ -243,6 +243,211 @@ Step 2: blue is the average of the four blue neighbours: $\dfrac{40 + 60 + 50 + 
 Step 2: $120^\circ + 120^\circ = 240^\circ$ → blue [0.5]<br>
 Step 3: $240^\circ + 120^\circ = 360^\circ = 0^\circ$ → red — hue goes round a circle [0.5]<br>
 <strong>Answer:</strong> (a) green · (b) blue · (c) red</div></details>
+      </article>
+  <h2 class="sess" id="s3" data-sess="3">Session 3 · Image Processing &amp; Filtering</h2>
+  <div class="parthead" id="s3a" data-group="3A"><h3>A · Convolution</h3><span class="pc"></span><a href="../session-03/slides.html#/part-a">Slides for this part →</a></div>
+      <article class="item" id="p020" data-sess="3" data-part="A" data-stars="1">
+        <header><span class="iid">020</span><span class="stars" title="difficulty">⭐</span><span class="topic">Output size</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="020"> Done</label></header>
+        <div class="problem">A $28 \times 28$ image goes through one filter. What is the output size with <strong>(a)</strong> a $5 \times 5$ kernel, no padding, stride 1; <strong>(b)</strong> a $5 \times 5$ kernel, padding 2, stride 1; <strong>(c)</strong> a $3 \times 3$ kernel, padding 1, stride 2?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln">Step 1: use $\text{out} = \left\lfloor \dfrac{n + 2p - k}{s} \right\rfloor + 1$.<br>
+<strong>(a)</strong> $\dfrac{28 + 0 - 5}{1} + 1 = 24$ → $24 \times 24$ [0.5]<br>
+<strong>(b)</strong> $\dfrac{28 + 4 - 5}{1} + 1 = 28$ → $28 \times 28$, the same size ("same" padding) [0.5]<br>
+<strong>(c)</strong> $\left\lfloor \dfrac{28 + 2 - 3}{2} \right\rfloor + 1 = \lfloor 13.5 \rfloor + 1 = 14$ → $14 \times 14$ [0.5]<br>
+<strong>Answer:</strong> (a) $24 \times 24$ · (b) $28 \times 28$ · (c) $14 \times 14$<br>
+<strong>Common mistake:</strong> adding 1 before taking the floor — floor first, then add 1.</div></details>
+      </article>
+      <article class="item" id="p021" data-sess="3" data-part="A" data-stars="2">
+        <header><span class="iid">021</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">One output by hand</span><span class="meta">2 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="021"> Done</label></header>
+        <div class="problem">A $3 \times 3$ patch reads<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$[\,2\;\;4\;\;6 \;/\; 8\;\;10\;\;12 \;/\; 1\;\;3\;\;5\,]$<br>
+Apply the kernel $[\,0\;\;{-1}\;\;0 \;/\; {-1}\;\;5\;\;{-1} \;/\; 0\;\;{-1}\;\;0\,]$ at the centre. What is the output value?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln">Step 1: multiply each value by the weight in the same place; only five weights are not 0 [1]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$5 \times 10 = 50$, and $-1 \times (4 + 8 + 12 + 3) = -27$<br>
+Step 2: add [1]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$50 - 27 = 23$<br>
+<strong>Answer:</strong> 23 — the centre is pushed away from its neighbours: this kernel sharpens.</div></details>
+      </article>
+      <article class="item" id="p022" data-sess="3" data-part="A" data-stars="2">
+        <header><span class="iid">022</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Correlation vs convolution</span><span class="meta">2 pts · ~4 min</span>
+          <label class="done"><input type="checkbox" data-id="022"> Done</label></header>
+        <div class="problem">The patch $[\,3\;\;1\;\;4 \;/\; 1\;\;5\;\;9 \;/\; 2\;\;6\;\;5\,]$ meets the kernel $h = [\,1\;\;0\;\;0 \;/\; 0\;\;0\;\;0 \;/\; 0\;\;0\;\;2\,]$. Give the output at the centre for <strong>(a)</strong> correlation and <strong>(b)</strong> convolution.</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> Step 1: correlation lays the kernel on as it is: the 1 meets the top-left 3, the 2 meets the bottom-right 5<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$1 \times 3 + 2 \times 5 = 13$ [1]<br>
+<strong>(b)</strong> Step 1: convolution rotates the kernel $180^\circ$ first: now the 2 is top-left and the 1 bottom-right<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$2 \times 3 + 1 \times 5 = 11$ [1]<br>
+<strong>Answer:</strong> (a) 13 · (b) 11 — they differ because $h$ is not symmetric.</div></details>
+      </article>
+      <article class="item" id="p023" data-sess="3" data-part="A" data-stars="1">
+        <header><span class="iid">023</span><span class="stars" title="difficulty">⭐</span><span class="topic">Impulse response</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="023"> Done</label></header>
+        <div class="problem">An image is all 0 except one pixel of value 4. It is filtered with $h = [\,1\;\;2\;\;1 \;/\; 0\;\;0\;\;0 \;/\; {-1}\;\;{-2}\;\;{-1}\,]$. Write the $3 \times 3$ block of the output around that pixel for <strong>(a)</strong> convolution and <strong>(b)</strong> correlation.</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> Step 1: a single dot copies the kernel, scaled by the dot's value [1]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$4h = [\,4\;\;8\;\;4 \;/\; 0\;\;0\;\;0 \;/\; {-4}\;\;{-8}\;\;{-4}\,]$<br>
+<strong>(b)</strong> Step 1: correlation copies the kernel rotated $180^\circ$ — top and bottom rows swap [0.5]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$[\,{-4}\;\;{-8}\;\;{-4} \;/\; 0\;\;0\;\;0 \;/\; 4\;\;8\;\;4\,]$<br>
+<strong>Answer:</strong> (a) $4h$ as written · (b) $4h$ upside down</div></details>
+      </article>
+      <article class="item" id="p024" data-sess="3" data-part="A" data-stars="2">
+        <header><span class="iid">024</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Padding at the border</span><span class="meta">2 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="024"> Done</label></header>
+        <div class="problem">A row starts $12, 18, 30, \dots$ at the left edge of the image. A 3-wide average $[1\;1\;1] \div 3$ is centred on the first pixel (the 12). What output do you get with <strong>(a)</strong> zero padding, <strong>(b)</strong> replicate padding, <strong>(c)</strong> reflect padding? <strong>(d)</strong> Which choice darkens the border?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln">Step 1: the missing left neighbour is 0 (zero), 12 (replicate: copy the edge) or 18 (reflect: mirror across the edge without repeating it).<br>
+<strong>(a)</strong> $(0 + 12 + 18) \div 3 = 10$ [0.5]<br>
+<strong>(b)</strong> $(12 + 12 + 18) \div 3 = 14$ [0.5]<br>
+<strong>(c)</strong> $(18 + 12 + 18) \div 3 = 16$ [0.5]<br>
+<strong>(d)</strong> zero padding — it averages black into every border pixel [0.5]<br>
+<strong>Answer:</strong> (a) 10 · (b) 14 · (c) 16 · (d) zero padding</div></details>
+      </article>
+  <div class="parthead" id="s3b" data-group="3B"><h3>B · Smoothing &amp; sharpening</h3><span class="pc"></span><a href="../session-03/slides.html#/part-b">Slides for this part →</a></div>
+      <article class="item" id="p025" data-sess="3" data-part="B" data-stars="1">
+        <header><span class="iid">025</span><span class="stars" title="difficulty">⭐</span><span class="topic">Box filter on a row</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="025"> Done</label></header>
+        <div class="problem">Filter the row $[0\;\;6\;\;0\;\;0\;\;12\;\;0]$ with $[1\;\;1\;\;1] \div 3$, padding with 0. Write all six outputs.</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln">Step 1: each output is the average of the value and its two neighbours [1]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$\tfrac{0+0+6}{3} = 2$, $\tfrac{0+6+0}{3} = 2$, $\tfrac{6+0+0}{3} = 2$, $\tfrac{0+0+12}{3} = 4$, $\tfrac{0+12+0}{3} = 4$, $\tfrac{12+0+0}{3} = 4$<br>
+Step 2: each spike is spread over three pixels at a third of its height [0.5]<br>
+<strong>Answer:</strong> $[2\;\;2\;\;2\;\;4\;\;4\;\;4]$</div></details>
+      </article>
+      <article class="item" id="p026" data-sess="3" data-part="B" data-stars="1">
+        <header><span class="iid">026</span><span class="stars" title="difficulty">⭐</span><span class="topic">Noise after averaging</span><span class="meta">1.5 pts · ~2 min</span>
+          <label class="done"><input type="checkbox" data-id="026"> Done</label></header>
+        <div class="problem">A photo has noise $\sigma = 30$. <strong>(a)</strong> How much noise is left after a $5 \times 5$ box? <strong>(b)</strong> How many pixels must you average to bring it down to $\sigma = 3$?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> Step 1: averaging $n$ independent noisy values divides the noise by $\sqrt{n}$; $n = 25$, $\sqrt{25} = 5$ [0.5]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$30 \div 5 = 6$<br>
+<strong>(b)</strong> Step 1: you need $\sqrt{n} = 30 \div 3 = 10$, so $n = 100$ — a $10 \times 10$ box [1]<br>
+<strong>Answer:</strong> (a) $\sigma = 6$ · (b) 100 pixels ($10 \times 10$) — ten times less noise costs a hundred times the pixels.</div></details>
+      </article>
+      <article class="item" id="p027" data-sess="3" data-part="B" data-stars="2">
+        <header><span class="iid">027</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">A separable kernel</span><span class="meta">2 pts · ~4 min</span>
+          <label class="done"><input type="checkbox" data-id="027"> Done</label></header>
+        <div class="problem">The 1D kernel $g = [1\;\;4\;\;6\;\;4\;\;1] \div 16$ is used as a row filter and then a column filter. <strong>(a)</strong> What is the centre weight of the equivalent $5 \times 5$ kernel? <strong>(b)</strong> How many multiplies per pixel in 2D, and as row + column? <strong>(c)</strong> How many multiplies does separability save on a $2000 \times 1000$ image?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> Step 1: each 2D weight is column × row; the centre is $\tfrac{6}{16} \times \tfrac{6}{16} = \tfrac{36}{256}$ [0.5]<br>
+<strong>(b)</strong> Step 1: $5 \times 5 = 25$ in 2D; $5 + 5 = 10$ as row + column [0.5]<br>
+<strong>(c)</strong> Step 1: $25 - 10 = 15$ saved per pixel, $2000 \times 1000 = 2\,000\,000$ pixels [1]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$15 \times 2\,000\,000 = 30\,000\,000$<br>
+<strong>Answer:</strong> (a) $\tfrac{36}{256} \approx 0.14$ · (b) 25 vs 10 · (c) 30 million multiplies</div></details>
+      </article>
+      <article class="item" id="p028" data-sess="3" data-part="B" data-stars="2">
+        <header><span class="iid">028</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Match the kernel to the effect</span><span class="meta">2 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="028"> Done</label></header>
+        <div class="problem">Match each kernel to its effect — <em>no change</em>, <em>blur</em>, <em>sharpen</em>, <em>upright edges</em>:<br>
+<strong>K1</strong> $= \tfrac{1}{9}[\,1\;\;1\;\;1 \;/\; 1\;\;1\;\;1 \;/\; 1\;\;1\;\;1\,]$<br>
+<strong>K2</strong> $= [\,0\;\;0\;\;0 \;/\; 0\;\;1\;\;0 \;/\; 0\;\;0\;\;0\,]$<br>
+<strong>K3</strong> $= [\,0\;\;{-1}\;\;0 \;/\; {-1}\;\;5\;\;{-1} \;/\; 0\;\;{-1}\;\;0\,]$<br>
+<strong>K4</strong> $= [\,{-1}\;\;0\;\;1 \;/\; {-2}\;\;0\;\;2 \;/\; {-1}\;\;0\;\;1\,]$</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln">Step 1: K1 averages the neighbourhood → <strong>blur</strong> [0.5]<br>
+Step 2: K2 keeps only the pixel itself → <strong>no change</strong> [0.5]<br>
+Step 3: K3 weights sum to 1 but push the centre away from its neighbours → <strong>sharpen</strong> [0.5]<br>
+Step 4: K4 weights sum to 0 and compare right with left → <strong>upright edges</strong> (Sobel x) [0.5]<br>
+<strong>Answer:</strong> K1 blur · K2 no change · K3 sharpen · K4 upright edges<br>
+<strong>Common mistake:</strong> a kernel whose weights sum to 0 gives 0 on flat areas — it cannot be a blur.</div></details>
+      </article>
+      <article class="item" id="p029" data-sess="3" data-part="B" data-stars="2">
+        <header><span class="iid">029</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Unsharp masking on a row</span><span class="meta">2 pts · ~4 min</span>
+          <label class="done"><input type="checkbox" data-id="029"> Done</label></header>
+        <div class="problem">A row reads $f = [20\;\;20\;\;20\;\;80\;\;80\;\;80]$. <strong>(a)</strong> Blur it with $[1\;\;2\;\;1] \div 4$, copying the edge values at both ends. <strong>(b)</strong> Sharpen with $\text{sharp} = f + 1 \cdot (f - \text{blur})$.</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> Step 1: weighted average of each value and its neighbours, centre counted twice [1]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$\text{blur} = [20\;\;20\;\;35\;\;65\;\;80\;\;80]$ — e.g. $\tfrac{20 + 2 \cdot 20 + 80}{4} = 35$<br>
+<strong>(b)</strong> Step 1: detail $= f - \text{blur} = [0\;\;0\;\;-15\;\;15\;\;0\;\;0]$; add it back [1]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$\text{sharp} = [20\;\;20\;\;5\;\;95\;\;80\;\;80]$<br>
+<strong>Answer:</strong> (a) $[20, 20, 35, 65, 80, 80]$ · (b) $[20, 20, 5, 95, 80, 80]$ — the dip to 5 and the peak at 95 are the halos that make the edge look crisper.</div></details>
+      </article>
+  <div class="parthead" id="s3c" data-group="3C"><h3>C · Edges</h3><span class="pc"></span><a href="../session-03/slides.html#/part-c">Slides for this part →</a></div>
+      <article class="item" id="p030" data-sess="3" data-part="C" data-stars="1">
+        <header><span class="iid">030</span><span class="stars" title="difficulty">⭐</span><span class="topic">A derivative on a row</span><span class="meta">1.5 pts · ~2 min</span>
+          <label class="done"><input type="checkbox" data-id="030"> Done</label></header>
+        <div class="problem">A row reads $[10\;\;10\;\;10\;\;50\;\;90\;\;90\;\;90]$. Apply $[-1\;\;0\;\;1]$ (right neighbour minus left neighbour) at the five inner pixels. Where is the edge?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln">Step 1: $f[x+1] - f[x-1]$ at positions 1 … 5 [1]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$10 - 10 = 0$, $50 - 10 = 40$, $90 - 10 = 80$, $90 - 50 = 40$, $90 - 90 = 0$<br>
+Step 2: the largest value marks the edge [0.5]<br>
+<strong>Answer:</strong> $[0\;\;40\;\;80\;\;40\;\;0]$ — the edge is at the middle of the ramp (the pixel with value 50).</div></details>
+      </article>
+      <article class="item" id="p031" data-sess="3" data-part="C" data-stars="2">
+        <header><span class="iid">031</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Sobel at one pixel</span><span class="meta">2.5 pts · ~5 min</span>
+          <label class="done"><input type="checkbox" data-id="031"> Done</label></header>
+        <div class="problem">A $3 \times 3$ patch reads $[\,10\;\;10\;\;10 \;/\; 10\;\;10\;\;40 \;/\; 10\;\;40\;\;70\,]$. Using $S_x = [\,{-1}\;\;0\;\;1 \;/\; {-2}\;\;0\;\;2 \;/\; {-1}\;\;0\;\;1\,]$ and $S_y = [\,{-1}\;\;{-2}\;\;{-1} \;/\; 0\;\;0\;\;0 \;/\; 1\;\;2\;\;1\,]$ (rows count downwards), find $g_x$, $g_y$, $|\nabla f|$ and $\theta$. Use $\sqrt{2} \approx 1.41$.</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln">Step 1: $g_x$ = right column minus left column, middle row counted twice [1]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$g_x = (10 - 10) + 2(40 - 10) + (70 - 10) = 0 + 60 + 60 = 120$<br>
+Step 2: $g_y$ = bottom row minus top row, middle column counted twice [0.5]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$g_y = (10 - 10) + 2(40 - 10) + (70 - 10) = 120$<br>
+Step 3: $|\nabla f| = \sqrt{120^2 + 120^2} = 120\sqrt{2} \approx 169$ [0.5]<br>
+Step 4: $\theta = \mathrm{atan2}(120, 120) = 45^\circ$ — right and down, towards the bright corner [0.5]<br>
+<strong>Answer:</strong> $g_x = 120$ · $g_y = 120$ · $|\nabla f| \approx 169$ · $\theta = 45^\circ$</div></details>
+      </article>
+      <article class="item" id="p032" data-sess="3" data-part="C" data-stars="1">
+        <header><span class="iid">032</span><span class="stars" title="difficulty">⭐</span><span class="topic">Reading a gradient</span><span class="meta">1.5 pts · ~2 min</span>
+          <label class="done"><input type="checkbox" data-id="032"> Done</label></header>
+        <div class="problem">At a pixel, $g_x = 0$ and $g_y = -30$ (rows count downwards). <strong>(a)</strong> What is $|\nabla f|$? <strong>(b)</strong> Which way is brighter? <strong>(c)</strong> Which way does the edge run?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> Step 1: $\sqrt{0^2 + (-30)^2} = 30$ [0.5]<br>
+<strong>(b)</strong> Step 1: $g_y &lt; 0$ means darker below, so it is brighter <strong>above</strong>; $\theta = -90^\circ$ [0.5]<br>
+<strong>(c)</strong> Step 1: the edge runs across the gradient at $90^\circ$ — <strong>left to right</strong> (a horizontal edge) [0.5]<br>
+<strong>Answer:</strong> (a) 30 · (b) above · (c) horizontal</div></details>
+      </article>
+      <article class="item" id="p033" data-sess="3" data-part="C" data-stars="2">
+        <header><span class="iid">033</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Strength and direction</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="033"> Done</label></header>
+        <div class="problem">At a pixel, $g_x = -6$ and $g_y = 8$ (rows count downwards). <strong>(a)</strong> What is $|\nabla f|$? <strong>(b)</strong> In which direction is it brighter — up/down, left/right?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> Step 1: $\sqrt{(-6)^2 + 8^2} = \sqrt{36 + 64} = \sqrt{100} = 10$ [1]<br>
+<strong>(b)</strong> Step 1: $g_x &lt; 0$: brighter to the <strong>left</strong>; $g_y &gt; 0$: brighter <strong>below</strong> — the gradient points left and down [0.5]<br>
+<strong>Answer:</strong> (a) 10 · (b) left and down (towards the lower left)</div></details>
+      </article>
+      <article class="item" id="p034" data-sess="3" data-part="C" data-stars="1">
+        <header><span class="iid">034</span><span class="stars" title="difficulty">⭐</span><span class="topic">Canny, step by step</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="034"> Done</label></header>
+        <div class="problem"><strong>(a)</strong> Put Canny's four steps in order: <em>link with two thresholds</em>, <em>Gaussian smoothing</em>, <em>non-maximum suppression</em>, <em>Sobel gradient</em>. <strong>(b)</strong> With thresholds low $= 40$ and high $= 100$, which of these edge pixels survive: strength 150; strength 70 touching a strong edge; strength 70 alone; strength 30?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> Step 1: smooth → gradient → thin → link: Gaussian smoothing, Sobel gradient, non-maximum suppression, two thresholds [0.5]<br>
+<strong>(b)</strong> Step 1: above high (150) always stays; below low (30) always goes [0.5]<br>
+Step 2: between the two (70) stays only if it touches a strong edge [0.5]<br>
+<strong>Answer:</strong> (a) Gaussian → Sobel → non-maximum suppression → hysteresis · (b) 150 and the 70 that touches a strong edge survive</div></details>
+      </article>
+  <div class="parthead" id="s3d" data-group="3D"><h3>D · Frequency &amp; sampling</h3><span class="pc"></span><a href="../session-03/slides.html#/part-d">Slides for this part →</a></div>
+      <article class="item" id="p035" data-sess="3" data-part="D" data-stars="1">
+        <header><span class="iid">035</span><span class="stars" title="difficulty">⭐</span><span class="topic">Nyquist step</span><span class="meta">1.5 pts · ~2 min</span>
+          <label class="done"><input type="checkbox" data-id="035"> Done</label></header>
+        <div class="problem">Stripes repeat every 10 pixels. <strong>(a)</strong> You keep every 8th pixel. How many samples per cycle — will it alias? <strong>(b)</strong> What is the largest whole-pixel step that keeps the stripes?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> Step 1: samples per cycle = period ÷ step $= 10 \div 8 = 1.25$, not more than 2 → <strong>aliasing</strong> [0.5]<br>
+<strong>(b)</strong> Step 1: you need more than 2 samples per cycle: step $&lt; 10 \div 2 = 5$ [0.5]<br>
+Step 2: a step of 5 gives exactly 2 per cycle — the limit, not enough — so the largest is 4 (2.5 per cycle) [0.5]<br>
+<strong>Answer:</strong> (a) 1.25 per cycle → aliasing · (b) 4 pixels</div></details>
+      </article>
+      <article class="item" id="p036" data-sess="3" data-part="D" data-stars="2">
+        <header><span class="iid">036</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">What an aliased wave looks like</span><span class="meta">2 pts · ~4 min</span>
+          <label class="done"><input type="checkbox" data-id="036"> Done</label></header>
+        <div class="problem">A wave makes <strong>9 cycles</strong> across an image row. You sample the row at <strong>(a)</strong> 12 evenly spaced points and <strong>(b)</strong> 20 points. How many cycles does the slowest wave through the samples have in each case?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> Step 1: 12 samples for 9 cycles is $12 \div 9 \approx 1.3$ per cycle — too few, so it aliases [0.5]<br>
+Step 2: the samples cannot tell 9 cycles from $|9 - 12| = 3$ cycles [0.5]<br>
+<strong>(b)</strong> Step 1: $20 \div 9 \approx 2.2$ per cycle — more than 2, so the true wave survives: 9 cycles [1]<br>
+<strong>Answer:</strong> (a) 3 cycles (a false, slower wave) · (b) 9 cycles</div></details>
+      </article>
+      <article class="item" id="p037" data-sess="3" data-part="D" data-stars="1">
+        <header><span class="iid">037</span><span class="stars" title="difficulty">⭐</span><span class="topic">Pyramid sizes</span><span class="meta">1.5 pts · ~2 min</span>
+          <label class="done"><input type="checkbox" data-id="037"> Done</label></header>
+        <div class="problem">A $1024 \times 768$ image is the bottom of a Gaussian pyramid. <strong>(a)</strong> Give the size of the next three levels. <strong>(b)</strong> How many times the original pixels do these four levels hold together?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> Step 1: each level halves both sides [0.5]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$512 \times 384$, $256 \times 192$, $128 \times 96$<br>
+<strong>(b)</strong> Step 1: each level has $\tfrac{1}{4}$ of the pixels of the one below [1]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$1 + \tfrac{1}{4} + \tfrac{1}{16} + \tfrac{1}{64} = \tfrac{85}{64} \approx 1.33$<br>
+<strong>Answer:</strong> (a) $512 \times 384$, $256 \times 192$, $128 \times 96$ · (b) about 1.33 × — only a third more</div></details>
+      </article>
+      <article class="item" id="p038" data-sess="3" data-part="D" data-stars="2">
+        <header><span class="iid">038</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">A wheel in a video</span><span class="meta">2 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="038"> Done</label></header>
+        <div class="problem">A wheel has 6 identical spokes, so it looks the same every $60^\circ$. Between two video frames it truly turns <strong>(a)</strong> $25^\circ$ and <strong>(b)</strong> $50^\circ$ clockwise. What turn does the video seem to show?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln">Step 1: the eye picks the smallest turn that lines the spokes up again; anything past half the spacing ($30^\circ$) looks like the other way [0.5]<br>
+<strong>(a)</strong> Step 1: $25^\circ &lt; 30^\circ$ → it looks like $25^\circ$ clockwise — correct [0.5]<br>
+<strong>(b)</strong> Step 1: $50^\circ &gt; 30^\circ$; the nearest match is $50^\circ - 60^\circ = -10^\circ$ [1]<br>
+<strong>Answer:</strong> (a) $25^\circ$ clockwise · (b) $10^\circ$ <strong>anticlockwise</strong> — the wheel seems to turn backwards: aliasing in time.</div></details>
+      </article>
+      <article class="item" id="p039" data-sess="3" data-part="D" data-stars="2">
+        <header><span class="iid">039</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Planning a shrink</span><span class="meta">2 pts · ~4 min</span>
+          <label class="done"><input type="checkbox" data-id="039"> Done</label></header>
+        <div class="problem">A photo $4000$ pixels wide shows a fence whose bars repeat every $3$ pixels. You must shrink it to $1000$ pixels wide. <strong>(a)</strong> If you keep every 4th pixel, will the fence alias? <strong>(b)</strong> What do you do first, and what does the fence look like afterwards?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> Step 1: samples per cycle $= 3 \div 4 = 0.75$ — far below 2 → false stripes [1]<br>
+<strong>(b)</strong> Step 1: blur first with a Gaussian (about $\sigma = 0.6 \times 4 = 2.4$), removing every wave too fast for the new spacing, then keep every 4th pixel [0.5]<br>
+Step 2: the bars are too fine to survive the shrink, so they become flat grey — correct, unlike false stripes [0.5]<br>
+<strong>Answer:</strong> (a) yes — 0.75 samples per cycle · (b) Gaussian blur, then shrink; the fence turns into a plain grey area</div></details>
       </article>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
