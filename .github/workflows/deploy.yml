@@ -72,6 +72,24 @@ jobs:
           git -C site archive FETCH_HEAD | tar -x -C site/dev
           echo "/dev/ = $DEV_BRANCH @ $(git -C site rev-parse --short FETCH_HEAD)"
 
+      # 2026-10-12: a deck whose PDF menu carries data-pdf-files gets its two PDFs (16:9 slides, A4 handout)
+      # printed here by Chrome, so every device downloads the same pages — phone browsers print a web page at
+      # their own paper size. The files are not committed. If this step fails the deploy goes on: the deck
+      # menu checks for the files and falls back to the browser's own print pages.
+      - name: Set up Python for the PDF export
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+        continue-on-error: true
+
+      - name: Export deck PDFs
+        continue-on-error: true
+        timeout-minutes: 15
+        run: |
+          pip install --quiet playwright==1.48.0
+          python -m playwright install --with-deps chromium
+          python site/.github/scripts/export_pdfs.py site
+
       # Everything in this repository is world-readable on github.com as well as
       # on classes.incortx.com, and Cloudflare Access only gates the website. So
       # the answer files have to be stopped here, before they are ever committed
