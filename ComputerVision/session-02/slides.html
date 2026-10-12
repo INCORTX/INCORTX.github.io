@@ -268,6 +268,8 @@ html.reading .reveal .more{font-size:15px;}
 .reveal .po-out{margin:0;max-width:34em;border-left:5px solid var(--teal);padding:.3em 0 .3em .8em;font-size:.62em;line-height:1.5;color:var(--body);}
 .po-out span{display:block;font-family:var(--display);font-weight:700;font-size:.8em;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:.15em;}
 html.reading .part-open{display:block !important;}
+/* print: no vertical centring there, so keep the big letter clear of the A–D strip */
+html.print-pdf .reveal .slides section.part-open,html.handout .reveal .slides>section.part-open{padding-top:118px !important;}
 html.reading .po-strip{position:static;grid-template-columns:1fr 1fr;margin-bottom:1em;font-size:13px;}
 html.reading .po-q{font-size:18px;}
 html.reading .po-out{font-size:15px;}
@@ -1348,6 +1350,9 @@ const MODE = Q.has('handout') ? 'handout' : Q.has('print-pdf') ? 'pdf'
            : (window.matchMedia('(max-width: 760px)').matches && !Q.has('present') && !Q.has('receiver')) ? 'reading' : 'slides';
 if(window.matchMedia('(hover: none)').matches) document.documentElement.classList.add('touch');
 function autoprint(){ if(Q.has('autoprint')) setTimeout(()=>window.print(), 1200); }
+/* print modes: load every picture now (lazy images far down the page would print blank), then wait for them */
+function loadAllImages(){ const imgs=[...document.querySelectorAll('img')]; imgs.forEach(i=>{ i.loading='eager'; });
+  return Promise.all(imgs.map(i=>i.complete?0:new Promise(r=>{ i.addEventListener('load',r,{once:true}); i.addEventListener('error',r,{once:true}); }))); }
 
 function numberSlides(){
   const secs=[...document.querySelectorAll('.reveal .slides>section')], N=secs.length;
@@ -1361,7 +1366,7 @@ document.addEventListener('DOMContentLoaded',()=>{   /* after every const below 
     document.querySelectorAll('link[href*="reveal.min.css"]').forEach(l=>l.disabled=true);
     const st=document.createElement('style'); st.textContent='@page{size:A4 portrait;margin:10mm;}'; document.head.appendChild(st);
     renderMath(); initDemos();
-    document.fonts.ready.then(autoprint);
+    loadAllImages(); Promise.all([document.fonts.ready,loadAllImages()]).then(autoprint);
     return;
   }
   if(MODE==='reading'){
@@ -1386,7 +1391,7 @@ document.addEventListener('DOMContentLoaded',()=>{   /* after every const below 
     plugins:[RevealNotes]   /* S = presenter view with the slide's notes */
   }).then(()=>{
     renderMath(); initDemos();
-    if(MODE==='pdf'){ document.fonts.ready.then(autoprint); return; }
+    if(MODE==='pdf'){ loadAllImages(); Promise.all([document.fonts.ready,loadAllImages()]).then(autoprint); return; }
     if(Q.has('receiver')) return;   /* presenter-view preview: no toolbar, swipe or album */
     initDeckbar(); initSwipe();
     initAlbum({slides:()=>Reveal.getSlides(), current:()=>Reveal.getIndices().h, go:i=>Reveal.slide(i), keys:true});
