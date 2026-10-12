@@ -1299,7 +1299,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <button data-act="help" class="q" aria-label="Keyboard shortcuts" title="Shortcuts (?)">?</button>
 </nav>
 
-<div class="pop pdfmenu" id="pdfMenu" role="menu" hidden>
+<div class="pop pdfmenu" id="pdfMenu" role="menu" data-pdf-files hidden>
   <a role="menuitem" href="?print-pdf&amp;autoprint" target="_blank" rel="noopener"><b>Slides · 16:9 PDF</b><small>One slide per page, exactly as on screen</small></a>
   <a role="menuitem" href="?handout&amp;autoprint" target="_blank" rel="noopener"><b>Handout · A4</b><small>Two slides per A4 portrait page — for printing</small></a>
 </div>
@@ -1389,6 +1389,18 @@ const MODE = Q.has('handout') ? 'handout' : Q.has('print-pdf') ? 'pdf'
            : (window.matchMedia('(max-width: 760px)').matches && !Q.has('present') && !Q.has('receiver')) ? 'reading' : 'slides';
 if(window.matchMedia('(hover: none)').matches) document.documentElement.classList.add('touch');
 function autoprint(){ if(Q.has('autoprint')) setTimeout(()=>window.print(), 1200); }
+/* fonts and images are in: mark the page (the deploy's PDF export waits for this), then print if asked */
+function printReady(){ setTimeout(()=>{ document.documentElement.dataset.printReady='1'; autoprint(); }, 600); }
+/* The PDF menu points at files the deploy exports with Chrome (<course>-session-NN-slides.pdf / -handout.pdf), so a
+   phone gets the same pages as a desktop — phone browsers ignore the page size a web page asks for when they print.
+   Until a file is there (a local copy, or the export step failed) the menu keeps the live ?print-pdf / ?handout pages. */
+function linkPdfFiles(){
+  const menu=document.getElementById('pdfMenu'), m=location.pathname.match(/\/([^/]+)\/(session-\d+)\/[^/]*$/);
+  if(!menu||!m||!/^https?:$/.test(location.protocol)) return;
+  const [slides,handout]=menu.querySelectorAll('a');
+  [[slides,'slides'],[handout,'handout']].forEach(([a,kind])=>{ if(!a) return; const f=`${m[1]}-${m[2]}-${kind}.pdf`;
+    fetch(f,{method:'HEAD',cache:'no-store'}).then(r=>{ if(r.ok&&(r.headers.get('content-type')||'').includes('pdf')){ a.href=f; a.setAttribute('download',f); a.dataset.file='1'; } }).catch(()=>{}); });
+}
 /* print modes: load every picture now (lazy images far down the page would print blank), then wait for them */
 /* printing: open every answer (Try it, solutions) so it is on paper; restore afterwards */
 function openAnswers(on){ document.querySelectorAll('details').forEach(d=>{ if(on){ if(d.dataset.wasOpen===undefined) d.dataset.wasOpen=d.open?'1':'0'; d.open=true; }
@@ -1404,6 +1416,7 @@ function numberSlides(){
 }
 document.addEventListener('DOMContentLoaded',()=>{   /* after every const below exists */
   numberSlides();
+  if(MODE==='slides'||MODE==='reading') linkPdfFiles();
   if(MODE==='handout'){
     document.documentElement.classList.add('handout');
     /* reveal.css has its own print rules (20pt text, one section per page) — Reveal is not running here, so drop it */
@@ -1411,7 +1424,7 @@ document.addEventListener('DOMContentLoaded',()=>{   /* after every const below 
     document.querySelectorAll('.reveal .slides>section').forEach(sec=>{ const c=document.createElement('div'); c.className='ho-cell'; sec.before(c); c.appendChild(sec); });
     const st=document.createElement('style'); st.textContent='@page{size:A4 portrait;margin:5mm;}'; document.head.appendChild(st);
     renderMath(); initDemos();
-    openAnswers(true); loadAllImages(); Promise.all([document.fonts.ready,loadAllImages()]).then(autoprint);
+    openAnswers(true); loadAllImages(); Promise.all([document.fonts.ready,loadAllImages()]).then(printReady);
     return;
   }
   if(MODE==='reading'){
@@ -1445,7 +1458,7 @@ document.addEventListener('DOMContentLoaded',()=>{   /* after every const below 
     plugins:[RevealNotes]   /* S = presenter view with the slide's notes */
   }).then(()=>{
     renderMath(); initDemos();
-    if(MODE==='pdf'){ openAnswers(true); loadAllImages(); Promise.all([document.fonts.ready,loadAllImages()]).then(autoprint); return; }
+    if(MODE==='pdf'){ openAnswers(true); loadAllImages(); Promise.all([document.fonts.ready,loadAllImages()]).then(printReady); return; }
     if(Q.has('receiver')) return;   /* presenter-view preview: no toolbar, swipe or album */
     initDeckbar(); initSwipe();
     initAlbum({slides:()=>Reveal.getSlides(), current:()=>Reveal.getIndices().h, go:i=>Reveal.slide(i), keys:true});

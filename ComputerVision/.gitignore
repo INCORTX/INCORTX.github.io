@@ -18,3 +18,7 @@ __pycache__/
 venv/
 env/
 .env
+
+# deck PDFs are exported by the deploy (.github/scripts/export_pdfs.py on master), never committed
+session-*/*-slides.pdf
+session-*/*-handout.pdf
