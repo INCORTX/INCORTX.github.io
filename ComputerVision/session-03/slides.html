@@ -1275,7 +1275,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
 <!-- 37 -->
 <section data-part="D">
   <p class="kicker">D · Frequency &amp; sampling</p>
-  <h2 class="claim">At least two samples per cycle</h2>
+  <h2 class="claim">More than two samples per cycle</h2>
   <div class="split">
     <div>
       <canvas id="nyCv" class="democv" width="560" height="230" aria-label="a sine wave, its samples, and the slowest wave through the samples" style="border:none"></canvas>
@@ -1284,7 +1284,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     </div>
     <div class="say">
       <p>Grey: the true wave, <b>5 cycles</b>. Dots: the samples. Teal: the <b>slowest</b> wave through the dots — what we would rebuild.</p>
-      <div class="term"><b>Nyquist rate</b><span class="th">อัตรานายควิสต์</span><span class="def">sample at least twice per cycle of the finest detail, or it comes back as a false, slower wave</span></div>
+      <div class="term"><b>Nyquist rate</b><span class="th">อัตรานายควิสต์</span><span class="def">sample more than twice per cycle of the finest detail, or it can come back as a false, slower wave</span></div>
       <p class="fragment">5 cycles need more than <b>10</b> samples. At 8, they look like 3 cycles.</p>
     </div>
   </div>
@@ -1329,12 +1329,12 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <div class="split">
     <div class="tryit"><span class="tag">Try it</span>A fence pattern repeats every <b>6 pixels</b>.
       <ol style="margin:.4em 0 0 1.1em"><li>You shrink by keeping every <b>4th</b> pixel. How many samples per cycle? Will it alias?</li><li>What is the largest step that still keeps the pattern?</li><li>You must shrink by 4. What do you do first?</li></ol>
-      <details><summary>Answer</summary>1. 6 ÷ 4 = <b>1.5</b> samples per cycle &lt; 2 → <b>aliasing</b> (it shows up as false stripes 12 px apart) · 2. 6 ÷ 2 = <b>3 pixels</b> · 3. <b>Blur first</b> (Gaussian), then keep every 4th pixel — the fence turns into flat grey instead of false stripes.</details>
+      <details><summary>Answer</summary>1. 6 ÷ 4 = <b>1.5</b> samples per cycle &lt; 2 → <b>aliasing</b> (it shows up as false stripes 12 px apart) · 2. <b>2 pixels</b> (3 samples per cycle) — a step of 3 gives exactly 2 per cycle, the limit, which is not enough · 3. <b>Blur first</b> (Gaussian), then keep every 4th pixel — the fence turns into flat grey instead of false stripes.</details>
     </div>
-    <div class="say"><p>Samples per cycle = period ÷ step.</p><p>Nyquist: at least <b>2</b> samples per cycle.</p></div>
+    <div class="say"><p>Samples per cycle = period ÷ step.</p><p>Nyquist: <b>more than 2</b> samples per cycle.</p></div>
   </div>
 
-  <aside class="notes"><p>🇹🇭 ให้เวลา 1–2 นาที · ข้อ 1 ลายปลอมห่าง 12 px คำนวณจาก FFT แล้ว</p><p>🇬🇧 Give one to two minutes. The 12 px false period in question 1 was checked with an FFT.</p></aside>
+  <aside class="notes"><p>🇹🇭 ให้เวลา 1–2 นาที · ข้อ 1 ลายปลอมห่าง 12 px คำนวณจาก FFT แล้ว · ข้อ 2 ระวัง: 3 px = พอดี 2 ต่อรอบ ยังไม่พอ (หน้า 37)</p><p>🇬🇧 Give one to two minutes. The 12 px false period in question 1 was checked with an FFT.</p></aside>
 </section>
 
 <!-- 41 -->
@@ -1344,7 +1344,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <div class="cards">
     <div class="card"><b>Waves</b>Every image is a sum of waves. Slow = smooth areas; fast = edges, texture and noise.</div>
     <div class="card violet"><b>Filters</b>Convolving multiplies the frequencies: a Gaussian is a clean low-pass; a box ripples.</div>
-    <div class="card amber"><b>Sampling</b>Fewer than 2 samples per cycle → aliasing. Blur first, then shrink — the idea behind every pyramid.</div>
+    <div class="card amber"><b>Sampling</b>2 or fewer samples per cycle → aliasing. Blur first, then shrink — the idea behind every pyramid.</div>
   </div>
   <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-03/lab.ipynb#scrollTo=part-d" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part D</a><span>sum of waves, Fourier low-/high-pass, aliasing with and without blur, Gaussian pyramid</span></p>
   <p class="more"><a href="../practice/#s3d">More practice · Session 3 D — practice bank with worked solutions →</a></p>
@@ -1361,7 +1361,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <li><span><b>Convolution:</b> slide a kernel, multiply, add; output size ⌊(n + 2p − k)/s⌋ + 1.</span></li>
     <li><span><b>Smoothing:</b> averaging n pixels cuts noise by √n; a Gaussian blurs cleanly and is separable.</span></li>
     <li><span><b>Edges:</b> smooth, then differentiate (Sobel); |∇f| is the strength, θ points to brighter.</span></li>
-    <li><span><b>Frequency:</b> blur = low-pass; sample at least twice per cycle — blur before you shrink.</span></li>
+    <li><span><b>Frequency:</b> blur = low-pass; sample more than twice per cycle — blur before you shrink.</span></li>
   </ol>
   <p class="more"><a href="../practice/#s3">All session 3 practice →</a></p>
   <aside class="notes"><p>🇹🇭 ทวน 4 ข้อ A–D · ต่อด้วยครึ่ง A นำเสนอ T2 หลังจบเด็ค</p><p>🇬🇧 Recap the four lines A–D. Half A's T2 talks follow after the deck.</p></aside>
