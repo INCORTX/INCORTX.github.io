@@ -142,8 +142,8 @@ html.reading .pgno{display:none;}
 .title-slide .name{font-family:var(--display);font-weight:700;font-size:.8em;color:var(--ink);}
 .title-slide .name span{font-weight:500;color:var(--muted);}
 .title-slide .contact{display:flex;flex-wrap:wrap;gap:.2em 1.4em;margin-top:.35em !important;font-size:.56em;color:var(--muted);}
-.title-slide .contact a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line);}
-.title-slide .contact a:hover{color:var(--teal);border-bottom-color:var(--teal);}
+.title-slide .contact a{color:inherit;text-decoration:none;}
+.title-slide .contact a:hover{color:var(--teal);}
 .title-slide .contact span+span::before{content:"";display:inline-block;width:.32em;height:.32em;border-radius:50%;background:#c3cad4;margin:0 .9em 0 -.8em;vertical-align:middle;}
 .title-slide .art{margin:0;padding:34px 34px 22px;border-radius:30px;background-color:var(--teal-soft);background-image:radial-gradient(rgba(15,118,110,.16) 1.4px,transparent 1.6px);background-size:22px 22px;}
 #titleArt{display:block;width:100%;height:auto;border-radius:16px;background:#fff;box-shadow:0 18px 40px -22px rgba(15,27,45,.35),0 0 0 1px var(--line);}
@@ -244,6 +244,37 @@ html.reading .reveal .mnote{font-size:14px;}
 .reveal .more a{color:var(--teal);font-weight:600;text-decoration:none;border-bottom:2px solid var(--teal-soft);}
 .reveal .more a:hover{border-bottom-color:var(--teal);}
 html.reading .reveal .more{font-size:15px;}
+/* session roadmap (slide 2) + part openers — shared by every session deck */
+.qband{display:flex;gap:.8em;align-items:center;background:var(--soft);border-radius:14px;padding:.6em .9em;margin:0 0 .8em;font-size:.74em;color:var(--ink);font-family:var(--display);font-weight:600;}
+.qband span{font-family:var(--font);font-weight:700;font-size:.62em;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);white-space:nowrap;}
+.parts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6em;}
+.parts a{display:block;text-decoration:none;transition:border-color .15s,transform .15s;border:1px solid var(--line);border-radius:14px;padding:.6em .75em;font-size:.62em;line-height:1.4;color:var(--muted);background:#fff;}
+.parts a b{display:block;font-family:var(--display);font-size:1.25em;color:var(--ink);margin-bottom:.2em;}
+.parts a i{font-style:normal;display:inline-grid;place-items:center;width:1.7em;height:1.7em;border-radius:50%;background:var(--soft);color:var(--ink);font-family:var(--display);font-weight:700;margin-right:.35em;}
+.parts a.on{border:2px solid var(--teal);background:var(--teal-soft);color:var(--body);}
+.parts a.on i{background:var(--teal);color:#fff;}
+.part-open{display:flex !important;flex-direction:column;justify-content:center;}
+.po-strip{position:absolute;top:44px;left:4px;right:4px;display:grid;grid-template-columns:repeat(4,1fr);gap:.4em;font-family:var(--display);font-size:.5em;}
+.po-strip a{text-decoration:none;display:flex;align-items:center;gap:.5em;padding:.45em .7em;border-radius:999px;background:var(--soft);color:var(--muted);}
+.po-strip b{display:inline-grid;place-items:center;width:1.7em;height:1.7em;border-radius:50%;background:#fff;color:var(--muted);}
+.po-strip a.done{color:var(--body);}
+.po-strip a.done b{background:var(--teal-soft);color:var(--teal);}
+.po-strip a.on{background:var(--teal);color:#fff;}
+.po-strip a.on b{background:#fff;color:var(--teal);}
+.reveal .po-letter{margin:0;font-family:var(--display);font-weight:700;font-size:3.2em;line-height:1;color:var(--teal);}
+.part-open .claim{font-size:1.9em;margin:.1em 0 .3em;}
+.reveal .po-q{margin:0 0 1.2em;font-family:var(--display);font-size:.95em;color:var(--body);max-width:24em;}
+.reveal .po-out{margin:0;max-width:34em;border-left:5px solid var(--teal);padding:.3em 0 .3em .8em;font-size:.62em;line-height:1.5;color:var(--body);}
+.po-out span{display:block;font-family:var(--display);font-weight:700;font-size:.8em;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:.15em;}
+html.reading .part-open{display:block !important;}
+html.reading .po-strip{position:static;grid-template-columns:1fr 1fr;margin-bottom:1em;font-size:13px;}
+html.reading .po-q{font-size:18px;}
+html.reading .po-out{font-size:15px;}
+.parts a:hover{border-color:var(--teal);transform:translateY(-2px);}
+.po-strip a:hover{box-shadow:0 0 0 2px var(--teal-soft);}
+html.reading .parts{grid-template-columns:1fr;}
+html.reading .qband,html.reading .parts a{font-size:15px;}
+html.reading .qband span{font-size:12px;}
 /* pipeline */
 .pipe{display:flex;gap:.45em;align-items:stretch;counter-reset:p;}
 .pipe .st{flex:1 1 0;background:#fff;border:1px solid var(--line);border-radius:12px;padding:.6em .65em;font-size:.64em;line-height:1.35;box-shadow:0 6px 16px -12px rgba(15,27,45,.25);position:relative;}
@@ -487,35 +518,31 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   </div>
 </section>
 
-<!-- 2 · Today: outline + outcomes -->
+<!-- 2 · Today -->
 <section>
   <p class="kicker">Today</p>
-  <h2>Outline and learning outcomes</h2>
-  <div class="cols today">
-    <div>
-      <h3>Outline</h3>
-      <ol class="steps">
-        <li>What a computer actually sees</li>
-        <li>What vision is used for — and why it is hard</li>
-        <li>How it started: a summer project in 1966</li>
-        <li>The course map</li>
-        <li>How you are assessed</li>
-      </ol>
-    </div>
-    <div>
-      <h3>By the end of this session you can</h3>
-      <div class="goals">
-        <div class="goal" style="--c:var(--teal)"><span class="verb">Explain</span><span>why an image is an array of numbers — and why that makes vision hard</span></div>
-        <div class="goal" style="--c:var(--violet)"><span class="verb">Describe</span><span>the path from pixels to foundation models</span></div>
-        <div class="goal" style="--c:var(--amber)"><span class="verb">Explain</span><span>how each part of your grade is earned</span></div>
-        <div class="goal" style="--c:var(--coral)"><span class="verb">Join</span><span>a group, and a half — A or B</span></div>
-      </div>
-    </div>
+  <h2 class="claim">One question, four parts</h2>
+  <div class="qband"><span>The question</span>What does a computer see — and how does this course work?</div>
+  <div class="parts">
+    <a href="#/part-a"><b><i>A</i>Vision</b>What does a computer actually see — and why is that hard?</a>
+    <a href="#/part-b"><b><i>B</i>The course</b>What will you learn, in what order — and how does a session run?</a>
+    <a href="#/part-c"><b><i>C</i>Grade</b>How is the grade split — and how do the weekly presentations work?</a>
+    <a href="#/part-d"><b><i>D</i>Project &amp; final</b>What do you build, what is the exam — and when is everything due?</a>
   </div>
+  <p class="takeaway"><span>Each part opens with its question and what you will be able to do by its end.</span></p>
 </section>
 
-<!-- 3 · Hook: numbers, not objects -->
-<section>
+<!-- A0 · Part A opener -->
+<section class="part-open" id="part-a" data-part="A">
+  <div class="po-strip"><a href="#/part-a" class="on"><b>A</b>Vision</a><a href="#/part-b" class=""><b>B</b>The course</a><a href="#/part-c" class=""><b>C</b>Grade</a><a href="#/part-d" class=""><b>D</b>Project &amp; final</a></div>
+  <p class="po-letter">A</p>
+  <h2 class="claim">What is computer vision?</h2>
+  <p class="po-q">What does a computer actually see — and why is that hard?</p>
+  <p class="po-out"><span>By the end of this part</span>Explain why an image is an array of numbers — and why that makes vision hard.</p>
+</section>
+
+<!-- 4 · Hook: numbers, not objects -->
+<section data-part="A">
   <p class="kicker">What a computer sees</p>
   <h2 class="claim">A computer sees numbers, not objects</h2>
   <div class="pix-wrap">
@@ -538,8 +565,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="takeaway">Here row 0, column 0 is the top-left pixel, as in NumPy and OpenCV. Tools differ: MATLAB counts from 1, OpenCV and PIL take points as (x, y) = (column, row), and a plot’s y-axis points up.</p>
 </section>
 
-<!-- 4 · Vision is everywhere -->
-<section>
+<!-- 5 · Vision is everywhere -->
+<section data-part="A">
   <p class="kicker">Applications</p>
   <h2 class="claim">Vision is already everywhere</h2>
   <div class="cards c4">
@@ -555,8 +582,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="takeaway">Every one of these starts from the same thing: a grid of numbers.</p>
 </section>
 
-<!-- 5 · Humans make it look easy -->
-<section>
+<!-- 6 · Humans make it look easy -->
+<section data-part="A">
   <p class="kicker">Why vision is hard</p>
   <h2 class="claim">Same “N”, new light — every number changes</h2>
   <div class="pix-wrap lit">
@@ -581,8 +608,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="takeaway"><span>You still read “N” at every light level — the numbers, and any fixed rule on them, do not. Viewpoint, size and objects in front do the same. That is why a program has to be <b>taught</b> to see.</span></p>
 </section>
 
-<!-- 6 · 1966 summer project -->
-<section>
+<!-- 7 · 1966 summer project -->
+<section data-part="A">
   <p class="kicker">A little history</p>
   <h2 class="claim">In 1966, vision was planned as a summer project</h2>
   <div class="memo">
@@ -603,8 +630,17 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <div class="card coral memo-end"><b>What happened</b><span>It took far longer than one summer. Sixty years on, those three steps are still what computer vision works on — and what this course teaches.</span></div>
 </section>
 
-<!-- 7 · Course map -->
-<section>
+<!-- B0 · Part B opener -->
+<section class="part-open" id="part-b" data-part="B">
+  <div class="po-strip"><a href="#/part-a" class="done"><b>A</b>Vision</a><a href="#/part-b" class="on"><b>B</b>The course</a><a href="#/part-c" class=""><b>C</b>Grade</a><a href="#/part-d" class=""><b>D</b>Project &amp; final</a></div>
+  <p class="po-letter">B</p>
+  <h2 class="claim">The course</h2>
+  <p class="po-q">What will you learn, in what order — and how does a session run?</p>
+  <p class="po-out"><span>By the end of this part</span>Describe the path from pixels to foundation models, and how each session runs.</p>
+</section>
+
+<!-- 9 · Course map -->
+<section data-part="B">
   <p class="kicker">Course map</p>
   <h2 class="claim">Eight sessions, from pixels to motion</h2>
   <div class="map">
@@ -620,8 +656,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   </div>
 </section>
 
-<!-- 8 · Why learning before geometry -->
-<section>
+<!-- 10 · Why learning before geometry -->
+<section data-part="B">
   <p class="kicker">Course design</p>
   <h2 class="claim">Learning comes before geometry — on purpose</h2>
   <div class="cards">
@@ -631,8 +667,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   </div>
 </section>
 
-<!-- 9 · Course learning outcomes -->
-<section>
+<!-- 11 · Course learning outcomes -->
+<section data-part="B">
   <p class="kicker">Course outcomes</p>
   <h2>By the end of the course you can</h2>
   <ol class="outcomes">
@@ -645,8 +681,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   </ol>
 </section>
 
-<!-- 10 · How each session runs -->
-<section>
+<!-- 12 · How each session runs -->
+<section data-part="B">
   <p class="kicker">Session format</p>
   <h2 class="claim">Every session: one question, a few sub-topics, one notebook</h2>
   <div class="pipe">
@@ -669,8 +705,17 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   </div>
 </section>
 
-<!-- 11 · Grading -->
-<section>
+<!-- C0 · Part C opener -->
+<section class="part-open" id="part-c" data-part="C">
+  <div class="po-strip"><a href="#/part-a" class="done"><b>A</b>Vision</a><a href="#/part-b" class="done"><b>B</b>The course</a><a href="#/part-c" class="on"><b>C</b>Grade</a><a href="#/part-d" class=""><b>D</b>Project &amp; final</a></div>
+  <p class="po-letter">C</p>
+  <h2 class="claim">Grade &amp; assignment</h2>
+  <p class="po-q">How is the grade split — and how do the weekly presentations work?</p>
+  <p class="po-out"><span>By the end of this part</span>Explain how each part of your grade is earned, and how the weekly presentations work.</p>
+</section>
+
+<!-- 14 · Grading -->
+<section data-part="C">
   <p class="kicker">Assessment</p>
   <h2 class="claim">Your grade: 100 points, four parts</h2>
   <div class="gtiles">
@@ -684,8 +729,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="lead" style="margin:.6em 0 0;max-width:none"><b>Grades:</b> A ≥ 80 · C ≥ 60 · F &lt; 50 · others by score groups · <b>final &amp; project need 80%+ handed in (all 4)</b></p>
 </section>
 
-<!-- 12 · Assignment: halves -->
-<section>
+<!-- 15 · Assignment: halves -->
+<section data-part="C">
   <p class="kicker">Assignment</p>
   <h2 class="claim">Half the class presents every week</h2>
   <div class="halves">
@@ -702,8 +747,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   </div>
 </section>
 
-<!-- 13 · Assignment checklist -->
-<section>
+<!-- 16 · Assignment checklist -->
+<section data-part="C">
   <p class="kicker">Assignment</p>
   <h2 class="claim">Five criteria for every presentation</h2>
   <ol class="crit">
@@ -716,8 +761,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="takeaway">Each criterion is marked on the grading scale. Criteria 2, 3 and 5 are why copying an AI answer does not work.</p>
 </section>
 
-<!-- 14 · First turns -->
-<section>
+<!-- 17 · First turns -->
+<section data-part="C">
   <p class="kicker">Assignment · first turns</p>
   <h2 class="claim">Half A presents next week, half B the week after</h2>
   <div class="pipe">
@@ -737,8 +782,17 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   </div>
 </section>
 
-<!-- 15 · Project -->
-<section>
+<!-- D0 · Part D opener -->
+<section class="part-open" id="part-d" data-part="D">
+  <div class="po-strip"><a href="#/part-a" class="done"><b>A</b>Vision</a><a href="#/part-b" class="done"><b>B</b>The course</a><a href="#/part-c" class="done"><b>C</b>Grade</a><a href="#/part-d" class="on"><b>D</b>Project &amp; final</a></div>
+  <p class="po-letter">D</p>
+  <h2 class="claim">Project, final &amp; weeks</h2>
+  <p class="po-q">What do you build, what is the exam — and when is everything due?</p>
+  <p class="po-out"><span>By the end of this part</span>Plan the term — project milestones, hand-in rules and the final — and join a group and a half, A or B.</p>
+</section>
+
+<!-- 19 · Project -->
+<section data-part="D">
   <p class="kicker">Project · 30 points · every criterion on the grading scale</p>
   <h2 class="claim">Two or three ways to solve one real problem</h2>
   <div class="tl tl-sm tl7">
@@ -790,8 +844,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   </div>
 </section>
 
-<!-- 16 · How to hand in -->
-<section>
+<!-- 20 · How to hand in -->
+<section data-part="D">
   <p class="kicker">Hand-in · every piece of work</p>
   <h2 class="claim">Hand in files, named one way — or they don’t count</h2>
   <table class="tight hintable">
@@ -836,8 +890,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="takeaway">Upload each file — no links (except a dataset, in the README), no .zip. A missing or wrongly named file counts as not submitted.</p>
 </section>
 
-<!-- 17 · Final exam -->
-<section>
+<!-- 21 · Final exam -->
+<section data-part="D">
   <p class="kicker">Final exam · 40 points</p>
   <h2 class="claim">The final rewards what you practise in class</h2>
   <div class="cols">
@@ -858,8 +912,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="more"><a href="../practice/">Practice bank — exam-style questions with worked solutions, session by session →</a></p>
 </section>
 
-<!-- 18 · Participation -->
-<section>
+<!-- 22 · Participation -->
+<section data-part="D">
   <p class="kicker">Participation · 10 points</p>
   <h2 class="claim">A good question earns full marks</h2>
   <p class="lead" style="margin-bottom:.5em">Ask during the presentations. Each question is marked on the grading scale:</p>
@@ -873,8 +927,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="takeaway">Questions alone rarely fill all 10 points — volunteering answers and class activities count too.</p>
 </section>
 
-<!-- 19 · Schedule -->
-<section>
+<!-- 23 · Schedule -->
+<section data-part="D">
   <p class="kicker">Schedule</p>
   <h2>15 weeks at a glance</h2>
   <div class="tscroll">
@@ -898,7 +952,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   </div>
 </section>
 
-<!-- 20 · Summary -->
+<!-- 24 · Summary -->
 <section>
   <p class="kicker">Summary</p>
   <h2>What to remember</h2>
@@ -911,7 +965,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   </ol>
 </section>
 
-<!-- 21 · Coming up -->
+<!-- 25 · Coming up -->
 <section>
   <p class="kicker">Next · right after the break</p>
   <h2 class="claim">Session 2: where does an image come from?</h2>
@@ -924,7 +978,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="takeaway">At the end of session 2, half A takes its first topic from set T2.</p>
 </section>
 
-<!-- 22 · References -->
+<!-- 26 · References -->
 <section>
   <p class="kicker">References</p>
   <h2>References</h2>

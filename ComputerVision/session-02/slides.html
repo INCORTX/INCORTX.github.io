@@ -143,8 +143,8 @@ html.reading .pgno{display:none;}
 .title-slide .name{font-family:var(--display);font-weight:700;font-size:.8em;color:var(--ink);}
 .title-slide .name span{font-weight:500;color:var(--muted);}
 .title-slide .contact{display:flex;flex-wrap:wrap;gap:.2em 1.4em;margin-top:.35em !important;font-size:.56em;color:var(--muted);}
-.title-slide .contact a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line);}
-.title-slide .contact a:hover{color:var(--teal);border-bottom-color:var(--teal);}
+.title-slide .contact a{color:inherit;text-decoration:none;}
+.title-slide .contact a:hover{color:var(--teal);}
 .title-slide .contact span+span::before{content:"";display:inline-block;width:.32em;height:.32em;border-radius:50%;background:#c3cad4;margin:0 .9em 0 -.8em;vertical-align:middle;}
 .title-slide .art{margin:0;padding:34px 34px 22px;border-radius:30px;background-color:var(--teal-soft);background-image:radial-gradient(rgba(15,118,110,.16) 1.4px,transparent 1.6px);background-size:22px 22px;}
 #titleArt{display:block;width:100%;height:auto;border-radius:16px;background:#fff;box-shadow:0 18px 40px -22px rgba(15,27,45,.35),0 0 0 1px var(--line);}
@@ -245,36 +245,23 @@ html.reading .reveal .mnote{font-size:14px;}
 .reveal .more a{color:var(--teal);font-weight:600;text-decoration:none;border-bottom:2px solid var(--teal-soft);}
 .reveal .more a:hover{border-bottom-color:var(--teal);}
 html.reading .reveal .more{font-size:15px;}
-/* ===== session 2 ===== */
-.fig{display:block;width:100%;height:auto;}
-#distSvg{max-height:330px;}
-.fig .lb{font-family:var(--display);font-size:19px;font-weight:600;fill:var(--muted);}
-.fig .lb.big{font-size:28px;fill:var(--ink);}
-.fig .lt{fill:#cbd5e1;}
-.title-slide .art svg{display:block;width:100%;height:auto;border-radius:16px;background:#fff;box-shadow:0 18px 40px -22px rgba(15,27,45,.35),0 0 0 1px var(--line);}
+/* session roadmap (slide 2) + part openers — shared by every session deck */
 .qband{display:flex;gap:.8em;align-items:center;background:var(--soft);border-radius:14px;padding:.6em .9em;margin:0 0 .8em;font-size:.74em;color:var(--ink);font-family:var(--display);font-weight:600;}
 .qband span{font-family:var(--font);font-weight:700;font-size:.62em;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);white-space:nowrap;}
 .parts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6em;}
-.parts div{border:1px solid var(--line);border-radius:14px;padding:.6em .75em;font-size:.62em;line-height:1.4;color:var(--muted);background:#fff;}
-.parts div b{display:block;font-family:var(--display);font-size:1.25em;color:var(--ink);margin-bottom:.2em;}
-.parts div i{font-style:normal;display:inline-grid;place-items:center;width:1.7em;height:1.7em;border-radius:50%;background:var(--soft);color:var(--ink);font-family:var(--display);font-weight:700;margin-right:.35em;}
-.parts div.on{border:2px solid var(--teal);background:var(--teal-soft);color:var(--body);}
-.parts div.on i{background:var(--teal);color:#fff;}
-.split{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:1.2em;align-items:center;}
-.split.even{grid-template-columns:minmax(0,1fr) minmax(0,1fr);}
-.say{font-size:.68em;line-height:1.5;color:var(--body);}
-.say p{margin:0 0 .55em;}
-.say b{color:var(--ink);}
-.demo-out{font-family:var(--mono);font-size:.5em;color:var(--muted);margin-top:.35em;display:flex;justify-content:space-between;gap:.6em;flex-wrap:wrap;}
-.demo-out b{color:var(--ink);font-weight:600;}
+.parts a{display:block;text-decoration:none;transition:border-color .15s,transform .15s;border:1px solid var(--line);border-radius:14px;padding:.6em .75em;font-size:.62em;line-height:1.4;color:var(--muted);background:#fff;}
+.parts a b{display:block;font-family:var(--display);font-size:1.25em;color:var(--ink);margin-bottom:.2em;}
+.parts a i{font-style:normal;display:inline-grid;place-items:center;width:1.7em;height:1.7em;border-radius:50%;background:var(--soft);color:var(--ink);font-family:var(--display);font-weight:700;margin-right:.35em;}
+.parts a.on{border:2px solid var(--teal);background:var(--teal-soft);color:var(--body);}
+.parts a.on i{background:var(--teal);color:#fff;}
 .part-open{display:flex !important;flex-direction:column;justify-content:center;}
 .po-strip{position:absolute;top:44px;left:4px;right:4px;display:grid;grid-template-columns:repeat(4,1fr);gap:.4em;font-family:var(--display);font-size:.5em;}
-.po-strip span{display:flex;align-items:center;gap:.5em;padding:.45em .7em;border-radius:999px;background:var(--soft);color:var(--muted);}
+.po-strip a{text-decoration:none;display:flex;align-items:center;gap:.5em;padding:.45em .7em;border-radius:999px;background:var(--soft);color:var(--muted);}
 .po-strip b{display:inline-grid;place-items:center;width:1.7em;height:1.7em;border-radius:50%;background:#fff;color:var(--muted);}
-.po-strip span.done{color:var(--body);}
-.po-strip span.done b{background:var(--teal-soft);color:var(--teal);}
-.po-strip span.on{background:var(--teal);color:#fff;}
-.po-strip span.on b{background:#fff;color:var(--teal);}
+.po-strip a.done{color:var(--body);}
+.po-strip a.done b{background:var(--teal-soft);color:var(--teal);}
+.po-strip a.on{background:var(--teal);color:#fff;}
+.po-strip a.on b{background:#fff;color:var(--teal);}
 .reveal .po-letter{margin:0;font-family:var(--display);font-weight:700;font-size:3.2em;line-height:1;color:var(--teal);}
 .part-open .claim{font-size:1.9em;margin:.1em 0 .3em;}
 .reveal .po-q{margin:0 0 1.2em;font-family:var(--display);font-size:.95em;color:var(--body);max-width:24em;}
@@ -284,6 +271,25 @@ html.reading .part-open{display:block !important;}
 html.reading .po-strip{position:static;grid-template-columns:1fr 1fr;margin-bottom:1em;font-size:13px;}
 html.reading .po-q{font-size:18px;}
 html.reading .po-out{font-size:15px;}
+.parts a:hover{border-color:var(--teal);transform:translateY(-2px);}
+.po-strip a:hover{box-shadow:0 0 0 2px var(--teal-soft);}
+html.reading .parts{grid-template-columns:1fr;}
+html.reading .qband,html.reading .parts a{font-size:15px;}
+html.reading .qband span{font-size:12px;}
+/* ===== session 2 ===== */
+.fig{display:block;width:100%;height:auto;}
+#distSvg{max-height:330px;}
+.fig .lb{font-family:var(--display);font-size:19px;font-weight:600;fill:var(--muted);}
+.fig .lb.big{font-size:28px;fill:var(--ink);}
+.fig .lt{fill:#cbd5e1;}
+.title-slide .art svg{display:block;width:100%;height:auto;border-radius:16px;background:#fff;box-shadow:0 18px 40px -22px rgba(15,27,45,.35),0 0 0 1px var(--line);}
+.split{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:1.2em;align-items:center;}
+.split.even{grid-template-columns:minmax(0,1fr) minmax(0,1fr);}
+.say{font-size:.68em;line-height:1.5;color:var(--body);}
+.say p{margin:0 0 .55em;}
+.say b{color:var(--ink);}
+.demo-out{font-family:var(--mono);font-size:.5em;color:var(--muted);margin-top:.35em;display:flex;justify-content:space-between;gap:.6em;flex-wrap:wrap;}
+.demo-out b{color:var(--ink);font-weight:600;}
 .reveal .more{margin:.9em 0 0;font-size:.56em;}
 .reveal .more a{color:var(--teal);font-weight:600;text-decoration:none;border-bottom:2px solid var(--teal-soft);}
 .reveal .more a:hover{border-bottom-color:var(--teal);}
@@ -320,10 +326,10 @@ html.reading .photo figcaption{font-size:12px;}
 .big-out b{color:var(--coral);}
 .wins{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8em;margin-top:.4em;}
 .reveal aside.notes,aside.notes{display:none !important;}
-html.reading .split,html.reading .split.even,html.reading .parts,html.reading .wins{grid-template-columns:1fr;}
-html.reading .qband,html.reading .say,html.reading .parts div,html.reading .worked{font-size:15px;}
+html.reading .split,html.reading .split.even,html.reading .wins{grid-template-columns:1fr;}
+html.reading .say,html.reading .worked{font-size:15px;}
 html.reading .demo-out,html.reading .big-out{font-size:14px;}
-html.reading .qband span,html.reading .worked .tag,html.reading .tryit .tag{font-size:12px;}
+html.reading .worked .tag,html.reading .tryit .tag{font-size:12px;}
 html.reading .reveal ul.small li{font-size:14px;}
 /* pipeline */
 .pipe{display:flex;gap:.45em;align-items:stretch;counter-reset:p;}
@@ -575,10 +581,10 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <h2 class="claim">One question, four parts</h2>
   <div class="qband"><span>The question</span>How does a camera turn a 3D scene into numbers — and what does it lose on the way?</div>
   <div class="parts">
-    <div><b><i>A</i>Pinhole</b>Why do far things look small — and where does depth go?</div>
-    <div><b><i>B</i>Lenses</b>How can a picture be bright and sharp at once?</div>
-    <div><b><i>C</i>Sensors</b>How does light become numbers — and what limits them?</div>
-    <div><b><i>D</i>Colour</b>A photosite only counts light — so where does colour come from?</div>
+    <a href="#/part-a"><b><i>A</i>Pinhole</b>Why do far things look small — and where does depth go?</a>
+    <a href="#/part-b"><b><i>B</i>Lenses</b>How can a picture be bright and sharp at once?</a>
+    <a href="#/part-c"><b><i>C</i>Sensors</b>How does light become numbers — and what limits them?</a>
+    <a href="#/part-d"><b><i>D</i>Colour</b>A photosite only counts light — so where does colour come from?</a>
   </div>
   <p class="takeaway"><span>Each part ends in the same notebook — <code>lab.ipynb</code>, one section per part.</span></p>
   <aside class="notes"><p>🇹🇭 อ่านคำถามของคาบ แล้วบอกว่าวันนี้เริ่มที่ A</p><p>🇬🇧 Read the session question; today starts with A.</p></aside>
@@ -586,7 +592,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
 
 <!-- 3 · Part A opener -->
 <section class="part-open" id="part-a" data-part="A">
-  <div class="po-strip"><span class="on"><b>A</b>Pinhole</span><span class=""><b>B</b>Lenses</span><span class=""><b>C</b>Sensors</span><span class=""><b>D</b>Colour</span></div>
+  <div class="po-strip"><a href="#/part-a" class="on"><b>A</b>Pinhole</a><a href="#/part-b" class=""><b>B</b>Lenses</a><a href="#/part-c" class=""><b>C</b>Sensors</a><a href="#/part-d" class=""><b>D</b>Colour</a></div>
   <p class="po-letter">A</p>
   <h2 class="claim">Pinhole &amp; perspective</h2>
   <p class="po-q">Why do far things look small — and where does depth go?</p>
@@ -767,7 +773,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
 
 <!-- 15 · Part B opener -->
 <section class="part-open" id="part-b" data-part="B">
-  <div class="po-strip"><span class="done"><b>A</b>Pinhole</span><span class="on"><b>B</b>Lenses</span><span class=""><b>C</b>Sensors</span><span class=""><b>D</b>Colour</span></div>
+  <div class="po-strip"><a href="#/part-a" class="done"><b>A</b>Pinhole</a><a href="#/part-b" class="on"><b>B</b>Lenses</a><a href="#/part-c" class=""><b>C</b>Sensors</a><a href="#/part-d" class=""><b>D</b>Colour</a></div>
   <p class="po-letter">B</p>
   <h2 class="claim">Lenses</h2>
   <p class="po-q">How can a picture be bright and sharp at once?</p>
@@ -901,7 +907,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
 
 <!-- 24 · Part C opener -->
 <section class="part-open" id="part-c" data-part="C">
-  <div class="po-strip"><span class="done"><b>A</b>Pinhole</span><span class="done"><b>B</b>Lenses</span><span class="on"><b>C</b>Sensors</span><span class=""><b>D</b>Colour</span></div>
+  <div class="po-strip"><a href="#/part-a" class="done"><b>A</b>Pinhole</a><a href="#/part-b" class="done"><b>B</b>Lenses</a><a href="#/part-c" class="on"><b>C</b>Sensors</a><a href="#/part-d" class=""><b>D</b>Colour</a></div>
   <p class="po-letter">C</p>
   <h2 class="claim">Sensors</h2>
   <p class="po-q">How does light become numbers — and what limits them?</p>
@@ -1052,7 +1058,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
 
 <!-- 33 · Part D opener -->
 <section class="part-open" id="part-d" data-part="D">
-  <div class="po-strip"><span class="done"><b>A</b>Pinhole</span><span class="done"><b>B</b>Lenses</span><span class="done"><b>C</b>Sensors</span><span class="on"><b>D</b>Colour</span></div>
+  <div class="po-strip"><a href="#/part-a" class="done"><b>A</b>Pinhole</a><a href="#/part-b" class="done"><b>B</b>Lenses</a><a href="#/part-c" class="done"><b>C</b>Sensors</a><a href="#/part-d" class="on"><b>D</b>Colour</a></div>
   <p class="po-letter">D</p>
   <h2 class="claim">Colour</h2>
   <p class="po-q">A photosite only counts light — so where does colour come from?</p>
