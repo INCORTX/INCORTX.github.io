@@ -254,22 +254,22 @@ html.reading .reveal .more{font-size:15px;}
 .parts a i{font-style:normal;display:inline-grid;place-items:center;width:1.7em;height:1.7em;border-radius:50%;background:var(--soft);color:var(--ink);font-family:var(--display);font-weight:700;margin-right:.35em;}
 .parts a.on{border:2px solid var(--teal);background:var(--teal-soft);color:var(--body);}
 .parts a.on i{background:var(--teal);color:#fff;}
-.part-open{display:flex !important;flex-direction:column;justify-content:center;}
-.po-strip{position:absolute;top:44px;left:4px;right:4px;display:grid;grid-template-columns:repeat(4,1fr);gap:.4em;font-family:var(--display);font-size:.5em;}
+/* the A–D strip sits in the normal flow (never absolute), so nothing can overlap it in any mode; auto margins centre the rest */
+.part-open{display:flex !important;flex-direction:column;justify-content:flex-start;}
+.po-strip{position:static;margin:34px 0 26px;display:grid;grid-template-columns:repeat(4,1fr);gap:.4em;font-family:var(--display);font-size:.5em;}
 .po-strip a{text-decoration:none;display:flex;align-items:center;gap:.5em;padding:.45em .7em;border-radius:999px;background:var(--soft);color:var(--muted);}
 .po-strip b{display:inline-grid;place-items:center;width:1.7em;height:1.7em;border-radius:50%;background:#fff;color:var(--muted);}
 .po-strip a.done{color:var(--body);}
 .po-strip a.done b{background:var(--teal-soft);color:var(--teal);}
 .po-strip a.on{background:var(--teal);color:#fff;}
 .po-strip a.on b{background:#fff;color:var(--teal);}
-.reveal .po-letter{margin:0;font-family:var(--display);font-weight:700;font-size:3.2em;line-height:1;color:var(--teal);}
+.reveal .po-letter{margin:auto 0 0;font-family:var(--display);font-weight:700;font-size:3.2em;line-height:1;color:var(--teal);}
 .part-open .claim{font-size:1.9em;margin:.1em 0 .3em;}
 .reveal .po-q{margin:0 0 1.2em;font-family:var(--display);font-size:.95em;color:var(--body);max-width:24em;}
-.reveal .po-out{margin:0;max-width:34em;border-left:5px solid var(--teal);padding:.3em 0 .3em .8em;font-size:.62em;line-height:1.5;color:var(--body);}
+.reveal .po-out{margin:0 0 auto;max-width:34em;border-left:5px solid var(--teal);padding:.3em 0 .3em .8em;font-size:.62em;line-height:1.5;color:var(--body);}
 .po-out span{display:block;font-family:var(--display);font-weight:700;font-size:.8em;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:.15em;}
 html.reading .part-open{display:block !important;}
 /* print: no vertical centring there, so keep the big letter clear of the A–D strip */
-html.print-pdf .reveal .slides section.part-open,html.handout .reveal .slides>section.part-open{padding-top:118px !important;}
 html.reading .po-strip{position:static;grid-template-columns:1fr 1fr;margin-bottom:1em;font-size:13px;}
 html.reading .po-q{font-size:18px;}
 html.reading .po-out{font-size:15px;}
@@ -1287,7 +1287,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <dt><kbd>O</kbd></dt><dd>All slides — arrows move, Enter opens, scroll or drag</dd>
     <dt><kbd>Enter</kbd><kbd>F</kbd></dt><dd>Full screen</dd>
     <dt><kbd>B</kbd><kbd>.</kbd></dt><dd>Black screen (pause) — press again to come back</dd>
-    <dt><kbd>P</kbd></dt><dd>Download PDF</dd>
+    <dt><kbd>P</kbd></dt><dd>Download PDF — also Cmd/Ctrl + P</dd>
     <dt><kbd>S</kbd></dt><dd>Presenter view — notes, next slide, timer</dd>
     <dt><kbd>?</kbd></dt><dd>This list</dd>
     <dt><kbd>Esc</kbd></dt><dd>Close a popup · otherwise all slides</dd>
@@ -1351,6 +1351,11 @@ const MODE = Q.has('handout') ? 'handout' : Q.has('print-pdf') ? 'pdf'
 if(window.matchMedia('(hover: none)').matches) document.documentElement.classList.add('touch');
 function autoprint(){ if(Q.has('autoprint')) setTimeout(()=>window.print(), 1200); }
 /* print modes: load every picture now (lazy images far down the page would print blank), then wait for them */
+/* printing: open every answer (Try it, solutions) so it is on paper; restore afterwards */
+function openAnswers(on){ document.querySelectorAll('details').forEach(d=>{ if(on){ if(d.dataset.wasOpen===undefined) d.dataset.wasOpen=d.open?'1':'0'; d.open=true; }
+  else if(d.dataset.wasOpen!==undefined){ d.open=d.dataset.wasOpen==='1'; delete d.dataset.wasOpen; } }); }
+window.addEventListener('beforeprint',()=>openAnswers(true));
+window.addEventListener('afterprint',()=>{ if(MODE==='slides'||MODE==='reading') openAnswers(false); });
 function loadAllImages(){ const imgs=[...document.querySelectorAll('img')]; imgs.forEach(i=>{ i.loading='eager'; });
   return Promise.all(imgs.map(i=>i.complete?0:new Promise(r=>{ i.addEventListener('load',r,{once:true}); i.addEventListener('error',r,{once:true}); }))); }
 
@@ -1366,7 +1371,7 @@ document.addEventListener('DOMContentLoaded',()=>{   /* after every const below 
     document.querySelectorAll('link[href*="reveal.min.css"]').forEach(l=>l.disabled=true);
     const st=document.createElement('style'); st.textContent='@page{size:A4 portrait;margin:10mm;}'; document.head.appendChild(st);
     renderMath(); initDemos();
-    loadAllImages(); Promise.all([document.fonts.ready,loadAllImages()]).then(autoprint);
+    openAnswers(true); loadAllImages(); Promise.all([document.fonts.ready,loadAllImages()]).then(autoprint);
     return;
   }
   if(MODE==='reading'){
@@ -1391,7 +1396,7 @@ document.addEventListener('DOMContentLoaded',()=>{   /* after every const below 
     plugins:[RevealNotes]   /* S = presenter view with the slide's notes */
   }).then(()=>{
     renderMath(); initDemos();
-    if(MODE==='pdf'){ loadAllImages(); Promise.all([document.fonts.ready,loadAllImages()]).then(autoprint); return; }
+    if(MODE==='pdf'){ openAnswers(true); loadAllImages(); Promise.all([document.fonts.ready,loadAllImages()]).then(autoprint); return; }
     if(Q.has('receiver')) return;   /* presenter-view preview: no toolbar, swipe or album */
     initDeckbar(); initSwipe();
     initAlbum({slides:()=>Reveal.getSlides(), current:()=>Reveal.getIndices().h, go:i=>Reveal.slide(i), keys:true});
@@ -1478,6 +1483,8 @@ function initDeckbar(){
   scrim.addEventListener('click',closeAll);
   menu.addEventListener('click',()=>setTimeout(closeAll,50));
   Reveal.addKeyBinding({keyCode:80,key:'P',description:'Download PDF'},toggleMenu);
+  /* Cmd/Ctrl+P: the browser's own print of the live deck is poor — offer the deck's PDF layouts instead */
+  document.addEventListener('keydown',e=>{ if((e.metaKey||e.ctrlKey)&&!e.altKey&&(e.key==='p'||e.key==='P')){ e.preventDefault(); e.stopImmediatePropagation(); if(menu.hidden) toggleMenu(); } },true);
   /* ↓ / ↑ : whole slide, skipping animations — the slide you land on is shown complete */
   const jump=d=>{ const h=Reveal.getIndices().h+d; if(h<0||h>last()) return;
     const n=Reveal.getSlide(h).querySelectorAll('.fragment').length; Reveal.slide(h,0,n?n-1:undefined); };
