@@ -1256,13 +1256,14 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
       <div class="demo-out"><span id="alOut"></span></div>
     </div>
     <div class="say">
-      <p>Shrink by <b>k</b> the cheap way: keep every k-th pixel, drop the rest.</p>
+      <div class="flashback">Session 2 C: a sensor is a grid of photosites — every photo is already a <b>sampled</b> scene, and shrinking samples it again.</div>
+      <p style="margin-top:.7em">Shrink by <b>k</b> the cheap way: keep every k-th pixel, drop the rest.</p>
       <p>Fine stripes that change faster than the new pixel spacing cannot be kept — they come back as <b>slower, false stripes</b>: <b>aliasing</b>.</p>
       <p class="fragment">On the test rings at 6×: whole new sets of rings that are <b>not in the picture</b>. On fabric and screens it is called <b>moiré</b>.</p>
     </div>
   </div>
 
-  <aside class="notes"><p>🇹🇭 ลาก shrink จาก 1 ไป 6 ที่ภาพตึก แล้วสลับเป็นวงทดสอบที่ 6×: มีวงปลอมหลายชุด</p><p>🇬🇧 Drag shrink from 1 to 6 on the tower, then switch to the test rings at 6×: false sets of rings.</p></aside>
+  <aside class="notes"><p>🇹🇭 ชี้ flashback: sensor คาบ 2 ก็คือการ sample · ลาก shrink จาก 1 ไป 6 ที่ภาพตึก แล้วสลับเป็นวงทดสอบที่ 6×: มีวงปลอมหลายชุด</p><p>🇬🇧 Point at the flashback: the session-2 sensor already samples. Drag shrink from 1 to 6 on the tower, then switch to the test rings at 6×: false sets of rings.</p></aside>
 </section>
 
 <!-- 36 -->
@@ -1315,7 +1316,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   </div>
   <div class="ctrl" style="justify-content:center"><span class="chbtns" id="bfSrc" style="margin:0"><button class="on" data-s="alias">photo</button><button data-s="zone">test rings</button></span>
     <label>shrink <input class="slider" id="bfK" type="range" min="2" max="6" value="4" aria-label="shrink factor"></label><span class="gcap" id="bfOut" style="margin:0"></span></div>
-  <p class="takeaway"><span>Remove the waves too fast for the new spacing <b>before</b> you sample. Cameras do it with an optical blur filter in front of the sensor.</span></p>
+  <p class="takeaway"><span>Remove the waves too fast for the new spacing <b>before</b> you sample. A camera does the same at capture (session 2 C): a thin optical blur filter sits in front of the sensor.</span></p>
 
   <aside class="notes"><p>🇹🇭 สลับเป็นวงทดสอบ ลาก 6×: ซ้ายมีวงปลอม ขวาเป็นสีเทา (ถูกต้อง — ลายละเอียดเกินกว่าจะเก็บได้)</p><p>🇬🇧 Switch to the test rings at 6×: false rings on the left; plain grey on the right — correct, the detail is too fine to keep.</p></aside>
 </section>
