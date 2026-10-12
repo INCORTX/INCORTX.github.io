@@ -268,6 +268,8 @@ html.reading .reveal .more{font-size:15px;}
 .reveal .po-out{margin:0 0 auto;max-width:34em;border-left:5px solid var(--teal);padding:.3em 0 .3em .8em;font-size:.62em;line-height:1.5;color:var(--body);}
 .po-out span{display:block;font-family:var(--display);font-weight:700;font-size:.8em;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:.15em;}
 html.reading .part-open{display:block !important;}
+html.reading .tryit .tag{font-size:12px;}
+.reveal sup{vertical-align:super;font-size:.68em;line-height:0;}
 /* print: no vertical centring there, so keep the big letter clear of the A–D strip */
 html.reading .po-strip{position:static;grid-template-columns:1fr 1fr;margin-bottom:1em;font-size:13px;}
 html.reading .po-q{font-size:18px;}
@@ -686,25 +688,26 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
 <!-- 12 · How each session runs -->
 <section data-part="B">
   <p class="kicker">Session format</p>
-  <h2 class="claim">Every session: one question, a few sub-topics, one notebook</h2>
+  <h2 class="claim">Every session: one question, four parts, one notebook</h2>
   <div class="pipe">
-    <div class="st"><b>Question</b>The problem the session solves</div>
+    <div class="st"><b>Question</b>The problem the whole session solves</div>
     <div class="ar">→</div>
-    <div class="st"><b>Sub-topics A–D</b>Idea first, formula second</div>
+    <div class="st"><b>Part opener</b>Each part A–D starts with its own question</div>
     <div class="ar">→</div>
-    <div class="st"><b>Try it</b>A small hand calculation, in the style of the final</div>
+    <div class="st"><b>Ideas &amp; demos</b>Pictures and sliders first, formula second</div>
     <div class="ar">→</div>
-    <div class="st"><b>Lab section</b>Run it yourself in Colab</div>
+    <div class="st"><b>Try it</b>A hand calculation in the style of the final</div>
     <div class="ar">→</div>
-    <div class="st"><b>Summary</b>What to remember</div>
+    <div class="st"><b>Part summary</b>Plus more questions in the practice bank</div>
   </div>
   <div class="cols" style="margin-top:1em">
     <div class="flashback">When an idea from an earlier session comes back, a flashback points to where you first met it.</div>
     <div class="tryit" style="background:#fff;border-color:var(--line);border-left-color:#f9ab00">
       <span class="colab"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part A</span>
-      <p style="margin:.5em 0 0">One <code>lab.ipynb</code> per session. The button under each sub-topic opens that same notebook at its part — A, B, C or D. Runs on free Colab.</p>
+      <p style="margin:.5em 0 0">One <code>lab.ipynb</code> per session, one section per part — the button at the end of a part opens it there. Runs on free Colab.</p>
     </div>
   </div>
+  <p class="takeaway"><span>In any deck, <b>Shift + ← / →</b> jumps to the previous or next part.</span></p>
 </section>
 
 <!-- C0 · Part C opener -->
@@ -971,13 +974,14 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
 <section>
   <p class="kicker">Next · right after the break</p>
   <h2 class="claim">Session 2: where does an image come from?</h2>
-  <p class="lead" style="font-size:.78em">Session 2 follows light from the scene, through a lens, onto a sensor — and asks what is lost on the way.</p>
-  <div class="cards">
-    <div class="card teal"><b>Pinhole projection</b>Why far things look small</div>
-    <div class="card violet"><b>Lenses</b>Focal length and field of view</div>
-    <div class="card amber"><b>Sensors &amp; colour</b>How light becomes those numbers</div>
+  <p class="lead" style="font-size:.78em">One question — how does a camera turn a 3D scene into numbers, and what does it lose on the way? — in four parts:</p>
+  <div class="cards c4">
+    <div class="card teal"><b>A · Pinhole</b>Why do far things look small — and where does depth go?</div>
+    <div class="card violet"><b>B · Lenses</b>How can a picture be bright and sharp at once?</div>
+    <div class="card amber"><b>C · Sensors</b>How does light become numbers — and what limits them?</div>
+    <div class="card coral"><b>D · Colour</b>A photosite only counts light — so where does colour come from?</div>
   </div>
-  <p class="takeaway">At the end of session 2, half A takes its first topic from set T2.</p>
+  <p class="takeaway"><span>At the end of session 2, half A takes its first topic from set T2.</span></p>
 </section>
 
 <!-- 26 · References -->
