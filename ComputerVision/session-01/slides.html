@@ -453,6 +453,9 @@ html.reading .aslides{display:flex;align-items:center;min-height:36px;margin-lef
 
 /* ---------- print: reveal ?print-pdf (16:9, one slide per page) ---------- */
 @media print{ .deckbar,.pop,.scrim,.rbar{display:none !important;} }
+/* in ?print-pdf reveal sets each slide to its content height with no padding, so the page number
+   (absolute, bottom 12px) sat just under the content; give the slide the same 720px box as on screen */
+html.print-pdf .reveal .slides .pdf-page>section{height:720px !important;padding:6px 4px 64px !important;}
 
 /* ---------- A4 handout (?handout): two 16:9 slides per A4 portrait page ---------- */
 html.handout,html.handout body{height:auto;overflow:auto;background:#e9edf2;}
