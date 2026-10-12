@@ -1851,6 +1851,8 @@ function initLightingDemo(){
 }
 
 /* ---- session 3 demos ---- */
+/* in ?print-pdf / ?handout each demo starts at a setting that shows its point on paper */
+const PRINTING=/[?&](print-pdf|handout)\b/.test(location.search);
 const loadImg=(src,cb)=>{ const im=new Image(); im.onload=()=>cb(im); im.src=src; return im; };
 function pickButtons(id,cb){ const g=document.getElementById(id); if(!g) return; g.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b) return;
   g.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b)); cb(b); }); }
@@ -1913,6 +1915,7 @@ function initStepper(){
   document.getElementById('stAll').addEventListener('click',()=>{ for(let n=0;n<25;n++) done.add(n); k=24; draw(); });
   document.getElementById('stReset').addEventListener('click',()=>{ done.clear(); k=-1; draw(); });
   go.addEventListener('click',e=>{ const i=[...go.children].indexOf(e.target.closest('div')); if(i>=0) go_(i); });
+  if(PRINTING){ for(let n=0;n<25;n++) done.add(n); k=2*5+1; }   /* the window that holds the 250 */
   draw();
 }
 /* A5: impulse response — one 1 in a 7×7 field of zeros */
@@ -1965,7 +1968,7 @@ function photoPlanes(cv,cb){ const ctx=cv.getContext('2d',{willReadFrequently:tr
     ctx.drawImage(im,(iw-sw)/2,(ih-sh)/2,sw,sh,0,0,cv.width,cv.height); let id; try{ id=ctx.getImageData(0,0,cv.width,cv.height); }catch(e){ return; } cb(planes(id),ctx); }); }
 /* B1: k × k box on a noisy photo */
 function initBox(){
-  const cv=document.getElementById('bxCv'), sl=document.getElementById('bxK'); if(!cv) return; const W=cv.width, H=cv.height; let noisy=null, ctx=null;
+  const cv=document.getElementById('bxCv'), sl=document.getElementById('bxK'); if(!cv) return; if(PRINTING) sl.value=2; const W=cv.width, H=cv.height; let noisy=null, ctx=null;
   const draw=()=>{ const k=2*(+sl.value)+1; document.getElementById('bxOut').textContent=`${k} × ${k} box · each weight 1/${k*k} · noise ÷ ${k}`;
     if(!noisy) return; const box=Array(k).fill(1/k); ctx.putImageData(toImage(noisy.map(p=>sep(p,W,H,box)),W,H),0,0); cv.dataset.drawn=k; };
   photoPlanes(cv,(P,c)=>{ ctx=c; const R=rng32(11); noisy=P.map(()=>null);
@@ -1989,7 +1992,7 @@ function initGaussK(){
 }
 /* B6: unsharp mask, sharp = f + α (f − Gaussian σ 2) */
 function initUnsharp(){
-  const cv=document.getElementById('usCv'), sl=document.getElementById('usA'), dv=document.getElementById('usD'); if(!cv) return; const W=cv.width, H=cv.height; let P=null, B=null, ctx=null;
+  const cv=document.getElementById('usCv'), sl=document.getElementById('usA'), dv=document.getElementById('usD'); if(!cv) return; if(PRINTING) sl.value=15; const W=cv.width, H=cv.height; let P=null, B=null, ctx=null;
   const draw=()=>{ const a=+sl.value/10; document.getElementById('usOut').textContent=`α = ${a.toFixed(1)} · sharp = f + ${a.toFixed(1)} × (f − blur)`;
     if(!P) return; ctx.putImageData(toImage(P.map((p,c)=>p.map((v,i)=>Math.max(0,Math.min(255,v+a*(v-B[c][i]))))),W,H),0,0); cv.dataset.drawn=a; };
   photoPlanes(cv,(pl,c)=>{ ctx=c; P=pl; const g=gauss1(2); B=P.map(p=>sep(p,W,H,g));
@@ -2116,12 +2119,14 @@ function initAlias(){
   const im=document.getElementById('alImg'), sl=document.getElementById('alK'); if(!im) return; let src='alias';
   const draw=()=>{ const k=+sl.value; im.src=`img/${src}_k${k}_skip.${src==='alias'?'jpg':'png'}`; im.dataset.k=k;
     document.getElementById('alOut').textContent=k===1?'original pixels':`shrunk ${k}× · kept 1 pixel in every ${k*k}`; };
-  pickButtons('alSrc',b=>{ src=b.dataset.s; draw(); }); sl.addEventListener('input',draw); draw();
+  pickButtons('alSrc',b=>{ src=b.dataset.s; draw(); }); sl.addEventListener('input',draw);
+  if(PRINTING){ sl.value=6; document.querySelector('#alSrc [data-s=zone]').click(); } else draw();
 }
 function initBlurFirst(){
   const a=document.getElementById('bfSkip'), b=document.getElementById('bfBlur'), sl=document.getElementById('bfK'); if(!a) return; let src='alias';
   const draw=()=>{ const k=+sl.value, e=src==='alias'?'jpg':'png'; a.src=`img/${src}_k${k}_skip.${e}`; b.src=`img/${src}_k${k}_blur.${e}`; document.getElementById('bfOut').textContent=`shrunk ${k}×`; b.dataset.k=k; };
-  pickButtons('bfSrc',x=>{ src=x.dataset.s; draw(); }); sl.addEventListener('input',draw); draw();
+  pickButtons('bfSrc',x=>{ src=x.dataset.s; draw(); }); sl.addEventListener('input',draw);
+  if(PRINTING){ sl.value=6; document.querySelector('#bfSrc [data-s=zone]').click(); } else draw();
 }
 /* D5: an 8-spoke wheel drawn once per "frame"; true turn per frame Δ, apparent = nearest match */
 function initWheel(){
@@ -2139,7 +2144,7 @@ function initWheel(){
 }
 /* D6: 5 cycles sampled N times; the slowest wave through the samples */
 function initNyquist(){
-  const cv=document.getElementById('nyCv'), sl=document.getElementById('nyN'); if(!cv) return; const ctx=cv.getContext('2d'), W=cv.width, H=cv.height, f=5;
+  const cv=document.getElementById('nyCv'), sl=document.getElementById('nyN'); if(!cv) return; if(PRINTING) sl.value=8; const ctx=cv.getContext('2d'), W=cv.width, H=cv.height, f=5;
   const draw=()=>{ const N=+sl.value, fa=f-N*Math.round(f/N), y=v=>H/2-v*H*.38; ctx.clearRect(0,0,W,H);
     ctx.strokeStyle='#cbd5e1'; ctx.lineWidth=2; ctx.beginPath(); for(let i=0;i<=W;i++){ const v=Math.sin(2*Math.PI*f*i/W); i?ctx.lineTo(i,y(v)):ctx.moveTo(i,y(v)); } ctx.stroke();
     ctx.strokeStyle='#0f766e'; ctx.lineWidth=3; ctx.beginPath(); for(let i=0;i<=W;i++){ const v=Math.sin(2*Math.PI*fa*i/W); i?ctx.lineTo(i,y(v)):ctx.moveTo(i,y(v)); } ctx.stroke();
