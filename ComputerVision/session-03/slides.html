@@ -342,6 +342,14 @@ html.reading .conv3{max-width:none;}
 .flipk{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:.6em;align-items:center;max-width:420px;margin:.6em auto 0;}
 .big-out{font-family:var(--mono);font-size:.64em;color:var(--ink);margin:.4em 0 0;}
 .big-out b{color:var(--coral);}
+.reveal .tset{list-style:none;margin:.2em 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.45em .8em;}
+.reveal .tset li{margin:0;display:grid;grid-template-columns:1.6em 1fr;column-gap:.5em;align-items:baseline;border:1px solid var(--line);border-radius:12px;padding:.45em .7em;font-size:.56em;line-height:1.35;background:#fff;}
+.tset .tn{grid-row:1/3;font-family:var(--display);font-weight:700;color:var(--teal);font-size:1.2em;}
+.tset .tt{font-family:var(--display);font-weight:600;color:var(--ink);}
+.tset a{font-size:.85em;color:var(--teal);text-decoration:none;}
+html.reading .reveal .tset{grid-template-columns:1fr;}
+html.reading .reveal .tset li{font-size:15px;}
+.steps.recap li{font-size:.7em;}
 .fig{display:block;width:100%;height:auto;}
 .fig .lb{font-family:var(--display);font-size:17px;font-weight:600;fill:var(--muted);}
 .reveal table.tbl{font-size:.5em;border-collapse:collapse;margin:0 auto;}
@@ -1143,6 +1151,265 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 สรุป C · ชี้การ์ด Later: คาบ 4 และ 6 ใช้ของวันนี้</p><p>🇬🇧 Wrap up C. Point at Later: sessions 4 and 6 build on today.</p></aside>
 </section>
 
+<!-- 31 -->
+<section class="part-open" id="part-d" data-part="D">
+  <div class="po-strip"><a href="#/part-a" class="done"><b>A</b>Convolution</a><a href="#/part-b" class="done"><b>B</b>Smoothing</a><a href="#/part-c" class="done"><b>C</b>Edges</a><a href="#/part-d" class="on"><b>D</b>Frequency</a></div>
+  <p class="po-letter">D</p>
+  <h2 class="claim">Frequency &amp; sampling</h2>
+  <p class="po-q">Why can shrinking a picture create patterns that are not there?</p>
+  <p class="po-out"><span>By the end of this part</span>Explain aliasing with frequencies, and prevent it by blurring before downsampling.</p>
+  <aside class="notes"><p>🇹🇭 หน้าเปิด part: อ่านคำถามกับสิ่งที่จะทำได้ท้าย part แล้วเข้าเนื้อหา</p><p>🇬🇧 Part opener: read the question and what you can do by the end of the part, then go in.</p></aside>
+</section>
+
+<!-- 32 -->
+<section data-part="D">
+  <p class="kicker">D · Frequency &amp; sampling</p>
+  <h2 class="claim">Any image is a sum of waves</h2>
+  <div class="split">
+    <div>
+      <canvas id="wvCv" class="democv" width="560" height="190" aria-label="a square wave built from a number of sine waves" style="border:none"></canvas>
+      <input class="slider" id="wvN" type="range" min="1" max="30" value="1" aria-label="number of waves">
+      <div class="demo-out"><span id="wvOut"></span></div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.5em;margin-top:.5em">
+        <canvas class="democv grat" width="160" height="100" data-f="2" data-a="0" aria-label="slow vertical stripes"></canvas>
+        <canvas class="democv grat" width="160" height="100" data-f="8" data-a="0" aria-label="fast vertical stripes"></canvas>
+        <canvas class="democv grat" width="160" height="100" data-f="5" data-a="45" aria-label="diagonal stripes"></canvas>
+      </div>
+      <p class="gcap">2D waves: slow · fast · tilted</p>
+    </div>
+    <div class="say">
+      <p>Add sine waves of rising frequency (1, 3, 5, …) and a <b>sharp step</b> appears. Drag to add more.</p>
+      <p>Images work the same way in 2D: every picture is a sum of striped waves, each with a <b>frequency</b> (how fine) and a <b>direction</b>.</p>
+      <p class="fragment">Smooth areas need only slow waves. <b>Edges and noise need fast ones</b> — the ones a blur removes.</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ลากจาก 1 คลื่นไป 30: ขั้นบันไดคมขึ้น · ชี้ภาพลาย 3 แบบ: ช้า เร็ว เอียง</p><p>🇬🇧 Drag from 1 wave to 30: the step sharpens. Point at the three stripe patterns: slow, fast, tilted.</p></aside>
+</section>
+
+<!-- 33 -->
+<section data-part="D">
+  <p class="kicker">D · Frequency &amp; sampling</p>
+  <h2 class="claim">The Fourier magnitude: which waves, how strong</h2>
+  <div class="split">
+    <div>
+      <canvas id="ffCv" class="democv" width="560" height="280" data-src="img/landscape.jpg" aria-label="the Fourier magnitude with a circular mask, and the image rebuilt from the waves inside or outside it"></canvas>
+      <div class="ctrl"><span class="chbtns" id="ffBtns" style="margin:0"><button class="on" data-m="low">keep inside: low-pass</button><button data-m="high">keep outside: high-pass</button></span>
+        <label>radius <input class="slider" id="ffR" type="range" min="2" max="90" value="20" aria-label="mask radius"></label></div>
+      <div class="demo-out"><span id="ffOut"></span></div>
+    </div>
+    <div class="say">
+      <p>The <b>Fourier transform</b> rewrites the image as waves. Left: how strong each one is — slow waves in the <b>centre</b>, fast ones further out.</p>
+      <p>Keep only the waves inside the circle and rebuild: a <b>blur</b>. Keep only the outside: the <b>edges</b>.</p>
+      <p class="fragment">Most of the strength sits near the centre: real images are mostly slow change.</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 low-pass รัศมี 20 → เบลอ · ลดรัศมีลงเหลือ 5 → เบลอมาก · สลับ high-pass → เหลือแต่ขอบ</p><p>🇬🇧 Low-pass at radius 20: a blur; shrink to 5: very blurred. Switch to high-pass: only the edges stay.</p></aside>
+</section>
+
+<!-- 34 -->
+<section data-part="D">
+  <p class="kicker">D · Frequency &amp; sampling</p>
+  <h2 class="claim">Blurring keeps the low frequencies</h2>
+  <div class="split">
+    <div><svg class="fig" viewBox="0 0 560 300" role="img" aria-label="a box kernel has rippling frequencies, a Gaussian kernel has one smooth bump"><line x1="24.6" x2="24.6" y1="130" y2="130.0" stroke="#c97a06" stroke-width="3"/><line x1="33.8" x2="33.8" y1="130" y2="130.0" stroke="#c97a06" stroke-width="3"/><line x1="43.0" x2="43.0" y1="130" y2="130.0" stroke="#c97a06" stroke-width="3"/><line x1="52.2" x2="52.2" y1="130" y2="130.0" stroke="#c97a06" stroke-width="3"/><line x1="61.4" x2="61.4" y1="130" y2="130.0" stroke="#c97a06" stroke-width="3"/><line x1="70.6" x2="70.6" y1="130" y2="130.0" stroke="#c97a06" stroke-width="3"/><line x1="79.8" x2="79.8" y1="130" y2="130.0" stroke="#c97a06" stroke-width="3"/><line x1="89.0" x2="89.0" y1="130" y2="130.0" stroke="#c97a06" stroke-width="3"/><line x1="98.2" x2="98.2" y1="130" y2="40.0" stroke="#c97a06" stroke-width="3"/><line x1="107.4" x2="107.4" y1="130" y2="40.0" stroke="#c97a06" stroke-width="3"/><line x1="116.6" x2="116.6" y1="130" y2="40.0" stroke="#c97a06" stroke-width="3"/><line x1="125.8" x2="125.8" y1="130" y2="40.0" stroke="#c97a06" stroke-width="3"/><line x1="135.0" x2="135.0" y1="130" y2="40.0" stroke="#c97a06" stroke-width="3"/><line x1="144.2" x2="144.2" y1="130" y2="40.0" stroke="#c97a06" stroke-width="3"/><line x1="153.4" x2="153.4" y1="130" y2="40.0" stroke="#c97a06" stroke-width="3"/><line x1="162.6" x2="162.6" y1="130" y2="40.0" stroke="#c97a06" stroke-width="3"/><line x1="171.8" x2="171.8" y1="130" y2="40.0" stroke="#c97a06" stroke-width="3"/><line x1="181.0" x2="181.0" y1="130" y2="130.0" stroke="#c97a06" stroke-width="3"/><line x1="190.2" x2="190.2" y1="130" y2="130.0" stroke="#c97a06" stroke-width="3"/><line x1="199.4" x2="199.4" y1="130" y2="130.0" stroke="#c97a06" stroke-width="3"/><line x1="208.6" x2="208.6" y1="130" y2="130.0" stroke="#c97a06" stroke-width="3"/><line x1="217.8" x2="217.8" y1="130" y2="130.0" stroke="#c97a06" stroke-width="3"/><line x1="227.0" x2="227.0" y1="130" y2="130.0" stroke="#c97a06" stroke-width="3"/><line x1="236.2" x2="236.2" y1="130" y2="130.0" stroke="#c97a06" stroke-width="3"/><line x1="245.4" x2="245.4" y1="130" y2="130.0" stroke="#c97a06" stroke-width="3"/><line x1="20" x2="250" y1="130" y2="130" stroke="#cbd5e1"/><polyline points="311.8,120.0 315.4,120.9 319.0,123.6 322.6,127.5 326.2,128.0 329.8,123.9 333.4,120.8 337.0,119.4 340.5,120.0 344.1,122.6 347.7,126.7 351.3,128.3 354.9,123.3 358.5,119.3 362.1,117.1 365.7,117.3 369.3,120.0 372.9,125.0 376.5,128.5 380.1,121.4 383.7,115.0 387.3,110.8 390.9,109.7 394.5,112.7 398.0,120.0 401.6,128.5 405.2,113.8 408.8,96.9 412.4,79.7 416.0,63.9 419.6,51.1 423.2,42.9 426.8,40.0 430.4,42.9 434.0,51.1 437.6,63.9 441.2,79.7 444.8,96.9 448.4,113.8 452.0,128.5 455.5,120.0 459.1,112.7 462.7,109.7 466.3,110.8 469.9,115.0 473.5,121.4 477.1,128.5 480.7,125.0 484.3,120.0 487.9,117.3 491.5,117.1 495.1,119.3 498.7,123.3 502.3,128.3 505.9,126.7 509.5,122.6 513.0,120.0 516.6,119.4 520.2,120.8 523.8,123.9 527.4,128.0 531.0,127.5 534.6,123.6 538.2,120.9" fill="none" stroke="#c97a06" stroke-width="3"/><line x1="310" x2="540" y1="130" y2="130" stroke="#cbd5e1"/><line x1="24.6" x2="24.6" y1="280" y2="280.0" stroke="#0f766e" stroke-width="3"/><line x1="33.8" x2="33.8" y1="280" y2="280.0" stroke="#0f766e" stroke-width="3"/><line x1="43.0" x2="43.0" y1="280" y2="280.0" stroke="#0f766e" stroke-width="3"/><line x1="52.2" x2="52.2" y1="280" y2="279.8" stroke="#0f766e" stroke-width="3"/><line x1="61.4" x2="61.4" y1="280" y2="279.3" stroke="#0f766e" stroke-width="3"/><line x1="70.6" x2="70.6" y1="280" y2="277.7" stroke="#0f766e" stroke-width="3"/><line x1="79.8" x2="79.8" y1="280" y2="274.0" stroke="#0f766e" stroke-width="3"/><line x1="89.0" x2="89.0" y1="280" y2="266.2" stroke="#0f766e" stroke-width="3"/><line x1="98.2" x2="98.2" y1="280" y2="252.9" stroke="#0f766e" stroke-width="3"/><line x1="107.4" x2="107.4" y1="280" y2="234.2" stroke="#0f766e" stroke-width="3"/><line x1="116.6" x2="116.6" y1="280" y2="213.4" stroke="#0f766e" stroke-width="3"/><line x1="125.8" x2="125.8" y1="280" y2="196.5" stroke="#0f766e" stroke-width="3"/><line x1="135.0" x2="135.0" y1="280" y2="190.0" stroke="#0f766e" stroke-width="3"/><line x1="144.2" x2="144.2" y1="280" y2="196.5" stroke="#0f766e" stroke-width="3"/><line x1="153.4" x2="153.4" y1="280" y2="213.4" stroke="#0f766e" stroke-width="3"/><line x1="162.6" x2="162.6" y1="280" y2="234.2" stroke="#0f766e" stroke-width="3"/><line x1="171.8" x2="171.8" y1="280" y2="252.9" stroke="#0f766e" stroke-width="3"/><line x1="181.0" x2="181.0" y1="280" y2="266.2" stroke="#0f766e" stroke-width="3"/><line x1="190.2" x2="190.2" y1="280" y2="274.0" stroke="#0f766e" stroke-width="3"/><line x1="199.4" x2="199.4" y1="280" y2="277.7" stroke="#0f766e" stroke-width="3"/><line x1="208.6" x2="208.6" y1="280" y2="279.3" stroke="#0f766e" stroke-width="3"/><line x1="217.8" x2="217.8" y1="280" y2="279.8" stroke="#0f766e" stroke-width="3"/><line x1="227.0" x2="227.0" y1="280" y2="280.0" stroke="#0f766e" stroke-width="3"/><line x1="236.2" x2="236.2" y1="280" y2="280.0" stroke="#0f766e" stroke-width="3"/><line x1="245.4" x2="245.4" y1="280" y2="280.0" stroke="#0f766e" stroke-width="3"/><line x1="20" x2="250" y1="280" y2="280" stroke="#cbd5e1"/><polyline points="311.8,280.0 315.4,280.0 319.0,280.0 322.6,280.0 326.2,280.0 329.8,280.0 333.4,280.0 337.0,280.0 340.5,280.0 344.1,280.0 347.7,280.0 351.3,280.0 354.9,280.0 358.5,280.0 362.1,280.0 365.7,280.0 369.3,280.0 372.9,279.9 376.5,279.8 380.1,279.6 383.7,279.1 387.3,278.1 390.9,276.4 394.5,273.3 398.0,268.4 401.6,261.3 405.2,251.6 408.8,239.6 412.4,226.1 416.0,212.6 419.6,200.8 423.2,192.8 426.8,190.0 430.4,192.8 434.0,200.8 437.6,212.6 441.2,226.1 444.8,239.6 448.4,251.6 452.0,261.3 455.5,268.4 459.1,273.3 462.7,276.4 466.3,278.1 469.9,279.1 473.5,279.6 477.1,279.8 480.7,279.9 484.3,280.0 487.9,280.0 491.5,280.0 495.1,280.0 498.7,280.0 502.3,280.0 505.9,280.0 509.5,280.0 513.0,280.0 516.6,280.0 520.2,280.0 523.8,280.0 527.4,280.0 531.0,280.0 534.6,280.0 538.2,280.0" fill="none" stroke="#0f766e" stroke-width="3"/><line x1="310" x2="540" y1="280" y2="280" stroke="#cbd5e1"/><text x="20" y="28" class="lb">box kernel (9 wide)</text><text x="310" y="28" class="lb">its frequencies: ripples</text><text x="20" y="178" class="lb">Gaussian kernel (same spread)</text><text x="310" y="178" class="lb">its frequencies: smooth</text><text x="425" y="146" class="lb" text-anchor="middle">low ← 0 → low</text><text x="425" y="296" class="lb" text-anchor="middle">low ← 0 → low</text></svg></div>
+    <div class="say">
+      <p><b>Convolution theorem</b>: convolving in the image = <b>multiplying</b> the frequencies by the kernel's own frequencies.</p>
+      <p>A <b>Gaussian</b>'s frequencies are one smooth bump: slow waves pass, fast ones fade — a clean low-pass.</p>
+      <p class="fragment">A <b>box</b>'s frequencies <b>ripple</b>: some fast waves sneak back through. That is where the box's streaks came from (part B).</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ชี้กราฟขวาบน: box มีระลอก · ขวาล่าง: Gaussian เรียบ · ย้อนไปภาพริ้วของ box ใน B</p><p>🇬🇧 Top right: the box ripples. Bottom right: the Gaussian is smooth. Back to the box's streaks in part B.</p></aside>
+</section>
+
+<!-- 35 -->
+<section data-part="D">
+  <p class="kicker">D · Frequency &amp; sampling</p>
+  <h2 class="claim">Skip pixels, get false patterns</h2>
+  <div class="split">
+    <div>
+      <img id="alImg" class="democv" src="img/alias_k1_skip.jpg" alt="The tower facade, shrunk by keeping every k-th pixel" width="560" height="360" style="max-height:330px;object-fit:contain">
+      <div class="ctrl"><span class="chbtns" id="alSrc" style="margin:0"><button class="on" data-s="alias">photo</button><button data-s="zone">test rings</button></span>
+        <label>shrink <input class="slider" id="alK" type="range" min="1" max="6" value="1" aria-label="shrink factor"></label></div>
+      <div class="demo-out"><span id="alOut"></span></div>
+    </div>
+    <div class="say">
+      <p>Shrink by <b>k</b> the cheap way: keep every k-th pixel, drop the rest.</p>
+      <p>Fine stripes that change faster than the new pixel spacing cannot be kept — they come back as <b>slower, false stripes</b>: <b>aliasing</b>.</p>
+      <p class="fragment">On the test rings at 6×: whole new sets of rings that are <b>not in the picture</b>. On fabric and screens it is called <b>moiré</b>.</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ลาก shrink จาก 1 ไป 6 ที่ภาพตึก แล้วสลับเป็นวงทดสอบที่ 6×: มีวงปลอมหลายชุด</p><p>🇬🇧 Drag shrink from 1 to 6 on the tower, then switch to the test rings at 6×: false sets of rings.</p></aside>
+</section>
+
+<!-- 36 -->
+<section data-part="D">
+  <p class="kicker">D · Frequency &amp; sampling</p>
+  <h2 class="claim">A wheel that turns backwards</h2>
+  <div class="split">
+    <div style="text-align:center">
+      <canvas id="whCv" width="300" height="300" style="width:100%;max-width:300px;border-radius:50%" aria-label="a wheel with eight spokes, drawn once per camera frame"></canvas>
+      <input class="slider" id="whD" type="range" min="0" max="45" value="10" aria-label="turn between frames in degrees">
+      <div class="demo-out"><span id="whOut"></span></div>
+    </div>
+    <div class="say">
+      <p>A camera <b>samples in time</b>: one frame, then a gap. The wheel has 8 spokes, so it looks the same every <b>45°</b>.</p>
+      <p>Drag how far it truly turns between frames. Past <b>22.5°</b> — half of 45° — the nearest match is backwards.</p>
+      <p class="fragment">The same aliasing as in space. Session 9 tracks motion across frames and has to live with it.</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ลากจาก 10° ไป 40°: ล้อเหมือนหมุนถอยหลัง · 45° = ดูเหมือนหยุดนิ่ง · ชวนนึกถึงล้อรถในวิดีโอ</p><p>🇬🇧 Drag from 10° to 40°: the wheel seems to turn backwards; at 45° it seems to stand still. Think of car wheels in videos.</p></aside>
+</section>
+
+<!-- 37 -->
+<section data-part="D">
+  <p class="kicker">D · Frequency &amp; sampling</p>
+  <h2 class="claim">At least two samples per cycle</h2>
+  <div class="split">
+    <div>
+      <canvas id="nyCv" class="democv" width="560" height="230" aria-label="a sine wave, its samples, and the slowest wave through the samples" style="border:none"></canvas>
+      <input class="slider" id="nyN" type="range" min="4" max="40" value="24" aria-label="number of samples">
+      <div class="demo-out"><span id="nyOut"></span></div>
+    </div>
+    <div class="say">
+      <p>Grey: the true wave, <b>5 cycles</b>. Dots: the samples. Teal: the <b>slowest</b> wave through the dots — what we would rebuild.</p>
+      <div class="term"><b>Nyquist rate</b><span class="th">อัตรานายควิสต์</span><span class="def">sample at least twice per cycle of the finest detail, or it comes back as a false, slower wave</span></div>
+      <p class="fragment">5 cycles need more than <b>10</b> samples. At 8, they look like 3 cycles.</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ลาก samples ลงจาก 24 ไป 12 (ยังถูก) แล้ว 8: เส้นเขียวกลายเป็น 3 รอบ · เกณฑ์ = 2 ต่อรอบ</p><p>🇬🇧 Drag the samples from 24 down to 12 (still right), then 8: the teal wave shows 3 cycles. The rule: 2 per cycle.</p></aside>
+</section>
+
+<!-- 38 -->
+<section data-part="D">
+  <p class="kicker">D · Frequency &amp; sampling</p>
+  <h2 class="claim">Blur first, then shrink</h2>
+  <div class="split even">
+    <figure class="photo"><img style="max-height:300px" id="bfSkip" src="img/alias_k4_skip.jpg" alt="Shrunk by skipping pixels" loading="lazy"><figcaption>keep every k-th pixel</figcaption></figure>
+    <figure class="photo"><img style="max-height:300px" id="bfBlur" src="img/alias_k4_blur.jpg" alt="Blurred with a Gaussian first, then shrunk" loading="lazy"><figcaption>Gaussian (σ = 0.6·k) first, then keep every k-th</figcaption></figure>
+  </div>
+  <div class="ctrl" style="justify-content:center"><span class="chbtns" id="bfSrc" style="margin:0"><button class="on" data-s="alias">photo</button><button data-s="zone">test rings</button></span>
+    <label>shrink <input class="slider" id="bfK" type="range" min="2" max="6" value="4" aria-label="shrink factor"></label><span class="gcap" id="bfOut" style="margin:0"></span></div>
+  <p class="takeaway"><span>Remove the waves too fast for the new spacing <b>before</b> you sample. Cameras do it with an optical blur filter in front of the sensor.</span></p>
+
+  <aside class="notes"><p>🇹🇭 สลับเป็นวงทดสอบ ลาก 6×: ซ้ายมีวงปลอม ขวาเป็นสีเทา (ถูกต้อง — ลายละเอียดเกินกว่าจะเก็บได้)</p><p>🇬🇧 Switch to the test rings at 6×: false rings on the left; plain grey on the right — correct, the detail is too fine to keep.</p></aside>
+</section>
+
+<!-- 39 -->
+<section data-part="D">
+  <p class="kicker">D · Frequency &amp; sampling</p>
+  <h2 class="claim">An image pyramid: the same picture at every size</h2>
+  <figure class="photo"><img style="max-height:240px" src="img/pyramid.jpg" alt="The landscape at 512, 256, 128, 64 and 32 pixels wide, side by side" loading="lazy">
+    <figcaption>blur, then halve — repeated: 512 → 256 → 128 → 64 → 32 pixels wide (cv2.pyrDown)</figcaption></figure>
+  <div class="cards" style="margin-top:.6em">
+    <div class="card"><b>Cheap</b>Each level has ¼ the pixels: the whole pyramid is only ⅓ more than the original.</div>
+    <div class="card violet"><b>Every size</b>A detector built for one size finds objects of any size by running on every level (sessions 6 and 8).</div>
+    <div class="card amber"><b>Inside CNNs</b>Networks shrink their feature maps step by step the same way (session 4).</div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ชี้แต่ละชั้น: blur แล้วลดครึ่ง · ถาม: ทำไมต้อง blur ก่อน? (หน้าก่อน)</p><p>🇬🇧 Point at each level: blur, then halve. Ask: why blur first? (the previous slide)</p></aside>
+</section>
+
+<!-- 40 -->
+<section data-part="D">
+  <p class="kicker">D · Frequency &amp; sampling</p>
+  <h2 class="claim">Try it: will the fence alias?</h2>
+  <div class="split">
+    <div class="tryit"><span class="tag">Try it</span>A fence pattern repeats every <b>6 pixels</b>.
+      <ol style="margin:.4em 0 0 1.1em"><li>You shrink by keeping every <b>4th</b> pixel. How many samples per cycle? Will it alias?</li><li>What is the largest step that still keeps the pattern?</li><li>You must shrink by 4. What do you do first?</li></ol>
+      <details><summary>Answer</summary>1. 6 ÷ 4 = <b>1.5</b> samples per cycle &lt; 2 → <b>aliasing</b> (it shows up as false stripes 12 px apart) · 2. 6 ÷ 2 = <b>3 pixels</b> · 3. <b>Blur first</b> (Gaussian), then keep every 4th pixel — the fence turns into flat grey instead of false stripes.</details>
+    </div>
+    <div class="say"><p>Samples per cycle = period ÷ step.</p><p>Nyquist: at least <b>2</b> samples per cycle.</p></div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ให้เวลา 1–2 นาที · ข้อ 1 ลายปลอมห่าง 12 px คำนวณจาก FFT แล้ว</p><p>🇬🇧 Give one to two minutes. The 12 px false period in question 1 was checked with an FFT.</p></aside>
+</section>
+
+<!-- 41 -->
+<section data-part="D">
+  <p class="kicker">D · Frequency &amp; sampling</p>
+  <h2 class="claim">Frequencies explain blur — and why shrinking needs it</h2>
+  <div class="cards">
+    <div class="card"><b>Waves</b>Every image is a sum of waves. Slow = smooth areas; fast = edges, texture and noise.</div>
+    <div class="card violet"><b>Filters</b>Convolving multiplies the frequencies: a Gaussian is a clean low-pass; a box ripples.</div>
+    <div class="card amber"><b>Sampling</b>Fewer than 2 samples per cycle → aliasing. Blur first, then shrink — the idea behind every pyramid.</div>
+  </div>
+  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-03/lab.ipynb#scrollTo=part-d" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part D</a><span>sum of waves, Fourier low-/high-pass, aliasing with and without blur, Gaussian pyramid</span></p>
+  <p class="more"><a href="../practice/#s3d">More practice · Session 3 D — practice bank with worked solutions →</a></p>
+  <p class="takeaway"><span>That is the whole session: one operation, seen four ways.</span></p>
+
+  <aside class="notes"><p>🇹🇭 สรุป D แล้วไปหน้าสรุปทั้งคาบ</p><p>🇬🇧 Wrap up D, then the session summary.</p></aside>
+</section>
+
+<!-- 42 -->
+<section>
+  <p class="kicker">Session 3 · what to remember</p>
+  <h2 class="claim">One operation, four jobs</h2>
+  <ol class="steps recap">
+    <li><span><b>Convolution:</b> slide a kernel, multiply, add; output size ⌊(n + 2p − k)/s⌋ + 1.</span></li>
+    <li><span><b>Smoothing:</b> averaging n pixels cuts noise by √n; a Gaussian blurs cleanly and is separable.</span></li>
+    <li><span><b>Edges:</b> smooth, then differentiate (Sobel); |∇f| is the strength, θ points to brighter.</span></li>
+    <li><span><b>Frequency:</b> blur = low-pass; sample at least twice per cycle — blur before you shrink.</span></li>
+  </ol>
+  <p class="more"><a href="../practice/#s3">All session 3 practice →</a></p>
+  <aside class="notes"><p>🇹🇭 ทวน 4 ข้อ A–D · ต่อด้วยครึ่ง A นำเสนอ T2 หลังจบเด็ค</p><p>🇬🇧 Recap the four lines A–D. Half A's T2 talks follow after the deck.</p></aside>
+</section>
+
+<!-- 43 -->
+<section>
+  <p class="kicker">Assignment · topic set T3</p>
+  <h2 class="claim">Half B: pick a T3 topic today — you present it in session 4</h2>
+  <ol class="tset">
+    <li><span class="tn">1</span><span class="tt">Median and bilateral filters</span><a href="https://www.youtube.com/watch?v=7FP7ndMEfsc" target="_blank" rel="noopener">Start: Non-Linear Image Filters</a></li>
+    <li><span class="tn">2</span><span class="tt">Template matching by correlation</span><a href="https://www.youtube.com/watch?v=1_hwFc8PXVE" target="_blank" rel="noopener">Start: Template Matching by Correlation</a></li>
+    <li><span class="tn">3</span><span class="tt">The Laplacian and the Canny edge detector</span><a href="https://www.youtube.com/watch?v=uNP6ZwQ3r6A" target="_blank" rel="noopener">Start: Edge Detection Using Laplacian</a></li>
+    <li><span class="tn">4</span><span class="tt">Deconvolution — undoing blur</span><a href="https://www.youtube.com/watch?v=f-IINpceX6k" target="_blank" rel="noopener">Start: Deconvolution</a></li>
+    <li><span class="tn">5</span><span class="tt">Binary images and morphology</span><a href="https://www.youtube.com/watch?v=COxRYLrsscc" target="_blank" rel="noopener">Start: Binary Images — overview</a></li>
+    <li><span class="tn">6</span><span class="tt">Segmentation with k-means and mean-shift</span><a href="https://www.youtube.com/watch?v=TRr8TGIk50c" target="_blank" rel="noopener">Start: Segmentation as Clustering</a></li>
+    <li><span class="tn">7</span><span class="tt">Graph-based segmentation</span><a href="https://www.youtube.com/watch?v=2IVAznQwdS4" target="_blank" rel="noopener">Start: Graph Based Segmentation</a></li>
+    <li><span class="tn">8</span><span class="tt">Filter banks and texture</span><a href="https://visionbook.mit.edu/spatial_filter_sets.html" target="_blank" rel="noopener">Start: Torralba, Isola &amp; Freeman — ch. 22, Filter Banks</a></li>
+  </ol>
+  <p class="takeaway"><span>One group per topic. Each links to a starting lecture or chapter — go beyond it. All topic sets: the course home page.</span></p>
+  <aside class="notes"><p>🇹🇭 ครึ่ง B เลือกหัวข้อ กลุ่มละหนึ่งหัวข้อ ไม่ซ้ำกัน · ส่งไฟล์ตามกำหนดก่อนคาบ 4 · ครึ่ง A รับ T4 หลังคาบ 4</p><p>🇬🇧 Half B picks one topic per group, no repeats; files due before session 4. Half A gets T4 after session 4.</p></aside>
+</section>
+
+<!-- 44 -->
+<section>
+  <p class="kicker">Next · Session 4</p>
+  <h2 class="claim">What if the data chose the kernel?</h2>
+  <div class="split">
+    <div class="say">
+      <p>Today we <b>designed</b> kernels: a box, a Gaussian, Sobel.</p>
+      <p>Session 4 — <b>neural networks → CNNs</b>: show a network many labelled images and let it <b>learn</b> its kernels. Its first layer ends up looking a lot like today's edge filters.</p>
+    </div>
+    <div class="flashback">Keep from today: a kernel is a grid of weights; output size ⌊(n + 2p − k)/s⌋ + 1; shrinking needs a blur first.</div>
+  </div>
+  <aside class="notes"><p>🇹🇭 ปิดคาบ: ปูทางคาบ 4</p><p>🇬🇧 Close the session and set up session 4.</p></aside>
+</section>
+
+<!-- 45 -->
+<section>
+  <p class="kicker">References</p>
+  <h2 class="claim">Where session 3 comes from</h2>
+  <ul class="small" style="font-size:.62em;line-height:1.6">
+    <li>S. K. Nayar. <i>First Principles of Computer Vision</i> — Image Processing I and II (pixel processing, convolution, linear filters, Fourier transform, sampling); Edge Detection.</li>
+    <li>R. Szeliski (2022). <i>Computer Vision: Algorithms and Applications</i>, 2nd ed., §3.1–3.5, §7.2.</li>
+    <li>A. Torralba, P. Isola &amp; W. T. Freeman (2024). <i>Foundations of Computer Vision</i>, ch. 15–18, 20, 23 — free at visionbook.mit.edu.</li>
+  </ul>
+  <h3 style="margin-top:.8em">Images</h3>
+  <ul class="small" style="font-size:.56em;line-height:1.6">
+    <li>Laitche, “One point perspective”, Tennoji Park, Osaka — public domain, via Wikimedia Commons.</li>
+    <li>Wilfredor, “Panoramic view of Jacques-Cartier National Park from the Wolves peak” — CC0, via Wikimedia Commons.</li>
+    <li>Wilfredor, “Facade of a tower block in downtown Rio de Janeiro” — CC0, via Wikimedia Commons.</li>
+    <li>Every filtered, transformed or shrunk version, the test rings, the wheel and all charts: made by programs written for this course.</li>
+  </ul>
+</section>
+
 </div>
 </div>
 
@@ -1222,7 +1489,7 @@ function renderMath(){
     });
   }
 }
-function initDemos(){ initPointOps(); initNoiseHint(); initStepper(); initImpulse(); initPadding(); initStride(); initBox(); initGaussK(); initUnsharp(); initProfile(); initDeriv(); initGradient(); initLiveEdges(); initSliders(); }
+function initDemos(){ initPointOps(); initNoiseHint(); initStepper(); initImpulse(); initPadding(); initStride(); initBox(); initGaussK(); initUnsharp(); initProfile(); initDeriv(); initGradient(); initLiveEdges(); initWaves(); initFFT(); initAlias(); initWheel(); initNyquist(); initBlurFirst(); initSliders(); }
 /* range sliders: a finger anywhere on the track sets and drags the value.
    Phones otherwise only move a native slider when the touch lands exactly on its thumb,
    and a touch on the track scrolls the page instead. */
@@ -1797,6 +2064,88 @@ function initLiveEdges(){
   sl.addEventListener('input',()=>{ if(!live) frame(); });
   if(window.Reveal&&Reveal.on) Reveal.on('slidechanged',()=>{ if(live&&!cv.closest('section').classList.contains('present')) stop(); });
   document.addEventListener('visibilitychange',()=>{ if(document.hidden&&live) stop(); });
+}
+
+/* ---- part D ---- */
+/* D1: partial sums of a square wave + 2D gratings */
+function initWaves(){
+  const cv=document.getElementById('wvCv'), sl=document.getElementById('wvN'); if(!cv) return; const ctx=cv.getContext('2d'), W=cv.width, H=cv.height;
+  const draw=()=>{ const n=+sl.value; ctx.clearRect(0,0,W,H); const y=v=>H/2-v*H*.36, X=i=>i/W*4*Math.PI;
+    ctx.strokeStyle='#cbd5e1'; ctx.lineWidth=2; ctx.beginPath(); for(let i=0;i<W;i++){ const v=Math.sin(X(i))>=0?1:-1; i?ctx.lineTo(i,y(v)):ctx.moveTo(i,y(v)); } ctx.stroke();
+    ctx.strokeStyle='#0f766e'; ctx.lineWidth=3; ctx.beginPath();
+    for(let i=0;i<W;i++){ let v=0; for(let k=1;k<=n;k++){ const m=2*k-1; v+=Math.sin(m*X(i))/m; } v*=4/Math.PI; i?ctx.lineTo(i,y(v)):ctx.moveTo(i,y(v)); } ctx.stroke();
+    document.getElementById('wvOut').textContent=`${n} wave${n>1?'s':''}: frequencies 1, 3, … ${2*n-1}`; cv.dataset.n=n; };
+  sl.addEventListener('input',draw); draw();
+  document.querySelectorAll('canvas.grat').forEach(c=>{ const g=c.getContext('2d'), im=g.createImageData(c.width,c.height), f=+c.dataset.f, a=+c.dataset.a*Math.PI/180;
+    for(let y=0;y<c.height;y++) for(let x=0;x<c.width;x++){ const t=(x*Math.cos(a)+y*Math.sin(a))/c.width, v=127.5+127.5*Math.cos(2*Math.PI*f*t), o=(y*c.width+x)*4; im.data[o]=im.data[o+1]=im.data[o+2]=v; im.data[o+3]=255; }
+    g.putImageData(im,0,0); });
+}
+/* radix-2 FFT, in place */
+function fft1(re,im,inv){ const n=re.length;
+  for(let i=1,j=0;i<n;i++){ let b=n>>1; for(;j&b;b>>=1) j^=b; j^=b; if(i<j){ [re[i],re[j]]=[re[j],re[i]]; [im[i],im[j]]=[im[j],im[i]]; } }
+  for(let len=2;len<=n;len<<=1){ const a=(inv?2:-2)*Math.PI/len, wr=Math.cos(a), wi=Math.sin(a);
+    for(let i=0;i<n;i+=len){ let cr=1,ci=0; for(let k=0;k<len/2;k++){ const ur=re[i+k], ui=im[i+k], vr=re[i+k+len/2]*cr-im[i+k+len/2]*ci, vi=re[i+k+len/2]*ci+im[i+k+len/2]*cr;
+      re[i+k]=ur+vr; im[i+k]=ui+vi; re[i+k+len/2]=ur-vr; im[i+k+len/2]=ui-vi; const t=cr*wr-ci*wi; ci=cr*wi+ci*wr; cr=t; } } }
+  if(inv) for(let i=0;i<n;i++){ re[i]/=n; im[i]/=n; } }
+function fft2(re,im,N,inv){ const r=new Float64Array(N), i_=new Float64Array(N);
+  for(let y=0;y<N;y++){ for(let x=0;x<N;x++){ r[x]=re[y*N+x]; i_[x]=im[y*N+x]; } fft1(r,i_,inv); for(let x=0;x<N;x++){ re[y*N+x]=r[x]; im[y*N+x]=i_[x]; } }
+  for(let x=0;x<N;x++){ for(let y=0;y<N;y++){ r[y]=re[y*N+x]; i_[y]=im[y*N+x]; } fft1(r,i_,inv); for(let y=0;y<N;y++){ re[y*N+x]=r[y]; im[y*N+x]=i_[y]; } } }
+/* D2: spectrum with a circular mask, and the image rebuilt from the kept waves */
+function initFFT(){
+  const cv=document.getElementById('ffCv'), sl=document.getElementById('ffR'); if(!cv) return; const N=256, ctx=cv.getContext('2d'); let F=null, mode='low';
+  const tmp=document.createElement('canvas'); tmp.width=N; tmp.height=N; const tc=tmp.getContext('2d',{willReadFrequently:true});
+  const draw=()=>{ const R=+sl.value; document.getElementById('ffOut').textContent=`${mode==='low'?'keep':'remove'} the waves within radius ${R} of the centre`; if(!F) return;
+    const re=new Float64Array(N*N), im=new Float64Array(N*N), sp=ctx.createImageData(N,N);
+    for(let y=0;y<N;y++) for(let x=0;x<N;x++){ const u=x<N/2?x:x-N, v=y<N/2?y:y-N, keep=(Math.hypot(u,v)<=R)===(mode==='low'), i=y*N+x;
+      if(keep){ re[i]=F.re[i]; im[i]=F.im[i]; }
+      const sx=(x+N/2)%N, sy=(y+N/2)%N, o=(sy*N+sx)*4, m=F.mag[i]*(keep?1:.25); sp.data[o]=sp.data[o+1]=sp.data[o+2]=m; sp.data[o+3]=255; }
+    fft2(re,im,N,true); const out=ctx.createImageData(N,N);
+    for(let i=0;i<N*N;i++){ const v=mode==='low'?re[i]:128+2*re[i]; out.data[i*4]=out.data[i*4+1]=out.data[i*4+2]=Math.max(0,Math.min(255,v)); out.data[i*4+3]=255; }
+    ctx.clearRect(0,0,cv.width,cv.height); tc.putImageData(sp,0,0); ctx.drawImage(tmp,8,12,256,256);
+    ctx.strokeStyle='#e0533d'; ctx.lineWidth=2; ctx.beginPath(); ctx.arc(8+128,12+128,R,0,7); ctx.stroke();
+    tc.putImageData(out,0,0); ctx.drawImage(tmp,296,12,256,256); cv.dataset.drawn=mode+':'+R; };
+  loadImg(cv.dataset.src,im0=>{ const s=Math.min(im0.naturalWidth,im0.naturalHeight); tc.drawImage(im0,(im0.naturalWidth-s)/2,(im0.naturalHeight-s)/2,s,s,0,0,N,N);
+    let d; try{ d=tc.getImageData(0,0,N,N).data; }catch(e){ document.getElementById('ffOut').textContent='open from the website to run the demo'; return; }
+    const re=new Float64Array(N*N), im=new Float64Array(N*N); for(let i=0;i<N*N;i++) re[i]=.299*d[i*4]+.587*d[i*4+1]+.114*d[i*4+2];
+    fft2(re,im,N,false); const mag=new Float32Array(N*N); let mx=0; for(let i=0;i<N*N;i++){ mag[i]=Math.log(1+Math.hypot(re[i],im[i])); mx=Math.max(mx,mag[i]); }
+    for(let i=0;i<N*N;i++) mag[i]=mag[i]/mx*255; F={re,im,mag}; draw(); });
+  pickButtons('ffBtns',b=>{ mode=b.dataset.m; draw(); }); sl.addEventListener('input',draw); draw();
+}
+/* D4: shrink by skipping (pre-rendered by make_assets.py) */
+function initAlias(){
+  const im=document.getElementById('alImg'), sl=document.getElementById('alK'); if(!im) return; let src='alias';
+  const draw=()=>{ const k=+sl.value; im.src=`img/${src}_k${k}_skip.${src==='alias'?'jpg':'png'}`; im.dataset.k=k;
+    document.getElementById('alOut').textContent=k===1?'original pixels':`shrunk ${k}× · kept 1 pixel in every ${k*k}`; };
+  pickButtons('alSrc',b=>{ src=b.dataset.s; draw(); }); sl.addEventListener('input',draw); draw();
+}
+function initBlurFirst(){
+  const a=document.getElementById('bfSkip'), b=document.getElementById('bfBlur'), sl=document.getElementById('bfK'); if(!a) return; let src='alias';
+  const draw=()=>{ const k=+sl.value, e=src==='alias'?'jpg':'png'; a.src=`img/${src}_k${k}_skip.${e}`; b.src=`img/${src}_k${k}_blur.${e}`; document.getElementById('bfOut').textContent=`shrunk ${k}×`; b.dataset.k=k; };
+  pickButtons('bfSrc',x=>{ src=x.dataset.s; draw(); }); sl.addEventListener('input',draw); draw();
+}
+/* D5: an 8-spoke wheel drawn once per "frame"; true turn per frame Δ, apparent = nearest match */
+function initWheel(){
+  const cv=document.getElementById('whCv'), sl=document.getElementById('whD'); if(!cv) return; const ctx=cv.getContext('2d'); let ang=0, timer=0;
+  const show=()=>{ const d=+sl.value, ap=((d+22.5)%45+45)%45-22.5;
+    document.getElementById('whOut').textContent=`turns ${d}° per frame → looks like ${ap===0&&d?'standing still':(ap>0?'+':'')+ap.toFixed(0)+'°'+(ap<0?' (backwards)':'')}`; cv.dataset.ap=ap; };
+  const paint=()=>{ const W=cv.width, c=W/2; ctx.clearRect(0,0,W,W); ctx.fillStyle='#f5f7fa'; ctx.beginPath(); ctx.arc(c,c,c-4,0,7); ctx.fill();
+    ctx.strokeStyle='#0f1b2d'; ctx.lineWidth=10; ctx.beginPath(); ctx.arc(c,c,c-12,0,7); ctx.stroke(); ctx.lineWidth=7;
+    for(let k=0;k<8;k++){ const a=(ang+k*45)*Math.PI/180; ctx.beginPath(); ctx.moveTo(c,c); ctx.lineTo(c+(c-14)*Math.cos(a),c+(c-14)*Math.sin(a)); ctx.stroke(); }
+    ctx.fillStyle='#0f766e'; ctx.beginPath(); ctx.arc(c,c,16,0,7); ctx.fill(); };
+  const tick=()=>{ ang=(ang+(+sl.value))%360; paint(); };
+  const run=on=>{ clearInterval(timer); if(on) timer=setInterval(tick,110); };
+  sl.addEventListener('input',show); show(); paint();
+  if(window.Reveal&&Reveal.on){ const sec=cv.closest('section'); Reveal.on('slidechanged',()=>run(sec.classList.contains('present'))); if(sec.classList.contains('present')) run(true); }
+}
+/* D6: 5 cycles sampled N times; the slowest wave through the samples */
+function initNyquist(){
+  const cv=document.getElementById('nyCv'), sl=document.getElementById('nyN'); if(!cv) return; const ctx=cv.getContext('2d'), W=cv.width, H=cv.height, f=5;
+  const draw=()=>{ const N=+sl.value, fa=f-N*Math.round(f/N), y=v=>H/2-v*H*.38; ctx.clearRect(0,0,W,H);
+    ctx.strokeStyle='#cbd5e1'; ctx.lineWidth=2; ctx.beginPath(); for(let i=0;i<=W;i++){ const v=Math.sin(2*Math.PI*f*i/W); i?ctx.lineTo(i,y(v)):ctx.moveTo(i,y(v)); } ctx.stroke();
+    ctx.strokeStyle='#0f766e'; ctx.lineWidth=3; ctx.beginPath(); for(let i=0;i<=W;i++){ const v=Math.sin(2*Math.PI*fa*i/W); i?ctx.lineTo(i,y(v)):ctx.moveTo(i,y(v)); } ctx.stroke();
+    ctx.fillStyle='#e0533d'; for(let n=0;n<N;n++){ const x=n/N*W; ctx.beginPath(); ctx.arc(x,y(Math.sin(2*Math.PI*f*n/N)),6,0,7); ctx.fill(); }
+    const per=(N/f).toFixed(1); document.getElementById('nyOut').textContent=`${N} samples · ${per} per cycle → rebuilt: ${Math.abs(fa)} cycle${Math.abs(fa)===1?'':'s'}${N>2*f?' ✓':(N===2*f?' (exactly 2: too few)':' — aliased')}`; cv.dataset.fa=Math.abs(fa); };
+  sl.addEventListener('input',draw); draw();
 }
 </script>
 </body>
