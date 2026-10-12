@@ -1410,11 +1410,20 @@ document.addEventListener('DOMContentLoaded',()=>{   /* after every const below 
   if(MODE==='reading'){
     document.documentElement.classList.add('reading');
     renderMath(); initDemos(); initReadingBar();
-    /* deep links (#/part-b or #/12) also work on a phone: scroll to that section */
-    const hm=location.hash.match(/^#\/([\w-]+)/);
-    if(hm){ const secs=[...document.querySelectorAll('.reveal .slides>section')];
-      const el=/^\d+$/.test(hm[1]) ? secs[+hm[1]] : document.getElementById(hm[1]);
-      if(el) requestAnimationFrame(()=>el.scrollIntoView({block:'start'})); }
+    /* deep links (#/part-b or #/12) work on a phone too — on load, on a tap on an in-deck link (the roadmap cards,
+       the A–D strip on part openers) and on Back/Forward. Reveal is not running here, so nothing else would scroll. */
+    const target=h=>{ const m=(h||'').match(/^#\/([\w-]+)/); if(!m) return null; const secs=[...document.querySelectorAll('.reveal .slides>section')];
+      return /^\d+$/.test(m[1]) ? secs[+m[1]] : document.getElementById(m[1]); };
+    /* jump, then keep the slide at the top while images above it finish loading (they would push it down) — until the reader scrolls */
+    let pin=null; const unpin=()=>{ pin=null; };
+    ['touchstart','wheel','keydown'].forEach(t=>window.addEventListener(t,unpin,{passive:true}));
+    document.addEventListener('load',e=>{ if(pin&&e.target.tagName==='IMG'&&Date.now()<pin.until) pin.el.scrollIntoView({block:'start'}); },true);
+    const go=h=>{ const el=target(h); if(!el) return false; el.scrollIntoView({block:'start'}); pin={el,until:Date.now()+2500}; return true; };
+    if(location.hash) requestAnimationFrame(()=>go(location.hash));
+    if('scrollRestoration' in history) history.scrollRestoration='manual';   /* Back/Forward: we place the slide, not the browser */
+    document.addEventListener('click',e=>{ const a=e.target.closest('a[href^="#/"]'); if(!a||!target(a.getAttribute('href'))) return;
+      e.preventDefault(); history.pushState(null,'',a.getAttribute('href')); go(a.getAttribute('href')); });
+    window.addEventListener('popstate',()=>requestAnimationFrame(()=>go(location.hash)));
     return;
   }
   Reveal.initialize({
