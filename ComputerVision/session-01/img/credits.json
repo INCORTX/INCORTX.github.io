@@ -1,0 +1,50 @@
+{
+ "driving": {
+  "title": "File:Bolt Self-Driving Car.jpg",
+  "license": "Public domain",
+  "author": "Alexander Corkhill",
+  "page": "https://commons.wikimedia.org/wiki/File:Bolt_Self-Driving_Car.jpg"
+ },
+ "medicine": {
+  "title": "File:Normal posteroanterior (PA) chest radiograph (X-ray).jpg",
+  "license": "CC0",
+  "author": "Mikael Häggström",
+  "page": "https://commons.wikimedia.org/wiki/File:Normal_posteroanterior_(PA)_chest_radiograph_(X-ray).jpg"
+ },
+ "retail": {
+  "title": "File:Billa supermarket, Blagoevgrad centre, self-checkout, 2026.jpg",
+  "license": "CC0",
+  "author": "Bdx",
+  "page": "https://commons.wikimedia.org/wiki/File:Billa_supermarket,_Blagoevgrad_centre,_self-checkout,_2026.jpg"
+ },
+ "traffic": {
+  "title": "File:CCTV cameras in Mumbai.jpg",
+  "license": "CC0",
+  "author": "Punit Rajpal",
+  "page": "https://commons.wikimedia.org/wiki/File:CCTV_cameras_in_Mumbai.jpg"
+ },
+ "phones": {
+  "title": "File:Smartphone Use.jpg",
+  "license": "CC0",
+  "author": "Océanos y dados",
+  "page": "https://commons.wikimedia.org/wiki/File:Smartphone_Use.jpg"
+ },
+ "farms": {
+  "title": "File:Landsat sees crops in Kansas.jpg",
+  "license": "Public domain",
+  "author": "NASA",
+  "page": "https://commons.wikimedia.org/wiki/File:Landsat_sees_crops_in_Kansas.jpg"
+ },
+ "documents": {
+  "title": "File:Publick Occurrence (page 1).jpg",
+  "license": "Public domain",
+  "author": "Publick Occurrences Both Forreign and Domestick",
+  "page": "https://commons.wikimedia.org/wiki/File:Publick_Occurrence_(page_1).jpg"
+ },
+ "factories": {
+  "title": "File:Francis Ford Coppola Winery bottling plant, near Geyserville, 2011.jpg",
+  "license": "CC0",
+  "author": "DimiTalen",
+  "page": "https://commons.wikimedia.org/wiki/File:Francis_Ford_Coppola_Winery_bottling_plant,_near_Geyserville,_2011.jpg"
+ }
+}

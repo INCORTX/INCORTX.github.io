@@ -70,6 +70,7 @@ html.reading .lead,html.reading .takeaway{font-size:15px;}
 .cols.w64{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,10.5em),1fr));gap:.55em;}
 .cards.c4{grid-template-columns:repeat(4,minmax(0,1fr));}
+.card .cardimg{display:block;width:calc(100% + 1.5em);max-width:none;margin:-.6em -.75em .45em;aspect-ratio:16/9;object-fit:cover;border-radius:8px 8px 0 0;}
 .cards.c5{grid-template-columns:repeat(5,minmax(0,1fr));}
 .cards.c5 .card{font-size:.66em;padding:.5em .65em .55em;}
 .card{position:relative;background:#fff;border:1px solid var(--line);border-top:4px solid var(--teal);border-radius:12px;padding:.6em .75em .65em;font-size:.74em;line-height:1.4;box-shadow:0 1px 2px rgba(15,27,45,.05),0 6px 16px -10px rgba(15,27,45,.18);}
@@ -280,6 +281,8 @@ html.reading .po-out{font-size:15px;}
 html.reading .parts{grid-template-columns:1fr;}
 html.reading .qband,html.reading .parts a{font-size:15px;}
 html.reading .qband span{font-size:12px;}
+.steps.recap li{font-size:.7em;}
+.reveal aside.notes,aside.notes{display:none !important;}
 /* ===== session 2 ===== */
 .fig{display:block;width:100%;height:auto;}
 #distSvg{max-height:330px;}
