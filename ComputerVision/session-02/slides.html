@@ -70,7 +70,10 @@ html.reading .lead,html.reading .takeaway{font-size:15px;}
 .cols.w64{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,10.5em),1fr));gap:.55em;}
 .cards.c4{grid-template-columns:repeat(4,minmax(0,1fr));}
-.card .cardimg{display:block;width:calc(100% + 1.5em);max-width:none;margin:-.6em -.75em .45em;aspect-ratio:16/9;object-fit:cover;border-radius:8px 8px 0 0;}
+.cards.apps{gap:.45em;}
+.cards.apps .card{font-size:.58em;padding:.55em .7em .6em;}
+.cards.apps .card b{font-size:1.15em;}
+.card .cardimg{display:block;width:calc(100% + 1.4em);max-width:none;margin:-.55em -.7em .4em;aspect-ratio:5/2;object-fit:cover;border-radius:8px 8px 0 0;}
 .cards.c5{grid-template-columns:repeat(5,minmax(0,1fr));}
 .cards.c5 .card{font-size:.66em;padding:.5em .65em .55em;}
 .card{position:relative;background:#fff;border:1px solid var(--line);border-top:4px solid var(--teal);border-radius:12px;padding:.6em .75em .65em;font-size:.74em;line-height:1.4;box-shadow:0 1px 2px rgba(15,27,45,.05),0 6px 16px -10px rgba(15,27,45,.18);}
@@ -283,6 +286,10 @@ html.reading .qband,html.reading .parts a{font-size:15px;}
 html.reading .qband span{font-size:12px;}
 .steps.recap li{font-size:.7em;}
 .reveal aside.notes,aside.notes{display:none !important;}
+.reveal ul.imgcred{columns:2;column-gap:2em;}
+.reveal ul.imgcred li{break-inside:avoid;}
+html.reading .reveal ul.imgcred{columns:1;font-size:13px !important;}
+html.reading .cards.apps .card{font-size:15px;}
 /* ===== session 2 ===== */
 .fig{display:block;width:100%;height:auto;}
 #distSvg{max-height:330px;}
@@ -314,6 +321,9 @@ html.reading .reveal .more{font-size:15px;}
 html.reading .reveal .tset{grid-template-columns:1fr;}
 html.reading .reveal .tset li{font-size:15px;}
 html.reading .chbtns button{font-size:14px;}
+.reveal .labline{display:flex;align-items:center;gap:.8em;flex-wrap:wrap;margin:.9em 0 0;}
+.reveal .labline span{font-size:.56em;color:var(--muted);}
+html.reading .reveal .labline span{font-size:13px;}
 .photo{margin:0;}
 .photo img{display:block;width:100%;height:auto;max-height:430px;object-fit:contain;border-radius:12px;border:1px solid var(--line);background:#fff;}
 .photo figcaption{margin-top:.4em;font-family:var(--mono);font-size:.4em;color:var(--muted);text-align:center;}
@@ -772,6 +782,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card violet"><b>Assignment T7 · One photo + a model</b>A network trained on many scenes learns to guess depth from a single image.</div>
   </div>
   <div class="keyidea" data-label="Part A in one line" style="margin-top:1em"><span>x = f · X / Z — far things shrink, parallel lines meet, and depth is lost.</span></div>
+  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-02/lab.ipynb#scrollTo=part-a" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part A</a><span>project a cube, draw the vanishing point</span></p>
   <p class="more"><a href="../practice/#s2a">More practice · Session 2 A — practice bank with worked solutions →</a></p>
   <p class="takeaway"><span>Next · B: a lens makes the picture bright and sharp at once.</span></p>
   <aside class="notes"><p>🇹🇭 สรุป A ด้วยกล่อง key idea แล้วต่อ B</p><p>🇬🇧 Wrap up A with the key-idea box, then go on to B.</p></aside>
@@ -906,6 +917,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card violet"><b>f sets the view</b>FOV = 2 · arctan(w / 2f). Longer f, narrower view.</div>
     <div class="card amber"><b>Aperture sets depth of field</b>Smaller opening: more in focus, less light.</div>
   </div>
+  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-02/lab.ipynb#scrollTo=part-b" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part B</a><span>FOV table, zoom by cropping, blur circles</span></p>
   <p class="more"><a href="../practice/#s2b">More practice · Session 2 B — practice bank with worked solutions →</a></p>
   <p class="takeaway"><span>Next · C: the sensor turns that light into numbers.</span></p>
   <aside class="notes"><p>🇹🇭 สรุป B สามข้อ แล้วต่อ C</p><p>🇬🇧 Wrap up B in three points, then go on to C.</p></aside>
@@ -1057,6 +1069,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card violet"><b>Bit depth</b>How many levels each number can take: 2<sup>b</sup>.</div>
     <div class="card amber"><b>Light</b>Too little: noise (SNR = √N). Too much contrast: clipping.</div>
   </div>
+  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-02/lab.ipynb#scrollTo=part-c" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part C</a><span>resolution, bit depth, shot noise, dynamic range</span></p>
   <p class="more"><a href="../practice/#s2c">More practice · Session 2 C — practice bank with worked solutions →</a></p>
   <p class="takeaway"><span>Next · D: one chip, three colours.</span></p>
   <aside class="notes"><p>🇹🇭 สรุป C สามข้อ แล้วต่อ D</p><p>🇬🇧 Wrap up C in three points, then go on to D.</p></aside>
@@ -1168,6 +1181,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card violet"><b>Bayer mosaic</b>Each photosite measures one colour: 1 R, 2 G, 1 B per tile.</div>
     <div class="card amber"><b>Demosaicing</b>The two missing colours are guessed from neighbours.</div>
   </div>
+  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-02/lab.ipynb#scrollTo=part-d" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part D</a><span>split RGB, Bayer mosaic, demosaic, hue</span></p>
   <p class="more"><a href="../practice/#s2d">More practice · Session 2 D — practice bank with worked solutions →</a></p>
   <p class="takeaway"><span>Other colour spaces, like HSV, write the same colour with different numbers.</span></p>
   <aside class="notes"><p>🇹🇭 สรุป D แล้วไปหน้าสรุปทั้งคาบ</p><p>🇬🇧 Wrap up D, then the session summary.</p></aside>
