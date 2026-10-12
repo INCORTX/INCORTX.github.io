@@ -1010,6 +1010,233 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 สรุป B · ชี้ต่อ: คาบ 5 C loss อีกแบบ (contrastive) · แล้วต่อ C</p><p>🇬🇧 Wrap up B. Forward: session 5 C uses another loss (contrastive). Then C.</p></aside>
 </section>
 
+<!-- 21 -->
+<section class="part-open" id="part-c" data-part="C">
+  <div class="po-strip"><a href="#/part-a" class="done"><b>A</b>Neurons</a><a href="#/part-b" class="done"><b>B</b>Learning</a><a href="#/part-c" class="on"><b>C</b>CNNs</a><a href="#/part-d" class=""><b>D</b>Deeper</a></div>
+  <p class="po-letter">C</p>
+  <h2 class="claim">Convolutional networks</h2>
+  <p class="po-q">Why slide one small kernel over the whole image?</p>
+  <p class="po-out"><span>By the end of this part</span>Compute a conv layer's output shape, parameter count and receptive field.</p>
+  <aside class="notes"><p>🇹🇭 หน้าเปิด part: อ่านคำถามกับสิ่งที่จะทำได้ท้าย part แล้วเข้าเนื้อหา</p><p>🇬🇧 Part opener: read the question and what you can do by the end of the part, then go in.</p></aside>
+</section>
+
+<!-- 22 -->
+<section data-part="C">
+  <p class="kicker">C · Convolutional networks</p>
+  <h2 class="claim">Local and shared: a convolution layer</h2>
+  <svg class="fig" viewBox="0 0 900 205" role="img" aria-label="fully connected: every input to every output, 48 weights; convolution: each output sees three neighbours with the same three weights"><text x="215" y="22" text-anchor="middle" class="lb">fully connected: 48 weights</text><line x1="40" y1="160" x2="90" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="90" y1="160" x2="90" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="140" y1="160" x2="90" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="190" y1="160" x2="90" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="240" y1="160" x2="90" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="290" y1="160" x2="90" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="340" y1="160" x2="90" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="390" y1="160" x2="90" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="40" y1="160" x2="140" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="90" y1="160" x2="140" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="140" y1="160" x2="140" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="190" y1="160" x2="140" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="240" y1="160" x2="140" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="290" y1="160" x2="140" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="340" y1="160" x2="140" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="390" y1="160" x2="140" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="40" y1="160" x2="190" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="90" y1="160" x2="190" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="140" y1="160" x2="190" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="190" y1="160" x2="190" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="240" y1="160" x2="190" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="290" y1="160" x2="190" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="340" y1="160" x2="190" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="390" y1="160" x2="190" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="40" y1="160" x2="240" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="90" y1="160" x2="240" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="140" y1="160" x2="240" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="190" y1="160" x2="240" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="240" y1="160" x2="240" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="290" y1="160" x2="240" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="340" y1="160" x2="240" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="390" y1="160" x2="240" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="40" y1="160" x2="290" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="90" y1="160" x2="290" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="140" y1="160" x2="290" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="190" y1="160" x2="290" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="240" y1="160" x2="290" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="290" y1="160" x2="290" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="340" y1="160" x2="290" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="390" y1="160" x2="290" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="40" y1="160" x2="340" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="90" y1="160" x2="340" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="140" y1="160" x2="340" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="190" y1="160" x2="340" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="240" y1="160" x2="340" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="290" y1="160" x2="340" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="340" y1="160" x2="340" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><line x1="390" y1="160" x2="340" y2="60" stroke="#94a3b8" stroke-width="1" opacity=".55"/><circle cx="40" cy="160" r="11" fill="#fff" stroke="#0f1b2d" stroke-width="2"/><circle cx="90" cy="160" r="11" fill="#fff" stroke="#0f1b2d" stroke-width="2"/><circle cx="140" cy="160" r="11" fill="#fff" stroke="#0f1b2d" stroke-width="2"/><circle cx="190" cy="160" r="11" fill="#fff" stroke="#0f1b2d" stroke-width="2"/><circle cx="240" cy="160" r="11" fill="#fff" stroke="#0f1b2d" stroke-width="2"/><circle cx="290" cy="160" r="11" fill="#fff" stroke="#0f1b2d" stroke-width="2"/><circle cx="340" cy="160" r="11" fill="#fff" stroke="#0f1b2d" stroke-width="2"/><circle cx="390" cy="160" r="11" fill="#fff" stroke="#0f1b2d" stroke-width="2"/><circle cx="90" cy="60" r="11" fill="#e6f4f2" stroke="#0f766e" stroke-width="2"/><circle cx="140" cy="60" r="11" fill="#e6f4f2" stroke="#0f766e" stroke-width="2"/><circle cx="190" cy="60" r="11" fill="#e6f4f2" stroke="#0f766e" stroke-width="2"/><circle cx="240" cy="60" r="11" fill="#e6f4f2" stroke="#0f766e" stroke-width="2"/><circle cx="290" cy="60" r="11" fill="#e6f4f2" stroke="#0f766e" stroke-width="2"/><circle cx="340" cy="60" r="11" fill="#e6f4f2" stroke="#0f766e" stroke-width="2"/><text x="675" y="22" text-anchor="middle" class="lb">convolution: 3 weights, shared</text><line x1="500" y1="160" x2="550" y2="60" stroke="#0f766e" stroke-width="3"/><line x1="550" y1="160" x2="550" y2="60" stroke="#c97a06" stroke-width="3"/><line x1="600" y1="160" x2="550" y2="60" stroke="#6d5bd0" stroke-width="3"/><line x1="550" y1="160" x2="600" y2="60" stroke="#0f766e" stroke-width="3"/><line x1="600" y1="160" x2="600" y2="60" stroke="#c97a06" stroke-width="3"/><line x1="650" y1="160" x2="600" y2="60" stroke="#6d5bd0" stroke-width="3"/><line x1="600" y1="160" x2="650" y2="60" stroke="#0f766e" stroke-width="3"/><line x1="650" y1="160" x2="650" y2="60" stroke="#c97a06" stroke-width="3"/><line x1="700" y1="160" x2="650" y2="60" stroke="#6d5bd0" stroke-width="3"/><line x1="650" y1="160" x2="700" y2="60" stroke="#0f766e" stroke-width="3"/><line x1="700" y1="160" x2="700" y2="60" stroke="#c97a06" stroke-width="3"/><line x1="750" y1="160" x2="700" y2="60" stroke="#6d5bd0" stroke-width="3"/><line x1="700" y1="160" x2="750" y2="60" stroke="#0f766e" stroke-width="3"/><line x1="750" y1="160" x2="750" y2="60" stroke="#c97a06" stroke-width="3"/><line x1="800" y1="160" x2="750" y2="60" stroke="#6d5bd0" stroke-width="3"/><line x1="750" y1="160" x2="800" y2="60" stroke="#0f766e" stroke-width="3"/><line x1="800" y1="160" x2="800" y2="60" stroke="#c97a06" stroke-width="3"/><line x1="850" y1="160" x2="800" y2="60" stroke="#6d5bd0" stroke-width="3"/><circle cx="500" cy="160" r="11" fill="#fff" stroke="#0f1b2d" stroke-width="2"/><circle cx="550" cy="160" r="11" fill="#fff" stroke="#0f1b2d" stroke-width="2"/><circle cx="600" cy="160" r="11" fill="#fff" stroke="#0f1b2d" stroke-width="2"/><circle cx="650" cy="160" r="11" fill="#fff" stroke="#0f1b2d" stroke-width="2"/><circle cx="700" cy="160" r="11" fill="#fff" stroke="#0f1b2d" stroke-width="2"/><circle cx="750" cy="160" r="11" fill="#fff" stroke="#0f1b2d" stroke-width="2"/><circle cx="800" cy="160" r="11" fill="#fff" stroke="#0f1b2d" stroke-width="2"/><circle cx="850" cy="160" r="11" fill="#fff" stroke="#0f1b2d" stroke-width="2"/><circle cx="550" cy="60" r="11" fill="#e6f4f2" stroke="#0f766e" stroke-width="2"/><circle cx="600" cy="60" r="11" fill="#e6f4f2" stroke="#0f766e" stroke-width="2"/><circle cx="650" cy="60" r="11" fill="#e6f4f2" stroke="#0f766e" stroke-width="2"/><circle cx="700" cy="60" r="11" fill="#e6f4f2" stroke="#0f766e" stroke-width="2"/><circle cx="750" cy="60" r="11" fill="#e6f4f2" stroke="#0f766e" stroke-width="2"/><circle cx="800" cy="60" r="11" fill="#e6f4f2" stroke="#0f766e" stroke-width="2"/><text x="430" y="196" text-anchor="middle" class="lb">inputs (bottom) → outputs (top) · same colour = same weight</text></svg>
+  <div class="split even" style="margin-top:.3em">
+    <div class="say"><div class="flashback">Session 3 A: one kernel slides over the whole image — the same 9 weights at every pixel.</div></div>
+    <div class="say"><p><b>Local</b>: each output looks only at its neighbours. <b>Shared</b>: every position uses the same weights.</p>
+      <p class="fragment">The photo from slide 8: 150,528,000 weights fully connected. 64 kernels of 3 × 3 × 3: <b>1,792</b>.</p></div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ชี้ซ้าย: ทุกเส้นเป็น weight ของตัวเอง 48 ตัว · ขวา: สีเดียวกัน = weight เดียวกัน เหลือ 3 · ย้อนหน้า 8: 150 ล้าน → 1,792</p><p>🇬🇧 Left: every line is its own weight, 48. Right: same colour, same weight — 3. Back to slide 8: 150 million → 1,792.</p></aside>
+</section>
+
+<!-- 23 -->
+<section data-part="C">
+  <p class="kicker">C · Convolutional networks</p>
+  <h2 class="claim">Shift the input, the feature map shifts too</h2>
+  <div class="split">
+    <div>
+      <div class="conv3" style="grid-template-columns:minmax(0,1fr) minmax(0,1fr);max-width:none">
+        <div><canvas id="eqIn" class="democv" width="160" height="115"></canvas><p class="gcap">input, shifted</p></div>
+        <div><canvas id="eqOut" class="democv" width="160" height="115"></canvas><p class="gcap">feature map: |Sobel x|</p></div>
+      </div>
+      <div class="ctrl"><label>shift right <input class="slider" id="eqS" type="range" min="-30" max="30" step="1" value="0" aria-label="shift in pixels"></label><b id="eqSV" class="gcap" style="margin:0"></b></div>
+      <div class="demo-out"><span id="eqOutT"></span></div>
+    </div>
+    <div class="say">
+      <p>Move the scene; the same kernel finds the same edge, just as far over. The red cross follows the strongest edge in the middle of the photo.</p>
+      <p class="fragment">Shift in → same shift out: the layer is <b>equivariant</b> to shifts. One kernel learns “vertical edge” once and finds it <b>anywhere</b> — the fully connected layer of slide 8 had to learn every position again.</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ลาก shift ให้ดูกากบาทแดงเลื่อนเท่ากันทุก pixel · ถาม: fully connected (หน้า 8) ทำแบบนี้ได้ไหม?</p><p>🇬🇧 Drag the shift: the red cross moves pixel for pixel. Ask: could slide 8's fully connected layer do this?</p></aside>
+</section>
+
+<!-- 24 -->
+<section data-part="C">
+  <p class="kicker">C · Convolutional networks</p>
+  <h2 class="claim">Many kernels make many channels</h2>
+  <div class="split">
+    <div><svg class="fig bpsvg" viewBox="0 0 620 258" role="img" aria-label="an RGB input of three channels, a 3 by 3 by 3 kernel, and an output of 16 channels"><defs><marker id="ac" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#94a3b8"/></marker></defs><rect x="40" y="40" width="110" height="110" rx="6" fill="#fde2e2" stroke="#0f1b2d" stroke-width="1.5" opacity=".9"/><rect x="54" y="54" width="110" height="110" rx="6" fill="#dff3e4" stroke="#0f1b2d" stroke-width="1.5" opacity=".9"/><rect x="68" y="68" width="110" height="110" rx="6" fill="#dde8fb" stroke="#0f1b2d" stroke-width="1.5" opacity=".9"/><rect x="230" y="86" width="40" height="40" rx="4" fill="#fdf0d5" stroke="#c97a06" stroke-width="2"/><rect x="238" y="94" width="40" height="40" rx="4" fill="#fdf0d5" stroke="#c97a06" stroke-width="2"/><rect x="246" y="102" width="40" height="40" rx="4" fill="#fdf0d5" stroke="#c97a06" stroke-width="2"/><text x="260" y="170" text-anchor="middle" class="lb">3 × 3 × 3 kernel</text><text x="105" y="248" text-anchor="middle" class="lb">input 32 × 32 × 3 (R, G, B)</text><path d="M300 110 H360" stroke="#94a3b8" stroke-width="2.5" marker-end="url(#ac)"/><rect x="380" y="34" width="110" height="110" rx="6" fill="#e6f4f2" stroke="#0f1b2d" stroke-width="1.5" opacity=".9"/><rect x="386" y="39" width="110" height="110" rx="6" fill="#e6f4f2" stroke="#0f1b2d" stroke-width="1.5" opacity=".9"/><rect x="392" y="44" width="110" height="110" rx="6" fill="#e6f4f2" stroke="#0f1b2d" stroke-width="1.5" opacity=".9"/><rect x="398" y="49" width="110" height="110" rx="6" fill="#e6f4f2" stroke="#0f1b2d" stroke-width="1.5" opacity=".9"/><rect x="404" y="54" width="110" height="110" rx="6" fill="#e6f4f2" stroke="#0f1b2d" stroke-width="1.5" opacity=".9"/><rect x="410" y="59" width="110" height="110" rx="6" fill="#e6f4f2" stroke="#0f1b2d" stroke-width="1.5" opacity=".9"/><rect x="416" y="64" width="110" height="110" rx="6" fill="#e6f4f2" stroke="#0f1b2d" stroke-width="1.5" opacity=".9"/><rect x="422" y="69" width="110" height="110" rx="6" fill="#e6f4f2" stroke="#0f1b2d" stroke-width="1.5" opacity=".9"/><rect x="428" y="74" width="110" height="110" rx="6" fill="#e6f4f2" stroke="#0f1b2d" stroke-width="1.5" opacity=".9"/><rect x="434" y="79" width="110" height="110" rx="6" fill="#e6f4f2" stroke="#0f1b2d" stroke-width="1.5" opacity=".9"/><rect x="440" y="84" width="110" height="110" rx="6" fill="#e6f4f2" stroke="#0f1b2d" stroke-width="1.5" opacity=".9"/><rect x="446" y="89" width="110" height="110" rx="6" fill="#e6f4f2" stroke="#0f1b2d" stroke-width="1.5" opacity=".9"/><rect x="452" y="94" width="110" height="110" rx="6" fill="#e6f4f2" stroke="#0f1b2d" stroke-width="1.5" opacity=".9"/><rect x="458" y="99" width="110" height="110" rx="6" fill="#e6f4f2" stroke="#0f1b2d" stroke-width="1.5" opacity=".9"/><rect x="464" y="104" width="110" height="110" rx="6" fill="#e6f4f2" stroke="#0f1b2d" stroke-width="1.5" opacity=".9"/><rect x="470" y="109" width="110" height="110" rx="6" fill="#e6f4f2" stroke="#0f1b2d" stroke-width="1.5" opacity=".9"/><text x="500" y="248" text-anchor="middle" class="lb">output 32 × 32 × 16</text><text x="490" y="20" text-anchor="middle" class="lb">one map per kernel</text></svg></div>
+    <div class="say">
+      <div class="flashback">Session 2 D: a colour pixel is three numbers — the input has 3 channels.</div>
+      <p style="margin-top:.6em">A kernel spans <b>all</b> input channels: k × k × C<sub>in</sub> weights + 1 bias → one output map. C<sub>out</sub> kernels → C<sub>out</sub> channels.</p>
+      <div class="eq">$$\text{params}=(k^2 C_{in}+1)\,C_{out}$$</div>
+      <p class="fragment">RGB → 16 maps: (9·3 + 1)·16 = <b>448</b>. Next layer, 16 → 32: (9·16 + 1)·32 = <b>4,640</b>. The size of the photo does not appear.</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ย้อนคาบ 2 D: RGB = 3 channel · kernel กินทุก channel · ชี้ว่าจำนวนพารามิเตอร์ไม่ขึ้นกับขนาดภาพ</p><p>🇬🇧 Back to session 2 D: RGB is 3 channels. A kernel spans every channel. The count does not depend on the image size.</p></aside>
+</section>
+
+<!-- 25 -->
+<section data-part="C">
+  <p class="kicker">C · Convolutional networks</p>
+  <h2 class="claim">Output size: the session-3 formula, unchanged</h2>
+  <div class="split">
+    <div>
+      <div class="ctrl" style="justify-content:space-between">
+        <label>n <input class="slider" id="osN" type="range" min="5" max="64" step="1" value="32" aria-label="input size"></label>
+        <label>k <input class="slider" id="osK" type="range" min="1" max="7" step="2" value="3" aria-label="kernel size"></label>
+        <label>p <input class="slider" id="osP" type="range" min="0" max="3" step="1" value="0" aria-label="padding"></label>
+        <label>s <input class="slider" id="osS" type="range" min="1" max="3" step="1" value="1" aria-label="stride"></label>
+      </div>
+      <p class="big-out" id="osOut" style="margin-top:.8em"></p>
+      <table class="tbl big" style="margin-top:.8em"><tr><th>n</th><th>k</th><th>p</th><th>s</th><th>out</th><th>use</th></tr>
+        <tr><td>32</td><td>3</td><td>1</td><td>1</td><td>32</td><td>keep the size (“same”)</td></tr>
+        <tr><td>32</td><td>3</td><td>1</td><td>2</td><td>16</td><td>halve it</td></tr>
+        <tr><td>224</td><td>7</td><td>3</td><td>2</td><td>112</td><td>ResNet's first layer</td></tr></table>
+    </div>
+    <div class="say">
+      <div class="flashback">Session 3 A: out = ⌊(n + 2p − k) / s⌋ + 1 — the formula promised for every CNN layer.</div>
+      <p style="margin-top:.6em">Padding p = (k − 1)/2 keeps the size; stride 2 halves it.</p>
+      <p class="fragment">The channel count does not change the height and width — only C<sub>out</sub> sets the depth.</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ลาก slider ให้ห้องทาย out ก่อน · ชี้แถว ResNet: 224 → 112</p><p>🇬🇧 Drag the sliders; let the room predict out first. The ResNet row: 224 → 112.</p></aside>
+</section>
+
+<!-- 26 -->
+<section data-part="C">
+  <p class="kicker">C · Convolutional networks</p>
+  <h2 class="claim">Pooling keeps the strongest response</h2>
+  <div class="split">
+    <div>
+      <div class="conv3" style="grid-template-columns:minmax(0,4fr) auto minmax(0,2fr);max-width:560px">
+        <div><div class="ng" id="plIn" style="grid-template-columns:repeat(4,1fr)"></div><p class="gcap">4 × 4 of a real feature map (|Sobel x|, slide 23)</p></div>
+        <div class="op">→</div>
+        <div><div class="ng" id="plOut" style="grid-template-columns:repeat(2,1fr)"></div><p class="gcap" id="plCap"></p></div>
+      </div>
+      <div class="chbtns" id="plBtns" style="justify-content:center"><button class="on" data-m="max">max pooling</button><button data-m="avg">average pooling</button></div>
+    </div>
+    <div class="say">
+      <p>Each 2 × 2 block → one number: half the width, half the height, no weights to learn.</p>
+      <p class="fragment"><b>Max</b> keeps “was the edge here?”, not exactly where — small shifts matter less.</p>
+      <div class="flashback fragment">Session 3 D: shrinking samples the image again — without a blur first, fine detail can alias.</div>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 สลับ max/average · ชี้ช่องที่ชนะ (กรอบ) · ย้อนคาบ 3 D: ย่อโดยไม่ blur → aliasing</p><p>🇬🇧 Switch max / average; the outlined cells win. Back to session 3 D: shrinking without a blur can alias.</p></aside>
+</section>
+
+<!-- 27 -->
+<section data-part="C">
+  <p class="kicker">C · Convolutional networks</p>
+  <h2 class="claim">Each layer sees further: the receptive field</h2>
+  <div class="split">
+    <div>
+      <div class="ng" id="rfG" style="grid-template-columns:repeat(15,1fr);max-width:420px;margin:0 auto;gap:2px"></div>
+      <div class="chbtns" id="rfBtns" style="justify-content:center"><button class="on" data-l="1">1 layer</button><button data-l="2">2</button><button data-l="3">3</button><button data-l="4">4</button></div>
+      <div class="chbtns" id="rfSt" style="justify-content:center"><button class="on" data-s="1">all stride 1</button><button data-s="2">layer 1 stride 2</button></div>
+      <div class="demo-out" style="justify-content:center"><span id="rfOut"></span></div>
+    </div>
+    <div class="say">
+      <p>One output pixel after a stack of 3 × 3 layers: which input pixels can reach it?</p>
+      <p class="fragment">Stride 1: 3 → 5 → 7 → 9 — each layer adds 2. A stride of 2 early doubles every later step: 3 → 7 → 11 → 15.</p>
+      <p class="fragment">ResNet-18's last layer: 435 × 435 pixels — the whole 224 photo, built up step by step. Session 5: attention lets every pixel see every other <b>in one layer</b>.</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 กด 1 → 4 ชั้น · แล้วสลับ stride 2 ที่ชั้นแรก · ชี้ต่อคาบ 5: attention มองทั้งภาพในชั้นเดียว · ResNet-18 = 435</p><p>🇬🇧 Press 1 → 4 layers, then stride 2 in layer 1. Forward: session 5's attention sees the whole image in one layer. ResNet-18: 435.</p></aside>
+</section>
+
+<!-- 28 -->
+<section data-part="C">
+  <p class="kicker">C · Convolutional networks</p>
+  <h2 class="claim">What the first layer learns</h2>
+  <div class="split">
+    <figure class="photo"><img src="img/resnet18_conv1.png" alt="the 64 learned 7 by 7 colour kernels of ResNet-18's first layer" style="max-height:440px"><figcaption>ResNet-18, trained on 1.28 million ImageNet photos: its 64 first-layer kernels (7 × 7 × 3, each scaled to its own range)</figcaption></figure>
+    <div class="say">
+      <div class="flashback">Session 3 B–C: Gaussian blur and Sobel — designed by hand.</div>
+      <p style="margin-top:.6em">Nobody designed these. Training found:</p>
+      <p style="margin:.15em 0"><span style="display:inline-block;width:.9em;height:.9em;border:3px solid #e0533d;border-radius:3px;vertical-align:-.1em;margin-right:.4em"></span>vertical edge — like Sobel x (match 0.87)</p><p style="margin:.15em 0"><span style="display:inline-block;width:.9em;height:.9em;border:3px solid #0f766e;border-radius:3px;vertical-align:-.1em;margin-right:.4em"></span>horizontal edge — like Sobel y (match 0.87)</p><p style="margin:.15em 0"><span style="display:inline-block;width:.9em;height:.9em;border:3px solid #6d5bd0;border-radius:3px;vertical-align:-.1em;margin-right:.4em"></span>blob — like a Gaussian (match 0.88)</p><p style="margin:.15em 0"><span style="display:inline-block;width:.9em;height:.9em;border:3px solid #c97a06;border-radius:3px;vertical-align:-.1em;margin-right:.4em"></span>colour: orange against blue</p>
+      <p class="fragment">Session 3's last slide promised it: the first layer ends up looking a lot like our edge filters. Deeper layers combine them (slide 7).</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ชี้กรอบสี: ตรงกับ Sobel x / Sobel y / Gaussian ที่คาบ 3 ออกแบบเอง (วัดด้วย correlation ใน build.py) · ตอบคำสัญญาหน้า 44 ของคาบ 3</p><p>🇬🇧 Point at the frames: Sobel x, Sobel y and a Gaussian, as designed by hand in session 3 (matched by correlation in build.py). This keeps session 3's last-slide promise.</p></aside>
+</section>
+
+<!-- 29 -->
+<section data-part="C">
+  <p class="kicker">C · Convolutional networks</p>
+  <h2 class="claim">Going back up: transposed convolution</h2>
+  <div class="split">
+    <div>
+      <div class="conv3" style="grid-template-columns:minmax(0,2fr) auto minmax(0,5fr);max-width:560px">
+        <div><div class="ng" id="trIn" style="grid-template-columns:repeat(2,1fr)"></div><p class="gcap">input 2 × 2</p></div>
+        <div class="op">→</div>
+        <div><div class="ng" id="trOut" style="grid-template-columns:repeat(5,1fr)"></div><p class="gcap">output 5 × 5 · kernel 3 × 3 of ones · stride 2</p></div>
+      </div>
+      <div class="ctrl" style="justify-content:center"><button id="trStep" type="button">Next input pixel</button><button id="trReset" type="button">Reset</button></div>
+    </div>
+    <div class="say">
+      <p>Each input pixel <b>stamps</b> a weighted copy of the kernel, s pixels apart. Where stamps overlap, they add.</p>
+      <div class="eq">$$\text{out}=(n-1)\,s-2p+k$$</div>
+      <p class="fragment">(2 − 1)·2 − 0 + 3 = <b>5</b>. A 16 × 16 map, k 2, s 2 → 32 × 32. Session 8: segmentation grows small feature maps back to a full-size mask this way.</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 กด Next ทีละ pixel ให้เห็นการประทับ kernel และผลรวมตรงกลาง (10 = 1 + 2 + 3 + 4) · ชี้ต่อคาบ 8</p><p>🇬🇧 Press Next, one pixel at a time: each stamps the kernel; the centre adds to 10 = 1 + 2 + 3 + 4. Forward: session 8.</p></aside>
+</section>
+
+<!-- 30 -->
+<section data-part="C">
+  <p class="kicker">C · Convolutional networks</p>
+  <h2 class="claim">A whole CNN, layer by layer</h2>
+  <div class="split">
+    <div><table class="tbl big"><tr><th style="text-align:left">layer</th><th>output</th><th>parameters</th></tr><tr><td style="text-align:left">input</td><td>32 × 32 × 3</td><td>—</td></tr><tr><td style="text-align:left">conv 3 × 3, 16, p 1</td><td>32 × 32 × 16</td><td>448</td></tr><tr><td style="text-align:left">max pool 2 × 2</td><td>16 × 16 × 16</td><td>—</td></tr><tr><td style="text-align:left">conv 3 × 3, 32, p 1</td><td>16 × 16 × 32</td><td>4,640</td></tr><tr><td style="text-align:left">max pool 2 × 2</td><td>8 × 8 × 32</td><td>—</td></tr><tr><td style="text-align:left">fully connected → 10</td><td>10</td><td>20,490</td></tr>
+      <tr><td style="text-align:left"><b>total</b></td><td></td><td><b>25,578</b></td></tr></table></div>
+    <div class="say">
+      <p>Conv layers keep the picture shape and add channels; pooling halves it; one fully connected layer reads the result.</p>
+      <p class="fragment">Most weights sit in that last layer: 20,490 of 25,578.</p>
+      <p class="fragment">Compare: one fully connected layer from the same 32 × 32 × 3 input to just 16 units already has <b>49,168</b> — more than the whole CNN.</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ไล่ทีละแถวให้ห้องคำนวณ shape กับพารามิเตอร์เอง · lab C พิมพ์ตารางเดียวกันจาก nn.Conv2d</p><p>🇬🇧 Go row by row; let the room compute shapes and counts. Lab C prints this same table from nn.Conv2d.</p></aside>
+</section>
+
+<!-- 31 -->
+<section data-part="C">
+  <p class="kicker">C · Convolutional networks</p>
+  <h2 class="claim">Try it: shape, weights, view</h2>
+  <div class="split">
+    <div class="tryit"><span class="tag">Try it</span>
+      <ol style="margin:.3em 0 0 1.1em">
+        <li>Input <b>64 × 64 × 3</b>, 32 kernels of <b>5 × 5</b>, padding 2, stride 2. Output shape? Parameters?</li>
+        <li>Three 3 × 3 layers, the <b>first</b> with stride 2. Receptive field?</li>
+        <li>Transposed convolution: n = 8, k = 4, s = 2, p = 1. Output size?</li>
+      </ol>
+      <details><summary>Answer</summary>1. ⌊(64 + 4 − 5)/2⌋ + 1 = <b>32</b> → <b>32 × 32 × 32</b> · (25·3 + 1)·32 = <b>2,432</b> · 2. 3 → 3 + 2·2 = 7 → 7 + 2·2 = <b>11</b> · 3. (8 − 1)·2 − 2 + 4 = <b>16</b>.</details>
+    </div>
+    <div class="say"><p>out = ⌊(n + 2p − k)/s⌋ + 1 · params = (k²C<sub>in</sub> + 1)C<sub>out</sub></p><p>Receptive field: each layer adds (k − 1) × the stride so far.</p><p>Transposed: (n − 1)s − 2p + k</p></div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ให้เวลา 2 นาที · แบบข้อสอบ Final</p><p>🇬🇧 Give two minutes. Final-exam style.</p></aside>
+</section>
+
+<!-- 32 -->
+<section data-part="C">
+  <p class="kicker">C · Convolutional networks</p>
+  <h2 class="claim">CNNs: local, shared, stacked</h2>
+  <div class="cards">
+    <div class="card"><b>Local &amp; shared</b>One small kernel everywhere: thousands of weights, not millions, and a shift in gives the same shift out.</div>
+    <div class="card violet"><b>Shapes</b>out = ⌊(n + 2p − k)/s⌋ + 1 · params = (k²C<sub>in</sub> + 1)C<sub>out</sub> · pooling halves · transposed grows back.</div>
+    <div class="card amber"><b>Stacked</b>Each layer sees further (receptive field); the first layer learns edges and blobs like session 3's.</div>
+  </div>
+  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-04/lab.ipynb#scrollTo=part-c" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part C</a><span>nn.Conv2d shapes and counts, CNN vs MLP on digits, pooling, receptive field, ResNet-18's first layer</span></p>
+  <p class="more"><a target="_blank" rel="noopener" href="../practice/#s4c">More practice · Session 4 C — practice bank with worked solutions →</a></p>
+  <p class="takeaway"><span>Later: session 5 A–B (attention sees everything at once) · session 6 (CNN features vs hand-made corners) · session 8 (transposed conv → masks). Next · D: stack many more layers.</span></p>
+
+  <aside class="notes"><p>🇹🇭 สรุป C · ชี้ต่อคาบ 5, 6, 8 · แล้วต่อ D: ซ้อนลึกขึ้นอีกมาก</p><p>🇬🇧 Wrap up C; forward to sessions 5, 6 and 8. Then D: stack many more layers.</p></aside>
+</section>
+
 </div>
 </div>
 
@@ -1089,7 +1316,7 @@ function renderMath(){
     });
   }
 }
-function initDemos(){ initNeuronLine(); initRings(); initGD(); initKernelLearn(); initOverfit(); initSliders(); }
+function initDemos(){ initNeuronLine(); initRings(); initGD(); initKernelLearn(); initOverfit(); initEquivariance(); initOutSize(); initPool(); initRF(); initTransposed(); initSliders(); }
 /* range sliders: a finger anywhere on the track sets and drags the value.
    Phones otherwise only move a native slider when the touch lands exactly on its thumb,
    and a touch on the track scrolls the page instead. */
@@ -1620,6 +1847,70 @@ function initOverfit(){
       OV.fit.forEach((f,i)=>{ i?ex.lineTo(lx(i+1),ly(f[k])):ex.moveTo(lx(i+1),ly(f[k])); }); ex.stroke();
       ex.beginPath(); ex.arc(lx(d),ly(F[k]),5,0,7); ex.fillStyle=c; ex.fill(); ex.textAlign='left'; ex.fillText(lab,mx+10+j*100,18); }); };
   s.addEventListener('input',draw); if(PRINTING) s.value=8; draw();
+}
+const POOLD={"g": [[225, 5, 215, 98], [223, 3, 210, 147], [212, 13, 196, 143], [192, 31, 161, 112]]}, TRD={"i": [[1, 2], [3, 4]], "o": [[1, 1, 3, 2, 2], [1, 1, 3, 2, 2], [4, 4, 10, 6, 6], [3, 3, 7, 4, 4], [3, 3, 7, 4, 4]]};
+/* C2: shift the photo (edge pixels repeated, so the border adds no edge) — |Sobel x| and its strongest point move with it */
+function initEquivariance(){
+  const ci=document.getElementById('eqIn'); if(!ci) return; const s=document.getElementById('eqS');
+  const {w:W,h:H}=KL, raw=atob(KL.img), g=new Float64Array(W*H); for(let i=0;i<g.length;i++) g[i]=raw.charCodeAt(i);
+  const sob=a=>{ const o=new Float64Array(W*H); for(let y=1;y<H-1;y++) for(let x=1;x<W-1;x++)
+      o[y*W+x]=Math.abs(a[(y-1)*W+x+1]-a[(y-1)*W+x-1]+2*(a[y*W+x+1]-a[y*W+x-1])+a[(y+1)*W+x+1]-a[(y+1)*W+x-1]); return o; };
+  const base=sob(g); let top=0, bx=0, by=0;
+  for(let y=1;y<H-1;y++) for(let x=40;x<W-40;x++) if(base[y*W+x]>top){ top=base[y*W+x]; bx=x; by=y; }   /* strongest point in the middle */
+  const draw=()=>{ const d=+s.value, sh=new Float64Array(W*H);
+    for(let y=0;y<H;y++) for(let x=0;x<W;x++) sh[y*W+x]=g[y*W+Math.max(0,Math.min(W-1,x-d))];
+    const o=sob(sh); let diff=0;   /* compare with the unshifted map moved d px, wherever x − d is an inside pixel */
+    for(let y=1;y<H-1;y++) for(let x=1;x<W-1;x++) if(x-d>=1&&x-d<=W-2) diff=Math.max(diff,Math.abs(o[y*W+x]-base[y*W+x-d]));
+    const put=(cv,f)=>{ const c=cv.getContext('2d'), im=c.createImageData(W,H); for(let i=0;i<W*H;i++){ const v=f(i); im.data[4*i]=im.data[4*i+1]=im.data[4*i+2]=v; im.data[4*i+3]=255; } c.putImageData(im,0,0); return c; };
+    put(ci,i=>sh[i]); const c=put(document.getElementById('eqOut'),i=>255-Math.min(255,o[i]*255/top));
+    [c,ci.getContext('2d')].forEach(x=>{ x.strokeStyle='#e0533d'; x.lineWidth=2; x.beginPath(); x.moveTo(bx+d-7,by); x.lineTo(bx+d+7,by); x.moveTo(bx+d,by-7); x.lineTo(bx+d,by+7); x.stroke(); });
+    document.getElementById('eqSV').textContent=(d>0?'+':'')+d+' px';
+    document.getElementById('eqOutT').innerHTML=`shift <b>${d}</b> px → the map equals the unshifted map moved ${d} px: largest difference <b>${diff}</b>`;
+    ci.dataset.diff=diff; ci.dataset.v=o[by*W+bx+d]; ci.dataset.top=top; };
+  s.addEventListener('input',draw); if(PRINTING) s.value=20; draw();
+}
+/* C4: output size */
+function initOutSize(){
+  const ids=['osN','osK','osP','osS'].map(i=>document.getElementById(i)); if(!ids[0]) return;
+  const draw=()=>{ const [n,k,p,s]=ids.map(e=>+e.value), num=n+2*p-k, o=num<0?0:Math.floor(num/s)+1;
+    document.getElementById('osOut').innerHTML=`⌊(${n} + 2·${p} − ${k}) / ${s}⌋ + 1 = <b>${o}</b>`; document.getElementById('osOut').dataset.o=o; };
+  ids.forEach(e=>e.addEventListener('input',draw)); draw();
+}
+/* C5: 2 × 2 pooling on a 4 × 4 block of a real feature map */
+function initPool(){
+  const gi=document.getElementById('plIn'); if(!gi) return; const G=POOLD.g; let mode='max';
+  const draw=()=>{ const win=new Set(), out=[];
+    for(let r=0;r<2;r++) for(let c=0;c<2;c++){ const cells=[[2*r,2*c],[2*r,2*c+1],[2*r+1,2*c],[2*r+1,2*c+1]];
+      if(mode==='max'){ const m=cells.reduce((a,b)=>G[b[0]][b[1]]>G[a[0]][a[1]]?b:a); win.add(m.join()); out.push(G[m[0]][m[1]]); }
+      else out.push(Math.round(cells.reduce((a,[y,x])=>a+G[y][x],0)/4)); }
+    fillGrid(gi,4,4,(r,c)=>({v:G[r][c],shade:true,cls:(win.has(r+','+c)?'win ':'')+(((r>>1)+(c>>1))%2?'':'')}));
+    fillGrid(document.getElementById('plOut'),2,2,(r,c)=>({v:out[r*2+c],shade:true}));
+    document.getElementById('plCap').textContent=mode==='max'?'2 × 2 max':'2 × 2 average'; gi.dataset.out=out.join(','); };
+  pickButtons('plBtns',b=>{ mode=b.dataset.m; draw(); }); draw();
+}
+/* C6: receptive field of the centre output after L stacked 3 × 3 layers (optionally stride 2 in layer 1) */
+function initRF(){
+  const g=document.getElementById('rfG'); if(!g) return; let L=1, s1=1;
+  const draw=()=>{ let r=1,j=1; for(let l=0;l<L;l++){ r+=2*j; j*=(l===0?s1:1); }
+    const h=(r-1)/2;
+    fillGrid(g,15,15,(y,x)=>({v:'',cls:(y===7&&x===7)?'cur ker':(Math.abs(y-7)<=h&&Math.abs(x-7)<=h?'ker':'empty')}));
+    document.getElementById('rfOut').innerHTML=`${L} layer${L>1?'s':''}${s1===2?' · stride 2 first':''} → receptive field <b>${r} × ${r}</b>`; g.dataset.r=r; };
+  pickButtons('rfBtns',b=>{ L=+b.dataset.l; draw(); }); pickButtons('rfSt',b=>{ s1=+b.dataset.s; draw(); });
+  if(PRINTING){ L=3; document.querySelectorAll('#rfBtns button').forEach(b=>b.classList.toggle('on',b.dataset.l==='3')); }
+  draw();
+}
+/* C8: transposed convolution — each input pixel stamps the 3 × 3 kernel of ones, stride 2 */
+function initTransposed(){
+  const gi=document.getElementById('trIn'); if(!gi) return; let k=0;
+  const draw=()=>{ const O=[...Array(5)].map(()=>Array(5).fill(0)), cur=k>0?k-1:-1;
+    for(let t=0;t<k;t++){ const r=t>>1, c=t&1; for(let y=0;y<3;y++) for(let x=0;x<3;x++) O[2*r+y][2*c+x]+=TRD.i[r][c]; }
+    fillGrid(gi,2,2,(r,c)=>({v:TRD.i[r][c],cls:(r*2+c===cur?'cur ':'')+(r*2+c<k?'ker':'')}));
+    fillGrid(document.getElementById('trOut'),5,5,(y,x)=>{ const r=cur>>1, c=cur&1, inS=cur>=0&&y>=2*r&&y<2*r+3&&x>=2*c&&x<2*c+3;
+      return {v:O[y][x]||'',cls:(inS?'cur ':'')+(O[y][x]?'ker':'empty')}; });
+    gi.dataset.k=k; document.getElementById('trOut').dataset.sum=O.flat().join(','); };
+  document.getElementById('trStep').onclick=()=>{ if(k<4) k++; draw(); };
+  document.getElementById('trReset').onclick=()=>{ k=0; draw(); };
+  if(PRINTING) k=4; draw();
 }
 </script>
 </body>
