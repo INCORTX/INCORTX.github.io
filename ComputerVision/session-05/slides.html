@@ -872,7 +872,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <div class="split">
     <div>
       <canvas id="shCv" class="democv" width="448" height="224" aria-label="the dog in 196 patches, and the same patches shuffled"></canvas>
-      <div class="ctrl" style="justify-content:center"><button id="shBtn" type="button">Shuffle the patches</button>
+      <div class="ctrl" style="justify-content:center"><button id="shBtn" type="button">Shuffle the patches</button><button id="shReset" type="button">Reset</button>
         <label><input type="checkbox" id="shPos"> add position embedding</label></div>
       <div class="demo-out" style="justify-content:center"><span id="shOut"></span></div>
     </div>
@@ -1538,6 +1538,7 @@ function initShuffle(){
       document.getElementById('shOut').innerHTML=`${usePos?'with':'without'} position embedding · largest difference after putting the outputs back: <b>${d<1e-9?'0':d.toFixed(3)}</b>`;
       cv.dataset.diff=d; };
     document.getElementById('shBtn').onclick=()=>{ for(let i=N-1;i>0;i--){ const j=Math.floor(rnd()*(i+1)); [perm[i],perm[j]]=[perm[j],perm[i]]; } run(); };
+    document.getElementById('shReset').onclick=()=>{ perm=[...Array(N).keys()]; seed=9; run(); };   /* back to the photo in order; the next shuffle repeats the first */
     document.getElementById('shPos').addEventListener('change',run);
     if(PRINTING) document.getElementById('shBtn').click(); else run(); });
 }
