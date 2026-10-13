@@ -370,6 +370,9 @@ html.reading .reveal ul.small li{font-size:14px;}
 .cvsvg .lb{font-family:var(--display);font-size:15px;font-weight:600;fill:#0f1b2d;}
 .reveal table.tbl.big{font-size:.56em;}
 .title-slide .art .fig{border-radius:16px;box-shadow:0 18px 40px -22px rgba(15,27,45,.35),0 0 0 1px var(--line);}
+.reveal table.tbl.nn td{font-family:var(--display);vertical-align:top;padding:.35em .4em;}
+.reveal table.tbl.nn td span{display:block;font-size:.85em;color:var(--muted);margin-top:.2em;}
+html.reading .reveal table.tbl.nn img{width:56px!important;height:42px!important;}
 /*<<CSS>>*//* pipeline */
 .pipe{display:flex;gap:.45em;align-items:stretch;counter-reset:p;}
 .pipe .st{flex:1 1 0;background:#fff;border:1px solid var(--line);border-radius:12px;padding:.6em .65em;font-size:.64em;line-height:1.35;box-shadow:0 6px 16px -12px rgba(15,27,45,.25);position:relative;}
@@ -994,6 +997,148 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 สรุป B · ชี้ต่อ CLIP (D) และ SAM (คาบ 8 C) · ปูทาง C: DINO train โดยไม่มี label</p><p>🇬🇧 Wrap up B. Forward: CLIP (D), SAM (session 8 C). Set up C: DINO learned without labels.</p></aside>
 </section>
 
+<!-- 22 -->
+<section class="part-open" id="part-c" data-part="C">
+  <div class="po-strip"><a href="#/part-a" class="done"><b>A</b>Attention</a><a href="#/part-b" class="done"><b>B</b>ViT</a><a href="#/part-c" class="on"><b>C</b>No labels</a><a href="#/part-d" class=""><b>D</b>CLIP</a></div>
+  <p class="po-letter">C</p>
+  <h2 class="claim">Learning without labels</h2>
+  <p class="po-q">Can a model learn what looks alike without anyone labelling it?</p>
+  <p class="po-out"><span>By the end of this part</span>Explain contrastive learning in an embedding space, and compare embeddings with cosine similarity.</p>
+  <aside class="notes"><p>🇹🇭 หน้าเปิด part: อ่านคำถามกับสิ่งที่จะทำได้ท้าย part แล้วเข้าเนื้อหา</p><p>🇬🇧 Part opener: read the question and what you can do by the end of the part, then go in.</p></aside>
+</section>
+
+<!-- 23 -->
+<section data-part="C">
+  <p class="kicker">C · Learning without labels</p>
+  <h2 class="claim">Labels are expensive; pictures are free</h2>
+  <div class="split">
+    <div class="cards" style="grid-template-columns:1fr">
+      <div class="card"><b>Labelled</b>ImageNet: 1.28 million photos, each named by a person (session 4). Every new task needs new labels — and someone decides what the labels are (session 8 D).</div>
+      <div class="card violet"><b>Unlabelled</b>Phones, cameras and the web make far more photos than anyone can label.</div>
+    </div>
+    <div class="say">
+      <p>Can a network learn useful features from the pictures alone?</p>
+      <p class="fragment">Yes — and you have already seen one: the attention maps on slide 18 came from <b>DINO</b>, a ViT trained on the ImageNet photos with every label thrown away.</p>
+      <p class="fragment">The trick is to make the photos supervise themselves. First: what does a network's output look like?</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ถามห้อง: ถ้าต้องให้คน label เองทุกภาพ จะได้กี่ภาพ? · ชี้ว่า attention map หน้า 18 มาจาก model ที่ไม่เคยเห็น label · ชี้ต่อคาบ 8 D: ใคร label</p><p>🇬🇧 Ask: if a person had to label every photo, how many would you get? Slide 18's maps came from a model that never saw a label. Forward: session 8 D, who labels.</p></aside>
+</section>
+
+<!-- 24 -->
+<section data-part="C">
+  <p class="kicker">C · Learning without labels</p>
+  <h2 class="claim">An embedding turns a picture into a point</h2>
+  <div class="split">
+    <div><svg class="fig cvsvg" viewBox="0 0 620 340" role="img" aria-label="nine photos placed by their CLIP embeddings: animals together on the left, objects top right, scenes right"><line x1="141" y1="193" x2="127" y2="189" stroke="#94a3b8" stroke-width="1.5"/><clipPath id="cedog"><rect x="93" y="163" width="68" height="52" rx="7"/></clipPath><image href="img/dog.jpg" x="93" y="163" width="68" height="52" preserveAspectRatio="xMidYMid slice" clip-path="url(#cedog)"/><rect x="93" y="163" width="68" height="52" rx="7" fill="none" stroke="#0f1b2d" stroke-opacity=".25"/><text x="127" y="227" text-anchor="middle" class="tk" style="font-size:11px">dog on grass</text><line x1="166" y1="192" x2="202" y2="185" stroke="#94a3b8" stroke-width="1.5"/><clipPath id="cedog2"><rect x="168" y="159" width="68" height="52" rx="7"/></clipPath><image href="img/dog2.jpg" x="168" y="159" width="68" height="52" preserveAspectRatio="xMidYMid slice" clip-path="url(#cedog2)"/><rect x="168" y="159" width="68" height="52" rx="7" fill="none" stroke="#0f1b2d" stroke-opacity=".25"/><text x="202" y="223" text-anchor="middle" class="tk" style="font-size:11px">dog on a road</text><line x1="60" y1="137" x2="60" y2="119" stroke="#94a3b8" stroke-width="1.5"/><clipPath id="cecat"><rect x="26" y="93" width="68" height="52" rx="7"/></clipPath><image href="img/cat.jpg" x="26" y="93" width="68" height="52" preserveAspectRatio="xMidYMid slice" clip-path="url(#cecat)"/><rect x="26" y="93" width="68" height="52" rx="7" fill="none" stroke="#0f1b2d" stroke-opacity=".25"/><text x="60" y="157" text-anchor="middle" class="tk" style="font-size:11px">cat on asphalt</text><line x1="74" y1="188" x2="52" y2="189" stroke="#94a3b8" stroke-width="1.5"/><clipPath id="cecat2"><rect x="18" y="163" width="68" height="52" rx="7"/></clipPath><image href="img/cat2.jpg" x="18" y="163" width="68" height="52" preserveAspectRatio="xMidYMid slice" clip-path="url(#cecat2)"/><rect x="18" y="163" width="68" height="52" rx="7" fill="none" stroke="#0f1b2d" stroke-opacity=".25"/><text x="52" y="227" text-anchor="middle" class="tk" style="font-size:11px">cat on grass</text><line x1="261" y1="280" x2="261" y2="273" stroke="#94a3b8" stroke-width="1.5"/><clipPath id="ceelephants"><rect x="227" y="247" width="68" height="52" rx="7"/></clipPath><image href="img/elephants.jpg" x="227" y="247" width="68" height="52" preserveAspectRatio="xMidYMid slice" clip-path="url(#ceelephants)"/><rect x="227" y="247" width="68" height="52" rx="7" fill="none" stroke="#0f1b2d" stroke-opacity=".25"/><text x="261" y="311" text-anchor="middle" class="tk" style="font-size:11px">elephants</text><line x1="357" y1="70" x2="357" y2="63" stroke="#94a3b8" stroke-width="1.5"/><clipPath id="ceapple"><rect x="323" y="37" width="68" height="52" rx="7"/></clipPath><image href="img/apple.jpg" x="323" y="37" width="68" height="52" preserveAspectRatio="xMidYMid slice" clip-path="url(#ceapple)"/><rect x="323" y="37" width="68" height="52" rx="7" fill="none" stroke="#0f1b2d" stroke-opacity=".25"/><text x="357" y="101" text-anchor="middle" class="tk" style="font-size:11px">apple</text><line x1="434" y1="60" x2="434" y2="53" stroke="#94a3b8" stroke-width="1.5"/><clipPath id="cebicycle"><rect x="400" y="27" width="68" height="52" rx="7"/></clipPath><image href="img/bicycle.jpg" x="400" y="27" width="68" height="52" preserveAspectRatio="xMidYMid slice" clip-path="url(#cebicycle)"/><rect x="400" y="27" width="68" height="52" rx="7" fill="none" stroke="#0f1b2d" stroke-opacity=".25"/><text x="434" y="91" text-anchor="middle" class="tk" style="font-size:11px">bicycle</text><line x1="560" y1="258" x2="560" y2="251" stroke="#94a3b8" stroke-width="1.5"/><clipPath id="celandscape"><rect x="526" y="225" width="68" height="52" rx="7"/></clipPath><image href="img/landscape.jpg" x="526" y="225" width="68" height="52" preserveAspectRatio="xMidYMid slice" clip-path="url(#celandscape)"/><rect x="526" y="225" width="68" height="52" rx="7" fill="none" stroke="#0f1b2d" stroke-opacity=".25"/><text x="560" y="289" text-anchor="middle" class="tk" style="font-size:11px">landscape</text><line x1="472" y1="193" x2="472" y2="186" stroke="#94a3b8" stroke-width="1.5"/><clipPath id="cetennoji"><rect x="438" y="160" width="68" height="52" rx="7"/></clipPath><image href="img/tennoji.jpg" x="438" y="160" width="68" height="52" preserveAspectRatio="xMidYMid slice" clip-path="url(#cetennoji)"/><rect x="438" y="160" width="68" height="52" rx="7" fill="none" stroke="#0f1b2d" stroke-opacity=".25"/><text x="472" y="224" text-anchor="middle" class="tk" style="font-size:11px">walkway</text><circle cx="141" cy="193" r="5" fill="#e0533d" stroke="#fff" stroke-width="1.5"/><circle cx="166" cy="192" r="5" fill="#e0533d" stroke="#fff" stroke-width="1.5"/><circle cx="60" cy="137" r="5" fill="#e0533d" stroke="#fff" stroke-width="1.5"/><circle cx="74" cy="188" r="5" fill="#e0533d" stroke="#fff" stroke-width="1.5"/><circle cx="261" cy="280" r="5" fill="#e0533d" stroke="#fff" stroke-width="1.5"/><circle cx="357" cy="70" r="5" fill="#e0533d" stroke="#fff" stroke-width="1.5"/><circle cx="434" cy="60" r="5" fill="#e0533d" stroke="#fff" stroke-width="1.5"/><circle cx="560" cy="258" r="5" fill="#e0533d" stroke="#fff" stroke-width="1.5"/><circle cx="472" cy="193" r="5" fill="#e0533d" stroke="#fff" stroke-width="1.5"/></svg><p class="gcap">nine photos through CLIP's image encoder (512 numbers each), squeezed to 2-D for the slide (PCA) · red dot = the photo's point</p></div>
+    <div class="say">
+      <div class="flashback">Session 4 D: a backbone turns a photo into numbers — 512 for ResNet-18 — that describe it.</div>
+      <p style="margin-top:.6em">Those numbers are a point in a 512-dimensional space: an <b>embedding</b>.</p>
+      <p class="fragment">A good embedding puts similar pictures near each other: the four animals on the left, the apple and the bicycle together, the two outdoor scenes apart.</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ชี้กลุ่มสัตว์ทางซ้าย · บอกว่านี่คือ embedding จริงของ CLIP บีบเหลือ 2 มิติด้วย PCA เพื่อวาด — ระยะในรูปเป็นค่าประมาณ ใช้ cosine ในหน้าถัดไปวัดจริง</p><p>🇬🇧 Point at the animals on the left. These are CLIP's real embeddings, squeezed to 2-D (PCA) to draw — distances here are approximate; the next slide measures properly.</p></aside>
+</section>
+
+<!-- 25 -->
+<section data-part="C">
+  <p class="kicker">C · Learning without labels</p>
+  <h2 class="claim">Cosine similarity compares directions</h2>
+  <div class="split">
+    <div>
+      <canvas id="csCv" class="democv" width="520" height="300" aria-label="two arrows from the origin and the angle between them"></canvas>
+      <div class="ctrl" style="justify-content:space-between">
+        <label>angle of b <input class="slider" id="csA" type="range" min="0" max="180" step="5" value="45" aria-label="angle between a and b in degrees"></label>
+        <label>length of b <input class="slider" id="csL" type="range" min="0.25" max="2" step="0.25" value="1" aria-label="length of b"></label>
+      </div>
+      <div class="demo-out"><span id="csOut"></span></div>
+    </div>
+    <div class="say">
+      <div class="eq">$$\cos\theta=\frac{a\cdot b}{\lVert a\rVert\,\lVert b\rVert}$$</div>
+      <p>1 = same direction · 0 = unrelated · −1 = opposite. Make b longer: the cosine does not move — only the <b>direction</b> counts.</p>
+      <p class="fragment">Embeddings are usually <b>normalised</b> to length 1 first; then the cosine is just the dot product a · b. Example: [3, 4] · [4, 3] ÷ (5 × 5) = 0.96.</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ลากมุม 0 → 90 → 180 (cos 1 → 0 → −1) · ลาก length: cos ไม่เปลี่ยน · ย้ำ normalize แล้ว cos = dot product (ข้อสอบ Final)</p><p>🇬🇧 Drag the angle 0 → 90 → 180 (cos 1 → 0 → −1). Drag the length: cos stays. Normalised, cos = dot product (Final exam).</p></aside>
+</section>
+
+<!-- 26 -->
+<section data-part="C">
+  <p class="kicker">C · Learning without labels</p>
+  <h2 class="claim">Two views of one photo belong together</h2>
+  <div class="split">
+    <div>
+      <div class="conv3" style="grid-template-columns:repeat(4,minmax(0,1fr));max-width:none;gap:.5em">
+        <figure class="photo"><img src="img/dog_view1.jpg" alt="a random crop of the dog photo"><figcaption>view 1</figcaption></figure>
+        <figure class="photo"><img src="img/dog_view2.jpg" alt="another random crop of the dog photo, flipped and recoloured"><figcaption>view 2</figcaption></figure>
+        <figure class="photo"><img src="img/cat.jpg" alt="a cat"><figcaption>another photo</figcaption></figure>
+        <figure class="photo"><img src="img/bicycle.jpg" alt="a bicycle"><figcaption>another photo</figcaption></figure>
+      </div>
+      <table class="tbl big" style="margin-top:.5em"><tr><th>view 1 against</th><th>view 2</th><th>cat</th><th>bicycle</th></tr>
+        <tr><td>cosine</td><td><b>0.95</b></td><td>0.73</td><td>0.52</td></tr></table>
+      <p class="gcap">random crop + flip + colour change of one photo · cosines from CLIP's image encoder</p>
+    </div>
+    <div class="say">
+      <div class="flashback">Session 4 D: augmentation — a flipped, cropped, recoloured photo is still the same thing.</div>
+      <p style="margin-top:.6em"><b>Contrastive learning</b> (SimCLR) turns that into a loss: two views of one photo are a <b>positive pair</b> — pull their embeddings together. Every other photo in the batch is a <b>negative</b> — push it away.</p>
+      <p class="fragment">No label needed: the photo is its own label. After training, similar photos land near each other.</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ชี้ตาราง: สองมุมของภาพเดียวกัน 0.95 สูงกว่าแมวและจักรยาน · loss = ดึงคู่บวกเข้า ผลักคู่ลบออก · ย้อนคาบ 4 D augmentation</p><p>🇬🇧 Point at the table: two views 0.95, above the cat and the bicycle. Loss: pull positives together, push negatives apart. Back to session 4 D's augmentation.</p></aside>
+</section>
+
+<!-- 27 -->
+<section data-part="C">
+  <p class="kicker">C · Learning without labels</p>
+  <h2 class="claim">Search by example: the nearest neighbour</h2>
+  <table class="tbl big nn" style="width:100%">
+    <tr><th>query</th><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th></tr>
+    <tr><td><img src="img/cat.jpg" alt="cat on asphalt" style="width:74px;height:56px;object-fit:cover;border-radius:6px;display:block;margin:0 auto;outline:3px solid var(--teal)"><span>cat on asphalt</span></td><td><img src="img/cat2.jpg" alt="cat on grass" style="width:74px;height:56px;object-fit:cover;border-radius:6px;display:block;margin:0 auto"><span>cat on grass</span><br><b>0.83</b></td><td><img src="img/dog.jpg" alt="dog on grass" style="width:74px;height:56px;object-fit:cover;border-radius:6px;display:block;margin:0 auto"><span>dog on grass</span><br><b>0.72</b></td><td><img src="img/dog2.jpg" alt="dog on a road" style="width:74px;height:56px;object-fit:cover;border-radius:6px;display:block;margin:0 auto"><span>dog on a road</span><br><b>0.66</b></td><td><img src="img/apple.jpg" alt="apple" style="width:74px;height:56px;object-fit:cover;border-radius:6px;display:block;margin:0 auto"><span>apple</span><br><b>0.59</b></td></tr>
+    <tr class="fragment"><td><img src="img/dog.jpg" alt="dog on grass" style="width:74px;height:56px;object-fit:cover;border-radius:6px;display:block;margin:0 auto;outline:3px solid var(--coral)"><span>dog on grass</span></td><td><img src="img/cat2.jpg" alt="cat on grass" style="width:74px;height:56px;object-fit:cover;border-radius:6px;display:block;margin:0 auto"><span>cat on grass</span><br><b>0.76</b></td><td><img src="img/dog2.jpg" alt="dog on a road" style="width:74px;height:56px;object-fit:cover;border-radius:6px;display:block;margin:0 auto"><span>dog on a road</span><br><b>0.72</b></td><td><img src="img/cat.jpg" alt="cat on asphalt" style="width:74px;height:56px;object-fit:cover;border-radius:6px;display:block;margin:0 auto"><span>cat on asphalt</span><br><b>0.72</b></td><td><img src="img/elephants.jpg" alt="elephants" style="width:74px;height:56px;object-fit:cover;border-radius:6px;display:block;margin:0 auto"><span>elephants</span><br><b>0.61</b></td></tr>
+  </table>
+  <div class="split even" style="margin-top:.4em;align-items:start">
+    <div class="say"><p>Embed every photo once; to search, embed the query and sort by cosine. The cat finds the <b>other cat</b> first.</p></div>
+    <div class="say fragment"><p>But the dog on grass finds the <b>cat on grass</b> (0.76) before the dog on a road (0.72): a whole-photo embedding also encodes the background. Session 6 C matches small patches this way instead.</p></div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 แถวแรก: แมว → แมว (0.83) · กดต่อ: สุนัขบนหญ้า → แมวบนหญ้า ก่อนสุนัขบนถนน — embedding จับฉากหลัง (โยง bias ใน D และคาบ 8 D) · ชี้ต่อคาบ 6 C</p><p>🇬🇧 Row one: cat → cat (0.83). Next: the dog on grass finds the cat on grass before the other dog — the embedding carries the background (bias, D and session 8 D). Forward: session 6 C.</p></aside>
+</section>
+
+<!-- 28 -->
+<section data-part="C">
+  <p class="kicker">C · Learning without labels</p>
+  <h2 class="claim">Try it: which picture is closest?</h2>
+  <div class="split">
+    <div class="tryit"><span class="tag">Try it</span>Three normalised embeddings: query <b>a = [0.6, 0.8]</b>, <b>b = [0.8, 0.6]</b>, <b>c = [−0.6, 0.8]</b>.
+      <ol style="margin:.4em 0 0 1.1em"><li>Check that a has length 1.</li><li>Compute cos(a, b) and cos(a, c).</li><li>Which picture is the nearest neighbour of a?</li></ol>
+      <details><summary>Answer</summary>1. √(0.36 + 0.64) = 1 · 2. a · b = 0.48 + 0.48 = <b>0.96</b> · a · c = −0.36 + 0.64 = <b>0.28</b> · 3. <b>b</b> — the larger cosine.</details>
+    </div>
+    <div class="say"><p>Normalised vectors: cos = a · b.</p><p>Nearest neighbour = the largest cosine.</p></div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ให้เวลา 1 นาที · แบบข้อสอบ Final</p><p>🇬🇧 Give one minute. Final-exam style.</p></aside>
+</section>
+
+<!-- 29 -->
+<section data-part="C">
+  <p class="kicker">C · Learning without labels</p>
+  <h2 class="claim">Learn what looks alike — no labels needed</h2>
+  <div class="cards">
+    <div class="card"><b>Embedding</b>A photo becomes a point; similar photos should be near each other.</div>
+    <div class="card violet"><b>Cosine</b>Compare directions: normalise, then cos = a · b. Nearest neighbour = largest cosine.</div>
+    <div class="card amber"><b>Contrastive</b>Two views of one photo are a positive pair; the rest of the batch are negatives. The photo is its own label.</div>
+  </div>
+  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-05/lab.ipynb#scrollTo=part-c" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part C</a><span>embed a small gallery with CLIP, cosine similarity, nearest neighbours, two views of one photo</span></p>
+  <p class="more"><a target="_blank" rel="noopener" href="../practice/#s5c">More practice · Session 5 C — practice bank with worked solutions →</a></p>
+  <p class="takeaway"><span>Later: session 6 C matches descriptors by nearest neighbour · T5-1 DINOv2. Next · D: put captions in the same space as the photos.</span></p>
+
+  <aside class="notes"><p>🇹🇭 สรุป C · ชี้ต่อคาบ 6 C (จับคู่ descriptor ด้วย nearest neighbour) และ T5-1 DINOv2 · แล้วต่อ D: ข้อความอยู่ใน space เดียวกับภาพ</p><p>🇬🇧 Wrap up C. Forward: session 6 C (nearest-neighbour matching), T5-1 DINOv2. Then D: text in the same space as the photos.</p></aside>
+</section>
+
 </div>
 </div>
 
@@ -1073,7 +1218,7 @@ function renderMath(){
     });
   }
 }
-function initDemos(){ initAttention(); initPatches(); initShuffle(); /*<<INITS>>*/ initSliders(); }
+function initDemos(){ initAttention(); initPatches(); initShuffle(); initCosine(); /*<<INITS>>*/ initSliders(); }
 /* range sliders: a finger anywhere on the track sets and drags the value.
    Phones otherwise only move a native slider when the touch lands exactly on its thumb,
    and a touch on the track scrolls the page instead. */
@@ -1541,6 +1686,23 @@ function initShuffle(){
     document.getElementById('shReset').onclick=()=>{ perm=[...Array(N).keys()]; seed=9; run(); };   /* back to the photo in order; the next shuffle repeats the first */
     document.getElementById('shPos').addEventListener('change',run);
     if(PRINTING) document.getElementById('shBtn').click(); else run(); });
+}
+/* C3: cosine of two arrows — a fixed, b turned and stretched */
+function initCosine(){
+  const cv=document.getElementById('csCv'); if(!cv) return; const ctx=cv.getContext('2d'), W=cv.width, H=cv.height;
+  const A=document.getElementById('csA'), L=document.getElementById('csL'); if(PRINTING){ A.value=60; }
+  const arrow=(x1,y1,col,lab)=>{ const x0=W/2-40, y0=H-60; ctx.strokeStyle=col; ctx.fillStyle=col; ctx.lineWidth=4; ctx.beginPath(); ctx.moveTo(x0,y0); ctx.lineTo(x1,y1); ctx.stroke();
+    const t=Math.atan2(y1-y0,x1-x0); ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x1-14*Math.cos(t-.4),y1-14*Math.sin(t-.4)); ctx.lineTo(x1-14*Math.cos(t+.4),y1-14*Math.sin(t+.4)); ctx.fill();
+    ctx.font='700 16px "Space Grotesk",sans-serif'; ctx.fillText(lab,x1+10*Math.cos(t)-4,y1+10*Math.sin(t)+4); };
+  const draw=()=>{ const th=+A.value*Math.PI/180, len=+L.value, R=110, x0=W/2-40, y0=H-60;
+    const a=[1,0], b=[len*Math.cos(th),len*Math.sin(th)], dot=a[0]*b[0]+a[1]*b[1], cos=dot/(1*len);
+    ctx.clearRect(0,0,W,H); ctx.fillStyle='#fff'; ctx.fillRect(0,0,W,H);
+    ctx.strokeStyle='#eef1f5'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(20,y0); ctx.lineTo(W-20,y0); ctx.stroke();
+    ctx.strokeStyle='#c97a06'; ctx.lineWidth=2; ctx.beginPath(); ctx.arc(x0,y0,40,-th,0); ctx.stroke();
+    ctx.fillStyle='#c97a06'; ctx.font='600 14px "Space Grotesk",sans-serif'; ctx.fillText(`θ = ${A.value}°`,x0+46*Math.cos(-th/2)+4,y0+46*Math.sin(-th/2)-2);
+    arrow(x0+R,y0,'#0f766e','a'); arrow(x0+R*b[0],y0-R*b[1],'#6d5bd0','b');
+    document.getElementById('csOut').innerHTML=`a · b = ${dot.toFixed(2)} · |a| = 1 · |b| = ${len.toFixed(2)} · cos θ = <b>${cos.toFixed(2)}</b>`; cv.dataset.cos=cos.toFixed(4); };
+  [A,L].forEach(e=>e.addEventListener('input',draw)); draw();
 }
 /*<<JS>>*/
 </script>
