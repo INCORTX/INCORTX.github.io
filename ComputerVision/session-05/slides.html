@@ -373,6 +373,13 @@ html.reading .reveal ul.small li{font-size:14px;}
 .reveal table.tbl.nn td{font-family:var(--display);vertical-align:top;padding:.35em .4em;}
 .reveal table.tbl.nn td span{display:block;font-size:.85em;color:var(--muted);margin-top:.2em;}
 html.reading .reveal table.tbl.nn img{width:56px!important;height:42px!important;}
+.reveal table.tbl.cos5 th{font-size:.8em;}
+.reveal table.tbl.cos5 td{color:#0f1b2d;}
+.reveal p.refimg{font-size:.48em;line-height:1.5;color:var(--body);margin:.3em 0 0;}
+html.reading .reveal p.refimg{font-size:12px;}
+html.reading .reveal ul.small li{font-size:13px;}
+html.reading .reveal table.tbl.nn td span{font-size:12px;}
+html.reading .reveal table.tbl.cos5 th{font-size:12px;}
 /*<<CSS>>*//* pipeline */
 .pipe{display:flex;gap:.45em;align-items:stretch;counter-reset:p;}
 .pipe .st{flex:1 1 0;background:#fff;border:1px solid var(--line);border-radius:12px;padding:.6em .65em;font-size:.64em;line-height:1.35;box-shadow:0 6px 16px -12px rgba(15,27,45,.25);position:relative;}
@@ -1137,6 +1144,228 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="takeaway"><span>Later: session 6 C matches descriptors by nearest neighbour · T5-1 DINOv2. Next · D: put captions in the same space as the photos.</span></p>
 
   <aside class="notes"><p>🇹🇭 สรุป C · ชี้ต่อคาบ 6 C (จับคู่ descriptor ด้วย nearest neighbour) และ T5-1 DINOv2 · แล้วต่อ D: ข้อความอยู่ใน space เดียวกับภาพ</p><p>🇬🇧 Wrap up C. Forward: session 6 C (nearest-neighbour matching), T5-1 DINOv2. Then D: text in the same space as the photos.</p></aside>
+</section>
+
+<!-- 30 -->
+<section class="part-open" id="part-d" data-part="D">
+  <div class="po-strip"><a href="#/part-a" class="done"><b>A</b>Attention</a><a href="#/part-b" class="done"><b>B</b>ViT</a><a href="#/part-c" class="done"><b>C</b>No labels</a><a href="#/part-d" class="on"><b>D</b>CLIP</a></div>
+  <p class="po-letter">D</p>
+  <h2 class="claim">CLIP &amp; zero-shot</h2>
+  <p class="po-q">Can a model recognise things nobody labelled for it?</p>
+  <p class="po-out"><span>By the end of this part</span>Classify an image from text prompts, and name what CLIP gets wrong.</p>
+  <aside class="notes"><p>🇹🇭 หน้าเปิด part: อ่านคำถามกับสิ่งที่จะทำได้ท้าย part แล้วเข้าเนื้อหา</p><p>🇬🇧 Part opener: read the question and what you can do by the end of the part, then go in.</p></aside>
+</section>
+
+<!-- 31 -->
+<section data-part="D">
+  <p class="kicker">D · CLIP &amp; zero-shot</p>
+  <h2 class="claim">CLIP: pictures and sentences in one space</h2>
+  <div class="split">
+    <svg class="fig cvsvg" viewBox="0 0 600 260" role="img" aria-label="a photo goes through an image encoder and a sentence through a text encoder; both become 512 numbers compared by cosine">
+      <defs><marker id="ad5" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#94a3b8"/></marker></defs>
+      <clipPath id="cd1"><rect x="10" y="20" width="120" height="90" rx="8"/></clipPath><image href="img/dog.jpg" x="10" y="20" width="120" height="90" preserveAspectRatio="xMidYMid slice" clip-path="url(#cd1)"/>
+      <rect x="10" y="160" width="150" height="56" rx="8" fill="#fff" stroke="#94a3b8"/><text x="85" y="193" text-anchor="middle" class="lb" style="font-size:13px">“a photo of a dog”</text>
+      <path d="M135 65 H195" stroke="#94a3b8" stroke-width="2.5" marker-end="url(#ad5)"/><path d="M165 188 H195" stroke="#94a3b8" stroke-width="2.5" marker-end="url(#ad5)"/>
+      <rect x="200" y="38" width="150" height="54" rx="10" fill="#e6f4f2" stroke="#0f766e" stroke-width="2"/><text x="275" y="62" text-anchor="middle" class="lb">image encoder</text><text x="275" y="81" text-anchor="middle" class="tk">a ViT (part B)</text>
+      <rect x="200" y="161" width="150" height="54" rx="10" fill="#efeafd" stroke="#6d5bd0" stroke-width="2"/><text x="275" y="185" text-anchor="middle" class="lb">text encoder</text><text x="275" y="204" text-anchor="middle" class="tk">a Transformer</text>
+      <path d="M355 65 H405" stroke="#94a3b8" stroke-width="2.5" marker-end="url(#ad5)"/><path d="M355 188 H405" stroke="#94a3b8" stroke-width="2.5" marker-end="url(#ad5)"/>
+      <text x="440" y="70" class="tk">512 numbers</text><text x="440" y="193" class="tk">512 numbers</text>
+      <path d="M470 80 L540 120 L470 170" fill="none" stroke="#c97a06" stroke-width="2.5"/><text x="548" y="126" class="lb" style="fill:#c97a06">cos</text>
+    </svg>
+    <div class="say">
+      <p>Two encoders, trained together, so that a photo and a sentence about it land on <b>nearby points</b> of one 512-number space.</p>
+      <div class="flashback fragment">Part C: embeddings + cosine. Session 4 D: the image encoder is a backbone — here a ViT; CLIP also comes with a ResNet.</div>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ชี้สองทาง: ภาพเข้า image encoder (ViT ของ B) · ประโยคเข้า text encoder · ออกมาเป็น 512 ตัวเลขทั้งคู่ เทียบด้วย cos ของ C</p><p>🇬🇧 Two roads: the photo through the image encoder (part B's ViT), the sentence through the text encoder; both become 512 numbers, compared by part C's cosine.</p></aside>
+</section>
+
+<!-- 32 -->
+<section data-part="D">
+  <p class="kicker">D · CLIP &amp; zero-shot</p>
+  <h2 class="claim">Training: match each photo to its own caption</h2>
+  <div class="split">
+    <div><table class="tbl big cos5"><tr><th></th><th>“a photo of a dog”</th><th>“a photo of a cat”</th><th>“a photo of an apple”</th><th>“a photo of an elephant”</th><th>“a photo of a bicycle”</th></tr><tr><td><img src="img/dog.jpg" alt="dog" style="width:62px;height:44px;object-fit:cover;border-radius:5px;display:block;margin:auto"></td><td style="background:rgba(15,118,110,0.62);font-weight:700;outline:3px solid var(--coral);outline-offset:-3px">0.28</td><td style="background:rgba(15,118,110,0.35);">0.22</td><td style="background:rgba(15,118,110,0.35);">0.22</td><td style="background:rgba(15,118,110,0.27);">0.20</td><td style="background:rgba(15,118,110,0.15);">0.17</td></tr><tr><td><img src="img/cat.jpg" alt="cat" style="width:62px;height:44px;object-fit:cover;border-radius:5px;display:block;margin:auto"></td><td style="background:rgba(15,118,110,0.33);">0.21</td><td style="background:rgba(15,118,110,0.59);font-weight:700;outline:3px solid var(--coral);outline-offset:-3px">0.27</td><td style="background:rgba(15,118,110,0.28);">0.20</td><td style="background:rgba(15,118,110,0.21);">0.19</td><td style="background:rgba(15,118,110,0.16);">0.18</td></tr><tr><td><img src="img/apple.jpg" alt="apple" style="width:62px;height:44px;object-fit:cover;border-radius:5px;display:block;margin:auto"></td><td style="background:rgba(15,118,110,0.31);">0.21</td><td style="background:rgba(15,118,110,0.26);">0.20</td><td style="background:rgba(15,118,110,0.80);font-weight:700;outline:3px solid var(--coral);outline-offset:-3px">0.32</td><td style="background:rgba(15,118,110,0.21);">0.19</td><td style="background:rgba(15,118,110,0.37);">0.22</td></tr><tr><td><img src="img/elephants.jpg" alt="elephants" style="width:62px;height:44px;object-fit:cover;border-radius:5px;display:block;margin:auto"></td><td style="background:rgba(15,118,110,0.27);">0.20</td><td style="background:rgba(15,118,110,0.17);">0.18</td><td style="background:rgba(15,118,110,0.13);">0.17</td><td style="background:rgba(15,118,110,0.78);font-weight:700;outline:3px solid var(--coral);outline-offset:-3px">0.31</td><td style="background:rgba(15,118,110,0.18);">0.18</td></tr><tr><td><img src="img/bicycle.jpg" alt="bicycle" style="width:62px;height:44px;object-fit:cover;border-radius:5px;display:block;margin:auto"></td><td style="background:rgba(15,118,110,0.13);">0.17</td><td style="background:rgba(15,118,110,0.06);">0.15</td><td style="background:rgba(15,118,110,0.16);">0.18</td><td style="background:rgba(15,118,110,0.05);">0.15</td><td style="background:rgba(15,118,110,0.56);font-weight:700;outline:3px solid var(--coral);outline-offset:-3px">0.26</td></tr></table>
+      <p class="gcap">cosine of each photo with each caption, from CLIP · darker = higher · the true pairs (outlined) win every row</p></div>
+    <div class="say">
+      <p>A batch of N photos with their N captions gives an N × N table of cosines. The loss pulls the <b>diagonal</b> (true pairs) up and pushes everything else down.</p>
+      <p class="fragment">That is part C's contrastive learning — with a caption as the second view. CLIP was trained on <b>400 million</b> photo–caption pairs collected from the internet.</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ชี้เส้นทแยง: คู่จริงชนะทุกแถว · ค่าจริงแค่ 0.2–0.3 แต่ลำดับคือสิ่งที่สำคัญ · 400 ล้านคู่จากอินเทอร์เน็ต — คาบ 8 D จะถามว่ามาจากไหน ใครอยู่ในภาพ</p><p>🇬🇧 Point at the diagonal: the true pair wins every row. The values are only 0.2–0.3; the order is what counts. 400 million pairs from the internet — session 8 D asks where they came from and who is in them.</p></aside>
+</section>
+
+<!-- 33 -->
+<section data-part="D">
+  <p class="kicker">D · CLIP &amp; zero-shot</p>
+  <h2 class="claim">Zero-shot: the prompt is the classifier</h2>
+  <div class="split">
+    <div>
+      <figure class="photo" style="max-width:300px;margin:0 auto .4em"><img src="img/dog.jpg" alt="a dog lying on grass" style="max-height:170px"></figure>
+      <table class="tbl big"><tr><th style="text-align:left">prompt</th><th>cosine</th><th style="text-align:left">probability</th></tr><tr><td style="text-align:left">a photo of a dog</td><td>0.277</td><td style="text-align:left"><div style="height:14px;width:219px;background:var(--teal);border-radius:4px;display:inline-block;vertical-align:middle"></div> 0.995</td></tr><tr><td style="text-align:left">a photo of a cat</td><td>0.218</td><td style="text-align:left"><div style="height:14px;width:2px;background:var(--teal);border-radius:4px;display:inline-block;vertical-align:middle"></div> 0.003</td></tr><tr><td style="text-align:left">a photo of an apple</td><td>0.217</td><td style="text-align:left"><div style="height:14px;width:2px;background:var(--teal);border-radius:4px;display:inline-block;vertical-align:middle"></div> 0.002</td></tr><tr><td style="text-align:left">a photo of an elephant</td><td>0.200</td><td style="text-align:left"><div style="height:14px;width:2px;background:var(--teal);border-radius:4px;display:inline-block;vertical-align:middle"></div> 0.000</td></tr><tr><td style="text-align:left">a photo of a bicycle</td><td>0.173</td><td style="text-align:left"><div style="height:14px;width:2px;background:var(--teal);border-radius:4px;display:inline-block;vertical-align:middle"></div> 0.000</td></tr></table>
+    </div>
+    <div class="say">
+      <p>To classify, <b>write the classes as sentences</b>, embed them, and pick the sentence with the largest cosine — no training, no new head.</p>
+      <p class="fragment">CLIP multiplies the cosines by 100 before softmax, so a small lead (0.28 against 0.22) becomes 99.5%.</p>
+      <div class="flashback fragment">Session 4 D: transfer learning trains a new head. Zero-shot does not train anything.</div>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ชี้ cos ใกล้กันมาก (0.28 vs 0.22) แต่ softmax(100 × cos) ทำให้ 99% · เทียบคาบ 4 D: transfer learning ต้อง train head แต่ zero-shot ไม่ต้อง</p><p>🇬🇧 The cosines are close (0.28 vs 0.22), but softmax(100 × cos) makes it 99%. Compare session 4 D: transfer learning trains a head; zero-shot trains nothing.</p></aside>
+</section>
+
+<!-- 34 -->
+<section data-part="D">
+  <p class="kicker">D · CLIP &amp; zero-shot</p>
+  <h2 class="claim">Change a word, change the answer</h2>
+  <div class="split even">
+    <div><figure class="photo"><img src="img/cat.jpg" alt="a tabby cat on asphalt" style="max-height:150px"></figure>
+      <table class="tbl big" style="margin-top:.3em"><tr><th style="text-align:left">prompts for the same cat</th><th>probability</th></tr><tr><td style="text-align:left">a photo of a Thai cat</td><td>0.68</td></tr><tr><td style="text-align:left">a photo of a tabby cat</td><td>0.24</td></tr><tr><td style="text-align:left">a photo of a cat</td><td>0.06</td></tr><tr><td style="text-align:left">cat</td><td>0.02</td></tr><tr><td style="text-align:left">a photo of a tiger</td><td>0.00</td></tr><tr><td style="text-align:left">a drawing of a cat</td><td>0.00</td></tr></table></div>
+    <div><figure class="photo"><img src="img/dog.jpg" alt="the dog on grass" style="max-height:150px"></figure>
+      <table class="tbl big" style="margin-top:.3em"><tr><th style="text-align:left">prompts for the same dog</th><th>probability</th></tr><tr><td style="text-align:left">a photo of a German shepherd</td><td>0.61</td></tr><tr><td style="text-align:left">a photo of a dog</td><td>0.29</td></tr><tr><td style="text-align:left">a photo of a golden retriever</td><td>0.07</td></tr><tr><td style="text-align:left">a photo of a puppy</td><td>0.02</td></tr><tr><td style="text-align:left">a photo of a wolf</td><td>0.00</td></tr></table></div>
+  </div>
+  <p class="takeaway"><span>“a photo of a Thai cat” beats “a photo of a cat”, and CLIP names the dog a German shepherd with 61% — we do not know its breed. Wording is part of the classifier; test prompts on your own validation photos.</span></p>
+
+  <aside class="notes"><p>🇹🇭 ชี้แถว cat (0.02) vs a photo of a Thai cat (0.68) — คำเดียวเปลี่ยนผล · สุนัข: ไม่มีใครรู้พันธุ์จริง แต่ CLIP ตอบมั่นใจ · ย้ำ: ต้องทดสอบ prompt บน validation set (คาบ 4 B)</p><p>🇬🇧 Point at 'cat' (0.02) vs 'a photo of a Thai cat' (0.68): one word changes the result. The dog: nobody knows its breed, yet CLIP answers confidently. Test prompts on a validation set (session 4 B).</p></aside>
+</section>
+
+<!-- 35 -->
+<section data-part="D">
+  <p class="kicker">D · CLIP &amp; zero-shot</p>
+  <h2 class="claim">What CLIP gets wrong</h2>
+  <div class="conv3" style="grid-template-columns:repeat(3,minmax(0,1fr));max-width:none;gap:.8em;align-items:start">
+    <div><figure class="photo"><img src="img/elephants.jpg" alt="four elephants in a forest" style="max-height:150px"></figure>
+      <p class="say" style="margin:.3em 0 0"><b>Counting.</b> 4 elephants. Top answer: “three elephants” (0.34); “four” comes 4th. The scores are almost flat.</p></div>
+    <div><figure class="photo"><img src="img/apple_ipod.jpg" alt="an apple with a paper note reading iPod" style="max-height:150px"></figure>
+      <p class="say" style="margin:.3em 0 0"><b>Text in the picture.</b> A paper note on the apple: “an iPod” 0.95, “an apple” 0.05. It reads words better than it sees fruit.</p></div>
+    <div><div class="card amber" style="height:100%"><b>Bias from the data</b>400 million internet captions carry who is photographed, by whom, and with which words. CLIP learns those patterns too — session 8 D measures them.</div></div>
+  </div>
+  <p class="gcap" style="margin-top:.5em">real CLIP ViT-B/32 outputs · the note was added to the CC0 apple photo by a program written for this course</p>
+
+  <aside class="notes"><p>🇹🇭 สามข้อ: นับไม่เป็น (คะแนนแบน) · อ่านตัวหนังสือในภาพแทนดูของจริง · bias จากข้อมูล — ชี้ต่อคาบ 8 D (ที่มาของข้อมูล + วัดตามกลุ่ม)</p><p>🇬🇧 Three limits: counting (flat scores), text in the picture beats the object, bias from the data — forward to session 8 D (where the data comes from, measuring by group).</p></aside>
+</section>
+
+<!-- 36 -->
+<section data-part="D">
+  <p class="kicker">D · CLIP &amp; zero-shot</p>
+  <h2 class="claim">From names to boxes and masks</h2>
+  <div class="split">
+    <div class="cards" style="grid-template-columns:1fr">
+      <div class="card"><b>Today</b>One sentence → one score for the whole photo: “is there a dog?”</div>
+      <div class="card violet"><b>Session 8</b>One sentence → a box or a mask around each match: “where are the dogs?” — detection and segmentation with text, built on the same image–text space.</div>
+    </div>
+    <div class="say">
+      <p>Session 1's course map promised it: <b>CLIP → find by text</b> (session 8).</p>
+      <p class="fragment">The idea stays the same — embed the words, compare with cosine — but now for every region of the photo, not the whole photo.</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ย้อนแผนที่วิชาคาบ 1 (CLIP → find by text 8) · ปูทางคาบ 8: cosine ทีละบริเวณแทนทั้งภาพ</p><p>🇬🇧 Back to session 1's course map (CLIP → find by text, 8). Session 8: cosine per region instead of per photo.</p></aside>
+</section>
+
+<!-- 37 -->
+<section data-part="D">
+  <p class="kicker">D · CLIP &amp; zero-shot</p>
+  <h2 class="claim">Try it: zero-shot by hand</h2>
+  <div class="split">
+    <div class="tryit"><span class="tag">Try it</span>A photo's normalised embedding is <b>e = [0.8, 0.6]</b>. The prompts embed to <b>cat [0.6, 0.8]</b>, <b>dog [1, 0]</b>, <b>car [0, 1]</b>.
+      <ol style="margin:.4em 0 0 1.1em"><li>Compute the three cosines.</li><li>Which class does CLIP pick?</li><li>Do you need to train anything to add a fourth class, “bird”?</li></ol>
+      <details><summary>Answer</summary>1. cat 0.48 + 0.48 = <b>0.96</b> · dog <b>0.8</b> · car <b>0.6</b> · 2. <b>cat</b> · 3. <b>No</b> — embed “a photo of a bird” and compare one more cosine.</details>
+    </div>
+    <div class="say"><p>Zero-shot = embed each prompt, cosine with the photo, pick the largest.</p></div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ให้เวลา 1 นาที · แบบข้อสอบ Final</p><p>🇬🇧 Give one minute. Final-exam style.</p></aside>
+</section>
+
+<!-- 38 -->
+<section data-part="D">
+  <p class="kicker">D · CLIP &amp; zero-shot</p>
+  <h2 class="claim">CLIP: classes are just sentences</h2>
+  <div class="cards">
+    <div class="card"><b>One space</b>An image encoder and a text encoder trained on 400 million photo–caption pairs to agree.</div>
+    <div class="card violet"><b>Zero-shot</b>Write the classes as prompts, take the largest cosine — no training. Wording matters.</div>
+    <div class="card amber"><b>Limits</b>Cannot count, is fooled by written words, and inherits the bias of its data.</div>
+  </div>
+  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-05/lab.ipynb#scrollTo=part-d" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part D</a><span>zero-shot on your own photo, changing the prompts, the note on the apple</span></p>
+  <p class="more"><a target="_blank" rel="noopener" href="../practice/#s5d">More practice · Session 5 D — practice bank with worked solutions →</a></p>
+  <p class="takeaway"><span>Later: session 8 — find by text, and the ethics of who is in the data (8 D). Next: start looking for your project topic.</span></p>
+
+  <aside class="notes"><p>🇹🇭 สรุป D · ชี้ต่อคาบ 8 (find by text + ethics) · ต่อด้วยหน้าเริ่มหาหัวข้อโปรเจกต์</p><p>🇬🇧 Wrap up D. Forward: session 8 (find by text, ethics). Then the project-topic slide.</p></aside>
+</section>
+
+<!-- 39 -->
+<section>
+  <p class="kicker">Project · week 5</p>
+  <h2 class="claim">Start looking for your project topic now</h2>
+  <div class="split">
+    <div class="cards" style="grid-template-columns:1fr">
+      <div class="card"><b>Already in your toolbox</b>A trained CNN + transfer learning (session 4) · a ViT backbone (B) · CLIP zero-shot and search by example (C, D).</div>
+      <div class="card violet"><b>Coming</b>Session 8: detection and segmentation — boxes and masks, also from text.</div>
+      <div class="card amber"><b>Due in week 8</b>Your topic. Write it with the four pitch questions from session 1: Input · Output · Problem · Challenge.</div>
+    </div>
+    <div class="say">
+      <p>Look for a problem first, then the tool: what goes in, what should come out, why is it hard?</p>
+      <p class="fragment">Session 4 slide 39's table tells you where to start once you know how much data you have.</p>
+    </div>
+  </div>
+  <aside class="notes"><p>🇹🇭 หมุดหมายสัปดาห์ 5: เริ่มหาหัวข้อ ส่งสัปดาห์ 8 · ทวน 4 คำถาม pitch ของคาบ 1 · ย้อนตาราง recipe คาบ 4 หน้า 39</p><p>🇬🇧 Week-5 milestone: start looking, topic due week 8. Recap session 1's four pitch questions; session 4's recipe table (slide 39).</p></aside>
+</section>
+
+<!-- 40 -->
+<section>
+  <p class="kicker">Session 5 · what to remember</p>
+  <h2 class="claim">From fixed windows to learned attention — and open names</h2>
+  <ol class="steps recap">
+    <li><span><b>Attention:</b> score = q · k, softmax → weights, output = Σ w v; every token sees every token (N²).</span></li>
+    <li><span><b>ViT:</b> 16 × 16 patches → tokens (224 → 196 + [CLS]); add positions; attention + MLP with skips.</span></li>
+    <li><span><b>No labels:</b> embeddings compared by cosine; contrastive learning pulls two views of a photo together.</span></li>
+    <li><span><b>CLIP:</b> photos and sentences in one space; a prompt is a classifier — mind the wording and the limits.</span></li>
+  </ol>
+  <p class="more"><a target="_blank" rel="noopener" href="../practice/#s5">All session 5 practice →</a></p>
+  <aside class="notes"><p>🇹🇭 ทวน 4 ข้อ A–D · ต่อด้วยครึ่ง A นำเสนอ T4 หลังจบเด็ค</p><p>🇬🇧 Recap the four lines A–D. Half A's T4 talks follow after the deck.</p></aside>
+</section>
+
+<!-- 41 -->
+<section>
+  <p class="kicker">Assignment · topic set T5</p>
+  <h2 class="claim">Half B: pick a T5 topic today — you present it in session 6</h2>
+  <ol class="tset"><li><span class="tn">1</span><span class="tt">DINOv2 — features without labels</span><a href="https://arxiv.org/abs/2304.07193" target="_blank" rel="noopener">Start: Oquab et al. (2023), DINOv2</a></li><li><span class="tn">2</span><span class="tt">Swin Transformer — a ViT with a pyramid</span><a href="https://arxiv.org/abs/2103.14030" target="_blank" rel="noopener">Start: Liu et al. (2021), Swin Transformer</a></li><li><span class="tn">3</span><span class="tt">Vision-language models</span><a href="https://visionbook.mit.edu/VLMs.html" target="_blank" rel="noopener">Start: Torralba, Isola &amp; Freeman — ch. 51, Vision and Language</a></li><li><span class="tn">4</span><span class="tt">Bias in image data</span><a href="https://visionbook.mit.edu/bias_and_shift.html" target="_blank" rel="noopener">Start: Torralba, Isola &amp; Freeman — ch. 35, Data Bias and Shift</a></li><li><span class="tn">5</span><span class="tt">Transformers: from language to vision</span><a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">Start: Vaswani et al. (2017), Attention Is All You Need</a></li><li><span class="tn">6</span><span class="tt">Recurrent networks and image captioning</span><a href="https://visionbook.mit.edu/recurrent_neural_nets.html" target="_blank" rel="noopener">Start: Torralba, Isola &amp; Freeman — ch. 25, Recurrent Neural Nets</a></li><li><span class="tn">7</span><span class="tt">Perceptual grouping</span><a href="https://visionbook.mit.edu/perceptual_organization.html" target="_blank" rel="noopener">Start: Torralba, Isola &amp; Freeman — ch. 31, Perceptual Grouping</a></li></ol>
+  <p class="takeaway"><span>One group per topic. Each links to a starting chapter or paper — go beyond it. All topic sets: the course home page.</span></p>
+  <aside class="notes"><p>🇹🇭 ครึ่ง B เลือกหัวข้อ กลุ่มละหนึ่งหัวข้อ ไม่ซ้ำกัน · ส่งไฟล์ตามกำหนดก่อนคาบ 6 · ครึ่ง A รับ T6 หลังคาบ 6</p><p>🇬🇧 Half B picks one topic per group, no repeats; files due before session 6. Half A gets T6 after session 6.</p></aside>
+</section>
+
+<!-- 42 -->
+<section>
+  <p class="kicker">Next · Session 6</p>
+  <h2 class="claim">Do two photos show the same point?</h2>
+  <div class="split">
+    <div class="say">
+      <p>Today we compared <b>whole photos</b>: one embedding each, nearest neighbour by cosine — and saw the background get in the way (slide 27).</p>
+      <p>Session 6 — <b>local features and matching</b>: find small distinctive points, describe each with numbers, and match them between photos — even when most matches are wrong.</p>
+    </div>
+    <div class="flashback">Keep from today: an embedding is a point · cosine compares directions · nearest neighbour = largest cosine.</div>
+  </div>
+  <aside class="notes"><p>🇹🇭 ปิดคาบ: ปูทางคาบ 6</p><p>🇬🇧 Close the session and set up session 6.</p></aside>
+</section>
+
+<!-- 43 -->
+<section>
+  <p class="kicker">References</p>
+  <h2 class="claim">Where session 5 comes from</h2>
+  <ul class="small" style="font-size:.55em;line-height:1.5">
+    <li>A. Vaswani et al. (2017). Attention is all you need. <i>NeurIPS</i> — arXiv:1706.03762.</li>
+    <li>A. Dosovitskiy et al. (2021). An image is worth 16×16 words: Transformers for image recognition at scale. <i>ICLR</i> — arXiv:2010.11929.</li>
+    <li>T. Chen, S. Kornblith, M. Norouzi &amp; G. Hinton (2020). A simple framework for contrastive learning of visual representations (SimCLR). <i>ICML</i> — arXiv:2002.05709.</li>
+    <li>M. Caron et al. (2021). Emerging properties in self-supervised vision transformers (DINO). <i>ICCV</i> — arXiv:2104.14294.</li>
+    <li>A. Radford et al. (2021). Learning transferable visual models from natural language supervision (CLIP). <i>ICML</i> — arXiv:2103.00020.</li>
+    <li>S. J. D. Prince (2023). <i>Understanding Deep Learning</i>, ch. 12 · A. Torralba, P. Isola &amp; W. T. Freeman (2024). <i>Foundations of Computer Vision</i>, ch. 26, 30, 51 · R. Szeliski (2022), §5.4, §6.6.</li>
+  </ul>
+  <h3 style="margin-top:.6em">Images and models</h3>
+  <p class="small refimg">Photos, all CC0 via Wikimedia Commons: Joselodos, “Dog resting on the grass” · Mike Dickison, “Bangkok Cat” · Bapple4747, “Apple on desk” · Sultan Ahmed 09, “Asian Elephant in the Forest” · Mitchelldirt, “Bicycle parking lemonjellos” · Arlo Barnes, “Dog on dirt road” · Photo by Marko Milivojevic on Pixnio, “Domestic shorthair cat portrait in grass” · and from session 2: Laitche, “One point perspective” (public domain), Wilfredor, Jacques-Cartier National Park (CC0).</p>
+  <p class="small refimg">Models: DINO ViT-B/16 (facebook/dino-vitb16) and CLIP ViT-B/32 (openai/clip-vit-base-patch32), run by programs written for this course; the note on the apple was added by one of them.</p>
 </section>
 
 </div>
