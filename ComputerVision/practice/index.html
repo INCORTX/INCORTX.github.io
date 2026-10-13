@@ -59,7 +59,7 @@ h2.sess{font:700 26px var(--display);color:var(--ink);margin:30px 0 4px}
   <h1>Practice bank</h1>
   <p class="lead">Exam-style questions, session by session, with worked solutions. Work each one by hand first — no calculator needed — then open the solution and compare step by step; the mark for each step is in [ ].</p>
 
-  <div class="bar"><button class="chip on" data-k="sess" data-v="all">All sessions</button><button class="chip" data-k="sess" data-v="2">Session 2</button><button class="chip" data-k="sess" data-v="3">Session 3</button><button class="chip" data-k="sess" data-v="4">Session 4</button><span class="sep"></span><button class="chip on" data-k="stars" data-v="all">Any level</button><button class="chip" data-k="stars" data-v="1">⭐</button><button class="chip" data-k="stars" data-v="2">⭐⭐</button><button class="chip" data-k="stars" data-v="3">⭐⭐⭐</button><span class="sep"></span><button class="chip" data-k="hide">Hide done</button><button class="chip" data-k="open">Open all solutions</button><span class="prog" id="prog"></span></div>
+  <div class="bar"><button class="chip on" data-k="sess" data-v="all">All sessions</button><button class="chip" data-k="sess" data-v="2">Session 2</button><button class="chip" data-k="sess" data-v="3">Session 3</button><button class="chip" data-k="sess" data-v="4">Session 4</button><button class="chip" data-k="sess" data-v="5">Session 5</button><span class="sep"></span><button class="chip on" data-k="stars" data-v="all">Any level</button><button class="chip" data-k="stars" data-v="1">⭐</button><button class="chip" data-k="stars" data-v="2">⭐⭐</button><button class="chip" data-k="stars" data-v="3">⭐⭐⭐</button><span class="sep"></span><button class="chip" data-k="hide">Hide done</button><button class="chip" data-k="open">Open all solutions</button><span class="prog" id="prog"></span></div>
   <details class="ref"><summary>Reference values — sin / cos / tan, roots, powers of two</summary><table class="cov"><tr><th>θ (rad)</th><th>θ (deg)</th><th>sin θ</th><th>cos θ</th><th>tan θ</th></tr><tr><td>0</td><td>0°</td><td>0</td><td>1</td><td>0</td></tr><tr><td>π/6</td><td>30°</td><td>0.500</td><td>0.866</td><td>0.577</td></tr><tr><td>π/4</td><td>45°</td><td>0.707</td><td>0.707</td><td>1</td></tr><tr><td>π/3</td><td>60°</td><td>0.866</td><td>0.500</td><td>1.732</td></tr><tr><td>π/2</td><td>90°</td><td>1</td><td>0</td><td>undefined</td></tr><tr><td>π</td><td>180°</td><td>0</td><td>−1</td><td>0 †</td></tr><tr><td>3π/2</td><td>270°</td><td>−1</td><td>0</td><td>undefined</td></tr><tr><td>2π</td><td>360°</td><td>0</td><td>1</td><td>0 †</td></tr></table><p><strong>Reading arctan:</strong> find the ratio in the tan θ column and read the angle on the left — tan θ = 1 ⇒ θ = 45°. A gradient with $G_x = G_y$ therefore points at 45°. Every direction you are asked to name is one of the rows above; if your ratio is not in the tan θ column, re-check the arithmetic rather than reaching for a calculator.</p><p><strong>† forward only.</strong> tan repeats every 180°, but arctan answers only within −90° to 90°: tan 180° = 0 is true, yet arctan(0) = 0°, not 180°. Read backwards only from the 0°–90° rows.</p><p><strong>Negative ratios:</strong> arctan(−x) = −arctan(x), so arctan(−1) = −45°.</p><p><strong>Pythagorean triples</strong> — these give the <strong>magnitude</strong> $\sqrt{G_x^2+G_y^2}$ as a whole number, not an angle: 3-4-5 · 5-12-13 · 6-8-10 · 8-15-17 · 7-24-25 · 20-21-29 — and any multiple, e.g. 24-32-<strong>40</strong>. Magnitude and direction are separate questions; read the direction from the tan θ column above.</p><p><strong>Square roots:</strong> √2 ≈ 1.414 · √3 ≈ 1.732 · √5 ≈ 2.236 · √8 ≈ 2.828 · √32 ≈ 5.657</p><p><strong>Powers of two</strong> (bit depth, pyramid levels): $2^4 = 16$ · $2^6 = 64$ · $2^8 = 256$ · $2^{10} = 1024$ · $2^{24} = 16{,}777{,}216$ · log₂ 8 = 3 · log₂ 16 = 4 · log₂ 256 = 8</p></details>
   <h2 class="sess" id="s2" data-sess="2">Session 2 · Image Formation &amp; Sensing</h2>
   <div class="parthead" id="s2a" data-group="2A"><h3>A · Pinhole &amp; perspective</h3><span class="pc"></span><a href="../session-02/slides.html#/part-a">Slides for this part →</a></div>
@@ -650,6 +650,195 @@ Step 2: $1.1^3 = 1.331$ [0.5]<br>
 <strong>(b)</strong> flip: <strong>no</strong> — it turns "left" into "right", so the label is wrong · brightness: <strong>yes</strong>, signs are seen in sun and shade [1]<br>
 <strong>(c)</strong> <strong>yes</strong> — from above there is no "up"; a field turned $90^\circ$ is still a field [0.5]<br>
 <strong>Answer:</strong> (a) no / yes · (b) no / yes · (c) yes — keep only changes that keep the label.</div></details>
+      </article>
+  <h2 class="sess" id="s5" data-sess="5">Session 5 · Attention, ViT &amp; CLIP</h2>
+  <div class="parthead" id="s5a" data-group="5A"><h3>A · Attention</h3><span class="pc"></span><a href="../session-05/slides.html#/part-a">Slides for this part →</a></div>
+      <article class="item" id="p060" data-sess="5" data-part="A" data-stars="1">
+        <header><span class="iid">060</span><span class="stars" title="difficulty">⭐</span><span class="topic">Attention scores</span><span class="meta">1.5 pts · ~2 min</span>
+          <label class="done"><input type="checkbox" data-id="060"> Done</label></header>
+        <div class="problem">A query $q = [2,\ {-1}]$ meets three keys $k_1 = [1,\ 1]$, $k_2 = [3,\ 0]$, $k_3 = [0,\ {-2}]$. <strong>(a)</strong> Compute the three scores $q \cdot k_j$. <strong>(b)</strong> Which token will get the largest attention weight?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> Step 1: multiply matching numbers and add [1]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$q \cdot k_1 = 2 - 1 = 1$ · $q \cdot k_2 = 6 + 0 = 6$ · $q \cdot k_3 = 0 + 2 = 2$<br>
+<strong>(b)</strong> softmax keeps the order of the scores, so token 2 (score 6) gets the most [0.5]<br>
+<strong>Answer:</strong> (a) 1, 6, 2 · (b) token 2</div></details>
+      </article>
+      <article class="item" id="p061" data-sess="5" data-part="A" data-stars="2">
+        <header><span class="iid">061</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">The weighted sum of values</span><span class="meta">2 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="061"> Done</label></header>
+        <div class="problem">Softmax gave the weights $w = [0.2,\ 0.5,\ 0.3]$. The values are $v_1 = [4,\ 0]$, $v_2 = [0,\ 2]$, $v_3 = [2,\ 6]$. <strong>(a)</strong> Check that the weights can come from softmax. <strong>(b)</strong> Compute the output.</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> all positive and $0.2 + 0.5 + 0.3 = 1$ [0.5]<br>
+<strong>(b)</strong> Step 1: scale each value by its weight [1]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$0.2 \cdot [4,\ 0] = [0.8,\ 0]$ · $0.5 \cdot [0,\ 2] = [0,\ 1]$ · $0.3 \cdot [2,\ 6] = [0.6,\ 1.8]$<br>
+Step 2: add: $[0.8 + 0 + 0.6,\ 0 + 1 + 1.8] = [1.4,\ 2.8]$ [0.5]<br>
+<strong>Answer:</strong> (a) yes · (b) $[1.4,\ 2.8]$<br>
+<strong>Common mistake:</strong> adding the values first and then multiplying by one weight — each value has its own weight.</div></details>
+      </article>
+      <article class="item" id="p062" data-sess="5" data-part="A" data-stars="1">
+        <header><span class="iid">062</span><span class="stars" title="difficulty">⭐</span><span class="topic">Size of the attention table</span><span class="meta">1.5 pts · ~2 min</span>
+          <label class="done"><input type="checkbox" data-id="062"> Done</label></header>
+        <div class="problem">One attention head scores every token against every token. How many scores for <strong>(a)</strong> 12 tokens, <strong>(b)</strong> 100 tokens, <strong>(c)</strong> 200 tokens? <strong>(d)</strong> A layer has 8 heads over 100 tokens. How many scores in that layer?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln">Step 1: $N$ tokens give $N \times N$ scores per head.<br>
+<strong>(a)</strong> $12^2 = 144$ · <strong>(b)</strong> $100^2 = 10{,}000$ · <strong>(c)</strong> $200^2 = 40{,}000$ — twice the tokens, 4 times the work [1]<br>
+<strong>(d)</strong> $8 \times 10{,}000 = 80{,}000$ [0.5]<br>
+<strong>Answer:</strong> (a) 144 · (b) 10,000 · (c) 40,000 · (d) 80,000</div></details>
+      </article>
+      <article class="item" id="p063" data-sess="5" data-part="A" data-stars="2">
+        <header><span class="iid">063</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Why divide by √d</span><span class="meta">2 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="063"> Done</label></header>
+        <div class="problem">Keys and queries have $d = 64$ numbers, and one query's scores are $8,\ 16,\ 24$. <strong>(a)</strong> What are the scores after dividing by $\sqrt{d}$? <strong>(b)</strong> Without the division, softmax gives about $[0.000,\ 0.000,\ 1.000]$. Why is that a problem, and what does the division change?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $\sqrt{64} = 8$: the scores become $1,\ 2,\ 3$ [1]<br>
+<strong>(b)</strong> Step 1: with large scores, softmax gives almost all the weight to one token — the layer stops mixing information, and the gradient through the others is almost 0 [0.5]<br>
+Step 2: dividing keeps the scores in a moderate range, so the weights stay spread out (here about $0.09,\ 0.24,\ 0.67$) [0.5]<br>
+<strong>Answer:</strong> (a) 1, 2, 3 · (b) undivided, one token takes everything; $\div\sqrt{d}$ keeps softmax soft</div></details>
+      </article>
+      <article class="item" id="p064" data-sess="5" data-part="A" data-stars="2">
+        <header><span class="iid">064</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">How far can one layer see?</span><span class="meta">2 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="064"> Done</label></header>
+        <div class="problem"><strong>(a)</strong> How many stacked $3 \times 3$ convolution layers (stride 1) does one output pixel need before it sees a $15 \times 15$ region? <strong>(b)</strong> How many attention layers does a token need to see all 64 tokens of an image? <strong>(c)</strong> Name one thing the convolution has that attention does not.</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> Step 1: each $3 \times 3$ layer adds 2: after $L$ layers the view is $1 + 2L$ (session 4 C) [0.5]<br>
+Step 2: $1 + 2L \ge 15 \Rightarrow L = 7$ [0.5]<br>
+<strong>(b)</strong> one — every token scores every token [0.5]<br>
+<strong>(c)</strong> a built-in assumption that nearby pixels matter (and that a shift gives the same shift), which helps when data is scarce [0.5]<br>
+<strong>Answer:</strong> (a) 7 layers · (b) 1 layer · (c) locality / shift equivariance</div></details>
+      </article>
+  <div class="parthead" id="s5b" data-group="5B"><h3>B · Vision Transformer</h3><span class="pc"></span><a href="../session-05/slides.html#/part-b">Slides for this part →</a></div>
+      <article class="item" id="p065" data-sess="5" data-part="B" data-stars="1">
+        <header><span class="iid">065</span><span class="stars" title="difficulty">⭐</span><span class="topic">Counting tokens</span><span class="meta">1.5 pts · ~2 min</span>
+          <label class="done"><input type="checkbox" data-id="065"> Done</label></header>
+        <div class="problem">A ViT reads a $256 \times 256$ colour photo. How many patch tokens, and how many tokens with the [CLS] token, for patches of <strong>(a)</strong> $16 \times 16$, <strong>(b)</strong> $32 \times 32$?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln">Step 1: patches $= (\text{image} \div \text{patch})^2$, then add 1 for [CLS].<br>
+<strong>(a)</strong> $(256 \div 16)^2 = 16^2 = 256$ → 257 tokens [0.75]<br>
+<strong>(b)</strong> $(256 \div 32)^2 = 8^2 = 64$ → 65 tokens [0.75]<br>
+<strong>Answer:</strong> (a) 256 and 257 · (b) 64 and 65</div></details>
+      </article>
+      <article class="item" id="p066" data-sess="5" data-part="B" data-stars="2">
+        <header><span class="iid">066</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">A patch embedding with 14 × 14 patches</span><span class="meta">2 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="066"> Done</label></header>
+        <div class="problem">A ViT cuts a $224 \times 224 \times 3$ photo into $14 \times 14$ patches with a convolution of 1,024 kernels, kernel 14, stride 14, no padding. <strong>(a)</strong> What is the output's height and width? <strong>(b)</strong> How many patch tokens? <strong>(c)</strong> How many parameters has this layer?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $\left\lfloor \dfrac{224 + 0 - 14}{14} \right\rfloor + 1 = 15 + 1 = 16$ → $16 \times 16 \times 1{,}024$ [0.5]<br>
+<strong>(b)</strong> $16 \times 16 = 256$ tokens of 1,024 numbers [0.5]<br>
+<strong>(c)</strong> $(k^2 C_{in} + 1)\,C_{out} = (14 \cdot 14 \cdot 3 + 1) \cdot 1{,}024 = 589 \cdot 1{,}024 = 603{,}136$ [1]<br>
+<strong>Answer:</strong> (a) $16 \times 16$ · (b) 256 · (c) 603,136</div></details>
+      </article>
+      <article class="item" id="p067" data-sess="5" data-part="B" data-stars="1">
+        <header><span class="iid">067</span><span class="stars" title="difficulty">⭐</span><span class="topic">How long is a patch vector?</span><span class="meta">1.5 pts · ~2 min</span>
+          <label class="done"><input type="checkbox" data-id="067"> Done</label></header>
+        <div class="problem">Before the linear layer, a patch is flattened into one vector. How many numbers for <strong>(a)</strong> an $8 \times 8$ colour patch, <strong>(b)</strong> a $32 \times 32$ colour patch, <strong>(c)</strong> a $16 \times 16$ grey patch?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln">Step 1: height × width × channels.<br>
+<strong>(a)</strong> $8 \cdot 8 \cdot 3 = 192$ [0.5] · <strong>(b)</strong> $32 \cdot 32 \cdot 3 = 3{,}072$ [0.5] · <strong>(c)</strong> $16 \cdot 16 \cdot 1 = 256$ [0.5]<br>
+<strong>Answer:</strong> (a) 192 · (b) 3,072 · (c) 256</div></details>
+      </article>
+      <article class="item" id="p068" data-sess="5" data-part="B" data-stars="2">
+        <header><span class="iid">068</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Position embeddings</span><span class="meta">2 pts · ~4 min</span>
+          <label class="done"><input type="checkbox" data-id="068"> Done</label></header>
+        <div class="problem"><strong>(a)</strong> A ViT without position embeddings sees a photo and the same photo with its patches shuffled. How do the outputs compare, and why? <strong>(b)</strong> A ViT trained at $224 \times 224$ (patch 16) has 197 position vectors. How many does it need to read a $448 \times 448$ photo, and what must be done?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> Step 1: attention scores every pair of tokens no matter where they stand — it treats the tokens as a set [0.5]<br>
+Step 2: so each patch gets the same output, only in a different place; the [CLS] answer is identical — the model cannot tell a scrambled photo from the real one [0.5]<br>
+<strong>(b)</strong> Step 1: $(448 \div 16)^2 + 1 = 28^2 + 1 = 785$ [0.5]<br>
+Step 2: it has only 197, so the $14 \times 14$ grid of position vectors is stretched (interpolated) to $28 \times 28$ [0.5]<br>
+<strong>Answer:</strong> (a) the same, just reordered — attention ignores order · (b) 785; interpolate the position embedding</div></details>
+      </article>
+      <article class="item" id="p069" data-sess="5" data-part="B" data-stars="2">
+        <header><span class="iid">069</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Attention cost of a larger ViT</span><span class="meta">2 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="069"> Done</label></header>
+        <div class="problem">A ViT reads $336 \times 336$ photos with $14 \times 14$ patches and has 12 heads per layer. <strong>(a)</strong> How many tokens, with [CLS]? <strong>(b)</strong> How many scores per head? <strong>(c)</strong> How many per layer?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $(336 \div 14)^2 + 1 = 24^2 + 1 = 577$ [0.5]<br>
+<strong>(b)</strong> $577^2 = 332{,}929$ [0.75]<br>
+<strong>(c)</strong> $12 \times 332{,}929 = 3{,}995{,}148$ [0.75]<br>
+<strong>Answer:</strong> (a) 577 · (b) 332,929 · (c) 3,995,148</div></details>
+      </article>
+  <div class="parthead" id="s5c" data-group="5C"><h3>C · Learning without labels</h3><span class="pc"></span><a href="../session-05/slides.html#/part-c">Slides for this part →</a></div>
+      <article class="item" id="p070" data-sess="5" data-part="C" data-stars="1">
+        <header><span class="iid">070</span><span class="stars" title="difficulty">⭐</span><span class="topic">Cosine of vectors that are not normalised</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="070"> Done</label></header>
+        <div class="problem">Compute the cosine similarity of <strong>(a)</strong> $a = [2,\ 0]$ and $b = [3,\ 3]$; <strong>(b)</strong> $a$ and $c = [0,\ 5]$.</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> Step 1: $a \cdot b = 6$, $\lVert a \rVert = 2$, $\lVert b \rVert = \sqrt{18} = 3\sqrt{2} \approx 4.24$ [0.5]<br>
+Step 2: $\cos = \dfrac{6}{2 \cdot 4.24} \approx 0.71$ — an angle of $45^\circ$ [0.5]<br>
+<strong>(b)</strong> $a \cdot c = 0$ → $\cos = 0$: at right angles, unrelated [0.5]<br>
+<strong>Answer:</strong> (a) about 0.71 · (b) 0</div></details>
+      </article>
+      <article class="item" id="p071" data-sess="5" data-part="C" data-stars="2">
+        <header><span class="iid">071</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Nearest neighbour</span><span class="meta">2 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="071"> Done</label></header>
+        <div class="problem">A query embedding is $q = [0.28,\ 0.96]$. The gallery holds $p_1 = [0.6,\ 0.8]$, $p_2 = [{-0.6},\ 0.8]$, $p_3 = [0.8,\ {-0.6}]$. <strong>(a)</strong> Check that $q$ has length 1. <strong>(b)</strong> Compute the three cosines. <strong>(c)</strong> Which photo does the search return first?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $0.28^2 + 0.96^2 = 0.0784 + 0.9216 = 1$ [0.5]<br>
+<strong>(b)</strong> all have length 1, so cosine = dot product [1]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$q \cdot p_1 = 0.168 + 0.768 = 0.936$ · $q \cdot p_2 = -0.168 + 0.768 = 0.6$ · $q \cdot p_3 = 0.224 - 0.576 = -0.352$<br>
+<strong>(c)</strong> the largest cosine: $p_1$ [0.5]<br>
+<strong>Answer:</strong> (a) yes · (b) 0.936, 0.6, −0.352 · (c) $p_1$</div></details>
+      </article>
+      <article class="item" id="p072" data-sess="5" data-part="C" data-stars="1">
+        <header><span class="iid">072</span><span class="stars" title="difficulty">⭐</span><span class="topic">Positive and negative pairs</span><span class="meta">1.5 pts · ~2 min</span>
+          <label class="done"><input type="checkbox" data-id="072"> Done</label></header>
+        <div class="problem">A contrastive batch has 8 photos; each is augmented twice, giving 16 embeddings. <strong>(a)</strong> For one embedding, how many positives and how many negatives? <strong>(b)</strong> How many positive pairs in the batch? <strong>(c)</strong> Are labels needed?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> 1 positive (the other view of the same photo); the remaining $16 - 2 = 14$ are negatives [0.5]<br>
+<strong>(b)</strong> one per photo: 8 [0.5]<br>
+<strong>(c)</strong> no — the pairing comes from the augmentation itself [0.5]<br>
+<strong>Answer:</strong> (a) 1 and 14 · (b) 8 · (c) no</div></details>
+      </article>
+      <article class="item" id="p073" data-sess="5" data-part="C" data-stars="2">
+        <header><span class="iid">073</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Normalise, then dot</span><span class="meta">2 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="073"> Done</label></header>
+        <div class="problem">$v = [3,\ 4]$ and $w = [5,\ 12]$. <strong>(a)</strong> Normalise both to length 1. <strong>(b)</strong> Compute their cosine from the normalised vectors. <strong>(c)</strong> Check it with $\dfrac{v \cdot w}{\lVert v \rVert\,\lVert w \rVert}$.</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $\lVert v \rVert = 5$ → $[0.6,\ 0.8]$ · $\lVert w \rVert = 13$ → $[5/13,\ 12/13] \approx [0.385,\ 0.923]$ [0.5]<br>
+<strong>(b)</strong> $0.6 \cdot \tfrac{5}{13} + 0.8 \cdot \tfrac{12}{13} = \tfrac{3 + 9.6}{13} = \tfrac{12.6}{13} \approx 0.969$ [1]<br>
+<strong>(c)</strong> $\dfrac{15 + 48}{5 \cdot 13} = \dfrac{63}{65} \approx 0.969$ — the same [0.5]<br>
+<strong>Answer:</strong> about 0.97 either way</div></details>
+      </article>
+      <article class="item" id="p074" data-sess="5" data-part="C" data-stars="2">
+        <header><span class="iid">074</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">When the background wins</span><span class="meta">2 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="074"> Done</label></header>
+        <div class="problem">A pet shop searches its photos with CLIP image embeddings. A query photo of a dog on a beach returns, first, a photo of a cat on a beach. <strong>(a)</strong> Why can that happen? <strong>(b)</strong> Give two ways to make the search find dogs.</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> one embedding describes the <strong>whole</strong> photo — sand, sea and light as well as the animal; two beach scenes can be closer than two dogs on different backgrounds [1]<br>
+<strong>(b)</strong> any two [1]:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;crop the animal first (a detector, session 8) · compare small local features instead of the whole photo (session 6) · search by text, "a photo of a dog" (D) · add photos of dogs on many backgrounds to the gallery<br>
+<strong>Answer:</strong> (a) the embedding carries the background · (b) e.g. crop the animal first; search with text</div></details>
+      </article>
+  <div class="parthead" id="s5d" data-group="5D"><h3>D · CLIP &amp; zero-shot</h3><span class="pc"></span><a href="../session-05/slides.html#/part-d">Slides for this part →</a></div>
+      <article class="item" id="p075" data-sess="5" data-part="D" data-stars="1">
+        <header><span class="iid">075</span><span class="stars" title="difficulty">⭐</span><span class="topic">Zero-shot by cosine</span><span class="meta">1.5 pts · ~2 min</span>
+          <label class="done"><input type="checkbox" data-id="075"> Done</label></header>
+        <div class="problem">A photo's normalised embedding is $e = [0.48,\ 0.6,\ 0.64]$. The prompts embed to bird $[0,\ 0,\ 1]$, plane $[0,\ 1,\ 0]$, kite $[0.6,\ 0,\ 0.8]$. <strong>(a)</strong> Compute the three cosines. <strong>(b)</strong> Which class does CLIP pick?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> all normalised, so cosine = dot product [1]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;bird $0.64$ · plane $0.6$ · kite $0.48 \cdot 0.6 + 0.64 \cdot 0.8 = 0.288 + 0.512 = 0.8$<br>
+<strong>(b)</strong> the largest: kite [0.5]<br>
+<strong>Answer:</strong> (a) 0.64, 0.6, 0.8 · (b) kite</div></details>
+      </article>
+      <article class="item" id="p076" data-sess="5" data-part="D" data-stars="2">
+        <header><span class="iid">076</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Zero-shot or a new head?</span><span class="meta">2 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="076"> Done</label></header>
+        <div class="problem">A CLIP image encoder gives 512 numbers. You need 3 classes. <strong>(a)</strong> How many parameters must be trained for zero-shot? <strong>(b)</strong> For a new linear head on the frozen encoder? <strong>(c)</strong> You later add a fourth class. What changes in each case?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> none — the classes are sentences [0.5]<br>
+<strong>(b)</strong> $512 \times 3 + 3 = 1{,}539$ [0.5]<br>
+<strong>(c)</strong> zero-shot: write one more prompt and compare one more cosine [0.5] · head: it needs a 4th output, labelled photos of the new class, and retraining [0.5]<br>
+<strong>Answer:</strong> (a) 0 · (b) 1,539 · (c) one new sentence vs new data and retraining</div></details>
+      </article>
+      <article class="item" id="p077" data-sess="5" data-part="D" data-stars="2">
+        <header><span class="iid">077</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Choosing a prompt</span><span class="meta">2 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="077"> Done</label></header>
+        <div class="problem">On 50 labelled validation photos of Thai desserts, a team tries three prompt styles: "khanom chan" (58% right), "a photo of khanom chan" (66%), "a photo of khanom chan, a Thai layered dessert" (74%). <strong>(a)</strong> Which style should they use, and why did they need validation photos? <strong>(b)</strong> Is 74% the accuracy they will get on new photos? <strong>(c)</strong> What else could they try if 74% is not enough?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> the third — it scored best; wording changes CLIP's answers, so the only way to choose is to measure on photos with known labels [0.5]<br>
+<strong>(b)</strong> not quite: they chose the style <strong>using</strong> these photos, so 74% is optimistic — measure once on a separate test set (session 4 B) [1]<br>
+<strong>(c)</strong> fine-tune or train a head on their own photos (session 4 D) [0.5]<br>
+<strong>Answer:</strong> (a) the third style, chosen on validation data · (b) no — report a test set · (c) train on their own data</div></details>
+      </article>
+      <article class="item" id="p078" data-sess="5" data-part="D" data-stars="1">
+        <header><span class="iid">078</span><span class="stars" title="difficulty">⭐</span><span class="topic">What CLIP zero-shot can and cannot do</span><span class="meta">1.5 pts · ~2 min</span>
+          <label class="done"><input type="checkbox" data-id="078"> Done</label></header>
+        <div class="problem">Say yes or no for CLIP zero-shot, with a reason. <strong>(a)</strong> Sort photos into "cat" and "dog". <strong>(b)</strong> Count the people waiting in a queue. <strong>(c)</strong> Tell where in the photo the dog is. <strong>(d)</strong> Classify a photo that has a large printed word in it.</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> yes — whole-photo classes it has seen in captions [0.25]<br>
+<strong>(b)</strong> no — it cannot count [0.5]<br>
+<strong>(c)</strong> no — one score for the whole photo, no box (detection, session 8) [0.5]<br>
+<strong>(d)</strong> risky — written words can outweigh what is shown (the note on the apple) [0.25]<br>
+<strong>Answer:</strong> (a) yes · (b) no · (c) no · (d) risky</div></details>
+      </article>
+      <article class="item" id="p079" data-sess="5" data-part="D" data-stars="2">
+        <header><span class="iid">079</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Where CLIP learned its bias</span><span class="meta">2 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="079"> Done</label></header>
+        <div class="problem">CLIP was trained on 400 million photo–caption pairs from the internet. <strong>(a)</strong> Give two ways this data can make CLIP unfair to some groups of people. <strong>(b)</strong> Before using CLIP to sort photos of people, what should you measure?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> any two [1]: some groups appear far less often · captions use different words for different groups (stereotypes) · photos come mostly from some countries and languages · nobody chose or checked the labels — they are whatever the web said<br>
+<strong>(b)</strong> accuracy (and mistakes) <strong>separately for each group</strong>, on photos you checked — not one overall number (session 8 D) [1]<br>
+<strong>Answer:</strong> (a) e.g. uneven coverage and biased captions · (b) results per group</div></details>
       </article>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
