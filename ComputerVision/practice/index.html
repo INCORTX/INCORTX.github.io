@@ -44,6 +44,7 @@ h2.sess{font:700 26px var(--display);color:var(--ink);margin:30px 0 4px}
 .done{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font:600 13px var(--display);color:var(--muted);cursor:pointer}
 .done input{accent-color:var(--teal);width:17px;height:17px}
 .problem{color:var(--ink)}
+.mt{border-collapse:collapse;margin:8px 0;font-size:15px}.mt th,.mt td{border:1px solid var(--line, #d0d5dd);padding:3px 10px;text-align:center}.mt th{background:var(--soft)}
 .answer{margin-top:10px;border-top:1px dashed var(--line);padding-top:8px}
 .answer summary{cursor:pointer;font:600 14px var(--display);color:var(--teal)}
 .soln{margin-top:8px;padding:10px 14px;border-radius:10px;background:var(--soft)}
@@ -59,7 +60,7 @@ h2.sess{font:700 26px var(--display);color:var(--ink);margin:30px 0 4px}
   <h1>Practice bank</h1>
   <p class="lead">Exam-style questions, session by session, with worked solutions. Work each one by hand first — no calculator needed — then open the solution and compare step by step; the mark for each step is in [ ].</p>
 
-  <div class="bar"><button class="chip on" data-k="sess" data-v="all">All sessions</button><button class="chip" data-k="sess" data-v="2">Session 2</button><button class="chip" data-k="sess" data-v="3">Session 3</button><button class="chip" data-k="sess" data-v="4">Session 4</button><button class="chip" data-k="sess" data-v="5">Session 5</button><span class="sep"></span><button class="chip on" data-k="stars" data-v="all">Any level</button><button class="chip" data-k="stars" data-v="1">⭐</button><button class="chip" data-k="stars" data-v="2">⭐⭐</button><button class="chip" data-k="stars" data-v="3">⭐⭐⭐</button><span class="sep"></span><button class="chip" data-k="hide">Hide done</button><button class="chip" data-k="open">Open all solutions</button><span class="prog" id="prog"></span></div>
+  <div class="bar"><button class="chip on" data-k="sess" data-v="all">All sessions</button><button class="chip" data-k="sess" data-v="2">Session 2</button><button class="chip" data-k="sess" data-v="3">Session 3</button><button class="chip" data-k="sess" data-v="4">Session 4</button><button class="chip" data-k="sess" data-v="5">Session 5</button><button class="chip" data-k="sess" data-v="6">Session 6</button><span class="sep"></span><button class="chip on" data-k="stars" data-v="all">Any level</button><button class="chip" data-k="stars" data-v="1">⭐</button><button class="chip" data-k="stars" data-v="2">⭐⭐</button><button class="chip" data-k="stars" data-v="3">⭐⭐⭐</button><span class="sep"></span><button class="chip" data-k="hide">Hide done</button><button class="chip" data-k="open">Open all solutions</button><span class="prog" id="prog"></span></div>
   <details class="ref"><summary>Reference values — sin / cos / tan, roots, powers of two</summary><table class="cov"><tr><th>θ (rad)</th><th>θ (deg)</th><th>sin θ</th><th>cos θ</th><th>tan θ</th></tr><tr><td>0</td><td>0°</td><td>0</td><td>1</td><td>0</td></tr><tr><td>π/6</td><td>30°</td><td>0.500</td><td>0.866</td><td>0.577</td></tr><tr><td>π/4</td><td>45°</td><td>0.707</td><td>0.707</td><td>1</td></tr><tr><td>π/3</td><td>60°</td><td>0.866</td><td>0.500</td><td>1.732</td></tr><tr><td>π/2</td><td>90°</td><td>1</td><td>0</td><td>undefined</td></tr><tr><td>π</td><td>180°</td><td>0</td><td>−1</td><td>0 †</td></tr><tr><td>3π/2</td><td>270°</td><td>−1</td><td>0</td><td>undefined</td></tr><tr><td>2π</td><td>360°</td><td>0</td><td>1</td><td>0 †</td></tr></table><p><strong>Reading arctan:</strong> find the ratio in the tan θ column and read the angle on the left — tan θ = 1 ⇒ θ = 45°. A gradient with $G_x = G_y$ therefore points at 45°. Every direction you are asked to name is one of the rows above; if your ratio is not in the tan θ column, re-check the arithmetic rather than reaching for a calculator.</p><p><strong>† forward only.</strong> tan repeats every 180°, but arctan answers only within −90° to 90°: tan 180° = 0 is true, yet arctan(0) = 0°, not 180°. Read backwards only from the 0°–90° rows.</p><p><strong>Negative ratios:</strong> arctan(−x) = −arctan(x), so arctan(−1) = −45°.</p><p><strong>Pythagorean triples</strong> — these give the <strong>magnitude</strong> $\sqrt{G_x^2+G_y^2}$ as a whole number, not an angle: 3-4-5 · 5-12-13 · 6-8-10 · 8-15-17 · 7-24-25 · 20-21-29 — and any multiple, e.g. 24-32-<strong>40</strong>. Magnitude and direction are separate questions; read the direction from the tan θ column above.</p><p><strong>Square roots:</strong> √2 ≈ 1.414 · √3 ≈ 1.732 · √5 ≈ 2.236 · √8 ≈ 2.828 · √32 ≈ 5.657</p><p><strong>Powers of two</strong> (bit depth, pyramid levels): $2^4 = 16$ · $2^6 = 64$ · $2^8 = 256$ · $2^{10} = 1024$ · $2^{24} = 16{,}777{,}216$ · log₂ 8 = 3 · log₂ 16 = 4 · log₂ 256 = 8</p></details>
   <h2 class="sess" id="s2" data-sess="2">Session 2 · Image Formation &amp; Sensing</h2>
   <div class="parthead" id="s2a" data-group="2A"><h3>A · Pinhole &amp; perspective</h3><span class="pc"></span><a href="../session-02/slides.html#/part-a">Slides for this part →</a></div>
@@ -534,10 +535,7 @@ Step 2: backward: $dL/da = 2$, ReLU slope 1, $dz/dw = x = 3$ → $dL/dw = 6$; $w
         <header><span class="iid">048</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Reading a training curve</span><span class="meta">2 pts · ~3 min</span>
           <label class="done"><input type="checkbox" data-id="048"> Done</label></header>
         <div class="problem">A network's losses, every 10 epochs:<br>
-| epoch | 0 | 10 | 20 | 30 | 40 | 50 |<br>
-|---|---|---|---|---|---|---|<br>
-| training | 2.0 | 0.9 | 0.5 | 0.3 | 0.15 | 0.05 |<br>
-| validation | 2.1 | 1.0 | 0.7 | 0.65 | 0.8 | 1.1 |<br>
+<table class="mt"><tr><th>epoch</th><th>0</th><th>10</th><th>20</th><th>30</th><th>40</th><th>50</th></tr><tr><td>training</td><td>2.0</td><td>0.9</td><td>0.5</td><td>0.3</td><td>0.15</td><td>0.05</td></tr><tr><td>validation</td><td>2.1</td><td>1.0</td><td>0.7</td><td>0.65</td><td>0.8</td><td>1.1</td></tr></table>
 <strong>(a)</strong> At which epoch would you stop? <strong>(b)</strong> What happens after it, and what is it called? <strong>(c)</strong> Name two things that would help.</div>
         <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> Step 1: validation loss is lowest at epoch 30 → keep the weights from epoch 30 [0.5]<br>
 <strong>(b)</strong> Step 1: training loss keeps falling while validation rises: the network memorises the training set — <strong>overfitting</strong> [1]<br>
@@ -839,6 +837,200 @@ Step 2: $\cos = \dfrac{6}{2 \cdot 4.24} \approx 0.71$ — an angle of $45^\circ$
         <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> any two [1]: some groups appear far less often · captions use different words for different groups (stereotypes) · photos come mostly from some countries and languages · nobody chose or checked the labels — they are whatever the web said<br>
 <strong>(b)</strong> accuracy (and mistakes) <strong>separately for each group</strong>, on photos you checked — not one overall number (session 8 D) [1]<br>
 <strong>Answer:</strong> (a) e.g. uneven coverage and biased captions · (b) results per group</div></details>
+      </article>
+  <h2 class="sess" id="s6" data-sess="6">Session 6 · Local Features &amp; Robust Matching</h2>
+  <div class="parthead" id="s6a" data-group="6A"><h3>A · Corners</h3><span class="pc"></span><a href="../session-06/slides.html#/part-a">Slides for this part →</a></div>
+      <article class="item" id="p080" data-sess="6" data-part="A" data-stars="1">
+        <header><span class="iid">080</span><span class="stars" title="difficulty">⭐</span><span class="topic">Flat, edge or corner from the eigenvalues</span><span class="meta">1 pts · ~2 min</span>
+          <label class="done"><input type="checkbox" data-id="080"> Done</label></header>
+        <div class="problem">Three windows have these eigenvalues of $M$: <strong>(a)</strong> $\lambda_1 = 0.02,\ \lambda_2 = 0.01$; <strong>(b)</strong> $\lambda_1 = 9,\ \lambda_2 = 0.1$; <strong>(c)</strong> $\lambda_1 = 6,\ \lambda_2 = 4$. Flat, edge or corner?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> both almost 0: shifting the window changes nothing → <strong>flat</strong> [0.25]<br>
+<strong>(b)</strong> one large, one almost 0: change across, none along → <strong>edge</strong> [0.25]<br>
+<strong>(c)</strong> both large: even the smallest change ($\lambda_2 = 4$) is big → <strong>corner</strong> [0.5]<br>
+<strong>Answer:</strong> (a) flat · (b) edge · (c) corner<br>
+<strong>Common mistake:</strong> looking only at $\lambda_1$ — an edge has a large $\lambda_1$ too; a corner needs $\lambda_2$ large.</div></details>
+      </article>
+      <article class="item" id="p081" data-sess="6" data-part="A" data-stars="2">
+        <header><span class="iid">081</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">M from a table of gradients</span><span class="meta">2 pts · ~4 min</span>
+          <label class="done"><input type="checkbox" data-id="081"> Done</label></header>
+        <div class="problem">A tiny window has four pixels with gradients $(g_x, g_y)$: $(3, 0)$, $(1, 1)$, $(0, 2)$, $(2, {-1})$. Use equal weights 1. <strong>(a)</strong> Compute $M$. <strong>(b)</strong> Compute $R = \det M - 0.04\,(\mathrm{trace}\,M)^2$. Flat, edge or corner?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> Step 1: $\sum g_x^2 = 9 + 1 + 0 + 4 = 14$ · $\sum g_y^2 = 0 + 1 + 4 + 1 = 6$ [0.5]<br>
+Step 2: $\sum g_x g_y = 0 + 1 + 0 + ({-2}) = {-1}$ → $M = [\,14\;\;{-1} \;/\; {-1}\;\;6\,]$ [0.5]<br>
+<strong>(b)</strong> Step 1: $\det M = 14 \cdot 6 - ({-1})^2 = 83$ · $\mathrm{trace}\,M = 20$ [0.5]<br>
+Step 2: $R = 83 - 0.04 \cdot 400 = 83 - 16 = 67 &gt; 0$ → <strong>corner</strong> [0.5]<br>
+<strong>Answer:</strong> (a) $M = [\,14\;\;{-1} \;/\; {-1}\;\;6\,]$ · (b) $R = 67$, a corner<br>
+<strong>Common mistake:</strong> forgetting the sign of $g_x g_y$ — the last pixel gives $2 \cdot ({-1}) = {-2}$.</div></details>
+      </article>
+      <article class="item" id="p082" data-sess="6" data-part="A" data-stars="2">
+        <header><span class="iid">082</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Harris R decides</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="082"> Done</label></header>
+        <div class="problem">With $k = 0.04$, compute $R$ and say flat, edge or corner: <strong>(a)</strong> $M = [\,8\;\;0 \;/\; 0\;\;2\,]$; <strong>(b)</strong> $M = [\,9\;\;3 \;/\; 3\;\;1\,]$; <strong>(c)</strong> $M = [\,0.1\;\;0 \;/\; 0\;\;0.1\,]$.</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $\det = 16$, $\mathrm{trace} = 10$ → $R = 16 - 0.04 \cdot 100 = 12 &gt; 0$ → <strong>corner</strong> [0.5]<br>
+<strong>(b)</strong> $\det = 9 \cdot 1 - 3 \cdot 3 = 0$, $\mathrm{trace} = 10$ → $R = 0 - 4 = {-4} &lt; 0$ → <strong>edge</strong>: every pixel's gradient points the same way, so $M$ has one eigenvalue 0 [0.5]<br>
+<strong>(c)</strong> $\det = 0.01$, $\mathrm{trace} = 0.2$ → $R = 0.01 - 0.0016 = 0.0084 \approx 0$ → <strong>flat</strong>: tiny gradients [0.5]<br>
+<strong>Answer:</strong> (a) 12, corner · (b) −4, edge · (c) about 0, flat<br>
+<strong>Common mistake:</strong> calling (b) a corner because the numbers off the diagonal are not 0 — $\det = 0$ says one direction never changes.</div></details>
+      </article>
+      <article class="item" id="p083" data-sess="6" data-part="A" data-stars="2">
+        <header><span class="iid">083</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">The change in a chosen direction</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="083"> Done</label></header>
+        <div class="problem">A window has $M = [\,5\;\;0 \;/\; 0\;\;1\,]$. A shift by $u$ changes it by about $E = u^\top M u$. <strong>(a)</strong> What are the eigenvalues? <strong>(b)</strong> Compute $E$ for a one-pixel shift along $x$, along $y$, and along $u = (0.6,\ 0.8)$. <strong>(c)</strong> Why must every answer in (b) lie between the two eigenvalues?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $M$ is diagonal: $\lambda_1 = 5$, $\lambda_2 = 1$ [0.25]<br>
+<strong>(b)</strong> along $x$: $5$ · along $y$: $1$ · along $(0.6, 0.8)$: $5 \cdot 0.36 + 1 \cdot 0.64 = 1.8 + 0.64 = 2.44$ [0.75]<br>
+<strong>(c)</strong> for a length-1 $u$, $E = \lambda_1 \cos^2\alpha + \lambda_2 \sin^2\alpha$ — a weighted average of $\lambda_1$ and $\lambda_2$, so it is between them [0.5]<br>
+<strong>Answer:</strong> (a) 5 and 1 · (b) 5, 1, 2.44 · (c) $E$ is a mix of $\lambda_1$ and $\lambda_2$ with weights $\cos^2\alpha + \sin^2\alpha = 1$</div></details>
+      </article>
+      <article class="item" id="p084" data-sess="6" data-part="A" data-stars="1">
+        <header><span class="iid">084</span><span class="stars" title="difficulty">⭐</span><span class="topic">One gradient everywhere</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="084"> Done</label></header>
+        <div class="problem">In a window every pixel has the gradient $g = (0, 3)$ (the weights add up to 1). <strong>(a)</strong> Write $M$. <strong>(b)</strong> Use $E \approx (g_x u + g_y v)^2$ for the shifts $(2, 0)$, $(0, 1)$ and $(1, 1)$. <strong>(c)</strong> What does the window contain, and which way can it slide without changing?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $g_x^2 = 0$, $g_x g_y = 0$, $g_y^2 = 9$ → $M = [\,0\;\;0 \;/\; 0\;\;9\,]$ [0.5]<br>
+<strong>(b)</strong> $E = (3v)^2$: $(2, 0) \to 0$ · $(0, 1) \to 9$ · $(1, 1) \to 9$ [0.5]<br>
+<strong>(c)</strong> a straight <strong>edge</strong> across the window — brightness changes only up/down; sliding <strong>left/right</strong> (along the edge) changes nothing [0.5]<br>
+<strong>Answer:</strong> (a) $[\,0\;\;0 \;/\; 0\;\;9\,]$ · (b) 0, 9, 9 · (c) a horizontal edge; slides freely along $x$</div></details>
+      </article>
+  <div class="parthead" id="s6b" data-group="6B"><h3>B · Scale</h3><span class="pc"></span><a href="../session-06/slides.html#/part-b">Slides for this part →</a></div>
+      <article class="item" id="p085" data-sess="6" data-part="B" data-stars="1">
+        <header><span class="iid">085</span><span class="stars" title="difficulty">⭐</span><span class="topic">Pick the scale from a table</span><span class="meta">1 pts · ~2 min</span>
+          <label class="done"><input type="checkbox" data-id="085"> Done</label></header>
+        <div class="problem">A point's scale-normalised response at four blurs:<br>
+<table class="mt"><tr><th>$\sigma$</th><th>1.5</th><th>3</th><th>6</th><th>12</th></tr><tr><td>response</td><td>0.3</td><td>0.8</td><td>0.5</td><td>0.2</td></tr></table>
+<strong>(a)</strong> At which $\sigma$ is the point detected? <strong>(b)</strong> If it is a round blob, about what radius? (Use $\sqrt{2} \approx 1.41$.)</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> the largest response → $\sigma = 3$ [0.5]<br>
+<strong>(b)</strong> $r \approx \sigma\sqrt{2} = 3 \times 1.41 \approx 4.2$ px [0.5]<br>
+<strong>Answer:</strong> (a) $\sigma = 3$ · (b) about 4.2 px</div></details>
+      </article>
+      <article class="item" id="p086" data-sess="6" data-part="B" data-stars="2">
+        <header><span class="iid">086</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">The same blob, three times bigger</span><span class="meta">2 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="086"> Done</label></header>
+        <div class="problem">A blob is detected at $\sigma = 5$. <strong>(a)</strong> About what radius is it? <strong>(b)</strong> The photo is enlarged 3×. At which $\sigma$ should the same blob be found, and with what radius? <strong>(c)</strong> Why would a detector with one fixed window size miss it in one of the two photos?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $r \approx 5 \times 1.41 \approx 7.1$ px [0.5]<br>
+<strong>(b)</strong> everything is 3× bigger, so the peak moves to $\sigma = 15$; $r \approx 15 \times 1.41 \approx 21.2$ px [1]<br>
+<strong>(c)</strong> a window sized for one photo sees the blob whole there, but only part of it (an edge or flat inside) in the other — the size must follow the picture [0.5]<br>
+<strong>Answer:</strong> (a) 7.1 px · (b) $\sigma = 15$, 21.2 px · (c) one window fits only one size</div></details>
+      </article>
+      <article class="item" id="p087" data-sess="6" data-part="B" data-stars="1">
+        <header><span class="iid">087</span><span class="stars" title="difficulty">⭐</span><span class="topic">Neighbours in scale space</span><span class="meta">1 pts · ~2 min</span>
+          <label class="done"><input type="checkbox" data-id="087"> Done</label></header>
+        <div class="problem">SIFT keeps a sample of the difference-of-Gaussians stack only if it beats its neighbours. <strong>(a)</strong> How many neighbours does it have in the same blur level? <strong>(b)</strong> How many in all, including one level above and one below? <strong>(c)</strong> Why compare across levels at all?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> the $3 \times 3$ square around it, minus itself: $8$ [0.25]<br>
+<strong>(b)</strong> $3 \times 3 \times 3 - 1 = 26$ [0.25]<br>
+<strong>(c)</strong> a maximum across levels picks the blur — the <strong>size</strong> — at which the point answers most, not only its position [0.5]<br>
+<strong>Answer:</strong> (a) 8 · (b) 26 · (c) to find the point's scale</div></details>
+      </article>
+      <article class="item" id="p088" data-sess="6" data-part="B" data-stars="2">
+        <header><span class="iid">088</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">A corner that turns into an edge</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="088"> Done</label></header>
+        <div class="problem">With a $15 \times 15$ window, a point in a street photo has $\lambda_1 = 4,\ \lambda_2 = 3$. In a 3× close-up of the same spot, the same window gives $\lambda_1 = 5,\ \lambda_2 = 0.05$. <strong>(a)</strong> Classify the point in each photo. <strong>(b)</strong> Explain why the answer changed. <strong>(c)</strong> What should the detector do instead?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> whole photo: both large → <strong>corner</strong>; close-up: one large, one almost 0 → <strong>edge</strong> [0.5]<br>
+<strong>(b)</strong> in the close-up the corner is 3× bigger; the same 15-px window now covers only one side of it — a straight edge [0.5]<br>
+<strong>(c)</strong> look at every scale (blur the photo with many $\sigma$) and keep each point at the size where it answers most; the close-up's point is then found at about 3× the $\sigma$ [0.5]<br>
+<strong>Answer:</strong> (a) corner, then edge · (b) the window is too small for the zoomed corner · (c) use scale space</div></details>
+      </article>
+      <article class="item" id="p089" data-sess="6" data-part="B" data-stars="2">
+        <header><span class="iid">089</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">SIFT sizes tell the zoom</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="089"> Done</label></header>
+        <div class="problem">Three matched SIFT points have sizes $3.0,\ 4.5,\ 6.0$ in photo A and $7.5,\ 11.2,\ 15.1$ in photo B. <strong>(a)</strong> Compute the three size ratios B ÷ A. <strong>(b)</strong> About how much is B zoomed? <strong>(c)</strong> A point of size $8$ in A — about what size should its match have in B?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $7.5 \div 3.0 = 2.5$ · $11.2 \div 4.5 \approx 2.49$ · $15.1 \div 6.0 \approx 2.52$ [0.75]<br>
+<strong>(b)</strong> all close to $2.5$ → B is zoomed about $2.5\times$ [0.25]<br>
+<strong>(c)</strong> $8 \times 2.5 = 20$ [0.5]<br>
+<strong>Answer:</strong> (a) 2.5, 2.49, 2.52 · (b) about 2.5× · (c) about 20</div></details>
+      </article>
+  <div class="parthead" id="s6c" data-group="6C"><h3>C · Descriptors &amp; matching</h3><span class="pc"></span><a href="../session-06/slides.html#/part-c">Slides for this part →</a></div>
+      <article class="item" id="p090" data-sess="6" data-part="C" data-stars="1">
+        <header><span class="iid">090</span><span class="stars" title="difficulty">⭐</span><span class="topic">Distance between descriptors</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="090"> Done</label></header>
+        <div class="problem">A (tiny) descriptor $q = [2,\ 1,\ 0,\ 3]$ has two candidates $d_1 = [2,\ 2,\ 0,\ 1]$ and $d_2 = [1,\ 1,\ 0,\ 3]$. <strong>(a)</strong> Compute both Euclidean distances. <strong>(b)</strong> Which is the match? <strong>(c)</strong> Does it pass the ratio test at 0.8? (Use $\sqrt{5} \approx 2.24$.)</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $d_1$: $\sqrt{0 + 1 + 0 + 4} = \sqrt{5} \approx 2.24$ · $d_2$: $\sqrt{1 + 0 + 0 + 0} = 1$ [0.75]<br>
+<strong>(b)</strong> the nearer one: $d_2$ [0.25]<br>
+<strong>(c)</strong> $1 \div 2.24 \approx 0.45 &lt; 0.8$ → keep [0.5]<br>
+<strong>Answer:</strong> (a) 2.24 and 1 · (b) $d_2$ · (c) yes, 0.45</div></details>
+      </article>
+      <article class="item" id="p091" data-sess="6" data-part="C" data-stars="2">
+        <header><span class="iid">091</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Ratio test on four points</span><span class="meta">2 pts · ~4 min</span>
+          <label class="done"><input type="checkbox" data-id="091"> Done</label></header>
+        <div class="problem">For four points of photo A, the distances to the best and second-best descriptor of photo B are:<br>
+<table class="mt"><tr><th>point</th><th>best</th><th>second best</th></tr><tr><td>P1</td><td>90</td><td>300</td></tr><tr><td>P2</td><td>210</td><td>230</td></tr><tr><td>P3</td><td>180</td><td>200</td></tr><tr><td>P4</td><td>150</td><td>250</td></tr></table>
+<strong>(a)</strong> Compute each ratio. <strong>(b)</strong> Which matches survive the ratio test at 0.8? At 0.5? <strong>(c)</strong> P3's best distance is smaller than P2's, yet both are dropped. Why is that the right call — and what might the photo show there?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> P1 $0.30$ · P2 $\approx 0.91$ · P3 $0.90$ · P4 $0.60$ [0.75]<br>
+<strong>(b)</strong> at 0.8: P1 and P4 · at 0.5: P1 only [0.5]<br>
+<strong>(c)</strong> the test asks how much better the best is than the runner-up, not how small it is; at 0.9 two places look almost the same — e.g. a row of identical windows on a façade — so either could be the twin [0.75]<br>
+<strong>Answer:</strong> (a) 0.30, 0.91, 0.90, 0.60 · (b) P1, P4 · P1 · (c) two look-alikes — unsure</div></details>
+      </article>
+      <article class="item" id="p092" data-sess="6" data-part="C" data-stars="2">
+        <header><span class="iid">092</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Why normalise the descriptor</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="092"> Done</label></header>
+        <div class="problem">A (tiny) gradient histogram is $v = [3,\ 4,\ 0,\ 0]$. In brighter light every gradient is $1.5\times$ larger. <strong>(a)</strong> Write the new histogram and its Euclidean distance from $v$. <strong>(b)</strong> Normalise both to length 1 and compare again. <strong>(c)</strong> If instead $20$ is added to every pixel's brightness, what happens to the histogram?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $[4.5,\ 6,\ 0,\ 0]$; distance $\sqrt{1.5^2 + 2^2} = \sqrt{6.25} = 2.5$ [0.5]<br>
+<strong>(b)</strong> $\lVert v \rVert = 5$ → $[0.6,\ 0.8,\ 0,\ 0]$; the brighter one has length $7.5$ → the same $[0.6,\ 0.8,\ 0,\ 0]$; distance $0$ [0.5]<br>
+<strong>(c)</strong> nothing — a gradient is a difference of neighbours, so the $+20$ cancels [0.5]<br>
+<strong>Answer:</strong> (a) $[4.5,\ 6,\ 0,\ 0]$, distance 2.5 · (b) both $[0.6,\ 0.8,\ 0,\ 0]$, distance 0 · (c) unchanged</div></details>
+      </article>
+      <article class="item" id="p093" data-sess="6" data-part="C" data-stars="3">
+        <header><span class="iid">093</span><span class="stars" title="difficulty">⭐⭐⭐</span><span class="topic">Why turn to the main direction</span><span class="meta">2 pts · ~5 min</span>
+          <label class="done"><input type="checkbox" data-id="093"> Done</label></header>
+        <div class="problem">A patch's 8-bin histogram of gradient directions (bins at $0^\circ, 45^\circ, \dots, 315^\circ$) is $[1,\ 6,\ 2,\ 0,\ 0,\ 0,\ 1,\ 0]$. The photo is turned by $90^\circ$, so every direction grows by $90^\circ$. <strong>(a)</strong> Write the new histogram and its main direction. <strong>(b)</strong> Compute the Euclidean distance between the two histograms. <strong>(c)</strong> Rotate each histogram so its largest bin comes first. What is the distance now?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $90^\circ$ = 2 bins forward: $[1,\ 0,\ 1,\ 6,\ 2,\ 0,\ 0,\ 0]$; the main direction moves from $45^\circ$ to $135^\circ$ [0.75]<br>
+<strong>(b)</strong> differences $[0,\ 6,\ {-1},\ {-6},\ {-2},\ 0,\ 1,\ 0]$ → $\sqrt{0 + 36 + 1 + 36 + 4 + 0 + 1 + 0} = \sqrt{78} \approx 8.8$ [0.5]<br>
+<strong>(c)</strong> both become $[6,\ 2,\ 0,\ 0,\ 0,\ 1,\ 0,\ 1]$ → distance $0$: turning to the main direction makes the description ignore the photo's rotation [0.75]<br>
+<strong>Answer:</strong> (a) $[1,\ 0,\ 1,\ 6,\ 2,\ 0,\ 0,\ 0]$, $135^\circ$ · (b) about 8.8 · (c) 0</div></details>
+      </article>
+      <article class="item" id="p094" data-sess="6" data-part="C" data-stars="1">
+        <header><span class="iid">094</span><span class="stars" title="difficulty">⭐</span><span class="topic">Counting descriptors</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="094"> Done</label></header>
+        <div class="problem"><strong>(a)</strong> A SIFT-like descriptor uses $3 \times 3$ cells and 6 directions. How many numbers? <strong>(b)</strong> A photo has 3,000 SIFT points of 128 numbers, one byte each. How many bytes? <strong>(c)</strong> Brute-force matching compares every point of a 3,000-point photo with every point of a 2,000-point photo. How many distances?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $3 \times 3 \times 6 = 54$ [0.5]<br>
+<strong>(b)</strong> $3000 \times 128 = 384\,000$ bytes (about 384 kB) [0.5]<br>
+<strong>(c)</strong> $3000 \times 2000 = 6\,000\,000$ distances [0.5]<br>
+<strong>Answer:</strong> (a) 54 · (b) 384,000 bytes · (c) 6,000,000</div></details>
+      </article>
+  <div class="parthead" id="s6d" data-group="6D"><h3>D · RANSAC</h3><span class="pc"></span><a href="../session-06/slides.html#/part-d">Slides for this part →</a></div>
+      <article class="item" id="p095" data-sess="6" data-part="D" data-stars="2">
+        <header><span class="iid">095</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">How many tries?</span><span class="meta">2 pts · ~4 min</span>
+          <label class="done"><input type="checkbox" data-id="095"> Done</label></header>
+        <div class="problem">RANSAC should succeed with $p = 0.99$. Use $N = \dfrac{\ln(1-p)}{\ln(1-w^s)}$ and the table:<br>
+<table class="mt"><tr><th>$x$</th><th>0.01</th><th>0.51</th><th>0.7599</th></tr><tr><td>$\ln x$</td><td>−4.605</td><td>−0.673</td><td>−0.275</td></tr></table>
+<strong>(a)</strong> A line ($s = 2$) with 70% good points. <strong>(b)</strong> A homography ($s = 4$) with 70% good matches.</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> Step 1: $w^s = 0.7^2 = 0.49$ → $1 - 0.49 = 0.51$ [0.5]<br>
+Step 2: $N = 4.605 \div 0.673 \approx 6.8$ → round up: <strong>7 tries</strong> [0.5]<br>
+<strong>(b)</strong> Step 1: $0.7^4 = 0.2401$ → $1 - 0.2401 = 0.7599$ [0.5]<br>
+Step 2: $N = 4.605 \div 0.275 \approx 16.7$ → <strong>17 tries</strong> [0.5]<br>
+<strong>Answer:</strong> (a) 7 · (b) 17<br>
+<strong>Common mistake:</strong> rounding down — 6 tries fall short of 99%.</div></details>
+      </article>
+      <article class="item" id="p096" data-sess="6" data-part="D" data-stars="2">
+        <header><span class="iid">096</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Count the inliers of a line</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="096"> Done</label></header>
+        <div class="problem">RANSAC drew the line $y = 2x + 1$. A point counts as an inlier if its <strong>vertical</strong> distance to the line is at most $0.5$. Points: $(0, 1.2)$, $(1, 3.4)$, $(2, 5.6)$, $(3, 6.9)$, $(4, 2.0)$, $(5, 11.3)$. <strong>(a)</strong> Compute each vertical distance. <strong>(b)</strong> How many inliers?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> the line gives $1, 3, 5, 7, 9, 11$ → distances $0.2,\ 0.4,\ 0.6,\ 0.1,\ 7,\ 0.3$ [1]<br>
+<strong>(b)</strong> at most 0.5: $(0, 1.2)$, $(1, 3.4)$, $(3, 6.9)$, $(5, 11.3)$ → <strong>4 inliers</strong>; $(2, 5.6)$ is just outside [0.5]<br>
+<strong>Answer:</strong> (a) 0.2, 0.4, 0.6, 0.1, 7, 0.3 · (b) 4</div></details>
+      </article>
+      <article class="item" id="p097" data-sess="6" data-part="D" data-stars="1">
+        <header><span class="iid">097</span><span class="stars" title="difficulty">⭐</span><span class="topic">The smallest sample for each model</span><span class="meta">1 pts · ~2 min</span>
+          <label class="done"><input type="checkbox" data-id="097"> Done</label></header>
+        <div class="problem">RANSAC samples the fewest points that fix a model. How many for <strong>(a)</strong> a line through points, <strong>(b)</strong> a circle through points, <strong>(c)</strong> a shift (translation) between two photos, <strong>(d)</strong> a homography between two photos?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> 2 points [0.25] · <strong>(b)</strong> 3 points [0.25] · <strong>(c)</strong> 1 matched pair — it gives both $\Delta x$ and $\Delta y$ [0.25] · <strong>(d)</strong> 4 matched pairs (8 unknowns, 2 equations per pair) [0.25]<br>
+<strong>Answer:</strong> (a) 2 · (b) 3 · (c) 1 pair · (d) 4 pairs</div></details>
+      </article>
+      <article class="item" id="p098" data-sess="6" data-part="D" data-stars="2">
+        <header><span class="iid">098</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Why not least squares?</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="098"> Done</label></header>
+        <div class="problem">Four points lie exactly on $y = x$: $(0, 0)$, $(1, 1)$, $(2, 2)$, $(3, 3)$. One wrong match adds $(4, 0)$. <strong>(a)</strong> The least-squares slope of all five is $\dfrac{\sum (x - \bar x)(y - \bar y)}{\sum (x - \bar x)^2}$. Compute it. <strong>(b)</strong> What does RANSAC (threshold 0.5) return, and how many inliers?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> Step 1: $\bar x = 2$, $\bar y = 6 \div 5 = 1.2$ [0.25]<br>
+Step 2: numerator $({-2})({-1.2}) + ({-1})({-0.2}) + 0 + (1)(1.8) + (2)({-1.2}) = 2.4 + 0.2 + 1.8 - 2.4 = 2$ · denominator $4 + 1 + 0 + 1 + 4 = 10$ → slope $0.2$ — one wrong point turns slope 1 into 0.2 [0.75]<br>
+<strong>(b)</strong> any sample of two good points gives $y = x$ with 4 inliers; samples using $(4, 0)$ get fewer votes → RANSAC keeps $y = x$, 4 inliers [0.5]<br>
+<strong>Answer:</strong> (a) 0.2 · (b) $y = x$ with 4 inliers</div></details>
+      </article>
+      <article class="item" id="p099" data-sess="6" data-part="D" data-stars="3">
+        <header><span class="iid">099</span><span class="stars" title="difficulty">⭐⭐⭐</span><span class="topic">Loosen the ratio test, pay in tries</span><span class="meta">2 pts · ~5 min</span>
+          <label class="done"><input type="checkbox" data-id="099"> Done</label></header>
+        <div class="problem">A homography ($s = 4$, $p = 0.99$) is fitted to matches. <strong>(a)</strong> At ratio 0.8 there are 400 matches, 100 of them wrong. How many tries? <strong>(b)</strong> With no ratio test there are 1,500 matches, only 300 right. How many tries now? <strong>(c)</strong> What does this say about the ratio test?<br>
+<table class="mt"><tr><th>$x$</th><th>0.01</th><th>0.6836</th><th>0.9984</th></tr><tr><td>$\ln x$</td><td>−4.605</td><td>−0.380</td><td>−0.0016</td></tr></table></div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $w = 300 \div 400 = 0.75$; $0.75^4 \approx 0.3164$ → $1 - 0.3164 = 0.6836$ → $N = 4.605 \div 0.380 \approx 12.1$ → <strong>13 tries</strong> [0.75]<br>
+<strong>(b)</strong> $w = 300 \div 1500 = 0.2$; $0.2^4 = 0.0016$ → $1 - 0.0016 = 0.9984$ → $N = 4.605 \div 0.0016 \approx 2\,878$ → <strong>about 2,900 tries</strong> [0.75]<br>
+<strong>(c)</strong> it throws away a few good matches but raises $w$ a lot, and $N$ falls from thousands to about a dozen — filter first, then RANSAC [0.5]<br>
+<strong>Answer:</strong> (a) 13 · (b) about 2,900 · (c) a cleaner set makes RANSAC far cheaper</div></details>
       </article>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
