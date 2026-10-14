@@ -317,6 +317,7 @@ html.reading .reveal .labline span{font-size:13px;}
 .worked{border:1px solid var(--line);border-left:5px solid var(--amber);border-radius:10px;padding:.5em .8em;font-size:.6em;line-height:1.55;background:#fff;}
 .worked .tag{display:block;font-family:var(--display);font-weight:700;font-size:.72em;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:.2em;}
 .worked p{margin:0;font-family:var(--mono);font-size:.92em;}
+.say .worked{font-size:.9em;margin:.4em 0 .5em;}   /* inside a .say column (already .68em): keep the session-2 size */
 .reveal aside.notes,aside.notes{display:none !important;}
 /* number grids */
 .ng{display:grid;gap:3px;font-family:var(--mono);font-weight:600;width:100%;}
@@ -651,7 +652,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <a href="#/part-d"><b><i>D</i>RANSAC</b>How do we fit a model when most matches are wrong?</a>
   </div>
   <p class="takeaway"><span>Each part ends in the same notebook — <code>lab.ipynb</code>, one section per part. Project topic due in week 8.</span></p>
-  <aside class="notes"><p>🇹🇭 อ่านคำถามของคาบ · ย้อนคาบ 5: เทียบทั้งภาพแล้วฉากหลังรบกวน (หน้า 27) — วันนี้เทียบทีละจุดเล็ก ๆ</p><p>🇬🇧 Read the session question. Back to session 5: whole-photo embeddings were fooled by the background (slide 27) — today we compare small points instead.</p></aside>
+  <aside class="notes"><p>🇹🇭 อ่านคำถามของคาบ · ย้อนคาบ 5: เทียบทั้งภาพแล้วฉากหลังรบกวน (คาบ 5 หน้า 29) — วันนี้เทียบทีละจุดเล็ก ๆ</p><p>🇬🇧 Read the session question. Back to session 5: whole-photo embeddings were fooled by the background (session 5 slide 29) — today we compare small points instead.</p></aside>
 </section>
 
 <!-- 3 -->
@@ -705,6 +706,23 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
 <!-- 6 -->
 <section data-part="A">
   <p class="kicker">A · Corners</p>
+  <h2 class="claim">Shift the window: one Taylor step gives a 2 × 2 matrix</h2>
+  <div class="split">
+    <div><svg class="fig cvsvg" viewBox="0 0 360 270" style="max-width:380px;margin:0 auto" role="img" aria-label="a brightness ramp, a window and the same window shifted by u, v; the gradient arrow and the direction along which brightness does not change"><defs><linearGradient id="ramp6" gradientUnits="userSpaceOnUse" x1="40" y1="20" x2="300" y2="150"><stop offset="0" stop-color="#1f2937"/><stop offset="1" stop-color="#e5e7eb"/></linearGradient><marker id="a6e0533d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e0533d"/></marker><marker id="a6ffd166" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ffd166"/></marker><marker id="a60f766e" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker></defs><rect x="10" y="10" width="340" height="250" rx="8" fill="url(#ramp6)"/><rect x="110" y="80" width="90" height="90" fill="none" stroke="#e0533d" stroke-width="4"/><rect x="150" y="100" width="90" height="90" fill="none" stroke="#e0533d" stroke-width="3" stroke-dasharray="8 6"/><line x1="155" y1="125" x2="191" y2="143" stroke="#e0533d" stroke-width="4" marker-end="url(#a6e0533d)"/><text x="118" y="72" class="lb" style="fill:#fff">I(x, y)</text><text x="160" y="212" class="lb" style="fill:#e0533d">I(x + u, y + v)</text><line x1="40" y1="225" x2="110" y2="260" stroke="#ffd166" stroke-width="4" marker-end="url(#a6ffd166)"/><text x="30" y="210" class="lb" style="fill:#ffd166">g = (2, 1)</text><line x1="300" y1="26" x2="262" y2="102" stroke="#0f766e" stroke-width="4" stroke-dasharray="6 5" marker-end="url(#a60f766e)"/><text x="232" y="24" class="lb" style="fill:#0f766e">(1, −2): no change</text></svg><p class="gcap">brightness grows along the gradient g · the window (solid) and the window shifted by (u, v) (dashed)</p></div>
+    <div class="say">
+      <div class="eq">$$E(u,v)=\sum w\,\big[I(x+u,y+v)-I(x,y)\big]^2$$</div>
+      <div class="flashback fragment">Session 4, slide 13: one line of Taylor — I(x + u, y + v) ≈ I(x, y) + g<sub>x</sub>u + g<sub>y</sub>v.</div>
+      <div class="eq fragment">$$E\approx\sum w\,(g_x u+g_y v)^2=\begin{bmatrix}u & v\end{bmatrix} M \begin{bmatrix}u \\ v\end{bmatrix}$$</div>
+      <div class="worked fragment"><span class="tag">Worked example · g = (2, 1) everywhere, Σ w = 1</span><p>E = (2u + v)², M = [4 2 / 2 1] · shift (1, 0): 4 · (0, 1): 1 · (1, −2): 0 → an edge: one way never changes</p></div>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ที่มา M: E(u,v) = ผลรวมของ (ภาพที่เลื่อน − ภาพเดิม)² · Taylor อันดับ 1 (ย้อนคาบ 4 หน้า 13) → (gₓu + g_yv)² → [u v] M [u v]ᵀ · ตัวอย่าง: gradient (2, 1) ทั้งหน้าต่าง → เลื่อนตามขอบ (1, −2) ไม่เปลี่ยนเลย = ขอบ</p><p>🇬🇧 Where M comes from: E(u,v) sums (shifted − original)². First-order Taylor (session 4 slide 13) → (gₓu + g_yv)² → [u v] M [u v]ᵀ. Example: gradient (2, 1) everywhere — shifting along (1, −2) changes nothing: an edge.</p></aside>
+</section>
+
+<!-- 7 -->
+<section data-part="A">
+  <p class="kicker">A · Corners</p>
   <h2 class="claim">Gradients in the window make a 2 × 2 matrix</h2>
   <div class="split">
     <div>
@@ -717,13 +735,32 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
       <div class="flashback">Session 3 C: Sobel gives g<sub>x</sub> and g<sub>y</sub> at every pixel. Session 3 B: a Gaussian weights the middle of the window most.</div>
       <p style="margin-top:.6em">Add up g<sub>x</sub>², g<sub>x</sub>g<sub>y</sub> and g<sub>y</sub>² over the window, weighted by w. Four numbers (two equal) say how the window changes when it moves.</p>
       <p class="fragment">The flat window has almost no gradient: M ≈ 0. The edge has a big g<sub>x</sub> or g<sub>y</sub> in one direction only.</p>
+      <div class="worked fragment"><span class="tag">Worked example · shift by one pixel, from the table</span><p>(1, 0) → E ≈ M₁₁ · (0, 1) → E ≈ M₂₂ · edge: 5.63 vs 0.25 · corner: 2.06 vs 1.81</p></div>
     </div>
   </div>
 
   <aside class="notes"><p>🇹🇭 ย้อนคาบ 3 C (Sobel) และ 3 B (Gaussian) · ชี้ตาราง: พื้นเรียบ M ≈ 0 · ขอบมีค่าใหญ่ทิศเดียว · มุมใหญ่ทั้งสองทิศ</p><p>🇬🇧 Back to session 3 C (Sobel) and 3 B (Gaussian). The table: flat M ≈ 0, an edge is large in one direction, a corner in both.</p></aside>
 </section>
 
-<!-- 7 -->
+<!-- 8 -->
+<section data-part="A">
+  <p class="kicker">A · Corners</p>
+  <h2 class="claim">The change in any direction lies between the eigenvalues</h2>
+  <div class="split">
+    <div><svg class="fig cvsvg" viewBox="0 0 580 300" role="img" aria-label="for the edge and the corner window, the change for a one-pixel shift in every direction drawn as a radius: a thin figure eight for the edge, a near circle for the corner"><circle cx="145" cy="150" r="112" fill="none" stroke="#e2e8f0"/><polygon points="252.7,150.0 251.0,153.7 248.9,157.3 246.5,160.7 243.8,163.9 240.7,166.9 237.4,169.6 233.8,172.2 230.0,174.4 226.0,176.3 221.9,178.0 217.6,179.3 213.2,180.4 208.8,181.1 204.3,181.5 199.8,181.7 195.4,181.5 191.1,181.1 186.8,180.4 182.7,179.4 178.7,178.3 174.9,176.9 171.3,175.4 167.9,173.7 164.7,171.9 161.8,170.0 159.1,168.1 156.7,166.1 154.5,164.1 152.6,162.2 150.9,160.3 149.5,158.5 148.3,156.8 147.4,155.3 146.6,154.0 146.0,152.8 145.6,151.9 145.3,151.2 145.2,150.7 145.1,150.5 145.1,150.5 145.1,150.8 145.1,151.4 145.2,152.3 145.1,153.4 145.0,154.8 144.8,156.4 144.4,158.3 143.9,160.3 143.2,162.6 142.4,165.0 141.3,167.6 139.9,170.3 138.4,173.1 136.6,175.9 134.5,178.8 132.2,181.7 129.6,184.5 126.8,187.3 123.7,190.0 120.4,192.6 116.9,195.0 113.2,197.2 109.3,199.2 105.2,201.0 101.0,202.5 96.7,203.7 92.3,204.6 87.8,205.2 83.3,205.5 78.9,205.5 74.4,205.1 70.1,204.4 65.9,203.4 61.8,202.0 57.9,200.3 54.2,198.3 50.8,196.0 47.6,193.4 44.7,190.5 42.1,187.4 39.9,184.1 38.0,180.7 36.6,177.0 35.5,173.3 34.8,169.4 34.5,165.5 34.6,161.6 35.1,157.7 36.0,153.8 37.3,150.0 39.0,146.3 41.1,142.7 43.5,139.3 46.2,136.1 49.3,133.1 52.6,130.4 56.2,127.8 60.0,125.6 64.0,123.7 68.1,122.0 72.4,120.7 76.8,119.6 81.2,118.9 85.7,118.5 90.2,118.3 94.6,118.5 98.9,118.9 103.2,119.6 107.3,120.6 111.3,121.7 115.1,123.1 118.7,124.6 122.1,126.3 125.3,128.1 128.2,130.0 130.9,131.9 133.3,133.9 135.5,135.9 137.4,137.8 139.1,139.7 140.5,141.5 141.7,143.2 142.6,144.7 143.4,146.0 144.0,147.2 144.4,148.1 144.7,148.8 144.8,149.3 144.9,149.5 144.9,149.5 144.9,149.2 144.9,148.6 144.8,147.7 144.9,146.6 145.0,145.2 145.2,143.6 145.6,141.7 146.1,139.7 146.8,137.4 147.6,135.0 148.7,132.4 150.1,129.7 151.6,126.9 153.4,124.1 155.5,121.2 157.8,118.3 160.4,115.5 163.2,112.7 166.3,110.0 169.6,107.4 173.1,105.0 176.8,102.8 180.7,100.8 184.8,99.0 189.0,97.5 193.3,96.3 197.7,95.4 202.2,94.8 206.7,94.5 211.1,94.5 215.6,94.9 219.9,95.6 224.1,96.6 228.2,98.0 232.1,99.7 235.8,101.7 239.2,104.0 242.4,106.6 245.3,109.5 247.9,112.6 250.1,115.9 252.0,119.3 253.4,123.0 254.5,126.7 255.2,130.6 255.5,134.5 255.4,138.4 254.9,142.3 254.0,146.2 252.7,150.0" fill="#c97a06" fill-opacity=".18" stroke="#c97a06" stroke-width="3"/><line x1="145" y1="150" x2="35.2" y2="172.0" stroke="#0f1b2d" stroke-width="2.5"/><line x1="145" y1="150" x2="144.9" y2="149.5" stroke="#0f1b2d" stroke-width="2.5" stroke-dasharray="5 4"/><text x="145" y="290" text-anchor="middle" class="lb" style="fill:#c97a06">edge: λ₁ 5.86 · λ₂ 0.02</text><circle cx="435" cy="150" r="112" fill="none" stroke="#e2e8f0"/><polygon points="474.4,150.0 474.0,151.4 473.6,152.7 473.1,154.0 472.5,155.3 471.9,156.5 471.3,157.7 470.6,158.9 469.9,160.0 469.2,161.1 468.4,162.2 467.6,163.2 466.8,164.1 465.9,165.1 465.1,166.0 464.2,166.9 463.4,167.7 462.5,168.5 461.6,169.3 460.7,170.1 459.8,170.8 458.9,171.5 458.0,172.2 457.1,172.9 456.2,173.5 455.3,174.2 454.4,174.8 453.5,175.4 452.5,176.0 451.6,176.6 450.7,177.2 449.8,177.7 448.8,178.3 447.9,178.9 446.9,179.4 445.9,180.0 444.9,180.5 443.9,181.0 442.9,181.5 441.8,182.1 440.7,182.5 439.6,183.0 438.5,183.5 437.4,183.9 436.2,184.3 435.0,184.7 433.8,185.0 432.5,185.3 431.3,185.6 430.0,185.8 428.7,186.0 427.3,186.2 426.0,186.2 424.6,186.3 423.2,186.3 421.8,186.2 420.4,186.1 419.0,185.9 417.6,185.6 416.2,185.3 414.8,184.9 413.5,184.4 412.1,183.9 410.8,183.3 409.5,182.7 408.2,181.9 407.0,181.1 405.8,180.3 404.6,179.4 403.5,178.4 402.4,177.3 401.4,176.2 400.5,175.1 399.6,173.9 398.8,172.6 398.0,171.3 397.4,170.0 396.8,168.6 396.2,167.3 395.8,165.8 395.4,164.4 395.1,163.0 394.9,161.5 394.7,160.0 394.6,158.6 394.6,157.1 394.7,155.7 394.8,154.2 395.0,152.8 395.3,151.4 395.6,150.0 396.0,148.6 396.4,147.3 396.9,146.0 397.5,144.7 398.1,143.5 398.7,142.3 399.4,141.1 400.1,140.0 400.8,138.9 401.6,137.8 402.4,136.8 403.2,135.9 404.1,134.9 404.9,134.0 405.8,133.1 406.6,132.3 407.5,131.5 408.4,130.7 409.3,129.9 410.2,129.2 411.1,128.5 412.0,127.8 412.9,127.1 413.8,126.5 414.7,125.8 415.6,125.2 416.5,124.6 417.5,124.0 418.4,123.4 419.3,122.8 420.2,122.3 421.2,121.7 422.1,121.1 423.1,120.6 424.1,120.0 425.1,119.5 426.1,119.0 427.1,118.5 428.2,117.9 429.3,117.5 430.4,117.0 431.5,116.5 432.6,116.1 433.8,115.7 435.0,115.3 436.2,115.0 437.5,114.7 438.7,114.4 440.0,114.2 441.3,114.0 442.7,113.8 444.0,113.8 445.4,113.7 446.8,113.7 448.2,113.8 449.6,113.9 451.0,114.1 452.4,114.4 453.8,114.7 455.2,115.1 456.5,115.6 457.9,116.1 459.2,116.7 460.5,117.3 461.8,118.1 463.0,118.9 464.2,119.7 465.4,120.6 466.5,121.6 467.6,122.7 468.6,123.8 469.5,124.9 470.4,126.1 471.2,127.4 472.0,128.7 472.6,130.0 473.2,131.4 473.8,132.7 474.2,134.2 474.6,135.6 474.9,137.0 475.1,138.5 475.3,140.0 475.4,141.4 475.4,142.9 475.3,144.3 475.2,145.8 475.0,147.2 474.7,148.6 474.4,150.0" fill="#e0533d" fill-opacity=".18" stroke="#e0533d" stroke-width="3"/><line x1="435" y1="150" x2="399.1" y2="173.0" stroke="#0f1b2d" stroke-width="2.5"/><line x1="435" y1="150" x2="418.1" y2="123.6" stroke="#0f1b2d" stroke-width="2.5" stroke-dasharray="5 4"/><text x="435" y="290" text-anchor="middle" class="lb" style="fill:#e0533d">corner: λ₁ 2.23 · λ₂ 1.64</text></svg><p class="gcap">radius = E for a one-pixel shift in that direction · M of slide 7's windows · solid line λ₁, dashed λ₂</p></div>
+    <div class="say">
+      <div class="eq">$$E(u)=u^\top M u,\qquad \lVert u\rVert=1$$</div>
+      <p class="fragment">M is symmetric, so its eigenvectors e₁ ⟂ e₂. Write u = cos α e₁ + sin α e₂:</p>
+      <div class="eq fragment">$$E=\lambda_1\cos^2\alpha+\lambda_2\sin^2\alpha\;\in\;[\lambda_2,\lambda_1]$$</div>
+      <p class="fragment">Largest along e₁, smallest along e₂. A corner: even the <b>smallest</b> change, λ₂, is large.</p>
+      <div class="worked fragment"><span class="tag">Worked example · M = [3 1 / 1 3]</span><p>u = [1, 1]/√2 → (3 + 1 + 1 + 3)/2 = 4 = λ₁ · u = [1, −1]/√2 → (3 − 1 − 1 + 3)/2 = 2 = λ₂ · det 8 = 4·2 · trace 6 = 4 + 2</p></div>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ที่มาของ eigenvalue: E ของการเลื่อน 1 pixel ทิศ u = uᵀMu · แตก u ตาม eigenvector (ตั้งฉากกันเพราะ M สมมาตร) → λ₁cos² + λ₂sin² อยู่ระหว่าง λ₂ กับ λ₁ · ชี้ภาพ: ขอบเป็นเลข 8 ผอม · มุมเกือบกลม · ตัวอย่าง [3 1 / 1 3] → 4 และ 2 (det = ผลคูณ · trace = ผลบวก ใช้หน้า 10)</p><p>🇬🇧 Why eigenvalues: E for a one-pixel shift along u is uᵀMu. Split u along the eigenvectors (perpendicular, M is symmetric) → λ₁cos² + λ₂sin², between λ₂ and λ₁. The picture: a thin figure eight for the edge, almost a circle for the corner. Example [3 1 / 1 3] → 4 and 2 (det = product, trace = sum — used on slide 10).</p></aside>
+</section>
+
+<!-- 9 -->
 <section data-part="A">
   <p class="kicker">A · Corners</p>
   <h2 class="claim">Two large eigenvalues mean a corner</h2>
@@ -738,7 +775,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ชี้จุดสามจุดบนกราฟ (ค่าจริงจากหน้าต่างหน้า 5) · มุม = ทั้งสอง eigenvalue ใหญ่ · ไม่ต้องหา eigenvalue เอง — หน้าถัดไปมีทางลัด</p><p>🇬🇧 Point at the three dots (real values from slide 5's windows). A corner has both eigenvalues large. No need to compute eigenvalues — the next slide has a shortcut.</p></aside>
 </section>
 
-<!-- 8 -->
+<!-- 10 -->
 <section data-part="A">
   <p class="kicker">A · Corners</p>
   <h2 class="claim">Harris: one number instead of two eigenvalues</h2>
@@ -752,7 +789,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     </div>
     <div class="say">
       <div class="eq">$$R=\det M-k\,(\operatorname{trace} M)^2$$</div>
-      <p>det M = λ₁λ₂ and trace M = λ₁ + λ₂ — no eigenvalues needed. k ≈ 0.04.</p>
+      <p>det M = λ₁λ₂ and trace M = λ₁ + λ₂ (slide 8) — no eigenvalues needed. k ≈ 0.04.</p>
+      <div class="worked"><span class="tag">Worked example · the corner window of slide 7</span><p>det = 2.06 × 1.81 − 0.27² = 3.66 · trace = 3.87 → R = 3.66 − 0.04 × 3.87² = 3.06 → corner</p></div>
       <p class="fragment">R ≫ 0: corner · R &lt; 0: edge · R ≈ 0: flat. Keep the points where R is larger than its neighbours and above a threshold.</p>
     </div>
   </div>
@@ -760,7 +798,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ลาก threshold: ยิ่งต่ำยิ่งได้มุมมาก (1% ของค่าสูงสุด = 518 จุด · 5% = 332) · สลับ R map: มุมสว่าง ขอบมืดกว่าพื้น</p><p>🇬🇧 Drag the threshold: lower keeps more (1% of the maximum = 518 corners, 5% = 332). Switch to the R map: corners bright, edges darker than flat.</p></aside>
 </section>
 
-<!-- 9 -->
+<!-- 11 -->
 <section data-part="A">
   <p class="kicker">A · Corners</p>
   <h2 class="claim">Try it: corner or edge?</h2>
@@ -775,7 +813,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ให้เวลา 1 นาที · แบบข้อสอบ Final</p><p>🇬🇧 Give one minute. Final-exam style.</p></aside>
 </section>
 
-<!-- 10 -->
+<!-- 12 -->
 <section data-part="A">
   <p class="kicker">A · Corners</p>
   <h2 class="claim">A corner: change in every direction</h2>
@@ -791,7 +829,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 สรุป A · ชี้ต่อคาบ 9 B: M ตัวเดียวกันใช้หา optical flow (แผนที่คาบ 1: corner matrix → flow 9) · แล้วต่อ B</p><p>🇬🇧 Wrap up A. Forward: session 9 B uses the same M for optical flow (session 1's map: corner matrix → flow 9). Then B.</p></aside>
 </section>
 
-<!-- 11 -->
+<!-- 13 -->
 <section class="part-open" id="part-b" data-part="B">
   <div class="po-strip"><a href="#/part-a" class="done"><b>A</b>Corners</a><a href="#/part-b" class="on"><b>B</b>Scale</a><a href="#/part-c" class=""><b>C</b>Matching</a><a href="#/part-d" class=""><b>D</b>RANSAC</a></div>
   <p class="po-letter">B</p>
@@ -801,7 +839,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 หน้าเปิด part: อ่านคำถามกับสิ่งที่จะทำได้ท้าย part แล้วเข้าเนื้อหา</p><p>🇬🇧 Part opener: read the question and what you can do by the end of the part, then go in.</p></aside>
 </section>
 
-<!-- 12 -->
+<!-- 14 -->
 <section data-part="B">
   <p class="kicker">B · Scale</p>
   <h2 class="claim">Zoom in, and a corner becomes an edge</h2>
@@ -822,7 +860,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ชี้หน้าต่างแดงสองภาพ: จุดเดียวกันของตึก (หาตำแหน่งผ่าน homography ของคู่ match หน้า 1) · ค่า λ วัดจริง: ภาพเต็มเป็นมุม ภาพซูมเป็นขอบ</p><p>🇬🇧 Point at the two red windows: the same spot on the building (located through slide 1's matches). Measured λ: a corner in the whole photo, an edge in the close-up.</p></aside>
 </section>
 
-<!-- 13 -->
+<!-- 15 -->
 <section data-part="B">
   <p class="kicker">B · Scale</p>
   <h2 class="claim">Scale space: the photo at every blur</h2>
@@ -841,7 +879,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ลาก σ 0 → 16: อิฐหายก่อน ตามด้วยหน้าต่าง แล้วทั้งชั้น · ย้อนคาบ 3 B (σ) และ 3 D (pyramid)</p><p>🇬🇧 Drag σ from 0 to 16: bricks go first, then windows, then floors. Back to session 3 B (σ) and 3 D (pyramid).</p></aside>
 </section>
 
-<!-- 14 -->
+<!-- 16 -->
 <section data-part="B">
   <p class="kicker">B · Scale</p>
   <h2 class="claim">A blob answers most at its own size</h2>
@@ -860,14 +898,14 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ลาก σ ให้ยอดของแต่ละเส้นผ่าน · ย้ำ: ยอดบอกขนาด (σ ≈ r/√2) — นี่คือวิธีที่ SIFT รู้ว่าจุดใหญ่แค่ไหน</p><p>🇬🇧 Drag σ through each peak. The peak gives the size (σ ≈ r/√2) — how SIFT knows how big a point is.</p></aside>
 </section>
 
-<!-- 15 -->
+<!-- 17 -->
 <section data-part="B">
   <p class="kicker">B · Scale</p>
   <h2 class="claim">SIFT finds blobs across space and scale</h2>
   <div class="split">
     <div><svg class="fig" style="max-width:560px;margin:0 auto" viewBox="0 0 1000 750" role="img" aria-label="the whole building with circles on its strongest SIFT points, each circle the size of its point"><image href="img/full.jpg" width="1000" height="750"/><circle cx="372.3" cy="321.5" r="2.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="313.1" cy="161.6" r="2.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="282.1" cy="301.4" r="2.7" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="282.1" cy="301.4" r="2.7" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="722.6" cy="275.2" r="1.9" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="848.1" cy="678.8" r="2.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="848.1" cy="678.8" r="2.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="777.1" cy="665.7" r="1.9" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="777.1" cy="665.7" r="1.9" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="762.3" cy="681.8" r="2.5" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="697.8" cy="274.9" r="2.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="584.0" cy="477.9" r="2.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="603.0" cy="658.9" r="1.9" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="884.9" cy="689.0" r="2.8" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="884.9" cy="689.0" r="2.8" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="775.2" cy="658.0" r="2.5" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="552.1" cy="272.4" r="1.9" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="552.1" cy="272.4" r="1.9" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="556.2" cy="171.0" r="2.8" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="523.4" cy="224.0" r="2.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="523.4" cy="224.0" r="2.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="275.6" cy="509.3" r="3.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="378.0" cy="349.9" r="2.5" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="378.0" cy="349.9" r="2.5" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="703.5" cy="275.0" r="2.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="830.3" cy="627.2" r="2.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="670.8" cy="268.1" r="2.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="670.8" cy="268.1" r="2.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="604.9" cy="516.3" r="2.7" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="524.5" cy="272.3" r="2.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="539.1" cy="168.9" r="4.5" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="539.1" cy="168.9" r="4.5" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="767.7" cy="485.4" r="5.2" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="767.7" cy="485.4" r="5.2" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="767.7" cy="485.4" r="5.2" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="327.1" cy="165.6" r="3.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="327.1" cy="165.6" r="3.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="342.2" cy="166.1" r="3.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="342.2" cy="166.1" r="3.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="357.2" cy="167.1" r="4.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="608.6" cy="442.4" r="3.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="608.6" cy="442.4" r="3.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="357.2" cy="437.1" r="4.8" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="357.2" cy="437.1" r="4.8" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="783.9" cy="441.4" r="3.9" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="755.2" cy="484.9" r="4.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="479.2" cy="226.0" r="5.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="291.2" cy="305.7" r="4.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="483.1" cy="336.0" r="5.2" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="656.3" cy="166.8" r="4.2" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="570.5" cy="486.1" r="4.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="570.5" cy="486.1" r="4.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="570.5" cy="486.1" r="4.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="403.9" cy="319.9" r="5.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="277.7" cy="463.6" r="4.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="277.7" cy="463.6" r="4.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="577.0" cy="293.1" r="4.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="479.9" cy="238.9" r="4.7" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="479.9" cy="238.9" r="4.7" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="484.0" cy="363.5" r="5.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="719.6" cy="360.8" r="5.9" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="719.6" cy="360.8" r="5.9" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="557.7" cy="360.0" r="6.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="557.7" cy="360.0" r="6.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="558.4" cy="163.3" r="8.2" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="558.4" cy="163.3" r="8.2" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="693.4" cy="167.2" r="8.8" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="693.4" cy="167.2" r="8.8" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="304.5" cy="525.1" r="7.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="573.5" cy="527.6" r="7.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="573.5" cy="527.6" r="7.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="693.4" cy="245.0" r="6.9" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="573.5" cy="528.5" r="7.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="573.5" cy="528.5" r="7.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="546.6" cy="240.9" r="5.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="546.6" cy="240.9" r="5.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="698.4" cy="265.3" r="7.2" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="698.4" cy="265.3" r="7.2" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="681.1" cy="162.7" r="7.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="546.9" cy="157.6" r="7.9" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="379.4" cy="183.8" r="6.7" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="584.5" cy="486.4" r="5.9" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="548.9" cy="263.8" r="6.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="548.9" cy="263.8" r="6.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="292.4" cy="319.8" r="7.7" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="483.6" cy="321.3" r="7.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="483.6" cy="321.3" r="7.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="483.6" cy="321.3" r="7.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="363.9" cy="183.6" r="6.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="363.9" cy="183.6" r="6.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="748.1" cy="422.0" r="13.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="720.0" cy="423.1" r="12.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="546.3" cy="336.1" r="11.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="338.7" cy="357.1" r="15.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="383.2" cy="311.4" r="12.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="383.2" cy="311.4" r="12.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="546.4" cy="420.9" r="16.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="855.6" cy="727.9" r="12.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="855.6" cy="727.9" r="12.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="797.8" cy="633.3" r="15.5" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="572.7" cy="359.8" r="14.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="316.4" cy="194.8" r="12.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="370.1" cy="467.1" r="13.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="363.7" cy="262.1" r="13.7" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="531.6" cy="236.8" r="13.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="612.2" cy="323.8" r="11.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="612.2" cy="323.8" r="11.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="414.8" cy="196.0" r="9.9" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="414.8" cy="196.0" r="9.9" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="745.4" cy="30.4" r="12.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="267.6" cy="468.2" r="10.7" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="267.6" cy="468.2" r="10.7" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="807.6" cy="135.5" r="17.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="303.5" cy="290.5" r="12.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="485.6" cy="201.9" r="14.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="706.2" cy="358.6" r="13.7" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="378.7" cy="335.5" r="13.2" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="781.7" cy="287.5" r="14.2" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="348.2" cy="133.5" r="11.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="348.2" cy="133.5" r="11.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="776.7" cy="96.7" r="74.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="307.8" cy="161.1" r="21.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="307.8" cy="161.1" r="21.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="626.8" cy="604.1" r="24.7" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="819.2" cy="599.9" r="26.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="397.6" cy="140.8" r="21.8" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="730.8" cy="260.8" r="19.9" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="761.2" cy="377.7" r="23.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="595.7" cy="372.7" r="20.7" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="536.1" cy="591.0" r="19.5" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="361.5" cy="376.0" r="21.7" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="324.4" cy="525.3" r="17.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="324.4" cy="525.3" r="17.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="324.4" cy="525.3" r="17.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="429.1" cy="147.7" r="25.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="739.9" cy="238.7" r="43.9" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="291.3" cy="403.1" r="23.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="508.4" cy="333.3" r="18.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="267.5" cy="374.4" r="21.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="322.5" cy="561.3" r="19.8" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="561.2" cy="637.4" r="22.2" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="204.8" cy="221.3" r="27.7" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="558.6" cy="407.5" r="39.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="558.6" cy="407.5" r="39.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="778.9" cy="624.8" r="45.2" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="417.6" cy="248.8" r="26.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="573.6" cy="537.7" r="42.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="507.9" cy="224.2" r="23.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="348.6" cy="606.4" r="25.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="327.1" cy="120.7" r="24.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/></svg><p class="gcap">150 SIFT points of the whole photo, the strongest at five sizes — circle radius = the point's size</p></div>
     <div class="say">
-      <p>SIFT subtracts neighbouring blurs (difference of Gaussians ≈ the Laplacian of slide 14) and keeps a point that beats all <b>26 neighbours</b>: 8 around it, 9 one scale up, 9 one scale down.</p>
+      <p>SIFT subtracts neighbouring blurs (difference of Gaussians ≈ the Laplacian of slide 16) and keeps a point that beats all <b>26 neighbours</b>: 8 around it, 9 one scale up, 9 one scale down.</p>
       <p class="fragment">So each point comes with a position <b>and a size</b>. In the close-up the matched points are 2.06× bigger — the photo is zoomed 2.23×.</p>
     </div>
   </div>
@@ -875,7 +913,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ชี้วงเล็ก (อิฐ ขอบ) กับวงใหญ่ (หน้าต่างทั้งบาน) · 26 เพื่อนบ้าน = 3 × 3 × 3 − 1 · ขนาดจุดในภาพซูมใหญ่กว่า 2.06× ใกล้กับการซูม 2.23×</p><p>🇬🇧 Small circles (bricks, edges), large circles (whole windows). 26 neighbours = 3 × 3 × 3 − 1. In the close-up the points are 2.06× bigger, close to the 2.23× zoom.</p></aside>
 </section>
 
-<!-- 16 -->
+<!-- 18 -->
 <section data-part="B">
   <p class="kicker">B · Scale</p>
   <h2 class="claim">Try it: pick the scale</h2>
@@ -888,15 +926,15 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="say"><p>The scale = the σ with the largest response.</p><p>Blob radius ≈ σ √2.</p></div>
   </div>
 
-  <aside class="notes"><p>🇹🇭 ให้เวลา 1 นาที · ข้อ 3 เชื่อมกับหน้า 12: ภาพเล็กลงครึ่งหนึ่ง scale ก็ครึ่งหนึ่ง</p><p>🇬🇧 Give one minute. Question 3 ties to slide 12: half the size, half the scale.</p></aside>
+  <aside class="notes"><p>🇹🇭 ให้เวลา 1 นาที · ข้อ 3 เชื่อมกับหน้า 14: ภาพเล็กลงครึ่งหนึ่ง scale ก็ครึ่งหนึ่ง</p><p>🇬🇧 Give one minute. Question 3 ties to slide 14: half the size, half the scale.</p></aside>
 </section>
 
-<!-- 17 -->
+<!-- 19 -->
 <section data-part="B">
   <p class="kicker">B · Scale</p>
   <h2 class="claim">Scale space: the same point at any size</h2>
   <div class="cards">
-    <div class="card"><b>One window is not enough</b>Zoom in and a corner becomes an edge (slide 12).</div>
+    <div class="card"><b>One window is not enough</b>Zoom in and a corner becomes an edge (slide 14).</div>
     <div class="card violet"><b>Scale space</b>Blur at every σ; a blob answers most at σ ≈ its radius ÷ √2.</div>
     <div class="card amber"><b>SIFT points</b>Maxima over space and scale (26 neighbours): every point has a position and a size.</div>
   </div>
@@ -907,7 +945,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 สรุป B · ชี้ต่อคาบ 8 (ตรวจจับวัตถุทุกขนาดด้วย pyramid ของ feature) · แล้วต่อ C</p><p>🇬🇧 Wrap up B. Forward: session 8 (objects of every size, a pyramid of features). Then C.</p></aside>
 </section>
 
-<!-- 18 -->
+<!-- 20 -->
 <section class="part-open" id="part-c" data-part="C">
   <div class="po-strip"><a href="#/part-a" class="done"><b>A</b>Corners</a><a href="#/part-b" class="done"><b>B</b>Scale</a><a href="#/part-c" class="on"><b>C</b>Matching</a><a href="#/part-d" class=""><b>D</b>RANSAC</a></div>
   <p class="po-letter">C</p>
@@ -917,7 +955,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 หน้าเปิด part: อ่านคำถามกับสิ่งที่จะทำได้ท้าย part แล้วเข้าเนื้อหา</p><p>🇬🇧 Part opener: read the question and what you can do by the end of the part, then go in.</p></aside>
 </section>
 
-<!-- 19 -->
+<!-- 21 -->
 <section data-part="C">
   <p class="kicker">C · Descriptors &amp; matching</p>
   <h2 class="claim">Raw brightness is a bad description</h2>
@@ -940,7 +978,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ย้อนคาบ 1 หน้า 6 (แสงเปลี่ยน ตัวเลขเปลี่ยนหมด) · อ่านตาราง: ทุกค่าเทียบกับระยะไปจุดอื่น — SIFT เปลี่ยนน้อยกว่ามาก โดยเฉพาะตอนหมุน</p><p>🇬🇧 Back to session 1 slide 6 (new light, every number changes). Read the table: each value is a share of the distance to another point — SIFT changes far less, especially when turned.</p></aside>
 </section>
 
-<!-- 20 -->
+<!-- 22 -->
 <section data-part="C">
   <p class="kicker">C · Descriptors &amp; matching</p>
   <h2 class="claim">SIFT describes the gradients around a point</h2>
@@ -953,10 +991,10 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     </div>
   </div>
 
-  <aside class="notes"><p>🇹🇭 ชี้ช่องที่ลูกศรยาวทิศเดียว (ขอบ) กับช่องที่มีหลายทิศ (มุม/ลาย) · ย้อนคาบ 3 C · หมุนตามทิศหลัก + normalize = เหตุที่หน้า 19 เปลี่ยนน้อย</p><p>🇬🇧 Point at cells with one long arrow (an edge) and cells with many (a corner, texture). Back to session 3 C. Turning to the main direction and normalising are why slide 19 changed so little.</p></aside>
+  <aside class="notes"><p>🇹🇭 ชี้ช่องที่ลูกศรยาวทิศเดียว (ขอบ) กับช่องที่มีหลายทิศ (มุม/ลาย) · ย้อนคาบ 3 C · หมุนตามทิศหลัก + normalize = เหตุที่หน้า 21 เปลี่ยนน้อย</p><p>🇬🇧 Point at cells with one long arrow (an edge) and cells with many (a corner, texture). Back to session 3 C. Turning to the main direction and normalising are why slide 21 changed so little.</p></aside>
 </section>
 
-<!-- 21 -->
+<!-- 23 -->
 <section data-part="C">
   <p class="kicker">C · Descriptors &amp; matching</p>
   <h2 class="claim">Match: the nearest descriptor</h2>
@@ -974,7 +1012,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ย้อนคาบ 5 C (nearest neighbour ทั้งภาพ → ตอนนี้ทีละจุด) · ชี้ช่องว่างระหว่างอันดับ 1 กับ 2 → ปูทาง ratio test</p><p>🇬🇧 Back to session 5 C (nearest neighbour, now per point). Point at the gap between first and second — the ratio test is next.</p></aside>
 </section>
 
-<!-- 22 -->
+<!-- 24 -->
 <section data-part="C">
   <p class="kicker">C · Descriptors &amp; matching</p>
   <h2 class="claim">The ratio test throws out unsure matches</h2>
@@ -993,7 +1031,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ลาก threshold จาก 1.0 (แดงเต็ม) ไป 0.8 และ 0.6 · ถูก/ผิดตัดสินด้วย homography จริง · ยังเหลือคู่ผิดเสมอ → D: RANSAC</p><p>🇬🇧 Drag from 1.0 (mostly red) to 0.8 and 0.6. Right or wrong is judged by the real homography. Some wrong matches always remain — D: RANSAC.</p></aside>
 </section>
 
-<!-- 23 -->
+<!-- 25 -->
 <section data-part="C">
   <p class="kicker">C · Descriptors &amp; matching</p>
   <h2 class="claim">Try it: keep the match?</h2>
@@ -1008,7 +1046,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ให้เวลา 2 นาที · แบบข้อสอบ Final</p><p>🇬🇧 Give two minutes. Final-exam style.</p></aside>
 </section>
 
-<!-- 24 -->
+<!-- 26 -->
 <section data-part="C">
   <p class="kicker">C · Descriptors &amp; matching</p>
   <h2 class="claim">Describe with gradients, keep only confident matches</h2>
@@ -1024,7 +1062,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 สรุป C · ชี้ต่อคาบ 7 และ T6-4/5 (SuperPoint · LightGlue ใช้ attention ของคาบ 5 A) · แล้วต่อ D</p><p>🇬🇧 Wrap up C. Forward: session 7 and T6-4/5 (SuperPoint, LightGlue use session 5 A's attention). Then D.</p></aside>
 </section>
 
-<!-- 25 -->
+<!-- 27 -->
 <section class="part-open" id="part-d" data-part="D">
   <div class="po-strip"><a href="#/part-a" class="done"><b>A</b>Corners</a><a href="#/part-b" class="done"><b>B</b>Scale</a><a href="#/part-c" class="done"><b>C</b>Matching</a><a href="#/part-d" class="on"><b>D</b>RANSAC</a></div>
   <p class="po-letter">D</p>
@@ -1034,7 +1072,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 หน้าเปิด part: อ่านคำถามกับสิ่งที่จะทำได้ท้าย part แล้วเข้าเนื้อหา</p><p>🇬🇧 Part opener: read the question and what you can do by the end of the part, then go in.</p></aside>
 </section>
 
-<!-- 26 -->
+<!-- 28 -->
 <section data-part="D">
   <p class="kicker">D · RANSAC</p>
   <h2 class="claim">One wrong match ruins a least-squares fit</h2>
@@ -1043,14 +1081,14 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="say">
       <div class="flashback">Session 4 B: fitting = making the loss small. Least squares adds up the squared errors of every point.</div>
       <p style="margin-top:.6em">A wrong point far away has a huge squared error, so the line bends towards it: slope 0.36 instead of 0.57.</p>
-      <p class="fragment">After the ratio test, about 1 match in 4 is still wrong (slide 22). Least squares on all of them would bend the model just like this.</p>
+      <p class="fragment">After the ratio test, about 1 match in 4 is still wrong (slide 24). Least squares on all of them would bend the model just like this.</p>
     </div>
   </div>
 
   <aside class="notes"><p>🇹🇭 ย้อนคาบ 4 B (fit = ลด loss) · ชี้ว่าแค่ 3 จุดผิดก็ดึงเส้นแดงเพี้ยน · ต่อ: ต้องวิธีที่ไม่ฟังจุดผิด</p><p>🇬🇧 Back to session 4 B (fit = minimise the loss). Three wrong points pull the red line off. Next: a method that ignores wrong points.</p></aside>
 </section>
 
-<!-- 27 -->
+<!-- 29 -->
 <section data-part="D">
   <p class="kicker">D · RANSAC</p>
   <h2 class="claim">RANSAC: guess from a few, count who agrees</h2>
@@ -1071,7 +1109,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 อ่าน 5 ขั้น · ย้ำ: ใช้จุดน้อยที่สุด (เส้น 2 · homography 4) เพราะยิ่งน้อยยิ่งมีโอกาสสุ่มได้จุดดีล้วน</p><p>🇬🇧 Read the five steps. Stress the fewest points: the fewer, the likelier a sample is all good.</p></aside>
 </section>
 
-<!-- 28 -->
+<!-- 30 -->
 <section data-part="D">
   <p class="kicker">D · RANSAC</p>
   <h2 class="claim">Watch RANSAC, one try at a time</h2>
@@ -1090,7 +1128,25 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 กด One try หลายครั้ง: ส่วนใหญ่ได้ inlier น้อย · พอสุ่มได้จุดดีสองจุด inlier กระโดดเป็น ~31 · กด Reset เพื่อเริ่มสุ่มชุดเดิมใหม่</p><p>🇬🇧 Press One try a few times: most tries get few inliers; when two good points are drawn, it jumps to about 31. Reset replays the same random sequence.</p></aside>
 </section>
 
-<!-- 29 -->
+<!-- 31 -->
+<section data-part="D">
+  <p class="kicker">D · RANSAC</p>
+  <h2 class="claim">Where N comes from: every try has to fail</h2>
+  <div class="split">
+    <div><svg class="fig cvsvg" viewBox="0 0 560 280" role="img" aria-label="the chance that every one of N tries fails, 0.64 to the power N, falling below 0.01 at N = 11"><line x1="64" y1="16.0" x2="64" y2="236" stroke="#94a3b8"/><text x="56" y="21.0" text-anchor="end" class="tk">1</text><line x1="64" y1="16.0" x2="550" y2="16.0" stroke="#eef2f7"/><text x="56" y="94.33333333333333" text-anchor="end" class="tk">0.1</text><line x1="64" y1="89.33333333333333" x2="550" y2="89.33333333333333" stroke="#eef2f7"/><text x="56" y="167.66666666666666" text-anchor="end" class="tk">0.01</text><line x1="64" y1="162.66666666666666" x2="550" y2="162.66666666666666" stroke="#eef2f7"/><text x="56" y="241.0" text-anchor="end" class="tk">0.001</text><line x1="64" y1="236.0" x2="550" y2="236.0" stroke="#eef2f7"/><rect x="68.0" y="16.0" width="28.3" height="14.2" rx="3" fill="#e0533d" fill-opacity="0.55"/><text x="82.1" y="254" text-anchor="middle" class="tk">1</text><rect x="102.3" y="16.0" width="28.3" height="28.4" rx="3" fill="#e0533d" fill-opacity="0.55"/><text x="116.4" y="254" text-anchor="middle" class="tk">2</text><rect x="136.6" y="16.0" width="28.3" height="42.6" rx="3" fill="#e0533d" fill-opacity="0.55"/><text x="150.7" y="254" text-anchor="middle" class="tk">3</text><rect x="170.9" y="16.0" width="28.3" height="56.9" rx="3" fill="#e0533d" fill-opacity="0.55"/><text x="185.0" y="254" text-anchor="middle" class="tk">4</text><rect x="205.1" y="16.0" width="28.3" height="71.1" rx="3" fill="#e0533d" fill-opacity="0.55"/><text x="219.3" y="254" text-anchor="middle" class="tk">5</text><rect x="239.4" y="16.0" width="28.3" height="85.3" rx="3" fill="#e0533d" fill-opacity="0.55"/><text x="253.6" y="254" text-anchor="middle" class="tk">6</text><rect x="273.7" y="16.0" width="28.3" height="99.5" rx="3" fill="#e0533d" fill-opacity="0.55"/><text x="287.9" y="254" text-anchor="middle" class="tk">7</text><rect x="308.0" y="16.0" width="28.3" height="113.7" rx="3" fill="#e0533d" fill-opacity="0.55"/><text x="322.1" y="254" text-anchor="middle" class="tk">8</text><rect x="342.3" y="16.0" width="28.3" height="127.9" rx="3" fill="#e0533d" fill-opacity="0.55"/><text x="356.4" y="254" text-anchor="middle" class="tk">9</text><rect x="376.6" y="16.0" width="28.3" height="142.1" rx="3" fill="#e0533d" fill-opacity="0.55"/><text x="390.7" y="254" text-anchor="middle" class="tk">10</text><rect x="410.9" y="16.0" width="28.3" height="156.3" rx="3" fill="#0f766e" fill-opacity="1"/><text x="425.0" y="254" text-anchor="middle" class="tk">11</text><rect x="445.1" y="16.0" width="28.3" height="170.6" rx="3" fill="#0f766e" fill-opacity="0.55"/><text x="459.3" y="254" text-anchor="middle" class="tk">12</text><rect x="479.4" y="16.0" width="28.3" height="184.8" rx="3" fill="#0f766e" fill-opacity="0.55"/><text x="493.6" y="254" text-anchor="middle" class="tk">13</text><rect x="513.7" y="16.0" width="28.3" height="199.0" rx="3" fill="#0f766e" fill-opacity="0.55"/><text x="527.9" y="254" text-anchor="middle" class="tk">14</text><line x1="64" y1="162.66666666666666" x2="550" y2="162.66666666666666" stroke="#0f1b2d" stroke-width="2" stroke-dasharray="7 5"/><text x="74" y="184.66666666666666" class="lb">1 − p = 0.01</text><text x="312.0" y="276" text-anchor="middle" class="tk">tries N</text></svg><p class="gcap">chance that all N tries fail, (1 − 0.6²)<sup>N</sup> = 0.64<sup>N</sup> — slide 30's demo: w = 0.6, a line (s = 2)</p></div>
+    <div class="say">
+      <p>One try is all-good with probability w<sup>s</sup> (s independent draws).</p>
+      <div class="eq fragment">$$P(\text{all }N\text{ fail})=(1-w^s)^N\le 1-p$$</div>
+      <p class="fragment">Take ln: N · ln(1 − w<sup>s</sup>) ≤ ln(1 − p). The ln is negative, so dividing flips the ≤:</p>
+      <div class="eq fragment">$$N\ge\frac{\ln(1-p)}{\ln(1-w^s)}$$</div>
+      <div class="worked fragment"><span class="tag">Worked example · w = 0.6, s = 2, p = 0.99</span><p>1 − 0.36 = 0.64 · ln 0.64 = −0.446 · −4.605 ÷ −0.446 = 10.3 → 11 tries (0.64¹⁰ = 0.012 · 0.64¹¹ = 0.0074)</p></div>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ที่มา N: หนึ่งรอบดีหมดด้วยความน่าจะเป็น wˢ · N รอบพลาดหมด (1 − wˢ)ᴺ ≤ 1 − p · ใส่ ln (ค่าติดลบ หารแล้วกลับเครื่องหมาย) · ตัวอย่างตรงกับ demo หน้า 30: w 0.6 เส้นตรง → 11 รอบ · กราฟ: แท่งเขียวเริ่มที่ 11</p><p>🇬🇧 Where N comes from: one try is all-good with probability wˢ; N tries all fail with (1 − wˢ)ᴺ ≤ 1 − p. Take ln (negative — dividing flips the sign). The example is slide 30's demo: w 0.6, a line → 11 tries. Bars turn green at 11.</p></aside>
+</section>
+
+<!-- 32 -->
 <section data-part="D">
   <p class="kicker">D · RANSAC</p>
   <h2 class="claim">How many tries are enough?</h2>
@@ -1103,7 +1159,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
       <p class="big-out" id="nOut" style="text-align:center;margin-top:.6em"></p>
     </div>
     <div class="say">
-      <p>One try is all-good with probability w<sup>s</sup>. N tries all fail with probability (1 − w<sup>s</sup>)<sup>N</sup>. Set that to 1 − p and solve for N (p = 0.99: 99% sure).</p>
+      <p>Slide 31's bound, live: pick the inlier share w and the sample size s; the line below substitutes them (p = 0.99: 99% sure).</p>
       <p class="fragment">More wrong matches (smaller w) or a bigger sample (larger s) → many more tries. That is why RANSAC samples the <b>fewest</b> points.</p>
     </div>
   </div>
@@ -1111,7 +1167,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ลาก w ลง: N พุ่ง · กด s 4 และ s 8: N พุ่งเร็วกว่ามาก · ข้อสอบให้ตาราง ln มา</p><p>🇬🇧 Drag w down: N jumps. Press s 4 and s 8: much faster. The exam gives a table of ln values.</p></aside>
 </section>
 
-<!-- 30 -->
+<!-- 33 -->
 <section data-part="D">
   <p class="kicker">D · RANSAC</p>
   <h2 class="claim">You have seen RANSAC already</h2>
@@ -1125,7 +1181,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ย้อนคาบ 2 หน้า 12 (สัญญาว่า RANSAC คาบ 6) · ภาพคู่: เขียว 527 แดง 165 · ชี้ต่อคาบ 7 B: homography นี้ใช้ต่อภาพ panorama</p><p>🇬🇧 Back to session 2 slide 12 (it promised RANSAC in session 6). The pair: 527 green, 165 red. Forward: session 7 B stitches panoramas with this homography.</p></aside>
 </section>
 
-<!-- 31 -->
+<!-- 34 -->
 <section data-part="D">
   <p class="kicker">D · RANSAC</p>
   <h2 class="claim">Try it: how many tries?</h2>
@@ -1140,7 +1196,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ให้เวลา 2 นาที · แบบข้อสอบ Final (ให้ตาราง ln) · ย้ำปัดขึ้น</p><p>🇬🇧 Give two minutes. Final-exam style (ln table given). Round up.</p></aside>
 </section>
 
-<!-- 32 -->
+<!-- 35 -->
 <section data-part="D">
   <p class="kicker">D · RANSAC</p>
   <h2 class="claim">RANSAC: trust the model most matches agree on</h2>
@@ -1156,7 +1212,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 สรุป D · ชี้ต่อคาบ 7 B (panorama — แผนที่คาบ 1: RANSAC → stitching 7) และโปรเจกต์</p><p>🇬🇧 Wrap up D. Forward: session 7 B (panoramas — session 1's map: RANSAC → stitching 7) and the project.</p></aside>
 </section>
 
-<!-- 33 -->
+<!-- 36 -->
 <section>
   <p class="kicker">Session 6 · what to remember</p>
   <h2 class="claim">From pixels to trusted matches</h2>
@@ -1170,7 +1226,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ทวน 4 ข้อ A–D · ย้อนคาบ 3 หน้า 33 (gradients in two directions find corners) · ต่อด้วยครึ่ง B นำเสนอ T5</p><p>🇬🇧 Recap A–D. Back to session 3 slide 33 (gradients in two directions find corners). Half B's T5 talks follow.</p></aside>
 </section>
 
-<!-- 34 -->
+<!-- 37 -->
 <section>
   <p class="kicker">Assignment · topic set T6</p>
   <h2 class="claim">Half A: pick a T6 topic today — you present it in session 7</h2>
@@ -1179,7 +1235,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ครึ่ง A เลือกหัวข้อ กลุ่มละหนึ่งหัวข้อ ไม่ซ้ำกัน · ส่งไฟล์ตามกำหนดก่อนคาบ 7 · ครึ่ง B รับ T7 หลังคาบ 7</p><p>🇬🇧 Half A picks one topic per group, no repeats; files due before session 7. Half B gets T7 after session 7.</p></aside>
 </section>
 
-<!-- 35 -->
+<!-- 38 -->
 <section>
   <p class="kicker">Project · week 8</p>
   <h2 class="claim">Project topic due in week 8</h2>
@@ -1194,7 +1250,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 เตือน: เหลือ 2 สัปดาห์ส่งหัวข้อ · ยกตัวอย่างงานที่ใช้ของคาบนี้</p><p>🇬🇧 Two weeks to the topic deadline. Examples that use today's tools.</p></aside>
 </section>
 
-<!-- 36 -->
+<!-- 39 -->
 <section>
   <p class="kicker">Next · Session 7</p>
   <h2 class="claim">How are two views of one scene related?</h2>
@@ -1208,7 +1264,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ปิดคาบ: ปูทางคาบ 7</p><p>🇬🇧 Close the session and set up session 7.</p></aside>
 </section>
 
-<!-- 37 -->
+<!-- 40 -->
 <section>
   <p class="kicker">References</p>
   <h2 class="claim">Where session 6 comes from</h2>
@@ -1728,7 +1784,7 @@ function initWindow(){
     ctx.fillText('change for each shift',x0+6.5*cs,14); ctx.fillText('← shift x →',x0+6.5*cs,20+13*cs+16);
     const i=py*W+px, a=Sxx[i], b=Sxy[i], c=Syy[i], m=(a+c)/2, d=Math.sqrt(((a-c)/2)**2+b*b), l1=m+d, l2=m-d, R=a*c-b*b-0.04*(a+c)**2;
     const kind=l1<0.05?'flat':(R<0?'edge':'corner');
-    document.getElementById('wnOut').innerHTML=`λ₁ = <b>${l1.toFixed(2)}</b> · λ₂ = <b>${l2.toFixed(2)}</b> · R = <b>${R.toFixed(2)}</b> → <b>${kind}</b>`; cv.dataset.kind=kind; };
+    document.getElementById('wnOut').innerHTML=`λ₁ = <b>${l1.toFixed(2)}</b> · λ₂ = <b>${l2.toFixed(2)}</b> → R = ${l1.toFixed(2)} × ${l2.toFixed(2)} − 0.04 × ${(l1+l2).toFixed(2)}² = <b>${R.toFixed(2)}</b> → <b>${kind}</b>`; cv.dataset.kind=kind; };
   cv.addEventListener('click',e=>{ const b=cv.getBoundingClientRect(), x=Math.round((e.clientX-b.left)*cv.width/b.width), y=Math.round((e.clientY-b.top)*cv.height/b.height);
     if(x<HR.w){ px=Math.min(HR.w-9,Math.max(8,x)); py=Math.min(HR.h-9,Math.max(8,y)); document.querySelectorAll('#wnBtns button').forEach(q=>q.classList.remove('on')); draw(); } });
   pickButtons('wnBtns',b=>{ px=WN[b.dataset.k].x; py=WN[b.dataset.k].y; draw(); }); draw();
@@ -1818,7 +1874,7 @@ function initRansac(){
 function initTries(){
   const w=document.getElementById('nW'); if(!w) return; let s=2;
   const draw=()=>{ const wv=+w.value, n=Math.log(0.01)/Math.log(1-wv**s), N=Math.ceil(n-1e-9);
-    document.getElementById('nOut').innerHTML=`w = ${wv.toFixed(2)}, s = ${s}: N = ${n.toFixed(1)} → <b>${N.toLocaleString('en')} tries</b>`; document.getElementById('nOut').dataset.n=N; };
+    const lw=Math.log(1-wv**s); document.getElementById('nOut').innerHTML=`N = ln(1 − 0.99) ÷ ln(1 − ${wv.toFixed(2)}<sup>${s}</sup>) = −4.605 ÷ −${Math.abs(lw).toFixed(3)} = ${n.toFixed(1)} → <b>${N.toLocaleString('en')} tries</b>`; document.getElementById('nOut').dataset.n=N; };
   w.addEventListener('input',draw); pickButtons('nS',b=>{ s=+b.dataset.s; draw(); }); draw();
 }
 /*<<JS>>*/
