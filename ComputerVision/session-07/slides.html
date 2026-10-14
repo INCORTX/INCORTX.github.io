@@ -1,0 +1,1323 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Session 7 · Geometry: Transforms, Cameras, Stereo · Computer Vision</title>
+<!--
+  SESSION 7 deck (script-less: what to say is on the slide; asides = presenter notes, key S). Built by tools/s07/build.py.
+  CV next-term deck template v1 (2026-09-29) — prototype on session 1 (orientation).
+  Pattern: COMP90086-style reveal.js deck (claim titles · Outline + Learning outcomes up front ·
+  Summary + References at the end · live canvases) plus: fragments for step reveals ·
+  .tryit (collapsible answer) · .flashback · .colab button · no per-slide citations — sources are on the References slide; direct quotes name their author
+  in the slide itself; internal codes stay in the speaker script ·
+  .term key terms with Thai meaning · toolbar bottom-centre, hidden while idle (first · prev · next · last · overview · fullscreen · PDF · ?)
+  · ↓/↑ = whole slide skipping fragments · Enter = full screen · all slides = photo-album grid (#album: arrows, Enter, scroll/drag) · page number
+  in every slide footer, so it also prints
+  · exports: ?print-pdf = 16:9 PDF, ?handout = A4 portrait, 2 slides/page (append &autoprint to open the
+  print dialog) · touch screens: bar always shown, no ? button, docked right when a phone is sideways;
+  ?present forces slides · reading mode on phones with a bottom bar + slide list (≤760px: Reveal is not started;
+  every slide stacks as a normal page at 17px, fragments shown, demos still live).
+  Student-facing text is English; Thai only inside .th. Speaker script:
+  Instructor_Materials/ComputerVision/Lecture_Scripts/session-01.md
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Anuphan:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/reset.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/reveal.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<style>
+:root{
+  --bg:#ffffff; --ink:#0f1b2d; --body:#2b3645; --muted:#667085; --soft:#f5f7fa; --line:#e4e8ee;
+  --teal:#0f766e; --teal-soft:#e6f4f2; --coral:#e0533d; --coral-soft:#fdeeea;
+  --amber:#c97a06; --amber-soft:#fdf4e3; --violet:#6d5bd0; --violet-soft:#f0edfc; --navy:#0f1b2d;
+  --font:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --display:'Space Grotesk','Plus Jakarta Sans',sans-serif;
+  --font-th:'Anuphan','Plus Jakarta Sans',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+html,body{background:var(--bg);}
+.reveal{font-family:var(--font);color:var(--body);font-size:34px;}
+.reveal .slides{text-align:left;}
+.reveal .slides>section,.reveal .slides .pdf-page>section,.reveal .slides .ho-cell>section{height:100% !important;padding:6px 4px 64px !important;box-sizing:border-box;}
+.reveal h1,.reveal h2,.reveal h3,.reveal h4{font-family:var(--display);color:var(--ink);text-transform:none;letter-spacing:-0.02em;margin:0 0 .45em;}
+.reveal h1{font-size:2.6em;font-weight:700;line-height:1.02;}
+.reveal h2{font-size:1.5em;font-weight:700;line-height:1.12;}
+.reveal h3{font-size:.95em;font-weight:600;color:var(--teal);margin-bottom:.35em;}
+.reveal p,.reveal li{line-height:1.5;}
+.reveal ul,.reveal ol{margin:0 0 0 1.05em;}
+.reveal li{margin:.3em 0;padding-left:.15em;}
+.reveal ul li::marker{color:var(--teal);font-size:1.1em;}
+.reveal ol li::marker{color:var(--teal);font-weight:700;font-family:var(--display);}
+.reveal strong,.reveal b{font-weight:700;color:var(--ink);}
+.reveal a{color:var(--teal);text-decoration:underline;text-underline-offset:3px;}
+.reveal code{font-family:var(--mono);font-size:.82em;background:var(--soft);padding:.05em .3em;border-radius:5px;}
+
+/* slide header: kicker + claim title */
+.kicker{display:flex;align-items:center;gap:.5em;font-family:var(--display);font-size:.5em;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin:0 0 .5em;}
+.kicker::before{content:"";width:1.8em;height:3px;border-radius:2px;background:var(--teal);}
+.reveal h2.claim{max-width:26em;}
+.lead{font-size:.66em;line-height:1.5;color:#46505e;margin:-.15em 0 .8em;max-width:52em;text-wrap:pretty;}
+/* closing note under the content: small, with the kicker's teal rule in front */
+.takeaway{display:flex;align-items:baseline;gap:.7em;margin:.9em 0 0;font-size:.6em;line-height:1.5;font-weight:500;color:var(--muted);max-width:60em;text-wrap:pretty;}
+.takeaway::before{content:"";flex:0 0 1.8em;height:3px;border-radius:2px;background:var(--teal);transform:translateY(-.3em);}
+html.reading .lead,html.reading .takeaway{font-size:15px;}
+
+/* layout helpers */
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.4em;align-items:start;}
+.cols.c3{grid-template-columns:repeat(3,minmax(0,1fr));}
+.cols.w64{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,10.5em),1fr));gap:.55em;}
+.cards.c4{grid-template-columns:repeat(4,minmax(0,1fr));}
+.cards.apps{gap:.45em;}
+.cards.apps .card{font-size:.58em;padding:.55em .7em .6em;}
+.cards.apps .card b{font-size:1.15em;}
+.card .cardimg{display:block;width:calc(100% + 1.4em);max-width:none;margin:-.55em -.7em .4em;aspect-ratio:5/2;object-fit:cover;border-radius:8px 8px 0 0;}
+.cards.c5{grid-template-columns:repeat(5,minmax(0,1fr));}
+.cards.c5 .card{font-size:.66em;padding:.5em .65em .55em;}
+.card{position:relative;background:#fff;border:1px solid var(--line);border-top:4px solid var(--teal);border-radius:12px;padding:.6em .75em .65em;font-size:.74em;line-height:1.4;box-shadow:0 1px 2px rgba(15,27,45,.05),0 6px 16px -10px rgba(15,27,45,.18);}
+.card b{display:block;font-family:var(--display);font-size:1.12em;margin-bottom:.2em;color:var(--ink);}
+.card .n{display:block;font-family:var(--display);font-weight:700;color:#9aa6b5;font-size:.85em;letter-spacing:.06em;margin-bottom:.15em;}
+.card.teal{border-top-color:var(--teal);} .card.coral{border-top-color:var(--coral);}
+.card.amber{border-top-color:var(--amber);} .card.violet{border-top-color:var(--violet);} .card.navy{border-top-color:var(--navy);}
+.small{font-size:.84em;}
+.muted{color:var(--muted);}
+.center{text-align:center;}
+.spacer{height:.6em;}
+
+/* source line: sits on the footer rule of every content slide */
+.src{position:absolute;left:4px;bottom:16px;font-size:12px;color:var(--muted);white-space:nowrap;line-height:1.3;}
+.src i{font-style:italic;}
+html.reading .src{white-space:normal;}
+.pgno{position:absolute;right:4px;bottom:12px;font-family:var(--display);font-size:15px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.02em;}
+.pgno b{color:var(--ink);font-weight:700;}
+.title-slide .pgno{display:none;}
+html.reading .pgno{display:none;}
+.deck-rule{position:absolute;left:4px;right:4px;bottom:46px;height:1px;background:var(--line);}
+
+/* key term with Thai meaning */
+.term{display:grid;grid-template-columns:auto 1fr;gap:.1em .6em;align-items:baseline;background:var(--teal-soft);border-radius:12px;padding:.5em .8em;font-size:.72em;margin:0 0 .5em;}
+.term b{font-family:var(--display);font-size:1.15em;}
+.term .th{justify-self:start;}
+.term .def{grid-column:1 / -1;color:var(--body);}
+.th{font-family:var(--font-th);color:var(--teal);font-weight:500;}
+
+/* Try it */
+.tryit{border:1px solid #f1d9a9;border-left:6px solid var(--amber);border-radius:12px;padding:.65em .9em;background:var(--amber-soft);font-size:.72em;line-height:1.45;}
+.tryit .tag{display:table;font-family:var(--display);font-weight:700;color:var(--amber);letter-spacing:.14em;text-transform:uppercase;font-size:.62em;margin-bottom:.45em;}
+.tryit details summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-family:var(--display);font-weight:600;font-size:.85em;color:var(--amber);list-style:none;}
+.tryit details summary::-webkit-details-marker{display:none;}
+.tryit details summary::before{content:"";width:0;height:0;border-left:.42em solid currentColor;border-top:.3em solid transparent;border-bottom:.3em solid transparent;margin-right:.5em;transition:transform .15s;}
+.tryit details[open] summary::before{transform:rotate(90deg);}
+
+/* flashback */
+.flashback{border:1px solid #d9d2f6;border-left:6px solid var(--violet);background:var(--violet-soft);border-radius:12px;padding:.65em .9em;font-size:.72em;line-height:1.45;}
+.flashback::before{content:"Flashback";display:block;font-family:var(--display);font-weight:700;color:var(--violet);letter-spacing:.14em;text-transform:uppercase;font-size:.62em;margin-bottom:.4em;}
+/* key idea: same box shape, teal, label from data-label */
+.keyidea{border:1px solid #bfe3de;border-left:6px solid var(--teal);background:var(--teal-soft);border-radius:12px;padding:.65em .9em;font-size:.72em;line-height:1.45;}
+.keyidea::before{content:attr(data-label);display:block;font-family:var(--display);font-weight:700;color:var(--teal);letter-spacing:.14em;text-transform:uppercase;font-size:.62em;margin-bottom:.4em;}
+
+/* Colab button */
+.colab svg{width:.95em;height:.95em;fill:currentColor;}
+.colab{display:inline-flex;align-items:center;gap:.4em;min-height:44px;padding:0 1em;border-radius:999px;background:#f9ab00;color:#1b1f24 !important;font-family:var(--display);font-weight:700;font-size:.62em;text-decoration:none !important;box-shadow:0 4px 12px -6px rgba(201,122,6,.6);}
+
+/* tables */
+.tscroll{overflow-x:auto;max-width:100%;border:1px solid var(--line);border-radius:12px;}
+.reveal table{border-collapse:collapse;font-size:.66em;width:100%;}
+.reveal table th,.reveal table td{border:0;border-bottom:1px solid var(--line);padding:.45em .75em;text-align:left;vertical-align:top;}
+.reveal table th{background:var(--navy);color:#fff;font-family:var(--display);font-weight:600;letter-spacing:.02em;}
+.reveal table tr:nth-child(odd) td{background:#fafbfc;}
+.reveal table tr:last-child td{border-bottom:0;}
+.reveal table tr.hl td{background:var(--teal-soft);font-weight:600;color:var(--ink);}
+.reveal table.tight{font-size:.5em;}
+.reveal table.tight th,.reveal table.tight td{padding:.3em .7em;}
+.reveal table td.pt{font-family:var(--display);font-weight:700;color:var(--teal);text-align:center;width:3em;}
+
+/* title slide — dark cover */
+.reveal .slides>section.title-slide,.reveal .slides .pdf-page>section.title-slide,.reveal .slides .ho-cell>section.title-slide{padding:0 34px !important;}
+.title-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:2.2em;align-items:center;height:100%;}
+.title-slide .pill{display:inline-flex;align-items:center;gap:.6em;margin:0 0 1.2em;padding:.4em 1em;border-radius:999px;background:var(--teal-soft);color:var(--teal);font-family:var(--display);font-weight:600;font-size:.46em;letter-spacing:.16em;text-transform:uppercase;}
+.title-slide .pill::before{content:"";width:.55em;height:.55em;border-radius:50%;background:var(--teal);}
+.reveal .title-slide h1{color:var(--ink);font-size:3em;line-height:.98;margin:0 0 .32em;letter-spacing:-.035em;}
+.reveal .title-slide h1 em{font-style:normal;color:var(--teal);}
+.title-slide .sub{font-family:var(--display);font-size:1em;color:var(--body);font-weight:500;margin:0 0 1.9em;}
+.title-slide .who{border-top:1px solid var(--line);padding-top:.9em;max-width:17em;}
+.title-slide .who p{margin:0;}
+.title-slide .name{font-family:var(--display);font-weight:700;font-size:.8em;color:var(--ink);}
+.title-slide .name span{font-weight:500;color:var(--muted);}
+.title-slide .contact{display:flex;flex-wrap:wrap;gap:.2em 1.4em;margin-top:.35em !important;font-size:.56em;color:var(--muted);}
+.title-slide .contact a{color:inherit;text-decoration:none;}
+.title-slide .contact a:hover{color:var(--teal);}
+.title-slide .contact span+span::before{content:"";display:inline-block;width:.32em;height:.32em;border-radius:50%;background:#c3cad4;margin:0 .9em 0 -.8em;vertical-align:middle;}
+.title-slide .art{margin:0;padding:34px 34px 22px;border-radius:30px;background-color:var(--teal-soft);background-image:radial-gradient(rgba(15,118,110,.16) 1.4px,transparent 1.6px);background-size:22px 22px;}
+#titleArt{display:block;width:100%;height:auto;border-radius:16px;background:#fff;box-shadow:0 18px 40px -22px rgba(15,27,45,.35),0 0 0 1px var(--line);}
+@media print{#titleArt{box-shadow:0 0 0 1px var(--line);}.title-slide .art{background-image:none;}}
+html.print-pdf #titleArt{box-shadow:0 0 0 1px var(--line);}
+html.print-pdf .title-slide .art{background-image:none;}
+.title-slide figcaption{margin-top:.8em;text-align:center;font-family:var(--mono);font-size:.4em;color:var(--teal);letter-spacing:.02em;}
+html.reading .reveal .slides>section.title-slide{padding:36px 18px !important;}
+html.reading .title-slide .pill,html.reading .title-slide figcaption,html.reading .title-slide .contact{font-size:13px;}
+html.reading .title-slide .art{padding:18px 18px 12px;border-radius:20px;}
+
+/* slide 2: outline as a stepper, outcomes as verb cards */
+.cols.today{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:2em;}
+.reveal .steps{list-style:none;margin:0;padding:0;counter-reset:st;position:relative;}
+/* connector: one segment per item, from this circle's centre to the next — in the li's own em so it stays centred at any size */
+.steps li:not(:last-child)::after{content:"";position:absolute;left:calc(.855em - 1px);top:50%;height:100%;width:2px;background:#a9d8d4;}
+.steps li{counter-increment:st;position:relative;margin:0;padding:.5em 0 .5em 2.7em;font-size:.8em;line-height:1.35;color:var(--ink);}
+.steps li::before{content:counter(st);position:absolute;left:0;top:50%;transform:translateY(-50%);box-sizing:border-box;z-index:1;width:1.9em;height:1.9em;border-radius:50%;background:#fff;border:2px solid var(--teal);color:var(--teal);font-family:var(--display);font-weight:700;font-size:.9em;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 4px #fff;}
+.goals{display:grid;gap:.5em;}
+.goal{display:grid;grid-template-columns:5.4em 1fr;gap:.8em;align-items:center;background:#fff;border:1px solid var(--line);border-left:5px solid var(--c);border-radius:12px;padding:.6em .85em;font-size:.72em;line-height:1.4;color:var(--ink);box-shadow:0 6px 16px -12px rgba(15,27,45,.25);}
+.goal .verb{justify-self:start;font-family:var(--display);font-weight:700;font-size:.78em;letter-spacing:.12em;text-transform:uppercase;color:var(--c);}
+html.reading .steps li,html.reading .goal{font-size:15px;}
+html.reading .cols.today{grid-template-columns:1fr;}
+/* outline / outcomes */
+.outline{list-style:none;margin:0;padding:0;counter-reset:o;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6em 1.2em;}
+.outline.one{grid-template-columns:1fr;gap:.4em;}
+.outline li{counter-increment:o;display:flex;gap:.7em;align-items:flex-start;font-size:.82em;background:var(--soft);border-radius:12px;padding:.6em .8em;margin:0;}
+.outline li::before{content:counter(o,decimal-leading-zero);font-family:var(--display);font-weight:700;color:var(--teal);font-size:1.1em;line-height:1.35;}
+.outcomes{list-style:none;margin:0;padding:0;counter-reset:c;}
+.outcomes li{counter-increment:c;position:relative;padding:.45em 0 .45em 2.4em;margin:0;font-size:.84em;border-bottom:1px solid var(--line);}
+.outcomes li:last-child{border-bottom:0;}
+.outcomes li::before{content:counter(c);position:absolute;left:0;top:.42em;width:1.6em;height:1.6em;border-radius:50%;background:var(--teal);color:#fff;font-family:var(--display);font-weight:700;font-size:.85em;display:flex;align-items:center;justify-content:center;}
+
+/* grading */
+.gtiles{display:grid;grid-template-columns:40fr 30fr 20fr 10fr;gap:.4em;margin:.2em 0 .6em;}
+.gtile{border-radius:14px;padding:.6em .7em;color:#fff;min-height:9em;display:flex;flex-direction:column;justify-content:space-between;}
+.gtile .num{font-family:var(--display);font-size:2.4em;font-weight:700;line-height:1;}
+.gtile .lbl{font-family:var(--display);font-weight:600;font-size:.72em;}
+.gtile .det{font-size:.5em;opacity:.92;line-height:1.35;}
+
+/* course map */
+.map{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.55em;position:relative;}
+.map .blk{background:#fff;border:1px solid var(--line);border-radius:14px;padding:.6em .65em .65em;font-size:.62em;box-shadow:0 6px 16px -12px rgba(15,27,45,.25);}
+.map .blk h4{font-size:1.15em;margin:0 0 .5em;display:flex;align-items:center;gap:.4em;}
+.map .blk h4::before{content:"";width:.6em;height:.6em;border-radius:3px;background:var(--c);}
+.map .s{display:flex;gap:.5em;align-items:flex-start;margin:.35em 0;line-height:1.3;}
+.map .blk{display:flex;flex-direction:column;}
+.map .fw{margin-top:auto;padding-top:.5em;border-top:1px dashed var(--line);display:flex;flex-direction:column;gap:.2em;font-size:.86em;line-height:1.3;color:var(--body);}
+.map .s+.fw,.map .s+.s+.fw{margin-top:auto;}
+.map .fw b{font-family:var(--display);font-size:.78em;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.1em;}
+.map .fw .nw{white-space:nowrap;}
+html.reading .map .fw{font-size:14px;}
+html.reading .map .fw b{font-size:12px;}
+.map .fw em{font-style:normal;font-weight:600;color:var(--ink);}
+.map .fw i{font-style:normal;display:inline-grid;place-items:center;width:1.45em;height:1.45em;border-radius:50%;background:var(--soft);color:var(--ink);font-family:var(--display);font-weight:700;font-size:.85em;margin-left:.15em;}
+.map .s i{font-style:normal;flex:0 0 1.6em;height:1.6em;border-radius:50%;background:var(--c);color:#fff;font-family:var(--display);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:.9em;}
+.after{display:flex;gap:.6em;margin-top:.8em;}
+.after>.keyidea{flex:1;font-size:.66em;}
+.keyidea.coral{border-color:#f3c9c0;border-left-color:var(--coral);background:var(--coral-soft);}
+.keyidea.coral::before{color:var(--coral);}
+html.reading .after{flex-direction:column;}
+
+/* s17 · hand-in */
+.handin{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);gap:.8em;margin-top:.6em;align-items:start;}
+.reveal table.hintable{font-size:.54em;}
+.reveal table.hintable th,.reveal table.hintable td{padding:.22em .7em;}
+.reveal table.hintable td:nth-child(2){white-space:nowrap;}
+.reveal .fnames li.fh{font-family:var(--display);font-weight:600;color:var(--teal);font-size:.5em;margin-bottom:.2em;white-space:normal;}
+.reveal .hcount{margin:.4em 0 .55em;font-size:.56em;color:var(--muted);}
+.reveal .hcount b{color:var(--ink);}
+.pattern{border:1px solid var(--line);border-radius:12px;padding:.45em .7em .5em;background:#fff;}
+.reveal .pat{margin:0 0 .25em;font-family:var(--mono);font-size:.66em;font-weight:600;color:var(--muted);letter-spacing:.01em;}
+.pat span{color:var(--teal);}
+.reveal .pattern ul{list-style:none;margin:0;padding:0;display:grid;gap:.12em;}
+.reveal .pattern li{display:grid;grid-template-columns:3.2em 1fr;gap:.4em;font-size:.48em;line-height:1.35;margin:0;}
+.pattern li b{font-family:var(--display);color:var(--ink);}
+.reveal .fnames{list-style:none;margin:0;padding:.55em .7em;background:var(--soft);border-radius:12px;display:grid;gap:.15em;}
+.reveal .fnames li{margin:0;font-family:var(--mono);font-size:.42em;line-height:1.55;color:var(--ink);white-space:nowrap;}
+.reveal .solo{margin:.6em 0 0;font-size:.52em;line-height:1.5;color:var(--body);}
+.reveal .solo code{font-size:.9em;white-space:nowrap;}
+html.reading .handin{grid-template-columns:1fr;}
+html.reading .pattern li,html.reading .reveal .solo,html.reading .reveal .hcount{font-size:14px;}
+html.reading .reveal .fnames li{font-size:12px;white-space:nowrap;}
+html.reading .reveal .pat{font-size:15px;}
+/* s6 · 1966 summer project */
+.memo{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.3fr);gap:1.4em;align-items:start;margin-top:.3em;}
+.mq{margin:0;font-family:var(--display);font-size:.8em;line-height:1.38;color:var(--ink);border-left:6px solid var(--teal);padding:.15em 0 .15em .8em;}
+.mq span{display:block;font-family:var(--font);font-size:.68em;color:var(--muted);margin-top:.6em;}
+.memo h3{margin:0 0 .5em;}
+.memo .pipe .st{font-size:.6em;}
+.reveal .mnote{margin:.7em 0 0;font-size:.56em;color:var(--muted);line-height:1.45;}
+.memo-end{margin-top:1.1em;font-size:.66em;}
+html.reading .memo{grid-template-columns:1fr;}
+html.reading .mq{font-size:17px;}
+html.reading .memo-end{font-size:15px;}
+html.reading .reveal .mnote{font-size:14px;}
+.reveal .more{margin:.9em 0 0;font-size:.56em;}
+.reveal .more a{color:var(--teal);font-weight:600;text-decoration:none;border-bottom:2px solid var(--teal-soft);}
+.reveal .more a:hover{border-bottom-color:var(--teal);}
+html.reading .reveal .more{font-size:15px;}
+/* session roadmap (slide 2) + part openers — shared by every session deck */
+.qband{display:flex;gap:.8em;align-items:center;background:var(--soft);border-radius:14px;padding:.6em .9em;margin:0 0 .8em;font-size:.74em;color:var(--ink);font-family:var(--display);font-weight:600;}
+.qband span{font-family:var(--font);font-weight:700;font-size:.62em;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);white-space:nowrap;}
+.parts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6em;}
+.parts a{display:block;text-decoration:none;transition:border-color .15s,transform .15s;border:1px solid var(--line);border-radius:14px;padding:.6em .75em;font-size:.62em;line-height:1.4;color:var(--muted);background:#fff;}
+.parts a b{display:block;font-family:var(--display);font-size:1.25em;color:var(--ink);margin-bottom:.2em;}
+.parts a i{font-style:normal;display:inline-grid;place-items:center;width:1.7em;height:1.7em;border-radius:50%;background:var(--soft);color:var(--ink);font-family:var(--display);font-weight:700;margin-right:.35em;}
+.parts a.on{border:2px solid var(--teal);background:var(--teal-soft);color:var(--body);}
+.parts a.on i{background:var(--teal);color:#fff;}
+/* the A–D strip sits in the normal flow (never absolute), so nothing can overlap it in any mode; auto margins centre the rest */
+.part-open{display:flex !important;flex-direction:column;justify-content:flex-start;}
+.po-strip{position:static;margin:34px 0 26px;display:grid;grid-template-columns:repeat(4,1fr);gap:.4em;font-family:var(--display);font-size:.5em;}
+.po-strip a{text-decoration:none;display:flex;align-items:center;gap:.5em;padding:.45em .7em;border-radius:999px;background:var(--soft);color:var(--muted);}
+.po-strip b{display:inline-grid;place-items:center;width:1.7em;height:1.7em;border-radius:50%;background:#fff;color:var(--muted);}
+.po-strip a.done{color:var(--body);}
+.po-strip a.done b{background:var(--teal-soft);color:var(--teal);}
+.po-strip a.on{background:var(--teal);color:#fff;}
+.po-strip a.on b{background:#fff;color:var(--teal);}
+.reveal .po-letter{margin:auto 0 0;font-family:var(--display);font-weight:700;font-size:3.2em;line-height:1;color:var(--teal);}
+.part-open .claim{font-size:1.9em;margin:.1em 0 .3em;}
+.reveal .po-q{margin:0 0 1.2em;font-family:var(--display);font-size:.95em;color:var(--body);max-width:24em;}
+.reveal .po-out{margin:0 0 auto;max-width:34em;border-left:5px solid var(--teal);padding:.3em 0 .3em .8em;font-size:.62em;line-height:1.5;color:var(--body);}
+.po-out span{display:block;font-family:var(--display);font-weight:700;font-size:.8em;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:.15em;}
+html.reading .part-open{display:block !important;}
+html.reading .tryit .tag{font-size:12px;}
+.reveal sup{vertical-align:super;font-size:.68em;line-height:0;}
+/* print: no vertical centring there, so keep the big letter clear of the A–D strip */
+html.reading .po-strip{position:static;grid-template-columns:1fr 1fr;margin-bottom:1em;font-size:13px;}
+html.reading .po-q{font-size:18px;}
+html.reading .po-out{font-size:15px;}
+.parts a:hover{border-color:var(--teal);transform:translateY(-2px);}
+.po-strip a:hover{box-shadow:0 0 0 2px var(--teal-soft);}
+html.reading .parts{grid-template-columns:1fr;}
+html.reading .qband,html.reading .parts a{font-size:15px;}
+html.reading .qband span{font-size:12px;}
+.steps.recap li{font-size:.7em;}
+.reveal aside.notes,aside.notes{display:none !important;}
+.reveal ul.imgcred{columns:2;column-gap:2em;}
+.reveal ul.imgcred li{break-inside:avoid;}
+html.reading .reveal ul.imgcred{columns:1;font-size:13px !important;}
+html.reading .cards.apps .card{font-size:15px;}
+/* ===== session 7 (shared base from session 6) ===== */
+.split{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:1.2em;align-items:center;}
+.split.even{grid-template-columns:minmax(0,1fr) minmax(0,1fr);}
+.say{font-size:.68em;line-height:1.5;color:var(--body);}
+.say p{margin:0 0 .55em;}
+.say b{color:var(--ink);}
+.demo-out{font-family:var(--mono);font-size:.5em;color:var(--muted);margin-top:.35em;display:flex;justify-content:space-between;gap:.6em;flex-wrap:wrap;}
+.demo-out b{color:var(--ink);font-weight:600;}
+.reveal .more{margin:.9em 0 0;font-size:.56em;}
+.reveal .more a{color:var(--teal);font-weight:600;text-decoration:none;border-bottom:2px solid var(--teal-soft);}
+.reveal .more a:hover{border-bottom-color:var(--teal);}
+html.reading .reveal .more{font-size:15px;}
+.chbtns{display:flex;gap:.35em;margin:.45em 0 0;flex-wrap:wrap;}
+.chbtns button{all:unset;cursor:pointer;padding:.3em .8em;border-radius:999px;border:1px solid var(--line);font-family:var(--display);font-weight:600;font-size:.5em;color:var(--body);background:#fff;}
+.chbtns button.on{background:var(--teal);border-color:var(--teal);color:#fff;}
+.reveal .labline{display:flex;align-items:center;gap:.8em;flex-wrap:wrap;margin:.9em 0 0;}
+.reveal .labline span{font-size:.56em;color:var(--muted);}
+html.reading .reveal .labline span{font-size:13px;}
+.photo{margin:0;}
+.photo img{display:block;width:100%;height:auto;max-height:430px;object-fit:contain;border-radius:12px;border:1px solid var(--line);background:#fff;}
+.photo figcaption{margin-top:.4em;font-family:var(--mono);font-size:.4em;color:var(--muted);text-align:center;}
+.title-slide .art img{display:block;width:100%;height:auto;border-radius:16px;box-shadow:0 18px 40px -22px rgba(15,27,45,.35),0 0 0 1px var(--line);}
+.democv{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);}
+.eq{font-size:.8em;margin:.2em 0 0;}
+.worked{border:1px solid var(--line);border-left:5px solid var(--amber);border-radius:10px;padding:.5em .8em;font-size:.6em;line-height:1.55;background:#fff;}
+.worked .tag{display:block;font-family:var(--display);font-weight:700;font-size:.72em;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:.2em;}
+.worked p{margin:0;font-family:var(--mono);font-size:.92em;}
+.say .worked{font-size:.9em;margin:.4em 0 .5em;}   /* inside a .say column (already .68em): keep the session-2 size */
+.reveal aside.notes,aside.notes{display:none !important;}
+/* number grids */
+.ng{display:grid;gap:3px;font-family:var(--mono);font-weight:600;width:100%;}
+.ng>div{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:5px;font-size:15px;line-height:1;position:relative;}
+.ng>div.pad{outline:2px dashed var(--amber);outline-offset:-3px;font-style:italic;}
+.ng>div.win{box-shadow:inset 0 0 0 3px var(--teal);}
+.ng>div.cur{box-shadow:inset 0 0 0 3px var(--coral);}
+.ng>div.empty{background:var(--soft);color:var(--muted);}
+.ng>div.ker{background:var(--amber-soft);color:var(--ink);}
+.ng>div.dot::after{content:"";position:absolute;width:30%;height:30%;border-radius:50%;background:var(--coral);}
+.gcap{font-family:var(--display);font-weight:600;font-size:.46em;color:var(--muted);text-align:center;margin:.35em 0 0;}
+.conv3{display:grid;grid-template-columns:minmax(0,7fr) auto minmax(0,3fr) auto minmax(0,5fr);gap:.6em;align-items:center;max-width:800px;margin:0 auto;}
+html.reading .conv3{max-width:none;}
+.conv3 .op{font-family:var(--display);font-size:.9em;color:var(--muted);}
+.calc{font-family:var(--mono);font-size:.46em;color:var(--body);background:var(--soft);border-radius:10px;padding:.5em .7em;margin-top:.6em;min-height:2.6em;line-height:1.5;}
+.calc b{color:var(--coral);}
+.ctrl{display:flex;gap:.4em;align-items:center;flex-wrap:wrap;margin-top:.5em;}
+.ctrl button{all:unset;cursor:pointer;padding:.3em .9em;border-radius:999px;border:1px solid var(--line);font-family:var(--display);font-weight:600;font-size:.5em;color:var(--body);background:#fff;}
+.ctrl button:hover{border-color:var(--teal);color:var(--teal);}
+.ctrl label{font-family:var(--display);font-weight:600;font-size:.5em;color:var(--body);display:flex;align-items:center;gap:.5em;}
+.ctrl input[type=range]{width:7em;}
+.curve{display:block;width:100%;max-width:220px;height:auto;margin:.3em auto 0;border:1px solid var(--line);border-radius:10px;background:#fff;}
+.flipk{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:.6em;align-items:center;max-width:420px;margin:.6em auto 0;}
+.big-out{font-family:var(--mono);font-size:.64em;color:var(--ink);margin:.4em 0 0;}
+.big-out b{color:var(--coral);}
+.reveal .tset{list-style:none;margin:.2em 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.45em .8em;}
+.reveal .tset li{margin:0;display:grid;grid-template-columns:1.6em 1fr;column-gap:.5em;align-items:baseline;border:1px solid var(--line);border-radius:12px;padding:.45em .7em;font-size:.56em;line-height:1.35;background:#fff;}
+.tset .tn{grid-row:1/3;font-family:var(--display);font-weight:700;color:var(--teal);font-size:1.2em;}
+.tset .tt{font-family:var(--display);font-weight:600;color:var(--ink);}
+.tset a{font-size:.85em;color:var(--teal);text-decoration:none;}
+html.reading .reveal .tset{grid-template-columns:1fr;}
+html.reading .reveal .tset li{font-size:15px;}
+.steps.recap li{font-size:.7em;}
+.fig{display:block;width:100%;height:auto;}
+.fig .lb{font-family:var(--display);font-size:17px;font-weight:600;fill:var(--muted);}
+.reveal table.tbl{font-size:.5em;border-collapse:collapse;margin:0 auto;}
+.reveal table.tbl th,.reveal table.tbl td{border-bottom:1px solid var(--line);padding:.3em .9em;text-align:center;font-family:var(--mono);}
+.reveal table.tbl th{font-family:var(--display);color:var(--muted);}
+html.reading .reveal table.tbl{font-size:13px;}
+.say .big-out{font-size:.95em;}
+html.reading .split,html.reading .split.even{grid-template-columns:1fr;}
+html.reading .say,html.reading .worked{font-size:15px;}
+html.reading .demo-out,html.reading .big-out,html.reading .calc{font-size:13px;}
+html.reading .chbtns button,html.reading .ctrl button,html.reading .ctrl label,html.reading .gcap{font-size:13px;}
+html.reading .worked .tag,html.reading .tryit .tag{font-size:12px;}
+html.reading .ng>div{font-size:11px;}
+html.reading .photo figcaption{font-size:12px;}
+.say .photo figcaption{font-size:.62em;}
+html.reading .reveal ul.small li{font-size:14px;}
+.cvsvg .tk{font-family:var(--display);font-size:13px;font-weight:600;fill:#667085;}
+.cvsvg .lb{font-family:var(--display);font-size:15px;font-weight:600;fill:#0f1b2d;}
+.reveal table.tbl.big{font-size:.56em;}
+.title-slide .art .fig{border-radius:16px;box-shadow:0 18px 40px -22px rgba(15,27,45,.35),0 0 0 1px var(--line);}
+.mat3{display:inline-grid;grid-template-columns:repeat(3,auto);gap:.1em .9em;padding:.2em .7em;border-left:3px solid var(--ink);border-right:3px solid var(--ink);border-radius:6px;font-family:var(--mono);font-size:.95em;}
+.mat3 span{text-align:right;}
+.mat3 span.off{color:#b6bfcc;}
+.ctrl label.off{opacity:.35;}
+.ctrl.tfc{display:grid;grid-template-columns:repeat(4,auto);justify-content:center;gap:.15em .7em;margin-top:.3em;}
+.ctrl.tfc input[type=range]{width:4.6em;}
+html.reading .ctrl.tfc{grid-template-columns:repeat(2,auto);}
+.reveal p.refimg{font-size:.48em;line-height:1.5;color:var(--body);margin:.4em 0 0;}
+html.reading .reveal p.refimg{font-size:12px;}
+html.reading .reveal sup{font-size:.8em;}
+/*<<CSS>>*//* pipeline */
+.pipe{display:flex;gap:.45em;align-items:stretch;counter-reset:p;}
+.pipe .st{flex:1 1 0;background:#fff;border:1px solid var(--line);border-radius:12px;padding:.6em .65em;font-size:.64em;line-height:1.35;box-shadow:0 6px 16px -12px rgba(15,27,45,.25);position:relative;}
+.pipe .st b{display:block;font-family:var(--display);color:var(--teal);font-size:1.1em;margin-bottom:.25em;}
+.pipe .ar{align-self:center;color:var(--teal);font-weight:700;font-size:.8em;}
+
+/* pixel demo */
+.pix-wrap{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.1fr) minmax(0,1fr);gap:1em;align-items:start;}
+.pix-wrap canvas{width:100%;height:auto;max-height:420px;object-fit:contain;image-rendering:pixelated;border-radius:12px;border:1px solid var(--line);touch-action:manipulation;}
+/* s5 · light */
+.litlab{display:flex;justify-content:space-between;align-items:baseline;margin-top:.45em;font-size:.48em;color:var(--muted);}
+.litlab b{font-family:var(--mono);font-weight:600;color:var(--ink);font-size:1.1em;}
+.lit .slider{min-height:36px;}
+.lcmp h3{margin:0 0 .45em;}
+.lcmp dl{display:grid;grid-template-columns:1fr auto;gap:.3em .8em;margin:0 0 .7em;font-size:.56em;align-items:baseline;}
+.lcmp dt{color:var(--muted);}
+.lcmp dd{margin:0;font-family:var(--mono);color:var(--muted);white-space:nowrap;}
+.lcmp dd i{font-style:normal;color:var(--teal);}
+.lcmp dd b{color:var(--ink);font-size:1.15em;}
+.lcmp .rule{border:1px solid var(--line);border-left:5px solid var(--teal);border-radius:10px;padding:.5em .75em .55em;background:#fff;font-size:.6em;line-height:1.4;}
+.lcmp .rule .tag{display:block;font-family:var(--display);font-weight:700;font-size:.72em;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:.2em;}
+.lcmp .rule p{margin:0;}
+.lcmp .verdict{margin-top:.35em !important;font-weight:600;color:var(--ink);}
+.lcmp .rule.bad{border-left-color:var(--coral);}
+.lcmp .rule.bad .verdict{color:var(--coral);}
+html.reading .litlab,html.reading .lcmp dl{font-size:14px;}
+html.reading .lcmp .rule{font-size:15px;}
+.pix-readout{font-family:var(--mono);font-size:.5em;color:var(--muted);min-height:1.6em;margin-top:.35em;}
+.slider{width:100%;accent-color:var(--teal);min-height:44px;touch-action:none;cursor:pointer;}
+/* a thumb big enough for a finger */
+.slider::-webkit-slider-thumb{width:26px;height:26px;}
+.slider::-moz-range-thumb{width:26px;height:26px;}
+
+/* timeline */
+.tl{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;position:relative;margin:.3em 0 .9em;}
+.tl::before{content:"";position:absolute;left:4%;right:4%;top:.95em;height:3px;background:var(--line);}
+.tl div{position:relative;text-align:center;font-size:.58em;padding:2.2em .3em 0;line-height:1.3;}
+.tl div::before{content:"";position:absolute;top:.35em;left:50%;transform:translateX(-50%);width:1.1em;height:1.1em;border-radius:50%;background:#fff;border:3px solid var(--teal);}
+.tl div.key::before{background:var(--coral);border-color:var(--coral);}
+.tl b{display:block;font-family:var(--display);color:var(--ink);}
+
+/* criteria list + shared five-level scale (assignment rubric) */
+.crit{list-style:none;margin:0;padding:0;counter-reset:k;display:grid;gap:.35em;}
+.crit li{counter-increment:k;display:grid;grid-template-columns:1.7em 1fr;gap:.6em;align-items:center;background:var(--soft);border-radius:12px;padding:.42em .8em;margin:0;font-size:.66em;line-height:1.35;}
+.crit li::before{content:counter(k);width:1.6em;height:1.6em;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:.9em;}
+.scale{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.35em;margin-top:.6em;}
+.scale div{border-radius:12px;background:var(--c);color:#fff;padding:.45em .6em;font-size:.62em;line-height:1.25;}
+.reveal .scale b{display:block;font-family:var(--display);font-size:1.6em;line-height:1.1;color:#fff;}
+.reveal .crit,.reveal .checks{margin:0;}
+html.reading .crit li,html.reading .scale div{font-size:15px;}
+html.reading .scale{grid-template-columns:repeat(2,minmax(0,1fr));}
+.scale.mini{margin-top:.2em;}
+.scale.mini div{padding:.3em .55em;font-size:.5em;display:flex;align-items:baseline;gap:.45em;}
+.reveal .scale.mini b{display:inline;font-size:1.35em;}
+.reveal .levels{list-style:none;margin:0;padding:0;display:grid;gap:.32em;}
+.levels li{display:grid;grid-template-columns:4.2em 1fr;gap:.7em;align-items:center;background:var(--soft);border-radius:12px;padding:.38em .8em .38em .38em;margin:0;font-size:.64em;line-height:1.35;}
+.reveal .levels li>b{background:var(--c);color:#fff;border-radius:9px;text-align:center;font-family:var(--display);font-size:1.15em;padding:.2em 0;}
+html.reading .levels li{font-size:15px;grid-template-columns:3.6em 1fr;}
+html.reading .scale.mini{grid-template-columns:repeat(2,minmax(0,1fr));}
+/* project rubric: full criteria in small type */
+.tl.tl7{grid-template-columns:repeat(7,minmax(0,1fr));}
+.pitch{display:flex;flex-wrap:wrap;align-items:center;gap:.3em .5em;background:var(--coral-soft);border:1px solid #f3c9c0;border-radius:10px;padding:.3em .6em;margin:0 0 .45em;font-size:.44em;line-height:1.3;}
+.pitch>b{font-family:var(--display);color:var(--coral);}
+.pitch span{background:#fff;border-radius:999px;padding:.1em .6em;border:1px solid #f3c9c0;}
+html.reading .pitch{font-size:14px;}
+html.reading .tl.tl7{grid-template-columns:repeat(3,minmax(0,1fr));}
+
+.tl.tl-sm{margin:.1em 0 .45em;}
+.tl.tl-sm div{font-size:.46em;padding-top:1.9em;}
+.tl.tl-sm::before{top:.75em;}
+.tl.tl-sm div::before{width:.95em;height:.95em;top:.25em;}
+.rubric{gap:1em;}
+.rubric h3{font-size:.56em;margin:0 0 .3em;}
+.reveal .rubric ol{list-style:none;margin:0;padding:0;counter-reset:rb;display:grid;gap:2px;}
+.rubric li{counter-increment:rb;display:grid;grid-template-columns:1.6em 1fr;gap:.4em;align-items:baseline;margin:0;padding:.13em .45em;border-radius:6px;font-size:.44em;line-height:1.28;background:var(--soft);}
+.rubric li::before{content:counter(rb);font-family:var(--display);font-weight:700;color:var(--teal);text-align:right;}
+html.reading .rubric li{font-size:14px;}
+html.reading .rubric h3{font-size:15px;}
+.rb-note{margin-top:.4em !important;font-size:.58em !important;}
+html.reading .rb-note{font-size:14px !important;}
+/* checklist */
+.checks{list-style:none;margin:0;padding:0;display:grid;gap:.45em;}
+.cols .checks li{font-size:.58em;padding:.3em .6em;}
+.cols .checks{gap:.35em;}
+.checks li{display:grid;grid-template-columns:2.2em 1fr auto;gap:.6em;align-items:center;background:var(--soft);border-radius:12px;padding:.5em .8em;margin:0;font-size:.74em;}
+.checks li::before{content:"✓";width:1.7em;height:1.7em;border-radius:50%;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;}
+.checks li span.pt{font-family:var(--display);font-weight:700;color:var(--teal);}
+
+/* halves */
+.halves{display:grid;grid-template-columns:1fr 1fr;gap:.8em;margin-bottom:.7em;}
+.half{border-radius:14px;padding:.7em .9em;color:#fff;}
+.half .h{font-family:var(--display);font-size:1.3em;font-weight:700;}
+.half .d{font-size:.66em;opacity:.95;margin-top:.2em;}
+.half .dots{display:flex;gap:.3em;margin-top:.5em;}
+.half .dots span{min-width:1.9em;padding:0 .25em;box-sizing:border-box;height:1.9em;border-radius:8px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:.7em;}
+.half .dots span.on{background:#fff;color:var(--ink);}
+
+/* ---------- reading mode (phones ≤760px): no Reveal, slides stack as one page ---------- */
+.reveal .slides>section:not(.title-slide)::after,.reveal .slides .pdf-page>section:not(.title-slide)::after,.reveal .slides .ho-cell>section:not(.title-slide)::after{content:"";position:absolute;left:4px;right:4px;bottom:46px;height:1px;background:var(--line);}
+.reveal .slides>section:not(.title-slide)::before,.reveal .slides .pdf-page>section:not(.title-slide)::before,.reveal .slides .ho-cell>section:not(.title-slide)::before{content:"Computer Vision · Session 7";position:absolute;right:4px;top:10px;font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#a0aab8;}
+html.reading .reveal .slides>section::before,html.reading .reveal .slides>section::after{display:none;}
+/* ---------- deck toolbar (replaces reveal's arrows + slide number) ---------- */
+.reveal .progress{height:4px;color:var(--teal);background:transparent;}
+.deckbar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:40;display:flex;align-items:center;gap:2px;padding:4px;border-radius:999px;background:rgba(255,255,255,.94);border:1px solid var(--line);box-shadow:0 8px 24px -12px rgba(15,27,45,.35);font-family:var(--display);transition:opacity .35s;backdrop-filter:blur(6px);}
+.deckbar.idle{opacity:0;pointer-events:none;}
+/* [hidden] loses to display:flex unless said again — the hidden desktop bar sat on top of the phone bar */
+.deckbar[hidden],html.reading .deckbar{display:none !important;}
+.deckbar:hover,.deckbar:focus-within{opacity:1;}
+.deckbar button{all:unset;box-sizing:border-box;width:44px;height:44px;border-radius:999px;display:flex;align-items:center;justify-content:center;color:var(--ink);cursor:pointer;}
+.deckbar button:hover{background:var(--soft);}
+.deckbar button:focus-visible{outline:2px solid var(--teal);outline-offset:1px;}
+.deckbar button[disabled]{opacity:.3;cursor:default;}
+.deckbar svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.deckbar .count{min-width:4.2em;text-align:center;font-size:14px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums;}
+.deckbar .sep{width:1px;height:24px;background:var(--line);margin:0 4px;}
+.deckbar .q{font-family:var(--display);font-size:19px;font-weight:700;}
+.deckbar .pdf{width:auto;padding:0 14px;font-size:13px;font-weight:700;letter-spacing:.04em;gap:6px;}
+.pop{position:fixed;z-index:50;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 16px 40px -16px rgba(15,27,45,.45);font-family:var(--font);color:var(--body);}
+.pop[hidden]{display:none;}
+.pdfmenu{left:50%;transform:translateX(-50%);bottom:72px;padding:6px;min-width:300px;}
+.pdfmenu a{display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:10px;text-decoration:none;color:var(--ink);min-height:44px;box-sizing:border-box;}
+.pdfmenu a:hover,.pdfmenu a:focus-visible{background:var(--soft);outline:none;}
+.pdfmenu b{font-family:var(--display);font-size:15px;}
+.pdfmenu small{font-size:12.5px;color:var(--muted);}
+.keys{left:50%;top:50%;transform:translate(-50%,-50%);padding:22px 26px;width:min(92vw,560px);box-sizing:border-box;}
+.keys h3{margin:0 0 12px;font-family:var(--display);font-size:18px;color:var(--ink);}
+.keys dd kbd{font-size:11.5px;padding:1px 5px;}
+.keys dl{display:grid;grid-template-columns:minmax(10.8em,max-content) 1fr;gap:9px 16px;margin:0;font-size:14.5px;align-items:center;}   /* wide enough for Shift + ← →, the same in both lists */
+.keys dt{display:flex;gap:4px;justify-content:flex-end;align-items:center;white-space:nowrap;}
+.keys dd{margin:0;}
+.keys h4{margin:16px 0 10px;padding-top:12px;border-top:1px solid var(--line);font-family:var(--display);font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);}
+.keys kbd{font-family:var(--mono);font-size:12.5px;min-width:1.9em;text-align:center;padding:3px 7px;border-radius:6px;border:1px solid var(--line);border-bottom-width:2px;background:var(--soft);color:var(--ink);}
+/* all slides = photo album: a grid of live clones of every slide, scaled to thumbnails */
+.album{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;background:#eef1f5;font-family:var(--display);}
+.album[hidden]{display:none;}
+html.album-open .deckbar,html.album-open .rbar{display:none !important;}
+html.album-open body{overflow:hidden;}
+.aslides{display:none;}
+html.reading .aslides{display:flex;align-items:center;min-height:36px;margin-left:auto;font-size:14px;font-weight:600;color:var(--teal);text-decoration:none;}
+.ahead{display:flex;align-items:center;gap:14px;padding:14px 22px;background:#fff;border-bottom:1px solid var(--line);}
+.ahead h2{margin:0;font-size:18px;font-weight:700;color:var(--ink);letter-spacing:-.01em;}
+.ahead h2 span{color:var(--muted);font-weight:500;margin-left:.4em;}
+.ahead p{margin:0 0 0 auto;font-family:var(--font);font-size:13px;color:var(--muted);}
+.ahead button{flex:none;width:36px;height:36px;border:0;border-radius:50%;background:var(--soft);color:var(--ink);cursor:pointer;display:grid;place-items:center;}
+.ahead button:hover{background:var(--teal-soft);color:var(--teal);}
+.ahead button svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;}
+.agrid{flex:1;overflow-y:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px 18px;align-content:start;padding:22px;overscroll-behavior:contain;touch-action:pan-y;}
+.agrid.dragging{cursor:grabbing;user-select:none;}
+.thumb{display:block;cursor:pointer;border-radius:12px;outline:none;}
+.tframe{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:10px;background:#fff;box-shadow:0 1px 2px rgba(15,27,45,.08),0 8px 20px -14px rgba(15,27,45,.35);transition:box-shadow .15s,transform .15s;}
+@media (hover:hover){.thumb:hover .tframe{transform:translateY(-2px);box-shadow:0 0 0 2px #b9dfe2,0 12px 26px -14px rgba(15,27,45,.4);}}
+.thumb.sel .tframe{box-shadow:0 0 0 4px var(--teal),0 12px 26px -14px rgba(15,27,45,.4);}
+.thumb.now .tn::after{content:"current";margin-left:.5em;padding:1px 7px;border-radius:999px;background:var(--teal-soft);color:var(--teal);font-size:11px;font-weight:600;letter-spacing:.04em;}
+.tcap{display:flex;align-items:baseline;gap:8px;margin-top:8px;font-size:13px;line-height:1.3;}
+.tn{flex:none;font-weight:700;color:var(--teal);}
+.tt{color:var(--body);font-family:var(--font);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.tframe>.thost{position:absolute;inset:0;}
+@media (max-width:600px){.agrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 10px;padding:12px 12px calc(16px + env(safe-area-inset-bottom));}.ahead{padding:10px 12px;gap:10px;}.ahead p{display:none;}.ahead h2{font-size:16px;}.tcap{font-size:12px;}}
+@media print{.album{display:none !important;}}
+.scrim{position:fixed;inset:0;z-index:45;background:rgba(15,27,45,.28);}
+.scrim[hidden]{display:none;}
+
+/* ---------- print: reveal ?print-pdf (16:9, one slide per page) ---------- */
+@media print{ .deckbar,.pop,.scrim,.rbar{display:none !important;} }
+/* ?print-pdf wraps each slide in .pdf-page, so every `.slides>section` rule above also names `.pdf-page>section`;
+   reveal gives the slide its content height there — pin it to the 720px box it has on screen */
+html.print-pdf .reveal .slides .pdf-page>section{height:720px !important;padding:6px 4px 64px !important;box-sizing:border-box !important;}
+html.print-pdf .reveal .slides .pdf-page>section.title-slide{padding:0 34px !important;}
+html.print-pdf .reveal .slides .pdf-page>section.part-open{display:flex !important;}
+/* print opens every answer: on the pixel slide that makes the right column 60px taller, so set it a little smaller */
+html.print-pdf .pix-wrap .term,html.print-pdf .pix-wrap .tryit,html.handout .pix-wrap .term,html.handout .pix-wrap .tryit{font-size:.62em;}
+
+/* ---------- A4 handout (?handout): two 16:9 slides per A4 portrait page ---------- */
+html.handout,html.handout body{height:auto;overflow:auto;background:#e9edf2;}
+html.handout body{line-height:1;}   /* reveal gives body line-height:1 through .reveal-viewport, a class it adds only when it runs — and it does not run here */
+html.handout .reveal{position:static;height:auto;overflow:visible;}
+html.handout .reveal .slides{position:static;width:750px !important;height:auto !important;inset:auto;margin:24px auto;padding:0;transform:none !important;overflow:visible;pointer-events:auto;zoom:1;}
+/* Each slide is laid out at full size, exactly as on screen and in ?print-pdf, then shrunk as a picture (transform).
+   CSS zoom re-lays the text at the small size, where glyph widths round differently and lines wrap elsewhere.
+   A transform does not shrink the space a box takes, so JS wraps every slide in a .ho-cell the size of the shrunk slide.
+   The grey frame is an inset line inside the slide box (the box grows 12px a side, the padding with it — content area
+   unchanged): a frame drawn outside the box was cut off where a page breaks.
+   Size: A4 with 5 mm margins is 200 mm = 756 px wide; 1304 px × .575 = 750 px, so the slide content prints 196 mm wide. */
+html.handout .ho-cell{position:relative;width:750px;height:428px;margin:0 0 26px;overflow:hidden;contain:strict;   /* without containment Chrome's print counts the unscaled slide (1304px) as page width and shrinks every page to ⅔ */ break-inside:avoid;page-break-inside:avoid;}
+html.handout .ho-cell:nth-child(2n){break-after:page;page-break-after:always;margin-bottom:0;}
+html.handout .reveal .slides .ho-cell>section{display:block !important;position:absolute !important;left:0 !important;top:0 !important;width:1304px !important;height:744px !important;padding:18px 16px 76px !important;margin:0 !important;transform:scale(.575) !important;transform-origin:0 0;opacity:1 !important;visibility:visible !important;background:#fff;box-shadow:inset 0 0 0 1px #cfd6df;}
+html.handout .reveal .slides .ho-cell>section.part-open{display:flex !important;}
+html.handout .reveal .slides .ho-cell>section.title-slide{padding:12px 46px !important;}
+html.handout .reveal .slides .ho-cell>section:not(.title-slide)::before{top:22px;right:16px;}
+html.handout .reveal .slides .ho-cell>section:not(.title-slide)::after{left:16px;right:16px;bottom:58px;}
+html.handout .pgno{right:16px;bottom:24px;}
+html.handout .src{left:16px;bottom:28px;}
+html.handout .reveal .fragment{opacity:1 !important;visibility:visible !important;transform:none !important;}
+@media print{ html.handout,html.handout body{background:#fff;} html.handout .reveal .slides{margin:0 auto;} }
+
+/* ---------- phone reading mode: bottom bar ---------- */
+.rbar{display:none;}
+html.reading body{padding-bottom:calc(76px + env(safe-area-inset-bottom));}
+html.reading .rbar:not([hidden]){display:flex;position:fixed;left:8px;right:8px;bottom:calc(8px + env(safe-area-inset-bottom));z-index:40;align-items:center;justify-content:space-between;gap:2px;padding:4px;border-radius:999px;background:rgba(255,255,255,.96);border:1px solid var(--line);box-shadow:0 8px 24px -12px rgba(15,27,45,.35);font-family:var(--display);backdrop-filter:blur(6px);}
+.rbar button{all:unset;box-sizing:border-box;min-width:44px;height:44px;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:6px;color:var(--ink);cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.rbar button:active{background:var(--soft);}
+.rbar svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.rbar .pdf{padding:0 12px;font-size:13px;font-weight:700;}
+.rcount{font-size:14px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums;min-width:4em;text-align:center;}
+html.reading .pdfmenu{bottom:calc(68px + env(safe-area-inset-bottom));min-width:0;width:min(92vw,340px);}
+/* touch screens in slide mode: bar always visible, no keyboard-only button */
+html.touch .deckbar.idle{opacity:1;pointer-events:auto;}
+html.touch .deckbar [data-act=help]{display:none;}
+.deckbar [data-act=fullscreen].nofs{display:none;}
+/* phone held sideways: the slide leaves room at the sides, not below — dock the bar on the right */
+@media (hover:none) and (orientation:landscape) and (max-height:520px){
+  .deckbar{left:auto;right:6px;bottom:auto;top:50%;transform:translateY(-50%);flex-direction:column;padding:4px;}
+  .deckbar .sep{width:24px;height:1px;margin:4px 0;}
+  .deckbar .pdf{padding:0;width:44px;font-size:0;gap:0;}
+  .pdfmenu{left:auto;right:64px;transform:none;top:50%;bottom:auto;translate:0 -50%;}
+}
+html.reading,html.reading body{height:auto;overflow:auto;}
+html.reading .reveal{position:static;height:auto;overflow:visible;font-size:17px;touch-action:auto;}
+html.reading .reveal .slides{position:static;width:auto !important;height:auto !important;inset:auto;margin:0;padding:0 16px;transform:none !important;overflow:visible;pointer-events:auto;zoom:1 !important;}
+html.reading .reveal .slides>section{display:block !important;position:relative !important;width:auto !important;height:auto !important;left:auto !important;top:auto !important;transform:none !important;opacity:1 !important;visibility:visible !important;padding:28px 0 !important;border-bottom:1px solid var(--line);}
+html.reading .reveal .fragment{opacity:1 !important;visibility:visible !important;transform:none !important;}
+/* reveal.css gives every non-current slide pointer-events:none — with Reveal not running that is every slide,
+   which made sliders, canvases, Try it answers and links dead on phones */
+html.reading .reveal .slides>section{pointer-events:auto !important;}
+html.reading .src{position:static;display:block;margin-top:.9em;max-width:none;}
+html.reading .deck-rule{display:none;}
+html.reading .cols,html.reading .cols.c3,html.reading .cols.w64,html.reading .pix-wrap,html.reading .map,html.reading .title-grid,html.reading .outline,html.reading .halves,html.reading .cards.c4,html.reading .cards.c5{grid-template-columns:1fr;}
+html.reading .pipe{flex-direction:column;}
+html.reading .pipe .ar{transform:rotate(90deg);align-self:center;}
+html.reading .tl{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:.8em;}
+html.reading .tl::before{display:none;}
+html.reading .gtiles{grid-template-columns:1fr 1fr;}
+html.reading .pix-wrap canvas{max-height:none;}
+html.reading .title-grid{height:auto;}
+/* phone floor: nothing below 13px */
+html.reading .reveal table,html.reading .reveal table.tight{font-size:14px;}
+html.reading .card,html.reading .term,html.reading .tryit,html.reading .flashback,html.reading .keyidea,html.reading .pipe .st,html.reading .map .blk,html.reading .tl div,html.reading .checks li,html.reading .after div,html.reading .outline li,html.reading .outcomes li{font-size:15px;}
+html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .colab,html.reading .gtile .det,html.reading .half .d{font-size:13px;}
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- 1 -->
+<section class="title-slide">
+  <div class="title-grid">
+    <div class="title-text">
+      <p class="pill">Session 7 · Geometry</p>
+      <h1 style="font-size:2.6em">Two views,<br><em>one scene</em></h1>
+      <p class="sub">Transforms, homographies, cameras — and depth from two eyes</p>
+      <div class="who">
+        <p class="name">Dr. Wasu Kudisthalert <span>(Neil)</span></p>
+        <p class="contact"><span><a href="mailto:wasu.ku@kmitl.ac.th">wasu.ku@kmitl.ac.th</a></span><span><a href="https://classes.incortx.com/ComputerVision/" target="_blank" rel="noopener">classes.incortx.com/ComputerVision</a></span></p>
+      </div>
+    </div>
+    <figure class="art">
+      <svg class="fig" viewBox="0 0 1000 750" role="img" aria-label="the whole building, pale, with the close-up photo laid into place in full colour; its outline is a slanted four-sided shape"><image href="img/title.jpg" width="1000" height="750"/><polygon points="116.0,350.6000061035156 569.9000244140625,360.70001220703125 558.5999755859375,710.5 63.29999923706055,718.5999755859375" fill="none" stroke="#ffd166" stroke-width="7" stroke-linejoin="round"/></svg>
+      <figcaption>Session 6's close-up, bent onto the whole building by one 3 × 3 matrix — the outline is where it lands</figcaption>
+    </figure>
+  </div>
+  <aside class="notes"><p>🇹🇭 บรรยายก่อน แล้วครึ่ง A นำเสนอ T6 หลังบรรยาย · เตือน: ส่งหัวข้อโปรเจกต์สัปดาห์หน้า (สัปดาห์ 8) · ชี้ภาพปก: ภาพซูมของคาบ 6 ถูกบิดลงบนภาพเต็มด้วย matrix 3 × 3 ตัวเดียว (homography จาก RANSAC ของคาบ 6) — กรอบเหลืองคือที่ที่มันตกลง</p><p>🇬🇧 Lecture first; half A presents T6 afterwards. Remind: project topic due next week (week 8). The cover: session 6's close-up bent onto the whole building by one 3 × 3 matrix (the homography from session 6's RANSAC) — the yellow outline is where it lands.</p></aside>
+</section>
+
+<!-- 2 -->
+<section>
+  <p class="kicker">Today</p>
+  <h2 class="claim">One question, four parts</h2>
+  <div class="qband"><span>The question</span>Two views of one scene are tied together by geometry. How are they related — and how do two cameras win back the depth a photo loses?</div>
+  <div class="parts">
+    <a href="#/part-a"><b><i>A</i>Transforms</b>How do you move, turn and stretch a picture with one matrix?</a>
+    <a href="#/part-b"><b><i>B</i>Homography</b>How do two photos of a flat scene line up?</a>
+    <a href="#/part-c"><b><i>C</i>Camera</b>How does a 3D point become a pixel number?</a>
+    <a href="#/part-d"><b><i>D</i>Stereo</b>How do two cameras measure depth?</a>
+  </div>
+  <p class="takeaway"><span>Each part ends in the same notebook — <code>lab.ipynb</code>, one section per part. Project topic due next week.</span></p>
+  <aside class="notes"><p>🇹🇭 อ่านคำถามของคาบ · ย้อนคาบ 6: ได้คู่จุดที่เชื่อได้แล้ว (ratio test + RANSAC) — วันนี้ใช้คู่จุดนั้นทำ geometry · คาบ 2 สัญญาไว้ว่า depth ที่หายไปจะได้คืนในคาบนี้ (part D)</p><p>🇬🇧 Read the session question. Back to session 6: we now have point pairs we can trust (ratio test + RANSAC) — today we use them for geometry. Session 2 promised the lost depth back in this session (part D).</p></aside>
+</section>
+
+<!-- 3 -->
+<section class="part-open" id="part-a" data-part="A">
+  <div class="po-strip"><a href="#/part-a" class="on"><b>A</b>Transforms</a><a href="#/part-b" class=""><b>B</b>Homography</a><a href="#/part-c" class=""><b>C</b>Camera</a><a href="#/part-d" class=""><b>D</b>Stereo</a></div>
+  <p class="po-letter">A</p>
+  <h2 class="claim">Transforms</h2>
+  <p class="po-q">How do you move, turn and stretch a picture with one matrix?</p>
+  <p class="po-out"><span>By the end of this part</span>Apply 2D transforms as 3 × 3 matrices, and count their degrees of freedom.</p>
+  <aside class="notes"><p>🇹🇭 หน้าเปิด part: อ่านคำถามกับสิ่งที่จะทำได้ท้าย part แล้วเข้าเนื้อหา</p><p>🇬🇧 Part opener: read the question and what you can do by the end of the part, then go in.</p></aside>
+</section>
+
+<!-- 4 -->
+<section data-part="A">
+  <p class="kicker">A · Transforms</p>
+  <h2 class="claim">You have transformed pictures already</h2>
+  <div class="split">
+    <div class="conv3" style="grid-template-columns:repeat(3,minmax(0,1fr));max-width:none;gap:.5em">
+      <figure class="photo" style="margin:0"><svg class="fig" viewBox="0 0 280 170" role="img" aria-label="the landscape photo, the photo"><rect width="280" height="170" fill="#f5f7fa" rx="8"/><g transform=""><image href="img/landscape.jpg" x="40" y="25" width="200" height="117"/></g></svg><figcaption>the photo</figcaption></figure><figure class="photo" style="margin:0"><svg class="fig" viewBox="0 0 280 170" role="img" aria-label="the landscape photo, shift"><rect width="280" height="170" fill="#f5f7fa" rx="8"/><g transform="translate(30 14)"><image href="img/landscape.jpg" x="40" y="25" width="200" height="117"/></g></svg><figcaption>shift</figcaption></figure><figure class="photo" style="margin:0"><svg class="fig" viewBox="0 0 280 170" role="img" aria-label="the landscape photo, turn 15°"><rect width="280" height="170" fill="#f5f7fa" rx="8"/><g transform="rotate(15 140 83)"><image href="img/landscape.jpg" x="40" y="25" width="200" height="117"/></g></svg><figcaption>turn 15°</figcaption></figure>
+      <figure class="photo" style="margin:0"><svg class="fig" viewBox="0 0 280 170" role="img" aria-label="the landscape photo, shrink 0.65"><rect width="280" height="170" fill="#f5f7fa" rx="8"/><g transform="translate(140 83) scale(0.65) translate(-140 -83)"><image href="img/landscape.jpg" x="40" y="25" width="200" height="117"/></g></svg><figcaption>shrink 0.65</figcaption></figure><figure class="photo" style="margin:0"><svg class="fig" viewBox="0 0 280 170" role="img" aria-label="the landscape photo, flip"><rect width="280" height="170" fill="#f5f7fa" rx="8"/><g transform="translate(280 0) scale(-1 1)"><image href="img/landscape.jpg" x="40" y="25" width="200" height="117"/></g></svg><figcaption>flip</figcaption></figure>
+      <figure class="photo" style="margin:0"><svg class="fig" viewBox="0 0 280 170" role="img" aria-label="the landscape photo seen at a slant"><rect width="280" height="170" fill="#f5f7fa" rx="8"/><image href="img/slant.jpg" x="40" y="25" width="200" height="117"/></svg><figcaption>seen at a slant</figcaption></figure>
+    </div>
+    <div class="say">
+      <div class="flashback">Session 4, slide 41: augmentation shifts, turns, shrinks and flips a photo. Session 2 B: a zoom is a crop, then an enlargement.</div>
+      <p style="margin-top:.6em">Each one moves every pixel by the same rule: (x, y) → (x′, y′).</p>
+      <p class="fragment">Part A writes every rule as <b>one 3 × 3 matrix</b> — so a chain of moves is one matrix too, and the last picture (a slant) is the one part B needs.</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ย้อนคาบ 4 D (augmentation · คาบ 4 หน้า 41) และคาบ 2 B (zoom = crop + ขยาย) · ชี้ภาพสุดท้าย: มุมเอียงแบบนี้ทำด้วยการหมุน/ย่อไม่ได้ — ต้องใช้ projective (ท้าย A และทั้ง B)</p><p>🇬🇧 Back to session 4 D (augmentation, session 4 slide 41) and session 2 B (zoom = crop + enlarge). The last picture: a slant cannot be made by turning or shrinking — it needs the projective family (end of A, and all of B).</p></aside>
+</section>
+
+<!-- 5 -->
+<section data-part="A">
+  <p class="kicker">A · Transforms</p>
+  <h2 class="claim">Add a 1: every move becomes one matrix</h2>
+  <div class="split">
+    <div><svg class="fig cvsvg" viewBox="0 0 420 300" role="img" aria-label="a triangle shifted by 3 right and 1 up; its corner at the origin moves as well"><defs><marker id="a70f1b2d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f1b2d"/></marker><marker id="a70f766e" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker><marker id="a7e0533d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e0533d"/></marker><marker id="a7c97a06" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c97a06"/></marker><marker id="a72f6fdb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2f6fdb"/></marker></defs><line x1="30" y1="275" x2="30" y2="27" stroke="#94a3b8"/><line x1="92" y1="275" x2="92" y2="27" stroke="#e8edf3"/><line x1="154" y1="275" x2="154" y2="27" stroke="#e8edf3"/><line x1="216" y1="275" x2="216" y2="27" stroke="#e8edf3"/><line x1="278" y1="275" x2="278" y2="27" stroke="#e8edf3"/><line x1="340" y1="275" x2="340" y2="27" stroke="#e8edf3"/><line x1="402" y1="275" x2="402" y2="27" stroke="#e8edf3"/><line x1="30" y1="275" x2="402" y2="275" stroke="#94a3b8"/><line x1="30" y1="213" x2="402" y2="213" stroke="#e8edf3"/><line x1="30" y1="151" x2="402" y2="151" stroke="#e8edf3"/><line x1="30" y1="89" x2="402" y2="89" stroke="#e8edf3"/><line x1="30" y1="27" x2="402" y2="27" stroke="#e8edf3"/><polygon points="30,275 154,275 92,151" fill="#2f6fdb" fill-opacity=".18" stroke="#2f6fdb" stroke-width="3"/><polygon points="216,213 340,213 278,89" fill="#c97a06" fill-opacity=".18" stroke="#c97a06" stroke-width="3"/><line x1="92" y1="151" x2="273.03999999999996" y2="90.85999999999999" stroke="#0f1b2d" stroke-width="2.5" stroke-dasharray="6 4" marker-end="url(#a70f1b2d)"/><line x1="30" y1="275" x2="209.79999999999998" y2="214.86" stroke="#e0533d" stroke-width="2.5" stroke-dasharray="6 4" marker-end="url(#a7e0533d)"/><circle cx="92" cy="151" r="6" fill="#2f6fdb"/><text x="82" y="139" text-anchor="end" class="lb" style="fill:#2f6fdb">(1, 2)</text><circle cx="278" cy="89" r="6" fill="#c97a06"/><text x="290" y="81" class="lb" style="fill:#c97a06">(4, 3)</text><circle cx="30" cy="275" r="6" fill="#e0533d"/><text x="38" y="297" class="lb" style="fill:#e0533d">(0, 0) moves too</text></svg><p class="gcap">shift by (3, 1): every corner moves the same way — including the one at (0, 0)</p></div>
+    <div class="say">
+      <p>A 2 × 2 matrix turns, stretches and flips — but it can never shift: A·(0, 0) is always (0, 0).</p>
+      <p class="fragment">Give every point a third number, 1: (x, y) → (x, y, 1). Now the shift is a column of the matrix:</p>
+      <div class="eq fragment">$$\begin{bmatrix}1&0&t_x\\0&1&t_y\\0&0&1\end{bmatrix}\begin{bmatrix}x\\y\\1\end{bmatrix}=\begin{bmatrix}x+t_x\\y+t_y\\1\end{bmatrix}$$</div>
+      <div class="worked fragment"><span class="tag">Worked example · the picture</span><p>shift (3, 1): [1 0 3 / 0 1 1 / 0 0 1]·(1, 2, 1) = (1 + 3, 2 + 1, 1) = (4, 3) · (0, 0, 1) → (3, 1)</p></div>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ที่มาของพิกัด homogeneous: matrix 2 × 2 เลื่อนจุดไม่ได้ เพราะ (0, 0) อยู่ที่เดิมเสมอ · เติม 1 → การเลื่อนกลายเป็นคอลัมน์ที่สาม · ชี้ภาพ: มุมที่ (0, 0) ก็เลื่อนด้วย</p><p>🇬🇧 Why homogeneous coordinates: a 2 × 2 matrix cannot shift, since (0, 0) always stays put. Add a 1 and the shift becomes the third column. The picture: even the corner at (0, 0) moves.</p></aside>
+</section>
+
+<!-- 6 -->
+<section data-part="A">
+  <p class="kicker">A · Transforms</p>
+  <h2 class="claim">Turn the two axes, and you have the rotation matrix</h2>
+  <div class="split">
+    <div><svg class="fig cvsvg" viewBox="0 0 400 260" style="max-width:420px;margin:0 auto" role="img" aria-label="the unit square turned by theta; the arrow (1, 0) goes to (cos theta, sin theta) and the arrow (0, 1) to (minus sin theta, cos theta)"><defs><marker id="a70f1b2d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f1b2d"/></marker><marker id="a70f766e" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker><marker id="a7e0533d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e0533d"/></marker><marker id="a7c97a06" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c97a06"/></marker><marker id="a72f6fdb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2f6fdb"/></marker></defs><line x1="85.0" y1="230" x2="361.0" y2="230" stroke="#94a3b8"/><line x1="175" y1="242.0" x2="175" y2="38.0" stroke="#94a3b8"/><polygon points="175.0,230.0 295.0,230.0 295.0,110.0 175.0,110.0" fill="#2f6fdb" fill-opacity=".1" stroke="#2f6fdb" stroke-width="2" stroke-dasharray="5 4"/><polygon points="175.0,230.0 278.9,170.0 218.9,66.1 115.0,126.1" fill="#0f766e" fill-opacity=".14" stroke="#0f766e" stroke-width="2.5"/><line x1="175" y1="230" x2="274.9" y2="172.0" stroke="#e0533d" stroke-width="4" marker-end="url(#a7e0533d)"/><line x1="175" y1="230" x2="117.0" y2="130.1" stroke="#c97a06" stroke-width="4" marker-end="url(#a7c97a06)"/><text x="286.9" y="174.0" class="lb" style="fill:#e0533d">(cos θ, sin θ)</text><text x="107.0" y="128.1" text-anchor="end" class="lb" style="fill:#c97a06">(−sin θ, cos θ)</text><text x="297" y="252" class="tk">(1, 0)</text><text x="167" y="114" text-anchor="end" class="tk">(0, 1)</text><path d="M225.4,230 A50.4,50.4 0 0 0 218.6,204.8" fill="none" stroke="#0f1b2d" stroke-width="2"/><text x="235.0" y="218.0" class="lb">θ</text></svg><p class="gcap">the unit square turned by θ: each axis arrow lands on one column of R</p></div>
+    <div class="say">
+      <p>Any point is x steps along (1, 0) plus y steps along (0, 1). Turn the two arrows by θ, and the point follows: x·(cos θ, sin θ) + y·(−sin θ, cos θ).</p>
+      <div class="eq fragment">$$\begin{bmatrix}x'\\y'\end{bmatrix}=\begin{bmatrix}\cos\theta&-\sin\theta\\ \sin\theta&\cos\theta\end{bmatrix}\begin{bmatrix}x\\y\end{bmatrix}$$</div>
+      <p class="fragment">Times a scale s, plus a shift: a <b>similarity</b> — 4 numbers (θ, s, t<sub>x</sub>, t<sub>y</sub>).</p>
+      <div class="worked fragment"><span class="tag">Worked example · θ = 30°, cos 0.866, sin 0.5</span><p>(2, 0) → (2·0.866, 2·0.5) = (1.73, 1.00) · (0, 2) → (−2·0.5, 2·0.866) = (−1.00, 1.73)</p></div>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ที่มาของ matrix หมุน: จุดใด ๆ = x ก้าวตามแกน (1, 0) + y ก้าวตามแกน (0, 1) · หมุนแกนทั้งสอง → คอลัมน์ของ R คือแกนที่หมุนแล้ว · ในภาพ y ชี้ลง matrix เดียวกันจึงหมุนตามเข็มบนจอ (demo หน้าถัดไป)</p><p>🇬🇧 Where R comes from: any point is x steps along (1, 0) plus y along (0, 1); turn both axes and the columns of R are the turned axes. In an image y points down, so the same matrix turns clockwise on screen (next slide's demo).</p></aside>
+</section>
+
+<!-- 7 -->
+<section data-part="A">
+  <p class="kicker">A · Transforms</p>
+  <h2 class="claim">Four families of transforms</h2>
+  <div class="split">
+    <div>
+      <canvas id="tfCv" class="democv" width="560" height="270" aria-label="the landscape photo after the chosen transform, over a dashed outline of where it started"></canvas>
+      <div class="chbtns" id="tfFam" style="justify-content:center"><button data-f="translation">translation</button><button class="on" data-f="similarity">similarity</button><button data-f="affine">affine</button><button data-f="projective">projective</button></div>
+      <div class="ctrl tfc">
+        <label>t<sub>x</sub> <input class="slider" id="tfX" type="range" min="-100" max="100" step="5" value="20" aria-label="shift x"></label>
+        <label>t<sub>y</sub> <input class="slider" id="tfY" type="range" min="-60" max="60" step="5" value="-10" aria-label="shift y"></label>
+        <label>θ <input class="slider" id="tfT" type="range" min="-45" max="45" step="5" value="30" aria-label="angle"></label>
+        <label>s <input class="slider" id="tfS" type="range" min="0.5" max="1.5" step="0.1" value="1.2" aria-label="scale"></label>
+        <label>shear <input class="slider" id="tfK" type="range" min="-0.6" max="0.6" step="0.1" value="0" aria-label="shear"></label>
+        <label>p₁ <input class="slider" id="tfP" type="range" min="-0.003" max="0.003" step="0.0005" value="0" aria-label="perspective x"></label>
+        <label>p₂ <input class="slider" id="tfQ" type="range" min="-0.004" max="0.004" step="0.0005" value="0" aria-label="perspective y"></label>
+      </div>
+    </div>
+    <div class="say">
+      <div id="tfM" class="big-out" style="text-align:center"></div>
+      <p id="tfOut" class="calc" style="margin-top:.4em;font-size:.78em"></p>
+      <p class="fragment">Each family frees more numbers and keeps less: translation 2 (keeps lengths) · similarity 4 (angles) · affine 6 (parallel lines) · projective 8 (only straight lines).</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 กดทีละ family แล้วลาก slider: matrix ทางขวาเปลี่ยนสด และ readout คูณให้ดูกับมุมขวาบน (120, −70) · ย้ำ: ในภาพ y ชี้ลง θ บวกจึงหมุนตามเข็ม · projective: เส้นขนานไม่ขนานอีกต่อไป — ภาพเอียงแบบหน้า 4</p><p>🇬🇧 Press each family and drag: the matrix updates live and the readout multiplies the top-right corner (120, −70) through it. In an image y points down, so a positive θ turns clockwise. Projective: parallel lines stop being parallel — the slant of slide 4.</p></aside>
+</section>
+
+<!-- 8 -->
+<section data-part="A">
+  <p class="kicker">A · Transforms</p>
+  <h2 class="claim">Order matters: turn then shift ≠ shift then turn</h2>
+  <div class="split">
+    <div><svg class="fig cvsvg" viewBox="0 0 400 270" role="img" aria-label="the point (1, 2) turned 90 degrees then shifted lands at (1, 1); shifted then turned it lands at (−2, 4)"><defs><marker id="a70f1b2d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f1b2d"/></marker><marker id="a70f766e" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker><marker id="a7e0533d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e0533d"/></marker><marker id="a7c97a06" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c97a06"/></marker><marker id="a72f6fdb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2f6fdb"/></marker></defs><line x1="18" y1="250" x2="18" y2="30" stroke="#e8edf3"/><line x1="62" y1="250" x2="62" y2="30" stroke="#e8edf3"/><line x1="106" y1="250" x2="106" y2="30" stroke="#e8edf3"/><line x1="150" y1="250" x2="150" y2="30" stroke="#94a3b8"/><line x1="194" y1="250" x2="194" y2="30" stroke="#e8edf3"/><line x1="238" y1="250" x2="238" y2="30" stroke="#e8edf3"/><line x1="282" y1="250" x2="282" y2="30" stroke="#e8edf3"/><line x1="326" y1="250" x2="326" y2="30" stroke="#e8edf3"/><line x1="370" y1="250" x2="370" y2="30" stroke="#e8edf3"/><line x1="18" y1="250" x2="370" y2="250" stroke="#94a3b8"/><line x1="18" y1="206" x2="370" y2="206" stroke="#e8edf3"/><line x1="18" y1="162" x2="370" y2="162" stroke="#e8edf3"/><line x1="18" y1="118" x2="370" y2="118" stroke="#e8edf3"/><line x1="18" y1="74" x2="370" y2="74" stroke="#e8edf3"/><line x1="18" y1="30" x2="370" y2="30" stroke="#e8edf3"/><polyline points="194,162 62,206" fill="none" stroke="#0f766e" stroke-width="3" stroke-dasharray="7 5" marker-end="url(#a70f766e)"/><polyline points="62,206 190.48000000000002,206" fill="none" stroke="#0f766e" stroke-width="3" marker-end="url(#a70f766e)"/><polyline points="194,162 322.48,162" fill="none" stroke="#e0533d" stroke-width="3" marker-end="url(#a7e0533d)"/><polyline points="326,162 64.2,76.19999999999999" fill="none" stroke="#e0533d" stroke-width="3" stroke-dasharray="7 5" marker-end="url(#a7e0533d)"/><circle cx="194" cy="162" r="7" fill="#0f1b2d"/><text x="200" y="150" class="lb">(1, 2)</text><circle cx="194" cy="206" r="7" fill="#0f766e"/><text x="204" y="212" class="lb" style="fill:#0f766e">(1, 1)</text><circle cx="62" cy="74" r="7" fill="#e0533d"/><text x="52" y="64" text-anchor="end" class="lb" style="fill:#e0533d">(−2, 4)</text><text x="18" y="34" class="tk" style="fill:#0f766e">turn, then shift</text><text x="207.2" y="34" class="tk" style="fill:#e0533d">shift, then turn</text></svg><p class="gcap">the point (1, 2), a 90° turn R about (0, 0) and a shift T by (3, 0) — dashed = the turn</p></div>
+    <div class="say">
+      <p>A chain of moves is one product. The matrix on the <b>right acts first</b>: T·R·p turns, then shifts.</p>
+      <div class="eq fragment">$$T R=\begin{bmatrix}0&-1&3\\1&0&0\\0&0&1\end{bmatrix}\;\ne\;R T=\begin{bmatrix}0&-1&0\\1&0&3\\0&0&1\end{bmatrix}$$</div>
+      <div class="worked fragment"><span class="tag">Worked example · the picture</span><p>T·R·(1, 2, 1) = (0 − 2 + 3, 1 + 0 + 0, 1) = (1, 1) · R·T·(1, 2, 1) = (0 − 2 + 0, 1 + 0 + 3, 1) = (−2, 4)</p></div>
+      <p class="fragment">The turn is about (0, 0): shift first, and the point swings around the origin from further away.</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ทำมือกับห้อง: คูณ T·R กับ (1, 2, 1) → (1, 1) · R·T → (−2, 4) · ย้ำ matrix ขวาสุดทำก่อน · เหตุผลเชิงภาพ: หมุนรอบ (0, 0) ถ้าเลื่อนก่อน จุดอยู่ไกลขึ้นจึงเหวี่ยงไปไกล</p><p>🇬🇧 Work it with the room: T·R times (1, 2, 1) → (1, 1); R·T → (−2, 4). The rightmost matrix acts first. Why: the turn is about (0, 0) — shift first and the point swings from further away.</p></aside>
+</section>
+
+<!-- 9 -->
+<section data-part="A">
+  <p class="kicker">A · Transforms</p>
+  <h2 class="claim">Divide by w — and w = 0 is a point at infinity</h2>
+  <div class="split">
+    <div><svg class="fig cvsvg" viewBox="0 0 520 280" role="img" aria-label="two parallel vertical lines; after the projective matrix H their points crowd towards one point, (0, 1)"><defs><marker id="a70f1b2d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f1b2d"/></marker><marker id="a70f766e" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker><marker id="a7e0533d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e0533d"/></marker><marker id="a7c97a06" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c97a06"/></marker><marker id="a72f6fdb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2f6fdb"/></marker></defs><line x1="44" y1="240" x2="44" y2="28.80000000000001" stroke="#2f6fdb" stroke-width="3"/><circle cx="44" cy="240" r="5" fill="#2f6fdb"/><circle cx="44" cy="218" r="5" fill="#2f6fdb"/><circle cx="44" cy="174" r="5" fill="#2f6fdb"/><circle cx="44" cy="42" r="5" fill="#2f6fdb"/><line x1="96" y1="240" x2="96" y2="28.80000000000001" stroke="#2f6fdb" stroke-width="3"/><circle cx="96" cy="240" r="5" fill="#2f6fdb"/><circle cx="96" cy="218" r="5" fill="#2f6fdb"/><circle cx="96" cy="174" r="5" fill="#2f6fdb"/><circle cx="96" cy="42" r="5" fill="#2f6fdb"/><text x="104" y="245" class="tk">t = 0</text><text x="104" y="223" class="tk">t = 1</text><text x="104" y="179" class="tk">t = 3</text><text x="104" y="47" class="tk">t = 9</text><text x="70" y="266" text-anchor="middle" class="lb">x = −1 and x = 1</text><line x1="150" y1="130" x2="205" y2="130" stroke="#0f1b2d" stroke-width="3" marker-end="url(#a70f1b2d)"/><text x="177" y="118" text-anchor="middle" class="lb">H</text><line x1="230.0" y1="240.0" x2="340" y2="50" stroke="#0f766e" stroke-width="2" stroke-dasharray="6 5"/><circle cx="230.0" cy="240.0" r="5" fill="#0f766e"/><circle cx="285.0" cy="145.0" r="5" fill="#0f766e"/><circle cx="312.5" cy="97.5" r="5" fill="#0f766e"/><circle cx="329.0" cy="69.0" r="5" fill="#0f766e"/><line x1="450.0" y1="240.0" x2="340" y2="50" stroke="#0f766e" stroke-width="2" stroke-dasharray="6 5"/><circle cx="450.0" cy="240.0" r="5" fill="#0f766e"/><circle cx="395.0" cy="145.0" r="5" fill="#0f766e"/><circle cx="367.5" cy="97.5" r="5" fill="#0f766e"/><circle cx="351.0" cy="69.0" r="5" fill="#0f766e"/><circle cx="340" cy="50" r="8" fill="#e0533d"/><text x="352" y="55" class="lb" style="fill:#e0533d">(0, 1) = H·(0, 1, 0)</text><text x="340" y="266" text-anchor="middle" class="lb">after ÷ w: they meet</text></svg><p class="gcap">H = [1 0 0 / 0 1 0 / 0 1 1] on the points (±1, t) for t = 0, 1, 3, 9 — the dashed lines run on to (0, 1)</p></div>
+    <div class="say">
+      <p>(x, y, w) and (2x, 2y, 2w) are the <b>same point</b>: read it as (x/w, y/w). So H and 2H do the same — 9 numbers, <b>8</b> degrees of freedom.</p>
+      <p class="fragment">Run along a line, (1, t, 1) for larger t: divided by t it tends to (0, 1, <b>0</b>) — a point with w = 0, infinitely far.</p>
+      <div class="flashback fragment">Session 2 A: parallel rails meet at the vanishing point. That is H·(0, 1, 0) = (0, 1, 1): the point at infinity made finite.</div>
+      <div class="worked fragment"><span class="tag">Worked example · t = 3 on x = 1</span><p>H·(1, 3, 1) = (1, 3, 1 + 3) = (1, 3, 4) → (0.25, 0.75) · t = 9 → (0.1, 0.9) · x = −1 gives (−0.25, 0.75) → both lines head for (0, 1)</p></div>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ที่มาของการหารด้วย w: (x, y, w) กับ (2x, 2y, 2w) คือจุดเดียวกัน → 9 ตัวเลขแต่ 8 DOF · เดินตามเส้น t → ∞ เหลือทิศ (0, 1, 0) = จุดที่อนันต์ · H ทำให้จุดนั้นมีพิกัดจริง = vanishing point ของคาบ 2 A · คำนวณ t = 3 กับห้อง</p><p>🇬🇧 Why divide by w: (x, y, w) and (2x, 2y, 2w) are one point, so 9 numbers but 8 DOF. Walk along a line, t → ∞, and only the direction (0, 1, 0) is left — a point at infinity. H gives it real coordinates: session 2 A's vanishing point. Work t = 3 with the room.</p></aside>
+</section>
+
+<!-- 10 -->
+<section data-part="A">
+  <p class="kicker">A · Transforms</p>
+  <h2 class="claim">Try it: move a point</h2>
+  <div class="split">
+    <div class="tryit"><span class="tag">Try it</span>The point p = (2, 3).
+      <ol style="margin:.4em 0 0 1.1em"><li>Shift it by (4, −1) with a 3 × 3 matrix.</li><li>Turn it by 90° about (0, 0) (cos 90° = 0, sin 90° = 1).</li><li>Apply H = [1 0 2 / 0 1 1 / 0 0.5 1] to the point (2, 2). Where does it land?</li></ol>
+      <details><summary>Answer</summary>1. [1 0 4 / 0 1 −1 / 0 0 1]·(2, 3, 1) = <b>(6, 2)</b> · 2. (2·0 − 3·1, 2·1 + 3·0) = <b>(−3, 2)</b> · 3. (2 + 2, 2 + 1, 0.5·2 + 1) = (4, 3, 2) → ÷ 2 → <b>(2, 1.5)</b>.</details>
+    </div>
+    <div class="say"><p>Write the point as (x, y, 1).</p><p>Multiply, then divide by w.</p></div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ให้เวลา 2 นาที · แบบข้อสอบ Final · ข้อ 3 อย่าลืมหารด้วย w</p><p>🇬🇧 Give two minutes. Final-exam style. Question 3: do not forget to divide by w.</p></aside>
+</section>
+
+<!-- 11 -->
+<section data-part="A">
+  <p class="kicker">A · Transforms</p>
+  <h2 class="claim">A transform is one 3 × 3 matrix</h2>
+  <div class="cards">
+    <div class="card"><b>Add a 1</b>(x, y) → (x, y, 1): a shift becomes a matrix column, so every move is one product.</div>
+    <div class="card violet"><b>Four families</b>Translation 2 · similarity 4 · affine 6 · projective 8 degrees of freedom — each keeps less.</div>
+    <div class="card amber"><b>Order and w</b>The right-hand matrix acts first. Divide by w; w = 0 is a direction — a vanishing point.</div>
+  </div>
+  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-07/lab.ipynb#scrollTo=part-a" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part A</a><span>Transforms as 3 × 3 matrices in NumPy, warpAffine and warpPerspective on a photo, the order of products, what each family keeps</span></p>
+  <p class="more"><a target="_blank" rel="noopener" href="../practice/#s7a">More practice · Session 7 A — practice bank with worked solutions →</a></p>
+  <p class="takeaway"><span>Later: session 9 — a shaking video is steadied by undoing one transform per frame (T9). Next · B: the projective family lines up two photos of a flat scene.</span></p>
+
+  <aside class="notes"><p>🇹🇭 สรุป A · ชี้ต่อคาบ 9 (video stabilisation: transform ต่อเฟรม) · แล้วต่อ B: projective = homography</p><p>🇬🇧 Wrap up A. Forward: session 9 (video stabilisation, one transform per frame). Then B: the projective family is the homography.</p></aside>
+</section>
+
+</div>
+</div>
+
+<!-- phone reading mode: bottom bar (its grid button opens the album) -->
+<nav class="rbar" id="rbar" aria-label="Page controls" hidden>
+  <button data-r="top" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M6 15l6-6 6 6M5 4h14"/></svg></button>
+  <button data-r="prev" aria-label="Previous slide"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
+  <span class="rcount" id="rCount">1 / 1</span>
+  <button data-r="next" aria-label="Next slide"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>
+  <button data-r="list" aria-label="All slides"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg></button>
+  <button data-r="pdf" class="pdf" aria-label="Download PDF"><svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>PDF</button>
+</nav>
+
+<!-- deck toolbar -->
+<nav class="deckbar" id="deckbar" aria-label="Slide controls" hidden>
+  <button data-act="first" aria-label="First slide" title="First slide (Home · Shift+↑)"><svg viewBox="0 0 24 24"><path d="M6 5v14M18 18l-6-6 6-6"/></svg></button>
+  <button data-act="prev" aria-label="Previous slide" title="Previous (←)"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
+  <button data-act="next" aria-label="Next slide" title="Next (→ or Space)"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>
+  <button data-act="last" aria-label="Last slide" title="Last slide (End · Shift+↓)"><svg viewBox="0 0 24 24"><path d="M18 5v14M6 18l6-6-6-6"/></svg></button>
+  <span class="sep" aria-hidden="true"></span>
+  <button data-act="overview" aria-label="All slides" title="All slides (O)"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></button>
+  <button data-act="fullscreen" aria-label="Full screen" title="Full screen (Enter · F)"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+  <button data-act="pdf" class="pdf" aria-label="Download PDF" aria-haspopup="true" title="Download PDF (P)"><svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>PDF</button>
+  <button data-act="help" class="q" aria-label="Keyboard shortcuts" title="Shortcuts (?)">?</button>
+</nav>
+
+<div class="pop pdfmenu" id="pdfMenu" role="menu" data-pdf-files hidden>
+  <a role="menuitem" href="?print-pdf&amp;autoprint" target="_blank" rel="noopener"><b>Slides · 16:9 PDF</b><small>One slide per page, exactly as on screen</small></a>
+  <a role="menuitem" href="?handout&amp;autoprint" target="_blank" rel="noopener"><b>Handout · A4</b><small>Two slides per A4 portrait page — for printing</small></a>
+</div>
+
+<div class="album" id="album" role="dialog" aria-modal="true" aria-label="All slides" hidden>
+  <div class="ahead">
+    <h2>All slides<span id="albumCount"></span></h2>
+    <p>Arrow keys move · Enter or click opens · scroll or drag · Esc goes back</p>
+    <a class="aslides" href="?present">Open as slides ›</a>
+    <button type="button" id="albumClose" aria-label="Back to the slide" title="Back (Esc)"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="agrid" id="albumGrid"></div>
+</div>
+<div class="scrim" id="scrim" hidden></div>
+<div class="pop keys" id="keysHelp" role="dialog" aria-modal="true" aria-labelledby="keysTitle" hidden>
+  <h3 id="keysTitle">Keyboard shortcuts</h3>
+  <dl>
+    <dt><kbd>→</kbd><kbd>Space</kbd></dt><dd>Next step</dd>
+    <dt><kbd>←</kbd></dt><dd>Previous step</dd>
+    <dt><kbd>↓</kbd><kbd>↑</kbd></dt><dd>Next / previous slide — skip the animations</dd>
+    <dt><kbd>Home</kbd><kbd>End</kbd></dt><dd>First / last slide · also <kbd>Shift</kbd>+<kbd>↑</kbd><kbd>↓</kbd></dd>
+    <dt><kbd>Shift</kbd>+<kbd>←</kbd><kbd>→</kbd></dt><dd>Previous / next topic — A, B, C, D — then first / last slide</dd>
+    <dt><kbd>G</kbd></dt><dd>Go to slide — type its number, then Enter</dd>
+    <dt><kbd>O</kbd></dt><dd>All slides — arrows move, Enter opens, scroll or drag</dd>
+    <dt><kbd>Enter</kbd><kbd>F</kbd></dt><dd>Full screen</dd>
+    <dt><kbd>B</kbd><kbd>.</kbd></dt><dd>Black screen (pause) — press again to come back</dd>
+    <dt><kbd>P</kbd></dt><dd>Download PDF — also Cmd/Ctrl + P</dd>
+    <dt><kbd>S</kbd></dt><dd>Presenter view — notes, next slide, timer</dd>
+    <dt><kbd>?</kbd></dt><dd>This list</dd>
+    <dt><kbd>Esc</kbd></dt><dd>Close a popup · otherwise all slides</dd>
+  </dl>
+  <h4>Presenter remote</h4>
+  <dl>
+    <dt><kbd>PgDn</kbd><kbd>PgUp</kbd></dt><dd>Next / previous step</dd>
+    <dt><kbd>F5</kbd></dt><dd>Start button — full screen, never a reload</dd>
+    <dt><kbd>.</kbd></dt><dd>Blank button — black screen, press again to return</dd>
+    <dt><kbd>Esc</kbd></dt><dd>Stop button — leaves full screen</dd>
+  </dl>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/reveal.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/plugin/notes/notes.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script>
+function renderMath(){
+  if(window.renderMathInElement){
+    renderMathInElement(document.querySelector('.reveal .slides'),{
+      delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]
+    });
+  }
+}
+function initDemos(){ initFamilies(); /*<<INITS>>*/ initSliders(); }
+/* range sliders: a finger anywhere on the track sets and drags the value.
+   Phones otherwise only move a native slider when the touch lands exactly on its thumb,
+   and a touch on the track scrolls the page instead. */
+function initSliders(){
+  document.querySelectorAll('input[type=range].slider').forEach(el=>{
+    const set=e=>{ const r=el.getBoundingClientRect(), lo=+el.min||0, hi=+el.max||100, st=+el.step||1;
+      const f=Math.min(1,Math.max(0,(e.clientX-r.left)/r.width));
+      const v=Math.round((lo+f*(hi-lo))/st)*st;
+      if(String(v)!==el.value){ el.value=v; el.dispatchEvent(new Event('input',{bubbles:true})); } };
+    el.addEventListener('pointerdown',e=>{ if(e.pointerType==='mouse') return;   /* the mouse already works natively */
+      e.preventDefault(); el.setPointerCapture(e.pointerId); set(e);
+      const move=ev=>set(ev), up=()=>{ el.removeEventListener('pointermove',move); el.removeEventListener('pointerup',up); el.removeEventListener('pointercancel',up); };
+      el.addEventListener('pointermove',move); el.addEventListener('pointerup',up); el.addEventListener('pointercancel',up); });
+  });
+}
+/* title art: the same 12×12 "N", every pixel labelled with its value */
+function initTitleArt(){
+  const cv=document.getElementById('titleArt'); if(!cv) return;
+  const ctx=cv.getContext('2d'), N=PIX.length, pad=18, s=(cv.width-2*pad)/N;
+  ctx.fillStyle='#ffffff'; ctx.fillRect(0,0,cv.width,cv.height);
+  ctx.font=`600 ${Math.floor(s*0.3)}px JetBrains Mono, monospace`; ctx.textAlign='center'; ctx.textBaseline='middle';
+  for(let r=0;r<N;r++) for(let c=0;c<N;c++){
+    const v=PIX[r][c], x=pad+c*s, y=pad+r*s, dark=v<128;
+    ctx.fillStyle=`rgb(${v},${Math.min(255,v+6)},${Math.min(255,v+12)})`;   /* the cell is its own grey value */
+    if(!dark) ctx.fillStyle='#f3f5f8';
+    ctx.beginPath(); if(ctx.roundRect) ctx.roundRect(x+2.5,y+2.5,s-5,s-5,7); else ctx.rect(x+2.5,y+2.5,s-5,s-5); ctx.fill();
+    ctx.fillStyle=dark?'#ffffff':'#a3adbb';
+    ctx.fillText(v,x+s/2,y+s/2+1);
+  }
+}
+/* modes: ?handout → A4 handout · ?print-pdf → reveal PDF · phone → reading · else → slides */
+const Q=new URLSearchParams(location.search);
+const MODE = Q.has('handout') ? 'handout' : Q.has('print-pdf') ? 'pdf'
+           : (window.matchMedia('(max-width: 760px)').matches && !Q.has('present') && !Q.has('receiver')) ? 'reading' : 'slides';
+if(window.matchMedia('(hover: none)').matches) document.documentElement.classList.add('touch');
+function autoprint(){ if(Q.has('autoprint')) setTimeout(()=>window.print(), 1200); }
+/* fonts and images are in: mark the page (the deploy's PDF export waits for this), then print if asked */
+function printReady(){ setTimeout(()=>{ document.documentElement.dataset.printReady='1'; autoprint(); }, 600); }
+/* The PDF menu points at files the deploy exports with Chrome (<course>-session-NN-slides.pdf / -handout.pdf), so a
+   phone gets the same pages as a desktop — phone browsers ignore the page size a web page asks for when they print.
+   Until a file is there (a local copy, or the export step failed) the menu keeps the live ?print-pdf / ?handout pages. */
+function linkPdfFiles(){
+  const menu=document.getElementById('pdfMenu'), m=location.pathname.match(/\/([^/]+)\/(session-\d+)\/[^/]*$/);
+  if(!menu||!m||!/^https?:$/.test(location.protocol)) return;
+  const [slides,handout]=menu.querySelectorAll('a');
+  [[slides,'slides'],[handout,'handout']].forEach(([a,kind])=>{ if(!a) return; const f=`${m[1]}-${m[2]}-${kind}.pdf`;
+    fetch(f,{method:'HEAD',cache:'no-store'}).then(r=>{ if(r.ok&&(r.headers.get('content-type')||'').includes('pdf')){ a.href=f; a.setAttribute('download',f); a.dataset.file='1'; } }).catch(()=>{}); });
+}
+/* print modes: load every picture now (lazy images far down the page would print blank), then wait for them */
+/* printing: open every answer (Try it, solutions) so it is on paper; restore afterwards */
+function openAnswers(on){ document.querySelectorAll('details').forEach(d=>{ if(on){ if(d.dataset.wasOpen===undefined) d.dataset.wasOpen=d.open?'1':'0'; d.open=true; }
+  else if(d.dataset.wasOpen!==undefined){ d.open=d.dataset.wasOpen==='1'; delete d.dataset.wasOpen; } }); }
+window.addEventListener('beforeprint',()=>openAnswers(true));
+window.addEventListener('afterprint',()=>{ if(MODE==='slides'||MODE==='reading') openAnswers(false); });
+function loadAllImages(){ const imgs=[...document.querySelectorAll('img')]; imgs.forEach(i=>{ i.loading='eager'; });
+  return Promise.all(imgs.map(i=>i.complete?0:new Promise(r=>{ i.addEventListener('load',r,{once:true}); i.addEventListener('error',r,{once:true}); }))); }
+
+function numberSlides(){
+  const secs=[...document.querySelectorAll('.reveal .slides>section')], N=secs.length;
+  secs.forEach((s,i)=>{ const n=document.createElement('span'); n.className='pgno'; n.innerHTML=`<b>${i+1}</b> / ${N}`; s.appendChild(n); });
+}
+document.addEventListener('DOMContentLoaded',()=>{   /* after every const below exists */
+  numberSlides();
+  if(MODE==='slides'||MODE==='reading') linkPdfFiles();
+  if(MODE==='handout'){
+    document.documentElement.classList.add('handout');
+    /* reveal.css has its own print rules (20pt text, one section per page) — Reveal is not running here, so drop it */
+    document.querySelectorAll('link[href*="reveal.min.css"]').forEach(l=>l.disabled=true);
+    document.querySelectorAll('.reveal .slides>section').forEach(sec=>{ const c=document.createElement('div'); c.className='ho-cell'; sec.before(c); c.appendChild(sec); });
+    const st=document.createElement('style'); st.textContent='@page{size:A4 portrait;margin:5mm;}'; document.head.appendChild(st);
+    renderMath(); initDemos();
+    openAnswers(true); loadAllImages(); Promise.all([document.fonts.ready,loadAllImages()]).then(printReady);
+    return;
+  }
+  if(MODE==='reading'){
+    document.documentElement.classList.add('reading');
+    renderMath(); initDemos(); initReadingBar();
+    /* deep links (#/part-b or #/12) work on a phone too — on load, on a tap on an in-deck link (the roadmap cards,
+       the A–D strip on part openers) and on Back/Forward. Reveal is not running here, so nothing else would scroll. */
+    const target=h=>{ const m=(h||'').match(/^#\/([\w-]+)/); if(!m) return null; const secs=[...document.querySelectorAll('.reveal .slides>section')];
+      return /^\d+$/.test(m[1]) ? secs[+m[1]] : document.getElementById(m[1]); };
+    /* jump, then keep the slide at the top while images above it finish loading (they would push it down) — until the reader scrolls */
+    let pin=null; const unpin=()=>{ pin=null; };
+    ['touchstart','wheel','keydown'].forEach(t=>window.addEventListener(t,unpin,{passive:true}));
+    document.addEventListener('load',e=>{ if(pin&&e.target.tagName==='IMG'&&Date.now()<pin.until) pin.el.scrollIntoView({block:'start'}); },true);
+    const go=h=>{ const el=target(h); if(!el) return false; el.scrollIntoView({block:'start'}); pin={el,until:Date.now()+2500}; return true; };
+    if(location.hash) requestAnimationFrame(()=>go(location.hash));
+    if('scrollRestoration' in history) history.scrollRestoration='manual';   /* Back/Forward: we place the slide, not the browser */
+    document.addEventListener('click',e=>{ const a=e.target.closest('a[href^="#/"]'); if(!a||!target(a.getAttribute('href'))) return;
+      e.preventDefault(); history.pushState(null,'',a.getAttribute('href')); go(a.getAttribute('href')); });
+    window.addEventListener('popstate',()=>requestAnimationFrame(()=>go(location.hash)));
+    return;
+  }
+  Reveal.initialize({
+    width:1280, height:720, margin:0.06,
+    hash:true, progress:true, center:false,
+    controls:false, slideNumber:false, help:false,
+    transition:'fade', transitionSpeed:'fast',
+    pdfSeparateFragments:false, pdfMaxPagesPerSlide:1,
+    overview:false,         /* our own album view replaces reveal's one-row overview */
+    scrollActivationWidth:null,
+    touch:false,            /* swipes handled by initSwipe(): up/left = next, down/right = previous */
+    plugins:[RevealNotes]   /* S = presenter view with the slide's notes */
+  }).then(()=>{
+    renderMath(); initDemos();
+    if(MODE==='pdf'){ openAnswers(true); loadAllImages(); Promise.all([document.fonts.ready,loadAllImages()]).then(printReady); return; }
+    if(Q.has('receiver')) return;   /* presenter-view preview: no toolbar, swipe or album */
+    initDeckbar(); initSwipe();
+    initAlbum({slides:()=>Reveal.getSlides(), current:()=>Reveal.getIndices().h, go:i=>Reveal.slide(i), keys:true});
+  });
+});
+
+function initReadingBar(){
+  const bar=document.getElementById('rbar'), count=document.getElementById('rCount');
+  const menu=document.getElementById('pdfMenu');
+  const secs=[...document.querySelectorAll('.reveal .slides>section')], N=secs.length;
+  bar.hidden=false;
+  let cur=0;
+  const go=i=>{ i=Math.max(0,Math.min(N-1,i)); secs[i].scrollIntoView({behavior:'smooth',block:'start'}); };
+  const closeAll=()=>{ menu.hidden=true; };
+  const show=()=>{ count.textContent=`${cur+1} / ${N}`;
+    bar.querySelector('[data-r=prev]').disabled=cur===0; bar.querySelector('[data-r=next]').disabled=cur===N-1; };
+  /* current slide = the last section whose top has passed 40% of the screen */
+  const track=()=>{ const y=window.innerHeight*0.4; let k=0; secs.forEach((s,i)=>{ if(s.getBoundingClientRect().top<=y) k=i; }); if(k!==cur){ cur=k; show(); } };
+  window.addEventListener('scroll',track,{passive:true}); track(); show();
+  const act={top:()=>window.scrollTo({top:0,behavior:'smooth'}), prev:()=>go(cur-1), next:()=>go(cur+1),
+             list:()=>{ closeAll(); toggleAlbum(); },
+             pdf:()=>{ const o=menu.hidden; closeAll(); menu.hidden=!o; }};
+  bar.addEventListener('click',e=>{ const b=e.target.closest('button'); if(b&&act[b.dataset.r]) act[b.dataset.r](); });
+  menu.addEventListener('click',()=>setTimeout(closeAll,50));
+  document.addEventListener('click',e=>{ if(!e.target.closest('#rbar,#pdfMenu')) closeAll(); });
+  initAlbum({slides:()=>secs, current:()=>cur, go:i=>secs[i].scrollIntoView({block:'start'})});
+}
+
+/* swipe in slide mode — reveal's own touch only knows up/down for vertical stacks, which this deck has none of */
+function initSwipe(){
+  const rv=document.querySelector('.reveal'); let sx=null, sy=0, st=0;
+  rv.addEventListener('touchstart',e=>{
+    if(e.touches.length!==1 || e.target.closest('input,button,a,details,.deckbar,.pop')){ sx=null; return; }
+    sx=e.touches[0].clientX; sy=e.touches[0].clientY; st=Date.now();
+  },{passive:true});
+  rv.addEventListener('touchmove',e=>{ if(sx!==null) e.preventDefault(); },{passive:false});   /* no page bounce while swiping */
+  rv.addEventListener('touchend',e=>{
+    if(sx===null) return;
+    const t=e.changedTouches[0], dx=t.clientX-sx, dy=t.clientY-sy; sx=null;
+    if(Date.now()-st>800 || Math.max(Math.abs(dx),Math.abs(dy))<40) return;   /* a tap or a slow drag, not a swipe */
+    const fwd = Math.abs(dy)>Math.abs(dx) ? dy<0 : dx<0;                      /* up or left = forward */
+    fwd ? Reveal.next() : Reveal.prev();
+  },{passive:true});
+}
+
+function initDeckbar(){
+  const bar=document.getElementById('deckbar');
+  const menu=document.getElementById('pdfMenu'), keys=document.getElementById('keysHelp'), scrim=document.getElementById('scrim');
+  bar.hidden=false;
+  const prevB=bar.querySelector('[data-act=prev]'), nextB=bar.querySelector('[data-act=next]');
+  const sync=()=>{
+    const atFirst=Reveal.isFirstSlide(), atLast=Reveal.isLastSlide();
+    prevB.disabled=atFirst && !Reveal.availableFragments().prev;
+    nextB.disabled=atLast && !Reveal.availableFragments().next;
+    bar.querySelector('[data-act=first]').disabled=atFirst;
+    bar.querySelector('[data-act=last]').disabled=atLast;
+  };
+  Reveal.on('slidechanged',sync); Reveal.on('fragmentshown',sync); Reveal.on('fragmenthidden',sync); sync();
+  const closeAll=()=>{ menu.hidden=true; keys.hidden=true; scrim.hidden=true; };
+  const toggleKeys=()=>{ const open=keys.hidden; closeAll(); keys.hidden=!open; scrim.hidden=!open; };
+  const toggleMenu=()=>{ const open=menu.hidden; closeAll(); menu.hidden=!open; if(open) menu.querySelector('a').focus(); };
+  /* iPhone Safari has no element full screen — hide the button there instead of leaving a dead one */
+  const fsOK=!!(document.fullscreenEnabled||document.webkitFullscreenEnabled);
+  if(!fsOK) bar.querySelector('[data-act=fullscreen]').classList.add('nofs');
+  const fullscreen=()=>{ const el=document.documentElement;
+    if(document.fullscreenElement||document.webkitFullscreenElement){ (document.exitFullscreen||document.webkitExitFullscreen).call(document); }
+    else if(el.requestFullscreen) el.requestFullscreen(); else if(el.webkitRequestFullscreen) el.webkitRequestFullscreen(); };
+  const last=()=>Reveal.getTotalSlides()-1;
+  /* Shift+↑/↓ = first/last slide · Shift+←/→ = previous/next topic (a run of sections with the same data-part), then first/last */
+  document.addEventListener('keydown',e=>{
+    if(!e.shiftKey||e.ctrlKey||e.metaKey||e.altKey||document.documentElement.classList.contains('album-open')) return;
+    const k=e.key; if(!/^Arrow(Up|Down|Left|Right)$/.test(k)) return;
+    if(/INPUT|TEXTAREA/.test((document.activeElement||{}).tagName||'')) return;
+    e.preventDefault(); e.stopImmediatePropagation();
+    if(k==='ArrowUp') return Reveal.slide(0);
+    if(k==='ArrowDown') return Reveal.slide(last());
+    const sl=Reveal.getSlides(), starts=sl.map((x,i)=>x.dataset.part&&(i===0||sl[i-1].dataset.part!==x.dataset.part)?i:-1).filter(i=>i>=0);
+    const h=Reveal.getIndices().h, t=k==='ArrowRight'?starts.find(i=>i>h):[...starts].reverse().find(i=>i<h);
+    Reveal.slide(t!==undefined ? t : (k==='ArrowRight' ? last() : 0));   /* no topic left that way: go to the end */
+  },true);
+  const act={first:()=>Reveal.slide(0), prev:()=>Reveal.prev(), next:()=>Reveal.next(), last:()=>Reveal.slide(last()),
+             overview:()=>toggleAlbum(), fullscreen, pdf:toggleMenu, help:toggleKeys};
+  bar.addEventListener('click',e=>{ const b=e.target.closest('button'); if(b && act[b.dataset.act]){ act[b.dataset.act](); if(b.dataset.act!=='pdf'&&b.dataset.act!=='help') closeAll(); } });
+  scrim.addEventListener('click',closeAll);
+  menu.addEventListener('click',()=>setTimeout(closeAll,50));
+  Reveal.addKeyBinding({keyCode:80,key:'P',description:'Download PDF'},toggleMenu);
+  /* Cmd/Ctrl+P: the browser's own print of the live deck is poor — offer the deck's PDF layouts instead */
+  document.addEventListener('keydown',e=>{ if((e.metaKey||e.ctrlKey)&&!e.altKey&&(e.key==='p'||e.key==='P')){ e.preventDefault(); e.stopImmediatePropagation(); if(menu.hidden) toggleMenu(); } },true);
+  /* ↓ / ↑ : whole slide, skipping animations — the slide you land on is shown complete */
+  const jump=d=>{ const h=Reveal.getIndices().h+d; if(h<0||h>last()) return;
+    const n=Reveal.getSlide(h).querySelectorAll('.fragment').length; Reveal.slide(h,0,n?n-1:undefined); };
+  Reveal.addKeyBinding({keyCode:40,key:'↓',description:'Next slide, skip animations'},()=>jump(1));
+  Reveal.addKeyBinding({keyCode:38,key:'↑',description:'Previous slide, skip animations'},()=>jump(-1));
+  /* presenter remotes: the start button sends F5 (or Shift+F5) — enter full screen instead of reloading the page;
+     next/previous send PageDown/PageUp and blank sends "." or B — reveal handles those itself */
+  document.addEventListener('keydown',e=>{
+    if(e.key!=='F5' || e.ctrlKey || e.metaKey || e.altKey) return;
+    e.preventDefault(); e.stopImmediatePropagation();
+    if(!(document.fullscreenElement||document.webkitFullscreenElement)) fullscreen();
+  },true);
+  /* Enter : full screen — unless Enter already means something (go-to-slide box, a popup; the album handles its own) */
+  document.addEventListener('keydown',e=>{
+    if(e.key!=='Enter' || e.altKey || e.ctrlKey || e.metaKey) return;
+    const tag=(document.activeElement&&document.activeElement.tagName)||'';
+    if(/INPUT|TEXTAREA|BUTTON|A|SUMMARY/.test(tag) || !menu.hidden || !keys.hidden) return;
+    if(document.documentElement.classList.contains('album-open')) return;   /* Enter opens the picked tile there */
+    e.preventDefault(); e.stopImmediatePropagation(); fullscreen();
+  },true);
+  Reveal.addKeyBinding({keyCode:191,key:'?',description:'Keyboard shortcuts'},toggleKeys);
+  /* Esc closes an open popup — and stops there, so it does not also open the album */
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape' && (!menu.hidden || !keys.hidden)){ closeAll(); e.preventDefault(); e.stopImmediatePropagation(); }
+  },true);
+  /* fade the bar while presenting; any pointer movement brings it back (touch screens: always shown) */
+  if(document.documentElement.classList.contains('touch')) return;
+  let t; const wake=()=>{ bar.classList.remove('idle'); clearTimeout(t); t=setTimeout(()=>bar.classList.add('idle'),2500); };
+  ['pointermove','pointerdown','keydown'].forEach(ev=>document.addEventListener(ev,wake)); wake();
+}
+
+/* ---- all slides as a photo album: every slide cloned into a scaled 16:9 tile ----
+   each tile renders in its own shadow root with the deck's slide CSS, so phone reading-mode rules
+   (html.reading …) cannot restyle it — on a phone the tiles still show the real 16:9 slide */
+let toggleAlbum=()=>{};
+function initAlbum(src){
+  const al=document.getElementById('album'), grid=document.getElementById('albumGrid');
+  let sel=0, cols=1, tiles=[], dragY=null, dragged=false, startTop=0;
+  /* the stylesheets a tile needs: reveal reset + core, KaTeX, this deck's <style>, then tile overrides */
+  const links=[...document.querySelectorAll('link[rel=stylesheet]')].filter(l=>!/fonts\.googleapis/.test(l.href)).map(l=>l.href);
+  const tileCSS=document.querySelector('style').textContent+`
+    .reveal{position:absolute;left:0;top:0;width:1280px;height:720px;transform-origin:0 0;transform:scale(var(--s,.2));overflow:hidden;pointer-events:none;background:#fff;}
+    .reveal .slides{position:absolute;inset:0;width:1280px;height:720px;margin:0;transform:none !important;zoom:1;perspective:none;pointer-events:none;text-align:left;}
+    .reveal .slides>section{display:block !important;position:absolute !important;inset:0;width:1280px !important;height:720px !important;opacity:1 !important;visibility:visible !important;transform:none !important;pointer-events:none !important;}
+    .reveal .fragment{opacity:1 !important;visibility:visible !important;transform:none !important;}`;
+  let sheet=null; try{ sheet=new CSSStyleSheet(); sheet.replaceSync(tileCSS); }catch(_){ sheet=null; }
+  const titleOf=s=>{ const h=s.querySelector('h1,h2'); if(!h) return '';
+    const c=h.cloneNode(true); c.querySelectorAll('br').forEach(b=>b.replaceWith(' ')); return c.textContent.replace(/\s+/g,' ').trim(); };
+  function build(){
+    const secs=src.slides(); grid.textContent=''; tiles=[];
+    document.getElementById('albumCount').textContent=' · '+secs.length;
+    secs.forEach((s,i)=>{
+      const t=document.createElement('div'); t.className='thumb'; t.dataset.i=i; t.setAttribute('role','button');
+      const title=titleOf(s); t.setAttribute('aria-label',`Slide ${i+1}${title?': '+title:''}`);
+      const fr=document.createElement('div'); fr.className='tframe';
+      const host=document.createElement('div'); host.className='thost'; host.inert=true;
+      const root=host.attachShadow({mode:'open'});
+      links.forEach(h=>{ const l=document.createElement('link'); l.rel='stylesheet'; l.href=h; root.appendChild(l); });
+      if(sheet) root.adoptedStyleSheets=[sheet]; else { const st=document.createElement('style'); st.textContent=tileCSS; root.appendChild(st); }
+      const rv=document.createElement('div'); rv.className='reveal';
+      const sl=document.createElement('div'); sl.className='slides';
+      const c=s.cloneNode(true);
+      c.classList.remove('present','past','future'); ['hidden','style','aria-hidden'].forEach(a=>c.removeAttribute(a));
+      c.querySelectorAll('.fragment').forEach(f=>f.classList.add('visible'));        /* a tile shows the finished slide */
+      c.querySelectorAll('[id]').forEach(e=>{ if(!e.closest('svg')) e.removeAttribute('id'); });
+      const oc=s.querySelectorAll('canvas');                                          /* canvases clone blank — copy their pixels */
+      c.querySelectorAll('canvas').forEach((k,j)=>{ try{ k.getContext('2d').drawImage(oc[j],0,0); }catch(_){} });
+      sl.appendChild(c); rv.appendChild(sl); root.appendChild(rv); fr.appendChild(host); t.appendChild(fr);
+      const cap=document.createElement('div'); cap.className='tcap';
+      cap.innerHTML=`<span class="tn">${i+1}</span><span class="tt"></span>`; cap.lastChild.textContent=title||'Title';
+      t.appendChild(cap); grid.appendChild(t); tiles.push(t);
+    });
+  }
+  function fit(){
+    const f=grid.querySelector('.tframe'); if(f) al.style.setProperty('--s',f.clientWidth/1280);
+    cols=getComputedStyle(grid).gridTemplateColumns.split(' ').length||1;
+  }
+  function mark(scroll){
+    tiles.forEach((t,i)=>t.classList.toggle('sel',i===sel));
+    if(scroll && tiles[sel]) tiles[sel].scrollIntoView({block:scroll===true?'nearest':scroll});
+  }
+  function open(){
+    build(); al.hidden=false; document.documentElement.classList.add('album-open');
+    const cur=src.current(); sel=cur; tiles[cur].classList.add('now');
+    fit(); mark('center');
+  }
+  function close(go){
+    al.hidden=true; document.documentElement.classList.remove('album-open'); grid.textContent=''; tiles=[];
+    if(go!==undefined) src.go(go);
+  }
+  toggleAlbum=()=>{ al.hidden ? open() : close(); };
+  window.addEventListener('resize',()=>{ if(!al.hidden) fit(); });
+  document.getElementById('albumClose').addEventListener('click',()=>close());
+  if(src.keys){
+    Reveal.addKeyBinding({keyCode:79,key:'O',description:'All slides'},toggleAlbum);
+    Reveal.addKeyBinding({keyCode:27,key:'Esc',description:'All slides'},toggleAlbum);
+  }
+  /* while the album is open, every key belongs to it — Reveal must not move the deck underneath */
+  document.addEventListener('keydown',e=>{
+    if(al.hidden || e.metaKey || e.ctrlKey || e.altKey) return;
+    const n=tiles.length, k=e.key;
+    const move=d=>{ sel=Math.max(0,Math.min(n-1,sel+d)); mark(true); };
+    if(k==='ArrowRight') move(1); else if(k==='ArrowLeft') move(-1);
+    else if(k==='ArrowDown') move(cols); else if(k==='ArrowUp') move(-cols);
+    else if(k==='Home'){ sel=0; mark(true); } else if(k==='End'){ sel=n-1; mark(true); }
+    else if(k==='Enter'||k===' ') close(sel);
+    else if(k==='Escape'||k==='o'||k==='O') close();
+    else if(k==='PageDown'||k==='PageUp') return;                                  /* let the grid scroll */
+    else return;
+    e.preventDefault(); e.stopImmediatePropagation();
+  },true);
+  /* click / tap opens a tile; a mouse drag scrolls the grid (fingers and wheels scroll natively) */
+  grid.addEventListener('pointerdown',e=>{ if(e.pointerType==='mouse'&&e.button===0){ dragY=e.clientY; startTop=grid.scrollTop; dragged=false; } });
+  window.addEventListener('pointermove',e=>{
+    if(dragY===null) return; const dy=e.clientY-dragY;
+    if(Math.abs(dy)>6){ dragged=true; grid.classList.add('dragging'); }
+    if(dragged) grid.scrollTop=startTop-dy;
+  });
+  window.addEventListener('pointerup',()=>{ dragY=null; grid.classList.remove('dragging'); });
+  grid.addEventListener('click',e=>{
+    if(dragged){ dragged=false; return; }
+    const t=e.target.closest('.thumb'); if(t) close(+t.dataset.i);
+  });
+}
+
+/* ---- a tiny 12×12 grayscale image drawn from numbers (slide: a computer sees numbers) ---- */
+const PIX = (()=>{
+  // a dark "N" on a light background, values 0–255 (strokes 30, anti-aliased edge 70)
+  const N=12, img=[];
+  for(let r=0;r<N;r++){ const row=[]; for(let c=0;c<N;c++) row.push(220); img.push(row); }
+  for(let r=2;r<=9;r++){ img[r][2]=30; img[r][3]=30; img[r][8]=30; img[r][9]=30; }       // the two uprights
+  for(let r=2;r<=9;r++){ const c=3+Math.round((r-2)*5/7); img[r][c]=30; if(img[r][c+1]===220) img[r][c+1]=70; }  // the diagonal
+  return img;
+})();
+
+function drawGray(canvas,img,gain,pick){
+  const N=img.length, ctx=canvas.getContext('2d'), s=canvas.width/N;
+  for(let r=0;r<N;r++) for(let c=0;c<N;c++){
+    const v=Math.max(0,Math.min(255,Math.round(img[r][c]*gain)));
+    ctx.fillStyle=`rgb(${v},${v},${v})`; ctx.fillRect(c*s,r*s,s,s);
+  }
+  if(pick){ ctx.strokeStyle='#d9534f'; ctx.lineWidth=Math.max(2,s/8); ctx.strokeRect(pick[1]*s+1,pick[0]*s+1,s-2,s-2); }
+}
+function drawNumbers(canvas,img,gain,pick,thr=128){   /* cells below thr are shaded */
+  const N=img.length, ctx=canvas.getContext('2d'), s=canvas.width/N;
+  ctx.fillStyle='#ffffff'; ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.font=`${Math.floor(s*0.36)}px JetBrains Mono, monospace`; ctx.textAlign='center'; ctx.textBaseline='middle';
+  for(let r=0;r<N;r++) for(let c=0;c<N;c++){
+    const v=Math.max(0,Math.min(255,Math.round(img[r][c]*gain)));
+    const hit=pick&&pick[0]===r&&pick[1]===c;
+    ctx.fillStyle=hit?'#fbeaea':(v<thr?'#e3f3f4':'#ffffff'); ctx.fillRect(c*s,r*s,s,s);
+    ctx.fillStyle=hit?'#d9534f':'#1b1f24'; ctx.fillText(v,c*s+s/2,r*s+s/2);
+  }
+  ctx.strokeStyle='#dde3e8'; ctx.lineWidth=1;
+  for(let i=0;i<=N;i++){ ctx.beginPath(); ctx.moveTo(i*s,0); ctx.lineTo(i*s,canvas.height); ctx.stroke(); ctx.beginPath(); ctx.moveTo(0,i*s); ctx.lineTo(canvas.width,i*s); ctx.stroke(); }
+}
+function cellFromEvent(canvas,e){
+  const rect=canvas.getBoundingClientRect(), N=PIX.length;
+  const x=(e.clientX-rect.left)/rect.width, y=(e.clientY-rect.top)/rect.height;
+  if(x<0||y<0||x>=1||y>=1) return null;
+  return [Math.floor(y*N),Math.floor(x*N)];
+}
+function initPixelDemo(){
+  const a=document.getElementById('pixImg'), b=document.getElementById('pixNum'), out=document.getElementById('pixOut');
+  if(!a||!b) return;
+  let pick=null;
+  const draw=()=>{ drawGray(a,PIX,1,pick); drawNumbers(b,PIX,1,pick);
+    out.textContent = pick ? `row ${pick[0]}, col ${pick[1]}  →  ${PIX[pick[0]][pick[1]]}` : 'tap or hover a pixel'; };
+  [a,b].forEach(cv=>{
+    const f=e=>{ const p=cellFromEvent(cv,e); if(p){ pick=p; draw(); } };
+    cv.addEventListener('pointermove',f); cv.addEventListener('pointerdown',f);
+  });
+  draw();
+}
+/* ---- same object, different light: every number changes (slide: humans make it look easy) ---- */
+function initLightingDemo(){
+  const a=document.getElementById('litImg'), b=document.getElementById('litNum'), s=document.getElementById('litGain');
+  if(!a||!b||!s) return;
+  const pct=document.getElementById('litPct'), bg=document.getElementById('litBg'), st=document.getElementById('litSt'), rule=document.getElementById('litRule');
+  const THR=100, N=PIX.length, val=(v,g)=>Math.max(0,Math.min(255,Math.round(v*g)));
+  const letter=PIX.flat().filter(v=>v<THR).length;                 /* cells that really are the N: 30s and 70s */
+  const draw=()=>{ const g=s.value/100; drawGray(a,PIX,g,null); drawNumbers(b,PIX,g,null,THR);
+    pct.textContent=`light ${s.value}%`; bg.textContent=val(PIX[0][0],g); st.textContent=val(PIX[5][5],g);
+    const ink=PIX.flat().filter(v=>val(v,g)<THR).length, ok=ink===letter;
+    rule.textContent= ok ? `✓ finds the N — ${ink} cells` : `✗ marks ${ink} of ${N*N} cells — the whole picture`;
+    rule.parentNode.classList.toggle('bad',!ok); };
+  s.addEventListener('input',draw); draw();
+}
+
+/* ---- session 7 demos ---- */
+/* in ?print-pdf / ?handout each demo starts at a setting that shows its point on paper */
+const PRINTING=/[?&](print-pdf|handout)\b/.test(location.search);
+const loadImg=(src,cb)=>{ const im=new Image(); im.onload=()=>cb(im); im.src=src; return im; };
+function pickButtons(id,cb){ const g=document.getElementById(id); if(!g) return; g.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b) return;
+  g.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b)); cb(b); }); }
+/* A4: one 3 × 3 matrix per family, applied by inverse warping every canvas pixel (so projective works too) */
+function initFamilies(){
+  const cv=document.getElementById('tfCv'); if(!cv) return; const ctx=cv.getContext('2d'), CW=cv.width, CH=cv.height, SW=240, SH=140;
+  const $=id=>document.getElementById(id), S={x:$('tfX'),y:$('tfY'),t:$('tfT'),s:$('tfS'),k:$('tfK'),p:$('tfP'),q:$('tfQ')}, FREE={translation:'xy',similarity:'xyts',affine:'xytsk',projective:'xytskpq'},
+        NEUTRAL={x:0,y:0,t:0,s:1,k:0,p:0,q:0}, DOF={translation:2,similarity:4,affine:6,projective:8},
+        KEEPS={translation:'lengths, angles, parallel lines',similarity:'angles and length ratios',affine:'parallel lines',projective:'straight lines only'};
+  let fam='similarity', src=null;
+  if(PRINTING){ fam='projective'; S.t.value=10; S.s.value=0.9; S.p.value=0.002; S.q.value=-0.002; document.querySelectorAll('#tfFam button').forEach(b=>b.classList.toggle('on',b.dataset.f===fam)); }
+  const H=()=>{ const v=k=>+S[k].value, th=v('t')*Math.PI/180, c=Math.cos(th), sn=Math.sin(th), s=v('s'), k=v('k');
+    return [[s*c, s*(c*k-sn), v('x')],[s*sn, s*(sn*k+c), v('y')],[v('p'), v('q'), 1]]; };      // s·R·[1 k / 0 1], shift, bottom row
+  const inv=m=>{ const [a,b,c]=m[0],[d,e,f]=m[1],[g,h,i]=m[2], A=e*i-f*h, B=-(d*i-f*g), C=d*h-e*g, D=a*A+b*B+c*C;
+    return [[A/D,-(b*i-c*h)/D,(b*f-c*e)/D],[B/D,(a*i-c*g)/D,-(a*f-c*d)/D],[C/D,-(a*h-b*g)/D,(a*e-b*d)/D]]; };
+  const f2=v=>(Math.abs(v)<5e-5?0:v).toFixed(Math.abs(v)<0.01&&v!==0?4:2).replace('-','−');
+  const draw=()=>{ for(const k in S){ const on=FREE[fam].includes(k); S[k].disabled=!on; S[k].closest('label').classList.toggle('off',!on); if(!on) S[k].value=NEUTRAL[k]; }
+    const m=H(), mi=inv(m), out=ctx.createImageData(CW,CH), d=out.data;
+    if(src) for(let v=0;v<CH;v++) for(let u=0;u<CW;u++){ const X=u-CW/2, Y=v-CH/2, w=mi[2][0]*X+mi[2][1]*Y+mi[2][2], x=(mi[0][0]*X+mi[0][1]*Y+mi[0][2])/w+SW/2, y=(mi[1][0]*X+mi[1][1]*Y+mi[1][2])/w+SH/2, o=4*(v*CW+u);
+      if(w>0&&x>=0&&y>=0&&x<SW-1&&y<SH-1){ const x0=x|0,y0=y|0,fx=x-x0,fy=y-y0; for(let ch=0;ch<3;ch++){ const p=(yy,xx)=>src[4*(yy*SW+xx)+ch];
+          d[o+ch]=(p(y0,x0)*(1-fx)+p(y0,x0+1)*fx)*(1-fy)+(p(y0+1,x0)*(1-fx)+p(y0+1,x0+1)*fx)*fy; } d[o+3]=255; }
+      else { d[o]=d[o+1]=d[o+2]=247; d[o+3]=255; } }
+    ctx.putImageData(out,0,0); ctx.setLineDash([6,5]); ctx.strokeStyle='#94a3b8'; ctx.lineWidth=1.5; ctx.strokeRect(CW/2-SW/2,CH/2-SH/2,SW,SH); ctx.setLineDash([]);
+    const P=[120,-70], W=m[2][0]*P[0]+m[2][1]*P[1]+1, xr=m[0][0]*P[0]+m[0][1]*P[1]+m[0][2], yr=m[1][0]*P[0]+m[1][1]*P[1]+m[1][2];
+    ctx.fillStyle='#e0533d'; ctx.beginPath(); ctx.arc(CW/2+xr/W,CH/2+yr/W,6,0,7); ctx.fill(); ctx.strokeStyle='#e0533d'; ctx.strokeRect(CW/2+P[0]-3,CH/2+P[1]-3,6,6);
+    document.getElementById('tfM').innerHTML='H = <span class="mat3">'+m.flat().map((v,i)=>`<span class="${i>5&&fam!=='projective'?'off':''}">${f2(v)}</span>`).join('')+'</span>';
+    document.getElementById('tfOut').innerHTML=`${fam} · <b>${DOF[fam]}</b> degrees of freedom · keeps ${KEEPS[fam]}<br>corner (120, −70): x = ${f2(m[0][0])}·120 + ${f2(m[0][1])}·(−70) + ${f2(m[0][2])} = ${f2(xr)} · y = ${f2(yr)} · w = ${f2(W)}<br>→ (x/w, y/w) = (<b>${f2(xr/W)}</b>, <b>${f2(yr/W)}</b>)`;
+    cv.dataset.x=(xr/W).toFixed(3); cv.dataset.y=(yr/W).toFixed(3); cv.dataset.fam=fam; };
+  for(const k in S) S[k].addEventListener('input',draw);
+  pickButtons('tfFam',b=>{ fam=b.dataset.f; draw(); });
+  loadImg('img/landscape.jpg',im=>{ const c=document.createElement('canvas'); c.width=SW; c.height=SH; const g=c.getContext('2d'); g.drawImage(im,0,0,SW,SH);
+    try{ src=g.getImageData(0,0,SW,SH).data; }catch(e){ src=null; }   /* a file:// page may not read its own pixels: the matrix and the corner still work */
+    draw(); }); draw();
+}
+/*<<JS>>*/
+</script>
+</body>
+</html>
