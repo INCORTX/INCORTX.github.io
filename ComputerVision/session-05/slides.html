@@ -317,6 +317,7 @@ html.reading .reveal .labline span{font-size:13px;}
 .worked{border:1px solid var(--line);border-left:5px solid var(--amber);border-radius:10px;padding:.5em .8em;font-size:.6em;line-height:1.55;background:#fff;}
 .worked .tag{display:block;font-family:var(--display);font-weight:700;font-size:.72em;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:.2em;}
 .worked p{margin:0;font-family:var(--mono);font-size:.92em;}
+.say .worked{font-size:.9em;margin:.4em 0 .5em;}   /* inside a .say column (already .68em): keep the session-2 size */
 .reveal aside.notes,aside.notes{display:none !important;}
 /* number grids */
 .ng{display:grid;gap:3px;font-family:var(--mono);font-weight:600;width:100%;}
@@ -656,7 +657,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <a href="#/part-d"><b><i>D</i>CLIP</b>Can a model recognise things nobody labelled for it?</a>
   </div>
   <p class="takeaway"><span>Each part ends in the same notebook — <code>lab.ipynb</code>, one section per part. After today you start looking for a project topic.</span></p>
-  <aside class="notes"><p>🇹🇭 อ่านคำถามของคาบ · ย้อนหน้า 44 ของคาบ 4 (What if every pixel could look at every other?) · บอกว่าท้ายคาบเริ่มหาหัวข้อโปรเจกต์</p><p>🇬🇧 Read the session question — it answers session 4's last slide (What if every pixel could look at every other?). Say that topic search starts after today.</p></aside>
+  <aside class="notes"><p>🇹🇭 อ่านคำถามของคาบ · ย้อนหน้า 47 ของคาบ 4 (What if every pixel could look at every other?) · บอกว่าท้ายคาบเริ่มหาหัวข้อโปรเจกต์</p><p>🇬🇧 Read the session question — it answers session 4's last slide (What if every pixel could look at every other?). Say that topic search starts after today.</p></aside>
 </section>
 
 <!-- 3 -->
@@ -746,7 +747,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="say">
       <div class="eq">$$w_j=\frac{e^{s_j}}{\sum_i e^{s_i}}$$</div>
       <p>Positive, sum to 1, the largest score gets the most — but not all.</p>
-      <p class="fragment">With long vectors (d = 64 numbers per key) the scores get large and softmax picks one token only. So scores are divided by <b>√d</b> first: here d = 2, and the weights spread out.</p>
+      <div class="worked"><span class="tag">Worked example · scores 1, 3, 0</span><p>e¹ = 2.72 · e³ = 20.09 · e⁰ = 1 → sum 23.80 → weights 0.114 · 0.844 · 0.042</p></div>
+      <p class="fragment">With long vectors (d = 64 numbers per key) the scores get large and softmax picks one token only. So scores are divided by <b>√d</b> first: here d = 2, and the weights spread out. Why √d: next slide.</p>
     </div>
   </div>
 
@@ -754,6 +756,23 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
 </section>
 
 <!-- 8 -->
+<section data-part="A">
+  <p class="kicker">A · Attention</p>
+  <h2 class="claim">A dot product of d numbers spreads like √d</h2>
+  <div class="split">
+    <div><svg class="fig cvsvg" viewBox="0 0 600 270" role="img" aria-label="three histograms of the dot product q · k: narrow for d = 4, wide for d = 64, narrow again after dividing by 8"><line x1="30" y1="72" x2="570" y2="72" stroke="#cbd5e1"/><rect x="228.0" y="71.7" width="8.0" height="0.3" fill="#2f6fdb"/><rect x="237.0" y="71.2" width="8.0" height="0.8" fill="#2f6fdb"/><rect x="246.0" y="70.5" width="8.0" height="1.5" fill="#2f6fdb"/><rect x="255.0" y="68.4" width="8.0" height="3.6" fill="#2f6fdb"/><rect x="264.0" y="63.5" width="8.0" height="8.5" fill="#2f6fdb"/><rect x="273.0" y="54.3" width="8.0" height="17.7" fill="#2f6fdb"/><rect x="282.0" y="39.6" width="8.0" height="32.4" fill="#2f6fdb"/><rect x="291.0" y="20.0" width="8.0" height="52.0" fill="#2f6fdb"/><rect x="300.0" y="20.2" width="8.0" height="51.8" fill="#2f6fdb"/><rect x="309.0" y="38.8" width="8.0" height="33.2" fill="#2f6fdb"/><rect x="318.0" y="55.0" width="8.0" height="17.0" fill="#2f6fdb"/><rect x="327.0" y="64.2" width="8.0" height="7.8" fill="#2f6fdb"/><rect x="336.0" y="68.2" width="8.0" height="3.8" fill="#2f6fdb"/><rect x="345.0" y="70.4" width="8.0" height="1.6" fill="#2f6fdb"/><rect x="354.0" y="71.4" width="8.0" height="0.6" fill="#2f6fdb"/><rect x="363.0" y="71.7" width="8.0" height="0.3" fill="#2f6fdb"/><text x="570" y="34" text-anchor="end" class="lb" style="fill:#2f6fdb">d = 4 · spread 2.0</text><line x1="30" y1="154" x2="570" y2="154" stroke="#cbd5e1"/><rect x="48.0" y="153.6" width="8.0" height="0.4" fill="#e0533d"/><rect x="57.0" y="153.6" width="8.0" height="0.4" fill="#e0533d"/><rect x="66.0" y="153.6" width="8.0" height="0.4" fill="#e0533d"/><rect x="75.0" y="153.3" width="8.0" height="0.7" fill="#e0533d"/><rect x="84.0" y="153.4" width="8.0" height="0.6" fill="#e0533d"/><rect x="93.0" y="153.3" width="8.0" height="0.7" fill="#e0533d"/><rect x="102.0" y="152.4" width="8.0" height="1.6" fill="#e0533d"/><rect x="111.0" y="151.5" width="8.0" height="2.5" fill="#e0533d"/><rect x="120.0" y="150.9" width="8.0" height="3.1" fill="#e0533d"/><rect x="129.0" y="150.7" width="8.0" height="3.3" fill="#e0533d"/><rect x="138.0" y="149.4" width="8.0" height="4.6" fill="#e0533d"/><rect x="147.0" y="148.1" width="8.0" height="5.9" fill="#e0533d"/><rect x="156.0" y="146.5" width="8.0" height="7.5" fill="#e0533d"/><rect x="165.0" y="144.4" width="8.0" height="9.6" fill="#e0533d"/><rect x="174.0" y="140.3" width="8.0" height="13.7" fill="#e0533d"/><rect x="183.0" y="138.8" width="8.0" height="15.2" fill="#e0533d"/><rect x="192.0" y="136.2" width="8.0" height="17.8" fill="#e0533d"/><rect x="201.0" y="132.4" width="8.0" height="21.6" fill="#e0533d"/><rect x="210.0" y="129.3" width="8.0" height="24.7" fill="#e0533d"/><rect x="219.0" y="123.2" width="8.0" height="30.8" fill="#e0533d"/><rect x="228.0" y="124.8" width="8.0" height="29.2" fill="#e0533d"/><rect x="237.0" y="118.0" width="8.0" height="36.0" fill="#e0533d"/><rect x="246.0" y="113.5" width="8.0" height="40.5" fill="#e0533d"/><rect x="255.0" y="110.4" width="8.0" height="43.6" fill="#e0533d"/><rect x="264.0" y="106.6" width="8.0" height="47.4" fill="#e0533d"/><rect x="273.0" y="103.1" width="8.0" height="50.9" fill="#e0533d"/><rect x="282.0" y="102.5" width="8.0" height="51.5" fill="#e0533d"/><rect x="291.0" y="102.0" width="8.0" height="52.0" fill="#e0533d"/><rect x="300.0" y="103.4" width="8.0" height="50.6" fill="#e0533d"/><rect x="309.0" y="104.9" width="8.0" height="49.1" fill="#e0533d"/><rect x="318.0" y="105.4" width="8.0" height="48.6" fill="#e0533d"/><rect x="327.0" y="109.3" width="8.0" height="44.7" fill="#e0533d"/><rect x="336.0" y="108.1" width="8.0" height="45.9" fill="#e0533d"/><rect x="345.0" y="111.2" width="8.0" height="42.8" fill="#e0533d"/><rect x="354.0" y="120.1" width="8.0" height="33.9" fill="#e0533d"/><rect x="363.0" y="120.0" width="8.0" height="34.0" fill="#e0533d"/><rect x="372.0" y="124.9" width="8.0" height="29.1" fill="#e0533d"/><rect x="381.0" y="128.5" width="8.0" height="25.5" fill="#e0533d"/><rect x="390.0" y="132.9" width="8.0" height="21.1" fill="#e0533d"/><rect x="399.0" y="135.8" width="8.0" height="18.2" fill="#e0533d"/><rect x="408.0" y="138.5" width="8.0" height="15.5" fill="#e0533d"/><rect x="417.0" y="142.3" width="8.0" height="11.7" fill="#e0533d"/><rect x="426.0" y="144.0" width="8.0" height="10.0" fill="#e0533d"/><rect x="435.0" y="146.4" width="8.0" height="7.6" fill="#e0533d"/><rect x="444.0" y="148.3" width="8.0" height="5.7" fill="#e0533d"/><rect x="453.0" y="149.3" width="8.0" height="4.7" fill="#e0533d"/><rect x="462.0" y="150.3" width="8.0" height="3.7" fill="#e0533d"/><rect x="471.0" y="152.2" width="8.0" height="1.8" fill="#e0533d"/><rect x="480.0" y="152.6" width="8.0" height="1.4" fill="#e0533d"/><rect x="489.0" y="152.3" width="8.0" height="1.7" fill="#e0533d"/><rect x="498.0" y="153.0" width="8.0" height="1.0" fill="#e0533d"/><rect x="507.0" y="153.1" width="8.0" height="0.9" fill="#e0533d"/><rect x="516.0" y="153.3" width="8.0" height="0.7" fill="#e0533d"/><rect x="534.0" y="153.7" width="8.0" height="0.3" fill="#e0533d"/><rect x="543.0" y="153.5" width="8.0" height="0.5" fill="#e0533d"/><text x="570" y="116" text-anchor="end" class="lb" style="fill:#e0533d">d = 64 · spread 8.0</text><line x1="30" y1="236" x2="570" y2="236" stroke="#cbd5e1"/><rect x="264.0" y="235.7" width="8.0" height="0.3" fill="#0f766e"/><rect x="273.0" y="232.7" width="8.0" height="3.3" fill="#0f766e"/><rect x="282.0" y="215.2" width="8.0" height="20.8" fill="#0f766e"/><rect x="291.0" y="184.0" width="8.0" height="52.0" fill="#0f766e"/><rect x="300.0" y="184.3" width="8.0" height="51.7" fill="#0f766e"/><rect x="309.0" y="215.5" width="8.0" height="20.5" fill="#0f766e"/><rect x="318.0" y="232.9" width="8.0" height="3.1" fill="#0f766e"/><rect x="327.0" y="235.7" width="8.0" height="0.3" fill="#0f766e"/><text x="570" y="198" text-anchor="end" class="lb" style="fill:#0f766e">d = 64, ÷ √64 · spread 1.0</text><text x="30.0" y="262" text-anchor="middle" class="tk">-30</text><text x="165.0" y="262" text-anchor="middle" class="tk">-15</text><text x="300.0" y="262" text-anchor="middle" class="tk">0</text><text x="435.0" y="262" text-anchor="middle" class="tk">15</text><text x="570.0" y="262" text-anchor="middle" class="tk">30</text></svg><p class="gcap">q · k for 20,000 random pairs of vectors, every entry with mean 0 and variance 1 · measured spread (standard deviation)</p></div>
+    <div class="say">
+      <div class="flashback">Session 3, slide 16: variances of independent values add.</div>
+      <div class="eq" style="margin-top:.4em">$$q\cdot k=\sum_{i=1}^{d} q_i k_i,\qquad \operatorname{Var}(q_i k_i)=1$$</div>
+      <p class="fragment">d independent terms of variance 1 → variance <b>d</b> → spread <b>√d</b>. Divide by √d and the spread is 1 for every d.</p>
+      <div class="worked fragment"><span class="tag">Worked example · d = 16, spread √16 = 4</span><p>scores 0, 12 → softmax 0.00001 · 0.99999 (one token only) · ÷ 4 → 0, 3 → 0.047 · 0.953</p></div>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ที่มา √d: q·k เป็นผลรวม d พจน์ แต่ละพจน์ variance 1 → variance รวม d (ย้อนคาบ 3 หน้า 16: variance บวกกัน) → กระจาย √d · ชี้ภาพ: d 64 กว้าง 8 เท่า หารแล้วกลับมาแคบ · ตัวอย่าง: ไม่หาร softmax เลือกตัวเดียว</p><p>🇬🇧 Where √d comes from: q·k is a sum of d terms of variance 1 → variance d (session 3 slide 16: variances add) → spread √d. In the picture d = 64 is eight times wider; divided, it is narrow again. Undivided, softmax picks one token.</p></aside>
+</section>
+
+<!-- 9 -->
 <section data-part="A">
   <p class="kicker">A · Attention</p>
   <h2 class="claim">Every token looks at every token</h2>
@@ -774,7 +793,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ชี้แถวสุดท้าย: ทีละ pixel ใช้ 2.5 พันล้าน score ต่อชั้น → B ตัดเป็น patch</p><p>🇬🇧 Point at the last row: pixel by pixel is 2.5 billion scores per layer — so part B cuts the photo into patches.</p></aside>
 </section>
 
-<!-- 9 -->
+<!-- 10 -->
 <section data-part="A">
   <p class="kicker">A · Attention</p>
   <h2 class="claim">Attention or convolution?</h2>
@@ -783,15 +802,15 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <tr><td style="text-align:left"><b>looks at</b></td><td style="text-align:left">its neighbours (k × k)</td><td style="text-align:left">every token, in one layer</td></tr>
     <tr><td style="text-align:left"><b>weights</b></td><td style="text-align:left">fixed after training</td><td style="text-align:left">computed from each picture</td></tr>
     <tr><td style="text-align:left"><b>built-in assumption</b></td><td style="text-align:left">nearby pixels matter; a shift gives the same shift</td><td style="text-align:left">almost none — learned from data</td></tr>
-    <tr><td style="text-align:left"><b>needs</b></td><td style="text-align:left">less data</td><td style="text-align:left">much more data (slide 19)</td></tr>
-    <tr><td style="text-align:left"><b>cost per layer</b></td><td style="text-align:left">grows with the pixels</td><td style="text-align:left">grows with tokens² (slide 8)</td></tr>
+    <tr><td style="text-align:left"><b>needs</b></td><td style="text-align:left">less data</td><td style="text-align:left">much more data (slide 20)</td></tr>
+    <tr><td style="text-align:left"><b>cost per layer</b></td><td style="text-align:left">grows with the pixels</td><td style="text-align:left">grows with tokens² (slide 9)</td></tr>
   </table>
   <p class="takeaway"><span>A convolution's assumptions are a head start with little data — and a ceiling with a lot.</span></p>
 
   <aside class="notes"><p>🇹🇭 เดินตาราง · ย้ำแถว built-in assumption: CNN 'รู้' ล่วงหน้าว่าเพื่อนบ้านสำคัญ attention ต้องเรียนเอง</p><p>🇬🇧 Walk the table. The built-in assumption row: a CNN 'knows' neighbours matter; attention must learn it.</p></aside>
 </section>
 
-<!-- 10 -->
+<!-- 11 -->
 <section data-part="A">
   <p class="kicker">A · Attention</p>
   <h2 class="claim">Try it: attend over three tokens</h2>
@@ -806,7 +825,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ให้เวลา 2 นาที · แบบข้อสอบ Final (ให้ weight มา ไม่ต้อง softmax เอง)</p><p>🇬🇧 Give two minutes. Final-exam style: the weights are given, no softmax by hand.</p></aside>
 </section>
 
-<!-- 11 -->
+<!-- 12 -->
 <section data-part="A">
   <p class="kicker">A · Attention</p>
   <h2 class="claim">Attention: let the data choose where to look</h2>
@@ -822,7 +841,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 สรุป A · ชี้ต่อ: คาบ 6 T6 LightGlue ใช้ attention จับคู่จุด · แล้วต่อ B</p><p>🇬🇧 Wrap up A. Forward: session 6's T6 LightGlue matches points with attention. Then B.</p></aside>
 </section>
 
-<!-- 12 -->
+<!-- 13 -->
 <section class="part-open" id="part-b" data-part="B">
   <div class="po-strip"><a href="#/part-a" class="done"><b>A</b>Attention</a><a href="#/part-b" class="on"><b>B</b>ViT</a><a href="#/part-c" class=""><b>C</b>No labels</a><a href="#/part-d" class=""><b>D</b>CLIP</a></div>
   <p class="po-letter">B</p>
@@ -832,7 +851,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 หน้าเปิด part: อ่านคำถามกับสิ่งที่จะทำได้ท้าย part แล้วเข้าเนื้อหา</p><p>🇬🇧 Part opener: read the question and what you can do by the end of the part, then go in.</p></aside>
 </section>
 
-<!-- 13 -->
+<!-- 14 -->
 <section data-part="B">
   <p class="kicker">B · Vision Transformer</p>
   <h2 class="claim">Cut the picture into patches, read them like words</h2>
@@ -849,10 +868,10 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     </div>
   </div>
 
-  <aside class="notes"><p>🇹🇭 กดปุ่ม 32 / 16 / 8 ให้ห้องทายจำนวน patch ก่อน (49 / 196 / 784) · คลิก patch ให้เห็นว่ามันคือตัวเลข 768 ตัว · ย้ำ: ยิ่ง patch เล็ก token ยิ่งมาก ต้นทุน N² (หน้า 8)</p><p>🇬🇧 Press 32 / 16 / 8 and let the room predict the count (49 / 196 / 784). Click a patch: it is 768 numbers. Smaller patches, more tokens, N² cost (slide 8).</p></aside>
+  <aside class="notes"><p>🇹🇭 กดปุ่ม 32 / 16 / 8 ให้ห้องทายจำนวน patch ก่อน (49 / 196 / 784) · คลิก patch ให้เห็นว่ามันคือตัวเลข 768 ตัว · ย้ำ: ยิ่ง patch เล็ก token ยิ่งมาก ต้นทุน N² (หน้า 9)</p><p>🇬🇧 Press 32 / 16 / 8 and let the room predict the count (49 / 196 / 784). Click a patch: it is 768 numbers. Smaller patches, more tokens, N² cost (slide 9).</p></aside>
 </section>
 
-<!-- 14 -->
+<!-- 15 -->
 <section data-part="B">
   <p class="kicker">B · Vision Transformer</p>
   <h2 class="claim">A patch embedding is a convolution</h2>
@@ -875,7 +894,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ใช้สูตรคาบ 3 ตรง ๆ · ชี้ว่า stride = kernel = ไม่ซ้อนกัน = ตัดเป็น patch · พารามิเตอร์ 590,592 อ่านจาก weights จริงของ ViT-B/16</p><p>🇬🇧 Session 3's formula, unchanged. Stride = kernel: no overlap, so each window is one patch. 590,592 parameters, read from real ViT-B/16 weights.</p></aside>
 </section>
 
-<!-- 15 -->
+<!-- 16 -->
 <section data-part="B">
   <p class="kicker">B · Vision Transformer</p>
   <h2 class="claim">Attention ignores order — so add where each patch came from</h2>
@@ -896,7 +915,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 กด Shuffle: ภาพมั่วแต่ผลต่าง 0 · ติ๊ก position แล้วกดอีกครั้ง: ผลต่างไม่ใช่ 0 · ชี้ว่า attention ทำงานบน 'ถุง' ของ token</p><p>🇬🇧 Shuffle: the picture is scrambled, the difference is 0. Tick position and shuffle again: now it is not 0. Attention works on a bag of tokens.</p></aside>
 </section>
 
-<!-- 16 -->
+<!-- 17 -->
 <section data-part="B">
   <p class="kicker">B · Vision Transformer</p>
   <h2 class="claim">A class token gathers the answer</h2>
@@ -920,21 +939,22 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ชี้ [CLS]: เริ่มว่าง แล้วฟังทุก patch ทุกชั้น · head = linear layer ของคาบ 4 · token ทั้งหมด = 196 + 1 = 197</p><p>🇬🇧 Point at [CLS]: it starts empty and listens to every patch in every layer. The head is session 4's linear layer. Tokens: 196 + 1 = 197.</p></aside>
 </section>
 
-<!-- 17 -->
+<!-- 18 -->
 <section data-part="B">
   <p class="kicker">B · Vision Transformer</p>
   <h2 class="claim">ViT, end to end</h2>
   <div>
       <table class="tbl big" style="width:100%"><tr><th style="text-align:left">ViT-B/16, step by step</th><th>tokens × numbers</th><th>parameters</th></tr>
-        <tr><td style="text-align:left">patch embedding (slide 14)</td><td>196 × 768</td><td>590,592</td></tr>
-        <tr><td style="text-align:left">+ [CLS] (slide 16) + position (slide 15)</td><td>197 × 768</td><td>152,064</td></tr>
+        <tr><td style="text-align:left">patch embedding (slide 15)</td><td>196 × 768</td><td>590,592</td></tr>
+        <tr><td style="text-align:left">+ [CLS] (slide 17) + position (slide 16)</td><td>197 × 768</td><td>152,064</td></tr>
         <tr><td style="text-align:left">12 × [ attention (12 heads) + MLP (768 → 3,072 → 768), each with a skip ]</td><td>197 × 768</td><td>12 × 7,087,872</td></tr>
         <tr><td style="text-align:left">[CLS] → head</td><td>1 × 768 → classes</td><td>depends on the task</td></tr>
         <tr><td style="text-align:left"><b>total without the head</b></td><td></td><td><b>85,798,656</b></td></tr></table>
-      <p class="gcap">counts read from a trained ViT-B/16 (the DINO weights of slide 18)</p>
+      <p class="gcap">counts read from a trained ViT-B/16 (the DINO weights of slide 19)</p>
   </div>
   <div class="split even" style="margin-top:.5em;align-items:start">
-    <div class="say"><div class="flashback">Session 4 D: y = F(x) + x. Every attention and every MLP in a ViT sits inside a skip connection.</div></div>
+    <div class="say"><div class="flashback">Session 4 D: y = F(x) + x. Every attention and every MLP in a ViT sits inside a skip connection.</div>
+      <div class="worked"><span class="tag">Worked example · one layer, width 768</span><p>q, k, v: 3 × (768² + 768) = 1,771,776 · out 590,592 · MLP 2,362,368 + 2,360,064 · 2 norms 3,072 → 7,087,872</p></div></div>
     <div class="say"><p>The shape never changes: 197 tokens of 768 numbers in, 197 out — twelve times.</p>
       <p class="fragment">About 86 million weights, almost all in the twelve layers. No convolution after the first step.</p></div>
   </div>
@@ -942,7 +962,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ไล่ตารางจากบนลงล่าง · ย้ำ shape คงที่ 197 × 768 ทุกชั้น · skip connection ของคาบ 4 D อยู่ทุกบล็อก</p><p>🇬🇧 Walk the table top to bottom. The shape stays 197 × 768 in every layer. Session 4 D's skip connection is in every block.</p></aside>
 </section>
 
-<!-- 18 -->
+<!-- 19 -->
 <section data-part="B">
   <p class="kicker">B · Vision Transformer</p>
   <h2 class="claim">Where does it look?</h2>
@@ -955,7 +975,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ชี้ทีละภาพ: หัวสุนัข · งวงและลูกช้าง · ตาแมว · บอกว่า model นี้ (DINO) train โดยไม่มี label เลย — จะกลับมาใน C</p><p>🇬🇧 Point at each: the dog's head, the trunk and the calves, the cat's eyes. This model (DINO) was trained without any labels — back to it in C.</p></aside>
 </section>
 
-<!-- 19 -->
+<!-- 20 -->
 <section data-part="B">
   <p class="kicker">B · Vision Transformer</p>
   <h2 class="claim">ViT needs more data than a CNN</h2>
@@ -965,7 +985,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
       <div class="card violet"><b>Pre-trained on 300 million photos, then fine-tuned</b>The ViT pulls ahead — and costs less to train.</div>
     </div>
     <div class="say">
-      <p>A convolution comes with assumptions built in: nearby pixels matter, a shift is a shift (slide 9). A ViT must <b>learn</b> them — that takes data.</p>
+      <p>A convolution comes with assumptions built in: nearby pixels matter, a shift is a shift (slide 10). A ViT must <b>learn</b> them — that takes data.</p>
       <div class="flashback fragment">Session 4 slide 42: small dataset → start from a trained backbone. For a ViT, never train from scratch on a small set.</div>
     </div>
   </div>
@@ -973,7 +993,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 อ้างผลของ Dosovitskiy et al. 2020 (ViT paper) เชิงคุณภาพ · ย้อนตาราง recipe ของคาบ 4 หน้า 42</p><p>🇬🇧 Dosovitskiy et al. (2020), qualitatively. Back to session 4's recipe table (slide 42).</p></aside>
 </section>
 
-<!-- 20 -->
+<!-- 21 -->
 <section data-part="B">
   <p class="kicker">B · Vision Transformer</p>
   <h2 class="claim">Try it: count the tokens</h2>
@@ -988,7 +1008,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ให้เวลา 2 นาที · แบบข้อสอบ Final</p><p>🇬🇧 Give two minutes. Final-exam style.</p></aside>
 </section>
 
-<!-- 21 -->
+<!-- 22 -->
 <section data-part="B">
   <p class="kicker">B · Vision Transformer</p>
   <h2 class="claim">ViT: patches in, attention all the way</h2>
@@ -999,12 +1019,12 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   </div>
   <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-05/lab.ipynb#scrollTo=part-b" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part B</a><span>a patch embedding as nn.Conv2d, counting tokens, a trained ViT's attention on your own photo</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s5b">More practice · Session 5 B — practice bank with worked solutions →</a></p>
-  <p class="takeaway"><span>Later: D — CLIP's image encoder is a ViT · session 8 C — SAM's image encoder is a ViT. Next · C: the attention maps of slide 18 came from a ViT trained without labels.</span></p>
+  <p class="takeaway"><span>Later: D — CLIP's image encoder is a ViT · session 8 C — SAM's image encoder is a ViT. Next · C: the attention maps of slide 19 came from a ViT trained without labels.</span></p>
 
   <aside class="notes"><p>🇹🇭 สรุป B · ชี้ต่อ CLIP (D) และ SAM (คาบ 8 C) · ปูทาง C: DINO train โดยไม่มี label</p><p>🇬🇧 Wrap up B. Forward: CLIP (D), SAM (session 8 C). Set up C: DINO learned without labels.</p></aside>
 </section>
 
-<!-- 22 -->
+<!-- 23 -->
 <section class="part-open" id="part-c" data-part="C">
   <div class="po-strip"><a href="#/part-a" class="done"><b>A</b>Attention</a><a href="#/part-b" class="done"><b>B</b>ViT</a><a href="#/part-c" class="on"><b>C</b>No labels</a><a href="#/part-d" class=""><b>D</b>CLIP</a></div>
   <p class="po-letter">C</p>
@@ -1014,7 +1034,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 หน้าเปิด part: อ่านคำถามกับสิ่งที่จะทำได้ท้าย part แล้วเข้าเนื้อหา</p><p>🇬🇧 Part opener: read the question and what you can do by the end of the part, then go in.</p></aside>
 </section>
 
-<!-- 23 -->
+<!-- 24 -->
 <section data-part="C">
   <p class="kicker">C · Learning without labels</p>
   <h2 class="claim">Labels are expensive; pictures are free</h2>
@@ -1025,15 +1045,15 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     </div>
     <div class="say">
       <p>Can a network learn useful features from the pictures alone?</p>
-      <p class="fragment">Yes — and you have already seen one: the attention maps on slide 18 came from <b>DINO</b>, a ViT trained on the ImageNet photos with every label thrown away.</p>
+      <p class="fragment">Yes — and you have already seen one: the attention maps on slide 19 came from <b>DINO</b>, a ViT trained on the ImageNet photos with every label thrown away.</p>
       <p class="fragment">The trick is to make the photos supervise themselves. First: what does a network's output look like?</p>
     </div>
   </div>
 
-  <aside class="notes"><p>🇹🇭 ถามห้อง: ถ้าต้องให้คน label เองทุกภาพ จะได้กี่ภาพ? · ชี้ว่า attention map หน้า 18 มาจาก model ที่ไม่เคยเห็น label · ชี้ต่อคาบ 8 D: ใคร label</p><p>🇬🇧 Ask: if a person had to label every photo, how many would you get? Slide 18's maps came from a model that never saw a label. Forward: session 8 D, who labels.</p></aside>
+  <aside class="notes"><p>🇹🇭 ถามห้อง: ถ้าต้องให้คน label เองทุกภาพ จะได้กี่ภาพ? · ชี้ว่า attention map หน้า 19 มาจาก model ที่ไม่เคยเห็น label · ชี้ต่อคาบ 8 D: ใคร label</p><p>🇬🇧 Ask: if a person had to label every photo, how many would you get? Slide 19's maps came from a model that never saw a label. Forward: session 8 D, who labels.</p></aside>
 </section>
 
-<!-- 24 -->
+<!-- 25 -->
 <section data-part="C">
   <p class="kicker">C · Learning without labels</p>
   <h2 class="claim">An embedding turns a picture into a point</h2>
@@ -1049,7 +1069,26 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ชี้กลุ่มสัตว์ทางซ้าย · บอกว่านี่คือ embedding จริงของ CLIP บีบเหลือ 2 มิติด้วย PCA เพื่อวาด — ระยะในรูปเป็นค่าประมาณ ใช้ cosine ในหน้าถัดไปวัดจริง</p><p>🇬🇧 Point at the animals on the left. These are CLIP's real embeddings, squeezed to 2-D (PCA) to draw — distances here are approximate; the next slide measures properly.</p></aside>
 </section>
 
-<!-- 25 -->
+<!-- 26 -->
+<section data-part="C">
+  <p class="kicker">C · Learning without labels</p>
+  <h2 class="claim">The cosine falls out of the law of cosines</h2>
+  <div class="split">
+    <div><svg class="fig cvsvg" viewBox="0 0 330 280" style="max-width:340px;margin:0 auto" role="img" aria-label="two arrows a and b from the origin with the angle theta between them, and the dashed side a minus b joining their tips"><defs><marker id="ah_2f6fdb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2f6fdb"/></marker><marker id="ah_e0533d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e0533d"/></marker></defs><line x1="60" y1="250" x2="155.0" y2="60.0" stroke="#2f6fdb" stroke-width="4" marker-end="url(#ah_2f6fdb)"/><line x1="60" y1="250" x2="250.0" y2="155.0" stroke="#e0533d" stroke-width="4" marker-end="url(#ah_e0533d)"/><line x1="155.0" y1="60.0" x2="250.0" y2="155.0" stroke="#c97a06" stroke-width="3" stroke-dasharray="7 5"/><path d="M109.2,225.4 A55,55 0 0 0 84.6,200.8" fill="none" stroke="#0f1b2d" stroke-width="2"/><text x="126" y="212" class="lb" style="fill:#0f1b2d">θ</text><text x="145.0" y="48.0" text-anchor="end" class="lb" style="fill:#2f6fdb">a = [1, 2]</text><text x="262.0" y="161.0" class="lb" style="fill:#e0533d">b = [2, 1]</text><text x="216.5" y="97.5" class="lb" style="fill:#c97a06">a − b = [−1, 1]</text><circle cx="60" cy="250" r="4" fill="#0f1b2d"/><text x="52" y="270" class="tk">0</text></svg><p class="gcap">a triangle made of two embeddings and the gap between them</p></div>
+    <div class="say">
+      <p>The side a − b, two ways. Geometry (law of cosines):</p>
+      <div class="eq">$$\lVert a-b\rVert^2=\lVert a\rVert^2+\lVert b\rVert^2-2\lVert a\rVert\lVert b\rVert\cos\theta$$</div>
+      <p class="fragment">Algebra: (a − b) · (a − b) = ‖a‖² + ‖b‖² − 2 a · b. The two agree only if</p>
+      <div class="eq fragment">$$a\cdot b=\lVert a\rVert\,\lVert b\rVert\cos\theta$$</div>
+      <p class="fragment">Length 1: ‖a − b‖² = 2 − 2 cos θ, so <b>nearest</b> = <b>largest cosine</b> (session 6 C matches by distance).</p>
+      <div class="worked fragment"><span class="tag">Worked example · the triangle on the left</span><p>‖a − b‖² = 2 · ‖a‖² = ‖b‖² = 5 → 2 = 10 − 10 cos θ → cos θ = 0.8 · check: a · b ÷ 5 = 4 ÷ 5 = 0.8</p></div>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ที่มาสูตร cos: ด้าน a − b คิดสองทาง (กฎ cos ของสามเหลี่ยม · กระจาย dot product) → a·b = |a||b|cos θ · ความยาว 1: ระยะ² = 2 − 2cos → ใกล้สุด = cos มากสุด (คาบ 6 C ใช้ระยะ) · ตัวอย่างบนภาพ: 0.8</p><p>🇬🇧 Where the cosine formula comes from: the side a − b two ways (law of cosines; expanding the dot product) → a·b = |a||b|cos θ. At length 1, distance² = 2 − 2cos, so nearest = largest cosine (session 6 C uses distance). The triangle gives 0.8.</p></aside>
+</section>
+
+<!-- 27 -->
 <section data-part="C">
   <p class="kicker">C · Learning without labels</p>
   <h2 class="claim">Cosine similarity compares directions</h2>
@@ -1072,7 +1111,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ลากมุม 0 → 90 → 180 (cos 1 → 0 → −1) · ลาก length: cos ไม่เปลี่ยน · ย้ำ normalize แล้ว cos = dot product (ข้อสอบ Final)</p><p>🇬🇧 Drag the angle 0 → 90 → 180 (cos 1 → 0 → −1). Drag the length: cos stays. Normalised, cos = dot product (Final exam).</p></aside>
 </section>
 
-<!-- 26 -->
+<!-- 28 -->
 <section data-part="C">
   <p class="kicker">C · Learning without labels</p>
   <h2 class="claim">Two views of one photo belong together</h2>
@@ -1098,7 +1137,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ชี้ตาราง: สองมุมของภาพเดียวกัน 0.95 สูงกว่าแมวและจักรยาน · loss = ดึงคู่บวกเข้า ผลักคู่ลบออก · ย้อนคาบ 4 D augmentation</p><p>🇬🇧 Point at the table: two views 0.95, above the cat and the bicycle. Loss: pull positives together, push negatives apart. Back to session 4 D's augmentation.</p></aside>
 </section>
 
-<!-- 27 -->
+<!-- 29 -->
 <section data-part="C">
   <p class="kicker">C · Learning without labels</p>
   <h2 class="claim">Search by example: the nearest neighbour</h2>
@@ -1115,7 +1154,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 แถวแรก: แมว → แมว (0.83) · กดต่อ: สุนัขบนหญ้า → แมวบนหญ้า ก่อนสุนัขบนถนน — embedding จับฉากหลัง (โยง bias ใน D และคาบ 8 D) · ชี้ต่อคาบ 6 C</p><p>🇬🇧 Row one: cat → cat (0.83). Next: the dog on grass finds the cat on grass before the other dog — the embedding carries the background (bias, D and session 8 D). Forward: session 6 C.</p></aside>
 </section>
 
-<!-- 28 -->
+<!-- 30 -->
 <section data-part="C">
   <p class="kicker">C · Learning without labels</p>
   <h2 class="claim">Try it: which picture is closest?</h2>
@@ -1130,7 +1169,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ให้เวลา 1 นาที · แบบข้อสอบ Final</p><p>🇬🇧 Give one minute. Final-exam style.</p></aside>
 </section>
 
-<!-- 29 -->
+<!-- 31 -->
 <section data-part="C">
   <p class="kicker">C · Learning without labels</p>
   <h2 class="claim">Learn what looks alike — no labels needed</h2>
@@ -1146,7 +1185,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 สรุป C · ชี้ต่อคาบ 6 C (จับคู่ descriptor ด้วย nearest neighbour) และ T5-1 DINOv2 · แล้วต่อ D: ข้อความอยู่ใน space เดียวกับภาพ</p><p>🇬🇧 Wrap up C. Forward: session 6 C (nearest-neighbour matching), T5-1 DINOv2. Then D: text in the same space as the photos.</p></aside>
 </section>
 
-<!-- 30 -->
+<!-- 32 -->
 <section class="part-open" id="part-d" data-part="D">
   <div class="po-strip"><a href="#/part-a" class="done"><b>A</b>Attention</a><a href="#/part-b" class="done"><b>B</b>ViT</a><a href="#/part-c" class="done"><b>C</b>No labels</a><a href="#/part-d" class="on"><b>D</b>CLIP</a></div>
   <p class="po-letter">D</p>
@@ -1156,7 +1195,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 หน้าเปิด part: อ่านคำถามกับสิ่งที่จะทำได้ท้าย part แล้วเข้าเนื้อหา</p><p>🇬🇧 Part opener: read the question and what you can do by the end of the part, then go in.</p></aside>
 </section>
 
-<!-- 31 -->
+<!-- 33 -->
 <section data-part="D">
   <p class="kicker">D · CLIP &amp; zero-shot</p>
   <h2 class="claim">CLIP: pictures and sentences in one space</h2>
@@ -1181,7 +1220,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ชี้สองทาง: ภาพเข้า image encoder (ViT ของ B) · ประโยคเข้า text encoder · ออกมาเป็น 512 ตัวเลขทั้งคู่ เทียบด้วย cos ของ C</p><p>🇬🇧 Two roads: the photo through the image encoder (part B's ViT), the sentence through the text encoder; both become 512 numbers, compared by part C's cosine.</p></aside>
 </section>
 
-<!-- 32 -->
+<!-- 34 -->
 <section data-part="D">
   <p class="kicker">D · CLIP &amp; zero-shot</p>
   <h2 class="claim">Training: match each photo to its own caption</h2>
@@ -1197,7 +1236,24 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ชี้เส้นทแยง: คู่จริงชนะทุกแถว · ค่าจริงแค่ 0.2–0.3 แต่ลำดับคือสิ่งที่สำคัญ · 400 ล้านคู่จากอินเทอร์เน็ต — คาบ 8 D จะถามว่ามาจากไหน ใครอยู่ในภาพ</p><p>🇬🇧 Point at the diagonal: the true pair wins every row. The values are only 0.2–0.3; the order is what counts. 400 million pairs from the internet — session 8 D asks where they came from and who is in them.</p></aside>
 </section>
 
-<!-- 33 -->
+<!-- 35 -->
+<section data-part="D">
+  <p class="kicker">D · CLIP &amp; zero-shot</p>
+  <h2 class="claim">The loss: every row is a softmax over the captions</h2>
+  <div class="split">
+    <div><svg class="fig cvsvg" viewBox="0 0 600 262" role="img" aria-label="the cat photo against five captions: cosines, the cosines times 100, and their softmax; the true caption cat takes almost all"><text x="118" y="34" text-anchor="middle" class="tk" style="fill:#0f1b2d">dog</text><rect x="76" y="46" width="84" height="38" rx="6" fill="#fff" stroke="#0f1b2d" stroke-width="1.2"/><text x="118" y="72" text-anchor="middle" class="lb" style="fill:#0f1b2d">0.217</text><text x="118" y="122" text-anchor="middle" class="lb" style="fill:#0f1b2d">21.7</text><rect x="92" y="230.0" width="52" height="2.0" rx="4" fill="#0f766e"/><text x="118" y="252" text-anchor="middle" class="tk">0.003</text><text x="222" y="34" text-anchor="middle" class="tk" style="fill:#e0533d">cat</text><rect x="180" y="46" width="84" height="38" rx="6" fill="#fff" stroke="#e0533d" stroke-width="3"/><text x="222" y="72" text-anchor="middle" class="lb" style="fill:#e0533d">0.274</text><text x="222" y="122" text-anchor="middle" class="lb" style="fill:#e0533d">27.4</text><rect x="196" y="152.4" width="52" height="79.6" rx="4" fill="#e0533d"/><text x="222" y="252" text-anchor="middle" class="tk">0.995</text><text x="326" y="34" text-anchor="middle" class="tk" style="fill:#0f1b2d">apple</text><rect x="284" y="46" width="84" height="38" rx="6" fill="#fff" stroke="#0f1b2d" stroke-width="1.2"/><text x="326" y="72" text-anchor="middle" class="lb" style="fill:#0f1b2d">0.205</text><text x="326" y="122" text-anchor="middle" class="lb" style="fill:#0f1b2d">20.5</text><rect x="300" y="230.0" width="52" height="2.0" rx="4" fill="#0f766e"/><text x="326" y="252" text-anchor="middle" class="tk">0.001</text><text x="430" y="34" text-anchor="middle" class="tk" style="fill:#0f1b2d">elephant</text><rect x="388" y="46" width="84" height="38" rx="6" fill="#fff" stroke="#0f1b2d" stroke-width="1.2"/><text x="430" y="72" text-anchor="middle" class="lb" style="fill:#0f1b2d">0.189</text><text x="430" y="122" text-anchor="middle" class="lb" style="fill:#0f1b2d">18.9</text><rect x="404" y="230.0" width="52" height="2.0" rx="4" fill="#0f766e"/><text x="430" y="252" text-anchor="middle" class="tk">0.000</text><text x="534" y="34" text-anchor="middle" class="tk" style="fill:#0f1b2d">bicycle</text><rect x="492" y="46" width="84" height="38" rx="6" fill="#fff" stroke="#0f1b2d" stroke-width="1.2"/><text x="534" y="72" text-anchor="middle" class="lb" style="fill:#0f1b2d">0.180</text><text x="534" y="122" text-anchor="middle" class="lb" style="fill:#0f1b2d">18.0</text><rect x="508" y="230.0" width="52" height="2.0" rx="4" fill="#0f766e"/><text x="534" y="252" text-anchor="middle" class="tk">0.000</text><text x="8" y="72" class="tk">cos</text><text x="8" y="122" class="tk">× 100</text><text x="8" y="200" class="tk">softmax</text></svg><p class="gcap">the cat photo's row of the table on slide 34 (CLIP's cosines), true caption in red</p></div>
+    <div class="say">
+      <div class="flashback">Slide 7: softmax · session 4 B: a loss is one number to make smaller.</div>
+      <div class="eq" style="margin-top:.4em">$$\mathcal{L}_i=-\log\frac{e^{\cos(I_i,T_i)/\tau}}{\sum_j e^{\cos(I_i,T_j)/\tau}}$$</div>
+      <p class="fragment">−log of the true caption's share: 0 when it takes everything. Columns too (caption → photo), averaged. τ is learned and ends at 0.01: <b>× 100</b> — cosines sit in a narrow band, 0.15–0.34.</p>
+      <div class="worked fragment"><span class="tag">Worked example · the cat row</span><p>× 100: 27.4 vs 21.7 → share 0.995 → loss 0.005 · without × 100: 0.212 → 1.55 · untrained, all equal: 1/5 → log 5 = 1.61</p></div>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ที่มา loss ของ CLIP: แต่ละแถว = softmax ของ cos/τ แล้ว −log ของคู่จริง (ย้อนหน้า 7 softmax · คาบ 4 B loss) · ทำทั้งแถวและคอลัมน์ · τ = 0.01 คือ ×100 · แถวแมว: loss 0.005 · ไม่คูณ 100: 1.55 · ยังไม่ train: log 5 = 1.61</p><p>🇬🇧 CLIP's loss: each row is a softmax of cos/τ, then −log of the true pair (back to slide 7 and session 4 B). Rows and columns both. τ = 0.01 is the × 100. Cat row: loss 0.005; without × 100: 1.55; untrained: log 5 = 1.61.</p></aside>
+</section>
+
+<!-- 36 -->
 <section data-part="D">
   <p class="kicker">D · CLIP &amp; zero-shot</p>
   <h2 class="claim">Zero-shot: the prompt is the classifier</h2>
@@ -1208,7 +1264,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     </div>
     <div class="say">
       <p>To classify, <b>write the classes as sentences</b>, embed them, and pick the sentence with the largest cosine — no training, no new head.</p>
-      <p class="fragment">CLIP multiplies the cosines by 100 before softmax, so a small lead (0.28 against 0.22) becomes 99.5%.</p>
+      <p class="fragment">CLIP multiplies the cosines by 100 before softmax (slide 35), so a small lead (0.28 against 0.22) becomes 99.5%.</p>
+      <div class="worked fragment"><span class="tag">Worked example · dog against cat</span><p>100 × (0.281 − 0.222) = 5.9 → e^5.9 ≈ 365 times the weight · with all five prompts: 99.5%</p></div>
       <div class="flashback fragment">Session 4 D: transfer learning trains a new head. Zero-shot does not train anything.</div>
     </div>
   </div>
@@ -1216,7 +1273,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ชี้ cos ใกล้กันมาก (0.28 vs 0.22) แต่ softmax(100 × cos) ทำให้ 99% · เทียบคาบ 4 D: transfer learning ต้อง train head แต่ zero-shot ไม่ต้อง</p><p>🇬🇧 The cosines are close (0.28 vs 0.22), but softmax(100 × cos) makes it 99%. Compare session 4 D: transfer learning trains a head; zero-shot trains nothing.</p></aside>
 </section>
 
-<!-- 34 -->
+<!-- 37 -->
 <section data-part="D">
   <p class="kicker">D · CLIP &amp; zero-shot</p>
   <h2 class="claim">Change a word, change the answer</h2>
@@ -1231,7 +1288,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ชี้แถว cat (0.02) vs a photo of a Thai cat (0.68) — คำเดียวเปลี่ยนผล · สุนัข: ไม่มีใครรู้พันธุ์จริง แต่ CLIP ตอบมั่นใจ · ย้ำ: ต้องทดสอบ prompt บน validation set (คาบ 4 B)</p><p>🇬🇧 Point at 'cat' (0.02) vs 'a photo of a Thai cat' (0.68): one word changes the result. The dog: nobody knows its breed, yet CLIP answers confidently. Test prompts on a validation set (session 4 B).</p></aside>
 </section>
 
-<!-- 35 -->
+<!-- 38 -->
 <section data-part="D">
   <p class="kicker">D · CLIP &amp; zero-shot</p>
   <h2 class="claim">What CLIP gets wrong</h2>
@@ -1247,7 +1304,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 สามข้อ: นับไม่เป็น (คะแนนแบน) · อ่านตัวหนังสือในภาพแทนดูของจริง · bias จากข้อมูล — ชี้ต่อคาบ 8 D (ที่มาของข้อมูล + วัดตามกลุ่ม)</p><p>🇬🇧 Three limits: counting (flat scores), text in the picture beats the object, bias from the data — forward to session 8 D (where the data comes from, measuring by group).</p></aside>
 </section>
 
-<!-- 36 -->
+<!-- 39 -->
 <section data-part="D">
   <p class="kicker">D · CLIP &amp; zero-shot</p>
   <h2 class="claim">From names to boxes and masks</h2>
@@ -1265,7 +1322,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ย้อนแผนที่วิชาคาบ 1 (CLIP → find by text 8) · ปูทางคาบ 8: cosine ทีละบริเวณแทนทั้งภาพ</p><p>🇬🇧 Back to session 1's course map (CLIP → find by text, 8). Session 8: cosine per region instead of per photo.</p></aside>
 </section>
 
-<!-- 37 -->
+<!-- 40 -->
 <section data-part="D">
   <p class="kicker">D · CLIP &amp; zero-shot</p>
   <h2 class="claim">Try it: zero-shot by hand</h2>
@@ -1280,7 +1337,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ให้เวลา 1 นาที · แบบข้อสอบ Final</p><p>🇬🇧 Give one minute. Final-exam style.</p></aside>
 </section>
 
-<!-- 38 -->
+<!-- 41 -->
 <section data-part="D">
   <p class="kicker">D · CLIP &amp; zero-shot</p>
   <h2 class="claim">CLIP: classes are just sentences</h2>
@@ -1296,7 +1353,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 สรุป D · ชี้ต่อคาบ 8 (find by text + ethics) · ต่อด้วยหน้าเริ่มหาหัวข้อโปรเจกต์</p><p>🇬🇧 Wrap up D. Forward: session 8 (find by text, ethics). Then the project-topic slide.</p></aside>
 </section>
 
-<!-- 39 -->
+<!-- 42 -->
 <section>
   <p class="kicker">Project · week 5</p>
   <h2 class="claim">Start looking for your project topic now</h2>
@@ -1314,7 +1371,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 หมุดหมายสัปดาห์ 5: เริ่มหาหัวข้อ ส่งสัปดาห์ 8 · ทวน 4 คำถาม pitch ของคาบ 1 · ย้อนตาราง recipe คาบ 4 หน้า 42</p><p>🇬🇧 Week-5 milestone: start looking, topic due week 8. Recap session 1's four pitch questions; session 4's recipe table (slide 42).</p></aside>
 </section>
 
-<!-- 40 -->
+<!-- 43 -->
 <section>
   <p class="kicker">Session 5 · what to remember</p>
   <h2 class="claim">From fixed windows to learned attention — and open names</h2>
@@ -1328,7 +1385,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ทวน 4 ข้อ A–D · ต่อด้วยครึ่ง A นำเสนอ T4 หลังจบเด็ค</p><p>🇬🇧 Recap the four lines A–D. Half A's T4 talks follow after the deck.</p></aside>
 </section>
 
-<!-- 41 -->
+<!-- 44 -->
 <section>
   <p class="kicker">Assignment · topic set T5</p>
   <h2 class="claim">Half B: pick a T5 topic today — you present it in session 6</h2>
@@ -1337,13 +1394,13 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ครึ่ง B เลือกหัวข้อ กลุ่มละหนึ่งหัวข้อ ไม่ซ้ำกัน · ส่งไฟล์ตามกำหนดก่อนคาบ 6 · ครึ่ง A รับ T6 หลังคาบ 6</p><p>🇬🇧 Half B picks one topic per group, no repeats; files due before session 6. Half A gets T6 after session 6.</p></aside>
 </section>
 
-<!-- 42 -->
+<!-- 45 -->
 <section>
   <p class="kicker">Next · Session 6</p>
   <h2 class="claim">Do two photos show the same point?</h2>
   <div class="split">
     <div class="say">
-      <p>Today we compared <b>whole photos</b>: one embedding each, nearest neighbour by cosine — and saw the background get in the way (slide 27).</p>
+      <p>Today we compared <b>whole photos</b>: one embedding each, nearest neighbour by cosine — and saw the background get in the way (slide 29).</p>
       <p>Session 6 — <b>local features and matching</b>: find small distinctive points, describe each with numbers, and match them between photos — even when most matches are wrong.</p>
     </div>
     <div class="flashback">Keep from today: an embedding is a point · cosine compares directions · nearest neighbour = largest cosine.</div>
@@ -1351,7 +1408,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ปิดคาบ: ปูทางคาบ 6</p><p>🇬🇧 Close the session and set up session 6.</p></aside>
 </section>
 
-<!-- 43 -->
+<!-- 46 -->
 <section>
   <p class="kicker">References</p>
   <h2 class="claim">Where session 5 comes from</h2>
