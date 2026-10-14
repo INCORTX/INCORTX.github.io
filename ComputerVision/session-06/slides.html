@@ -787,6 +787,122 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 สรุป A · ชี้ต่อคาบ 9 B: M ตัวเดียวกันใช้หา optical flow (แผนที่คาบ 1: corner matrix → flow 9) · แล้วต่อ B</p><p>🇬🇧 Wrap up A. Forward: session 9 B uses the same M for optical flow (session 1's map: corner matrix → flow 9). Then B.</p></aside>
 </section>
 
+<!-- 11 -->
+<section class="part-open" id="part-b" data-part="B">
+  <div class="po-strip"><a href="#/part-a" class="done"><b>A</b>Corners</a><a href="#/part-b" class="on"><b>B</b>Scale</a><a href="#/part-c" class=""><b>C</b>Matching</a><a href="#/part-d" class=""><b>D</b>RANSAC</a></div>
+  <p class="po-letter">B</p>
+  <h2 class="claim">Scale</h2>
+  <p class="po-q">How can the same point be found when the photo is bigger or smaller?</p>
+  <p class="po-out"><span>By the end of this part</span>Explain scale space, and pick the scale where a blob responds most.</p>
+  <aside class="notes"><p>🇹🇭 หน้าเปิด part: อ่านคำถามกับสิ่งที่จะทำได้ท้าย part แล้วเข้าเนื้อหา</p><p>🇬🇧 Part opener: read the question and what you can do by the end of the part, then go in.</p></aside>
+</section>
+
+<!-- 12 -->
+<section data-part="B">
+  <p class="kicker">B · Scale</p>
+  <h2 class="claim">Zoom in, and a corner becomes an edge</h2>
+  <div class="split">
+    <div>
+      <div class="conv3" style="grid-template-columns:minmax(0,1fr) minmax(0,1fr);max-width:none;gap:.8em">
+        <div><svg class="fig" viewBox="277 374 90 90" role="img" aria-label="a close view of the full photo with a 15-pixel window"><image href="img/full.jpg" width="1000" height="750"/><rect x="314.5" y="411.5" width="15" height="15" fill="none" stroke="#e0533d" stroke-width="1.6"/></svg><p class="gcap">whole photo · λ₁ 0.94, λ₂ 0.44 → <b>corner</b></p></div>
+        <div><svg class="fig" viewBox="408 96 90 90" role="img" aria-label="a close view of the detail photo with a 15-pixel window"><image href="img/detail.jpg" width="1000" height="750"/><rect x="445.5" y="133.5" width="15" height="15" fill="none" stroke="#e0533d" stroke-width="1.6"/></svg><p class="gcap">close-up, same spot · λ₁ 1.26, λ₂ 0.001 → <b>edge</b></p></div>
+      </div>
+      <p class="gcap">the same 15 × 15-px window (red) on the same point of the building — the second position found through the matches of slide 1</p>
+    </div>
+    <div class="say">
+      <p>In the close-up everything is about 2× bigger. The window still covers 15 × 15 pixels, so it now sees only <b>one side</b> of the corner: an edge.</p>
+      <p class="fragment">Harris uses one window size. To find the same point in both photos, the window must grow with the picture: look at <b>every scale</b>.</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ชี้หน้าต่างแดงสองภาพ: จุดเดียวกันของตึก (หาตำแหน่งผ่าน homography ของคู่ match หน้า 1) · ค่า λ วัดจริง: ภาพเต็มเป็นมุม ภาพซูมเป็นขอบ</p><p>🇬🇧 Point at the two red windows: the same spot on the building (located through slide 1's matches). Measured λ: a corner in the whole photo, an edge in the close-up.</p></aside>
+</section>
+
+<!-- 13 -->
+<section data-part="B">
+  <p class="kicker">B · Scale</p>
+  <h2 class="claim">Scale space: the photo at every blur</h2>
+  <div class="split">
+    <div>
+      <canvas id="ssCv" class="democv" width="400" height="300" style="max-width:440px;margin:0 auto" aria-label="the building photo blurred by a Gaussian of the chosen sigma"></canvas>
+      <div class="ctrl" style="justify-content:center"><label>σ <input class="slider" id="ssS" type="range" min="0" max="5" step="1" value="0" aria-label="blur sigma"></label><b id="ssV" class="gcap" style="margin:0"></b></div>
+    </div>
+    <div class="say">
+      <div class="flashback">Session 3 B: a Gaussian of width σ blurs away detail smaller than about σ. Session 3 D: a pyramid blurs, then halves.</div>
+      <p style="margin-top:.6em">Blur the photo with σ = 1, 2, 4, 8, 16: a stack of the same picture, from fine to coarse — its <b>scale space</b>.</p>
+      <p class="fragment">Bricks vanish first, then windows, then whole floors. A feature has a size: the σ where it is clearest.</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ลาก σ 0 → 16: อิฐหายก่อน ตามด้วยหน้าต่าง แล้วทั้งชั้น · ย้อนคาบ 3 B (σ) และ 3 D (pyramid)</p><p>🇬🇧 Drag σ from 0 to 16: bricks go first, then windows, then floors. Back to session 3 B (σ) and 3 D (pyramid).</p></aside>
+</section>
+
+<!-- 14 -->
+<section data-part="B">
+  <p class="kicker">B · Scale</p>
+  <h2 class="claim">A blob answers most at its own size</h2>
+  <div class="split">
+    <div>
+      <canvas id="blCv" class="democv" width="560" height="300" aria-label="the response of three discs of radius 4, 8 and 16 pixels as the blur sigma grows"></canvas>
+      <div class="ctrl" style="justify-content:center"><label>σ <input class="slider" id="blS" type="range" min="1" max="16" step="0.25" value="4" aria-label="sigma"></label></div>
+      <div class="demo-out" style="justify-content:center"><span id="blOut"></span></div>
+    </div>
+    <div class="say">
+      <p>Three bright discs, radius 4, 8 and 16 px. At each σ, measure how blob-like the centre is: the Laplacian of the blurred image, times σ² so that sizes compare fairly.</p>
+      <p class="fragment">Each disc peaks at its own σ: 2.75, 5.5, 11.25 — close to r ÷ √2 = 2.8, 5.7, 11.3. The peak tells the <b>size</b> of the point.</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ลาก σ ให้ยอดของแต่ละเส้นผ่าน · ย้ำ: ยอดบอกขนาด (σ ≈ r/√2) — นี่คือวิธีที่ SIFT รู้ว่าจุดใหญ่แค่ไหน</p><p>🇬🇧 Drag σ through each peak. The peak gives the size (σ ≈ r/√2) — how SIFT knows how big a point is.</p></aside>
+</section>
+
+<!-- 15 -->
+<section data-part="B">
+  <p class="kicker">B · Scale</p>
+  <h2 class="claim">SIFT finds blobs across space and scale</h2>
+  <div class="split">
+    <div><svg class="fig" style="max-width:560px;margin:0 auto" viewBox="0 0 1000 750" role="img" aria-label="the whole building with circles on its strongest SIFT points, each circle the size of its point"><image href="img/full.jpg" width="1000" height="750"/><circle cx="372.3" cy="321.5" r="2.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="313.1" cy="161.6" r="2.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="282.1" cy="301.4" r="2.7" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="282.1" cy="301.4" r="2.7" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="722.6" cy="275.2" r="1.9" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="848.1" cy="678.8" r="2.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="848.1" cy="678.8" r="2.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="777.1" cy="665.7" r="1.9" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="777.1" cy="665.7" r="1.9" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="762.3" cy="681.8" r="2.5" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="697.8" cy="274.9" r="2.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="584.0" cy="477.9" r="2.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="603.0" cy="658.9" r="1.9" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="884.9" cy="689.0" r="2.8" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="884.9" cy="689.0" r="2.8" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="775.2" cy="658.0" r="2.5" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="552.1" cy="272.4" r="1.9" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="552.1" cy="272.4" r="1.9" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="556.2" cy="171.0" r="2.8" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="523.4" cy="224.0" r="2.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="523.4" cy="224.0" r="2.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="275.6" cy="509.3" r="3.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="378.0" cy="349.9" r="2.5" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="378.0" cy="349.9" r="2.5" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="703.5" cy="275.0" r="2.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="830.3" cy="627.2" r="2.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="670.8" cy="268.1" r="2.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="670.8" cy="268.1" r="2.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="604.9" cy="516.3" r="2.7" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="524.5" cy="272.3" r="2.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="539.1" cy="168.9" r="4.5" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="539.1" cy="168.9" r="4.5" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="767.7" cy="485.4" r="5.2" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="767.7" cy="485.4" r="5.2" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="767.7" cy="485.4" r="5.2" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="327.1" cy="165.6" r="3.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="327.1" cy="165.6" r="3.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="342.2" cy="166.1" r="3.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="342.2" cy="166.1" r="3.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="357.2" cy="167.1" r="4.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="608.6" cy="442.4" r="3.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="608.6" cy="442.4" r="3.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="357.2" cy="437.1" r="4.8" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="357.2" cy="437.1" r="4.8" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="783.9" cy="441.4" r="3.9" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="755.2" cy="484.9" r="4.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="479.2" cy="226.0" r="5.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="291.2" cy="305.7" r="4.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="483.1" cy="336.0" r="5.2" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="656.3" cy="166.8" r="4.2" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="570.5" cy="486.1" r="4.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="570.5" cy="486.1" r="4.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="570.5" cy="486.1" r="4.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="403.9" cy="319.9" r="5.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="277.7" cy="463.6" r="4.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="277.7" cy="463.6" r="4.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="577.0" cy="293.1" r="4.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="479.9" cy="238.9" r="4.7" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="479.9" cy="238.9" r="4.7" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="484.0" cy="363.5" r="5.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="719.6" cy="360.8" r="5.9" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="719.6" cy="360.8" r="5.9" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="557.7" cy="360.0" r="6.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="557.7" cy="360.0" r="6.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="558.4" cy="163.3" r="8.2" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="558.4" cy="163.3" r="8.2" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="693.4" cy="167.2" r="8.8" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="693.4" cy="167.2" r="8.8" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="304.5" cy="525.1" r="7.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="573.5" cy="527.6" r="7.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="573.5" cy="527.6" r="7.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="693.4" cy="245.0" r="6.9" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="573.5" cy="528.5" r="7.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="573.5" cy="528.5" r="7.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="546.6" cy="240.9" r="5.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="546.6" cy="240.9" r="5.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="698.4" cy="265.3" r="7.2" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="698.4" cy="265.3" r="7.2" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="681.1" cy="162.7" r="7.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="546.9" cy="157.6" r="7.9" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="379.4" cy="183.8" r="6.7" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="584.5" cy="486.4" r="5.9" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="548.9" cy="263.8" r="6.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="548.9" cy="263.8" r="6.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="292.4" cy="319.8" r="7.7" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="483.6" cy="321.3" r="7.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="483.6" cy="321.3" r="7.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="483.6" cy="321.3" r="7.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="363.9" cy="183.6" r="6.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="363.9" cy="183.6" r="6.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="748.1" cy="422.0" r="13.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="720.0" cy="423.1" r="12.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="546.3" cy="336.1" r="11.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="338.7" cy="357.1" r="15.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="383.2" cy="311.4" r="12.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="383.2" cy="311.4" r="12.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="546.4" cy="420.9" r="16.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="855.6" cy="727.9" r="12.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="855.6" cy="727.9" r="12.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="797.8" cy="633.3" r="15.5" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="572.7" cy="359.8" r="14.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="316.4" cy="194.8" r="12.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="370.1" cy="467.1" r="13.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="363.7" cy="262.1" r="13.7" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="531.6" cy="236.8" r="13.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="612.2" cy="323.8" r="11.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="612.2" cy="323.8" r="11.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="414.8" cy="196.0" r="9.9" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="414.8" cy="196.0" r="9.9" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="745.4" cy="30.4" r="12.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="267.6" cy="468.2" r="10.7" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="267.6" cy="468.2" r="10.7" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="807.6" cy="135.5" r="17.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="303.5" cy="290.5" r="12.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="485.6" cy="201.9" r="14.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="706.2" cy="358.6" r="13.7" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="378.7" cy="335.5" r="13.2" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="781.7" cy="287.5" r="14.2" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="348.2" cy="133.5" r="11.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="348.2" cy="133.5" r="11.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="776.7" cy="96.7" r="74.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="307.8" cy="161.1" r="21.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="307.8" cy="161.1" r="21.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="626.8" cy="604.1" r="24.7" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="819.2" cy="599.9" r="26.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="397.6" cy="140.8" r="21.8" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="730.8" cy="260.8" r="19.9" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="761.2" cy="377.7" r="23.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="595.7" cy="372.7" r="20.7" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="536.1" cy="591.0" r="19.5" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="361.5" cy="376.0" r="21.7" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="324.4" cy="525.3" r="17.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="324.4" cy="525.3" r="17.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="324.4" cy="525.3" r="17.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="429.1" cy="147.7" r="25.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="739.9" cy="238.7" r="43.9" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="291.3" cy="403.1" r="23.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="508.4" cy="333.3" r="18.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="267.5" cy="374.4" r="21.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="322.5" cy="561.3" r="19.8" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="561.2" cy="637.4" r="22.2" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="204.8" cy="221.3" r="27.7" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="558.6" cy="407.5" r="39.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="558.6" cy="407.5" r="39.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="778.9" cy="624.8" r="45.2" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="417.6" cy="248.8" r="26.1" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="573.6" cy="537.7" r="42.6" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="507.9" cy="224.2" r="23.4" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="348.6" cy="606.4" r="25.0" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/><circle cx="327.1" cy="120.7" r="24.3" fill="none" stroke="#ffd166" stroke-width="3" opacity=".9"/></svg><p class="gcap">150 SIFT points of the whole photo, the strongest at five sizes — circle radius = the point's size</p></div>
+    <div class="say">
+      <p>SIFT subtracts neighbouring blurs (difference of Gaussians ≈ the Laplacian of slide 14) and keeps a point that beats all <b>26 neighbours</b>: 8 around it, 9 one scale up, 9 one scale down.</p>
+      <p class="fragment">So each point comes with a position <b>and a size</b>. In the close-up the matched points are 2.06× bigger — the photo is zoomed 2.23×.</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ชี้วงเล็ก (อิฐ ขอบ) กับวงใหญ่ (หน้าต่างทั้งบาน) · 26 เพื่อนบ้าน = 3 × 3 × 3 − 1 · ขนาดจุดในภาพซูมใหญ่กว่า 2.06× ใกล้กับการซูม 2.23×</p><p>🇬🇧 Small circles (bricks, edges), large circles (whole windows). 26 neighbours = 3 × 3 × 3 − 1. In the close-up the points are 2.06× bigger, close to the 2.23× zoom.</p></aside>
+</section>
+
+<!-- 16 -->
+<section data-part="B">
+  <p class="kicker">B · Scale</p>
+  <h2 class="claim">Try it: pick the scale</h2>
+  <div class="split">
+    <div class="tryit"><span class="tag">Try it</span>A point's scale-normalised response at four blurs:
+      <table class="tbl" style="margin:.4em 0;font-size:.95em"><tr><th>σ</th><td>1</td><td>2</td><td>4</td><td>8</td></tr><tr><th>response</th><td>0.2</td><td>0.5</td><td>0.9</td><td>0.6</td></tr></table>
+      <ol style="margin:.2em 0 0 1.1em"><li>At which σ is the point detected?</li><li>If it is a round blob, about what radius?</li><li>The photo is shrunk to half size. At which σ should the peak appear now?</li></ol>
+      <details><summary>Answer</summary>1. <b>σ = 4</b> — the largest response · 2. r ≈ σ√2 = 4 × 1.41 ≈ <b>5.7 px</b> · 3. everything is half as big, so <b>σ ≈ 2</b>.</details>
+    </div>
+    <div class="say"><p>The scale = the σ with the largest response.</p><p>Blob radius ≈ σ √2.</p></div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ให้เวลา 1 นาที · ข้อ 3 เชื่อมกับหน้า 12: ภาพเล็กลงครึ่งหนึ่ง scale ก็ครึ่งหนึ่ง</p><p>🇬🇧 Give one minute. Question 3 ties to slide 12: half the size, half the scale.</p></aside>
+</section>
+
+<!-- 17 -->
+<section data-part="B">
+  <p class="kicker">B · Scale</p>
+  <h2 class="claim">Scale space: the same point at any size</h2>
+  <div class="cards">
+    <div class="card"><b>One window is not enough</b>Zoom in and a corner becomes an edge (slide 12).</div>
+    <div class="card violet"><b>Scale space</b>Blur at every σ; a blob answers most at σ ≈ its radius ÷ √2.</div>
+    <div class="card amber"><b>SIFT points</b>Maxima over space and scale (26 neighbours): every point has a position and a size.</div>
+  </div>
+  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-06/lab.ipynb#scrollTo=part-b" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part B</a><span>Gaussian blur at many σ, the response of discs of three sizes, SIFT on the photo and on a shrunk copy</span></p>
+  <p class="more"><a target="_blank" rel="noopener" href="../practice/#s6b">More practice · Session 6 B — practice bank with worked solutions →</a></p>
+  <p class="takeaway"><span>Later: session 8 — detectors look for objects of every size the same way, on a pyramid of features. Next · C: describe each point so its twin can be found.</span></p>
+
+  <aside class="notes"><p>🇹🇭 สรุป B · ชี้ต่อคาบ 8 (ตรวจจับวัตถุทุกขนาดด้วย pyramid ของ feature) · แล้วต่อ C</p><p>🇬🇧 Wrap up B. Forward: session 8 (objects of every size, a pyramid of features). Then C.</p></aside>
+</section>
+
 </div>
 </div>
 
@@ -866,7 +982,7 @@ function renderMath(){
     });
   }
 }
-function initDemos(){ initWindow(); initHarris(); /*<<INITS>>*/ initSliders(); }
+function initDemos(){ initWindow(); initHarris(); initScaleSpace(); initBlobs(); /*<<INITS>>*/ initSliders(); }
 /* range sliders: a finger anywhere on the track sets and drags the value.
    Phones otherwise only move a native slider when the touch lands exactly on its thumb,
    and a touch on the track scrolls the page instead. */
@@ -1310,6 +1426,37 @@ function initHarris(){
       for(let i=-1;i<=1;i++) for(let j=-1;j<=1;j++) mx=Math.max(mx,R[(y+i)*W+x+j]); if(v>=mx){ n++; ctx.beginPath(); ctx.arc(x,y,2.6,0,7); ctx.fill(); } }
     document.getElementById('hrOut').innerHTML=`threshold ${t*100}% of the largest R → <b>${n}</b> corners`+(mode==='R'?' · orange: R &gt; 0 · blue: R &lt; 0':''); cv.dataset.n=n; };
   s.addEventListener('input',draw); pickButtons('hrBtns',b=>{ mode=b.dataset.m; draw(); }); draw();
+}
+const BL={"sigma": [1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5, 2.75, 3.0, 3.25, 3.5, 3.75, 4.0, 4.25, 4.5, 4.75, 5.0, 5.25, 5.5, 5.75, 6.0, 6.25, 6.5, 6.75, 7.0, 7.25, 7.5, 7.75, 8.0, 8.25, 8.5, 8.75, 9.0, 9.25, 9.5, 9.75, 10.0, 10.25, 10.5, 10.75, 11.0, 11.25, 11.5, 11.75, 12.0, 12.25, 12.5, 12.75, 13.0, 13.25, 13.5, 13.75, 14.0, 14.25, 14.5, 14.75, 15.0, 15.25, 15.5, 15.75, 16.0], "curves": {"4": [0.0123, 0.0857, 0.2352, 0.4084, 0.5539, 0.652, 0.7047, 0.7224, 0.7159, 0.694, 0.6632, 0.6278, 0.5908, 0.5539, 0.5182, 0.4842, 0.4524, 0.4227, 0.3952, 0.3698, 0.3464, 0.3249, 0.3051, 0.2868, 0.27, 0.2546, 0.2403, 0.2271, 0.2149, 0.2036, 0.1931, 0.1834, 0.1743, 0.1659, 0.158, 0.1507, 0.1439, 0.1375, 0.1315, 0.1259, 0.1206, 0.1156, 0.111, 0.1066, 0.1024, 0.0985, 0.0948, 0.0913, 0.088, 0.0849, 0.0819, 0.0791, 0.0764, 0.0738, 0.0714, 0.0691, 0.0669, 0.0648, 0.0628, 0.0609, 0.059], "8": [-0.0, -0.0, 0.0, 0.0011, 0.0076, 0.0284, 0.0712, 0.1366, 0.219, 0.3092, 0.3986, 0.4809, 0.5522, 0.6108, 0.6564, 0.6899, 0.7127, 0.7263, 0.732, 0.7315, 0.7259, 0.7163, 0.7037, 0.6888, 0.6723, 0.6546, 0.6362, 0.6173, 0.5983, 0.5794, 0.5607, 0.5423, 0.5242, 0.5067, 0.4897, 0.4732, 0.4572, 0.4419, 0.4271, 0.4128, 0.3992, 0.386, 0.3734, 0.3613, 0.3497, 0.3385, 0.3278, 0.3176, 0.3078, 0.2984, 0.2893, 0.2806, 0.2723, 0.2643, 0.2566, 0.2493, 0.2422, 0.2354, 0.2289, 0.2226, 0.2165], "16": [-0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0001, 0.0004, 0.0028, 0.0061, 0.013, 0.0245, 0.0415, 0.0645, 0.0934, 0.1277, 0.1667, 0.209, 0.2535, 0.2992, 0.3448, 0.3895, 0.4325, 0.4733, 0.5113, 0.5463, 0.578, 0.6066, 0.6318, 0.6538, 0.6728, 0.6889, 0.7022, 0.713, 0.7214, 0.7276, 0.7318, 0.7343, 0.7351, 0.7345, 0.7326, 0.7295, 0.7254, 0.7204, 0.7146, 0.7081, 0.7011, 0.6934, 0.6855, 0.6771, 0.6684, 0.6595, 0.6505, 0.6412, 0.6319, 0.6224, 0.6128, 0.6035]}};
+/* B2: the grey photo blurred by a separable Gaussian of σ 0, 1, 2, 4, 8, 16 */
+function initScaleSpace(){
+  const cv=document.getElementById('ssCv'); if(!cv) return; const ctx=cv.getContext('2d'), S=[0,1,2,4,8,16], s=document.getElementById('ssS');
+  if(PRINTING) s.value=3;
+  const draw=()=>{ const {W,H,G}=harris(), sg=S[+s.value]; let out=G;
+    if(sg>0){ const r=Math.ceil(3*sg), k=[]; for(let i=-r;i<=r;i++) k.push(Math.exp(-i*i/(2*sg*sg))); const ks=k.reduce((a,b)=>a+b); for(let i=0;i<k.length;i++) k[i]/=ks;
+      const tmp=new Float64Array(W*H); out=new Float64Array(W*H);
+      for(let y=0;y<H;y++) for(let x=0;x<W;x++){ let v=0; for(let i=-r;i<=r;i++) v+=k[i+r]*G[y*W+Math.min(W-1,Math.max(0,x+i))]; tmp[y*W+x]=v; }
+      for(let y=0;y<H;y++) for(let x=0;x<W;x++){ let v=0; for(let i=-r;i<=r;i++) v+=k[i+r]*tmp[Math.min(H-1,Math.max(0,y+i))*W+x]; out[y*W+x]=v; } }
+    greyImage(ctx,out,W,H,0,0); document.getElementById('ssV').textContent=sg===0?'0 (the photo)':String(sg); cv.dataset.s=sg; };
+  s.addEventListener('input',draw); draw();
+}
+/* B3: scale-normalised LoG at the centre of discs of radius 4, 8, 16 (computed in make_assets.py) */
+function initBlobs(){
+  const cv=document.getElementById('blCv'); if(!cv) return; const ctx=cv.getContext('2d'), W=cv.width, H=cv.height, m=44, s=document.getElementById('blS');
+  const col={'4':'#0f766e','8':'#c97a06','16':'#e0533d'}, sig=BL.sigma, mx=Math.max(...Object.values(BL.curves).flat());
+  const X=v=>m+(v-1)/15*(W-m-20), Y=v=>H-m-v/mx*(H-m-24);
+  const draw=()=>{ const sv=+s.value, i=sig.indexOf(sv); ctx.clearRect(0,0,W,H); ctx.fillStyle='#fff'; ctx.fillRect(0,0,W,H);
+    ctx.strokeStyle='#94a3b8'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(m,H-m); ctx.lineTo(W-14,H-m); ctx.moveTo(m,H-m); ctx.lineTo(m,14); ctx.stroke();
+    ctx.fillStyle='#667085'; ctx.font='600 12px "Space Grotesk",sans-serif'; ctx.textAlign='center';
+    for(const t of [1,4,8,12,16]) ctx.fillText(t,X(t),H-m+16); ctx.fillText('blur σ',(W+m)/2,H-8);
+    ctx.save(); ctx.translate(14,H/2); ctx.rotate(-Math.PI/2); ctx.fillText('response at the centre',0,0); ctx.restore();
+    const txt=[];
+    for(const [r,c] of Object.entries(BL.curves)){ ctx.strokeStyle=col[r]; ctx.lineWidth=3; ctx.beginPath(); c.forEach((v,j)=>{ j?ctx.lineTo(X(sig[j]),Y(v)):ctx.moveTo(X(sig[j]),Y(v)); }); ctx.stroke();
+      const pk=sig[c.indexOf(Math.max(...c))]; ctx.fillStyle=col[r]; ctx.beginPath(); ctx.arc(X(pk),Y(Math.max(...c)),4,0,7); ctx.fill();
+      ctx.textAlign='left'; ctx.fillText(`r = ${r}`,X(pk)+8,Y(Math.max(...c))-8); txt.push(`<b style="color:${col[r]}">r ${r}: ${c[i].toFixed(2)}</b>`); }
+    ctx.strokeStyle='#0f1b2d'; ctx.setLineDash([5,4]); ctx.beginPath(); ctx.moveTo(X(sv),14); ctx.lineTo(X(sv),H-m); ctx.stroke(); ctx.setLineDash([]);
+    document.getElementById('blOut').innerHTML=`σ = ${sv} · `+txt.join(' · '); cv.dataset.s=sv; };
+  s.addEventListener('input',draw); draw();
 }
 /*<<JS>>*/
 </script>
