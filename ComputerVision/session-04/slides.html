@@ -317,6 +317,7 @@ html.reading .reveal .labline span{font-size:13px;}
 .worked{border:1px solid var(--line);border-left:5px solid var(--amber);border-radius:10px;padding:.5em .8em;font-size:.6em;line-height:1.55;background:#fff;}
 .worked .tag{display:block;font-family:var(--display);font-weight:700;font-size:.72em;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:.2em;}
 .worked p{margin:0;font-family:var(--mono);font-size:.92em;}
+.say .worked{font-size:.9em;margin:.4em 0 .5em;}   /* inside a .say column (already .68em): keep the session-2 size */
 .reveal aside.notes,aside.notes{display:none !important;}
 /* number grids */
 .ng{display:grid;gap:3px;font-family:var(--mono);font-weight:600;width:100%;}
@@ -637,7 +638,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     </div>
     <figure class="art">
       <svg class="fig ksvg" viewBox="-4 -4 490 172" role="img" aria-label="a random 3 by 3 kernel turning into the Sobel kernel over 150 steps of gradient descent"><defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#94a3b8"/></marker></defs><rect x="0" y="0" width="44" height="44" rx="4" fill="rgba(201,122,6,0.05)" stroke="#e4e8ee"/><text x="22.0" y="28" text-anchor="middle" class="kv">0.1</text><rect x="46" y="0" width="44" height="44" rx="4" fill="rgba(201,122,6,0.12)" stroke="#e4e8ee"/><text x="68.0" y="28" text-anchor="middle" class="kv">0.2</text><rect x="92" y="0" width="44" height="44" rx="4" fill="rgba(201,122,6,0.05)" stroke="#e4e8ee"/><text x="114.0" y="28" text-anchor="middle" class="kv">0.1</text><rect x="0" y="46" width="44" height="44" rx="4" fill="rgba(15,118,110,0.20)" stroke="#e4e8ee"/><text x="22.0" y="74" text-anchor="middle" class="kv">-0.4</text><rect x="46" y="46" width="44" height="44" rx="4" fill="rgba(201,122,6,0.14)" stroke="#e4e8ee"/><text x="68.0" y="74" text-anchor="middle" class="kv">0.3</text><rect x="92" y="46" width="44" height="44" rx="4" fill="rgba(201,122,6,0.07)" stroke="#e4e8ee"/><text x="114.0" y="74" text-anchor="middle" class="kv">0.1</text><rect x="0" y="92" width="44" height="44" rx="4" fill="rgba(15,118,110,0.08)" stroke="#e4e8ee"/><text x="22.0" y="120" text-anchor="middle" class="kv">-0.2</text><rect x="46" y="92" width="44" height="44" rx="4" fill="rgba(201,122,6,0.09)" stroke="#e4e8ee"/><text x="68.0" y="120" text-anchor="middle" class="kv">0.2</text><rect x="92" y="92" width="44" height="44" rx="4" fill="rgba(201,122,6,0.05)" stroke="#e4e8ee"/><text x="114.0" y="120" text-anchor="middle" class="kv">0.1</text><text x="69.0" y="160" text-anchor="middle" class="kl">start (random)</text><path d="M142 69.0 h24" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar)"/><rect x="172" y="0" width="44" height="44" rx="4" fill="rgba(15,118,110,0.47)" stroke="#e4e8ee"/><text x="194.0" y="28" text-anchor="middle" class="kv">-0.9</text><rect x="218" y="0" width="44" height="44" rx="4" fill="rgba(201,122,6,0.04)" stroke="#e4e8ee"/><text x="240.0" y="28" text-anchor="middle" class="kv">0.1</text><rect x="264" y="0" width="44" height="44" rx="4" fill="rgba(201,122,6,0.48)" stroke="#e4e8ee"/><text x="286.0" y="28" text-anchor="middle" class="kv">1.0</text><rect x="172" y="46" width="44" height="44" rx="4" fill="rgba(15,118,110,0.86)" stroke="#e4e8ee"/><text x="194.0" y="74" text-anchor="middle" class="kv">-1.7</text><rect x="218" y="46" width="44" height="44" rx="4" fill="rgba(201,122,6,0.05)" stroke="#e4e8ee"/><text x="240.0" y="74" text-anchor="middle" class="kv">0.1</text><rect x="264" y="46" width="44" height="44" rx="4" fill="rgba(201,122,6,0.78)" stroke="#e4e8ee"/><text x="286.0" y="74" text-anchor="middle" class="kv">1.6</text><rect x="172" y="92" width="44" height="44" rx="4" fill="rgba(15,118,110,0.51)" stroke="#e4e8ee"/><text x="194.0" y="120" text-anchor="middle" class="kv">-1.0</text><rect x="218" y="92" width="44" height="44" rx="4" fill="rgba(201,122,6,0.01)" stroke="#e4e8ee"/><text x="240.0" y="120" text-anchor="middle" class="kv">0.0</text><rect x="264" y="92" width="44" height="44" rx="4" fill="rgba(201,122,6,0.48)" stroke="#e4e8ee"/><text x="286.0" y="120" text-anchor="middle" class="kv">1.0</text><text x="241.0" y="160" text-anchor="middle" class="kl">step 20</text><path d="M314 69.0 h24" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar)"/><rect x="344" y="0" width="44" height="44" rx="4" fill="rgba(15,118,110,0.50)" stroke="#e4e8ee"/><text x="366.0" y="28" text-anchor="middle" class="kv">-1.0</text><rect x="390" y="0" width="44" height="44" rx="4" fill="rgba(15,118,110,0.00)" stroke="#e4e8ee"/><text x="412.0" y="28" text-anchor="middle" class="kv">-0.0</text><rect x="436" y="0" width="44" height="44" rx="4" fill="rgba(201,122,6,0.50)" stroke="#e4e8ee"/><text x="458.0" y="28" text-anchor="middle" class="kv">1.0</text><rect x="344" y="46" width="44" height="44" rx="4" fill="rgba(15,118,110,1.00)" stroke="#e4e8ee"/><text x="366.0" y="74" text-anchor="middle" class="kv">-2.0</text><rect x="390" y="46" width="44" height="44" rx="4" fill="rgba(201,122,6,0.00)" stroke="#e4e8ee"/><text x="412.0" y="74" text-anchor="middle" class="kv">0.0</text><rect x="436" y="46" width="44" height="44" rx="4" fill="rgba(201,122,6,1.00)" stroke="#e4e8ee"/><text x="458.0" y="74" text-anchor="middle" class="kv">2.0</text><rect x="344" y="92" width="44" height="44" rx="4" fill="rgba(15,118,110,0.50)" stroke="#e4e8ee"/><text x="366.0" y="120" text-anchor="middle" class="kv">-1.0</text><rect x="390" y="92" width="44" height="44" rx="4" fill="rgba(15,118,110,0.00)" stroke="#e4e8ee"/><text x="412.0" y="120" text-anchor="middle" class="kv">-0.0</text><rect x="436" y="92" width="44" height="44" rx="4" fill="rgba(201,122,6,0.50)" stroke="#e4e8ee"/><text x="458.0" y="120" text-anchor="middle" class="kv">1.0</text><text x="413.0" y="160" text-anchor="middle" class="kl">step 150 = Sobel</text></svg>
-      <figcaption>A random 3 × 3 kernel learns to become Sobel in 150 steps — watch it live on slide 15</figcaption>
+      <figcaption>A random 3 × 3 kernel learns to become Sobel in 150 steps — watch it live on slide 16</figcaption>
     </figure>
   </div>
   <aside class="notes"><p>🇹🇭 บรรยายก่อน แล้วครึ่ง B นำเสนอ T3 หลังบรรยาย · ชี้ภาพปก: kernel สุ่มค่อย ๆ กลายเป็น Sobel ของคาบ 3 โดยไม่มีใครออกแบบ — วันนี้จะรู้ว่าทำอย่างไร</p><p>🇬🇧 Lecture first; half B presents T3 after the lecture. Point at the cover: a random kernel turns into session 3's Sobel without anyone designing it — today shows how.</p></aside>
@@ -860,6 +861,24 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
 <!-- 13 -->
 <section data-part="B">
   <p class="kicker">B · Learning</p>
+  <h2 class="claim">One line of Taylor: step against the slope and the loss drops</h2>
+  <div class="split">
+    <div><svg class="fig cvsvg" viewBox="0 0 460 290" role="img" aria-label="a parabola, its tangent at w = −1, and the loss predicted and reached after one step"><line x1="40" y1="250" x2="450" y2="250" stroke="#94a3b8"/><polyline points="57.4,42.1 59.0,45.9 60.6,49.6 62.2,53.4 63.8,57.1 65.3,60.7 66.9,64.3 68.5,67.9 70.1,71.5 71.7,75.0 73.2,78.5 74.8,81.9 76.4,85.3 78.0,88.7 79.6,92.1 81.2,95.4 82.8,98.6 84.3,101.9 85.9,105.1 87.5,108.2 89.1,111.4 90.7,114.5 92.2,117.5 93.8,120.6 95.4,123.6 97.0,126.5 98.6,129.4 100.2,132.3 101.8,135.2 103.3,138.0 104.9,140.8 106.5,143.5 108.1,146.2 109.7,148.9 111.2,151.6 112.8,154.2 114.4,156.7 116.0,159.3 117.6,161.8 119.2,164.2 120.8,166.7 122.3,169.1 123.9,171.4 125.5,173.8 127.1,176.1 128.7,178.3 130.2,180.5 131.8,182.7 133.4,184.9 135.0,187.0 136.6,189.1 138.2,191.1 139.8,193.1 141.3,195.1 142.9,197.1 144.5,199.0 146.1,200.8 147.7,202.7 149.2,204.5 150.8,206.2 152.4,208.0 154.0,209.7 155.6,211.3 157.2,213.0 158.8,214.6 160.3,216.1 161.9,217.6 163.5,219.1 165.1,220.6 166.7,222.0 168.2,223.4 169.8,224.7 171.4,226.0 173.0,227.3 174.6,228.6 176.2,229.8 177.8,230.9 179.3,232.1 180.9,233.2 182.5,234.2 184.1,235.3 185.7,236.3 187.2,237.2 188.8,238.2 190.4,239.1 192.0,239.9 193.6,240.7 195.2,241.5 196.8,242.3 198.3,243.0 199.9,243.7 201.5,244.3 203.1,244.9 204.7,245.5 206.2,246.1 207.8,246.6 209.4,247.0 211.0,247.5 212.6,247.9 214.2,248.2 215.8,248.6 217.3,248.9 218.9,249.1 220.5,249.4 222.1,249.6 223.7,249.7 225.2,249.8 226.8,249.9 228.4,250.0 230.0,250.0 231.6,250.0 233.2,249.9 234.8,249.8 236.3,249.7 237.9,249.6 239.5,249.4 241.1,249.1 242.7,248.9 244.2,248.6 245.8,248.2 247.4,247.9 249.0,247.5 250.6,247.0 252.2,246.6 253.8,246.1 255.3,245.5 256.9,244.9 258.5,244.3 260.1,243.7 261.7,243.0 263.2,242.3 264.8,241.5 266.4,240.7 268.0,239.9 269.6,239.1 271.2,238.2 272.8,237.2 274.3,236.3 275.9,235.3 277.5,234.2 279.1,233.2 280.7,232.1 282.2,230.9 283.8,229.8 285.4,228.6 287.0,227.3 288.6,226.0 290.2,224.7 291.8,223.4 293.3,222.0 294.9,220.6 296.5,219.1 298.1,217.6 299.7,216.1 301.2,214.6 302.8,213.0 304.4,211.3 306.0,209.7 307.6,208.0 309.2,206.2 310.8,204.5 312.3,202.7 313.9,200.8 315.5,199.0 317.1,197.1 318.7,195.1 320.2,193.1 321.8,191.1 323.4,189.1 325.0,187.0 326.6,184.9 328.2,182.7 329.8,180.5 331.3,178.3 332.9,176.1 334.5,173.8 336.1,171.4 337.7,169.1 339.2,166.7 340.8,164.2 342.4,161.8 344.0,159.3 345.6,156.7 347.2,154.2 348.8,151.6 350.3,148.9 351.9,146.2 353.5,143.5 355.1,140.8 356.7,138.0 358.2,135.2 359.8,132.3 361.4,129.4 363.0,126.5 364.6,123.6 366.2,120.6 367.8,117.5 369.3,114.5 370.9,111.4 372.5,108.2 374.1,105.1 375.7,101.9 377.2,98.6 378.8,95.4 380.4,92.1 382.0,88.7 383.6,85.3 385.2,81.9 386.8,78.5 388.3,75.0 389.9,71.5 391.5,67.9 393.1,64.3 394.7,60.7 396.2,57.1 397.8,53.4 399.4,49.6 401.0,45.9 402.6,42.1" fill="none" stroke="#0f1b2d" stroke-width="3"/><line x1="52.666666666666664" y1="48.39999999999998" x2="163.5" y2="244.4" stroke="#c97a06" stroke-width="2.5" stroke-dasharray="6 5"/><circle cx="103.33333333333333" cy="138.0" r="7" fill="#e0533d"/><text x="113.33333333333333" y="130.0" class="lb">w = −1, L = 16</text><circle cx="128.66666666666666" cy="182.8" r="6" fill="#c97a06"/><text x="138.66666666666666" y="200.8" class="lb" style="fill:#c97a06">tangent says 9.6</text><circle cx="128.66666666666666" cy="178.32" r="6" fill="#0f766e"/><text x="138.66666666666666" y="170.32" class="lb" style="fill:#0f766e">real 10.24</text><text x="230.0" y="280" text-anchor="middle" class="lb">w</text></svg><p class="gcap">L(w) = (w − 3)² at w = −1 (slope −8), one step with η = 0.1</p></div>
+    <div class="say">
+      <p>Close to w, a smooth loss is almost its <b>tangent line</b>:</p>
+      <div class="eq">$$L(w+\Delta)\approx L(w)+\Delta\,L'(w)$$</div>
+      <p class="fragment">Choose the step Δ = −η·L′(w):</p>
+      <div class="eq fragment">$$L\big(w-\eta L'(w)\big)\approx L(w)-\eta\,L'(w)^2\;\le\;L(w)$$</div>
+      <p class="fragment">A square is never negative, so a small step always goes down. Too large a step leaves the tangent's neighbourhood — the overshoot of the next slide.</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 Taylor อันดับ 1: ใกล้ w ฟังก์ชันเกือบเป็นเส้นสัมผัส → เลือก Δ = −ηL′ → loss ลด ηL′² ≥ 0 · ชี้ภาพ: เส้นสัมผัสทาย 9.6 ของจริง 10.24 (ก้าวเล็กยังใกล้)</p><p>🇬🇧 First-order Taylor: near w the loss is almost its tangent → pick Δ = −ηL′ → the loss drops by ηL′² ≥ 0. The picture: the tangent predicts 9.6, the real loss is 10.24 (a small step stays close).</p></aside>
+</section>
+
+<!-- 14 -->
+<section data-part="B">
+  <p class="kicker">B · Learning</p>
   <h2 class="claim">Go downhill: gradient descent</h2>
   <div class="split">
     <div>
@@ -872,6 +891,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
       <p>The <b>gradient</b> is the slope of the loss: here dL/dw = 2(w − 3). It points <b>uphill</b>.</p>
       <div class="eq">$$w \leftarrow w-\eta\,\frac{dL}{dw}$$</div>
       <p class="fragment">η (the <b>learning rate</b>) too small: many tiny steps. η = 1: bounces between −1 and 7 for ever. η &gt; 1: every step overshoots further — the loss <b>explodes</b>.</p>
+      <div class="worked"><span class="tag">Worked example · start w = −1, η = 0.1</span><p>slope 2(−1 − 3) = −8 → w = −1 − 0.1·(−8) = −0.2 · L: 16 → 10.24</p></div>
       <p class="fragment" style="color:var(--muted);font-size:.9em">Smarter steps (momentum, Adam): T4-4.</p>
     </div>
   </div>
@@ -879,7 +899,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 กด Step ที่ η 0.1 (ช้า) → 0.5 (ถึงในก้าวเดียว) → 1 (เด้ง) → 1.1 (ระเบิด) · ถามก่อนกด: ก้าวต่อไปไปทางไหน?</p><p>🇬🇧 Step at η 0.1 (slow), 0.5 (one step), 1 (bounces), 1.1 (explodes). Before each press ask: which way next?</p></aside>
 </section>
 
-<!-- 14 -->
+<!-- 15 -->
 <section data-part="B">
   <p class="kicker">B · Learning</p>
   <h2 class="claim">Backpropagation passes the blame backwards</h2>
@@ -894,7 +914,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 เดินหน้า: 2 × 1.5 = 3 → ReLU 3 → (3 − 1)² = 4 · ถอยหลัง: 2(a − y) = 4 → ReLU ผ่าน (×1) → × x = 8 · ไม่ derive — แค่คูณ slope ย้อนทาง</p><p>🇬🇧 Forward: 2 × 1.5 = 3, ReLU 3, (3 − 1)² = 4. Backward: 2(a − y) = 4, ReLU passes it (× 1), × x = 8. No derivation — just multiply slopes backwards.</p></aside>
 </section>
 
-<!-- 15 -->
+<!-- 16 -->
 <section data-part="B">
   <p class="kicker">B · Learning</p>
   <h2 class="claim">Watch the data choose a kernel</h2>
@@ -913,14 +933,14 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
       <p style="margin-top:.6em">Now give only the photo and the answer picture. Start from random numbers:</p>
       <div class="ng" id="klK" style="grid-template-columns:repeat(3,1fr);max-width:230px;margin:.3em auto 0"></div>
       <div class="demo-out" style="justify-content:center"><span id="klOutT"></span></div>
-      <p class="fragment">η 1.5: within 0.05 of Sobel after 67 steps. η 1.9: explodes — above 1.81 every step overshoots, as on slide 13.</p>
+      <p class="fragment">η 1.5: within 0.05 of Sobel after 67 steps. η 1.9: explodes — above 1.81 every step overshoots, as on slide 14.</p>
     </div>
   </div>
 
   <aside class="notes"><p>🇹🇭 กด Play ที่ η 1.5 ให้ดู kernel กลายเป็น Sobel (เหมือนภาพปก) · Reset แล้วลอง 1.9 → ระเบิด · เกร็ด: ภาพต้องลบค่าเฉลี่ยก่อน ไม่งั้นระเบิดทุก η</p><p>🇬🇧 Play at η 1.5: the kernel becomes Sobel, as on the cover. Reset, try 1.9: it explodes. Aside: the photo has its mean removed first, or every η explodes.</p></aside>
 </section>
 
-<!-- 16 -->
+<!-- 17 -->
 <section data-part="B">
   <p class="kicker">B · Learning</p>
   <h2 class="claim">Mini-batches: a cheap, noisy step</h2>
@@ -928,19 +948,20 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div>
       <table class="tbl"><tr><th>batch size B</th><th>noise in the gradient</th><th></th></tr><tr><td>16</td><td>0.237</td><td><div style="height:14px;width:220px;background:var(--teal);border-radius:4px"></div></td></tr><tr><td>64</td><td>0.119</td><td><div style="height:14px;width:110px;background:var(--teal);border-radius:4px"></div></td></tr><tr><td>256</td><td>0.060</td><td><div style="height:14px;width:56px;background:var(--teal);border-radius:4px"></div></td></tr><tr><td>1,024</td><td>0.030</td><td><div style="height:14px;width:27px;background:var(--teal);border-radius:4px"></div></td></tr>
         <tr><td>all 17,854</td><td>0</td><td></td></tr></table>
-      <p class="gcap">slide 15's problem at the start kernel · noise = rms distance from the full gradient, 2,000 random batches each</p>
+      <p class="gcap">slide 16's problem at the start kernel · noise = rms distance from the full gradient, 2,000 random batches each</p>
     </div>
     <div class="say">
-      <div class="flashback">Session 3 B: averaging n noisy pixels cuts the noise by √n.</div>
+      <div class="flashback">Session 3, slide 16: the average of n independent values has σ/√n — variances add, then divide by n.</div>
       <p style="margin-top:.6em">A step on all 17,854 patches uses every one. A <b>mini-batch</b> uses a random B of them: same direction on average, plus noise.</p>
-      <p class="fragment">The same √n: <b>4 × the batch → half the noise</b>, at 4 × the work. Usual sizes: 32–256 images. One pass over all the data is an <b>epoch</b>.</p>
+      <p class="fragment">The batch gradient is an <b>average of B</b> per-example gradients, so its noise is σ/√B: <b>4 × the batch → half the noise</b>, at 4 × the work. One pass over all the data is an <b>epoch</b>.</p>
+      <div class="worked"><span class="tag">Worked example · from the table</span><p>B 16 → 64: 4 × the batch, √4 = 2 → 0.237 ÷ 2 ≈ 0.118 · measured 0.119</p></div>
     </div>
   </div>
 
   <aside class="notes"><p>🇹🇭 ชี้ตาราง: B ×4 noise ÷2 ทุกแถว = √n ของคาบ 3 B · ถาม: batch 4096 noise เท่าไร? (~0.015)</p><p>🇬🇧 Point at the table: every 4 × in B halves the noise — session 3 B's √n. Ask: B = 4096? (about 0.015)</p></aside>
 </section>
 
-<!-- 17 -->
+<!-- 18 -->
 <section data-part="B">
   <p class="kicker">B · Learning</p>
   <h2 class="claim">Fits the training set, fails on new data</h2>
@@ -960,7 +981,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ลาก degree 1 → 3 (ดีสุด) → 9 (ผ่านทุกจุดแต่เหวี่ยง) · ชี้กราฟขวา: train ลงตลอด validation ลงแล้วขึ้น</p><p>🇬🇧 Drag the degree 1 → 3 (best) → 9 (hits every point, swings wildly). Point at the right chart: training only falls, validation falls then rises.</p></aside>
 </section>
 
-<!-- 18 -->
+<!-- 19 -->
 <section data-part="B">
   <p class="kicker">B · Learning</p>
   <h2 class="claim">Three sets: train, validate, test</h2>
@@ -979,22 +1000,22 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ป้าย train ผิด 30 จาก 100 (ข้อมูลจริงก็มี — คาบ 8 D: ใคร label) · ชี้เส้นแดง: ต่ำสุดที่ epoch 29 แล้วขึ้น ขณะที่เส้นเขียวลงถึง 0 = จำแม้แต่ป้ายผิด · test แตะครั้งเดียว · ชี้ต่อคาบ 8 และเกณฑ์ Demo</p><p>🇬🇧 Point at the red line: lowest at epoch 29, then up, while green goes to 0 — memorising. Test is touched once. Forward: session 8 and the project's Demo criterion.</p></aside>
 </section>
 
-<!-- 19 -->
+<!-- 20 -->
 <section data-part="B">
   <p class="kicker">B · Learning</p>
   <h2 class="claim">Try it: one step downhill</h2>
   <div class="split">
     <div class="tryit"><span class="tag">Try it</span>L(w) = <b>(w − 3)²</b>. Start at <b>w₀ = 1</b>.
       <ol style="margin:.4em 0 0 1.1em"><li>With η = <b>0.25</b>: the gradient, w₁, and the loss before and after.</li><li>With η = <b>1</b> instead: w₁ and its loss?</li></ol>
-      <details><summary>Answer</summary>1. dL/dw = 2(1 − 3) = <b>−4</b> · w₁ = 1 − 0.25·(−4) = <b>2</b> · loss 4 → <b>1</b> · 2. w₁ = 1 − 1·(−4) = <b>5</b> · loss (5 − 3)² = <b>4</b>: no better — it jumped over the bottom (slide 13).</details>
+      <details><summary>Answer</summary>1. dL/dw = 2(1 − 3) = <b>−4</b> · w₁ = 1 − 0.25·(−4) = <b>2</b> · loss 4 → <b>1</b> · 2. w₁ = 1 − 1·(−4) = <b>5</b> · loss (5 − 3)² = <b>4</b>: no better — it jumped over the bottom (slide 14).</details>
     </div>
     <div class="say"><p>dL/dw = 2(w − 3), then w ← w − η·dL/dw.</p><p>Negative slope → step right.</p></div>
   </div>
 
-  <aside class="notes"><p>🇹🇭 ให้เวลา 1 นาที · แบบข้อสอบ Final · ข้อ 2 ย้อนหน้า 13 (η 1 เด้ง)</p><p>🇬🇧 Give one minute. Final-exam style. Question 2 is slide 13's bounce.</p></aside>
+  <aside class="notes"><p>🇹🇭 ให้เวลา 1 นาที · แบบข้อสอบ Final · ข้อ 2 ย้อนหน้า 14 (η 1 เด้ง)</p><p>🇬🇧 Give one minute. Final-exam style. Question 2 is slide 14's bounce.</p></aside>
 </section>
 
-<!-- 20 -->
+<!-- 21 -->
 <section data-part="B">
   <p class="kicker">B · Learning</p>
   <h2 class="claim">Learning: follow the gradient of the loss, check on unseen data</h2>
@@ -1010,7 +1031,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 สรุป B · ชี้ต่อ: คาบ 5 C loss อีกแบบ (contrastive) · แล้วต่อ C</p><p>🇬🇧 Wrap up B. Forward: session 5 C uses another loss (contrastive). Then C.</p></aside>
 </section>
 
-<!-- 21 -->
+<!-- 22 -->
 <section class="part-open" id="part-c" data-part="C">
   <div class="po-strip"><a href="#/part-a" class="done"><b>A</b>Neurons</a><a href="#/part-b" class="done"><b>B</b>Learning</a><a href="#/part-c" class="on"><b>C</b>CNNs</a><a href="#/part-d" class=""><b>D</b>Deeper</a></div>
   <p class="po-letter">C</p>
@@ -1020,7 +1041,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 หน้าเปิด part: อ่านคำถามกับสิ่งที่จะทำได้ท้าย part แล้วเข้าเนื้อหา</p><p>🇬🇧 Part opener: read the question and what you can do by the end of the part, then go in.</p></aside>
 </section>
 
-<!-- 22 -->
+<!-- 23 -->
 <section data-part="C">
   <p class="kicker">C · Convolutional networks</p>
   <h2 class="claim">Local and shared: a convolution layer</h2>
@@ -1034,7 +1055,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ชี้ซ้าย: ทุกเส้นเป็น weight ของตัวเอง 48 ตัว · ขวา: สีเดียวกัน = weight เดียวกัน เหลือ 3 · ย้อนหน้า 8: 150 ล้าน → 1,792</p><p>🇬🇧 Left: every line is its own weight, 48. Right: same colour, same weight — 3. Back to slide 8: 150 million → 1,792.</p></aside>
 </section>
 
-<!-- 23 -->
+<!-- 24 -->
 <section data-part="C">
   <p class="kicker">C · Convolutional networks</p>
   <h2 class="claim">Shift the input, the feature map shifts too</h2>
@@ -1056,7 +1077,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ลาก shift ให้ดูกากบาทแดงเลื่อนเท่ากันทุก pixel · ถาม: fully connected (หน้า 8) ทำแบบนี้ได้ไหม?</p><p>🇬🇧 Drag the shift: the red cross moves pixel for pixel. Ask: could slide 8's fully connected layer do this?</p></aside>
 </section>
 
-<!-- 24 -->
+<!-- 25 -->
 <section data-part="C">
   <p class="kicker">C · Convolutional networks</p>
   <h2 class="claim">Many kernels make many channels</h2>
@@ -1073,7 +1094,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ย้อนคาบ 2 D: RGB = 3 channel · kernel กินทุก channel · ชี้ว่าจำนวนพารามิเตอร์ไม่ขึ้นกับขนาดภาพ</p><p>🇬🇧 Back to session 2 D: RGB is 3 channels. A kernel spans every channel. The count does not depend on the image size.</p></aside>
 </section>
 
-<!-- 25 -->
+<!-- 26 -->
 <section data-part="C">
   <p class="kicker">C · Convolutional networks</p>
   <h2 class="claim">Output size: the session-3 formula, unchanged</h2>
@@ -1101,14 +1122,14 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ลาก slider ให้ห้องทาย out ก่อน · ชี้แถว ResNet: 224 → 112</p><p>🇬🇧 Drag the sliders; let the room predict out first. The ResNet row: 224 → 112.</p></aside>
 </section>
 
-<!-- 26 -->
+<!-- 27 -->
 <section data-part="C">
   <p class="kicker">C · Convolutional networks</p>
   <h2 class="claim">Pooling keeps the strongest response</h2>
   <div class="split">
     <div>
       <div class="conv3" style="grid-template-columns:minmax(0,4fr) auto minmax(0,2fr);max-width:560px">
-        <div><div class="ng" id="plIn" style="grid-template-columns:repeat(4,1fr)"></div><p class="gcap">4 × 4 of a real feature map (|Sobel x|, slide 23)</p></div>
+        <div><div class="ng" id="plIn" style="grid-template-columns:repeat(4,1fr)"></div><p class="gcap">4 × 4 of a real feature map (|Sobel x|, slide 24)</p></div>
         <div class="op">→</div>
         <div><div class="ng" id="plOut" style="grid-template-columns:repeat(2,1fr)"></div><p class="gcap" id="plCap"></p></div>
       </div>
@@ -1124,7 +1145,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 สลับ max/average · ชี้ช่องที่ชนะ (กรอบ) · ย้อนคาบ 3 D: ย่อโดยไม่ blur → aliasing</p><p>🇬🇧 Switch max / average; the outlined cells win. Back to session 3 D: shrinking without a blur can alias.</p></aside>
 </section>
 
-<!-- 27 -->
+<!-- 28 -->
 <section data-part="C">
   <p class="kicker">C · Convolutional networks</p>
   <h2 class="claim">Each layer sees further: the receptive field</h2>
@@ -1137,7 +1158,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     </div>
     <div class="say">
       <p>One output pixel after a stack of 3 × 3 layers: which input pixels can reach it?</p>
-      <p class="fragment">Stride 1: 3 → 5 → 7 → 9 — each layer adds 2. A stride of 2 early doubles every later step: 3 → 7 → 11 → 15.</p>
+      <p class="fragment">Each layer adds <b>(k − 1) × the product of the strides before it</b>. Stride 1: 3 → 5 → 7 → 9. A stride of 2 early doubles every later step: 3 → 7 → 11 → 15.</p>
+      <div class="worked"><span class="tag">Worked example · stride 1</span><p>two 5 × 5 layers: 1 + 4 + 4 = 9 · a 3 × 3, then a 5 × 5: 1 + 2 + 4 = 7</p></div>
       <p class="fragment">ResNet-18's last layer: 435 × 435 pixels — the whole 224 photo, built up step by step. Session 5: attention lets every pixel see every other <b>in one layer</b>.</p>
     </div>
   </div>
@@ -1145,7 +1167,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 กด 1 → 4 ชั้น · แล้วสลับ stride 2 ที่ชั้นแรก · ชี้ต่อคาบ 5: attention มองทั้งภาพในชั้นเดียว · ResNet-18 = 435</p><p>🇬🇧 Press 1 → 4 layers, then stride 2 in layer 1. Forward: session 5's attention sees the whole image in one layer. ResNet-18: 435.</p></aside>
 </section>
 
-<!-- 28 -->
+<!-- 29 -->
 <section data-part="C">
   <p class="kicker">C · Convolutional networks</p>
   <h2 class="claim">What the first layer learns</h2>
@@ -1162,7 +1184,24 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ชี้กรอบสี: ตรงกับ Sobel x / Sobel y / Gaussian ที่คาบ 3 ออกแบบเอง (วัดด้วย correlation ใน build.py) · ตอบคำสัญญาหน้า 48 ของคาบ 3</p><p>🇬🇧 Point at the frames: Sobel x, Sobel y and a Gaussian, as designed by hand in session 3 (matched by correlation in build.py). This keeps session 3's last-slide promise.</p></aside>
 </section>
 
-<!-- 29 -->
+<!-- 30 -->
+<section data-part="C">
+  <p class="kicker">C · Convolutional networks</p>
+  <h2 class="claim">Count the cells the stamps cover</h2>
+  <div class="split">
+    <div><svg class="fig cvsvg" viewBox="0 0 640 195" role="img" aria-label="three input pixels each stamping a three-cell kernel, two cells apart, covering seven cells"><rect x="20" y="20" width="42" height="42" rx="5" fill="#f5f7fa" stroke="#cbd5e1"/><text x="41" y="47" text-anchor="middle" class="lb">0</text><rect x="66" y="20" width="42" height="42" rx="5" fill="#f5f7fa" stroke="#cbd5e1"/><text x="87" y="47" text-anchor="middle" class="lb">1</text><rect x="112" y="20" width="42" height="42" rx="5" fill="#f5f7fa" stroke="#cbd5e1"/><text x="133" y="47" text-anchor="middle" class="lb">2</text><rect x="158" y="20" width="42" height="42" rx="5" fill="#f5f7fa" stroke="#cbd5e1"/><text x="179" y="47" text-anchor="middle" class="lb">3</text><rect x="204" y="20" width="42" height="42" rx="5" fill="#f5f7fa" stroke="#cbd5e1"/><text x="225" y="47" text-anchor="middle" class="lb">4</text><rect x="250" y="20" width="42" height="42" rx="5" fill="#f5f7fa" stroke="#cbd5e1"/><text x="271" y="47" text-anchor="middle" class="lb">5</text><rect x="296" y="20" width="42" height="42" rx="5" fill="#f5f7fa" stroke="#cbd5e1"/><text x="317" y="47" text-anchor="middle" class="lb">6</text><rect x="22" y="82" width="130" height="14" rx="5" fill="#0f766e" opacity=".85"/><text x="164" y="94" class="lb" style="fill:#0f766e">input pixel 1: cells 0–2</text><rect x="114" y="108" width="130" height="14" rx="5" fill="#c97a06" opacity=".85"/><text x="256" y="120" class="lb" style="fill:#c97a06">input pixel 2: cells 2–4</text><rect x="206" y="134" width="130" height="14" rx="5" fill="#6d5bd0" opacity=".85"/><text x="348" y="146" class="lb" style="fill:#6d5bd0">input pixel 3: cells 4–6</text><text x="20" y="182" class="lb">starts 0, s, 2s, … (n − 1)s · last ends at (n − 1)s + k = 2·2 + 3 = 7 cells</text></svg><p class="gcap">1-D: n = 3 input pixels, kernel k = 3, stride s = 2, no padding</p></div>
+    <div class="say">
+      <p>Input pixel i stamps the kernel starting at cell i·s. The first starts at 0, the last at <b>(n − 1)s</b>.</p>
+      <p class="fragment">The last stamp is k cells wide, so the output ends at <b>(n − 1)s + k</b>.</p>
+      <p class="fragment">Padding p in a transposed convolution <b>trims</b> p cells from each end:</p>
+      <div class="eq fragment">$$\text{out}=(n-1)\,s-2p+k$$</div>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 นับเหมือนสูตร output size ของคาบ 3 แต่กลับทาง: ตราประทับเริ่มห่างกัน s · อันสุดท้ายเริ่มที่ (n−1)s และกว้าง k · padding ตัดทิ้งสองข้าง</p><p>🇬🇧 Counting, like session 3's output size but backwards: stamps start s apart, the last at (n − 1)s, k wide; padding trims both ends.</p></aside>
+</section>
+
+<!-- 31 -->
 <section data-part="C">
   <p class="kicker">C · Convolutional networks</p>
   <h2 class="claim">Going back up: transposed convolution</h2>
@@ -1178,14 +1217,15 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="say">
       <p>Each input pixel <b>stamps</b> a weighted copy of the kernel, s pixels apart. Where stamps overlap, they add.</p>
       <div class="eq">$$\text{out}=(n-1)\,s-2p+k$$</div>
-      <p class="fragment">(2 − 1)·2 − 0 + 3 = <b>5</b>. A 16 × 16 map, k 2, s 2 → 32 × 32. Session 8: segmentation grows small feature maps back to a full-size mask this way.</p>
+      <p class="fragment">(2 − 1)·2 − 0 + 3 = <b>5</b>. Session 8: segmentation grows small feature maps back to a full-size mask this way.</p>
+      <div class="worked"><span class="tag">Worked example</span><p>n 16, k 2, s 2, p 0 → 15·2 + 2 = 32 · n 5, k 3, s 2, p 1 → 4·2 − 2 + 3 = 9</p></div>
     </div>
   </div>
 
   <aside class="notes"><p>🇹🇭 กด Next ทีละ pixel ให้เห็นการประทับ kernel และผลรวมตรงกลาง (10 = 1 + 2 + 3 + 4) · ชี้ต่อคาบ 8</p><p>🇬🇧 Press Next, one pixel at a time: each stamps the kernel; the centre adds to 10 = 1 + 2 + 3 + 4. Forward: session 8.</p></aside>
 </section>
 
-<!-- 30 -->
+<!-- 32 -->
 <section data-part="C">
   <p class="kicker">C · Convolutional networks</p>
   <h2 class="claim">A whole CNN, layer by layer</h2>
@@ -1202,7 +1242,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ไล่ทีละแถวให้ห้องคำนวณ shape กับพารามิเตอร์เอง · lab C พิมพ์ตารางเดียวกันจาก nn.Conv2d</p><p>🇬🇧 Go row by row; let the room compute shapes and counts. Lab C prints this same table from nn.Conv2d.</p></aside>
 </section>
 
-<!-- 31 -->
+<!-- 33 -->
 <section data-part="C">
   <p class="kicker">C · Convolutional networks</p>
   <h2 class="claim">Try it: shape, weights, view</h2>
@@ -1221,7 +1261,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ให้เวลา 2 นาที · แบบข้อสอบ Final</p><p>🇬🇧 Give two minutes. Final-exam style.</p></aside>
 </section>
 
-<!-- 32 -->
+<!-- 34 -->
 <section data-part="C">
   <p class="kicker">C · Convolutional networks</p>
   <h2 class="claim">CNNs: local, shared, stacked</h2>
@@ -1237,7 +1277,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 สรุป C · ชี้ต่อคาบ 5, 6, 8 · แล้วต่อ D: ซ้อนลึกขึ้นอีกมาก</p><p>🇬🇧 Wrap up C; forward to sessions 5, 6 and 8. Then D: stack many more layers.</p></aside>
 </section>
 
-<!-- 33 -->
+<!-- 35 -->
 <section class="part-open" id="part-d" data-part="D">
   <div class="po-strip"><a href="#/part-a" class="done"><b>A</b>Neurons</a><a href="#/part-b" class="done"><b>B</b>Learning</a><a href="#/part-c" class="done"><b>C</b>CNNs</a><a href="#/part-d" class="on"><b>D</b>Deeper</a></div>
   <p class="po-letter">D</p>
@@ -1247,7 +1287,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 หน้าเปิด part: อ่านคำถามกับสิ่งที่จะทำได้ท้าย part แล้วเข้าเนื้อหา</p><p>🇬🇧 Part opener: read the question and what you can do by the end of the part, then go in.</p></aside>
 </section>
 
-<!-- 34 -->
+<!-- 36 -->
 <section data-part="D">
   <p class="kicker">D · Deeper &amp; reused</p>
   <h2 class="claim">Deeper should be better — but plain deep nets train worse</h2>
@@ -1260,10 +1300,10 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     </div>
   </div>
 
-  <aside class="notes"><p>🇹🇭 ย้ำ: นี่คือ training loss ไม่ใช่ overfitting (เทียบหน้า 18) · 4 seed เหมือนกันหมด · ถาม: ทำไมชั้นที่เพิ่มมาไม่ยอมเป็น identity เอง?</p><p>🇬🇧 Stress: this is training loss, not overfitting (compare slide 18). All 4 seeds agree. Ask: why don't the extra layers just learn to pass things through?</p></aside>
+  <aside class="notes"><p>🇹🇭 ย้ำ: นี่คือ training loss ไม่ใช่ overfitting (เทียบหน้า 19) · 4 seed เหมือนกันหมด · ถาม: ทำไมชั้นที่เพิ่มมาไม่ยอมเป็น identity เอง?</p><p>🇬🇧 Stress: this is training loss, not overfitting (compare slide 19). All 4 seeds agree. Ask: why don't the extra layers just learn to pass things through?</p></aside>
 </section>
 
-<!-- 35 -->
+<!-- 37 -->
 <section data-part="D">
   <p class="kicker">D · Deeper &amp; reused</p>
   <h2 class="claim">Skip connections: learn only the change</h2>
@@ -1272,21 +1312,37 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="say">
       <div class="eq">$$y = F(x) + x$$</div>
       <p>Each block adds a <b>change</b> F(x) to what it got. F = 0 means “pass it through” — the easy default the plain net could not find.</p>
-      <p class="fragment">Backwards, the + x is a straight road: the gradient reaches early layers without being multiplied 32 times (slide 14). Residual 32: training loss 0.001 or less.</p>
+      <p class="fragment">Backwards, the + x is a straight road: the gradient reaches early layers without being multiplied 32 times (slide 15). Residual 32: training loss 0.001 or less.</p>
     </div>
   </div>
 
   <aside class="notes"><p>🇹🇭 ชี้เส้นม่วง: 32 ชั้นเท่ากันแต่มีทางลัด → train ได้ · เกร็ด: ทางลัดของเราเริ่มเล็ก (×1/√L) แทน batch norm ที่ ResNet ใช้ — batch norm = T4-2</p><p>🇬🇧 Point at the violet line: the same 32 layers with shortcuts train fine. Aside: our branches start small (× 1/√L) where ResNet uses batch norm — batch norm is T4-2.</p></aside>
 </section>
 
-<!-- 36 -->
+<!-- 38 -->
+<section data-part="D">
+  <p class="kicker">D · Deeper &amp; reused</p>
+  <h2 class="claim">Through a shortcut, the gradient gets a + 1</h2>
+  <div class="split">
+    <div><svg class="fig cvsvg" viewBox="0 0 600 180" role="img" aria-label="ten blocks multiply the gradient by 0.2 each in a plain net and by 1.2 each with shortcuts"><text x="10" y="28" class="lb" style="fill:#e0533d">plain: × F′ per block</text><rect x="10" y="40" width="40" height="30" rx="6" fill="#fff" stroke="#e0533d" stroke-width="2"/><text x="30" y="60" text-anchor="middle" class="tk">×0.2</text><rect x="58" y="40" width="40" height="30" rx="6" fill="#fff" stroke="#e0533d" stroke-width="2"/><text x="78" y="60" text-anchor="middle" class="tk">×0.2</text><rect x="106" y="40" width="40" height="30" rx="6" fill="#fff" stroke="#e0533d" stroke-width="2"/><text x="126" y="60" text-anchor="middle" class="tk">×0.2</text><rect x="154" y="40" width="40" height="30" rx="6" fill="#fff" stroke="#e0533d" stroke-width="2"/><text x="174" y="60" text-anchor="middle" class="tk">×0.2</text><rect x="202" y="40" width="40" height="30" rx="6" fill="#fff" stroke="#e0533d" stroke-width="2"/><text x="222" y="60" text-anchor="middle" class="tk">×0.2</text><rect x="250" y="40" width="40" height="30" rx="6" fill="#fff" stroke="#e0533d" stroke-width="2"/><text x="270" y="60" text-anchor="middle" class="tk">×0.2</text><rect x="298" y="40" width="40" height="30" rx="6" fill="#fff" stroke="#e0533d" stroke-width="2"/><text x="318" y="60" text-anchor="middle" class="tk">×0.2</text><rect x="346" y="40" width="40" height="30" rx="6" fill="#fff" stroke="#e0533d" stroke-width="2"/><text x="366" y="60" text-anchor="middle" class="tk">×0.2</text><rect x="394" y="40" width="40" height="30" rx="6" fill="#fff" stroke="#e0533d" stroke-width="2"/><text x="414" y="60" text-anchor="middle" class="tk">×0.2</text><rect x="442" y="40" width="40" height="30" rx="6" fill="#fff" stroke="#e0533d" stroke-width="2"/><text x="462" y="60" text-anchor="middle" class="tk">×0.2</text><text x="500" y="60" class="lb" style="fill:#e0533d">= 1.0 × 10⁻⁷</text><text x="10" y="118" class="lb" style="fill:#0f766e">residual: × (F′ + 1) per block</text><rect x="10" y="130" width="40" height="30" rx="6" fill="#fff" stroke="#0f766e" stroke-width="2"/><text x="30" y="150" text-anchor="middle" class="tk">×1.2</text><rect x="58" y="130" width="40" height="30" rx="6" fill="#fff" stroke="#0f766e" stroke-width="2"/><text x="78" y="150" text-anchor="middle" class="tk">×1.2</text><rect x="106" y="130" width="40" height="30" rx="6" fill="#fff" stroke="#0f766e" stroke-width="2"/><text x="126" y="150" text-anchor="middle" class="tk">×1.2</text><rect x="154" y="130" width="40" height="30" rx="6" fill="#fff" stroke="#0f766e" stroke-width="2"/><text x="174" y="150" text-anchor="middle" class="tk">×1.2</text><rect x="202" y="130" width="40" height="30" rx="6" fill="#fff" stroke="#0f766e" stroke-width="2"/><text x="222" y="150" text-anchor="middle" class="tk">×1.2</text><rect x="250" y="130" width="40" height="30" rx="6" fill="#fff" stroke="#0f766e" stroke-width="2"/><text x="270" y="150" text-anchor="middle" class="tk">×1.2</text><rect x="298" y="130" width="40" height="30" rx="6" fill="#fff" stroke="#0f766e" stroke-width="2"/><text x="318" y="150" text-anchor="middle" class="tk">×1.2</text><rect x="346" y="130" width="40" height="30" rx="6" fill="#fff" stroke="#0f766e" stroke-width="2"/><text x="366" y="150" text-anchor="middle" class="tk">×1.2</text><rect x="394" y="130" width="40" height="30" rx="6" fill="#fff" stroke="#0f766e" stroke-width="2"/><text x="414" y="150" text-anchor="middle" class="tk">×1.2</text><rect x="442" y="130" width="40" height="30" rx="6" fill="#fff" stroke="#0f766e" stroke-width="2"/><text x="462" y="150" text-anchor="middle" class="tk">×1.2</text><text x="500" y="150" class="lb" style="fill:#0f766e">= 6.2</text></svg><p class="gcap">10 blocks, each with slope F′ = 0.2 — the chain rule of slide 15 multiplies them</p></div>
+    <div class="say">
+      <div class="eq">$$y=F(x)+x\;\Rightarrow\;\frac{dy}{dx}=F'(x)+1$$</div>
+      <p class="fragment">Backpropagation multiplies the slopes of every block (slide 15). Plain: F′ × F′ × … — small slopes shrink the gradient to almost nothing. Residual: (F′ + 1) × … — the + 1 keeps it alive.</p>
+      <div class="worked fragment"><span class="tag">Worked example · F′ = 0.2, 10 blocks</span><p>plain 0.2¹⁰ ≈ 1.0 × 10⁻⁷ · residual 1.2¹⁰ ≈ 6.2</p></div>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ดิฟ y = F(x) + x ได้ F′ + 1 · chain rule คูณทุกบล็อก (ย้อนหน้า 15 backprop) · plain: 0.2¹⁰ เหลือ 10⁻⁷ = gradient หาย · residual: 1.2¹⁰ ≈ 6 · โยงหน้า 36: เหตุที่ plain 32 ชั้น train ไม่ขึ้น</p><p>🇬🇧 Differentiate y = F(x) + x: F′ + 1. The chain rule multiplies every block (slide 15). Plain 0.2¹⁰ ≈ 10⁻⁷ — the gradient vanishes; residual 1.2¹⁰ ≈ 6. That is why slide 36's plain 32-layer net would not train.</p></aside>
+</section>
+
+<!-- 39 -->
 <section data-part="D">
   <p class="kicker">D · Deeper &amp; reused</p>
   <h2 class="claim">ResNet: a pyramid of residual blocks</h2>
   <div class="split">
     <div><table class="tbl big"><tr><th style="text-align:left">ResNet-18, input 224 × 224 × 3</th><th>output</th><th>parameters</th></tr><tr><td style="text-align:left">stem: conv 7 × 7 + pool</td><td style="white-space:nowrap">56 × 56 × 64</td><td>9,536</td></tr><tr><td style="text-align:left">stage 1: 4 convs 3 × 3</td><td style="white-space:nowrap">56 × 56 × 64</td><td>147,968</td></tr><tr><td style="text-align:left">stage 2: stride 2 first</td><td style="white-space:nowrap">28 × 28 × 128</td><td>525,568</td></tr><tr><td style="text-align:left">stage 3: stride 2 first</td><td style="white-space:nowrap">14 × 14 × 256</td><td>2,099,712</td></tr><tr><td style="text-align:left">stage 4: stride 2 first</td><td style="white-space:nowrap">7 × 7 × 512</td><td>8,393,728</td></tr><tr><td style="text-align:left">avg pool → fully connected</td><td style="white-space:nowrap">1000</td><td>513,000</td></tr>
       <tr><td style="text-align:left"><b>total</b></td><td></td><td><b>11,689,512</b></td></tr></table>
-      <p class="gcap">shapes from slide 25's formula · counts read from the trained weights of slide 28</p></div>
+      <p class="gcap">shapes from slide 26's formula · counts read from the trained weights of slide 29</p></div>
     <div class="say">
       <div class="flashback">Session 3 D: a pyramid — the same picture at every size, each level half the last.</div>
       <p style="margin-top:.6em">Each stage halves the size and doubles the channels: 56 → 28 → 14 → 7, 64 → 512.</p>
@@ -1297,7 +1353,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ย้อนคาบ 3 D pyramid · ชี้ว่า weight ส่วนใหญ่อยู่ stage 4 · term backbone = ทุกอย่างก่อนชั้นสุดท้าย</p><p>🇬🇧 Back to session 3 D's pyramid. Most weights sit in stage 4. Backbone = everything before the last layer.</p></aside>
 </section>
 
-<!-- 37 -->
+<!-- 40 -->
 <section data-part="D">
   <p class="kicker">D · Deeper &amp; reused</p>
   <h2 class="claim">Borrow a network trained on millions of photos</h2>
@@ -1307,7 +1363,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
       <div class="card violet"><b>Fine-tune</b>Start from the trained weights and keep training everything (or the last stages) with a small η — the start is already good.</div>
     </div>
     <div class="say">
-      <p>Edges, textures and parts (slides 7, 28) are useful for almost any photo. Training them again from a few hundred of your own images wastes them.</p>
+      <p>Edges, textures and parts (slides 7, 29) are useful for almost any photo. Training them again from a few hundred of your own images wastes them.</p>
       <p class="fragment">So nearly every project starts here: a backbone trained on ImageNet, a new last layer for <b>your</b> classes. More: T4-8.</p>
     </div>
   </div>
@@ -1315,7 +1371,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 เทียบตัวเลข: 11 ล้านกว่าที่ยืมมา vs 2,565 ที่ต้องเรียนเอง · ชี้ต่อโปรเจกต์</p><p>🇬🇧 Compare: 11 million borrowed vs 2,565 to learn. Forward: the project.</p></aside>
 </section>
 
-<!-- 38 -->
+<!-- 41 -->
 <section data-part="D">
   <p class="kicker">D · Deeper &amp; reused</p>
   <h2 class="claim">More data from the data you have</h2>
@@ -1327,14 +1383,14 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="say">
       <p>Top left: the original. The others: random <b>flip · crop · small rotation · colour change</b> — still a landscape, so the label stays.</p>
       <div class="flashback fragment">Session 2 D: hue and saturation are numbers you can turn — colour jitter turns them at random.</div>
-      <p class="fragment">Each epoch sees new copies, so memorising (slide 18) gets harder. Only use changes that keep the label: flip a “6” upside down and it is a “9”.</p>
+      <p class="fragment">Each epoch sees new copies, so memorising (slide 19) gets harder. Only use changes that keep the label: flip a “6” upside down and it is a “9”.</p>
     </div>
   </div>
 
   <aside class="notes"><p>🇹🇭 กดสุ่มใหม่หลายรอบ · ถาม: ถ้าเป็นภาพตัวเลข ห้ามทำอะไร? (กลับหัว/หมุนมาก: 6 ↔ 9)</p><p>🇬🇧 Press for new copies a few times. Ask: for photos of digits, which change is forbidden? (upside down: 6 ↔ 9)</p></aside>
 </section>
 
-<!-- 39 -->
+<!-- 42 -->
 <section data-part="D">
   <p class="kicker">D · Deeper &amp; reused</p>
   <h2 class="claim">Which recipe for which project?</h2>
@@ -1345,12 +1401,12 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <tr><td style="text-align:left">very different (X-ray, satellite, thermal) or very many</td><td style="text-align:left">fine-tune everything — still start from trained weights</td></tr>
     <tr><td style="text-align:left">almost none</td><td style="text-align:left">session 5: CLIP names classes it never trained on</td></tr>
   </table>
-  <p class="takeaway"><span>After session 5 you start looking for a project topic — most will begin in this table. Always compare against the frozen-head baseline on the same validation set (slide 18).</span></p>
+  <p class="takeaway"><span>After session 5 you start looking for a project topic — most will begin in this table. Always compare against the frozen-head baseline on the same validation set (slide 19).</span></p>
 
   <aside class="notes"><p>🇹🇭 ไล่ตาราง · ชี้ต่อ: หลังคาบ 5 เริ่มหาหัวข้อโปรเจกต์ · แถวสุดท้ายปูทางคาบ 5</p><p>🇬🇧 Walk the table. Forward: topic search starts after session 5; the last row sets up session 5.</p></aside>
 </section>
 
-<!-- 40 -->
+<!-- 43 -->
 <section data-part="D">
   <p class="kicker">D · Deeper &amp; reused</p>
   <h2 class="claim">Try it: residual and a new head</h2>
@@ -1368,7 +1424,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ให้เวลา 1 นาที · แบบข้อสอบ Final</p><p>🇬🇧 Give one minute. Final-exam style.</p></aside>
 </section>
 
-<!-- 41 -->
+<!-- 44 -->
 <section data-part="D">
   <p class="kicker">D · Deeper &amp; reused</p>
   <h2 class="claim">Go deep with shortcuts; start from what is already learned</h2>
@@ -1384,7 +1440,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 สรุป D · ชี้ต่อ CLIP (คาบ 5 D) · YOLO (คาบ 8) · โปรเจกต์</p><p>🇬🇧 Wrap up D. Forward: CLIP (session 5 D), YOLO (session 8), the project.</p></aside>
 </section>
 
-<!-- 42 -->
+<!-- 45 -->
 <section>
   <p class="kicker">Session 4 · what to remember</p>
   <h2 class="claim">From hand-made kernels to learned ones</h2>
@@ -1398,7 +1454,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ทวน 4 ข้อ A–D · ต่อด้วยครึ่ง B นำเสนอ T3 หลังจบเด็ค</p><p>🇬🇧 Recap the four lines A–D. Half B's T3 talks follow after the deck.</p></aside>
 </section>
 
-<!-- 43 -->
+<!-- 46 -->
 <section>
   <p class="kicker">Assignment · topic set T4</p>
   <h2 class="claim">Half A: pick a T4 topic today — you present it in session 5</h2>
@@ -1407,13 +1463,13 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ครึ่ง A เลือกหัวข้อ กลุ่มละหนึ่งหัวข้อ ไม่ซ้ำกัน · ส่งไฟล์ตามกำหนดก่อนคาบ 5 · ครึ่ง B รับ T5 หลังคาบ 5</p><p>🇬🇧 Half A picks one topic per group, no repeats; files due before session 5. Half B gets T5 after session 5.</p></aside>
 </section>
 
-<!-- 44 -->
+<!-- 47 -->
 <section>
   <p class="kicker">Next · Session 5</p>
   <h2 class="claim">What if every pixel could look at every other?</h2>
   <div class="split">
     <div class="say">
-      <p>A CNN sees a little further with each layer: the view grows step by step (slide 27).</p>
+      <p>A CNN sees a little further with each layer: the view grows step by step (slide 28).</p>
       <p>Session 5 — <b>attention, ViT and CLIP</b>: a layer where every patch looks at every other at once, and a model that learns from photos with captions — so it can name things it never trained on.</p>
     </div>
     <div class="flashback">Keep from today: a neuron is a weighted sum + bend; learning = gradient descent on a loss; conv shape and parameter count.</div>
@@ -1421,7 +1477,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ปิดคาบ: ปูทางคาบ 5</p><p>🇬🇧 Close the session and set up session 5.</p></aside>
 </section>
 
-<!-- 45 -->
+<!-- 48 -->
 <section>
   <p class="kicker">References</p>
   <h2 class="claim">Where session 4 comes from</h2>
