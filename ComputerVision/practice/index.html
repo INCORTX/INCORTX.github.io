@@ -60,7 +60,7 @@ h2.sess{font:700 26px var(--display);color:var(--ink);margin:30px 0 4px}
   <h1>Practice bank</h1>
   <p class="lead">Exam-style questions, session by session, with worked solutions. Work each one by hand first — no calculator needed — then open the solution and compare step by step; the mark for each step is in [ ].</p>
 
-  <div class="bar"><button class="chip on" data-k="sess" data-v="all">All sessions</button><button class="chip" data-k="sess" data-v="2">Session 2</button><button class="chip" data-k="sess" data-v="3">Session 3</button><button class="chip" data-k="sess" data-v="4">Session 4</button><button class="chip" data-k="sess" data-v="5">Session 5</button><button class="chip" data-k="sess" data-v="6">Session 6</button><button class="chip" data-k="sess" data-v="7">Session 7</button><span class="sep"></span><button class="chip on" data-k="stars" data-v="all">Any level</button><button class="chip" data-k="stars" data-v="1">⭐</button><button class="chip" data-k="stars" data-v="2">⭐⭐</button><button class="chip" data-k="stars" data-v="3">⭐⭐⭐</button><span class="sep"></span><button class="chip" data-k="hide">Hide done</button><button class="chip" data-k="open">Open all solutions</button><span class="prog" id="prog"></span></div>
+  <div class="bar"><button class="chip on" data-k="sess" data-v="all">All sessions</button><button class="chip" data-k="sess" data-v="2">Session 2</button><button class="chip" data-k="sess" data-v="3">Session 3</button><button class="chip" data-k="sess" data-v="4">Session 4</button><button class="chip" data-k="sess" data-v="5">Session 5</button><button class="chip" data-k="sess" data-v="6">Session 6</button><button class="chip" data-k="sess" data-v="7">Session 7</button><button class="chip" data-k="sess" data-v="8">Session 8</button><span class="sep"></span><button class="chip on" data-k="stars" data-v="all">Any level</button><button class="chip" data-k="stars" data-v="1">⭐</button><button class="chip" data-k="stars" data-v="2">⭐⭐</button><button class="chip" data-k="stars" data-v="3">⭐⭐⭐</button><span class="sep"></span><button class="chip" data-k="hide">Hide done</button><button class="chip" data-k="open">Open all solutions</button><span class="prog" id="prog"></span></div>
   <details class="ref"><summary>Reference values — sin / cos / tan, roots, powers of two</summary><table class="cov"><tr><th>θ (rad)</th><th>θ (deg)</th><th>sin θ</th><th>cos θ</th><th>tan θ</th></tr><tr><td>0</td><td>0°</td><td>0</td><td>1</td><td>0</td></tr><tr><td>π/6</td><td>30°</td><td>0.500</td><td>0.866</td><td>0.577</td></tr><tr><td>π/4</td><td>45°</td><td>0.707</td><td>0.707</td><td>1</td></tr><tr><td>π/3</td><td>60°</td><td>0.866</td><td>0.500</td><td>1.732</td></tr><tr><td>π/2</td><td>90°</td><td>1</td><td>0</td><td>undefined</td></tr><tr><td>π</td><td>180°</td><td>0</td><td>−1</td><td>0 †</td></tr><tr><td>3π/2</td><td>270°</td><td>−1</td><td>0</td><td>undefined</td></tr><tr><td>2π</td><td>360°</td><td>0</td><td>1</td><td>0 †</td></tr></table><p><strong>Reading arctan:</strong> find the ratio in the tan θ column and read the angle on the left — tan θ = 1 ⇒ θ = 45°. A gradient with $G_x = G_y$ therefore points at 45°. Every direction you are asked to name is one of the rows above; if your ratio is not in the tan θ column, re-check the arithmetic rather than reaching for a calculator.</p><p><strong>† forward only.</strong> tan repeats every 180°, but arctan answers only within −90° to 90°: tan 180° = 0 is true, yet arctan(0) = 0°, not 180°. Read backwards only from the 0°–90° rows.</p><p><strong>Negative ratios:</strong> arctan(−x) = −arctan(x), so arctan(−1) = −45°.</p><p><strong>Pythagorean triples</strong> — these give the <strong>magnitude</strong> $\sqrt{G_x^2+G_y^2}$ as a whole number, not an angle: 3-4-5 · 5-12-13 · 6-8-10 · 8-15-17 · 7-24-25 · 20-21-29 — and any multiple, e.g. 24-32-<strong>40</strong>. Magnitude and direction are separate questions; read the direction from the tan θ column above.</p><p><strong>Square roots:</strong> √2 ≈ 1.414 · √3 ≈ 1.732 · √5 ≈ 2.236 · √8 ≈ 2.828 · √32 ≈ 5.657</p><p><strong>Powers of two</strong> (bit depth, pyramid levels): $2^4 = 16$ · $2^6 = 64$ · $2^8 = 256$ · $2^{10} = 1024$ · $2^{24} = 16{,}777{,}216$ · log₂ 8 = 3 · log₂ 16 = 4 · log₂ 256 = 8</p></details>
   <h2 class="sess" id="s2" data-sess="2">Session 2 · Image Formation &amp; Sensing</h2>
   <div class="parthead" id="s2a" data-group="2A"><h3>A · Pinhole &amp; perspective</h3><span class="pc"></span><a href="../session-02/slides.html#/part-a">Slides for this part →</a></div>
@@ -1219,6 +1219,191 @@ Step 2: numerator $({-2})({-1.2}) + ({-1})({-0.2}) + 0 + (1)(1.8) + (2)({-1.2}) 
 <strong>(b)</strong> $120 / 3 = 40$ px and $120 / 15 = 8$ px — different, so the depths are known [0.5]<br>
 <strong>(c)</strong> $Z = fB / d → \infty$: very far away (it does not shift between the cameras) [0.5]<br>
 <strong>Answer:</strong> (a) both 16.7 mm · (b) 40 px and 8 px · (c) infinitely far</div></details>
+      </article>
+  <h2 class="sess" id="s8" data-sess="8">Session 8 · Detection &amp; Segmentation</h2>
+  <div class="parthead" id="s8a" data-group="8A"><h3>A · Tasks &amp; metrics</h3><span class="pc"></span><a href="../session-08/slides.html#/part-a">Slides for this part →</a></div>
+      <article class="item" id="p120" data-sess="8" data-part="A" data-stars="1">
+        <header><span class="iid">120</span><span class="stars" title="difficulty">⭐</span><span class="topic">IoU of two boxes</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="120"> Done</label></header>
+        <div class="problem">A predicted box is $(0, 0, 6, 4)$ and the true box is $(3, 1, 9, 5)$, as $(x_1, y_1, x_2, y_2)$. <strong>(a)</strong> Compute the intersection. <strong>(b)</strong> Compute the union and the IoU. <strong>(c)</strong> Is it a hit at IoU ≥ 0.5?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> overlap $x$: $\min(6, 9) - \max(0, 3) = 3$ · $y$: $\min(4, 5) - \max(0, 1) = 3$ → $I = 9$ [0.5]<br>
+<strong>(b)</strong> both boxes are $6 \times 4 = 24$ → $U = 24 + 24 - 9 = 39$ → IoU $= 9 / 39 \approx 0.23$ [0.75]<br>
+<strong>(c)</strong> no — $0.23 &lt; 0.5$ [0.25]<br>
+<strong>Answer:</strong> (a) 9 · (b) 39, about 0.23 · (c) a miss</div></details>
+      </article>
+      <article class="item" id="p121" data-sess="8" data-part="A" data-stars="2">
+        <header><span class="iid">121</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">IoU when boxes miss, nest or slide</span><span class="meta">2 pts · ~4 min</span>
+          <label class="done"><input type="checkbox" data-id="121"> Done</label></header>
+        <div class="problem">Compute the IoU: <strong>(a)</strong> $(0, 0, 2, 2)$ and $(3, 3, 5, 5)$; <strong>(b)</strong> $(1, 1, 3, 3)$, which lies inside $(0, 0, 4, 4)$; <strong>(c)</strong> a $10 \times 10$ box $(0, 0, 10, 10)$ and the same box shifted 2 to the right. <strong>(d)</strong> What does (b) show?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> no overlap: $I = 0$ → IoU $= 0$ [0.5]<br>
+<strong>(b)</strong> $I = 4$ (the small box), $U = 16$ (the big box) → $0.25$ [0.5]<br>
+<strong>(c)</strong> $I = 8 \cdot 10 = 80$, $U = 100 + 100 - 80 = 120$ → $\approx 0.67$ [0.5]<br>
+<strong>(d)</strong> a box can lie entirely on the object and still be a miss: it is too small [0.5]<br>
+<strong>Answer:</strong> (a) 0 · (b) 0.25 · (c) 0.67 · (d) inside is not enough — the size must match too</div></details>
+      </article>
+      <article class="item" id="p122" data-sess="8" data-part="A" data-stars="2">
+        <header><span class="iid">122</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">NMS on four boxes</span><span class="meta">2 pts · ~4 min</span>
+          <label class="done"><input type="checkbox" data-id="122"> Done</label></header>
+        <div class="problem">Run NMS with threshold 0.5 on: 0.95 $(0, 0, 10, 10)$ · 0.85 $(1, 1, 11, 11)$ · 0.60 $(20, 0, 30, 10)$ · 0.55 $(0, 2, 10, 12)$. Which boxes stay?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln">Step 1: keep 0.95 [0.5]<br>
+Step 2: against it — $(1, 1, 11, 11)$: $I = 81$, $U = 119$, IoU $\approx 0.68$ → removed · $(20, 0, 30, 10)$: IoU 0 → stays · $(0, 2, 10, 12)$: $I = 80$, $U = 120$, IoU $\approx 0.67$ → removed [1]<br>
+Step 3: keep 0.60; nothing else is left [0.5]<br>
+<strong>Answer:</strong> 0.95 $(0, 0, 10, 10)$ and 0.60 $(20, 0, 30, 10)$<br>
+<strong>Common mistake:</strong> comparing each box only with its neighbour in the list — every box is compared with the box just kept.</div></details>
+      </article>
+      <article class="item" id="p123" data-sess="8" data-part="A" data-stars="1">
+        <header><span class="iid">123</span><span class="stars" title="difficulty">⭐</span><span class="topic">Precision and recall</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="123"> Done</label></header>
+        <div class="problem">On a test set with 32 cars, a detector draws 25 boxes; 20 of them are on a car. <strong>(a)</strong> Precision? <strong>(b)</strong> Recall? <strong>(c)</strong> How many cars were missed, and how many boxes were false alarms?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $P = 20 / 25 = 0.8$ [0.5]<br>
+<strong>(b)</strong> $R = 20 / 32 = 0.625$ [0.5]<br>
+<strong>(c)</strong> missed $32 - 20 = 12$ (FN) · false alarms $25 - 20 = 5$ (FP) [0.5]<br>
+<strong>Answer:</strong> (a) 0.8 · (b) 0.625 · (c) 12 missed, 5 false alarms</div></details>
+      </article>
+      <article class="item" id="p124" data-sess="8" data-part="A" data-stars="2">
+        <header><span class="iid">124</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Raise the threshold</span><span class="meta">2 pts · ~4 min</span>
+          <label class="done"><input type="checkbox" data-id="124"> Done</label></header>
+        <div class="problem">An image has 5 people. The detector's boxes, sorted by score, were matched to them:<br>
+<table class="mt"><tr><th>score</th><th>0.9</th><th>0.8</th><th>0.7</th><th>0.6</th><th>0.4</th><th>0.3</th></tr><tr><td>match</td><td>TP</td><td>TP</td><td>FP</td><td>TP</td><td>FP</td><td>TP</td></tr></table>
+Compute precision and recall at thresholds <strong>(a)</strong> 0.75, <strong>(b)</strong> 0.5, <strong>(c)</strong> 0.25. <strong>(d)</strong> Describe the trade.</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> 2 boxes, both TP: $P = 1.0$, $R = 2/5 = 0.4$ [0.5]<br>
+<strong>(b)</strong> 4 boxes, 3 TP: $P = 0.75$, $R = 0.6$ [0.5]<br>
+<strong>(c)</strong> 6 boxes, 4 TP: $P \approx 0.67$, $R = 0.8$ [0.5]<br>
+<strong>(d)</strong> a lower threshold finds more people (recall up) but lets in more false alarms (precision down) [0.5]<br>
+<strong>Answer:</strong> (a) 1.0 / 0.4 · (b) 0.75 / 0.6 · (c) 0.67 / 0.8</div></details>
+      </article>
+  <div class="parthead" id="s8b" data-group="8B"><h3>B · One-stage detection</h3><span class="pc"></span><a href="../session-08/slides.html#/part-b">Slides for this part →</a></div>
+      <article class="item" id="p125" data-sess="8" data-part="B" data-stars="1">
+        <header><span class="iid">125</span><span class="stars" title="difficulty">⭐</span><span class="topic">Count the cells</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="125"> Done</label></header>
+        <div class="problem">A YOLO detector gets a $416 \times 416$ image and predicts on grids with strides 8, 16 and 32. <strong>(a)</strong> How many cells does each grid have? <strong>(b)</strong> How many predictions in all?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $416/8 = 52$ → $52^2 = 2704$ · $416/16 = 26$ → $676$ · $416/32 = 13$ → $169$ [1]<br>
+<strong>(b)</strong> $2704 + 676 + 169 = 3549$ [0.5]<br>
+<strong>Answer:</strong> (a) 2,704 · 676 · 169 · (b) 3,549</div></details>
+      </article>
+      <article class="item" id="p126" data-sess="8" data-part="B" data-stars="2">
+        <header><span class="iid">126</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">A rectangular input</span><span class="meta">2 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="126"> Done</label></header>
+        <div class="problem">A wide photo is fed as $640 \times 384$ (width × height), strides 8, 16, 32. <strong>(a)</strong> How many predictions? <strong>(b)</strong> Why does a program pad a photo only to a multiple of 32 instead of to a square?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $80 \times 48 + 40 \times 24 + 20 \times 12 = 3840 + 960 + 240 = 5040$ [1.5]<br>
+<strong>(b)</strong> each side must divide by the largest stride (32) so every grid has whole cells; padding further to a square only adds grey cells to check [0.5]<br>
+<strong>Answer:</strong> (a) 5,040 · (b) multiples of 32 keep the grids whole; a square would waste work on padding</div></details>
+      </article>
+      <article class="item" id="p127" data-sess="8" data-part="B" data-stars="1">
+        <header><span class="iid">127</span><span class="stars" title="difficulty">⭐</span><span class="topic">Numbers per prediction</span><span class="meta">1.5 pts · ~2 min</span>
+          <label class="done"><input type="checkbox" data-id="127"> Done</label></header>
+        <div class="problem">A detector is fine-tuned for 12 classes and fed $640 \times 640$ images (8,400 predictions). <strong>(a)</strong> How many numbers does each prediction have? <strong>(b)</strong> How many numbers in the whole output?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> 4 for the box + 12 class scores = 16 [0.75]<br>
+<strong>(b)</strong> $8400 \times 16 = 134\,400$ [0.75]<br>
+<strong>Answer:</strong> (a) 16 · (b) 134,400</div></details>
+      </article>
+      <article class="item" id="p128" data-sess="8" data-part="B" data-stars="2">
+        <header><span class="iid">128</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Which cell answers?</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="128"> Done</label></header>
+        <div class="problem">On the stride-32 grid of a $640 \times 640$ image, an object is centred at $(300, 470)$. <strong>(a)</strong> Which row and column hold its centre? <strong>(b)</strong> Where is that cell's centre? <strong>(c)</strong> A person is only 20 px tall. Which of the three grids is most likely to find them?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> column $\lfloor 300/32 \rfloor = 9$, row $\lfloor 470/32 \rfloor = 14$ [0.5]<br>
+<strong>(b)</strong> $((9 + \tfrac12) \cdot 32,\ (14 + \tfrac12) \cdot 32) = (304, 464)$ [0.5]<br>
+<strong>(c)</strong> the fine grid, stride 8 — its cells are small enough for a small object [0.5]<br>
+<strong>Answer:</strong> (a) row 14, column 9 · (b) $(304, 464)$ · (c) stride 8</div></details>
+      </article>
+      <article class="item" id="p129" data-sess="8" data-part="B" data-stars="2">
+        <header><span class="iid">129</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">What fine-tuning changes</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="129"> Done</label></header>
+        <div class="problem">You want a detector for 4 kinds of fruit on a market stall, starting from a COCO-trained YOLO. <strong>(a)</strong> Which part changes, and how many numbers per prediction now? <strong>(b)</strong> Which parts are reused, and why? <strong>(c)</strong> What data must you prepare?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> the head: 80 → 4 classes, so $4 + 4 = 8$ numbers per prediction [0.5]<br>
+<strong>(b)</strong> backbone and neck, as trained on COCO: they already turn photos into useful features — transfer learning (session 4 D) [0.5]<br>
+<strong>(c)</strong> photos of the stall with a box and a class drawn on <strong>every</strong> fruit, split into train / validation / test [0.5]<br>
+<strong>Answer:</strong> (a) the head, 8 numbers · (b) backbone + neck · (c) labelled boxes on your own photos</div></details>
+      </article>
+  <div class="parthead" id="s8c" data-group="8C"><h3>C · Segmentation</h3><span class="pc"></span><a href="../session-08/slides.html#/part-c">Slides for this part →</a></div>
+      <article class="item" id="p130" data-sess="8" data-part="C" data-stars="1">
+        <header><span class="iid">130</span><span class="stars" title="difficulty">⭐</span><span class="topic">Mask IoU</span><span class="meta">1.5 pts · ~2 min</span>
+          <label class="done"><input type="checkbox" data-id="130"> Done</label></header>
+        <div class="problem">A predicted mask has 120 pixels and the true mask 100; 90 pixels are in both. <strong>(a)</strong> Compute the union. <strong>(b)</strong> Compute the mask IoU.</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $120 + 100 - 90 = 130$ [0.75]<br>
+<strong>(b)</strong> $90 / 130 \approx 0.69$ [0.75]<br>
+<strong>Answer:</strong> (a) 130 · (b) about 0.69</div></details>
+      </article>
+      <article class="item" id="p131" data-sess="8" data-part="C" data-stars="2">
+        <header><span class="iid">131</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Encoder and decoder sizes</span><span class="meta">2 pts · ~4 min</span>
+          <label class="done"><input type="checkbox" data-id="131"> Done</label></header>
+        <div class="problem">An encoder halves a $448 \times 448$ image four times. <strong>(a)</strong> How big is its output? <strong>(b)</strong> The decoder uses transposed convolutions with $k = 2$, $s = 2$, $p = 0$. Show that each one doubles the size, and list the sizes back to 448. <strong>(c)</strong> Does $k = 4$, $s = 2$, $p = 1$ also double?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $448 / 16 = 28$ [0.5]<br>
+<strong>(b)</strong> $\text{out} = (n - 1)\cdot 2 - 0 + 2 = 2n$ [0.5] · $28 → 56 → 112 → 224 → 448$ [0.5]<br>
+<strong>(c)</strong> $(n - 1)\cdot 2 - 2 + 4 = 2n$ — yes [0.5]<br>
+<strong>Answer:</strong> (a) 28 · (b) 2n each: 56, 112, 224, 448 · (c) yes</div></details>
+      </article>
+      <article class="item" id="p132" data-sess="8" data-part="C" data-stars="2">
+        <header><span class="iid">132</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Which prompt gives which mask?</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="132"> Done</label></header>
+        <div class="problem">With SAM: <strong>(a)</strong> you click once on a cyclist's helmet. Which masks might come back? <strong>(b)</strong> You draw a box around the bicycle only. What do you expect? <strong>(c)</strong> You want the rider but not the bicycle. What prompt helps?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> several guesses — the helmet, the head, the whole rider — each with a score; you pick [0.5]<br>
+<strong>(b)</strong> the bicycle: a box says which object and roughly how big [0.5]<br>
+<strong>(c)</strong> a positive click on the rider plus a negative click on the bicycle (or a box around the rider only) [0.5]<br>
+<strong>Answer:</strong> (a) part / larger part / whole · (b) the bicycle · (c) a positive and a negative click</div></details>
+      </article>
+      <article class="item" id="p133" data-sess="8" data-part="C" data-stars="1">
+        <header><span class="iid">133</span><span class="stars" title="difficulty">⭐</span><span class="topic">Box or mask?</span><span class="meta">1 pts · ~2 min</span>
+          <label class="done"><input type="checkbox" data-id="133"> Done</label></header>
+        <div class="problem">A pole 2 px wide crosses a $100 \times 100$ box from corner to corner. <strong>(a)</strong> About how many pixels does the pole cover? ($\sqrt{2} \approx 1.41$) <strong>(b)</strong> What share of the box is the pole?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> the diagonal is $100\sqrt{2} \approx 141$ px long → $2 \times 141 \approx 282$ px [0.5]<br>
+<strong>(b)</strong> $282 / 10\,000 \approx 3\%$ — a box of a thin, slanted object is almost all background; a mask measures the object itself [0.5]<br>
+<strong>Answer:</strong> (a) about 282 · (b) about 3 %</div></details>
+      </article>
+      <article class="item" id="p134" data-sess="8" data-part="C" data-stars="3">
+        <header><span class="iid">134</span><span class="stars" title="difficulty">⭐⭐⭐</span><span class="topic">Why skip connections?</span><span class="meta">2 pts · ~5 min</span>
+          <label class="done"><input type="checkbox" data-id="134"> Done</label></header>
+        <div class="problem">An encoder turns a $256 \times 256$ image into a $16 \times 16$ map. <strong>(a)</strong> How many image pixels does one map cell stand for? <strong>(b)</strong> A decoder that only enlarges this map draws the mask edge in steps of how many pixels? <strong>(c)</strong> In a U-Net, the decoder map at $64 \times 64$ has 64 channels and the encoder map of the same size also has 64. What does the skip connection give the decoder, and how many channels after joining them?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $256 / 16 = 16$ → a $16 \times 16$ patch, 256 pixels [0.5]<br>
+<strong>(b)</strong> 16 pixels: every cell is all-in or all-out, so edges look blocky [0.5]<br>
+<strong>(c)</strong> the encoder's fine detail (edges) at that size [0.5]; joined side by side: $64 + 64 = 128$ channels [0.5]<br>
+<strong>Answer:</strong> (a) 256 pixels · (b) 16-pixel steps · (c) fine detail; 128 channels</div></details>
+      </article>
+  <div class="parthead" id="s8d" data-group="8D"><h3>D · Open vocabulary &amp; responsibility</h3><span class="pc"></span><a href="../session-08/slides.html#/part-d">Slides for this part →</a></div>
+      <article class="item" id="p135" data-sess="8" data-part="D" data-stars="1">
+        <header><span class="iid">135</span><span class="stars" title="difficulty">⭐</span><span class="topic">Name a region by cosine</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="135"> Done</label></header>
+        <div class="problem">A region's embedding (length 1) is $r = [0.8,\ 0.6]$. Sentence embeddings (length 1): “car” $[1,\ 0]$ · “truck” $[0.6,\ 0.8]$ · “bus” $[0,\ 1]$. <strong>(a)</strong> Compute the three cosines. <strong>(b)</strong> Which names pass a cosine threshold of 0.9?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> car $0.8$ · truck $0.48 + 0.48 = 0.96$ · bus $0.6$ [1]<br>
+<strong>(b)</strong> only “truck” [0.5]<br>
+<strong>Answer:</strong> (a) 0.8, 0.96, 0.6 · (b) truck</div></details>
+      </article>
+      <article class="item" id="p136" data-sess="8" data-part="D" data-stars="2">
+        <header><span class="iid">136</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Sigmoid, not softmax</span><span class="meta">2 pts · ~4 min</span>
+          <label class="done"><input type="checkbox" data-id="136"> Done</label></header>
+        <div class="problem">For one region, OWL-ViT-style scoring uses $\sigma((\cos + b) \cdot s)$ with $b = -0.2$ and $s = 10$. The cosines are “a person” 0.30 and “a cyclist” 0.35. Use $\sigma(1.0) = 0.73$, $\sigma(1.5) = 0.82$, $e^{0.5} \approx 1.65$. <strong>(a)</strong> Compute both scores. <strong>(b)</strong> With threshold 0.5, which names does the region get? <strong>(c)</strong> If a softmax were taken over the two values $1.0$ and $1.5$ instead, what shares would they get — and why is that wrong here?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> person $\sigma((0.30 - 0.2)\cdot 10) = \sigma(1.0) = 0.73$ · cyclist $\sigma(1.5) = 0.82$ [0.5]<br>
+<strong>(b)</strong> both [0.5]<br>
+<strong>(c)</strong> $1 / (1 + 1.65) \approx 0.38$ and $1.65 / 2.65 \approx 0.62$ [0.5]; a softmax forces the names to compete, but a cyclist <strong>is</strong> a person — both should be allowed [0.5]<br>
+<strong>Answer:</strong> (a) 0.73 and 0.82 · (b) both · (c) 0.38 / 0.62 — wrong, the names are not exclusive</div></details>
+      </article>
+      <article class="item" id="p137" data-sess="8" data-part="D" data-stars="1">
+        <header><span class="iid">137</span><span class="stars" title="difficulty">⭐</span><span class="topic">A datasheet for your data</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="137"> Done</label></header>
+        <div class="problem">Your project uses 800 photos of street food stalls you found online. Write three questions a datasheet (Gebru et al., 2021) would make you answer, and say why each matters.</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln">Any three, each with a reason (0.5 each):<br>
+- <strong>Where did the photos come from, and may you use them?</strong> — licence and consent [0.5]<br>
+- <strong>Who and what is in them?</strong> — people who did not agree; which cities and kinds of stall are missing [0.5]<br>
+- <strong>Who labelled them, and how?</strong> — one person's judgement; how disagreements were settled [0.5]<br>
+- <strong>What should the data not be used for?</strong> — e.g. identifying the vendors (or any other, in place of one above)<br>
+<strong>Answer:</strong> e.g. source and permission · who is in it · who labelled it (or what it must not be used for)</div></details>
+      </article>
+      <article class="item" id="p138" data-sess="8" data-part="D" data-stars="2">
+        <header><span class="iid">138</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">The words decide who is harmed</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="138"> Done</label></header>
+        <div class="problem">CLIP's authors classified face photos into a fixed list of labels that included non-human and crime words. Adding the label “child” cut such labels for ages 0–2 from 30.3 % to 2.3 % (Radford et al., 2021). <strong>(a)</strong> Why can adding one label change the others' results? <strong>(b)</strong> What does this mean for someone building an open-vocabulary detector?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> the model must pick from the list it is given; without a fitting label, a child's photo goes to the closest remaining one — even a harmful one [0.75]<br>
+<strong>(b)</strong> the label list is a design decision: include fitting labels, leave out harmful ones, and test the list on the people the system will meet [0.75]<br>
+<strong>Answer:</strong> (a) a forced choice among the given words · (b) choose and test the words with care</div></details>
+      </article>
+      <article class="item" id="p139" data-sess="8" data-part="D" data-stars="2">
+        <header><span class="iid">139</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Before you deploy a person counter</span><span class="meta">2 pts · ~4 min</span>
+          <label class="done"><input type="checkbox" data-id="139"> Done</label></header>
+        <div class="problem">A library wants to count the people entering with a camera and a person detector. <strong>(a)</strong> Name two questions to answer before installing it. <strong>(b)</strong> What should the evaluation report, beyond one accuracy number? <strong>(c)</strong> Suggest a design that needs less personal data.</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> any two of: who agreed and how they are told · what the footage is for and nothing else · who can see it and how long it is kept · the lawful basis under the PDPA [1]<br>
+<strong>(b)</strong> precision and recall <strong>by group</strong> — e.g. wheelchair users, children, people in groups, at night — plus what it was not tested on [0.5]<br>
+<strong>(c)</strong> count on the device and keep only the number (no images stored), or use a sensor that cannot identify anyone [0.5]<br>
+<strong>Answer:</strong> (a) consent and purpose · (b) results by group and limits · (c) count on the device, store no images</div></details>
       </article>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
