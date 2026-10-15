@@ -1080,6 +1080,225 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 สรุป C · ชี้ต่อ T7-1 (calibration) · แล้วต่อ D: กล้องสองตัว = K[R | t] สองชุด</p><p>🇬🇧 Wrap up C. Forward: T7-1 (calibration). Then D: two cameras are two K[R | t].</p></aside>
 </section>
 
+<!-- 28 -->
+<section class="part-open" id="part-d" data-part="D">
+  <div class="po-strip"><a href="#/part-a" class="done"><b>A</b>Transforms</a><a href="#/part-b" class="done"><b>B</b>Homography</a><a href="#/part-c" class="done"><b>C</b>Camera</a><a href="#/part-d" class="on"><b>D</b>Stereo</a></div>
+  <p class="po-letter">D</p>
+  <h2 class="claim">Stereo</h2>
+  <p class="po-q">How do two cameras measure depth?</p>
+  <p class="po-out"><span>By the end of this part</span>Compute depth from disparity, and explain why a match must lie on its epipolar line.</p>
+  <aside class="notes"><p>🇹🇭 หน้าเปิด part: อ่านคำถามกับสิ่งที่จะทำได้ท้าย part แล้วเข้าเนื้อหา</p><p>🇬🇧 Part opener: read the question and what you can do by the end of the part, then go in.</p></aside>
+</section>
+
+<!-- 29 -->
+<section data-part="D">
+  <p class="kicker">D · Stereo</p>
+  <h2 class="claim">Two eyes, two cameras: the near shifts more</h2>
+  <div class="split">
+    <div><svg class="fig cvsvg" viewBox="55 15 420 350" style="max-width:600px;margin:0 auto" role="img" aria-label="two eyes side by side looking at a near and a far point; in the two pictures the near point jumps a lot, the far point hardly moves"><defs><marker id="a70f1b2d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f1b2d"/></marker><marker id="a70f766e" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker><marker id="a7e0533d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e0533d"/></marker><marker id="a7c97a06" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c97a06"/></marker><marker id="a72f6fdb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2f6fdb"/></marker></defs><line x1="190" y1="250" x2="250" y2="150" stroke="#e0533d" stroke-width="1.8" opacity=".85"/><line x1="190" y1="250" x2="250" y2="30" stroke="#2f6fdb" stroke-width="1.8" opacity=".85"/><polygon points="190.0,250.0 203.0,224.0 177.0,224.0" fill="#0f1b2d" fill-opacity=".25" stroke="#0f1b2d" stroke-width="2.5"/><text x="190" y="272" text-anchor="middle" class="tk" style="fill:#0f1b2d">left eye</text><line x1="290" y1="250" x2="250" y2="150" stroke="#e0533d" stroke-width="1.8" opacity=".85"/><line x1="290" y1="250" x2="250" y2="30" stroke="#2f6fdb" stroke-width="1.8" opacity=".85"/><polygon points="290.0,250.0 303.0,224.0 277.0,224.0" fill="#0f1b2d" fill-opacity=".25" stroke="#0f1b2d" stroke-width="2.5"/><text x="290" y="272" text-anchor="middle" class="tk" style="fill:#0f1b2d">right eye</text><circle cx="250" cy="150" r="8" fill="#e0533d"/><text x="264" y="155" class="lb" style="fill:#e0533d">near</text><circle cx="250" cy="30" r="8" fill="#2f6fdb"/><text x="264" y="35" class="lb" style="fill:#2f6fdb">far</text><text x="240" y="312" text-anchor="middle" class="tk">what each eye sees (the same two points)</text><rect x="70" y="322" width="160" height="34" rx="6" fill="#f5f7fa" stroke="#94a3b8"/><circle cx="84.0" cy="339" r="7" fill="#e0533d"/><circle cx="120.0" cy="339" r="7" fill="#2f6fdb"/><rect x="300" y="322" width="160" height="34" rx="6" fill="#f5f7fa" stroke="#94a3b8"/><circle cx="424.0" cy="339" r="7" fill="#e0533d"/><circle cx="400.0" cy="339" r="7" fill="#2f6fdb"/></svg><p class="gcap">seen from above · the near point lands far apart in the two pictures, the far point almost in the same place</p></div>
+    <div class="say">
+      <p><b>Try it now:</b> hold up a thumb, close one eye, then the other. The thumb jumps; the far wall hardly moves.</p>
+      <p class="fragment">Two cameras side by side do the same. The shift of one point between the two pictures is its <b>disparity</b>: d = x<sub>left</sub> − x<sub>right</sub>.</p>
+      <div class="flashback fragment">Session 6 C: find the same point in two photos. Part B: a deep scene has no single H — this shift is why.</div>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ทดลองในห้อง: ยกนิ้วโป้ง ปิดตาทีละข้าง นิ้วกระโดด ผนังแทบไม่ขยับ · disparity = ระยะที่จุดเลื่อนระหว่างสองภาพ · ย้อน part B: parallax คือสิ่งที่ทำให้ไม่มี H เดียว</p><p>🇬🇧 In the room: thumb up, close one eye then the other — the thumb jumps, the wall barely moves. Disparity = how far a point shifts between the two pictures. Back to part B: this parallax is why no single H fits.</p></aside>
+</section>
+
+<!-- 30 -->
+<section data-part="D">
+  <p class="kicker">D · Stereo</p>
+  <h2 class="claim">Depth from disparity: Z = f·B/d</h2>
+  <div class="split">
+    <div><svg class="fig cvsvg" viewBox="50 30 440 335" style="max-width:600px;margin:0 auto" role="img" aria-label="top view: two pinholes a distance B apart, image planes at distance f, rays to a point P at depth Z cross the image planes at x left and x right"><defs><marker id="a70f1b2d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f1b2d"/></marker><marker id="a70f766e" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker><marker id="a7e0533d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e0533d"/></marker><marker id="a7c97a06" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c97a06"/></marker><marker id="a72f6fdb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2f6fdb"/></marker></defs><line x1="60" y1="230" x2="420" y2="230" stroke="#2f6fdb" stroke-width="2.5"/><text x="415" y="222" text-anchor="end" class="tk" style="fill:#2f6fdb">image planes</text><line x1="130" y1="300" x2="330" y2="50" stroke="#0f766e" stroke-width="2.5"/><line x1="130" y1="300" x2="130" y2="212" stroke="#94a3b8" stroke-dasharray="4 4"/><circle cx="186.0" cy="230" r="6" fill="#0f766e"/><circle cx="130" cy="300" r="6" fill="#0f1b2d"/><text x="130" y="324" text-anchor="middle" class="lb">Oₗ</text><line x1="250" y1="300" x2="330" y2="50" stroke="#c97a06" stroke-width="2.5"/><line x1="250" y1="300" x2="250" y2="212" stroke="#94a3b8" stroke-dasharray="4 4"/><circle cx="272.4" cy="230" r="6" fill="#c97a06"/><circle cx="250" cy="300" r="6" fill="#0f1b2d"/><text x="250" y="324" text-anchor="middle" class="lb">Oᵣ</text><circle cx="330" cy="50" r="7" fill="#e0533d"/><text x="342" y="55" class="lb" style="fill:#e0533d">P = (X, Z)</text><line x1="130" y1="334" x2="250" y2="334" stroke="#0f1b2d" stroke-width="2" marker-end="url(#a70f1b2d)"/><text x="190.0" y="352" text-anchor="middle" class="lb">B</text><text x="118" y="270.0" text-anchor="end" class="lb">f</text><text x="148" y="220" class="tk" style="fill:#0f766e">xₗ</text><text x="262" y="220" class="tk" style="fill:#c97a06">xᵣ</text></svg><p class="gcap">two pinholes B apart, both facing straight ahead (top view)</p></div>
+    <div class="say">
+      <div class="flashback">Session 2, slide 8 — and slide 21: x = f·X/Z, once for each camera.</div>
+      <p style="margin-top:.6em">Measure X from the left pinhole. The right pinhole sits B further along, so it sees X − B:</p>
+      <div class="eq fragment">$$x_l=\frac{fX}{Z},\quad x_r=\frac{f(X-B)}{Z}\;\Rightarrow\;d=x_l-x_r=\frac{fB}{Z}$$</div>
+      <p class="fragment">X cancels: disparity depends <b>only on depth</b>. Turn it round: <b>Z = f·B/d</b> — near means large d.</p>
+      <div class="worked fragment"><span class="tag">Worked example · f 800 px, B 0.12 m (fB = 96)</span><p>Z = 2 m → d = 96 ÷ 2 = 48 px · Z = 8 m → d = 12 px · measured d = 24 px → Z = 96 ÷ 24 = 4 m</p></div>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ที่มา Z = fB/d: สูตร pinhole ของคาบ 2 สองครั้ง กล้องขวาเห็น X − B → ลบกัน X หายไป เหลือ d = fB/Z · ตัวอย่าง f 800 px, B 12 cm (fB = 96) ใช้ต่อทั้ง part (ฉากหน้า 33 สร้างด้วยค่านี้)</p><p>🇬🇧 Where Z = fB/d comes from: session 2's pinhole formula twice; the right camera sees X − B; subtract and X cancels: d = fB/Z. The example f 800 px, B 12 cm (fB = 96) runs through the part (slide 33's scene is built with it).</p></aside>
+</section>
+
+<!-- 31 -->
+<section data-part="D">
+  <p class="kicker">D · Stereo</p>
+  <h2 class="claim">Push the point away: the disparity shrinks</h2>
+  <div class="split">
+    <div>
+      <canvas id="stCv" class="democv" width="600" height="330" aria-label="top view of two cameras and a point; below, where the point lands in the left and the right picture"></canvas>
+      <div class="ctrl" style="justify-content:center">
+        <label>depth Z (m) <input class="slider" id="stZ" type="range" min="1" max="20" step="0.5" value="4" aria-label="depth in metres"></label>
+        <label>baseline B (m) <input class="slider" id="stB" type="range" min="0.06" max="0.3" step="0.02" value="0.12" aria-label="baseline in metres"></label>
+      </div>
+    </div>
+    <div class="say">
+      <p id="stOut" class="calc big"></p>
+      <p class="fragment">Double the depth, half the disparity. Far away, d gets close to 0 — a longer baseline B makes it larger again.</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ลาก Z 1 → 20: d ลดตาม 1/Z (4 m → 24 px · 8 m → 12 px) · ลาก B: d โตตาม B · readout แทนค่าในสูตรทั้งสองทาง · f คงที่ 800 px</p><p>🇬🇧 Drag Z from 1 to 20: d falls like 1/Z (4 m → 24 px, 8 m → 12 px). Drag B: d grows with B. The readout substitutes into the formula both ways; f stays 800 px.</p></aside>
+</section>
+
+<!-- 32 -->
+<section data-part="D">
+  <p class="kicker">D · Stereo</p>
+  <h2 class="claim">One pixel of error hurts far more when far</h2>
+  <div class="split">
+    <div><svg class="fig cvsvg" viewBox="0 0 520 300" role="img" aria-label="depth against disparity, a curve falling steeply at small disparity; one pixel of change moves the depth a little when near and a lot when far"><line x1="56" y1="260" x2="510" y2="260" stroke="#94a3b8"/><line x1="56" y1="260" x2="56" y2="14" stroke="#94a3b8"/><polyline points="56.0,20.0 60.1,38.5 64.2,54.3 68.3,68.0 72.4,80.0 76.6,90.6 80.7,100.0 84.8,108.4 88.9,116.0 93.0,122.9 97.1,129.1 101.2,134.8 105.3,140.0 109.4,144.8 113.6,149.2 117.7,153.3 121.8,157.1 125.9,160.7 130.0,164.0 134.1,167.1 138.2,170.0 142.3,172.7 146.4,175.3 150.6,177.7 154.7,180.0 158.8,182.2 162.9,184.2 167.0,186.2 171.1,188.0 175.2,189.8 179.3,191.4 183.4,193.0 187.6,194.5 191.7,196.0 195.8,197.4 199.9,198.7 204.0,200.0 208.1,201.2 212.2,202.4 216.3,203.5 220.4,204.6 224.6,205.7 228.7,206.7 232.8,207.6 236.9,208.6 241.0,209.5 245.1,210.3 249.2,211.2 253.3,212.0 257.4,212.8 261.6,213.5 265.7,214.3 269.8,215.0 273.9,215.7 278.0,216.4 282.1,217.0 286.2,217.6 290.3,218.3 294.4,218.9 298.6,219.4 302.7,220.0 306.8,220.5 310.9,221.1 315.0,221.6 319.1,222.1 323.2,222.6 327.3,223.1 331.4,223.5 335.6,224.0 339.7,224.4 343.8,224.9 347.9,225.3 352.0,225.7 356.1,226.1 360.2,226.5 364.3,226.9 368.4,227.3 372.6,227.6 376.7,228.0 380.8,228.4 384.9,228.7 389.0,229.0 393.1,229.4 397.2,229.7 401.3,230.0 405.4,230.3 409.6,230.6 413.7,230.9 417.8,231.2 421.9,231.5 426.0,231.8 430.1,232.0 434.2,232.3 438.3,232.6 442.4,232.8 446.6,233.1 450.7,233.3 454.8,233.6 458.9,233.8 463.0,234.1 467.1,234.3 471.2,234.5 475.3,234.7 479.4,235.0 483.6,235.2 487.7,235.4 491.8,235.6 495.9,235.8 500.0,236.0" fill="none" stroke="#0f1b2d" stroke-width="3"/><text x="105.33333333333333" y="278" text-anchor="middle" class="tk">12</text><text x="204.0" y="278" text-anchor="middle" class="tk">24</text><text x="302.6666666666667" y="278" text-anchor="middle" class="tk">36</text><text x="401.3333333333333" y="278" text-anchor="middle" class="tk">48</text><text x="500.0" y="278" text-anchor="middle" class="tk">60</text><text x="48" y="264.0" text-anchor="end" class="tk">0</text><text x="48" y="204.0" text-anchor="end" class="tk">4</text><text x="48" y="144.0" text-anchor="end" class="tk">8</text><text x="48" y="84.0" text-anchor="end" class="tk">12</text><text x="48" y="24.0" text-anchor="end" class="tk">16</text><rect x="393.1" y="229.4" width="8.2" height="0.6" fill="#0f766e" fill-opacity=".35" stroke="#0f766e" stroke-width="2"/><text x="397.2" y="256.0" text-anchor="middle" class="lb" style="fill:#0f766e">d 48 → 47: 2.00 → 2.04 m</text><rect x="97.1" y="129.1" width="8.2" height="10.9" fill="#e0533d" fill-opacity=".35" stroke="#e0533d" stroke-width="2"/><text x="115.3" y="133.1" class="lb" style="fill:#e0533d">d 12 → 11: 8.00 → 8.73 m</text><text x="288.0" y="296" text-anchor="middle" class="tk">disparity d (px)</text><text x="16" y="130.0" text-anchor="middle" class="tk" transform="rotate(-90 16 130.0)">depth Z (m)</text></svg><p class="gcap">Z = 96 / d (f 800 px, B 0.12 m): the same one-pixel step, near and far</p></div>
+    <div class="say">
+      <p>A match is only ever right to about a pixel. How much depth is one pixel?</p>
+      <div class="eq fragment">$$\Delta Z\approx\left|\frac{dZ}{dd}\right|\cdot 1=\frac{fB}{d^2}=\frac{Z^2}{fB}$$</div>
+      <p class="fragment">The error grows with <b>Z²</b>: twice as far, four times worse. A longer baseline B divides it down.</p>
+      <div class="worked fragment"><span class="tag">Worked example · fB = 96</span><p>near: d 48 → 47 = 2.00 → 2.04 m (+2%) · Z²/fB = 4/96 ≈ 0.04 · far: d 12 → 11 = 8.00 → 8.73 m (+9%) · 64/96 ≈ 0.67</p></div>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ที่มา: ΔZ ≈ |dZ/dd| = fB/d² = Z²/(fB) (อนุพันธ์ — ย้อน Taylor คาบ 4 หน้า 13) · ไกลสองเท่า ผิดสี่เท่า · ตัวอย่างไม่ซ้ำ Try it หน้า 36 · baseline ยาวขึ้นช่วย</p><p>🇬🇧 Where it comes from: ΔZ ≈ |dZ/dd| = fB/d² = Z²/(fB) (a derivative — session 4 slide 13's Taylor). Twice as far, four times worse. The example differs from slide 36's Try it. A longer baseline helps.</p></aside>
+</section>
+
+<!-- 33 -->
+<section data-part="D">
+  <p class="kicker">D · Stereo</p>
+  <h2 class="claim">Depth is lost — and now we win it back</h2>
+  <div class="split">
+    <div>
+      <div class="conv3" style="grid-template-columns:repeat(2,minmax(0,1fr));max-width:none;gap:.5em">
+        <figure class="photo"><img src="img/stereo_left.jpg" alt="a drawn scene: three boards of brick and stone in front of a landscape"><figcaption>left view of a drawn scene</figcaption></figure>
+        <figure class="photo"><img src="img/disparity.png" alt="the disparity map: each board one flat colour, nearer boards warmer"><figcaption>disparity from OpenCV StereoSGBM</figcaption></figure>
+      </div>
+      <table class="tbl" style="margin-top:.4em"><tr><th>board at</th><th>true d</th><th>measured d</th><th>Z = 96 / d</th></tr><tr><td>8 m</td><td>12</td><td>12</td><td><b>8 m</b></td></tr><tr><td>4 m</td><td>24</td><td>24</td><td><b>4 m</b></td></tr><tr><td>2 m</td><td>48</td><td>48</td><td><b>2 m</b></td></tr></table>
+    </div>
+    <div class="say">
+      <div class="flashback">Session 2, slides 13–14: 1 m at 5 m, 2 m at 10 m and 4 m at 20 m make the same 10 mm picture — “depth is lost; later, we win it back”.</div>
+      <p class="fragment" style="margin-top:.6em">A second camera tells them apart: their disparities differ.</p>
+      <div class="worked fragment"><span class="tag">Worked example · fB = 96</span><p>Z 5, 10, 20 m → d = 96/5, 96/10, 96/20 = 19.2, 9.6, 4.8 px — three different numbers for one picture size</p></div>
+      <p class="fragment">The scene on the left was drawn with f 800 px, B 0.12 m; a program found the matches and got the depths back exactly.</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ปิดสัญญาคาบ 2 หน้า 13–14 · ฉากที่สร้างเอง (กระดาน 3 แผ่นที่ 2, 4, 8 m หน้ากำแพง 16 m · texture จากภาพ CC0 ที่ใช้อยู่แล้ว) → StereoSGBM วัด disparity 48 / 24 / 12 → ความลึกกลับมาครบ · สีดำ = บริเวณที่ถูกบังในอีกภาพ หาคู่ไม่ได้</p><p>🇬🇧 Closing session 2 slides 13–14's promise. A drawn scene (three boards at 2, 4, 8 m in front of a wall at 16 m, textures from the CC0 photos already used) → StereoSGBM measures 48 / 24 / 12 → the depths come back. Black = hidden in the other view, no match.</p></aside>
+</section>
+
+<!-- 34 -->
+<section data-part="D">
+  <p class="kicker">D · Stereo</p>
+  <h2 class="claim">The twin of a point lies on one line</h2>
+  <div class="split">
+    <div><svg class="fig cvsvg" viewBox="0 0 500 310" role="img" aria-label="a pixel in photo 1 is a ray in space; the possible points along the ray land on one line in photo 2"><defs><marker id="a70f1b2d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f1b2d"/></marker><marker id="a70f766e" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker><marker id="a7e0533d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e0533d"/></marker><marker id="a7c97a06" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c97a06"/></marker><marker id="a72f6fdb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2f6fdb"/></marker></defs><rect x="20" y="200" width="130" height="80" rx="6" fill="#fff" stroke="#94a3b8" stroke-width="2"/><rect x="350" y="200" width="130" height="80" rx="6" fill="#fff" stroke="#94a3b8" stroke-width="2"/><text x="85" y="300" text-anchor="middle" class="tk">photo 1</text><text x="415" y="300" text-anchor="middle" class="tk">photo 2</text><line x1="90" y1="230" x2="270" y2="30" stroke="#e0533d" stroke-width="2.5"/><circle cx="90" cy="230" r="6" fill="#e0533d"/><circle cx="180" cy="165" r="5" fill="#2f6fdb"/><line x1="180" y1="165" x2="365" y2="262" stroke="#2f6fdb" stroke-width="1.2" opacity=".6"/><circle cx="365" cy="262" r="5" fill="#2f6fdb"/><circle cx="210" cy="120" r="5" fill="#2f6fdb"/><line x1="210" y1="120" x2="387" y2="250" stroke="#2f6fdb" stroke-width="1.2" opacity=".6"/><circle cx="387" cy="250" r="5" fill="#2f6fdb"/><circle cx="240" cy="75" r="5" fill="#2f6fdb"/><line x1="240" y1="75" x2="409" y2="238" stroke="#2f6fdb" stroke-width="1.2" opacity=".6"/><circle cx="409" cy="238" r="5" fill="#2f6fdb"/><circle cx="270" cy="30" r="5" fill="#2f6fdb"/><line x1="270" y1="30" x2="431" y2="226" stroke="#2f6fdb" stroke-width="1.2" opacity=".6"/><circle cx="431" cy="226" r="5" fill="#2f6fdb"/><line x1="355" y1="268" x2="470" y2="206" stroke="#c97a06" stroke-width="3" stroke-dasharray="7 4"/><text x="420" y="190" text-anchor="middle" class="lb" style="fill:#c97a06">epipolar line</text><text x="215" y="40" class="lb" style="fill:#2f6fdb">the ray: every depth it could be</text></svg><p class="gcap">one pixel of photo 1 = one ray; seen from camera 2, the ray is a line</p></div>
+    <div class="say">
+      <p>One pixel in photo 1 could be anywhere along its ray. Seen from camera 2, that ray is a line — the <b>epipolar line</b>.</p>
+      <p class="fragment">So the twin of the pixel lies on that line: search <b>one row</b>, not the whole photo — faster, and fewer look-alikes to confuse the match (session 6 C).</p>
+      <div class="worked fragment"><span class="tag">Worked example · a 640 × 480 photo</span><p>search the whole photo: 640 × 480 = 307,200 places · search one line: 640 places — 480 times fewer</p></div>
+      <p class="fragment" style="color:var(--muted);font-size:.9em">The matrix behind the line (the fundamental matrix): T7-2.</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 epipolar เป็นแนวคิดเท่านั้น (ไม่มีข้อคำนวณ F ใน Final) · pixel หนึ่งจุด = รังสีหนึ่งเส้น · กล้องที่สองเห็นรังสีเป็นเส้น → หาคู่บนเส้นเดียว · ตัวอย่าง: ค้นน้อยลง 480 เท่า · F อยู่ใน T7-2</p><p>🇬🇧 Epipolar geometry is a concept only (no F calculations in the final). One pixel = one ray; the second camera sees the ray as a line → search one line. The example: 480 times less search. The fundamental matrix is T7-2.</p></aside>
+</section>
+
+<!-- 35 -->
+<section data-part="D">
+  <p class="kicker">D · Stereo</p>
+  <h2 class="claim">Rectify: make the lines horizontal</h2>
+  <div>
+    <figure class="photo" style="max-width:980px;margin:0 auto"><img src="img/stereo_rows.jpg" alt="the left and right views side by side with three horizontal lines across both; one point and its twin circled on the same row"></figure>
+    <div class="split even" style="margin-top:.4em;align-items:start">
+      <div class="say"><p>Turn both photos (a homography each — part B) so the epipolar lines become <b>rows</b>. Then a point's twin is on the same row, and disparity is just the difference of columns.</p></div>
+      <div class="say"><div class="worked fragment"><span class="tag">Worked example · the circled point</span><p>column 330 on the left, 306 on the right → d = 24 px → Z = 96 ÷ 24 = 4 m: the middle board</p></div></div>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 หลัง rectify: เส้น epipolar = แถว · disparity = ผลต่างของคอลัมน์ · ชี้วงกลมแดง: แถวเดียวกันทั้งสองภาพ เลื่อน 24 px → 4 m · rectify ใช้ homography ของ part B</p><p>🇬🇧 After rectification epipolar lines are rows and disparity is a column difference. The red circles: same row in both views, 24 px apart → 4 m. Rectifying uses part B's homographies.</p></aside>
+</section>
+
+<!-- 36 -->
+<section data-part="D">
+  <p class="kicker">D · Stereo</p>
+  <h2 class="claim">Try it: how far, and how sure?</h2>
+  <div class="split">
+    <div class="tryit"><span class="tag">Try it</span>A stereo camera has f = 700 px and B = 0.1 m (fB = 70).
+      <ol style="margin:.4em 0 0 1.1em"><li>A point has disparity 35 px. How far is it? What if the match is 1 px off (34 px)?</li><li>A far point has disparity 7 px. How far? And at 6 px?</li><li>By how many percent does one pixel change the depth in each case?</li></ol>
+      <details><summary>Answer</summary>1. 70 ÷ 35 = <b>2 m</b> · 70 ÷ 34 ≈ <b>2.06 m</b> · 2. 70 ÷ 7 = <b>10 m</b> · 70 ÷ 6 ≈ <b>11.7 m</b> · 3. near ≈ <b>3%</b> · far ≈ <b>17%</b> — the Z² of slide 32.</details>
+    </div>
+    <div class="say"><p>Z = f·B / d</p><p>ΔZ ≈ Z² / (f·B)</p></div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ให้เวลา 2 นาที · แบบข้อสอบ Final · ข้อ 3 โยงกับหน้า 32</p><p>🇬🇧 Give two minutes. Final-exam style. Question 3 ties to slide 32.</p></aside>
+</section>
+
+<!-- 37 -->
+<section data-part="D">
+  <p class="kicker">D · Stereo</p>
+  <h2 class="claim">Stereo: disparity buys back depth</h2>
+  <div class="cards">
+    <div class="card"><b>Disparity</b>The same point shifts between two side-by-side cameras: Z = f·B/d — near shifts more.</div>
+    <div class="card violet"><b>Precision</b>One pixel of error costs Z²/(fB) metres: far depth is rough; a longer baseline helps.</div>
+    <div class="card amber"><b>Search one line</b>The twin lies on the epipolar line; after rectifying, on the same row.</div>
+  </div>
+  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-07/lab.ipynb#scrollTo=part-d" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part D</a><span>Z = f·B/d and a pixel of error; a rectified stereo pair → StereoSGBM → a depth map; matching rows (no fundamental matrix)</span></p>
+  <p class="more"><a target="_blank" rel="noopener" href="../practice/#s7d">More practice · Session 7 D — practice bank with worked solutions →</a></p>
+  <p class="takeaway"><span>Later: session 9 — optical flow matches points across time instead of across cameras · T7-6 Depth Anything and T7-7 DUSt3R get depth from one or two photos with a trained model.</span></p>
+
+  <aside class="notes"><p>🇹🇭 สรุป D · ชี้ต่อคาบ 9 (optical flow = จับคู่ข้ามเวลา) · T7-6, T7-7</p><p>🇬🇧 Wrap up D. Forward: session 9 (optical flow matches across time). T7-6, T7-7.</p></aside>
+</section>
+
+<!-- 38 -->
+<section>
+  <p class="kicker">Session 7 · what to remember</p>
+  <h2 class="claim">Geometry ties views together</h2>
+  <ol class="steps recap">
+    <li><span><b>Transforms:</b> add a 1, and every move is a 3 × 3 matrix — 2 / 4 / 6 / 8 degrees of freedom; divide by w.</span></li>
+    <li><span><b>Homography:</b> a flat scene or a turning camera; 8 unknowns, 4 pairs; match → RANSAC → warp → blend.</span></li>
+    <li><span><b>Camera:</b> x = K[R | t] X — millimetres to pixels, world to camera, then divide by depth.</span></li>
+    <li><span><b>Stereo:</b> Z = f·B/d; one pixel costs Z²/(fB); search the twin along one line.</span></li>
+  </ol>
+  <p class="more" style="margin-top:.4em">Session 2 said “depth is lost — later, we win it back”: that was part D. <a target="_blank" rel="noopener" href="../practice/#s7">All session 7 practice →</a></p>
+  <aside class="notes"><p>🇹🇭 ทวน 4 ข้อ A–D · ปิดสัญญาคาบ 2 หน้า 14 · ต่อด้วยครึ่ง A นำเสนอ T6</p><p>🇬🇧 Recap A–D. Session 2 slide 14's promise is kept. Half A's T6 talks follow.</p></aside>
+</section>
+
+<!-- 39 -->
+<section>
+  <p class="kicker">Assignment · topic set T7</p>
+  <h2 class="claim">Half B: pick a T7 topic today — you present it in session 8</h2>
+  <ol class="tset"><li><span class="tn">1</span><span class="tt">Camera calibration</span><a href="https://www.youtube.com/watch?v=GUbWsXU1mac" target="_blank" rel="noopener">Start: Nayar — Camera Calibration (First Principles)</a></li><li><span class="tn">2</span><span class="tt">Estimating the fundamental matrix</span><a href="https://www.youtube.com/watch?v=izpYAwJ0Hlw" target="_blank" rel="noopener">Start: Nayar — Estimating Fundamental Matrix</a></li><li><span class="tn">3</span><span class="tt">Structure from motion and COLMAP</span><a href="https://www.youtube.com/watch?v=oIvg7sbJRIA" target="_blank" rel="noopener">Start: Nayar — Structure from Motion (overview)</a></li><li><span class="tn">4</span><span class="tt">SLAM: mapping while moving</span><a href="https://www.youtube.com/watch?v=NW8hUcbjuIQ" target="_blank" rel="noopener">Start: Stachniss — Introduction to SLAM</a></li><li><span class="tn">5</span><span class="tt">Single view metrology</span><a href="https://visionbook.mit.edu/3d_scene_understanding_single_view.html" target="_blank" rel="noopener">Start: Torralba, Isola &amp; Freeman — Single View Metrology</a></li><li><span class="tn">6</span><span class="tt">Monocular depth: Depth Anything</span><a href="https://arxiv.org/abs/2401.10891" target="_blank" rel="noopener">Start: Yang et al. (2024), Depth Anything</a></li><li><span class="tn">7</span><span class="tt">3D from two photos without calibration: DUSt3R</span><a href="https://arxiv.org/abs/2312.14132" target="_blank" rel="noopener">Start: Wang et al. (2024), DUSt3R</a></li></ol>
+  <p class="takeaway"><span>One group per topic. Each links to a starting lecture or paper — go beyond it. And: your project topic is due next week (week 8).</span></p>
+  <aside class="notes"><p>🇹🇭 ครึ่ง B เลือกหัวข้อ กลุ่มละหนึ่งหัวข้อ ไม่ซ้ำกัน · ส่งไฟล์ตามกำหนดก่อนคาบ 8 · เตือน: ส่งหัวข้อโปรเจกต์สัปดาห์หน้า</p><p>🇬🇧 Half B picks one topic per group, no repeats; files due before session 8. Remind: project topic due next week.</p></aside>
+</section>
+
+<!-- 40 -->
+<section>
+  <p class="kicker">Next · Session 8</p>
+  <h2 class="claim">What is in the picture, where — and which pixels?</h2>
+  <div class="split">
+    <div class="say">
+      <p>Today: how views of a scene are tied together — transforms, homographies, cameras, depth.</p>
+      <p>Session 8 — <b>detection and segmentation</b>: a box around every object, a mask for every pixel — and session 5's CLIP comes back to find things by name.</p>
+    </div>
+    <div class="flashback">Keep from today: a box is four numbers in pixel coordinates · transforms move boxes and masks too.</div>
+  </div>
+  <aside class="notes"><p>🇹🇭 ปิดคาบ: ปูทางคาบ 8</p><p>🇬🇧 Close the session and set up session 8.</p></aside>
+</section>
+
+<!-- 41 -->
+<section>
+  <p class="kicker">References</p>
+  <h2 class="claim">Where session 7 comes from</h2>
+  <ul class="small" style="font-size:.56em;line-height:1.5">
+    <li>R. Hartley &amp; A. Zisserman (2004). <i>Multiple View Geometry in Computer Vision</i>, 2nd ed., ch. 2, 4, 6, 9.</li>
+    <li>R. Szeliski (2022). <i>Computer Vision: Algorithms and Applications</i>, 2nd ed., §2.1, §8.1–8.2, §12.1.</li>
+    <li>A. Torralba, P. Isola &amp; W. Freeman (2024). <i>Foundations of Computer Vision</i>, ch. 38–41 (visionbook.mit.edu).</li>
+    <li>S. K. Nayar. <i>First Principles of Computer Vision</i> — Image Stitching; Camera Calibration; Uncalibrated Stereo.</li>
+    <li>H. Hirschmüller (2008). Stereo processing by semiglobal matching and mutual information. <i>IEEE TPAMI</i> 30(2) — OpenCV's StereoSGBM.</li>
+  </ul>
+  <p class="small refimg">Photos (CC0, Wikimedia Commons): Dinkum, “Façade d'immeuble 1 rue Bayard” and “(détail)” (session 6) · Wilfredor, Jacques-Cartier National Park (session 2). The stereo scene, every warp, blend, diagram and number: made by programs written for this course (OpenCV, NumPy).</p>
+</section>
+
 </div>
 </div>
 
@@ -1159,7 +1378,7 @@ function renderMath(){
     });
   }
 }
-function initDemos(){ initFamilies(); initRectify(); initCamera(); /*<<INITS>>*/ initSliders(); }
+function initDemos(){ initFamilies(); initRectify(); initCamera(); initStereo(); /*<<INITS>>*/ initSliders(); }
 /* range sliders: a finger anywhere on the track sets and drags the value.
    Phones otherwise only move a native slider when the touch lands exactly on its thumb,
    and a touch on the track scrolls the page instead. */
@@ -1645,6 +1864,26 @@ function initCamera(){
     $('cmOut').innerHTML=`corner (0.5, −0.5, −0.5): R(X − C) = (${f2(Q[0])}, ${f2(Q[1])}, ${f2(Q[2])})<br>K: (${f}·${f2(Q[0])} + 320·${f2(Q[2])}, ${f}·${f2(Q[1])} + 240·${f2(Q[2])}, ${f2(Q[2])}) → ÷ ${f2(Q[2])} → pixel (<b>${p[0].toFixed(1)}</b>, <b>${p[1].toFixed(1)}</b>)`+(ok?'':'<br>part of the cube is behind the camera');
     cv.dataset.u=p[0].toFixed(3); cv.dataset.v=p[1].toFixed(3); };
   for(const k in S) S[k].addEventListener('input',draw); draw();
+}
+/* D3: top view of two cameras (B apart) and a point at depth Z; d = f·B/Z with f = 800 px */
+function initStereo(){
+  const cv=document.getElementById('stCv'); if(!cv) return; const ctx=cv.getContext('2d'), $=id=>document.getElementById(id), zS=$('stZ'), bS=$('stB'), F=800;
+  if(PRINTING){ zS.value=2; }
+  const draw=()=>{ const Z=+zS.value, B=+bS.value, d=F*B/Z, X=B/2;            // the point straight ahead of the midpoint
+    ctx.fillStyle='#fff'; ctx.fillRect(0,0,cv.width,cv.height);
+    const sx=600/0.9, mx=300, y0=205, pz=Math.max(18, y0-Math.log(1+Z)/Math.log(21)*185), xl=mx-B/2*sx, xr=mx+B/2*sx;   // depth on a log scale
+    ctx.strokeStyle='#cbd5e1'; ctx.setLineDash([4,4]); ctx.beginPath(); ctx.moveTo(mx,y0); ctx.lineTo(mx,14); ctx.stroke(); ctx.setLineDash([]);
+    [[xl,'#0f766e'],[xr,'#c97a06']].forEach(([x,c])=>{ ctx.strokeStyle=c; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(x,y0); ctx.lineTo(mx,pz); ctx.stroke();
+      ctx.fillStyle=c; ctx.beginPath(); ctx.moveTo(x,y0); ctx.lineTo(x-9,y0+16); ctx.lineTo(x+9,y0+16); ctx.closePath(); ctx.fill(); });
+    ctx.fillStyle='#e0533d'; ctx.beginPath(); ctx.arc(mx,pz,7,0,7); ctx.fill();
+    ctx.fillStyle='#667085'; ctx.font='600 12px "Space Grotesk",sans-serif'; ctx.textAlign='left'; ctx.fillText(`Z = ${Z} m (log scale)`, mx+12, pz+4); ctx.textAlign='center'; ctx.fillText(`B = ${B.toFixed(2)} m`, mx, y0+32);
+    // the two pictures, 640 px wide each, drawn at 270 px: where the point lands (x = f·X/Z from each camera's centre)
+    const W=270, s=W/640, yb=262; [[20,'left picture',X,'#0f766e'],[310,'right picture',X-B,'#c97a06']].forEach(([x0,lab,Xc,c])=>{
+      ctx.strokeStyle='#94a3b8'; ctx.lineWidth=1; ctx.strokeRect(x0,yb,W,40); ctx.fillStyle='#667085'; ctx.textAlign='left'; ctx.fillText(lab,x0,yb-6);
+      const u=320+F*Xc/Z; ctx.fillStyle=c; ctx.beginPath(); ctx.arc(x0+u*s,yb+20,6,0,7); ctx.fill(); });
+    $('stOut').innerHTML=`d = f·B / Z = 800 · ${B.toFixed(2)} / ${Z} = <b>${d.toFixed(1)} px</b><br>and back: Z = f·B / d = ${(F*B).toFixed(0)} / ${d.toFixed(1)} = <b>${(F*B/d).toFixed(2)} m</b>`;
+    cv.dataset.d=d.toFixed(3); };
+  zS.addEventListener('input',draw); bS.addEventListener('input',draw); draw();
 }
 /*<<JS>>*/
 </script>
