@@ -375,6 +375,8 @@ html.reading .reveal ul.small li{font-size:14px;}
 .mat3 span{text-align:right;}
 .mat3 span.off{color:#b6bfcc;}
 .ctrl label.off{opacity:.35;}
+.say .calc.big{font-size:.78em;}
+html.reading .say .calc.big{font-size:13px;}
 .ctrl.tfc{display:grid;grid-template-columns:repeat(4,auto);justify-content:center;gap:.15em .7em;margin-top:.3em;}
 .ctrl.tfc input[type=range]{width:4.6em;}
 html.reading .ctrl.tfc{grid-template-columns:repeat(2,auto);}
@@ -744,7 +746,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     </div>
     <div class="say">
       <div id="tfM" class="big-out" style="text-align:center"></div>
-      <p id="tfOut" class="calc" style="margin-top:.4em;font-size:.78em"></p>
+      <p id="tfOut" class="calc big" style="margin-top:.4em"></p>
       <p class="fragment">Each family frees more numbers and keeps less: translation 2 (keeps lengths) · similarity 4 (angles) · affine 6 (parallel lines) · projective 8 (only straight lines).</p>
     </div>
   </div>
@@ -815,6 +817,133 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="takeaway"><span>Later: session 9 — a shaking video is steadied by undoing one transform per frame (T9). Next · B: the projective family lines up two photos of a flat scene.</span></p>
 
   <aside class="notes"><p>🇹🇭 สรุป A · ชี้ต่อคาบ 9 (video stabilisation: transform ต่อเฟรม) · แล้วต่อ B: projective = homography</p><p>🇬🇧 Wrap up A. Forward: session 9 (video stabilisation, one transform per frame). Then B: the projective family is the homography.</p></aside>
+</section>
+
+<!-- 12 -->
+<section class="part-open" id="part-b" data-part="B">
+  <div class="po-strip"><a href="#/part-a" class="done"><b>A</b>Transforms</a><a href="#/part-b" class="on"><b>B</b>Homography</a><a href="#/part-c" class=""><b>C</b>Camera</a><a href="#/part-d" class=""><b>D</b>Stereo</a></div>
+  <p class="po-letter">B</p>
+  <h2 class="claim">Homography &amp; stitching</h2>
+  <p class="po-q">How do two photos of a flat scene line up?</p>
+  <p class="po-out"><span>By the end of this part</span>Explain why a homography needs 4 point pairs, and how matching, RANSAC and warping build a panorama.</p>
+  <aside class="notes"><p>🇹🇭 หน้าเปิด part: อ่านคำถามกับสิ่งที่จะทำได้ท้าย part แล้วเข้าเนื้อหา</p><p>🇬🇧 Part opener: read the question and what you can do by the end of the part, then go in.</p></aside>
+</section>
+
+<!-- 13 -->
+<section data-part="B">
+  <p class="kicker">B · Homography &amp; stitching</p>
+  <h2 class="claim">A flat scene seen twice: one homography</h2>
+  <div class="split">
+    <div><svg class="fig cvsvg" viewBox="0 0 580 270" role="img" aria-label="seen from above: a flat wall photographed from two places, every wall point joined to both cameras; and a post in front of a far wall, which line up in photo 1 but not in photo 2"><line x1="40" y1="60" x2="250" y2="40" stroke="#0f1b2d" stroke-width="5"/><line x1="70" y1="57" x2="80" y2="230" stroke="#e0533d" stroke-width="1.8" opacity=".8"/><line x1="70" y1="57" x2="220" y2="240" stroke="#e0533d" stroke-width="1.8" opacity=".8"/><circle cx="70" cy="57" r="5" fill="#e0533d"/><line x1="145" y1="50" x2="80" y2="230" stroke="#c97a06" stroke-width="1.8" opacity=".8"/><line x1="145" y1="50" x2="220" y2="240" stroke="#c97a06" stroke-width="1.8" opacity=".8"/><circle cx="145" cy="50" r="5" fill="#c97a06"/><line x1="215" y1="43" x2="80" y2="230" stroke="#0f766e" stroke-width="1.8" opacity=".8"/><line x1="215" y1="43" x2="220" y2="240" stroke="#0f766e" stroke-width="1.8" opacity=".8"/><circle cx="215" cy="43" r="5" fill="#0f766e"/><polygon points="80.0,230.0 88.3,202.1 62.7,206.7" fill="#2f6fdb" fill-opacity=".25" stroke="#2f6fdb" stroke-width="2.5"/><text x="80" y="252" text-anchor="middle" class="tk" style="fill:#2f6fdb">photo 1</text><polygon points="220.0,240.0 239.3,218.3 214.2,211.5" fill="#2f6fdb" fill-opacity=".25" stroke="#2f6fdb" stroke-width="2.5"/><text x="220" y="262" text-anchor="middle" class="tk" style="fill:#2f6fdb">photo 2</text><text x="145" y="25" text-anchor="middle" class="lb">a flat wall: one H</text><line x1="330" y1="50" x2="550" y2="50" stroke="#0f1b2d" stroke-width="5"/><line x1="370" y1="230" x2="420" y2="50" stroke="#2f6fdb" stroke-width="2" stroke-dasharray="6 4"/><line x1="420" y1="50" x2="510" y2="240" stroke="#e0533d" stroke-width="1.8"/><line x1="400" y1="130" x2="510" y2="240" stroke="#c97a06" stroke-width="1.8"/><circle cx="420" cy="50" r="5" fill="#e0533d"/><rect x="394" y="124" width="12" height="12" fill="#c97a06"/><polygon points="370.0,230.0 385.2,205.2 359.3,203.0" fill="#2f6fdb" fill-opacity=".25" stroke="#2f6fdb" stroke-width="2.5"/><text x="370" y="252" text-anchor="middle" class="tk" style="fill:#2f6fdb">photo 1</text><polygon points="510.0,240.0 510.8,210.9 487.2,221.9" fill="#2f6fdb" fill-opacity=".25" stroke="#2f6fdb" stroke-width="2.5"/><text x="510" y="262" text-anchor="middle" class="tk" style="fill:#2f6fdb">photo 2</text><text x="440" y="25" text-anchor="middle" class="lb">near + far, camera moved: no single H</text><text x="388" y="134" text-anchor="end" class="tk">a post</text></svg><p class="gcap">seen from above · left: every point of a wall has one place in each photo · right: the post and the wall behind it share a pixel in photo 1, not in photo 2</p></div>
+    <div class="say">
+      <p>Two photos are tied by <b>one 3 × 3 matrix H</b> — the projective family of part A — when every point has one place in each: a <b>flat</b> scene, or a camera that only <b>turns</b> in place.</p>
+      <p class="fragment">Move the camera in front of a deep scene and near things shift more than far ones (<b>parallax</b>): no single H fits. That shift is what part D turns into depth.</p>
+      <p class="fragment" style="color:var(--muted);font-size:.9em">Part C shows why: with the camera matrix, a plane drops one column and leaves a 3 × 3 matrix.</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 เมื่อไหร่ใช้ H ได้: ระนาบเดียว หรือกล้องหมุนอยู่กับที่ · เมื่อไหร่ไม่ได้: ฉากลึก + กล้องเลื่อน (parallax) → part D ใช้ parallax วัดความลึก · ชี้ต่อ part C ที่จะแสดงที่มา</p><p>🇬🇧 When one H fits: a single plane, or a camera that only turns. When not: a deep scene and a moving camera (parallax) — part D turns that into depth. Part C shows where H comes from.</p></aside>
+</section>
+
+<!-- 14 -->
+<section data-part="B">
+  <p class="kicker">B · Homography &amp; stitching</p>
+  <h2 class="claim">8 unknowns, 4 point pairs</h2>
+  <div class="split">
+    <div><svg class="fig cvsvg" viewBox="0 0 560 275" role="img" aria-label="four numbered corners of a square joined to the four corners of a slanted quadrilateral"><defs><marker id="a70f1b2d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f1b2d"/></marker><marker id="a70f766e" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker><marker id="a7e0533d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e0533d"/></marker><marker id="a7c97a06" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c97a06"/></marker><marker id="a72f6fdb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2f6fdb"/></marker></defs><polygon points="40,60 170,60 170,190 40,190" fill="#2f6fdb" fill-opacity=".1" stroke="#2f6fdb" stroke-width="2.5"/><polygon points="330,80 500,50 540,230 310,200" fill="#0f766e" fill-opacity=".1" stroke="#0f766e" stroke-width="2.5"/><line x1="40" y1="60" x2="318.4" y2="79.2" stroke="#c97a06" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#a7c97a06)"/><circle cx="40" cy="60" r="11" fill="#fff" stroke="#2f6fdb" stroke-width="2"/><text x="40" y="65" text-anchor="middle" class="tk" style="fill:#2f6fdb">1</text><circle cx="330" cy="80" r="11" fill="#fff" stroke="#0f766e" stroke-width="2"/><text x="330" y="85" text-anchor="middle" class="tk" style="fill:#0f766e">1</text><line x1="170" y1="60" x2="486.8" y2="50.4" stroke="#c97a06" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#a7c97a06)"/><circle cx="170" cy="60" r="11" fill="#fff" stroke="#2f6fdb" stroke-width="2"/><text x="170" y="65" text-anchor="middle" class="tk" style="fill:#2f6fdb">2</text><circle cx="500" cy="50" r="11" fill="#fff" stroke="#0f766e" stroke-width="2"/><text x="500" y="55" text-anchor="middle" class="tk" style="fill:#0f766e">2</text><line x1="170" y1="190" x2="525.2" y2="228.4" stroke="#c97a06" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#a7c97a06)"/><circle cx="170" cy="190" r="11" fill="#fff" stroke="#2f6fdb" stroke-width="2"/><text x="170" y="195" text-anchor="middle" class="tk" style="fill:#2f6fdb">3</text><circle cx="540" cy="230" r="11" fill="#fff" stroke="#0f766e" stroke-width="2"/><text x="540" y="235" text-anchor="middle" class="tk" style="fill:#0f766e">3</text><line x1="40" y1="190" x2="299.2" y2="199.6" stroke="#c97a06" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#a7c97a06)"/><circle cx="40" cy="190" r="11" fill="#fff" stroke="#2f6fdb" stroke-width="2"/><text x="40" y="195" text-anchor="middle" class="tk" style="fill:#2f6fdb">4</text><circle cx="310" cy="200" r="11" fill="#fff" stroke="#0f766e" stroke-width="2"/><text x="310" y="205" text-anchor="middle" class="tk" style="fill:#0f766e">4</text><text x="105" y="232" text-anchor="middle" class="lb">(x, y)</text><text x="425" y="262" text-anchor="middle" class="lb">(x′, y′)</text></svg><p class="gcap">four point pairs: each fixes where one corner goes</p></div>
+    <div class="say">
+      <p>H has 9 numbers, but H and 2H move points the same way (slide 9): fix h₉ = 1 and <b>8 unknowns</b> are left.</p>
+      <div class="eq fragment">$$x'=\frac{h_1x+h_2y+h_3}{h_7x+h_8y+1}$$</div>
+      <p class="fragment">Multiply out the fraction — <b>linear</b> in the h's:</p>
+      <div class="eq fragment">$$h_1x+h_2y+h_3-h_7xx'-h_8yx'=x'$$</div>
+      <p class="fragment">Same for y′: each pair gives <b>2 equations</b>, so 4 pairs give 8 — enough.</p>
+      <div class="worked fragment"><span class="tag">Worked example · the pair (2, 1) → (3, 2)</span><p>x′: 2h₁ + h₂ + h₃ − 6h₇ − 3h₈ = 3 · y′: 2h₄ + h₅ + h₆ − 4h₇ − 2h₈ = 2 · three more pairs → 8 equations, 8 unknowns</p></div>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ที่มา 4 คู่: H มี 9 ตัวแต่ scale อิสระ (หน้า 9) → 8 ตัวไม่รู้ · คูณตัวส่วนออก → สมการเชิงเส้นใน h · คู่ละ 2 สมการ → 4 คู่ = 8 · ตัวอย่างบนสไลด์เขียนสองสมการจากคู่เดียว (demo หน้าถัดไปแก้ 8 สมการนี้จริงในเบราว์เซอร์)</p><p>🇬🇧 Why 4 pairs: H has 9 numbers but a free scale (slide 9) → 8 unknowns. Multiplying out the denominator makes each equation linear in the h's; 2 per pair, so 4 pairs give 8. The worked example writes both equations of one pair; the next demo solves all eight in the browser.</p></aside>
+</section>
+
+<!-- 15 -->
+<section data-part="B">
+  <p class="kicker">B · Homography &amp; stitching</p>
+  <h2 class="claim">Fix the perspective with four corners</h2>
+  <div>
+    <canvas id="rcCv" class="democv" width="820" height="420" style="max-width:720px;margin:0 auto" aria-label="left: the building photo with four draggable corners; right: the region inside them seen straight on"></canvas>
+    <div class="ctrl" style="justify-content:center"><button id="rcReset" type="button">Reset corners</button><span class="gcap" style="margin:0">drag the four red corners onto any rectangle of the wall</span></div>
+    <p id="rcOut" class="calc" style="margin-top:.3em"></p>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ลากมุมทั้งสี่ไปที่มุมของสี่เหลี่ยมบนกำแพง (หน้าต่างสองแถวก็ได้) → ภาพขวาคือกำแพงที่มองตรง · readout: H ที่แก้ 8 สมการจากหน้า 13 แล้ว + มุมล่างขวาคูณผ่าน H แล้วหารด้วย w (w ≠ 1 ตรงนี้) · ภาพตึกของคาบ 6</p><p>🇬🇧 Drag the four corners onto any rectangle of the wall (two rows of windows work well); the right side is the wall seen straight on. Readout: the H solved from slide 14's eight equations, and the bottom-right corner multiplied through it and divided by w (w ≠ 1 here). Session 6's building.</p></aside>
+</section>
+
+<!-- 16 -->
+<section data-part="B">
+  <p class="kicker">B · Homography &amp; stitching</p>
+  <h2 class="claim">Stitching: match, RANSAC, warp, blend</h2>
+  <div class="conv3" style="grid-template-columns:minmax(0,1.35fr) minmax(0,1fr) minmax(0,1fr);max-width:none;gap:.7em;align-items:start">
+    <figure class="photo"><img src="img/matches.jpg" alt="the close-up and the whole building side by side, 40 matched points joined by coloured lines"><figcaption>1–2 · match + RANSAC: 692 → 527 pairs</figcaption></figure>
+    <figure class="photo"><img src="img/title.jpg" alt="the close-up laid into the whole building, its outline drawn"><figcaption>3 · warp the close-up by H</figcaption></figure>
+    <figure class="photo"><img src="img/mosaic.jpg" alt="the whole building with the sharper close-up blended in"><figcaption>4 · blend</figcaption></figure>
+  </div>
+  <div class="split even" style="margin-top:.5em;align-items:start">
+    <div class="say"><div class="flashback">Session 6 C–D: ratio test, then RANSAC with 4-pair samples — 692 matches, 527 inliers (session 6, slide 34: w 0.5 needs 72 tries).</div></div>
+    <div class="say"><p>Fit H to the inliers, warp one photo into the other's frame, then blend where they overlap. Two views, one picture.</p></div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ไล่สี่ขั้นจากซ้ายไปขวา · ย้อนคาบ 6 C–D: ratio 692 คู่ → RANSAC 527 inlier (Try it คาบ 6 หน้า 34: w 0.5 → 72 รอบ) · ภาพคู่เดิมของคาบ 6 — ภาพซูมจึงตกลงข้างในภาพเต็ม</p><p>🇬🇧 Walk the four steps left to right. Back to session 6 C–D: 692 ratio-test matches → 527 RANSAC inliers (session 6 slide 34: w 0.5 → 72 tries). Session 6's pair, so the close-up lands inside the whole photo.</p></aside>
+</section>
+
+<!-- 17 -->
+<section data-part="B">
+  <p class="kicker">B · Homography &amp; stitching</p>
+  <h2 class="claim">Blend the seam: a weight that rises smoothly</h2>
+  <div class="split">
+    <div class="conv3" style="grid-template-columns:1fr;max-width:none;gap:.4em">
+      <figure class="photo"><img src="img/seam_hard.jpg" alt="the pasted close-up meets the whole photo along a sharp step in brightness" style="max-height:170px"><figcaption>pasted: a step along the edge</figcaption></figure>
+      <figure class="photo"><img src="img/seam_soft.jpg" alt="the same edge, blended: the brightness changes gradually" style="max-height:170px"><figcaption>feathered over 40 px: no line</figcaption></figure>
+    </div>
+    <div class="say">
+      <p>The close-up was made 25% brighter, as auto-exposure might between two shots. Pasted, its edge shows.</p>
+      <div class="eq fragment">$$\text{out}=\alpha\,B+(1-\alpha)\,A,\qquad \alpha=\min\!\left(1,\ \frac{d}{40}\right)$$</div>
+      <p class="fragment">d = distance inside B's edge: α grows from 0 at the edge to 1 at 40 px, so B fades in instead of starting with a step.</p>
+      <div class="flashback fragment">Session 3 B: smoothing turns a sharp step into a gradual one — here, the step between two photos.</div>
+      <div class="worked fragment"><span class="tag">Worked example · a pixel 10 px inside the edge</span><p>α = 10 ÷ 40 = 0.25 · A = 107, B = 136 → 0.25·136 + 0.75·107 = 114.2</p></div>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ที่มาการ blend: ค่าเฉลี่ยถ่วงน้ำหนัก α ไล่จาก 0 ที่ขอบถึง 1 ที่ 40 px · ภาพซูมทำให้สว่างขึ้น 25% เพื่อให้เห็นรอย (ของจริงสองภาพนี้แสงใกล้กันมาก) · ตัวอย่างคือ pixel จริงที่ระยะ 10 px</p><p>🇬🇧 Where the blend comes from: a weighted average, α rising from 0 at the edge to 1 at 40 px. The close-up was brightened 25% so the seam shows (the real pair is lit almost the same). The worked example is a real pixel 10 px in.</p></aside>
+</section>
+
+<!-- 18 -->
+<section data-part="B">
+  <p class="kicker">B · Homography &amp; stitching</p>
+  <h2 class="claim">Try it: how many pairs, how many tries?</h2>
+  <div class="split">
+    <div class="tryit"><span class="tag">Try it</span>
+      <ol style="margin:.2em 0 0 1.1em"><li>How many point pairs fix a similarity (4 DOF)? An affine transform (6)? A homography (8)?</li><li>Half of your matches are wrong. With p = 0.99, how many RANSAC tries does a homography need? (ln 0.01 = −4.605, ln 0.9375 = −0.0645)</li></ol>
+      <details><summary>Answer</summary>1. each pair gives 2 equations: similarity <b>2</b> pairs · affine <b>3</b> · homography <b>4</b> · 2. w⁴ = 0.0625 → 1 − 0.0625 = 0.9375 → 4.605 ÷ 0.0645 ≈ 71.4 → <b>72</b> tries (session 6).</details>
+    </div>
+    <div class="say"><p>pairs = DOF ÷ 2</p><p>N = ln(1 − p) ÷ ln(1 − w<sup>s</sup>)</p></div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ให้เวลา 2 นาที · ข้อ 2 คือ Try it คาบ 6 หน้า 34 — ตอนนี้รู้แล้วว่า s = 4 มาจากไหน</p><p>🇬🇧 Give two minutes. Question 2 is session 6 slide 34's Try it — now you know where s = 4 comes from.</p></aside>
+</section>
+
+<!-- 19 -->
+<section data-part="B">
+  <p class="kicker">B · Homography &amp; stitching</p>
+  <h2 class="claim">Homography: four matches line up a flat scene</h2>
+  <div class="cards">
+    <div class="card"><b>When</b>A flat scene, or a camera that only turns: one H ties the two photos.</div>
+    <div class="card violet"><b>How many</b>8 unknowns, 2 equations per pair: 4 pairs fix H — the sample size RANSAC draws.</div>
+    <div class="card amber"><b>Stitch</b>Match (session 6 C) → RANSAC (6 D) → warp by H → blend the seam.</div>
+  </div>
+  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-07/lab.ipynb#scrollTo=part-b" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part B</a><span>Two overlapping views cut from one photo with a known H; SIFT + RANSAC + findHomography against the truth; warp and blend a panorama; fix a perspective with four points</span></p>
+  <p class="more"><a target="_blank" rel="noopener" href="../practice/#s7b">More practice · Session 7 B — practice bank with worked solutions →</a></p>
+  <p class="takeaway"><span>Later: T7-3 — structure from motion recovers the cameras and the 3D points from many photos. Next · C: how a 3D point becomes a pixel.</span></p>
+
+  <aside class="notes"><p>🇹🇭 สรุป B · ชี้ต่อ T7-3 (structure from motion) · แล้วต่อ C: camera matrix (และที่มาของ H จากระนาบ)</p><p>🇬🇧 Wrap up B. Forward: T7-3 (structure from motion). Then C: the camera matrix (and where a plane's H comes from).</p></aside>
 </section>
 
 </div>
@@ -896,7 +1025,7 @@ function renderMath(){
     });
   }
 }
-function initDemos(){ initFamilies(); /*<<INITS>>*/ initSliders(); }
+function initDemos(){ initFamilies(); initRectify(); /*<<INITS>>*/ initSliders(); }
 /* range sliders: a finger anywhere on the track sets and drags the value.
    Phones otherwise only move a native slider when the touch lands exactly on its thumb,
    and a touch on the track scrolls the page instead. */
@@ -1316,6 +1445,42 @@ function initFamilies(){
   loadImg('img/landscape.jpg',im=>{ const c=document.createElement('canvas'); c.width=SW; c.height=SH; const g=c.getContext('2d'); g.drawImage(im,0,0,SW,SH);
     try{ src=g.getImageData(0,0,SW,SH).data; }catch(e){ src=null; }   /* a file:// page may not read its own pixels: the matrix and the corner still work */
     draw(); }); draw();
+}
+/* B3: drag four corners; solve the 8 equations of slide 14 for H (photo → 300 × 460 rectangle) and inverse-warp */
+function initRectify(){
+  const cv=document.getElementById('rcCv'); if(!cv) return; const ctx=cv.getContext('2d'), S=0.56, PW=560, PH=420, OX=590, OW=200, RW=300, RH=460, DEF=[[491, 210], [764, 213], [881, 696], [510, 697]];
+  let Q=DEF.map(p=>p.slice()), src=null, drag=-1;
+  const solve=(A,b)=>{ const n=b.length, M=A.map((r,i)=>[...r,b[i]]);                       // Gaussian elimination with pivoting
+    for(let c=0;c<n;c++){ let p=c; for(let r=c+1;r<n;r++) if(Math.abs(M[r][c])>Math.abs(M[p][c])) p=r; [M[c],M[p]]=[M[p],M[c]];
+      for(let r=0;r<n;r++) if(r!==c){ const f=M[r][c]/M[c][c]; for(let k=c;k<=n;k++) M[r][k]-=f*M[c][k]; } }
+    return M.map((r,i)=>r[n]/r[i]); };
+  const homog=()=>{ const A=[], b=[], R=[[0,0],[RW,0],[RW,RH],[0,RH]];
+    Q.forEach(([x,y],i)=>{ const [u,v]=R[i]; A.push([x,y,1,0,0,0,-u*x,-u*y]); b.push(u); A.push([0,0,0,x,y,1,-v*x,-v*y]); b.push(v); });
+    const h=solve(A,b); return [[h[0],h[1],h[2]],[h[3],h[4],h[5]],[h[6],h[7],1]]; };
+  const inv=m=>{ const [a,b,c]=m[0],[d,e,f]=m[1],[g,h,i]=m[2], A=e*i-f*h, B=-(d*i-f*g), C=d*h-e*g, D=a*A+b*B+c*C;
+    return [[A/D,-(b*i-c*h)/D,(b*f-c*e)/D],[B/D,(a*i-c*g)/D,-(a*f-c*d)/D],[C/D,-(a*h-b*g)/D,(a*e-b*d)/D]]; };
+  const fx=v=>(Math.abs(v)<1e-3&&v!==0?v.toExponential(2):v.toFixed(Math.abs(v)<10?4:1)).replace('-','−');
+  const draw=()=>{ ctx.fillStyle='#fff'; ctx.fillRect(0,0,cv.width,cv.height); if(img) ctx.drawImage(img,0,0,PW,PH);
+    const H=homog(), Hi=inv(H), OH=Math.round(OW*RH/RW), OY=Math.round((PH-OH)/2);
+    if(src){ const out=ctx.createImageData(OW,OH), d=out.data;
+      for(let v=0;v<OH;v++) for(let u=0;u<OW;u++){ const X=u*RW/OW, Y=v*RH/OH, w=Hi[2][0]*X+Hi[2][1]*Y+Hi[2][2], x=(Hi[0][0]*X+Hi[0][1]*Y+Hi[0][2])/w, y=(Hi[1][0]*X+Hi[1][1]*Y+Hi[1][2])/w, o=4*(v*OW+u);
+        if(x>=0&&y>=0&&x<999&&y<749){ const x0=x|0,y0=y|0,ax=x-x0,ay=y-y0; for(let ch=0;ch<3;ch++){ const p=(yy,xx)=>src[4*(yy*1000+xx)+ch]; d[o+ch]=(p(y0,x0)*(1-ax)+p(y0,x0+1)*ax)*(1-ay)+(p(y0+1,x0)*(1-ax)+p(y0+1,x0+1)*ax)*ay; } d[o+3]=255; }
+        else { d[o]=d[o+1]=d[o+2]=240; d[o+3]=255; } }
+      ctx.putImageData(out,OX,OY); }
+    ctx.strokeStyle='#0f766e'; ctx.lineWidth=2; ctx.strokeRect(OX,OY,OW,OH);
+    ctx.strokeStyle='#ffd166'; ctx.lineWidth=3; ctx.beginPath(); Q.forEach(([x,y],i)=>i?ctx.lineTo(x*S,y*S):ctx.moveTo(x*S,y*S)); ctx.closePath(); ctx.stroke();
+    Q.forEach(([x,y])=>{ ctx.fillStyle='#e0533d'; ctx.beginPath(); ctx.arc(x*S,y*S,9,0,7); ctx.fill(); ctx.strokeStyle='#fff'; ctx.lineWidth=2; ctx.stroke(); });
+    const [x3,y3]=Q[2], X3=H[0][0]*x3+H[0][1]*y3+H[0][2], Y3=H[1][0]*x3+H[1][1]*y3+H[1][2], W3=H[2][0]*x3+H[2][1]*y3+1;
+    document.getElementById('rcOut').innerHTML=`H = [${H[0].map(fx).join(' ')} / ${H[1].map(fx).join(' ')} / ${fx(H[2][0])} ${fx(H[2][1])} 1] · bottom-right corner: H·(${x3.toFixed(0)}, ${y3.toFixed(0)}, 1) = (${X3.toFixed(1)}, ${Y3.toFixed(1)}, <b>${W3.toFixed(3)}</b>) → ÷ w → (<b>${(X3/W3).toFixed(0)}</b>, <b>${(Y3/W3).toFixed(0)}</b>)`;
+    cv.dataset.h=JSON.stringify(H.flat().map(v=>+v.toPrecision(7))); };
+  const at=e=>{ const b=cv.getBoundingClientRect(); return [(e.clientX-b.left)*cv.width/b.width/S,(e.clientY-b.top)*cv.height/b.height/S]; };
+  cv.addEventListener('pointerdown',e=>{ const [x,y]=at(e); drag=Q.findIndex(([qx,qy])=>Math.hypot(qx-x,qy-y)<22/S); if(drag>=0) cv.setPointerCapture(e.pointerId); });
+  cv.addEventListener('pointermove',e=>{ if(drag<0) return; const [x,y]=at(e); Q[drag]=[Math.min(999,Math.max(0,x)),Math.min(749,Math.max(0,y))]; draw(); });
+  cv.addEventListener('pointerup',()=>{ drag=-1; });
+  document.getElementById('rcReset').onclick=()=>{ Q=DEF.map(p=>p.slice()); draw(); };
+  let img=loadImg('img/facade.jpg',im=>{ const c=document.createElement('canvas'); c.width=1000; c.height=750; const g=c.getContext('2d'); g.drawImage(im,0,0);
+    try{ src=g.getImageData(0,0,1000,750).data; }catch(e){ src=null; } img=im; draw(); });
+  img=null; draw();
 }
 /*<<JS>>*/
 </script>
