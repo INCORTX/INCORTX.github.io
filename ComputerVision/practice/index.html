@@ -60,7 +60,7 @@ h2.sess{font:700 26px var(--display);color:var(--ink);margin:30px 0 4px}
   <h1>Practice bank</h1>
   <p class="lead">Exam-style questions, session by session, with worked solutions. Work each one by hand first — no calculator needed — then open the solution and compare step by step; the mark for each step is in [ ].</p>
 
-  <div class="bar"><button class="chip on" data-k="sess" data-v="all">All sessions</button><button class="chip" data-k="sess" data-v="2">Session 2</button><button class="chip" data-k="sess" data-v="3">Session 3</button><button class="chip" data-k="sess" data-v="4">Session 4</button><button class="chip" data-k="sess" data-v="5">Session 5</button><button class="chip" data-k="sess" data-v="6">Session 6</button><span class="sep"></span><button class="chip on" data-k="stars" data-v="all">Any level</button><button class="chip" data-k="stars" data-v="1">⭐</button><button class="chip" data-k="stars" data-v="2">⭐⭐</button><button class="chip" data-k="stars" data-v="3">⭐⭐⭐</button><span class="sep"></span><button class="chip" data-k="hide">Hide done</button><button class="chip" data-k="open">Open all solutions</button><span class="prog" id="prog"></span></div>
+  <div class="bar"><button class="chip on" data-k="sess" data-v="all">All sessions</button><button class="chip" data-k="sess" data-v="2">Session 2</button><button class="chip" data-k="sess" data-v="3">Session 3</button><button class="chip" data-k="sess" data-v="4">Session 4</button><button class="chip" data-k="sess" data-v="5">Session 5</button><button class="chip" data-k="sess" data-v="6">Session 6</button><button class="chip" data-k="sess" data-v="7">Session 7</button><span class="sep"></span><button class="chip on" data-k="stars" data-v="all">Any level</button><button class="chip" data-k="stars" data-v="1">⭐</button><button class="chip" data-k="stars" data-v="2">⭐⭐</button><button class="chip" data-k="stars" data-v="3">⭐⭐⭐</button><span class="sep"></span><button class="chip" data-k="hide">Hide done</button><button class="chip" data-k="open">Open all solutions</button><span class="prog" id="prog"></span></div>
   <details class="ref"><summary>Reference values — sin / cos / tan, roots, powers of two</summary><table class="cov"><tr><th>θ (rad)</th><th>θ (deg)</th><th>sin θ</th><th>cos θ</th><th>tan θ</th></tr><tr><td>0</td><td>0°</td><td>0</td><td>1</td><td>0</td></tr><tr><td>π/6</td><td>30°</td><td>0.500</td><td>0.866</td><td>0.577</td></tr><tr><td>π/4</td><td>45°</td><td>0.707</td><td>0.707</td><td>1</td></tr><tr><td>π/3</td><td>60°</td><td>0.866</td><td>0.500</td><td>1.732</td></tr><tr><td>π/2</td><td>90°</td><td>1</td><td>0</td><td>undefined</td></tr><tr><td>π</td><td>180°</td><td>0</td><td>−1</td><td>0 †</td></tr><tr><td>3π/2</td><td>270°</td><td>−1</td><td>0</td><td>undefined</td></tr><tr><td>2π</td><td>360°</td><td>0</td><td>1</td><td>0 †</td></tr></table><p><strong>Reading arctan:</strong> find the ratio in the tan θ column and read the angle on the left — tan θ = 1 ⇒ θ = 45°. A gradient with $G_x = G_y$ therefore points at 45°. Every direction you are asked to name is one of the rows above; if your ratio is not in the tan θ column, re-check the arithmetic rather than reaching for a calculator.</p><p><strong>† forward only.</strong> tan repeats every 180°, but arctan answers only within −90° to 90°: tan 180° = 0 is true, yet arctan(0) = 0°, not 180°. Read backwards only from the 0°–90° rows.</p><p><strong>Negative ratios:</strong> arctan(−x) = −arctan(x), so arctan(−1) = −45°.</p><p><strong>Pythagorean triples</strong> — these give the <strong>magnitude</strong> $\sqrt{G_x^2+G_y^2}$ as a whole number, not an angle: 3-4-5 · 5-12-13 · 6-8-10 · 8-15-17 · 7-24-25 · 20-21-29 — and any multiple, e.g. 24-32-<strong>40</strong>. Magnitude and direction are separate questions; read the direction from the tan θ column above.</p><p><strong>Square roots:</strong> √2 ≈ 1.414 · √3 ≈ 1.732 · √5 ≈ 2.236 · √8 ≈ 2.828 · √32 ≈ 5.657</p><p><strong>Powers of two</strong> (bit depth, pyramid levels): $2^4 = 16$ · $2^6 = 64$ · $2^8 = 256$ · $2^{10} = 1024$ · $2^{24} = 16{,}777{,}216$ · log₂ 8 = 3 · log₂ 16 = 4 · log₂ 256 = 8</p></details>
   <h2 class="sess" id="s2" data-sess="2">Session 2 · Image Formation &amp; Sensing</h2>
   <div class="parthead" id="s2a" data-group="2A"><h3>A · Pinhole &amp; perspective</h3><span class="pc"></span><a href="../session-02/slides.html#/part-a">Slides for this part →</a></div>
@@ -1031,6 +1031,194 @@ Step 2: numerator $({-2})({-1.2}) + ({-1})({-0.2}) + 0 + (1)(1.8) + (2)({-1.2}) 
 <strong>(b)</strong> $w = 300 \div 1500 = 0.2$; $0.2^4 = 0.0016$ → $1 - 0.0016 = 0.9984$ → $N = 4.605 \div 0.0016 \approx 2\,878$ → <strong>about 2,900 tries</strong> [0.75]<br>
 <strong>(c)</strong> it throws away a few good matches but raises $w$ a lot, and $N$ falls from thousands to about a dozen — filter first, then RANSAC [0.5]<br>
 <strong>Answer:</strong> (a) 13 · (b) about 2,900 · (c) a cleaner set makes RANSAC far cheaper</div></details>
+      </article>
+  <h2 class="sess" id="s7" data-sess="7">Session 7 · Geometry: Transforms, Cameras, Stereo</h2>
+  <div class="parthead" id="s7a" data-group="7A"><h3>A · Transforms</h3><span class="pc"></span><a href="../session-07/slides.html#/part-a">Slides for this part →</a></div>
+      <article class="item" id="p100" data-sess="7" data-part="A" data-stars="1">
+        <header><span class="iid">100</span><span class="stars" title="difficulty">⭐</span><span class="topic">Shift and scale with one matrix</span><span class="meta">1 pts · ~2 min</span>
+          <label class="done"><input type="checkbox" data-id="100"> Done</label></header>
+        <div class="problem">Write the point $p = (4, 1)$ as $(x, y, 1)$. <strong>(a)</strong> Shift it by $(-2, 5)$ with a $3 \times 3$ matrix. <strong>(b)</strong> Scale the original point by 3 about $(0, 0)$.</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $[\,1\;\;0\;\;{-2} \;/\; 0\;\;1\;\;5 \;/\; 0\;\;0\;\;1\,]\,(4, 1, 1) = (4 - 2,\ 1 + 5,\ 1) = (2, 6)$ [0.5]<br>
+<strong>(b)</strong> $[\,3\;\;0\;\;0 \;/\; 0\;\;3\;\;0 \;/\; 0\;\;0\;\;1\,]\,(4, 1, 1) = (12, 3)$ [0.5]<br>
+<strong>Answer:</strong> (a) $(2, 6)$ · (b) $(12, 3)$</div></details>
+      </article>
+      <article class="item" id="p101" data-sess="7" data-part="A" data-stars="2">
+        <header><span class="iid">101</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Turn then shift, or shift then turn?</span><span class="meta">2 pts · ~4 min</span>
+          <label class="done"><input type="checkbox" data-id="101"> Done</label></header>
+        <div class="problem">$R$ turns by $90^\circ$ about $(0, 0)$ ($\cos 90^\circ = 0$, $\sin 90^\circ = 1$) and $T$ shifts by $(1, 4)$. For the point $p = (2, 0)$: <strong>(a)</strong> write the matrix $T R$; <strong>(b)</strong> compute $T R\,p$; <strong>(c)</strong> compute $R T\,p$; <strong>(d)</strong> explain why they differ.</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $T R = [\,0\;\;{-1}\;\;1 \;/\; 1\;\;0\;\;4 \;/\; 0\;\;0\;\;1\,]$ [0.5]<br>
+<strong>(b)</strong> the right-hand matrix acts first: $R\,(2, 0) = (0, 2)$, then shift → $(1, 6)$ [0.5]<br>
+<strong>(c)</strong> shift first: $(3, 4)$, then turn: $(-4, 3)$ [0.5]<br>
+<strong>(d)</strong> the turn is about $(0, 0)$: a point shifted first is further from the centre and swings to a different place [0.5]<br>
+<strong>Answer:</strong> (a) $[\,0\;\;{-1}\;\;1 \;/\; 1\;\;0\;\;4 \;/\; 0\;\;0\;\;1\,]$ · (b) $(1, 6)$ · (c) $(-4, 3)$<br>
+<strong>Common mistake:</strong> applying the left matrix first — in $T R\,p$, $R$ meets $p$ first.</div></details>
+      </article>
+      <article class="item" id="p102" data-sess="7" data-part="A" data-stars="1">
+        <header><span class="iid">102</span><span class="stars" title="difficulty">⭐</span><span class="topic">Name the family</span><span class="meta">2 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="102"> Done</label></header>
+        <div class="problem">Name the family of each matrix and its degrees of freedom: <strong>(a)</strong> $[\,1\;\;0\;\;7 \;/\; 0\;\;1\;\;2 \;/\; 0\;\;0\;\;1\,]$; <strong>(b)</strong> $[\,2\;\;0\;\;1 \;/\; 0\;\;2\;\;{-3} \;/\; 0\;\;0\;\;1\,]$; <strong>(c)</strong> $[\,1\;\;0.5\;\;0 \;/\; 0\;\;1\;\;0 \;/\; 0\;\;0\;\;1\,]$; <strong>(d)</strong> $[\,1\;\;0\;\;0 \;/\; 0\;\;1\;\;0 \;/\; 0.1\;\;0\;\;1\,]$.</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> only a shift → <strong>translation</strong>, 2 [0.5]<br>
+<strong>(b)</strong> a scale of 2 (a turn of 0) plus a shift → <strong>similarity</strong>, 4 [0.5]<br>
+<strong>(c)</strong> a slant (shear), bottom row $[0\;0\;1]$ → <strong>affine</strong>, 6 [0.5]<br>
+<strong>(d)</strong> a non-zero bottom row → <strong>projective</strong> (homography), 8 [0.5]<br>
+<strong>Answer:</strong> translation 2 · similarity 4 · affine 6 · projective 8</div></details>
+      </article>
+      <article class="item" id="p103" data-sess="7" data-part="A" data-stars="2">
+        <header><span class="iid">103</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Divide by w</span><span class="meta">2 pts · ~4 min</span>
+          <label class="done"><input type="checkbox" data-id="103"> Done</label></header>
+        <div class="problem">$H = [\,1\;\;0\;\;3 \;/\; 0\;\;2\;\;0 \;/\; 0\;\;1\;\;1\,]$. <strong>(a)</strong> Where does $(2, 1)$ land? <strong>(b)</strong> Where does $(4, 3)$ land? <strong>(c)</strong> All vertical lines run in the direction $(0, 1, 0)$ — a point with $w = 0$. Compute $H\,(0, 1, 0)$. What is that point in the image?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $H\,(2, 1, 1) = (2 + 3,\ 2,\ 1 + 1) = (5, 2, 2)$ → ÷ 2 → $(2.5, 1)$ [0.75]<br>
+<strong>(b)</strong> $H\,(4, 3, 1) = (7, 6, 4)$ → ÷ 4 → $(1.75, 1.5)$ [0.75]<br>
+<strong>(c)</strong> $H\,(0, 1, 0) = (0, 2, 1)$ → $(0, 2)$: a real point where every vertical line meets — their <strong>vanishing point</strong> [0.5]<br>
+<strong>Answer:</strong> (a) $(2.5, 1)$ · (b) $(1.75, 1.5)$ · (c) $(0, 2)$, the vanishing point<br>
+<strong>Common mistake:</strong> stopping at $(5, 2, 2)$ — the last number must be divided out.</div></details>
+      </article>
+      <article class="item" id="p104" data-sess="7" data-part="A" data-stars="2">
+        <header><span class="iid">104</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Same point, different numbers</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="104"> Done</label></header>
+        <div class="problem"><strong>(a)</strong> Which of $(2, 4, 2)$, $(3, 6, 3)$, $(2, 4, 1)$ are the same point as $(1, 2)$? <strong>(b)</strong> A homography $H$ and the matrix $3H$ are applied to the same point. Do they give the same image point? <strong>(c)</strong> So how many degrees of freedom does a $3 \times 3$ homography have?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> divide by the last number: $(2, 4, 2) → (1, 2)$ ✓ · $(3, 6, 3) → (1, 2)$ ✓ · $(2, 4, 1) → (2, 4)$ ✗ [0.5]<br>
+<strong>(b)</strong> yes: $3H$ multiplies $x, y$ and $w$ by 3, and the ÷ $w$ cancels it [0.5]<br>
+<strong>(c)</strong> 9 numbers, but the overall scale is free: $9 - 1 = 8$ [0.5]<br>
+<strong>Answer:</strong> (a) the first two · (b) yes · (c) 8</div></details>
+      </article>
+  <div class="parthead" id="s7b" data-group="7B"><h3>B · Homography &amp; stitching</h3><span class="pc"></span><a href="../session-07/slides.html#/part-b">Slides for this part →</a></div>
+      <article class="item" id="p105" data-sess="7" data-part="B" data-stars="1">
+        <header><span class="iid">105</span><span class="stars" title="difficulty">⭐</span><span class="topic">How many point pairs?</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="105"> Done</label></header>
+        <div class="problem">Each point pair gives 2 equations. How many pairs fix <strong>(a)</strong> a pure shift (2 unknowns)? <strong>(b)</strong> a scale plus a shift (3 unknowns)? <strong>(c)</strong> You have 6 pairs for a homography. How many equations, how many unknowns — and what do you do with the extra?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $2 ÷ 2 = 1$ pair [0.5]<br>
+<strong>(b)</strong> one pair gives only 2 equations: you need <strong>2</strong> pairs (round up) [0.5]<br>
+<strong>(c)</strong> 12 equations, 8 unknowns: more than enough — fit them all at once (least squares), or let RANSAC throw out the wrong ones first [0.5]<br>
+<strong>Answer:</strong> (a) 1 · (b) 2 · (c) 12 vs 8: use the extra to average out errors and catch wrong matches</div></details>
+      </article>
+      <article class="item" id="p106" data-sess="7" data-part="B" data-stars="2">
+        <header><span class="iid">106</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Apply a homography</span><span class="meta">2 pts · ~4 min</span>
+          <label class="done"><input type="checkbox" data-id="106"> Done</label></header>
+        <div class="problem">$H = [\,2\;\;0\;\;10 \;/\; 0\;\;2\;\;20 \;/\; 0\;\;0.01\;\;1\,]$. <strong>(a)</strong> Where does the corner $(0, 0)$ land? <strong>(b)</strong> Where does $(100, 50)$ land? <strong>(c)</strong> Is $H$ affine? Why does it matter?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $H\,(0, 0, 1) = (10, 20, 1)$ → $(10, 20)$ [0.5]<br>
+<strong>(b)</strong> $H\,(100, 50, 1) = (2 \cdot 100 + 10,\ 2 \cdot 50 + 20,\ 0.01 \cdot 50 + 1) = (210, 120, 1.5)$ [0.75] → ÷ 1.5 → $(140, 80)$ [0.25]<br>
+<strong>(c)</strong> no — its bottom row is not $[0\;0\;1]$, so $w$ changes from point to point and parallel lines can meet: it is projective [0.5]<br>
+<strong>Answer:</strong> (a) $(10, 20)$ · (b) $(140, 80)$ · (c) no, projective</div></details>
+      </article>
+      <article class="item" id="p107" data-sess="7" data-part="B" data-stars="1">
+        <header><span class="iid">107</span><span class="stars" title="difficulty">⭐</span><span class="topic">Does one homography fit?</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="107"> Done</label></header>
+        <div class="problem">Can one homography map photo 1 onto photo 2? <strong>(a)</strong> A poster on a wall, photographed from two places. <strong>(b)</strong> A panorama taken by turning a phone on a tripod. <strong>(c)</strong> Two photos of a street of buildings at different distances, taken 2 m apart. <strong>(d)</strong> A page photographed at a slant, to be made flat.</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> yes — a flat scene [0.25]<br>
+<strong>(b)</strong> yes — the camera only turns [0.25]<br>
+<strong>(c)</strong> no — near and far shift by different amounts (parallax); a stereo/depth problem [0.5]<br>
+<strong>(d)</strong> yes — one flat page: four corners give H [0.5]<br>
+<strong>Answer:</strong> (a) yes · (b) yes · (c) no · (d) yes</div></details>
+      </article>
+      <article class="item" id="p108" data-sess="7" data-part="B" data-stars="2">
+        <header><span class="iid">108</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Two equations from one pair</span><span class="meta">2 pts · ~4 min</span>
+          <label class="done"><input type="checkbox" data-id="108"> Done</label></header>
+        <div class="problem">A point $(3, 1)$ maps to $(2, 5)$, with $x' = \dfrac{h_1x + h_2y + h_3}{h_7x + h_8y + 1}$ and the same bottom for $y'$ (top $h_4x + h_5y + h_6$). <strong>(a)</strong> Multiply out both fractions and write the two linear equations. <strong>(b)</strong> How many such pairs fix $H$? <strong>(c)</strong> Why must no three of the four points lie on one line?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $3h_1 + h_2 + h_3 - 6h_7 - 2h_8 = 2$ [0.5] · $3h_4 + h_5 + h_6 - 15h_7 - 5h_8 = 5$ [0.5]<br>
+<strong>(b)</strong> 8 unknowns, 2 equations per pair: <strong>4</strong> pairs [0.5]<br>
+<strong>(c)</strong> points on one line do not say how the rest of the plane is slanted — the equations stop being independent and $H$ is not fixed [0.5]<br>
+<strong>Answer:</strong> (a) the two equations above · (b) 4 · (c) the equations would not determine $H$</div></details>
+      </article>
+      <article class="item" id="p109" data-sess="7" data-part="B" data-stars="2">
+        <header><span class="iid">109</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Feather the seam</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="109"> Done</label></header>
+        <div class="problem">Two photos are blended with $\text{out} = \alpha B + (1 - \alpha) A$, where $\alpha = \min(1, d / 50)$ and $d$ is the distance in pixels inside $B$'s edge. At one pixel $A = 150$ and $B = 200$. <strong>(a)</strong> Compute the result at $d = 20$. <strong>(b)</strong> At $d = 60$? <strong>(c)</strong> Why not simply cut from $A$ to $B$ at the edge?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $\alpha = 20 / 50 = 0.4$ → $0.4 \cdot 200 + 0.6 \cdot 150 = 80 + 90 = 170$ [0.75]<br>
+<strong>(b)</strong> $\alpha = 1$ → $200$: only $B$ [0.25]<br>
+<strong>(c)</strong> if the two exposures differ, a cut shows a sharp step along the edge; the gradual weight hides it [0.5]<br>
+<strong>Answer:</strong> (a) 170 · (b) 200 · (c) a hard cut shows a visible seam</div></details>
+      </article>
+  <div class="parthead" id="s7c" data-group="7C"><h3>C · The camera matrix</h3><span class="pc"></span><a href="../session-07/slides.html#/part-c">Slides for this part →</a></div>
+      <article class="item" id="p110" data-sess="7" data-part="C" data-stars="1">
+        <header><span class="iid">110</span><span class="stars" title="difficulty">⭐</span><span class="topic">Focal length in pixels</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="110"> Done</label></header>
+        <div class="problem">A camera has an 8000 × 6000-pixel sensor with photosites $1.5\ \mu\text{m}$ wide. <strong>(a)</strong> Its lens has $f = 6\text{ mm}$. What is $f$ in pixels? <strong>(b)</strong> Where is the image centre $(c_x, c_y)$? <strong>(c)</strong> A 9 mm lens is fitted. What is $f$ in pixels now — wider or narrower view?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $6 \div 0.0015 = 4000$ px [0.5]<br>
+<strong>(b)</strong> the middle: $(4000, 3000)$ [0.5]<br>
+<strong>(c)</strong> $9 \div 0.0015 = 6000$ px: a longer focal length → a <strong>narrower</strong> view [0.5]<br>
+<strong>Answer:</strong> (a) 4000 px · (b) $(4000, 3000)$ · (c) 6000 px, narrower</div></details>
+      </article>
+      <article class="item" id="p111" data-sess="7" data-part="C" data-stars="2">
+        <header><span class="iid">111</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Project a point with K</span><span class="meta">2 pts · ~4 min</span>
+          <label class="done"><input type="checkbox" data-id="111"> Done</label></header>
+        <div class="problem">$K = [\,1000\;\;0\;\;640 \;/\; 0\;\;1000\;\;360 \;/\; 0\;\;0\;\;1\,]$. <strong>(a)</strong> A point is at $(0.4, -0.2, 4)$ m in camera coordinates. Compute $K X$ and its pixel. <strong>(b)</strong> Another point is at $(0.8, -0.4, 8)$ m. Its pixel? <strong>(c)</strong> What does (b) show?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $K X = (1000 \cdot 0.4 + 640 \cdot 4,\ 1000 \cdot ({-0.2}) + 360 \cdot 4,\ 4) = (2960, 1240, 4)$ [0.75] → ÷ 4 → $(740, 310)$ [0.25]<br>
+<strong>(b)</strong> $K X = (1000 \cdot 0.8 + 640 \cdot 8,\ 1000 \cdot ({-0.4}) + 360 \cdot 8,\ 8) = (5920, 2480, 8)$ → ÷ 8 → $(740, 310)$ [0.5]<br>
+<strong>(c)</strong> twice as far and twice as big lands on the same pixel: one photo loses depth (session 2) [0.5]<br>
+<strong>Answer:</strong> (a) $(740, 310)$ · (b) $(740, 310)$ · (c) depth is lost in one view</div></details>
+      </article>
+      <article class="item" id="p112" data-sess="7" data-part="C" data-stars="2">
+        <header><span class="iid">112</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Move the camera</span><span class="meta">2 pts · ~4 min</span>
+          <label class="done"><input type="checkbox" data-id="112"> Done</label></header>
+        <div class="problem">$K = [\,600\;\;0\;\;300 \;/\; 0\;\;600\;\;200 \;/\; 0\;\;0\;\;1\,]$ and $R = I$. A world point is at $X = (1.5, 0.5, 5)$. <strong>(a)</strong> The camera stands at $C = (1, 0, 0)$. Find the point in camera coordinates and its pixel. <strong>(b)</strong> The camera moves to $C = (2, 0, 0)$. Repeat. <strong>(c)</strong> Which way did the point move in the image?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $X - C = (0.5, 0.5, 5)$ [0.5] → $(600 \cdot 0.1 + 300,\ 600 \cdot 0.1 + 200) = (360, 260)$ [0.5]<br>
+<strong>(b)</strong> $X - C = (-0.5, 0.5, 5)$ → $(600 \cdot ({-0.1}) + 300,\ 260) = (240, 260)$ [0.5]<br>
+<strong>(c)</strong> the camera moved right, so the point moved <strong>left</strong> in the picture (by 120 px) [0.5]<br>
+<strong>Answer:</strong> (a) $(360, 260)$ · (b) $(240, 260)$ · (c) left</div></details>
+      </article>
+      <article class="item" id="p113" data-sess="7" data-part="C" data-stars="1">
+        <header><span class="iid">113</span><span class="stars" title="difficulty">⭐</span><span class="topic">The image centre</span><span class="meta">1 pts · ~2 min</span>
+          <label class="done"><input type="checkbox" data-id="113"> Done</label></header>
+        <div class="problem">A 1920 × 1080 camera has pixel $(0, 0)$ at the top-left corner and its optical axis through the middle. <strong>(a)</strong> What are $c_x$ and $c_y$? <strong>(b)</strong> A point straight ahead, $(0, 0, Z)$, lands on which pixel — and does it depend on $Z$ or $f$? <strong>(c)</strong> If $K$ wrongly used $(0, 0)$ as the centre, where would that point be drawn?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $(960, 540)$ [0.25]<br>
+<strong>(b)</strong> $K\,(0, 0, Z) = (960 Z, 540 Z, Z)$ → $(960, 540)$ for every $Z$ and $f$ [0.5]<br>
+<strong>(c)</strong> at $(0, 0)$ — the top-left corner instead of the middle [0.25]<br>
+<strong>Answer:</strong> (a) $(960, 540)$ · (b) $(960, 540)$, independent of $Z$ and $f$ · (c) $(0, 0)$</div></details>
+      </article>
+      <article class="item" id="p114" data-sess="7" data-part="C" data-stars="3">
+        <header><span class="iid">114</span><span class="stars" title="difficulty">⭐⭐⭐</span><span class="topic">A plane gives one homography</span><span class="meta">2 pts · ~5 min</span>
+          <label class="done"><input type="checkbox" data-id="114"> Done</label></header>
+        <div class="problem">$K = [\,500\;\;0\;\;200 \;/\; 0\;\;500\;\;100 \;/\; 0\;\;0\;\;1\,]$, $R = I$ and $t = (0, 0, 2)$: a floor plane $z = 0$ seen straight on from 2 m. <strong>(a)</strong> Why does the third column $r_3$ of $[R\,|\,t]$ drop out for points on the plane? <strong>(b)</strong> Compute $H = K\,[\,r_1\;r_2\;t\,]$. <strong>(c)</strong> Map the plane point $(0.4, -0.2)$ with $H$, and check it against $K\,(0.4, -0.2, 2)$.</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> the point is $(X, Y, 0, 1)$: $r_3$ is multiplied by $z = 0$ [0.5]<br>
+<strong>(b)</strong> $[\,r_1\;r_2\;t\,] = [\,1\;\;0\;\;0 \;/\; 0\;\;1\;\;0 \;/\; 0\;\;0\;\;2\,]$ → $H = [\,500\;\;0\;\;400 \;/\; 0\;\;500\;\;200 \;/\; 0\;\;0\;\;2\,]$ [0.75]<br>
+<strong>(c)</strong> $H\,(0.4, -0.2, 1) = (200 + 400,\ -100 + 200,\ 2) = (600, 100, 2)$ → $(300, 50)$; $K\,(0.4, -0.2, 2) = (600, 100, 2)$ — the same [0.75]<br>
+<strong>Answer:</strong> (a) $z = 0$ · (b) $[\,500\;\;0\;\;400 \;/\; 0\;\;500\;\;200 \;/\; 0\;\;0\;\;2\,]$ · (c) $(300, 50)$ both ways</div></details>
+      </article>
+  <div class="parthead" id="s7d" data-group="7D"><h3>D · Stereo</h3><span class="pc"></span><a href="../session-07/slides.html#/part-d">Slides for this part →</a></div>
+      <article class="item" id="p115" data-sess="7" data-part="D" data-stars="1">
+        <header><span class="iid">115</span><span class="stars" title="difficulty">⭐</span><span class="topic">Depth from disparity</span><span class="meta">1 pts · ~2 min</span>
+          <label class="done"><input type="checkbox" data-id="115"> Done</label></header>
+        <div class="problem">A stereo camera has $f = 1000$ px and $B = 0.15$ m. <strong>(a)</strong> A point has disparity 30 px. How far is it? <strong>(b)</strong> Another has 75 px. Nearer or farther, and by how much?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $Z = fB / d = 150 / 30 = 5$ m [0.5]<br>
+<strong>(b)</strong> $150 / 75 = 2$ m: larger disparity, <strong>nearer</strong> — 3 m closer [0.5]<br>
+<strong>Answer:</strong> (a) 5 m · (b) 2 m, nearer</div></details>
+      </article>
+      <article class="item" id="p116" data-sess="7" data-part="D" data-stars="2">
+        <header><span class="iid">116</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">One pixel of error</span><span class="meta">2 pts · ~4 min</span>
+          <label class="done"><input type="checkbox" data-id="116"> Done</label></header>
+        <div class="problem">$f B = 150$ (pixels · metres). <strong>(a)</strong> A near point has $d = 75$ px. What depth would $d = 74$ give, and by what percent is that off? <strong>(b)</strong> A far point has $d = 10$ px. What does $d = 9$ give, and the percent? <strong>(c)</strong> Check both against $\Delta Z \approx Z^2 / (fB)$.</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $150 / 75 = 2$ m; $150 / 74 \approx 2.03$ m → about <strong>1.4 %</strong> [0.75]<br>
+<strong>(b)</strong> $150 / 10 = 15$ m; $150 / 9 \approx 16.7$ m → about <strong>11 %</strong> [0.75]<br>
+<strong>(c)</strong> $2^2 / 150 \approx 0.03$ m ✓ · $15^2 / 150 = 1.5$ m (the exact step is 1.7 m — the rule is a first-order estimate) [0.5]<br>
+<strong>Answer:</strong> (a) 2.03 m, 1.4 % · (b) 16.7 m, 11 % · (c) 0.03 m and 1.5 m</div></details>
+      </article>
+      <article class="item" id="p117" data-sess="7" data-part="D" data-stars="2">
+        <header><span class="iid">117</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">A longer baseline</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="117"> Done</label></header>
+        <div class="problem">The far point of the last item is at 15 m. The baseline is doubled, so $fB = 300$. <strong>(a)</strong> What is its disparity now? <strong>(b)</strong> What depth would one pixel less give, and the percent error? <strong>(c)</strong> Name one price of a longer baseline.</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $300 / 15 = 20$ px [0.5]<br>
+<strong>(b)</strong> $300 / 19 \approx 15.8$ m → about <strong>5 %</strong>, half of before [0.5]<br>
+<strong>(c)</strong> the two views differ more: more of the scene is hidden in one view, and matching gets harder (a bigger rig, too) [0.5]<br>
+<strong>Answer:</strong> (a) 20 px · (b) 15.8 m, 5 % · (c) harder matching, more occlusion</div></details>
+      </article>
+      <article class="item" id="p118" data-sess="7" data-part="D" data-stars="1">
+        <header><span class="iid">118</span><span class="stars" title="difficulty">⭐</span><span class="topic">Search along one line</span><span class="meta">1 pts · ~2 min</span>
+          <label class="done"><input type="checkbox" data-id="118"> Done</label></header>
+        <div class="problem">Images are 1280 × 720 pixels. <strong>(a)</strong> How many places would you try to find a point's twin anywhere in the other image? <strong>(b)</strong> How many along one epipolar line that crosses the whole width? <strong>(c)</strong> After rectification, which line is it?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $1280 \times 720 = 921\,600$ [0.25]<br>
+<strong>(b)</strong> 1280 — 720 times fewer [0.25]<br>
+<strong>(c)</strong> the same row as the point [0.5]<br>
+<strong>Answer:</strong> (a) 921,600 · (b) 1280 · (c) the same row</div></details>
+      </article>
+      <article class="item" id="p119" data-sess="7" data-part="D" data-stars="2">
+        <header><span class="iid">119</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Same size in one photo, different depth</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="119"> Done</label></header>
+        <div class="problem">In one photo ($f = 50$ mm) a 1 m box at 3 m and a 5 m truck at 15 m look the same size. A stereo camera with $fB = 120$ sees them too. <strong>(a)</strong> Show that one photo cannot tell them apart. <strong>(b)</strong> Compute both disparities. <strong>(c)</strong> A point in the sky has disparity 0. Where is it?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $50 \cdot 1 / 3 \approx 16.7$ mm and $50 \cdot 5 / 15 \approx 16.7$ mm — the same image size [0.5]<br>
+<strong>(b)</strong> $120 / 3 = 40$ px and $120 / 15 = 8$ px — different, so the depths are known [0.5]<br>
+<strong>(c)</strong> $Z = fB / d → \infty$: very far away (it does not shift between the cameras) [0.5]<br>
+<strong>Answer:</strong> (a) both 16.7 mm · (b) 40 px and 8 px · (c) infinitely far</div></details>
       </article>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
