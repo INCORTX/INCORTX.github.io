@@ -1,0 +1,1359 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Session 8 · Detection &amp; Segmentation · Computer Vision</title>
+<!--
+  SESSION 8 deck (script-less: what to say is on the slide; asides = presenter notes, key S). Built by tools/s08/build.py.
+  CV next-term deck template v1 (2026-09-29) — prototype on session 1 (orientation).
+  Pattern: COMP90086-style reveal.js deck (claim titles · Outline + Learning outcomes up front ·
+  Summary + References at the end · live canvases) plus: fragments for step reveals ·
+  .tryit (collapsible answer) · .flashback · .colab button · no per-slide citations — sources are on the References slide; direct quotes name their author
+  in the slide itself; internal codes stay in the speaker script ·
+  .term key terms with Thai meaning · toolbar bottom-centre, hidden while idle (first · prev · next · last · overview · fullscreen · PDF · ?)
+  · ↓/↑ = whole slide skipping fragments · Enter = full screen · all slides = photo-album grid (#album: arrows, Enter, scroll/drag) · page number
+  in every slide footer, so it also prints
+  · exports: ?print-pdf = 16:9 PDF, ?handout = A4 portrait, 2 slides/page (append &autoprint to open the
+  print dialog) · touch screens: bar always shown, no ? button, docked right when a phone is sideways;
+  ?present forces slides · reading mode on phones with a bottom bar + slide list (≤760px: Reveal is not started;
+  every slide stacks as a normal page at 17px, fragments shown, demos still live).
+  Student-facing text is English; Thai only inside .th. Speaker script:
+  Instructor_Materials/ComputerVision/Lecture_Scripts/session-01.md
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Anuphan:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/reset.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/reveal.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<style>
+:root{
+  --bg:#ffffff; --ink:#0f1b2d; --body:#2b3645; --muted:#667085; --soft:#f5f7fa; --line:#e4e8ee;
+  --teal:#0f766e; --teal-soft:#e6f4f2; --coral:#e0533d; --coral-soft:#fdeeea;
+  --amber:#c97a06; --amber-soft:#fdf4e3; --violet:#6d5bd0; --violet-soft:#f0edfc; --navy:#0f1b2d;
+  --font:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --display:'Space Grotesk','Plus Jakarta Sans',sans-serif;
+  --font-th:'Anuphan','Plus Jakarta Sans',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+html,body{background:var(--bg);}
+.reveal{font-family:var(--font);color:var(--body);font-size:34px;}
+.reveal .slides{text-align:left;}
+.reveal .slides>section,.reveal .slides .pdf-page>section,.reveal .slides .ho-cell>section{height:100% !important;padding:6px 4px 64px !important;box-sizing:border-box;}
+.reveal h1,.reveal h2,.reveal h3,.reveal h4{font-family:var(--display);color:var(--ink);text-transform:none;letter-spacing:-0.02em;margin:0 0 .45em;}
+.reveal h1{font-size:2.6em;font-weight:700;line-height:1.02;}
+.reveal h2{font-size:1.5em;font-weight:700;line-height:1.12;}
+.reveal h3{font-size:.95em;font-weight:600;color:var(--teal);margin-bottom:.35em;}
+.reveal p,.reveal li{line-height:1.5;}
+.reveal ul,.reveal ol{margin:0 0 0 1.05em;}
+.reveal li{margin:.3em 0;padding-left:.15em;}
+.reveal ul li::marker{color:var(--teal);font-size:1.1em;}
+.reveal ol li::marker{color:var(--teal);font-weight:700;font-family:var(--display);}
+.reveal strong,.reveal b{font-weight:700;color:var(--ink);}
+.reveal a{color:var(--teal);text-decoration:underline;text-underline-offset:3px;}
+.reveal code{font-family:var(--mono);font-size:.82em;background:var(--soft);padding:.05em .3em;border-radius:5px;}
+
+/* slide header: kicker + claim title */
+.kicker{display:flex;align-items:center;gap:.5em;font-family:var(--display);font-size:.5em;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin:0 0 .5em;}
+.kicker::before{content:"";width:1.8em;height:3px;border-radius:2px;background:var(--teal);}
+.reveal h2.claim{max-width:26em;}
+.lead{font-size:.66em;line-height:1.5;color:#46505e;margin:-.15em 0 .8em;max-width:52em;text-wrap:pretty;}
+/* closing note under the content: small, with the kicker's teal rule in front */
+.takeaway{display:flex;align-items:baseline;gap:.7em;margin:.9em 0 0;font-size:.6em;line-height:1.5;font-weight:500;color:var(--muted);max-width:60em;text-wrap:pretty;}
+.takeaway::before{content:"";flex:0 0 1.8em;height:3px;border-radius:2px;background:var(--teal);transform:translateY(-.3em);}
+html.reading .lead,html.reading .takeaway{font-size:15px;}
+
+/* layout helpers */
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.4em;align-items:start;}
+.cols.c3{grid-template-columns:repeat(3,minmax(0,1fr));}
+.cols.w64{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,10.5em),1fr));gap:.55em;}
+.cards.c4{grid-template-columns:repeat(4,minmax(0,1fr));}
+.cards.apps{gap:.45em;}
+.cards.apps .card{font-size:.58em;padding:.55em .7em .6em;}
+.cards.apps .card b{font-size:1.15em;}
+.card .cardimg{display:block;width:calc(100% + 1.4em);max-width:none;margin:-.55em -.7em .4em;aspect-ratio:5/2;object-fit:cover;border-radius:8px 8px 0 0;}
+.cards.c5{grid-template-columns:repeat(5,minmax(0,1fr));}
+.cards.c5 .card{font-size:.66em;padding:.5em .65em .55em;}
+.card{position:relative;background:#fff;border:1px solid var(--line);border-top:4px solid var(--teal);border-radius:12px;padding:.6em .75em .65em;font-size:.74em;line-height:1.4;box-shadow:0 1px 2px rgba(15,27,45,.05),0 6px 16px -10px rgba(15,27,45,.18);}
+.card b{display:block;font-family:var(--display);font-size:1.12em;margin-bottom:.2em;color:var(--ink);}
+.card .n{display:block;font-family:var(--display);font-weight:700;color:#9aa6b5;font-size:.85em;letter-spacing:.06em;margin-bottom:.15em;}
+.card.teal{border-top-color:var(--teal);} .card.coral{border-top-color:var(--coral);}
+.card.amber{border-top-color:var(--amber);} .card.violet{border-top-color:var(--violet);} .card.navy{border-top-color:var(--navy);}
+.small{font-size:.84em;}
+.muted{color:var(--muted);}
+.center{text-align:center;}
+.spacer{height:.6em;}
+
+/* source line: sits on the footer rule of every content slide */
+.src{position:absolute;left:4px;bottom:16px;font-size:12px;color:var(--muted);white-space:nowrap;line-height:1.3;}
+.src i{font-style:italic;}
+html.reading .src{white-space:normal;}
+.pgno{position:absolute;right:4px;bottom:12px;font-family:var(--display);font-size:15px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.02em;}
+.pgno b{color:var(--ink);font-weight:700;}
+.title-slide .pgno{display:none;}
+html.reading .pgno{display:none;}
+.deck-rule{position:absolute;left:4px;right:4px;bottom:46px;height:1px;background:var(--line);}
+
+/* key term with Thai meaning */
+.term{display:grid;grid-template-columns:auto 1fr;gap:.1em .6em;align-items:baseline;background:var(--teal-soft);border-radius:12px;padding:.5em .8em;font-size:.72em;margin:0 0 .5em;}
+.term b{font-family:var(--display);font-size:1.15em;}
+.term .th{justify-self:start;}
+.term .def{grid-column:1 / -1;color:var(--body);}
+.th{font-family:var(--font-th);color:var(--teal);font-weight:500;}
+
+/* Try it */
+.tryit{border:1px solid #f1d9a9;border-left:6px solid var(--amber);border-radius:12px;padding:.65em .9em;background:var(--amber-soft);font-size:.72em;line-height:1.45;}
+.tryit .tag{display:table;font-family:var(--display);font-weight:700;color:var(--amber);letter-spacing:.14em;text-transform:uppercase;font-size:.62em;margin-bottom:.45em;}
+.tryit details summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-family:var(--display);font-weight:600;font-size:.85em;color:var(--amber);list-style:none;}
+.tryit details summary::-webkit-details-marker{display:none;}
+.tryit details summary::before{content:"";width:0;height:0;border-left:.42em solid currentColor;border-top:.3em solid transparent;border-bottom:.3em solid transparent;margin-right:.5em;transition:transform .15s;}
+.tryit details[open] summary::before{transform:rotate(90deg);}
+
+/* flashback */
+.flashback{border:1px solid #d9d2f6;border-left:6px solid var(--violet);background:var(--violet-soft);border-radius:12px;padding:.65em .9em;font-size:.72em;line-height:1.45;}
+.flashback::before{content:"Flashback";display:block;font-family:var(--display);font-weight:700;color:var(--violet);letter-spacing:.14em;text-transform:uppercase;font-size:.62em;margin-bottom:.4em;}
+/* key idea: same box shape, teal, label from data-label */
+.keyidea{border:1px solid #bfe3de;border-left:6px solid var(--teal);background:var(--teal-soft);border-radius:12px;padding:.65em .9em;font-size:.72em;line-height:1.45;}
+.keyidea::before{content:attr(data-label);display:block;font-family:var(--display);font-weight:700;color:var(--teal);letter-spacing:.14em;text-transform:uppercase;font-size:.62em;margin-bottom:.4em;}
+
+/* Colab button */
+.colab svg{width:.95em;height:.95em;fill:currentColor;}
+.colab{display:inline-flex;align-items:center;gap:.4em;min-height:44px;padding:0 1em;border-radius:999px;background:#f9ab00;color:#1b1f24 !important;font-family:var(--display);font-weight:700;font-size:.62em;text-decoration:none !important;box-shadow:0 4px 12px -6px rgba(201,122,6,.6);}
+
+/* tables */
+.tscroll{overflow-x:auto;max-width:100%;border:1px solid var(--line);border-radius:12px;}
+.reveal table{border-collapse:collapse;font-size:.66em;width:100%;}
+.reveal table th,.reveal table td{border:0;border-bottom:1px solid var(--line);padding:.45em .75em;text-align:left;vertical-align:top;}
+.reveal table th{background:var(--navy);color:#fff;font-family:var(--display);font-weight:600;letter-spacing:.02em;}
+.reveal table tr:nth-child(odd) td{background:#fafbfc;}
+.reveal table tr:last-child td{border-bottom:0;}
+.reveal table tr.hl td{background:var(--teal-soft);font-weight:600;color:var(--ink);}
+.reveal table.tight{font-size:.5em;}
+.reveal table.tight th,.reveal table.tight td{padding:.3em .7em;}
+.reveal table td.pt{font-family:var(--display);font-weight:700;color:var(--teal);text-align:center;width:3em;}
+
+/* title slide — dark cover */
+.reveal .slides>section.title-slide,.reveal .slides .pdf-page>section.title-slide,.reveal .slides .ho-cell>section.title-slide{padding:0 34px !important;}
+.title-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:2.2em;align-items:center;height:100%;}
+.title-slide .pill{display:inline-flex;align-items:center;gap:.6em;margin:0 0 1.2em;padding:.4em 1em;border-radius:999px;background:var(--teal-soft);color:var(--teal);font-family:var(--display);font-weight:600;font-size:.46em;letter-spacing:.16em;text-transform:uppercase;}
+.title-slide .pill::before{content:"";width:.55em;height:.55em;border-radius:50%;background:var(--teal);}
+.reveal .title-slide h1{color:var(--ink);font-size:3em;line-height:.98;margin:0 0 .32em;letter-spacing:-.035em;}
+.reveal .title-slide h1 em{font-style:normal;color:var(--teal);}
+.title-slide .sub{font-family:var(--display);font-size:1em;color:var(--body);font-weight:500;margin:0 0 1.9em;}
+.title-slide .who{border-top:1px solid var(--line);padding-top:.9em;max-width:17em;}
+.title-slide .who p{margin:0;}
+.title-slide .name{font-family:var(--display);font-weight:700;font-size:.8em;color:var(--ink);}
+.title-slide .name span{font-weight:500;color:var(--muted);}
+.title-slide .contact{display:flex;flex-wrap:wrap;gap:.2em 1.4em;margin-top:.35em !important;font-size:.56em;color:var(--muted);}
+.title-slide .contact a{color:inherit;text-decoration:none;}
+.title-slide .contact a:hover{color:var(--teal);}
+.title-slide .contact span+span::before{content:"";display:inline-block;width:.32em;height:.32em;border-radius:50%;background:#c3cad4;margin:0 .9em 0 -.8em;vertical-align:middle;}
+.title-slide .art{margin:0;padding:34px 34px 22px;border-radius:30px;background-color:var(--teal-soft);background-image:radial-gradient(rgba(15,118,110,.16) 1.4px,transparent 1.6px);background-size:22px 22px;}
+#titleArt{display:block;width:100%;height:auto;border-radius:16px;background:#fff;box-shadow:0 18px 40px -22px rgba(15,27,45,.35),0 0 0 1px var(--line);}
+@media print{#titleArt{box-shadow:0 0 0 1px var(--line);}.title-slide .art{background-image:none;}}
+html.print-pdf #titleArt{box-shadow:0 0 0 1px var(--line);}
+html.print-pdf .title-slide .art{background-image:none;}
+.title-slide figcaption{margin-top:.8em;text-align:center;font-family:var(--mono);font-size:.4em;color:var(--teal);letter-spacing:.02em;}
+html.reading .reveal .slides>section.title-slide{padding:36px 18px !important;}
+html.reading .title-slide .pill,html.reading .title-slide figcaption,html.reading .title-slide .contact{font-size:13px;}
+html.reading .title-slide .art{padding:18px 18px 12px;border-radius:20px;}
+
+/* slide 2: outline as a stepper, outcomes as verb cards */
+.cols.today{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:2em;}
+.reveal .steps{list-style:none;margin:0;padding:0;counter-reset:st;position:relative;}
+/* connector: one segment per item, from this circle's centre to the next — in the li's own em so it stays centred at any size */
+.steps li:not(:last-child)::after{content:"";position:absolute;left:calc(.855em - 1px);top:50%;height:100%;width:2px;background:#a9d8d4;}
+.steps li{counter-increment:st;position:relative;margin:0;padding:.5em 0 .5em 2.7em;font-size:.8em;line-height:1.35;color:var(--ink);}
+.steps li::before{content:counter(st);position:absolute;left:0;top:50%;transform:translateY(-50%);box-sizing:border-box;z-index:1;width:1.9em;height:1.9em;border-radius:50%;background:#fff;border:2px solid var(--teal);color:var(--teal);font-family:var(--display);font-weight:700;font-size:.9em;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 4px #fff;}
+.goals{display:grid;gap:.5em;}
+.goal{display:grid;grid-template-columns:5.4em 1fr;gap:.8em;align-items:center;background:#fff;border:1px solid var(--line);border-left:5px solid var(--c);border-radius:12px;padding:.6em .85em;font-size:.72em;line-height:1.4;color:var(--ink);box-shadow:0 6px 16px -12px rgba(15,27,45,.25);}
+.goal .verb{justify-self:start;font-family:var(--display);font-weight:700;font-size:.78em;letter-spacing:.12em;text-transform:uppercase;color:var(--c);}
+html.reading .steps li,html.reading .goal{font-size:15px;}
+html.reading .cols.today{grid-template-columns:1fr;}
+/* outline / outcomes */
+.outline{list-style:none;margin:0;padding:0;counter-reset:o;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6em 1.2em;}
+.outline.one{grid-template-columns:1fr;gap:.4em;}
+.outline li{counter-increment:o;display:flex;gap:.7em;align-items:flex-start;font-size:.82em;background:var(--soft);border-radius:12px;padding:.6em .8em;margin:0;}
+.outline li::before{content:counter(o,decimal-leading-zero);font-family:var(--display);font-weight:700;color:var(--teal);font-size:1.1em;line-height:1.35;}
+.outcomes{list-style:none;margin:0;padding:0;counter-reset:c;}
+.outcomes li{counter-increment:c;position:relative;padding:.45em 0 .45em 2.4em;margin:0;font-size:.84em;border-bottom:1px solid var(--line);}
+.outcomes li:last-child{border-bottom:0;}
+.outcomes li::before{content:counter(c);position:absolute;left:0;top:.42em;width:1.6em;height:1.6em;border-radius:50%;background:var(--teal);color:#fff;font-family:var(--display);font-weight:700;font-size:.85em;display:flex;align-items:center;justify-content:center;}
+
+/* grading */
+.gtiles{display:grid;grid-template-columns:40fr 30fr 20fr 10fr;gap:.4em;margin:.2em 0 .6em;}
+.gtile{border-radius:14px;padding:.6em .7em;color:#fff;min-height:9em;display:flex;flex-direction:column;justify-content:space-between;}
+.gtile .num{font-family:var(--display);font-size:2.4em;font-weight:700;line-height:1;}
+.gtile .lbl{font-family:var(--display);font-weight:600;font-size:.72em;}
+.gtile .det{font-size:.5em;opacity:.92;line-height:1.35;}
+
+/* course map */
+.map{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.55em;position:relative;}
+.map .blk{background:#fff;border:1px solid var(--line);border-radius:14px;padding:.6em .65em .65em;font-size:.62em;box-shadow:0 6px 16px -12px rgba(15,27,45,.25);}
+.map .blk h4{font-size:1.15em;margin:0 0 .5em;display:flex;align-items:center;gap:.4em;}
+.map .blk h4::before{content:"";width:.6em;height:.6em;border-radius:3px;background:var(--c);}
+.map .s{display:flex;gap:.5em;align-items:flex-start;margin:.35em 0;line-height:1.3;}
+.map .blk{display:flex;flex-direction:column;}
+.map .fw{margin-top:auto;padding-top:.5em;border-top:1px dashed var(--line);display:flex;flex-direction:column;gap:.2em;font-size:.86em;line-height:1.3;color:var(--body);}
+.map .s+.fw,.map .s+.s+.fw{margin-top:auto;}
+.map .fw b{font-family:var(--display);font-size:.78em;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.1em;}
+.map .fw .nw{white-space:nowrap;}
+html.reading .map .fw{font-size:14px;}
+html.reading .map .fw b{font-size:12px;}
+.map .fw em{font-style:normal;font-weight:600;color:var(--ink);}
+.map .fw i{font-style:normal;display:inline-grid;place-items:center;width:1.45em;height:1.45em;border-radius:50%;background:var(--soft);color:var(--ink);font-family:var(--display);font-weight:700;font-size:.85em;margin-left:.15em;}
+.map .s i{font-style:normal;flex:0 0 1.6em;height:1.6em;border-radius:50%;background:var(--c);color:#fff;font-family:var(--display);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:.9em;}
+.after{display:flex;gap:.6em;margin-top:.8em;}
+.after>.keyidea{flex:1;font-size:.66em;}
+.keyidea.coral{border-color:#f3c9c0;border-left-color:var(--coral);background:var(--coral-soft);}
+.keyidea.coral::before{color:var(--coral);}
+html.reading .after{flex-direction:column;}
+
+/* s17 · hand-in */
+.handin{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);gap:.8em;margin-top:.6em;align-items:start;}
+.reveal table.hintable{font-size:.54em;}
+.reveal table.hintable th,.reveal table.hintable td{padding:.22em .7em;}
+.reveal table.hintable td:nth-child(2){white-space:nowrap;}
+.reveal .fnames li.fh{font-family:var(--display);font-weight:600;color:var(--teal);font-size:.5em;margin-bottom:.2em;white-space:normal;}
+.reveal .hcount{margin:.4em 0 .55em;font-size:.56em;color:var(--muted);}
+.reveal .hcount b{color:var(--ink);}
+.pattern{border:1px solid var(--line);border-radius:12px;padding:.45em .7em .5em;background:#fff;}
+.reveal .pat{margin:0 0 .25em;font-family:var(--mono);font-size:.66em;font-weight:600;color:var(--muted);letter-spacing:.01em;}
+.pat span{color:var(--teal);}
+.reveal .pattern ul{list-style:none;margin:0;padding:0;display:grid;gap:.12em;}
+.reveal .pattern li{display:grid;grid-template-columns:3.2em 1fr;gap:.4em;font-size:.48em;line-height:1.35;margin:0;}
+.pattern li b{font-family:var(--display);color:var(--ink);}
+.reveal .fnames{list-style:none;margin:0;padding:.55em .7em;background:var(--soft);border-radius:12px;display:grid;gap:.15em;}
+.reveal .fnames li{margin:0;font-family:var(--mono);font-size:.42em;line-height:1.55;color:var(--ink);white-space:nowrap;}
+.reveal .solo{margin:.6em 0 0;font-size:.52em;line-height:1.5;color:var(--body);}
+.reveal .solo code{font-size:.9em;white-space:nowrap;}
+html.reading .handin{grid-template-columns:1fr;}
+html.reading .pattern li,html.reading .reveal .solo,html.reading .reveal .hcount{font-size:14px;}
+html.reading .reveal .fnames li{font-size:12px;white-space:nowrap;}
+html.reading .reveal .pat{font-size:15px;}
+/* s6 · 1966 summer project */
+.memo{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.3fr);gap:1.4em;align-items:start;margin-top:.3em;}
+.mq{margin:0;font-family:var(--display);font-size:.8em;line-height:1.38;color:var(--ink);border-left:6px solid var(--teal);padding:.15em 0 .15em .8em;}
+.mq span{display:block;font-family:var(--font);font-size:.68em;color:var(--muted);margin-top:.6em;}
+.memo h3{margin:0 0 .5em;}
+.memo .pipe .st{font-size:.6em;}
+.reveal .mnote{margin:.7em 0 0;font-size:.56em;color:var(--muted);line-height:1.45;}
+.memo-end{margin-top:1.1em;font-size:.66em;}
+html.reading .memo{grid-template-columns:1fr;}
+html.reading .mq{font-size:17px;}
+html.reading .memo-end{font-size:15px;}
+html.reading .reveal .mnote{font-size:14px;}
+.reveal .more{margin:.9em 0 0;font-size:.56em;}
+.reveal .more a{color:var(--teal);font-weight:600;text-decoration:none;border-bottom:2px solid var(--teal-soft);}
+.reveal .more a:hover{border-bottom-color:var(--teal);}
+html.reading .reveal .more{font-size:15px;}
+/* session roadmap (slide 2) + part openers — shared by every session deck */
+.qband{display:flex;gap:.8em;align-items:center;background:var(--soft);border-radius:14px;padding:.6em .9em;margin:0 0 .8em;font-size:.74em;color:var(--ink);font-family:var(--display);font-weight:600;}
+.qband span{font-family:var(--font);font-weight:700;font-size:.62em;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);white-space:nowrap;}
+.parts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6em;}
+.parts a{display:block;text-decoration:none;transition:border-color .15s,transform .15s;border:1px solid var(--line);border-radius:14px;padding:.6em .75em;font-size:.62em;line-height:1.4;color:var(--muted);background:#fff;}
+.parts a b{display:block;font-family:var(--display);font-size:1.25em;color:var(--ink);margin-bottom:.2em;}
+.parts a i{font-style:normal;display:inline-grid;place-items:center;width:1.7em;height:1.7em;border-radius:50%;background:var(--soft);color:var(--ink);font-family:var(--display);font-weight:700;margin-right:.35em;}
+.parts a.on{border:2px solid var(--teal);background:var(--teal-soft);color:var(--body);}
+.parts a.on i{background:var(--teal);color:#fff;}
+/* the A–D strip sits in the normal flow (never absolute), so nothing can overlap it in any mode; auto margins centre the rest */
+.part-open{display:flex !important;flex-direction:column;justify-content:flex-start;}
+.po-strip{position:static;margin:34px 0 26px;display:grid;grid-template-columns:repeat(4,1fr);gap:.4em;font-family:var(--display);font-size:.5em;}
+.po-strip a{text-decoration:none;display:flex;align-items:center;gap:.5em;padding:.45em .7em;border-radius:999px;background:var(--soft);color:var(--muted);}
+.po-strip b{display:inline-grid;place-items:center;width:1.7em;height:1.7em;border-radius:50%;background:#fff;color:var(--muted);}
+.po-strip a.done{color:var(--body);}
+.po-strip a.done b{background:var(--teal-soft);color:var(--teal);}
+.po-strip a.on{background:var(--teal);color:#fff;}
+.po-strip a.on b{background:#fff;color:var(--teal);}
+.reveal .po-letter{margin:auto 0 0;font-family:var(--display);font-weight:700;font-size:3.2em;line-height:1;color:var(--teal);}
+.part-open .claim{font-size:1.9em;margin:.1em 0 .3em;}
+.reveal .po-q{margin:0 0 1.2em;font-family:var(--display);font-size:.95em;color:var(--body);max-width:24em;}
+.reveal .po-out{margin:0 0 auto;max-width:34em;border-left:5px solid var(--teal);padding:.3em 0 .3em .8em;font-size:.62em;line-height:1.5;color:var(--body);}
+.po-out span{display:block;font-family:var(--display);font-weight:700;font-size:.8em;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:.15em;}
+html.reading .part-open{display:block !important;}
+html.reading .tryit .tag{font-size:12px;}
+.reveal sup{vertical-align:super;font-size:.68em;line-height:0;}
+/* print: no vertical centring there, so keep the big letter clear of the A–D strip */
+html.reading .po-strip{position:static;grid-template-columns:1fr 1fr;margin-bottom:1em;font-size:13px;}
+html.reading .po-q{font-size:18px;}
+html.reading .po-out{font-size:15px;}
+.parts a:hover{border-color:var(--teal);transform:translateY(-2px);}
+.po-strip a:hover{box-shadow:0 0 0 2px var(--teal-soft);}
+html.reading .parts{grid-template-columns:1fr;}
+html.reading .qband,html.reading .parts a{font-size:15px;}
+html.reading .qband span{font-size:12px;}
+.steps.recap li{font-size:.7em;}
+.reveal aside.notes,aside.notes{display:none !important;}
+.reveal ul.imgcred{columns:2;column-gap:2em;}
+.reveal ul.imgcred li{break-inside:avoid;}
+html.reading .reveal ul.imgcred{columns:1;font-size:13px !important;}
+html.reading .cards.apps .card{font-size:15px;}
+/* ===== session 8 (shared base from session 6) ===== */
+.split{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:1.2em;align-items:center;}
+.split.even{grid-template-columns:minmax(0,1fr) minmax(0,1fr);}
+.say{font-size:.68em;line-height:1.5;color:var(--body);}
+.say p{margin:0 0 .55em;}
+.say b{color:var(--ink);}
+.demo-out{font-family:var(--mono);font-size:.5em;color:var(--muted);margin-top:.35em;display:flex;justify-content:space-between;gap:.6em;flex-wrap:wrap;}
+.demo-out b{color:var(--ink);font-weight:600;}
+.reveal .more{margin:.9em 0 0;font-size:.56em;}
+.reveal .more a{color:var(--teal);font-weight:600;text-decoration:none;border-bottom:2px solid var(--teal-soft);}
+.reveal .more a:hover{border-bottom-color:var(--teal);}
+html.reading .reveal .more{font-size:15px;}
+.chbtns{display:flex;gap:.35em;margin:.45em 0 0;flex-wrap:wrap;}
+.chbtns button{all:unset;cursor:pointer;padding:.3em .8em;border-radius:999px;border:1px solid var(--line);font-family:var(--display);font-weight:600;font-size:.5em;color:var(--body);background:#fff;}
+.chbtns button.on{background:var(--teal);border-color:var(--teal);color:#fff;}
+.reveal .labline{display:flex;align-items:center;gap:.8em;flex-wrap:wrap;margin:.9em 0 0;}
+.reveal .labline span{font-size:.56em;color:var(--muted);}
+html.reading .reveal .labline span{font-size:13px;}
+.photo{margin:0;}
+.photo img{display:block;width:100%;height:auto;max-height:430px;object-fit:contain;border-radius:12px;border:1px solid var(--line);background:#fff;}
+.photo figcaption{margin-top:.4em;font-family:var(--mono);font-size:.4em;color:var(--muted);text-align:center;}
+.title-slide .art img{display:block;width:100%;height:auto;border-radius:16px;box-shadow:0 18px 40px -22px rgba(15,27,45,.35),0 0 0 1px var(--line);}
+.democv{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);}
+.eq{font-size:.8em;margin:.2em 0 0;}
+.worked{border:1px solid var(--line);border-left:5px solid var(--amber);border-radius:10px;padding:.5em .8em;font-size:.6em;line-height:1.55;background:#fff;}
+.worked .tag{display:block;font-family:var(--display);font-weight:700;font-size:.72em;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:.2em;}
+.worked p{margin:0;font-family:var(--mono);font-size:.92em;}
+.say .worked{font-size:.9em;margin:.4em 0 .5em;}   /* inside a .say column (already .68em): keep the session-2 size */
+.reveal aside.notes,aside.notes{display:none !important;}
+/* number grids */
+.ng{display:grid;gap:3px;font-family:var(--mono);font-weight:600;width:100%;}
+.ng>div{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:5px;font-size:15px;line-height:1;position:relative;}
+.ng>div.pad{outline:2px dashed var(--amber);outline-offset:-3px;font-style:italic;}
+.ng>div.win{box-shadow:inset 0 0 0 3px var(--teal);}
+.ng>div.cur{box-shadow:inset 0 0 0 3px var(--coral);}
+.ng>div.empty{background:var(--soft);color:var(--muted);}
+.ng>div.ker{background:var(--amber-soft);color:var(--ink);}
+.ng>div.dot::after{content:"";position:absolute;width:30%;height:30%;border-radius:50%;background:var(--coral);}
+.gcap{font-family:var(--display);font-weight:600;font-size:.46em;color:var(--muted);text-align:center;margin:.35em 0 0;}
+.conv3{display:grid;grid-template-columns:minmax(0,7fr) auto minmax(0,3fr) auto minmax(0,5fr);gap:.6em;align-items:center;max-width:800px;margin:0 auto;}
+html.reading .conv3{max-width:none;}
+.conv3 .op{font-family:var(--display);font-size:.9em;color:var(--muted);}
+.calc{font-family:var(--mono);font-size:.46em;color:var(--body);background:var(--soft);border-radius:10px;padding:.5em .7em;margin-top:.6em;min-height:2.6em;line-height:1.5;}
+.calc b{color:var(--coral);}
+.ctrl{display:flex;gap:.4em;align-items:center;flex-wrap:wrap;margin-top:.5em;}
+.ctrl button{all:unset;cursor:pointer;padding:.3em .9em;border-radius:999px;border:1px solid var(--line);font-family:var(--display);font-weight:600;font-size:.5em;color:var(--body);background:#fff;}
+.ctrl button:hover{border-color:var(--teal);color:var(--teal);}
+.ctrl label{font-family:var(--display);font-weight:600;font-size:.5em;color:var(--body);display:flex;align-items:center;gap:.5em;}
+.ctrl input[type=range]{width:7em;}
+.curve{display:block;width:100%;max-width:220px;height:auto;margin:.3em auto 0;border:1px solid var(--line);border-radius:10px;background:#fff;}
+.flipk{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:.6em;align-items:center;max-width:420px;margin:.6em auto 0;}
+.big-out{font-family:var(--mono);font-size:.64em;color:var(--ink);margin:.4em 0 0;}
+.big-out b{color:var(--coral);}
+.reveal .tset{list-style:none;margin:.2em 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.45em .8em;}
+.reveal .tset li{margin:0;display:grid;grid-template-columns:1.6em 1fr;column-gap:.5em;align-items:baseline;border:1px solid var(--line);border-radius:12px;padding:.45em .7em;font-size:.56em;line-height:1.35;background:#fff;}
+.tset .tn{grid-row:1/3;font-family:var(--display);font-weight:700;color:var(--teal);font-size:1.2em;}
+.tset .tt{font-family:var(--display);font-weight:600;color:var(--ink);}
+.tset a{font-size:.85em;color:var(--teal);text-decoration:none;}
+html.reading .reveal .tset{grid-template-columns:1fr;}
+html.reading .reveal .tset li{font-size:15px;}
+.steps.recap li{font-size:.7em;}
+.fig{display:block;width:100%;height:auto;}
+.fig .lb{font-family:var(--display);font-size:17px;font-weight:600;fill:var(--muted);}
+.reveal table.tbl{font-size:.5em;border-collapse:collapse;margin:0 auto;}
+.reveal table.tbl th,.reveal table.tbl td{border-bottom:1px solid var(--line);padding:.3em .9em;text-align:center;font-family:var(--mono);}
+.reveal table.tbl th{font-family:var(--display);color:var(--muted);}
+html.reading .reveal table.tbl{font-size:13px;}
+.say .big-out{font-size:.95em;}
+html.reading .split,html.reading .split.even{grid-template-columns:1fr;}
+html.reading .say,html.reading .worked{font-size:15px;}
+html.reading .demo-out,html.reading .big-out,html.reading .calc{font-size:13px;}
+html.reading .chbtns button,html.reading .ctrl button,html.reading .ctrl label,html.reading .gcap{font-size:13px;}
+html.reading .worked .tag,html.reading .tryit .tag{font-size:12px;}
+html.reading .ng>div{font-size:11px;}
+html.reading .photo figcaption{font-size:12px;}
+.say .photo figcaption{font-size:.62em;}
+html.reading .reveal ul.small li{font-size:14px;}
+.cvsvg .tk{font-family:var(--display);font-size:13px;font-weight:600;fill:#667085;}
+.cvsvg .lb{font-family:var(--display);font-size:15px;font-weight:600;fill:#0f1b2d;}
+.reveal table.tbl.big{font-size:.56em;}
+.title-slide .art .fig{border-radius:16px;box-shadow:0 18px 40px -22px rgba(15,27,45,.35),0 0 0 1px var(--line);}
+.mat3{display:inline-grid;grid-template-columns:repeat(3,auto);gap:.1em .9em;padding:.2em .7em;border-left:3px solid var(--ink);border-right:3px solid var(--ink);border-radius:6px;font-family:var(--mono);font-size:.95em;}
+.mat3 span{text-align:right;}
+.mat3 span.off{color:#b6bfcc;}
+.ctrl label.off{opacity:.35;}
+.say .calc.big{font-size:.78em;}
+html.reading .say .calc.big{font-size:13px;}
+.ctrl.tfc{display:grid;grid-template-columns:repeat(4,auto);justify-content:center;gap:.15em .7em;margin-top:.3em;}
+.ctrl.tfc input[type=range]{width:4.6em;}
+html.reading .ctrl.tfc{grid-template-columns:repeat(2,auto);}
+.reveal p.refimg{font-size:.48em;line-height:1.5;color:var(--body);margin:.4em 0 0;}
+html.reading .reveal p.refimg{font-size:12px;}
+html.reading .reveal sup{font-size:.8em;}
+/*<<CSS>>*//* pipeline */
+.pipe{display:flex;gap:.45em;align-items:stretch;counter-reset:p;}
+.pipe .st{flex:1 1 0;background:#fff;border:1px solid var(--line);border-radius:12px;padding:.6em .65em;font-size:.64em;line-height:1.35;box-shadow:0 6px 16px -12px rgba(15,27,45,.25);position:relative;}
+.pipe .st b{display:block;font-family:var(--display);color:var(--teal);font-size:1.1em;margin-bottom:.25em;}
+.pipe .ar{align-self:center;color:var(--teal);font-weight:700;font-size:.8em;}
+
+/* pixel demo */
+.pix-wrap{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.1fr) minmax(0,1fr);gap:1em;align-items:start;}
+.pix-wrap canvas{width:100%;height:auto;max-height:420px;object-fit:contain;image-rendering:pixelated;border-radius:12px;border:1px solid var(--line);touch-action:manipulation;}
+/* s5 · light */
+.litlab{display:flex;justify-content:space-between;align-items:baseline;margin-top:.45em;font-size:.48em;color:var(--muted);}
+.litlab b{font-family:var(--mono);font-weight:600;color:var(--ink);font-size:1.1em;}
+.lit .slider{min-height:36px;}
+.lcmp h3{margin:0 0 .45em;}
+.lcmp dl{display:grid;grid-template-columns:1fr auto;gap:.3em .8em;margin:0 0 .7em;font-size:.56em;align-items:baseline;}
+.lcmp dt{color:var(--muted);}
+.lcmp dd{margin:0;font-family:var(--mono);color:var(--muted);white-space:nowrap;}
+.lcmp dd i{font-style:normal;color:var(--teal);}
+.lcmp dd b{color:var(--ink);font-size:1.15em;}
+.lcmp .rule{border:1px solid var(--line);border-left:5px solid var(--teal);border-radius:10px;padding:.5em .75em .55em;background:#fff;font-size:.6em;line-height:1.4;}
+.lcmp .rule .tag{display:block;font-family:var(--display);font-weight:700;font-size:.72em;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:.2em;}
+.lcmp .rule p{margin:0;}
+.lcmp .verdict{margin-top:.35em !important;font-weight:600;color:var(--ink);}
+.lcmp .rule.bad{border-left-color:var(--coral);}
+.lcmp .rule.bad .verdict{color:var(--coral);}
+html.reading .litlab,html.reading .lcmp dl{font-size:14px;}
+html.reading .lcmp .rule{font-size:15px;}
+.pix-readout{font-family:var(--mono);font-size:.5em;color:var(--muted);min-height:1.6em;margin-top:.35em;}
+.slider{width:100%;accent-color:var(--teal);min-height:44px;touch-action:none;cursor:pointer;}
+/* a thumb big enough for a finger */
+.slider::-webkit-slider-thumb{width:26px;height:26px;}
+.slider::-moz-range-thumb{width:26px;height:26px;}
+
+/* timeline */
+.tl{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;position:relative;margin:.3em 0 .9em;}
+.tl::before{content:"";position:absolute;left:4%;right:4%;top:.95em;height:3px;background:var(--line);}
+.tl div{position:relative;text-align:center;font-size:.58em;padding:2.2em .3em 0;line-height:1.3;}
+.tl div::before{content:"";position:absolute;top:.35em;left:50%;transform:translateX(-50%);width:1.1em;height:1.1em;border-radius:50%;background:#fff;border:3px solid var(--teal);}
+.tl div.key::before{background:var(--coral);border-color:var(--coral);}
+.tl b{display:block;font-family:var(--display);color:var(--ink);}
+
+/* criteria list + shared five-level scale (assignment rubric) */
+.crit{list-style:none;margin:0;padding:0;counter-reset:k;display:grid;gap:.35em;}
+.crit li{counter-increment:k;display:grid;grid-template-columns:1.7em 1fr;gap:.6em;align-items:center;background:var(--soft);border-radius:12px;padding:.42em .8em;margin:0;font-size:.66em;line-height:1.35;}
+.crit li::before{content:counter(k);width:1.6em;height:1.6em;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:.9em;}
+.scale{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.35em;margin-top:.6em;}
+.scale div{border-radius:12px;background:var(--c);color:#fff;padding:.45em .6em;font-size:.62em;line-height:1.25;}
+.reveal .scale b{display:block;font-family:var(--display);font-size:1.6em;line-height:1.1;color:#fff;}
+.reveal .crit,.reveal .checks{margin:0;}
+html.reading .crit li,html.reading .scale div{font-size:15px;}
+html.reading .scale{grid-template-columns:repeat(2,minmax(0,1fr));}
+.scale.mini{margin-top:.2em;}
+.scale.mini div{padding:.3em .55em;font-size:.5em;display:flex;align-items:baseline;gap:.45em;}
+.reveal .scale.mini b{display:inline;font-size:1.35em;}
+.reveal .levels{list-style:none;margin:0;padding:0;display:grid;gap:.32em;}
+.levels li{display:grid;grid-template-columns:4.2em 1fr;gap:.7em;align-items:center;background:var(--soft);border-radius:12px;padding:.38em .8em .38em .38em;margin:0;font-size:.64em;line-height:1.35;}
+.reveal .levels li>b{background:var(--c);color:#fff;border-radius:9px;text-align:center;font-family:var(--display);font-size:1.15em;padding:.2em 0;}
+html.reading .levels li{font-size:15px;grid-template-columns:3.6em 1fr;}
+html.reading .scale.mini{grid-template-columns:repeat(2,minmax(0,1fr));}
+/* project rubric: full criteria in small type */
+.tl.tl7{grid-template-columns:repeat(7,minmax(0,1fr));}
+.pitch{display:flex;flex-wrap:wrap;align-items:center;gap:.3em .5em;background:var(--coral-soft);border:1px solid #f3c9c0;border-radius:10px;padding:.3em .6em;margin:0 0 .45em;font-size:.44em;line-height:1.3;}
+.pitch>b{font-family:var(--display);color:var(--coral);}
+.pitch span{background:#fff;border-radius:999px;padding:.1em .6em;border:1px solid #f3c9c0;}
+html.reading .pitch{font-size:14px;}
+html.reading .tl.tl7{grid-template-columns:repeat(3,minmax(0,1fr));}
+
+.tl.tl-sm{margin:.1em 0 .45em;}
+.tl.tl-sm div{font-size:.46em;padding-top:1.9em;}
+.tl.tl-sm::before{top:.75em;}
+.tl.tl-sm div::before{width:.95em;height:.95em;top:.25em;}
+.rubric{gap:1em;}
+.rubric h3{font-size:.56em;margin:0 0 .3em;}
+.reveal .rubric ol{list-style:none;margin:0;padding:0;counter-reset:rb;display:grid;gap:2px;}
+.rubric li{counter-increment:rb;display:grid;grid-template-columns:1.6em 1fr;gap:.4em;align-items:baseline;margin:0;padding:.13em .45em;border-radius:6px;font-size:.44em;line-height:1.28;background:var(--soft);}
+.rubric li::before{content:counter(rb);font-family:var(--display);font-weight:700;color:var(--teal);text-align:right;}
+html.reading .rubric li{font-size:14px;}
+html.reading .rubric h3{font-size:15px;}
+.rb-note{margin-top:.4em !important;font-size:.58em !important;}
+html.reading .rb-note{font-size:14px !important;}
+/* checklist */
+.checks{list-style:none;margin:0;padding:0;display:grid;gap:.45em;}
+.cols .checks li{font-size:.58em;padding:.3em .6em;}
+.cols .checks{gap:.35em;}
+.checks li{display:grid;grid-template-columns:2.2em 1fr auto;gap:.6em;align-items:center;background:var(--soft);border-radius:12px;padding:.5em .8em;margin:0;font-size:.74em;}
+.checks li::before{content:"✓";width:1.7em;height:1.7em;border-radius:50%;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;}
+.checks li span.pt{font-family:var(--display);font-weight:700;color:var(--teal);}
+
+/* halves */
+.halves{display:grid;grid-template-columns:1fr 1fr;gap:.8em;margin-bottom:.7em;}
+.half{border-radius:14px;padding:.7em .9em;color:#fff;}
+.half .h{font-family:var(--display);font-size:1.3em;font-weight:700;}
+.half .d{font-size:.66em;opacity:.95;margin-top:.2em;}
+.half .dots{display:flex;gap:.3em;margin-top:.5em;}
+.half .dots span{min-width:1.9em;padding:0 .25em;box-sizing:border-box;height:1.9em;border-radius:8px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:.7em;}
+.half .dots span.on{background:#fff;color:var(--ink);}
+
+/* ---------- reading mode (phones ≤760px): no Reveal, slides stack as one page ---------- */
+.reveal .slides>section:not(.title-slide)::after,.reveal .slides .pdf-page>section:not(.title-slide)::after,.reveal .slides .ho-cell>section:not(.title-slide)::after{content:"";position:absolute;left:4px;right:4px;bottom:46px;height:1px;background:var(--line);}
+.reveal .slides>section:not(.title-slide)::before,.reveal .slides .pdf-page>section:not(.title-slide)::before,.reveal .slides .ho-cell>section:not(.title-slide)::before{content:"Computer Vision · Session 8";position:absolute;right:4px;top:10px;font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#a0aab8;}
+html.reading .reveal .slides>section::before,html.reading .reveal .slides>section::after{display:none;}
+/* ---------- deck toolbar (replaces reveal's arrows + slide number) ---------- */
+.reveal .progress{height:4px;color:var(--teal);background:transparent;}
+.deckbar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:40;display:flex;align-items:center;gap:2px;padding:4px;border-radius:999px;background:rgba(255,255,255,.94);border:1px solid var(--line);box-shadow:0 8px 24px -12px rgba(15,27,45,.35);font-family:var(--display);transition:opacity .35s;backdrop-filter:blur(6px);}
+.deckbar.idle{opacity:0;pointer-events:none;}
+/* [hidden] loses to display:flex unless said again — the hidden desktop bar sat on top of the phone bar */
+.deckbar[hidden],html.reading .deckbar{display:none !important;}
+.deckbar:hover,.deckbar:focus-within{opacity:1;}
+.deckbar button{all:unset;box-sizing:border-box;width:44px;height:44px;border-radius:999px;display:flex;align-items:center;justify-content:center;color:var(--ink);cursor:pointer;}
+.deckbar button:hover{background:var(--soft);}
+.deckbar button:focus-visible{outline:2px solid var(--teal);outline-offset:1px;}
+.deckbar button[disabled]{opacity:.3;cursor:default;}
+.deckbar svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.deckbar .count{min-width:4.2em;text-align:center;font-size:14px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums;}
+.deckbar .sep{width:1px;height:24px;background:var(--line);margin:0 4px;}
+.deckbar .q{font-family:var(--display);font-size:19px;font-weight:700;}
+.deckbar .pdf{width:auto;padding:0 14px;font-size:13px;font-weight:700;letter-spacing:.04em;gap:6px;}
+.pop{position:fixed;z-index:50;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 16px 40px -16px rgba(15,27,45,.45);font-family:var(--font);color:var(--body);}
+.pop[hidden]{display:none;}
+.pdfmenu{left:50%;transform:translateX(-50%);bottom:72px;padding:6px;min-width:300px;}
+.pdfmenu a{display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:10px;text-decoration:none;color:var(--ink);min-height:44px;box-sizing:border-box;}
+.pdfmenu a:hover,.pdfmenu a:focus-visible{background:var(--soft);outline:none;}
+.pdfmenu b{font-family:var(--display);font-size:15px;}
+.pdfmenu small{font-size:12.5px;color:var(--muted);}
+.keys{left:50%;top:50%;transform:translate(-50%,-50%);padding:22px 26px;width:min(92vw,560px);box-sizing:border-box;}
+.keys h3{margin:0 0 12px;font-family:var(--display);font-size:18px;color:var(--ink);}
+.keys dd kbd{font-size:11.5px;padding:1px 5px;}
+.keys dl{display:grid;grid-template-columns:minmax(10.8em,max-content) 1fr;gap:9px 16px;margin:0;font-size:14.5px;align-items:center;}   /* wide enough for Shift + ← →, the same in both lists */
+.keys dt{display:flex;gap:4px;justify-content:flex-end;align-items:center;white-space:nowrap;}
+.keys dd{margin:0;}
+.keys h4{margin:16px 0 10px;padding-top:12px;border-top:1px solid var(--line);font-family:var(--display);font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);}
+.keys kbd{font-family:var(--mono);font-size:12.5px;min-width:1.9em;text-align:center;padding:3px 7px;border-radius:6px;border:1px solid var(--line);border-bottom-width:2px;background:var(--soft);color:var(--ink);}
+/* all slides = photo album: a grid of live clones of every slide, scaled to thumbnails */
+.album{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;background:#eef1f5;font-family:var(--display);}
+.album[hidden]{display:none;}
+html.album-open .deckbar,html.album-open .rbar{display:none !important;}
+html.album-open body{overflow:hidden;}
+.aslides{display:none;}
+html.reading .aslides{display:flex;align-items:center;min-height:36px;margin-left:auto;font-size:14px;font-weight:600;color:var(--teal);text-decoration:none;}
+.ahead{display:flex;align-items:center;gap:14px;padding:14px 22px;background:#fff;border-bottom:1px solid var(--line);}
+.ahead h2{margin:0;font-size:18px;font-weight:700;color:var(--ink);letter-spacing:-.01em;}
+.ahead h2 span{color:var(--muted);font-weight:500;margin-left:.4em;}
+.ahead p{margin:0 0 0 auto;font-family:var(--font);font-size:13px;color:var(--muted);}
+.ahead button{flex:none;width:36px;height:36px;border:0;border-radius:50%;background:var(--soft);color:var(--ink);cursor:pointer;display:grid;place-items:center;}
+.ahead button:hover{background:var(--teal-soft);color:var(--teal);}
+.ahead button svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;}
+.agrid{flex:1;overflow-y:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px 18px;align-content:start;padding:22px;overscroll-behavior:contain;touch-action:pan-y;}
+.agrid.dragging{cursor:grabbing;user-select:none;}
+.thumb{display:block;cursor:pointer;border-radius:12px;outline:none;}
+.tframe{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:10px;background:#fff;box-shadow:0 1px 2px rgba(15,27,45,.08),0 8px 20px -14px rgba(15,27,45,.35);transition:box-shadow .15s,transform .15s;}
+@media (hover:hover){.thumb:hover .tframe{transform:translateY(-2px);box-shadow:0 0 0 2px #b9dfe2,0 12px 26px -14px rgba(15,27,45,.4);}}
+.thumb.sel .tframe{box-shadow:0 0 0 4px var(--teal),0 12px 26px -14px rgba(15,27,45,.4);}
+.thumb.now .tn::after{content:"current";margin-left:.5em;padding:1px 7px;border-radius:999px;background:var(--teal-soft);color:var(--teal);font-size:11px;font-weight:600;letter-spacing:.04em;}
+.tcap{display:flex;align-items:baseline;gap:8px;margin-top:8px;font-size:13px;line-height:1.3;}
+.tn{flex:none;font-weight:700;color:var(--teal);}
+.tt{color:var(--body);font-family:var(--font);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.tframe>.thost{position:absolute;inset:0;}
+@media (max-width:600px){.agrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 10px;padding:12px 12px calc(16px + env(safe-area-inset-bottom));}.ahead{padding:10px 12px;gap:10px;}.ahead p{display:none;}.ahead h2{font-size:16px;}.tcap{font-size:12px;}}
+@media print{.album{display:none !important;}}
+.scrim{position:fixed;inset:0;z-index:45;background:rgba(15,27,45,.28);}
+.scrim[hidden]{display:none;}
+
+/* ---------- print: reveal ?print-pdf (16:9, one slide per page) ---------- */
+@media print{ .deckbar,.pop,.scrim,.rbar{display:none !important;} }
+/* ?print-pdf wraps each slide in .pdf-page, so every `.slides>section` rule above also names `.pdf-page>section`;
+   reveal gives the slide its content height there — pin it to the 720px box it has on screen */
+html.print-pdf .reveal .slides .pdf-page>section{height:720px !important;padding:6px 4px 64px !important;box-sizing:border-box !important;}
+html.print-pdf .reveal .slides .pdf-page>section.title-slide{padding:0 34px !important;}
+html.print-pdf .reveal .slides .pdf-page>section.part-open{display:flex !important;}
+/* print opens every answer: on the pixel slide that makes the right column 60px taller, so set it a little smaller */
+html.print-pdf .pix-wrap .term,html.print-pdf .pix-wrap .tryit,html.handout .pix-wrap .term,html.handout .pix-wrap .tryit{font-size:.62em;}
+
+/* ---------- A4 handout (?handout): two 16:9 slides per A4 portrait page ---------- */
+html.handout,html.handout body{height:auto;overflow:auto;background:#e9edf2;}
+html.handout body{line-height:1;}   /* reveal gives body line-height:1 through .reveal-viewport, a class it adds only when it runs — and it does not run here */
+html.handout .reveal{position:static;height:auto;overflow:visible;}
+html.handout .reveal .slides{position:static;width:750px !important;height:auto !important;inset:auto;margin:24px auto;padding:0;transform:none !important;overflow:visible;pointer-events:auto;zoom:1;}
+/* Each slide is laid out at full size, exactly as on screen and in ?print-pdf, then shrunk as a picture (transform).
+   CSS zoom re-lays the text at the small size, where glyph widths round differently and lines wrap elsewhere.
+   A transform does not shrink the space a box takes, so JS wraps every slide in a .ho-cell the size of the shrunk slide.
+   The grey frame is an inset line inside the slide box (the box grows 12px a side, the padding with it — content area
+   unchanged): a frame drawn outside the box was cut off where a page breaks.
+   Size: A4 with 5 mm margins is 200 mm = 756 px wide; 1304 px × .575 = 750 px, so the slide content prints 196 mm wide. */
+html.handout .ho-cell{position:relative;width:750px;height:428px;margin:0 0 26px;overflow:hidden;contain:strict;   /* without containment Chrome's print counts the unscaled slide (1304px) as page width and shrinks every page to ⅔ */ break-inside:avoid;page-break-inside:avoid;}
+html.handout .ho-cell:nth-child(2n){break-after:page;page-break-after:always;margin-bottom:0;}
+html.handout .reveal .slides .ho-cell>section{display:block !important;position:absolute !important;left:0 !important;top:0 !important;width:1304px !important;height:744px !important;padding:18px 16px 76px !important;margin:0 !important;transform:scale(.575) !important;transform-origin:0 0;opacity:1 !important;visibility:visible !important;background:#fff;box-shadow:inset 0 0 0 1px #cfd6df;}
+html.handout .reveal .slides .ho-cell>section.part-open{display:flex !important;}
+html.handout .reveal .slides .ho-cell>section.title-slide{padding:12px 46px !important;}
+html.handout .reveal .slides .ho-cell>section:not(.title-slide)::before{top:22px;right:16px;}
+html.handout .reveal .slides .ho-cell>section:not(.title-slide)::after{left:16px;right:16px;bottom:58px;}
+html.handout .pgno{right:16px;bottom:24px;}
+html.handout .src{left:16px;bottom:28px;}
+html.handout .reveal .fragment{opacity:1 !important;visibility:visible !important;transform:none !important;}
+@media print{ html.handout,html.handout body{background:#fff;} html.handout .reveal .slides{margin:0 auto;} }
+
+/* ---------- phone reading mode: bottom bar ---------- */
+.rbar{display:none;}
+html.reading body{padding-bottom:calc(76px + env(safe-area-inset-bottom));}
+html.reading .rbar:not([hidden]){display:flex;position:fixed;left:8px;right:8px;bottom:calc(8px + env(safe-area-inset-bottom));z-index:40;align-items:center;justify-content:space-between;gap:2px;padding:4px;border-radius:999px;background:rgba(255,255,255,.96);border:1px solid var(--line);box-shadow:0 8px 24px -12px rgba(15,27,45,.35);font-family:var(--display);backdrop-filter:blur(6px);}
+.rbar button{all:unset;box-sizing:border-box;min-width:44px;height:44px;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:6px;color:var(--ink);cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.rbar button:active{background:var(--soft);}
+.rbar svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.rbar .pdf{padding:0 12px;font-size:13px;font-weight:700;}
+.rcount{font-size:14px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums;min-width:4em;text-align:center;}
+html.reading .pdfmenu{bottom:calc(68px + env(safe-area-inset-bottom));min-width:0;width:min(92vw,340px);}
+/* touch screens in slide mode: bar always visible, no keyboard-only button */
+html.touch .deckbar.idle{opacity:1;pointer-events:auto;}
+html.touch .deckbar [data-act=help]{display:none;}
+.deckbar [data-act=fullscreen].nofs{display:none;}
+/* phone held sideways: the slide leaves room at the sides, not below — dock the bar on the right */
+@media (hover:none) and (orientation:landscape) and (max-height:520px){
+  .deckbar{left:auto;right:6px;bottom:auto;top:50%;transform:translateY(-50%);flex-direction:column;padding:4px;}
+  .deckbar .sep{width:24px;height:1px;margin:4px 0;}
+  .deckbar .pdf{padding:0;width:44px;font-size:0;gap:0;}
+  .pdfmenu{left:auto;right:64px;transform:none;top:50%;bottom:auto;translate:0 -50%;}
+}
+html.reading,html.reading body{height:auto;overflow:auto;}
+html.reading .reveal{position:static;height:auto;overflow:visible;font-size:17px;touch-action:auto;}
+html.reading .reveal .slides{position:static;width:auto !important;height:auto !important;inset:auto;margin:0;padding:0 16px;transform:none !important;overflow:visible;pointer-events:auto;zoom:1 !important;}
+html.reading .reveal .slides>section{display:block !important;position:relative !important;width:auto !important;height:auto !important;left:auto !important;top:auto !important;transform:none !important;opacity:1 !important;visibility:visible !important;padding:28px 0 !important;border-bottom:1px solid var(--line);}
+html.reading .reveal .fragment{opacity:1 !important;visibility:visible !important;transform:none !important;}
+/* reveal.css gives every non-current slide pointer-events:none — with Reveal not running that is every slide,
+   which made sliders, canvases, Try it answers and links dead on phones */
+html.reading .reveal .slides>section{pointer-events:auto !important;}
+html.reading .src{position:static;display:block;margin-top:.9em;max-width:none;}
+html.reading .deck-rule{display:none;}
+html.reading .cols,html.reading .cols.c3,html.reading .cols.w64,html.reading .pix-wrap,html.reading .map,html.reading .title-grid,html.reading .outline,html.reading .halves,html.reading .cards.c4,html.reading .cards.c5{grid-template-columns:1fr;}
+html.reading .pipe{flex-direction:column;}
+html.reading .pipe .ar{transform:rotate(90deg);align-self:center;}
+html.reading .tl{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:.8em;}
+html.reading .tl::before{display:none;}
+html.reading .gtiles{grid-template-columns:1fr 1fr;}
+html.reading .pix-wrap canvas{max-height:none;}
+html.reading .title-grid{height:auto;}
+/* phone floor: nothing below 13px */
+html.reading .reveal table,html.reading .reveal table.tight{font-size:14px;}
+html.reading .card,html.reading .term,html.reading .tryit,html.reading .flashback,html.reading .keyidea,html.reading .pipe .st,html.reading .map .blk,html.reading .tl div,html.reading .checks li,html.reading .after div,html.reading .outline li,html.reading .outcomes li{font-size:15px;}
+html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .colab,html.reading .gtile .det,html.reading .half .d{font-size:13px;}
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- 1 -->
+<section class="title-slide">
+  <div class="title-grid">
+    <div class="title-text">
+      <p class="pill">Session 8 · Detection &amp; segmentation</p>
+      <h1 style="font-size:2.2em">What, where,<br>how many —<br><em>which pixels</em></h1>
+      <p class="sub">Boxes, masks, and the metrics that judge them</p>
+      <div class="who">
+        <p class="name">Dr. Wasu Kudisthalert <span>(Neil)</span></p>
+        <p class="contact"><span><a href="mailto:wasu.ku@kmitl.ac.th">wasu.ku@kmitl.ac.th</a></span><span><a href="https://classes.incortx.com/ComputerVision/" target="_blank" rel="noopener">classes.incortx.com/ComputerVision</a></span></p>
+      </div>
+    </div>
+    <figure class="art">
+      <img src="img/title.jpg" alt="cyclists crossing a bridge in Amsterdam, each person and bicycle with a box and a coloured mask">
+      <figcaption>A box and a mask for every person and bicycle — computed by a detector (10 people, 6 bicycles)</figcaption>
+    </figure>
+  </div>
+  <aside class="notes"><p>🇹🇭 บรรยายก่อน แล้วครึ่ง B นำเสนอ T7 หลังบรรยาย · **สัปดาห์นี้ส่งหัวข้อโปรเจกต์** · ภาพปก: ภาพถนน CC0 ในอัมสเตอร์ดัม — กล่องและ mask ทั้งหมดมาจากโปรแกรม (YOLOv8x-seg)</p><p>🇬🇧 Lecture first; half B presents T7 afterwards. Project topic due this week. The cover: a CC0 street photo from Amsterdam — every box and mask computed by a program (YOLOv8x-seg).</p></aside>
+</section>
+
+<!-- 2 -->
+<section>
+  <p class="kicker">Today</p>
+  <h2 class="claim">One question, four parts</h2>
+  <div class="qband"><span>The question</span>Not just “what is in this picture” but where, how many, and which pixels — and can a model answer for things we only describe in words?</div>
+  <div class="parts">
+    <a href="#/part-a"><b><i>A</i>Metrics</b>How do we know a detector is right?</a>
+    <a href="#/part-b"><b><i>B</i>Detection</b>How can one network find every object in one look?</a>
+    <a href="#/part-c"><b><i>C</i>Segmentation</b>Which pixels belong to the object — and can one click say which?</a>
+    <a href="#/part-d"><b><i>D</i>Open vocabulary</b>Can we find anything we can name — and should we?</a>
+  </div>
+  <p class="takeaway"><span>Each part ends in the same notebook — <code>lab.ipynb</code>, one section per part. Project topic due this week.</span></p>
+  <aside class="notes"><p>🇹🇭 อ่านคำถามของคาบ · ย้อนคาบ 5: CLIP บอกได้ว่าภาพเป็นอะไร แต่ไม่บอกว่าอยู่ตรงไหน — วันนี้ได้กล่องและ mask · ย้อนคาบ 7: กล่องคือพิกัดบนภาพ</p><p>🇬🇧 Read the session question. Back to session 5: CLIP says what a photo shows, not where — today: boxes and masks. Back to session 7: a box is coordinates on the image.</p></aside>
+</section>
+
+<!-- 3 -->
+<section class="part-open" id="part-a" data-part="A">
+  <div class="po-strip"><a href="#/part-a" class="on"><b>A</b>Metrics</a><a href="#/part-b" class=""><b>B</b>Detection</a><a href="#/part-c" class=""><b>C</b>Segmentation</a><a href="#/part-d" class=""><b>D</b>Open vocabulary</a></div>
+  <p class="po-letter">A</p>
+  <h2 class="claim">Tasks &amp; metrics</h2>
+  <p class="po-q">How do we know a detector is right?</p>
+  <p class="po-out"><span>By the end of this part</span>Compute IoU, precision and recall, and apply NMS by hand.</p>
+  <aside class="notes"><p>🇹🇭 หน้าเปิด part: อ่านคำถามกับสิ่งที่จะทำได้ท้าย part แล้วเข้าเนื้อหา</p><p>🇬🇧 Part opener: read the question and what you can do by the end of the part, then go in.</p></aside>
+</section>
+
+<!-- 4 -->
+<section data-part="A">
+  <p class="kicker">A · Tasks &amp; metrics</p>
+  <h2 class="claim">Four questions about one picture</h2>
+  <div class="split">
+    <div class="conv3" style="grid-template-columns:repeat(2,minmax(0,1fr));max-width:600px;gap:.4em">
+      <figure class="photo" style="margin:0"><img src="img/tasks_cls.jpg" alt="the photo with the words person: yes, bicycle: yes"><figcaption>classification: what is in it?</figcaption></figure>
+      <figure class="photo" style="margin:0"><img src="img/tasks_det.jpg" alt="the photo with a box around every person and bicycle"><figcaption>detection: where — a box each</figcaption></figure>
+      <figure class="photo" style="margin:0"><img src="img/tasks_sem.jpg" alt="every person pixel coral, every bicycle pixel green"><figcaption>semantic segmentation: which pixels are “person”?</figcaption></figure>
+      <figure class="photo" style="margin:0"><img src="img/tasks_inst.jpg" alt="every person and bicycle its own colour"><figcaption>instance segmentation: which pixels are which person?</figcaption></figure>
+    </div>
+    <div class="say">
+      <div class="flashback">Session 5 D: CLIP names what a photo shows — one answer for the whole picture.</div>
+      <p style="margin-top:.6em">Each question asks for more: a label → a box per object → a class per pixel → <b>which object</b> each pixel belongs to.</p>
+      <p class="fragment">More detail costs more labelling and more compute. Part A first asks how to <b>score</b> an answer.</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ไล่สี่ภาพ: ทั้งภาพ → กล่อง → ทุก pixel ตาม class → ทุก pixel ตามตัว · ทั้งหมดคำนวณด้วย YOLOv8x-seg บนภาพ CC0 · ย้อนคาบ 5 D (CLIP บอกแค่ทั้งภาพ)</p><p>🇬🇧 Walk the four: the whole photo → boxes → every pixel by class → every pixel by object. All computed with YOLOv8x-seg on the CC0 photo. Back to session 5 D (CLIP answers for the whole picture).</p></aside>
+</section>
+
+<!-- 5 -->
+<section data-part="A">
+  <p class="kicker">A · Tasks &amp; metrics</p>
+  <h2 class="claim">A box is four numbers — how close is close?</h2>
+  <div class="split">
+    <div><svg class="fig cvsvg" viewBox="0 0 420 330" style="max-width:440px;margin:0 auto" role="img" aria-label="two overlapping boxes A and B on a grid; their overlap is the box from the larger left edge to the smaller right edge"><line x1="40" y1="300" x2="40" y2="24" stroke="#94a3b8"/><line x1="86" y1="300" x2="86" y2="24" stroke="#e8edf3"/><line x1="132" y1="300" x2="132" y2="24" stroke="#e8edf3"/><line x1="178" y1="300" x2="178" y2="24" stroke="#e8edf3"/><line x1="224" y1="300" x2="224" y2="24" stroke="#e8edf3"/><line x1="270" y1="300" x2="270" y2="24" stroke="#e8edf3"/><line x1="316" y1="300" x2="316" y2="24" stroke="#e8edf3"/><line x1="362" y1="300" x2="362" y2="24" stroke="#e8edf3"/><line x1="408" y1="300" x2="408" y2="24" stroke="#e8edf3"/><line x1="40" y1="300" x2="408" y2="300" stroke="#94a3b8"/><line x1="40" y1="254" x2="408" y2="254" stroke="#e8edf3"/><line x1="40" y1="208" x2="408" y2="208" stroke="#e8edf3"/><line x1="40" y1="162" x2="408" y2="162" stroke="#e8edf3"/><line x1="40" y1="116" x2="408" y2="116" stroke="#e8edf3"/><line x1="40" y1="70" x2="408" y2="70" stroke="#e8edf3"/><line x1="40" y1="24" x2="408" y2="24" stroke="#e8edf3"/><rect x="86" y="116" width="184" height="138" fill="#2f6fdb" fill-opacity="0.12" stroke="#2f6fdb" stroke-width="3"/><rect x="178" y="24" width="184" height="184" fill="#e0533d" fill-opacity="0.12" stroke="#e0533d" stroke-width="3"/><rect x="178" y="116" width="92" height="92" fill="#c97a06" fill-opacity="0.45" stroke="#c97a06" stroke-width="3" stroke-dasharray="6 4"/><text x="94" y="138" class="lb" style="fill:#2f6fdb">A (1, 1, 5, 4)</text><text x="354" y="198" text-anchor="end" class="lb" style="fill:#e0533d">B (3, 2, 7, 6)</text><text x="224" y="168" text-anchor="middle" class="lb" style="fill:#7a4a00">A ∩ B</text><text x="178" y="322" text-anchor="middle" class="tk">max x₁ = 3</text><text x="270" y="322" text-anchor="middle" class="tk">min x₂ = 5</text></svg><p class="gcap">two boxes as (x₁, y₁, x₂, y₂) — their overlap is a box too</p></div>
+    <div class="say">
+      <div class="flashback">Session 7: a box is four numbers in pixel coordinates — where on the image, not how far away (session 2).</div>
+      <p style="margin-top:.6em">The overlap starts at the larger left edge and ends at the smaller right edge (same for top and bottom; 0 if they miss):</p>
+      <div class="eq fragment">$$\text{IoU}=\frac{|A\cap B|}{|A\cup B|}=\frac{I}{|A|+|B|-I}$$</div>
+      <p class="fragment">1 = the same box · 0 = no overlap. A detection counts as a hit when IoU ≥ 0.5.</p>
+      <div class="worked fragment"><span class="tag">Worked example · the picture</span><p>I = (5 − 3)·(4 − 2) = 4 · |A| = 4·3 = 12 · |B| = 4·4 = 16 · IoU = 4 ÷ (12 + 16 − 4) = 4/24 ≈ 0.17 — a miss</p></div>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ที่มา IoU: ส่วนซ้อนเริ่มที่ขอบซ้ายที่มากกว่า จบที่ขอบขวาที่น้อยกว่า · union = A + B − I (ไม่นับส่วนซ้อนสองครั้ง) · ย้อนคาบ 7 (กล่อง = พิกัด) และคาบ 2 (บอกตำแหน่งบนภาพ ไม่ใช่ระยะ) · ตัวอย่างไม่ซ้ำ Try it หน้า 11</p><p>🇬🇧 Where IoU comes from: the overlap runs from the larger left edge to the smaller right edge; union = A + B − I (do not count the overlap twice). Back to session 7 (a box is coordinates) and session 2 (where on the image, not how far). The example differs from slide 11's Try it.</p></aside>
+</section>
+
+<!-- 6 -->
+<section data-part="A">
+  <p class="kicker">A · Tasks &amp; metrics</p>
+  <h2 class="claim">Slide the detector's box: when is it still a hit?</h2>
+  <div class="split">
+    <div>
+      <canvas id="iuCv" class="democv" width="640" height="480" style="max-width:560px;margin:0 auto" aria-label="the photo with a hand-drawn box around one cyclist and the detector's box, which the sliders move"></canvas>
+      <div class="ctrl" style="justify-content:center">
+        <label>move x <input class="slider" id="iuX" type="range" min="-160" max="160" step="4" value="0" aria-label="move the detector box sideways"></label>
+        <label>move y <input class="slider" id="iuY" type="range" min="-160" max="160" step="4" value="0" aria-label="move the detector box up and down"></label>
+        <button id="iuR" type="button">Reset</button>
+      </div>
+    </div>
+    <div class="say">
+      <p id="iuOut" class="calc big"></p>
+      <p class="fragment">Green box: drawn by hand (the truth). Orange: YOLOv8n's box for the same cyclist. Slide it away — at about a third of the width it stops being a hit.</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 เริ่มที่กล่องจริงของ YOLOv8n (IoU 0.93) · เลื่อนออกด้านข้าง: IoU ลดเร็ว ตก 0.5 ก่อนเลื่อนครึ่งกล่อง · readout แทนค่า I, union และ IoU</p><p>🇬🇧 Start at YOLOv8n's real box (IoU 0.93). Slide it sideways: IoU falls fast and drops below 0.5 before half a box. The readout substitutes I, the union and IoU.</p></aside>
+</section>
+
+<!-- 7 -->
+<section data-part="A">
+  <p class="kicker">A · Tasks &amp; metrics</p>
+  <h2 class="claim">Right, wrong, missed: TP, FP, FN</h2>
+  <div class="split">
+    <div><svg class="fig" viewBox="0 0 1280 960" style="max-width:600px;margin:0 auto" role="img" aria-label="the photo: green boxes are correct detections, red boxes wrong ones, yellow dashed boxes people the detector missed"><image href="img/bridge.jpg" width="1280" height="960"/><rect x="1150.0" y="434.7" width="40.700000000000045" height="118.59999999999997" fill="none" stroke="#ffd166" stroke-width="5" stroke-dasharray="12 8"/><rect x="1172.0" y="456.7" width="26.0" height="104.59999999999997" fill="none" stroke="#ffd166" stroke-width="5" stroke-dasharray="12 8"/><rect x="57.3" y="518.7" width="18.700000000000003" height="49.299999999999955" fill="none" stroke="#ffd166" stroke-width="5" stroke-dasharray="12 8"/><rect x="124.7" y="516.7" width="13.299999999999997" height="24.0" fill="none" stroke="#ffd166" stroke-width="5" stroke-dasharray="12 8"/><rect x="202.7" y="514.7" width="15.300000000000011" height="20.59999999999991" fill="none" stroke="#ffd166" stroke-width="5" stroke-dasharray="12 8"/><rect x="515.3" y="388.4" width="162.5" height="334.20000000000005" fill="none" stroke="#22c55e" stroke-width="5"/><rect x="335.7" y="376.5" width="131.40000000000003" height="341.20000000000005" fill="none" stroke="#22c55e" stroke-width="5"/><rect x="943.8" y="409.5" width="97.70000000000005" height="224.89999999999998" fill="none" stroke="#22c55e" stroke-width="5"/><rect x="1195.3" y="487.5" width="29.799999999999955" height="79.10000000000002" fill="none" stroke="#22c55e" stroke-width="5"/><rect x="480.5" y="422.5" width="77.70000000000005" height="171.79999999999995" fill="none" stroke="#22c55e" stroke-width="5"/><rect x="690.5" y="439.0" width="62.200000000000045" height="133.20000000000005" fill="none" stroke="#22c55e" stroke-width="5"/><rect x="481.5" y="422.5" width="74.39999999999998" height="103.5" fill="none" stroke="#ef4444" stroke-width="5"/><rect x="1202.4" y="486.9" width="28.299999999999955" height="78.60000000000002" fill="none" stroke="#ef4444" stroke-width="5"/><rect x="1210.5" y="484.0" width="21.299999999999955" height="79.89999999999998" fill="none" stroke="#ef4444" stroke-width="5"/><rect x="1108.3" y="432.8" width="86.90000000000009" height="146.90000000000003" fill="none" stroke="#22c55e" stroke-width="5"/><rect x="481.1" y="419.1" width="85.5" height="281.0" fill="none" stroke="#ef4444" stroke-width="5"/></svg><p class="gcap">YOLOv8n, every box with score ≥ 0.25 · green TP 7 · red FP 4 · yellow dashed FN 5 (of 12 people drawn by hand)</p></div>
+    <div class="say">
+      <p>Match each box, best score first, to a person not yet matched with IoU ≥ 0.5:</p>
+      <p class="fragment"><b>TP</b> — a box on a real person. <b>FP</b> — a box on nothing, or a second box on someone already found. <b>FN</b> — a person no box found.</p>
+      <p class="fragment">Here: the four FP are second boxes on cyclists already found; the misses are the three tiny walkers on the left and two people in the group on the right.</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ชี้ทีละสี: เขียว 7 · แดง 4 (ทั้งหมดคือกล่องซ้ำบนคนที่เจอแล้ว) · เหลืองประ 5 (คนเล็กไกลซ้าย 3 · กลุ่มขวา 2) · ความจริงวาดด้วยมือ 12 คน (รวมคนที่ถูกบังครึ่งตัวในกลุ่มขวา)</p><p>🇬🇧 One colour at a time: green 7, red 4 (all second boxes on people already found), yellow dashed 5 (three tiny walkers on the left, two in the group on the right). The truth: 12 people drawn by hand, including a half-hidden one.</p></aside>
+</section>
+
+<!-- 8 -->
+<section data-part="A">
+  <p class="kicker">A · Tasks &amp; metrics</p>
+  <h2 class="claim">Precision and recall pull against each other</h2>
+  <div class="split">
+    <div>
+      <canvas id="prCv" class="democv" width="760" height="380" aria-label="left: the photo with the detections above the threshold; right: the precision-recall curve with the current point"></canvas>
+      <div class="ctrl" style="justify-content:center"><label>score threshold <input class="slider" id="prT" type="range" min="0.05" max="0.9" step="0.05" value="0.25" aria-label="score threshold"></label><b id="prV" class="gcap" style="margin:0"></b></div>
+    </div>
+    <div class="say">
+      <div class="eq">$$P=\frac{TP}{TP+FP}\qquad R=\frac{TP}{TP+FN}$$</div>
+      <p>Precision: of the boxes, how many are right. Recall: of the people, how many were found.</p>
+      <p id="prOut" class="calc big"></p>
+      <p class="fragment">Raise the threshold: fewer, surer boxes — P up, R down. The area under the whole curve is <b>average precision</b> (AP = 0.76 here); mAP averages it over classes.</p>
+      <div class="flashback fragment">Session 4, slide 19: measure on a test set the model never saw — and the same data for every model you compare.</div>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ลาก threshold: 0.25 → P 7/11 = 0.64 · R 7/12 = 0.58 · 0.5 → P 4/4 = 1.00 · R 4/12 = 0.33 · AP = พื้นที่ใต้เส้น 0.76 (นับแบบ all-point) · ย้อนคาบ 4 หน้า 19 (test set) · เกณฑ์ Demo ข้อ 1 ของโปรเจกต์</p><p>🇬🇧 Drag the threshold: 0.25 → P 7/11 = 0.64, R 7/12 = 0.58; 0.5 → P 4/4 = 1.00, R 4/12 = 0.33. AP = the area under the curve, 0.76 (all-point). Back to session 4 slide 19 (test set) and the project's Demo criterion 1.</p></aside>
+</section>
+
+<!-- 9 -->
+<section data-part="A">
+  <p class="kicker">A · Tasks &amp; metrics</p>
+  <h2 class="claim">Non-maximum suppression: one box per object</h2>
+  <div class="split">
+    <div>
+      <canvas id="nmCv" class="democv" width="640" height="480" style="max-width:560px;margin:0 auto" aria-label="the photo with many overlapping candidate boxes; each step keeps the best one and removes the boxes that overlap it"></canvas>
+      <div class="ctrl" style="justify-content:center"><button id="nmS" type="button">One step</button><button id="nmA" type="button">Run to the end</button><button id="nmR" type="button">Reset</button></div>
+    </div>
+    <div class="say">
+      <p>Before NMS, YOLOv8n gives <b>62</b> person boxes with score ≥ 0.25 — several on each cyclist.</p>
+      <ol class="fragment" style="margin:.2em 0 .4em 1.1em;padding:0"><li>take the highest-scoring box left — keep it;</li><li>remove every box with IoU &gt; 0.5 against it;</li><li>repeat until none are left.</li></ol>
+      <p id="nmOut" class="calc big"></p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 กด One step ทีละครั้ง: กล่องคะแนนสูงสุด (ขอบหนา) ถูกเก็บ กล่องที่ซ้อน IoU > 0.5 หายไป · สุดท้ายเหลือ 8 จาก 62 (ตรงกับ torchvision.ops.nms) · NMS ของ YOLO เองใช้ 0.7 จึงเหลือกล่องซ้ำบางกล่อง (FP หน้า 7)</p><p>🇬🇧 Press One step: the best box (thick) is kept, the boxes overlapping it with IoU > 0.5 disappear. 8 of 62 remain (the same as torchvision.ops.nms). YOLO's own NMS uses 0.7, which is why some second boxes survive (slide 7's FP).</p></aside>
+</section>
+
+<!-- 10 -->
+<section data-part="A">
+  <p class="kicker">A · Tasks &amp; metrics</p>
+  <h2 class="claim">Which metric fits your project?</h2>
+  <div class="cards" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+    <div class="card"><b>Missing is costly → recall</b>A tumour screen, a person on a level crossing: a lower threshold, and a human checks the extra boxes.</div>
+    <div class="card violet"><b>False alarms are costly → precision</b>An automatic fine, a door that locks: a higher threshold, and accept some misses.</div>
+    <div class="card amber"><b>Counting → per-image count error</b>Cars in a car park, birds on a wire: whether the number is right matters more than each box.</div>
+    <div class="card"><b>Exact outline → mask IoU (part C)</b>Measuring a leaf or a wound: boxes are not enough.</div>
+  </div>
+  <p class="takeaway"><span>Project Demo, criterion 1: “a metric that fits the problem; the same data for every solution”. Say which mistake hurts more — then choose the metric.</span></p>
+
+  <aside class="notes"><p>🇹🇭 เชื่อมเกณฑ์ Demo ข้อ 1 ของโปรเจกต์ · ให้นักศึกษาคิดว่างานของตัวเอง พลาดหรือเตือนผิดแพงกว่า</p><p>🇬🇧 Link to the project's Demo criterion 1. Ask: in your project, is a miss or a false alarm more costly?</p></aside>
+</section>
+
+<!-- 11 -->
+<section data-part="A">
+  <p class="kicker">A · Tasks &amp; metrics</p>
+  <h2 class="claim">Try it: score a detector</h2>
+  <div class="split">
+    <div class="tryit"><span class="tag">Try it</span>
+      <ol style="margin:.2em 0 0 1.1em"><li>IoU of (0, 0, 4, 4) and (2, 0, 6, 4)?</li><li>NMS at 0.5 on: 0.9 (0, 0, 4, 4) · 0.8 (1, 0, 5, 4) · 0.7 (6, 0, 10, 4) · 0.6 (7, 0, 11, 4). Which boxes stay?</li><li>A detector gives 10 boxes; 6 are right; there are 8 objects. Precision? Recall?</li></ol>
+      <details><summary>Answer</summary>1. I = 2·4 = 8 · U = 16 + 16 − 8 = 24 → <b>1/3</b> · 2. keep 0.9; (1, 0, 5, 4) has IoU 12/20 = 0.6 with it → removed; keep 0.7; (7, 0, 11, 4) IoU 0.6 → removed: <b>0.9 and 0.7 stay</b> · 3. P = 6/10 = <b>0.6</b> · R = 6/8 = <b>0.75</b>.</details>
+    </div>
+    <div class="say"><p>IoU = I ÷ (|A| + |B| − I)</p><p>P = TP ÷ boxes · R = TP ÷ objects</p></div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ให้เวลา 3 นาที · แบบข้อสอบ Final</p><p>🇬🇧 Give three minutes. Final-exam style.</p></aside>
+</section>
+
+<!-- 12 -->
+<section data-part="A">
+  <p class="kicker">A · Tasks &amp; metrics</p>
+  <h2 class="claim">IoU decides a hit; precision and recall decide a model</h2>
+  <div class="cards">
+    <div class="card"><b>IoU</b>Overlap ÷ union of two boxes; ≥ 0.5 counts as a hit.</div>
+    <div class="card violet"><b>Precision · recall</b>Right boxes ÷ all boxes · found objects ÷ all objects. The threshold trades one for the other; AP is the area under the curve.</div>
+    <div class="card amber"><b>NMS</b>Keep the best box, drop its overlapping copies, repeat — one box per object.</div>
+  </div>
+  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-08/lab.ipynb#scrollTo=part-a" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part A</a><span>IoU, NMS and precision / recall in NumPy on this photo's boxes, checked against torchvision; a PR curve from the scores</span></p>
+  <p class="more"><a target="_blank" rel="noopener" href="../practice/#s8a">More practice · Session 8 A — practice bank with worked solutions →</a></p>
+  <p class="takeaway"><span>Later: session 9 C — IoU matches a box in one video frame to the same object in the next. Next · B: how one network makes all these boxes.</span></p>
+
+  <aside class="notes"><p>🇹🇭 สรุป A · ชี้ต่อคาบ 9 C (IoU จับคู่กล่องข้ามเฟรม — แผนที่วิชาคาบ 1) · แล้วต่อ B</p><p>🇬🇧 Wrap up A. Forward: session 9 C (IoU matches boxes across frames — session 1's course map). Then B.</p></aside>
+</section>
+
+</div>
+</div>
+
+<!-- phone reading mode: bottom bar (its grid button opens the album) -->
+<nav class="rbar" id="rbar" aria-label="Page controls" hidden>
+  <button data-r="top" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M6 15l6-6 6 6M5 4h14"/></svg></button>
+  <button data-r="prev" aria-label="Previous slide"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
+  <span class="rcount" id="rCount">1 / 1</span>
+  <button data-r="next" aria-label="Next slide"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>
+  <button data-r="list" aria-label="All slides"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg></button>
+  <button data-r="pdf" class="pdf" aria-label="Download PDF"><svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>PDF</button>
+</nav>
+
+<!-- deck toolbar -->
+<nav class="deckbar" id="deckbar" aria-label="Slide controls" hidden>
+  <button data-act="first" aria-label="First slide" title="First slide (Home · Shift+↑)"><svg viewBox="0 0 24 24"><path d="M6 5v14M18 18l-6-6 6-6"/></svg></button>
+  <button data-act="prev" aria-label="Previous slide" title="Previous (←)"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
+  <button data-act="next" aria-label="Next slide" title="Next (→ or Space)"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>
+  <button data-act="last" aria-label="Last slide" title="Last slide (End · Shift+↓)"><svg viewBox="0 0 24 24"><path d="M18 5v14M6 18l6-6-6-6"/></svg></button>
+  <span class="sep" aria-hidden="true"></span>
+  <button data-act="overview" aria-label="All slides" title="All slides (O)"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></button>
+  <button data-act="fullscreen" aria-label="Full screen" title="Full screen (Enter · F)"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+  <button data-act="pdf" class="pdf" aria-label="Download PDF" aria-haspopup="true" title="Download PDF (P)"><svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>PDF</button>
+  <button data-act="help" class="q" aria-label="Keyboard shortcuts" title="Shortcuts (?)">?</button>
+</nav>
+
+<div class="pop pdfmenu" id="pdfMenu" role="menu" data-pdf-files hidden>
+  <a role="menuitem" href="?print-pdf&amp;autoprint" target="_blank" rel="noopener"><b>Slides · 16:9 PDF</b><small>One slide per page, exactly as on screen</small></a>
+  <a role="menuitem" href="?handout&amp;autoprint" target="_blank" rel="noopener"><b>Handout · A4</b><small>Two slides per A4 portrait page — for printing</small></a>
+</div>
+
+<div class="album" id="album" role="dialog" aria-modal="true" aria-label="All slides" hidden>
+  <div class="ahead">
+    <h2>All slides<span id="albumCount"></span></h2>
+    <p>Arrow keys move · Enter or click opens · scroll or drag · Esc goes back</p>
+    <a class="aslides" href="?present">Open as slides ›</a>
+    <button type="button" id="albumClose" aria-label="Back to the slide" title="Back (Esc)"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="agrid" id="albumGrid"></div>
+</div>
+<div class="scrim" id="scrim" hidden></div>
+<div class="pop keys" id="keysHelp" role="dialog" aria-modal="true" aria-labelledby="keysTitle" hidden>
+  <h3 id="keysTitle">Keyboard shortcuts</h3>
+  <dl>
+    <dt><kbd>→</kbd><kbd>Space</kbd></dt><dd>Next step</dd>
+    <dt><kbd>←</kbd></dt><dd>Previous step</dd>
+    <dt><kbd>↓</kbd><kbd>↑</kbd></dt><dd>Next / previous slide — skip the animations</dd>
+    <dt><kbd>Home</kbd><kbd>End</kbd></dt><dd>First / last slide · also <kbd>Shift</kbd>+<kbd>↑</kbd><kbd>↓</kbd></dd>
+    <dt><kbd>Shift</kbd>+<kbd>←</kbd><kbd>→</kbd></dt><dd>Previous / next topic — A, B, C, D — then first / last slide</dd>
+    <dt><kbd>G</kbd></dt><dd>Go to slide — type its number, then Enter</dd>
+    <dt><kbd>O</kbd></dt><dd>All slides — arrows move, Enter opens, scroll or drag</dd>
+    <dt><kbd>Enter</kbd><kbd>F</kbd></dt><dd>Full screen</dd>
+    <dt><kbd>B</kbd><kbd>.</kbd></dt><dd>Black screen (pause) — press again to come back</dd>
+    <dt><kbd>P</kbd></dt><dd>Download PDF — also Cmd/Ctrl + P</dd>
+    <dt><kbd>S</kbd></dt><dd>Presenter view — notes, next slide, timer</dd>
+    <dt><kbd>?</kbd></dt><dd>This list</dd>
+    <dt><kbd>Esc</kbd></dt><dd>Close a popup · otherwise all slides</dd>
+  </dl>
+  <h4>Presenter remote</h4>
+  <dl>
+    <dt><kbd>PgDn</kbd><kbd>PgUp</kbd></dt><dd>Next / previous step</dd>
+    <dt><kbd>F5</kbd></dt><dd>Start button — full screen, never a reload</dd>
+    <dt><kbd>.</kbd></dt><dd>Blank button — black screen, press again to return</dd>
+    <dt><kbd>Esc</kbd></dt><dd>Stop button — leaves full screen</dd>
+  </dl>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/reveal.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/plugin/notes/notes.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script>
+function renderMath(){
+  if(window.renderMathInElement){
+    renderMathInElement(document.querySelector('.reveal .slides'),{
+      delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]
+    });
+  }
+}
+function initDemos(){ initIou(); initPR(); initNMS(); /*<<INITS>>*/ initSliders(); }
+/* range sliders: a finger anywhere on the track sets and drags the value.
+   Phones otherwise only move a native slider when the touch lands exactly on its thumb,
+   and a touch on the track scrolls the page instead. */
+function initSliders(){
+  document.querySelectorAll('input[type=range].slider').forEach(el=>{
+    const set=e=>{ const r=el.getBoundingClientRect(), lo=+el.min||0, hi=+el.max||100, st=+el.step||1;
+      const f=Math.min(1,Math.max(0,(e.clientX-r.left)/r.width));
+      const v=Math.round((lo+f*(hi-lo))/st)*st;
+      if(String(v)!==el.value){ el.value=v; el.dispatchEvent(new Event('input',{bubbles:true})); } };
+    el.addEventListener('pointerdown',e=>{ if(e.pointerType==='mouse') return;   /* the mouse already works natively */
+      e.preventDefault(); el.setPointerCapture(e.pointerId); set(e);
+      const move=ev=>set(ev), up=()=>{ el.removeEventListener('pointermove',move); el.removeEventListener('pointerup',up); el.removeEventListener('pointercancel',up); };
+      el.addEventListener('pointermove',move); el.addEventListener('pointerup',up); el.addEventListener('pointercancel',up); });
+  });
+}
+/* title art: the same 12×12 "N", every pixel labelled with its value */
+function initTitleArt(){
+  const cv=document.getElementById('titleArt'); if(!cv) return;
+  const ctx=cv.getContext('2d'), N=PIX.length, pad=18, s=(cv.width-2*pad)/N;
+  ctx.fillStyle='#ffffff'; ctx.fillRect(0,0,cv.width,cv.height);
+  ctx.font=`600 ${Math.floor(s*0.3)}px JetBrains Mono, monospace`; ctx.textAlign='center'; ctx.textBaseline='middle';
+  for(let r=0;r<N;r++) for(let c=0;c<N;c++){
+    const v=PIX[r][c], x=pad+c*s, y=pad+r*s, dark=v<128;
+    ctx.fillStyle=`rgb(${v},${Math.min(255,v+6)},${Math.min(255,v+12)})`;   /* the cell is its own grey value */
+    if(!dark) ctx.fillStyle='#f3f5f8';
+    ctx.beginPath(); if(ctx.roundRect) ctx.roundRect(x+2.5,y+2.5,s-5,s-5,7); else ctx.rect(x+2.5,y+2.5,s-5,s-5); ctx.fill();
+    ctx.fillStyle=dark?'#ffffff':'#a3adbb';
+    ctx.fillText(v,x+s/2,y+s/2+1);
+  }
+}
+/* modes: ?handout → A4 handout · ?print-pdf → reveal PDF · phone → reading · else → slides */
+const Q=new URLSearchParams(location.search);
+const MODE = Q.has('handout') ? 'handout' : Q.has('print-pdf') ? 'pdf'
+           : (window.matchMedia('(max-width: 760px)').matches && !Q.has('present') && !Q.has('receiver')) ? 'reading' : 'slides';
+if(window.matchMedia('(hover: none)').matches) document.documentElement.classList.add('touch');
+function autoprint(){ if(Q.has('autoprint')) setTimeout(()=>window.print(), 1200); }
+/* fonts and images are in: mark the page (the deploy's PDF export waits for this), then print if asked */
+function printReady(){ setTimeout(()=>{ document.documentElement.dataset.printReady='1'; autoprint(); }, 600); }
+/* The PDF menu points at files the deploy exports with Chrome (<course>-session-NN-slides.pdf / -handout.pdf), so a
+   phone gets the same pages as a desktop — phone browsers ignore the page size a web page asks for when they print.
+   Until a file is there (a local copy, or the export step failed) the menu keeps the live ?print-pdf / ?handout pages. */
+function linkPdfFiles(){
+  const menu=document.getElementById('pdfMenu'), m=location.pathname.match(/\/([^/]+)\/(session-\d+)\/[^/]*$/);
+  if(!menu||!m||!/^https?:$/.test(location.protocol)) return;
+  const [slides,handout]=menu.querySelectorAll('a');
+  [[slides,'slides'],[handout,'handout']].forEach(([a,kind])=>{ if(!a) return; const f=`${m[1]}-${m[2]}-${kind}.pdf`;
+    fetch(f,{method:'HEAD',cache:'no-store'}).then(r=>{ if(r.ok&&(r.headers.get('content-type')||'').includes('pdf')){ a.href=f; a.setAttribute('download',f); a.dataset.file='1'; } }).catch(()=>{}); });
+}
+/* print modes: load every picture now (lazy images far down the page would print blank), then wait for them */
+/* printing: open every answer (Try it, solutions) so it is on paper; restore afterwards */
+function openAnswers(on){ document.querySelectorAll('details').forEach(d=>{ if(on){ if(d.dataset.wasOpen===undefined) d.dataset.wasOpen=d.open?'1':'0'; d.open=true; }
+  else if(d.dataset.wasOpen!==undefined){ d.open=d.dataset.wasOpen==='1'; delete d.dataset.wasOpen; } }); }
+window.addEventListener('beforeprint',()=>openAnswers(true));
+window.addEventListener('afterprint',()=>{ if(MODE==='slides'||MODE==='reading') openAnswers(false); });
+function loadAllImages(){ const imgs=[...document.querySelectorAll('img')]; imgs.forEach(i=>{ i.loading='eager'; });
+  return Promise.all(imgs.map(i=>i.complete?0:new Promise(r=>{ i.addEventListener('load',r,{once:true}); i.addEventListener('error',r,{once:true}); }))); }
+
+function numberSlides(){
+  const secs=[...document.querySelectorAll('.reveal .slides>section')], N=secs.length;
+  secs.forEach((s,i)=>{ const n=document.createElement('span'); n.className='pgno'; n.innerHTML=`<b>${i+1}</b> / ${N}`; s.appendChild(n); });
+}
+document.addEventListener('DOMContentLoaded',()=>{   /* after every const below exists */
+  numberSlides();
+  if(MODE==='slides'||MODE==='reading') linkPdfFiles();
+  if(MODE==='handout'){
+    document.documentElement.classList.add('handout');
+    /* reveal.css has its own print rules (20pt text, one section per page) — Reveal is not running here, so drop it */
+    document.querySelectorAll('link[href*="reveal.min.css"]').forEach(l=>l.disabled=true);
+    document.querySelectorAll('.reveal .slides>section').forEach(sec=>{ const c=document.createElement('div'); c.className='ho-cell'; sec.before(c); c.appendChild(sec); });
+    const st=document.createElement('style'); st.textContent='@page{size:A4 portrait;margin:5mm;}'; document.head.appendChild(st);
+    renderMath(); initDemos();
+    openAnswers(true); loadAllImages(); Promise.all([document.fonts.ready,loadAllImages()]).then(printReady);
+    return;
+  }
+  if(MODE==='reading'){
+    document.documentElement.classList.add('reading');
+    renderMath(); initDemos(); initReadingBar();
+    /* deep links (#/part-b or #/12) work on a phone too — on load, on a tap on an in-deck link (the roadmap cards,
+       the A–D strip on part openers) and on Back/Forward. Reveal is not running here, so nothing else would scroll. */
+    const target=h=>{ const m=(h||'').match(/^#\/([\w-]+)/); if(!m) return null; const secs=[...document.querySelectorAll('.reveal .slides>section')];
+      return /^\d+$/.test(m[1]) ? secs[+m[1]] : document.getElementById(m[1]); };
+    /* jump, then keep the slide at the top while images above it finish loading (they would push it down) — until the reader scrolls */
+    let pin=null; const unpin=()=>{ pin=null; };
+    ['touchstart','wheel','keydown'].forEach(t=>window.addEventListener(t,unpin,{passive:true}));
+    document.addEventListener('load',e=>{ if(pin&&e.target.tagName==='IMG'&&Date.now()<pin.until) pin.el.scrollIntoView({block:'start'}); },true);
+    const go=h=>{ const el=target(h); if(!el) return false; el.scrollIntoView({block:'start'}); pin={el,until:Date.now()+2500}; return true; };
+    if(location.hash) requestAnimationFrame(()=>go(location.hash));
+    if('scrollRestoration' in history) history.scrollRestoration='manual';   /* Back/Forward: we place the slide, not the browser */
+    document.addEventListener('click',e=>{ const a=e.target.closest('a[href^="#/"]'); if(!a||!target(a.getAttribute('href'))) return;
+      e.preventDefault(); history.pushState(null,'',a.getAttribute('href')); go(a.getAttribute('href')); });
+    window.addEventListener('popstate',()=>requestAnimationFrame(()=>go(location.hash)));
+    return;
+  }
+  Reveal.initialize({
+    width:1280, height:720, margin:0.06,
+    hash:true, progress:true, center:false,
+    controls:false, slideNumber:false, help:false,
+    transition:'fade', transitionSpeed:'fast',
+    pdfSeparateFragments:false, pdfMaxPagesPerSlide:1,
+    overview:false,         /* our own album view replaces reveal's one-row overview */
+    scrollActivationWidth:null,
+    touch:false,            /* swipes handled by initSwipe(): up/left = next, down/right = previous */
+    plugins:[RevealNotes]   /* S = presenter view with the slide's notes */
+  }).then(()=>{
+    renderMath(); initDemos();
+    if(MODE==='pdf'){ openAnswers(true); loadAllImages(); Promise.all([document.fonts.ready,loadAllImages()]).then(printReady); return; }
+    if(Q.has('receiver')) return;   /* presenter-view preview: no toolbar, swipe or album */
+    initDeckbar(); initSwipe();
+    initAlbum({slides:()=>Reveal.getSlides(), current:()=>Reveal.getIndices().h, go:i=>Reveal.slide(i), keys:true});
+  });
+});
+
+function initReadingBar(){
+  const bar=document.getElementById('rbar'), count=document.getElementById('rCount');
+  const menu=document.getElementById('pdfMenu');
+  const secs=[...document.querySelectorAll('.reveal .slides>section')], N=secs.length;
+  bar.hidden=false;
+  let cur=0;
+  const go=i=>{ i=Math.max(0,Math.min(N-1,i)); secs[i].scrollIntoView({behavior:'smooth',block:'start'}); };
+  const closeAll=()=>{ menu.hidden=true; };
+  const show=()=>{ count.textContent=`${cur+1} / ${N}`;
+    bar.querySelector('[data-r=prev]').disabled=cur===0; bar.querySelector('[data-r=next]').disabled=cur===N-1; };
+  /* current slide = the last section whose top has passed 40% of the screen */
+  const track=()=>{ const y=window.innerHeight*0.4; let k=0; secs.forEach((s,i)=>{ if(s.getBoundingClientRect().top<=y) k=i; }); if(k!==cur){ cur=k; show(); } };
+  window.addEventListener('scroll',track,{passive:true}); track(); show();
+  const act={top:()=>window.scrollTo({top:0,behavior:'smooth'}), prev:()=>go(cur-1), next:()=>go(cur+1),
+             list:()=>{ closeAll(); toggleAlbum(); },
+             pdf:()=>{ const o=menu.hidden; closeAll(); menu.hidden=!o; }};
+  bar.addEventListener('click',e=>{ const b=e.target.closest('button'); if(b&&act[b.dataset.r]) act[b.dataset.r](); });
+  menu.addEventListener('click',()=>setTimeout(closeAll,50));
+  document.addEventListener('click',e=>{ if(!e.target.closest('#rbar,#pdfMenu')) closeAll(); });
+  initAlbum({slides:()=>secs, current:()=>cur, go:i=>secs[i].scrollIntoView({block:'start'})});
+}
+
+/* swipe in slide mode — reveal's own touch only knows up/down for vertical stacks, which this deck has none of */
+function initSwipe(){
+  const rv=document.querySelector('.reveal'); let sx=null, sy=0, st=0;
+  rv.addEventListener('touchstart',e=>{
+    if(e.touches.length!==1 || e.target.closest('input,button,a,details,.deckbar,.pop')){ sx=null; return; }
+    sx=e.touches[0].clientX; sy=e.touches[0].clientY; st=Date.now();
+  },{passive:true});
+  rv.addEventListener('touchmove',e=>{ if(sx!==null) e.preventDefault(); },{passive:false});   /* no page bounce while swiping */
+  rv.addEventListener('touchend',e=>{
+    if(sx===null) return;
+    const t=e.changedTouches[0], dx=t.clientX-sx, dy=t.clientY-sy; sx=null;
+    if(Date.now()-st>800 || Math.max(Math.abs(dx),Math.abs(dy))<40) return;   /* a tap or a slow drag, not a swipe */
+    const fwd = Math.abs(dy)>Math.abs(dx) ? dy<0 : dx<0;                      /* up or left = forward */
+    fwd ? Reveal.next() : Reveal.prev();
+  },{passive:true});
+}
+
+function initDeckbar(){
+  const bar=document.getElementById('deckbar');
+  const menu=document.getElementById('pdfMenu'), keys=document.getElementById('keysHelp'), scrim=document.getElementById('scrim');
+  bar.hidden=false;
+  const prevB=bar.querySelector('[data-act=prev]'), nextB=bar.querySelector('[data-act=next]');
+  const sync=()=>{
+    const atFirst=Reveal.isFirstSlide(), atLast=Reveal.isLastSlide();
+    prevB.disabled=atFirst && !Reveal.availableFragments().prev;
+    nextB.disabled=atLast && !Reveal.availableFragments().next;
+    bar.querySelector('[data-act=first]').disabled=atFirst;
+    bar.querySelector('[data-act=last]').disabled=atLast;
+  };
+  Reveal.on('slidechanged',sync); Reveal.on('fragmentshown',sync); Reveal.on('fragmenthidden',sync); sync();
+  const closeAll=()=>{ menu.hidden=true; keys.hidden=true; scrim.hidden=true; };
+  const toggleKeys=()=>{ const open=keys.hidden; closeAll(); keys.hidden=!open; scrim.hidden=!open; };
+  const toggleMenu=()=>{ const open=menu.hidden; closeAll(); menu.hidden=!open; if(open) menu.querySelector('a').focus(); };
+  /* iPhone Safari has no element full screen — hide the button there instead of leaving a dead one */
+  const fsOK=!!(document.fullscreenEnabled||document.webkitFullscreenEnabled);
+  if(!fsOK) bar.querySelector('[data-act=fullscreen]').classList.add('nofs');
+  const fullscreen=()=>{ const el=document.documentElement;
+    if(document.fullscreenElement||document.webkitFullscreenElement){ (document.exitFullscreen||document.webkitExitFullscreen).call(document); }
+    else if(el.requestFullscreen) el.requestFullscreen(); else if(el.webkitRequestFullscreen) el.webkitRequestFullscreen(); };
+  const last=()=>Reveal.getTotalSlides()-1;
+  /* Shift+↑/↓ = first/last slide · Shift+←/→ = previous/next topic (a run of sections with the same data-part), then first/last */
+  document.addEventListener('keydown',e=>{
+    if(!e.shiftKey||e.ctrlKey||e.metaKey||e.altKey||document.documentElement.classList.contains('album-open')) return;
+    const k=e.key; if(!/^Arrow(Up|Down|Left|Right)$/.test(k)) return;
+    if(/INPUT|TEXTAREA/.test((document.activeElement||{}).tagName||'')) return;
+    e.preventDefault(); e.stopImmediatePropagation();
+    if(k==='ArrowUp') return Reveal.slide(0);
+    if(k==='ArrowDown') return Reveal.slide(last());
+    const sl=Reveal.getSlides(), starts=sl.map((x,i)=>x.dataset.part&&(i===0||sl[i-1].dataset.part!==x.dataset.part)?i:-1).filter(i=>i>=0);
+    const h=Reveal.getIndices().h, t=k==='ArrowRight'?starts.find(i=>i>h):[...starts].reverse().find(i=>i<h);
+    Reveal.slide(t!==undefined ? t : (k==='ArrowRight' ? last() : 0));   /* no topic left that way: go to the end */
+  },true);
+  const act={first:()=>Reveal.slide(0), prev:()=>Reveal.prev(), next:()=>Reveal.next(), last:()=>Reveal.slide(last()),
+             overview:()=>toggleAlbum(), fullscreen, pdf:toggleMenu, help:toggleKeys};
+  bar.addEventListener('click',e=>{ const b=e.target.closest('button'); if(b && act[b.dataset.act]){ act[b.dataset.act](); if(b.dataset.act!=='pdf'&&b.dataset.act!=='help') closeAll(); } });
+  scrim.addEventListener('click',closeAll);
+  menu.addEventListener('click',()=>setTimeout(closeAll,50));
+  Reveal.addKeyBinding({keyCode:80,key:'P',description:'Download PDF'},toggleMenu);
+  /* Cmd/Ctrl+P: the browser's own print of the live deck is poor — offer the deck's PDF layouts instead */
+  document.addEventListener('keydown',e=>{ if((e.metaKey||e.ctrlKey)&&!e.altKey&&(e.key==='p'||e.key==='P')){ e.preventDefault(); e.stopImmediatePropagation(); if(menu.hidden) toggleMenu(); } },true);
+  /* ↓ / ↑ : whole slide, skipping animations — the slide you land on is shown complete */
+  const jump=d=>{ const h=Reveal.getIndices().h+d; if(h<0||h>last()) return;
+    const n=Reveal.getSlide(h).querySelectorAll('.fragment').length; Reveal.slide(h,0,n?n-1:undefined); };
+  Reveal.addKeyBinding({keyCode:40,key:'↓',description:'Next slide, skip animations'},()=>jump(1));
+  Reveal.addKeyBinding({keyCode:38,key:'↑',description:'Previous slide, skip animations'},()=>jump(-1));
+  /* presenter remotes: the start button sends F5 (or Shift+F5) — enter full screen instead of reloading the page;
+     next/previous send PageDown/PageUp and blank sends "." or B — reveal handles those itself */
+  document.addEventListener('keydown',e=>{
+    if(e.key!=='F5' || e.ctrlKey || e.metaKey || e.altKey) return;
+    e.preventDefault(); e.stopImmediatePropagation();
+    if(!(document.fullscreenElement||document.webkitFullscreenElement)) fullscreen();
+  },true);
+  /* Enter : full screen — unless Enter already means something (go-to-slide box, a popup; the album handles its own) */
+  document.addEventListener('keydown',e=>{
+    if(e.key!=='Enter' || e.altKey || e.ctrlKey || e.metaKey) return;
+    const tag=(document.activeElement&&document.activeElement.tagName)||'';
+    if(/INPUT|TEXTAREA|BUTTON|A|SUMMARY/.test(tag) || !menu.hidden || !keys.hidden) return;
+    if(document.documentElement.classList.contains('album-open')) return;   /* Enter opens the picked tile there */
+    e.preventDefault(); e.stopImmediatePropagation(); fullscreen();
+  },true);
+  Reveal.addKeyBinding({keyCode:191,key:'?',description:'Keyboard shortcuts'},toggleKeys);
+  /* Esc closes an open popup — and stops there, so it does not also open the album */
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape' && (!menu.hidden || !keys.hidden)){ closeAll(); e.preventDefault(); e.stopImmediatePropagation(); }
+  },true);
+  /* fade the bar while presenting; any pointer movement brings it back (touch screens: always shown) */
+  if(document.documentElement.classList.contains('touch')) return;
+  let t; const wake=()=>{ bar.classList.remove('idle'); clearTimeout(t); t=setTimeout(()=>bar.classList.add('idle'),2500); };
+  ['pointermove','pointerdown','keydown'].forEach(ev=>document.addEventListener(ev,wake)); wake();
+}
+
+/* ---- all slides as a photo album: every slide cloned into a scaled 16:9 tile ----
+   each tile renders in its own shadow root with the deck's slide CSS, so phone reading-mode rules
+   (html.reading …) cannot restyle it — on a phone the tiles still show the real 16:9 slide */
+let toggleAlbum=()=>{};
+function initAlbum(src){
+  const al=document.getElementById('album'), grid=document.getElementById('albumGrid');
+  let sel=0, cols=1, tiles=[], dragY=null, dragged=false, startTop=0;
+  /* the stylesheets a tile needs: reveal reset + core, KaTeX, this deck's <style>, then tile overrides */
+  const links=[...document.querySelectorAll('link[rel=stylesheet]')].filter(l=>!/fonts\.googleapis/.test(l.href)).map(l=>l.href);
+  const tileCSS=document.querySelector('style').textContent+`
+    .reveal{position:absolute;left:0;top:0;width:1280px;height:720px;transform-origin:0 0;transform:scale(var(--s,.2));overflow:hidden;pointer-events:none;background:#fff;}
+    .reveal .slides{position:absolute;inset:0;width:1280px;height:720px;margin:0;transform:none !important;zoom:1;perspective:none;pointer-events:none;text-align:left;}
+    .reveal .slides>section{display:block !important;position:absolute !important;inset:0;width:1280px !important;height:720px !important;opacity:1 !important;visibility:visible !important;transform:none !important;pointer-events:none !important;}
+    .reveal .fragment{opacity:1 !important;visibility:visible !important;transform:none !important;}`;
+  let sheet=null; try{ sheet=new CSSStyleSheet(); sheet.replaceSync(tileCSS); }catch(_){ sheet=null; }
+  const titleOf=s=>{ const h=s.querySelector('h1,h2'); if(!h) return '';
+    const c=h.cloneNode(true); c.querySelectorAll('br').forEach(b=>b.replaceWith(' ')); return c.textContent.replace(/\s+/g,' ').trim(); };
+  function build(){
+    const secs=src.slides(); grid.textContent=''; tiles=[];
+    document.getElementById('albumCount').textContent=' · '+secs.length;
+    secs.forEach((s,i)=>{
+      const t=document.createElement('div'); t.className='thumb'; t.dataset.i=i; t.setAttribute('role','button');
+      const title=titleOf(s); t.setAttribute('aria-label',`Slide ${i+1}${title?': '+title:''}`);
+      const fr=document.createElement('div'); fr.className='tframe';
+      const host=document.createElement('div'); host.className='thost'; host.inert=true;
+      const root=host.attachShadow({mode:'open'});
+      links.forEach(h=>{ const l=document.createElement('link'); l.rel='stylesheet'; l.href=h; root.appendChild(l); });
+      if(sheet) root.adoptedStyleSheets=[sheet]; else { const st=document.createElement('style'); st.textContent=tileCSS; root.appendChild(st); }
+      const rv=document.createElement('div'); rv.className='reveal';
+      const sl=document.createElement('div'); sl.className='slides';
+      const c=s.cloneNode(true);
+      c.classList.remove('present','past','future'); ['hidden','style','aria-hidden'].forEach(a=>c.removeAttribute(a));
+      c.querySelectorAll('.fragment').forEach(f=>f.classList.add('visible'));        /* a tile shows the finished slide */
+      c.querySelectorAll('[id]').forEach(e=>{ if(!e.closest('svg')) e.removeAttribute('id'); });
+      const oc=s.querySelectorAll('canvas');                                          /* canvases clone blank — copy their pixels */
+      c.querySelectorAll('canvas').forEach((k,j)=>{ try{ k.getContext('2d').drawImage(oc[j],0,0); }catch(_){} });
+      sl.appendChild(c); rv.appendChild(sl); root.appendChild(rv); fr.appendChild(host); t.appendChild(fr);
+      const cap=document.createElement('div'); cap.className='tcap';
+      cap.innerHTML=`<span class="tn">${i+1}</span><span class="tt"></span>`; cap.lastChild.textContent=title||'Title';
+      t.appendChild(cap); grid.appendChild(t); tiles.push(t);
+    });
+  }
+  function fit(){
+    const f=grid.querySelector('.tframe'); if(f) al.style.setProperty('--s',f.clientWidth/1280);
+    cols=getComputedStyle(grid).gridTemplateColumns.split(' ').length||1;
+  }
+  function mark(scroll){
+    tiles.forEach((t,i)=>t.classList.toggle('sel',i===sel));
+    if(scroll && tiles[sel]) tiles[sel].scrollIntoView({block:scroll===true?'nearest':scroll});
+  }
+  function open(){
+    build(); al.hidden=false; document.documentElement.classList.add('album-open');
+    const cur=src.current(); sel=cur; tiles[cur].classList.add('now');
+    fit(); mark('center');
+  }
+  function close(go){
+    al.hidden=true; document.documentElement.classList.remove('album-open'); grid.textContent=''; tiles=[];
+    if(go!==undefined) src.go(go);
+  }
+  toggleAlbum=()=>{ al.hidden ? open() : close(); };
+  window.addEventListener('resize',()=>{ if(!al.hidden) fit(); });
+  document.getElementById('albumClose').addEventListener('click',()=>close());
+  if(src.keys){
+    Reveal.addKeyBinding({keyCode:79,key:'O',description:'All slides'},toggleAlbum);
+    Reveal.addKeyBinding({keyCode:27,key:'Esc',description:'All slides'},toggleAlbum);
+  }
+  /* while the album is open, every key belongs to it — Reveal must not move the deck underneath */
+  document.addEventListener('keydown',e=>{
+    if(al.hidden || e.metaKey || e.ctrlKey || e.altKey) return;
+    const n=tiles.length, k=e.key;
+    const move=d=>{ sel=Math.max(0,Math.min(n-1,sel+d)); mark(true); };
+    if(k==='ArrowRight') move(1); else if(k==='ArrowLeft') move(-1);
+    else if(k==='ArrowDown') move(cols); else if(k==='ArrowUp') move(-cols);
+    else if(k==='Home'){ sel=0; mark(true); } else if(k==='End'){ sel=n-1; mark(true); }
+    else if(k==='Enter'||k===' ') close(sel);
+    else if(k==='Escape'||k==='o'||k==='O') close();
+    else if(k==='PageDown'||k==='PageUp') return;                                  /* let the grid scroll */
+    else return;
+    e.preventDefault(); e.stopImmediatePropagation();
+  },true);
+  /* click / tap opens a tile; a mouse drag scrolls the grid (fingers and wheels scroll natively) */
+  grid.addEventListener('pointerdown',e=>{ if(e.pointerType==='mouse'&&e.button===0){ dragY=e.clientY; startTop=grid.scrollTop; dragged=false; } });
+  window.addEventListener('pointermove',e=>{
+    if(dragY===null) return; const dy=e.clientY-dragY;
+    if(Math.abs(dy)>6){ dragged=true; grid.classList.add('dragging'); }
+    if(dragged) grid.scrollTop=startTop-dy;
+  });
+  window.addEventListener('pointerup',()=>{ dragY=null; grid.classList.remove('dragging'); });
+  grid.addEventListener('click',e=>{
+    if(dragged){ dragged=false; return; }
+    const t=e.target.closest('.thumb'); if(t) close(+t.dataset.i);
+  });
+}
+
+/* ---- a tiny 12×12 grayscale image drawn from numbers (slide: a computer sees numbers) ---- */
+const PIX = (()=>{
+  // a dark "N" on a light background, values 0–255 (strokes 30, anti-aliased edge 70)
+  const N=12, img=[];
+  for(let r=0;r<N;r++){ const row=[]; for(let c=0;c<N;c++) row.push(220); img.push(row); }
+  for(let r=2;r<=9;r++){ img[r][2]=30; img[r][3]=30; img[r][8]=30; img[r][9]=30; }       // the two uprights
+  for(let r=2;r<=9;r++){ const c=3+Math.round((r-2)*5/7); img[r][c]=30; if(img[r][c+1]===220) img[r][c+1]=70; }  // the diagonal
+  return img;
+})();
+
+function drawGray(canvas,img,gain,pick){
+  const N=img.length, ctx=canvas.getContext('2d'), s=canvas.width/N;
+  for(let r=0;r<N;r++) for(let c=0;c<N;c++){
+    const v=Math.max(0,Math.min(255,Math.round(img[r][c]*gain)));
+    ctx.fillStyle=`rgb(${v},${v},${v})`; ctx.fillRect(c*s,r*s,s,s);
+  }
+  if(pick){ ctx.strokeStyle='#d9534f'; ctx.lineWidth=Math.max(2,s/8); ctx.strokeRect(pick[1]*s+1,pick[0]*s+1,s-2,s-2); }
+}
+function drawNumbers(canvas,img,gain,pick,thr=128){   /* cells below thr are shaded */
+  const N=img.length, ctx=canvas.getContext('2d'), s=canvas.width/N;
+  ctx.fillStyle='#ffffff'; ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.font=`${Math.floor(s*0.36)}px JetBrains Mono, monospace`; ctx.textAlign='center'; ctx.textBaseline='middle';
+  for(let r=0;r<N;r++) for(let c=0;c<N;c++){
+    const v=Math.max(0,Math.min(255,Math.round(img[r][c]*gain)));
+    const hit=pick&&pick[0]===r&&pick[1]===c;
+    ctx.fillStyle=hit?'#fbeaea':(v<thr?'#e3f3f4':'#ffffff'); ctx.fillRect(c*s,r*s,s,s);
+    ctx.fillStyle=hit?'#d9534f':'#1b1f24'; ctx.fillText(v,c*s+s/2,r*s+s/2);
+  }
+  ctx.strokeStyle='#dde3e8'; ctx.lineWidth=1;
+  for(let i=0;i<=N;i++){ ctx.beginPath(); ctx.moveTo(i*s,0); ctx.lineTo(i*s,canvas.height); ctx.stroke(); ctx.beginPath(); ctx.moveTo(0,i*s); ctx.lineTo(canvas.width,i*s); ctx.stroke(); }
+}
+function cellFromEvent(canvas,e){
+  const rect=canvas.getBoundingClientRect(), N=PIX.length;
+  const x=(e.clientX-rect.left)/rect.width, y=(e.clientY-rect.top)/rect.height;
+  if(x<0||y<0||x>=1||y>=1) return null;
+  return [Math.floor(y*N),Math.floor(x*N)];
+}
+function initPixelDemo(){
+  const a=document.getElementById('pixImg'), b=document.getElementById('pixNum'), out=document.getElementById('pixOut');
+  if(!a||!b) return;
+  let pick=null;
+  const draw=()=>{ drawGray(a,PIX,1,pick); drawNumbers(b,PIX,1,pick);
+    out.textContent = pick ? `row ${pick[0]}, col ${pick[1]}  →  ${PIX[pick[0]][pick[1]]}` : 'tap or hover a pixel'; };
+  [a,b].forEach(cv=>{
+    const f=e=>{ const p=cellFromEvent(cv,e); if(p){ pick=p; draw(); } };
+    cv.addEventListener('pointermove',f); cv.addEventListener('pointerdown',f);
+  });
+  draw();
+}
+/* ---- same object, different light: every number changes (slide: humans make it look easy) ---- */
+function initLightingDemo(){
+  const a=document.getElementById('litImg'), b=document.getElementById('litNum'), s=document.getElementById('litGain');
+  if(!a||!b||!s) return;
+  const pct=document.getElementById('litPct'), bg=document.getElementById('litBg'), st=document.getElementById('litSt'), rule=document.getElementById('litRule');
+  const THR=100, N=PIX.length, val=(v,g)=>Math.max(0,Math.min(255,Math.round(v*g)));
+  const letter=PIX.flat().filter(v=>v<THR).length;                 /* cells that really are the N: 30s and 70s */
+  const draw=()=>{ const g=s.value/100; drawGray(a,PIX,g,null); drawNumbers(b,PIX,g,null,THR);
+    pct.textContent=`light ${s.value}%`; bg.textContent=val(PIX[0][0],g); st.textContent=val(PIX[5][5],g);
+    const ink=PIX.flat().filter(v=>val(v,g)<THR).length, ok=ink===letter;
+    rule.textContent= ok ? `✓ finds the N — ${ink} cells` : `✗ marks ${ink} of ${N*N} cells — the whole picture`;
+    rule.parentNode.classList.toggle('bad',!ok); };
+  s.addEventListener('input',draw); draw();
+}
+
+/* ---- session 8 demos ---- */
+/* in ?print-pdf / ?handout each demo starts at a setting that shows its point on paper */
+const PRINTING=/[?&](print-pdf|handout)\b/.test(location.search);
+const loadImg=(src,cb)=>{ const im=new Image(); im.onload=()=>cb(im); im.src=src; return im; };
+function pickButtons(id,cb){ const g=document.getElementById(id); if(!g) return; g.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b) return;
+  g.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b)); cb(b); }); }
+const GT=[[520.7, 386.7, 676.7, 713.3], [336.7, 373.3, 467.3, 694.7], [477.3, 418.7, 573.3, 622.0], [678.0, 439.3, 753.3, 564.7], [938.0, 406.7, 1040.7, 626.7], [1109.3, 430.0, 1168.7, 561.3], [1150.0, 434.7, 1190.7, 553.3], [1194.0, 487.3, 1226.7, 564.0], [1172.0, 456.7, 1198.0, 561.3], [57.3, 518.7, 76.0, 568.0], [124.7, 516.7, 138.0, 540.7], [202.7, 514.7, 218.0, 535.3]], DET=[{"box": [515.3, 388.4, 677.8, 722.6], "s": 0.884, "tp": true, "gt": 0, "iou": 0.929}, {"box": [335.7, 376.5, 467.1, 717.7], "s": 0.874, "tp": true, "gt": 1, "iou": 0.915}, {"box": [943.8, 409.5, 1041.5, 634.4], "s": 0.816, "tp": true, "gt": 4, "iou": 0.895}, {"box": [1195.3, 487.5, 1225.1, 566.6], "s": 0.547, "tp": true, "gt": 7, "iou": 0.883}, {"box": [480.5, 422.5, 558.2, 594.3], "s": 0.423, "tp": true, "gt": 2, "iou": 0.684}, {"box": [690.5, 439.0, 752.7, 572.2], "s": 0.414, "tp": true, "gt": 3, "iou": 0.786}, {"box": [481.5, 422.5, 555.9, 526.0], "s": 0.4, "tp": false, "gt": null, "iou": 0.394}, {"box": [1202.4, 486.9, 1230.7, 565.5], "s": 0.391, "tp": false, "gt": null, "iou": 0.649}, {"box": [1210.5, 484.0, 1231.8, 563.9], "s": 0.357, "tp": false, "gt": null, "iou": 0.416}, {"box": [1108.3, 432.8, 1195.2, 579.7], "s": 0.351, "tp": true, "gt": 5, "iou": 0.59}, {"box": [481.1, 419.1, 566.6, 700.1], "s": 0.275, "tp": false, "gt": null, "iou": 0.662}, {"box": [1169.7, 449.3, 1196.5, 567.0], "s": 0.182, "tp": true, "gt": 8, "iou": 0.776}, {"box": [696.0, 439.4, 751.9, 496.4], "s": 0.153, "tp": false, "gt": null, "iou": 0.337}, {"box": [1149.2, 444.3, 1181.4, 569.4], "s": 0.13, "tp": true, "gt": 6, "iou": 0.632}, {"box": [1174.7, 499.7, 1198.6, 565.6], "s": 0.115, "tp": false, "gt": null, "iou": 0.501}, {"box": [1144.3, 438.3, 1174.8, 571.9], "s": 0.11, "tp": false, "gt": null, "iou": 0.473}, {"box": [1115.1, 436.7, 1168.7, 576.8], "s": 0.098, "tp": false, "gt": null, "iou": 0.774}, {"box": [1110.3, 432.7, 1158.5, 560.9], "s": 0.053, "tp": false, "gt": null, "iou": 0.793}, {"box": [1117.2, 462.6, 1152.5, 575.2], "s": 0.043, "tp": false, "gt": null, "iou": 0.421}, {"box": [200.6, 509.8, 219.0, 535.5], "s": 0.042, "tp": true, "gt": 11, "iou": 0.667}, {"box": [57.8, 521.9, 76.7, 563.3], "s": 0.029, "tp": true, "gt": 9, "iou": 0.793}, {"box": [1177.4, 480.7, 1201.6, 565.1], "s": 0.028, "tp": false, "gt": null, "iou": 0.534}, {"box": [1119.0, 503.0, 1149.1, 573.1], "s": 0.022, "tp": false, "gt": null, "iou": 0.215}, {"box": [1244.8, 500.1, 1266.7, 523.7], "s": 0.019, "tp": false, "gt": null, "iou": 0.0}, {"box": [515.1, 425.3, 574.2, 532.3], "s": 0.019, "tp": false, "gt": null, "iou": 0.318}, {"box": [1199.1, 484.1, 1217.8, 527.6], "s": 0.018, "tp": false, "gt": null, "iou": 0.295}, {"box": [533.4, 422.3, 569.3, 466.9], "s": 0.017, "tp": false, "gt": null, "iou": 0.082}, {"box": [1266.0, 495.1, 1279.5, 538.2], "s": 0.016, "tp": false, "gt": null, "iou": 0.0}, {"box": [666.1, 438.3, 754.1, 561.7], "s": 0.016, "tp": false, "gt": null, "iou": 0.831}, {"box": [522.4, 423.9, 566.6, 489.2], "s": 0.016, "tp": false, "gt": null, "iou": 0.148}, {"box": [1256.7, 485.6, 1279.6, 562.4], "s": 0.014, "tp": false, "gt": null, "iou": 0.0}, {"box": [195.2, 508.3, 219.7, 536.6], "s": 0.011, "tp": false, "gt": null, "iou": 0.46}, {"box": [1174.9, 475.9, 1198.5, 519.5], "s": 0.011, "tp": false, "gt": null, "iou": 0.367}, {"box": [1262.9, 475.9, 1279.5, 510.1], "s": 0.01, "tp": false, "gt": null, "iou": 0.0}], RAW={"box": [[515.3, 388.4, 677.8, 722.6], [516.6, 388.1, 676.6, 725.4], [335.7, 376.5, 467.1, 717.7], [335.7, 376.3, 467.2, 713.5], [335.2, 378.9, 467.3, 711.5], [335.9, 377.1, 467.3, 715.9], [515.0, 388.0, 678.5, 717.9], [515.8, 385.3, 677.8, 724.8], [516.7, 385.6, 677.3, 717.4], [335.6, 376.1, 467.0, 718.6], [516.2, 388.2, 677.1, 716.6], [334.9, 376.9, 466.2, 708.7], [335.7, 377.7, 467.0, 706.1], [943.8, 409.5, 1041.5, 634.4], [517.3, 388.4, 676.0, 728.5], [335.8, 376.5, 467.6, 716.0], [336.1, 375.9, 467.0, 713.7], [335.0, 377.5, 467.0, 706.4], [943.6, 408.8, 1040.6, 632.4], [943.1, 409.3, 1040.6, 632.7], [941.1, 409.5, 1040.4, 630.8], [941.5, 409.8, 1041.2, 631.7], [942.0, 409.1, 1041.6, 633.4], [516.6, 386.3, 676.6, 725.5], [517.5, 387.9, 677.7, 724.8], [940.1, 410.6, 1042.2, 625.8], [511.6, 387.9, 677.7, 724.0], [937.4, 410.4, 1041.6, 633.6], [937.6, 411.5, 1041.9, 631.3], [515.4, 386.9, 677.5, 719.1], [1195.3, 487.5, 1225.1, 566.6], [944.5, 407.8, 1041.6, 630.9], [1195.7, 487.3, 1226.2, 566.2], [1195.1, 486.8, 1225.4, 566.4], [480.5, 422.5, 558.2, 594.3], [690.5, 439.0, 752.7, 572.2], [481.5, 422.5, 555.9, 526.0], [481.5, 423.1, 558.1, 524.3], [1202.4, 486.9, 1230.7, 565.5], [679.0, 438.5, 751.6, 573.0], [690.3, 438.3, 752.8, 572.3], [684.6, 438.8, 752.9, 575.1], [481.0, 422.7, 555.2, 527.3], [481.5, 424.0, 560.4, 524.0], [1210.5, 484.0, 1231.8, 563.9], [1194.3, 485.9, 1223.4, 565.7], [1210.1, 486.1, 1230.2, 565.2], [1108.3, 432.8, 1195.2, 579.7], [1200.0, 487.5, 1231.0, 565.7], [482.3, 422.3, 556.7, 524.3], [693.4, 439.4, 751.3, 573.5], [480.8, 421.7, 555.2, 524.4], [480.7, 422.4, 556.6, 525.3], [1109.7, 432.3, 1187.7, 579.8], [1108.1, 432.3, 1193.7, 579.4], [688.6, 439.1, 752.6, 568.4], [480.9, 421.9, 555.3, 526.7], [1110.0, 431.6, 1183.6, 580.3], [481.1, 419.1, 566.6, 700.1], [479.6, 421.7, 560.5, 684.0], [481.6, 423.3, 557.1, 522.0], [480.3, 421.1, 554.7, 528.7]], "s": [0.884, 0.882, 0.874, 0.869, 0.865, 0.864, 0.862, 0.855, 0.843, 0.841, 0.837, 0.828, 0.817, 0.816, 0.813, 0.809, 0.797, 0.793, 0.784, 0.768, 0.762, 0.755, 0.751, 0.738, 0.716, 0.684, 0.653, 0.595, 0.575, 0.56, 0.547, 0.515, 0.498, 0.437, 0.423, 0.414, 0.4, 0.396, 0.391, 0.39, 0.382, 0.375, 0.371, 0.361, 0.357, 0.355, 0.354, 0.351, 0.346, 0.341, 0.338, 0.335, 0.324, 0.311, 0.3, 0.299, 0.292, 0.282, 0.275, 0.27, 0.262, 0.255], "keep": [0, 2, 13, 30, 34, 35, 44, 47]}, PR={"p": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.8571, 0.75, 0.6667, 0.7, 0.6364, 0.6667, 0.6154, 0.6429, 0.6, 0.5625, 0.5294, 0.5, 0.4737, 0.5, 0.5238, 0.5, 0.4783, 0.4583, 0.44, 0.4231, 0.4074, 0.3929, 0.3793, 0.3667, 0.3548, 0.3438, 0.3333, 0.3235], "r": [0.0833, 0.1667, 0.25, 0.3333, 0.4167, 0.5, 0.5, 0.5, 0.5, 0.5833, 0.5833, 0.6667, 0.6667, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.8333, 0.9167, 0.9167, 0.9167, 0.9167, 0.9167, 0.9167, 0.9167, 0.9167, 0.9167, 0.9167, 0.9167, 0.9167, 0.9167, 0.9167], "ap": 0.755};
+const iouOf=(a,b)=>{ const w=Math.max(0,Math.min(a[2],b[2])-Math.max(a[0],b[0])), h=Math.max(0,Math.min(a[3],b[3])-Math.max(a[1],b[1])), i=w*h;
+  return {i, ua:(a[2]-a[0])*(a[3]-a[1]), ub:(b[2]-b[0])*(b[3]-b[1]), v:i/((a[2]-a[0])*(a[3]-a[1])+(b[2]-b[0])*(b[3]-b[1])-i)}; };
+let PHOTO=null; const withPhoto=cb=>{ if(PHOTO) return cb(PHOTO); loadImg('img/bridge.jpg',im=>{ PHOTO=im; cb(im); }); };
+const box=(ctx,b,s,col,w,dash)=>{ ctx.save(); ctx.strokeStyle=col; ctx.lineWidth=w; ctx.setLineDash(dash||[]); ctx.strokeRect(b[0]*s,b[1]*s,(b[2]-b[0])*s,(b[3]-b[1])*s); ctx.restore(); };
+/* A3: move YOLOv8n's box for cyclist 0 against the hand-drawn box */
+function initIou(){
+  const cv=document.getElementById('iuCv'); if(!cv) return; const ctx=cv.getContext('2d'), $=id=>document.getElementById(id), sx=$('iuX'), sy=$('iuY'), s=0.5, G=GT[0], D0=DET[0].box;
+  if(PRINTING){ sx.value=56; }
+  const draw=()=>withPhoto(im=>{ const dx=+sx.value, dy=+sy.value, D=[D0[0]+dx,D0[1]+dy,D0[2]+dx,D0[3]+dy], r=iouOf(D,G);
+    ctx.drawImage(im,0,0,640,480); box(ctx,G,s,'#22c55e',4); box(ctx,D,s,'#f59e0b',4,[10,6]);
+    const f=v=>Math.round(v).toLocaleString('en');
+    $('iuOut').innerHTML=`I = ${f(r.i)} px² · union = ${f(r.ua)} + ${f(r.ub)} − ${f(r.i)} = ${f(r.ua+r.ub-r.i)}<br>IoU = ${f(r.i)} ÷ ${f(r.ua+r.ub-r.i)} = <b>${r.v.toFixed(2)}</b> → ${r.v>=0.5?'<b>a hit</b> (≥ 0.5)':'a miss (&lt; 0.5)'}`;
+    cv.dataset.iou=r.v.toFixed(4); });
+  sx.addEventListener('input',draw); sy.addEventListener('input',draw); $('iuR').onclick=()=>{ sx.value=0; sy.value=0; draw(); }; draw();
+}
+/* A5: threshold → TP / FP / FN, P and R, and the point on the PR curve */
+function initPR(){
+  const cv=document.getElementById('prCv'); if(!cv) return; const ctx=cv.getContext('2d'), $=id=>document.getElementById(id), t=$('prT'), s=0.375;
+  const draw=()=>withPhoto(im=>{ const th=+t.value, on=DET.filter(d=>d.s>=th), TP=on.filter(d=>d.tp).length, FP=on.length-TP, FN=GT.length-TP, P=on.length?TP/on.length:1, R=TP/GT.length;
+    ctx.fillStyle='#fff'; ctx.fillRect(0,0,cv.width,cv.height); ctx.drawImage(im,0,10,480,360);
+    ctx.save(); ctx.translate(0,10); const hit=new Set(on.filter(d=>d.tp).map(d=>d.gt));
+    GT.forEach((g,j)=>{ if(!hit.has(j)) box(ctx,g,s,'#ffd166',3,[8,5]); }); on.forEach(d=>box(ctx,d.box,s,d.tp?'#22c55e':'#ef4444',3)); ctx.restore();
+    const X=v=>520+v*220, Y=v=>340-v*300; ctx.strokeStyle='#94a3b8'; ctx.lineWidth=1; ctx.strokeRect(X(0),Y(1),220,300);
+    ctx.strokeStyle='#0f766e'; ctx.lineWidth=2.5; ctx.beginPath(); PR.r.forEach((r,i)=>i?ctx.lineTo(X(r),Y(PR.p[i])):ctx.moveTo(X(r),Y(PR.p[i]))); ctx.stroke();
+    ctx.fillStyle='#e0533d'; ctx.beginPath(); ctx.arc(X(R),Y(P),7,0,7); ctx.fill();
+    ctx.fillStyle='#667085'; ctx.font='600 13px "Space Grotesk",sans-serif'; ctx.textAlign='center'; ctx.fillText('recall',X(.5),Y(0)+22); ctx.fillText('precision-recall curve',X(.5),Y(1)-8);
+    ctx.save(); ctx.translate(X(0)-12,Y(.5)); ctx.rotate(-Math.PI/2); ctx.fillText('precision',0,0); ctx.restore();
+    $('prV').textContent=th.toFixed(2);
+    $('prOut').innerHTML=`TP ${TP} · FP ${FP} · FN ${FN}<br>P = ${TP} ÷ (${TP} + ${FP}) = <b>${P.toFixed(2)}</b> · R = ${TP} ÷ (${TP} + ${FN}) = <b>${R.toFixed(2)}</b>`;
+    cv.dataset.p=P.toFixed(4); cv.dataset.r=R.toFixed(4); });
+  t.addEventListener('input',draw); draw();
+}
+/* A6: NMS one step at a time on YOLOv8n's raw person boxes (score ≥ 0.25), IoU threshold 0.5 */
+function initNMS(){
+  const cv=document.getElementById('nmCv'); if(!cv) return; const ctx=cv.getContext('2d'), $=id=>document.getElementById(id), s=0.5, N=RAW.s.length;
+  let state, last;
+  const reset=()=>{ state=RAW.s.map(()=>'open'); last=null; draw(); };
+  const step=()=>{ const i=state.findIndex(x=>x==='open'); if(i<0) return false; state[i]='kept'; let gone=[];
+    state.forEach((x,j)=>{ if(x==='open'){ const v=iouOf(RAW.box[i],RAW.box[j]).v; if(v>0.5){ state[j]='gone'; gone.push(v); } } }); last={i,gone}; return true; };
+  const draw=()=>withPhoto(im=>{ ctx.drawImage(im,0,0,640,480);
+    state.forEach((x,j)=>{ if(x==='open') box(ctx,RAW.box[j],s,'rgba(255,209,102,.75)',1.5); });
+    state.forEach((x,j)=>{ if(x==='kept') box(ctx,RAW.box[j],s,last&&last.i===j?'#e0533d':'#22c55e',last&&last.i===j?5:3); });
+    const k=state.filter(x=>x==='kept').length, g=state.filter(x=>x==='gone').length, o=state.filter(x=>x==='open').length;
+    $('nmOut').innerHTML=(last?`kept the box with score ${RAW.s[last.i].toFixed(2)} · removed ${last.gone.length}`+(last.gone.length?` (IoU ${last.gone.slice(0,4).map(v=>v.toFixed(2)).join(', ')}${last.gone.length>4?', …':''})`:'')+'<br>':'')+`kept <b>${k}</b> · removed ${g} · still to check ${o} (of ${N})`;
+    cv.dataset.kept=k; cv.dataset.open=o; });
+  $('nmS').onclick=()=>{ step(); draw(); }; $('nmA').onclick=()=>{ while(step()); draw(); }; $('nmR').onclick=reset;
+  reset(); if(PRINTING){ for(let i=0;i<3;i++) step(); draw(); }
+}
+/*<<JS>>*/
+</script>
+</body>
+</html>
