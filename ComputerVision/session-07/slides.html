@@ -838,7 +838,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="say">
       <p>Two photos are tied by <b>one 3 × 3 matrix H</b> — the projective family of part A — when every point has one place in each: a <b>flat</b> scene, or a camera that only <b>turns</b> in place.</p>
       <p class="fragment">Move the camera in front of a deep scene and near things shift more than far ones (<b>parallax</b>): no single H fits. That shift is what part D turns into depth.</p>
-      <p class="fragment" style="color:var(--muted);font-size:.9em">Part C shows why: with the camera matrix, a plane drops one column and leaves a 3 × 3 matrix.</p>
+      <p class="fragment" style="color:var(--muted);font-size:.9em">Part C, slide 24, shows why: with the camera matrix, a plane drops one column and leaves a 3 × 3 matrix.</p>
     </div>
   </div>
 
@@ -946,6 +946,140 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 สรุป B · ชี้ต่อ T7-3 (structure from motion) · แล้วต่อ C: camera matrix (และที่มาของ H จากระนาบ)</p><p>🇬🇧 Wrap up B. Forward: T7-3 (structure from motion). Then C: the camera matrix (and where a plane's H comes from).</p></aside>
 </section>
 
+<!-- 20 -->
+<section class="part-open" id="part-c" data-part="C">
+  <div class="po-strip"><a href="#/part-a" class="done"><b>A</b>Transforms</a><a href="#/part-b" class="done"><b>B</b>Homography</a><a href="#/part-c" class="on"><b>C</b>Camera</a><a href="#/part-d" class=""><b>D</b>Stereo</a></div>
+  <p class="po-letter">C</p>
+  <h2 class="claim">The camera matrix</h2>
+  <p class="po-q">How does a 3D point become a pixel number?</p>
+  <p class="po-out"><span>By the end of this part</span>Project a 3D point to a pixel with K[R | t].</p>
+  <aside class="notes"><p>🇹🇭 หน้าเปิด part: อ่านคำถามกับสิ่งที่จะทำได้ท้าย part แล้วเข้าเนื้อหา</p><p>🇬🇧 Part opener: read the question and what you can do by the end of the part, then go in.</p></aside>
+</section>
+
+<!-- 21 -->
+<section data-part="C">
+  <p class="kicker">C · The camera matrix</p>
+  <h2 class="claim">x = f·X/Z, written as a matrix</h2>
+  <div class="split">
+    <div><svg class="fig cvsvg" viewBox="0 0 520 260" role="img" aria-label="side view: from the pinhole O, a ray to a point at height Y and depth Z crosses the image plane at height y; two similar triangles"><defs><marker id="a70f1b2d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f1b2d"/></marker><marker id="a70f766e" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker><marker id="a7e0533d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e0533d"/></marker><marker id="a7c97a06" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c97a06"/></marker><marker id="a72f6fdb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2f6fdb"/></marker></defs><line x1="40" y1="200" x2="510" y2="200" stroke="#94a3b8" stroke-dasharray="5 4"/><line x1="160" y1="110" x2="160" y2="230" stroke="#2f6fdb" stroke-width="3"/><text x="160" y="250" text-anchor="middle" class="tk" style="fill:#2f6fdb">image plane</text><line x1="40" y1="200" x2="470" y2="70" stroke="#c97a06" stroke-width="2.5"/><polygon points="40,200 160,200 160,163.7" fill="#2f6fdb" fill-opacity=".15"/><polygon points="40,200 470,200 470,70" fill="#c97a06" fill-opacity=".08"/><line x1="470" y1="200" x2="470" y2="70" stroke="#0f1b2d" stroke-width="3"/><circle cx="40" cy="200" r="6" fill="#0f1b2d"/><text x="40" y="224" text-anchor="middle" class="lb">O</text><circle cx="470" cy="70" r="6" fill="#c97a06"/><text x="480" y="64" class="lb" style="fill:#c97a06">(Y, Z)</text><circle cx="160" cy="163.7" r="5" fill="#2f6fdb"/><text x="168" y="155.7" class="lb" style="fill:#2f6fdb">y</text><text x="100.0" y="220" text-anchor="middle" class="lb">f</text><text x="315.0" y="220" text-anchor="middle" class="lb">Z</text><text x="480" y="135.0" class="lb">Y</text></svg><p class="gcap">two similar triangles: y / f = Y / Z — session 2, slide 8</p></div>
+    <div class="say">
+      <div class="flashback">Session 2, slide 8: two similar triangles give x = f·X/Z.</div>
+      <p style="margin-top:.6em">Dividing by Z is not a matrix product — with part A's extra coordinate it waits until the end:</p>
+      <div class="eq fragment">$$\begin{bmatrix}f&0&0\\0&f&0\\0&0&1\end{bmatrix}\begin{bmatrix}X\\Y\\Z\end{bmatrix}=\begin{bmatrix}fX\\fY\\Z\end{bmatrix}\;\to\;\left(\frac{fX}{Z},\frac{fY}{Z}\right)$$</div>
+      <p class="fragment">Then divide by the last number: slide 9's ÷ w, with w = the depth Z.</p>
+      <div class="worked fragment"><span class="tag">Worked example · f = 50 mm, the point (0.6, 0.3, 3) m</span><p>(50·0.6, 50·0.3, 3) = (30, 15, 3) → ÷ 3 → (10, 5) mm on the image plane</p></div>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ย้อนคาบ 2 หน้า 8 (สามเหลี่ยมคล้าย) · ที่มา: การหารด้วย Z ทำด้วย matrix ไม่ได้ แต่พิกัด homogeneous ให้หารเป็นขั้นสุดท้าย = ÷ w ของหน้า 9 โดย w คือความลึก · คำนวณตัวอย่างกับห้อง</p><p>🇬🇧 Back to session 2 slide 8 (similar triangles). Where it comes from: dividing by Z is no matrix product, but homogeneous coordinates leave the division to the end — slide 9's ÷ w, with w = depth. Work the example with the room.</p></aside>
+</section>
+
+<!-- 22 -->
+<section data-part="C">
+  <p class="kicker">C · The camera matrix</p>
+  <h2 class="claim">Intrinsics K: millimetres to pixels</h2>
+  <div class="split">
+    <div><svg class="fig cvsvg" viewBox="0 0 420 290" role="img" aria-label="the sensor as a grid of photosites, pixel (0, 0) at the top left, the optical centre in the middle, and a point offset from the centre"><defs><marker id="a70f1b2d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f1b2d"/></marker><marker id="a70f766e" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker><marker id="a7e0533d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e0533d"/></marker><marker id="a7c97a06" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c97a06"/></marker><marker id="a72f6fdb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2f6fdb"/></marker></defs><rect x="30" y="30" width="360" height="230" fill="#f5f7fa" stroke="#0f1b2d" stroke-width="2"/><line x1="48" y1="30" x2="48" y2="260" stroke="#e2e8f0"/><line x1="66" y1="30" x2="66" y2="260" stroke="#e2e8f0"/><line x1="84" y1="30" x2="84" y2="260" stroke="#e2e8f0"/><line x1="102" y1="30" x2="102" y2="260" stroke="#e2e8f0"/><line x1="120" y1="30" x2="120" y2="260" stroke="#e2e8f0"/><line x1="138" y1="30" x2="138" y2="260" stroke="#e2e8f0"/><line x1="156" y1="30" x2="156" y2="260" stroke="#e2e8f0"/><line x1="174" y1="30" x2="174" y2="260" stroke="#e2e8f0"/><line x1="192" y1="30" x2="192" y2="260" stroke="#e2e8f0"/><line x1="210" y1="30" x2="210" y2="260" stroke="#e2e8f0"/><line x1="228" y1="30" x2="228" y2="260" stroke="#e2e8f0"/><line x1="246" y1="30" x2="246" y2="260" stroke="#e2e8f0"/><line x1="264" y1="30" x2="264" y2="260" stroke="#e2e8f0"/><line x1="282" y1="30" x2="282" y2="260" stroke="#e2e8f0"/><line x1="300" y1="30" x2="300" y2="260" stroke="#e2e8f0"/><line x1="318" y1="30" x2="318" y2="260" stroke="#e2e8f0"/><line x1="336" y1="30" x2="336" y2="260" stroke="#e2e8f0"/><line x1="354" y1="30" x2="354" y2="260" stroke="#e2e8f0"/><line x1="372" y1="30" x2="372" y2="260" stroke="#e2e8f0"/><line x1="390" y1="30" x2="390" y2="260" stroke="#e2e8f0"/><line x1="30" y1="48" x2="390" y2="48" stroke="#e2e8f0"/><line x1="30" y1="66" x2="390" y2="66" stroke="#e2e8f0"/><line x1="30" y1="84" x2="390" y2="84" stroke="#e2e8f0"/><line x1="30" y1="102" x2="390" y2="102" stroke="#e2e8f0"/><line x1="30" y1="120" x2="390" y2="120" stroke="#e2e8f0"/><line x1="30" y1="138" x2="390" y2="138" stroke="#e2e8f0"/><line x1="30" y1="156" x2="390" y2="156" stroke="#e2e8f0"/><line x1="30" y1="174" x2="390" y2="174" stroke="#e2e8f0"/><line x1="30" y1="192" x2="390" y2="192" stroke="#e2e8f0"/><line x1="30" y1="210" x2="390" y2="210" stroke="#e2e8f0"/><line x1="30" y1="228" x2="390" y2="228" stroke="#e2e8f0"/><line x1="30" y1="246" x2="390" y2="246" stroke="#e2e8f0"/><line x1="30" y1="30" x2="100" y2="30" stroke="#e0533d" stroke-width="4" marker-end="url(#a7e0533d)"/><text x="106" y="35" class="lb" style="fill:#e0533d">u</text><line x1="30" y1="30" x2="30" y2="100" stroke="#e0533d" stroke-width="4" marker-end="url(#a7e0533d)"/><text x="24" y="118" text-anchor="end" class="lb" style="fill:#e0533d">v</text><text x="24" y="22" class="lb" style="fill:#e0533d">(0, 0)</text><line x1="198.0" y1="145.0" x2="222.0" y2="145.0" stroke="#0f766e" stroke-width="3"/><line x1="210.0" y1="133.0" x2="210.0" y2="157.0" stroke="#0f766e" stroke-width="3"/><text x="200.0" y="129.0" text-anchor="end" class="lb" style="fill:#0f766e">(c<tspan dy="4" font-size="11">x</tspan><tspan dy="-4">, c</tspan><tspan dy="4" font-size="11">y</tspan><tspan dy="-4">)</tspan></text><line x1="210.0" y1="145.0" x2="295.0" y2="187.0" stroke="#c97a06" stroke-width="2.5" stroke-dasharray="5 4" marker-end="url(#a7c97a06)"/><circle cx="300.0" cy="190.0" r="6" fill="#c97a06"/><text x="310.0" y="208.0" class="lb" style="fill:#c97a06">x mm ÷ pitch</text><rect x="336" y="224" width="18" height="18" fill="#2f6fdb" fill-opacity=".5"/><text x="330" y="240" text-anchor="end" class="tk" style="fill:#2f6fdb">one photosite</text></svg><p class="gcap">a pixel number counts photosites from the top-left corner</p></div>
+    <div class="say">
+      <div class="flashback">Session 2, slide 25: a sensor is a grid of photosites · session 1, slide 4: pixel (0, 0) is the top-left corner.</div>
+      <p style="margin-top:.6em">Millimetres on the sensor ÷ the photosite size = pixels — so f in pixels is f<sub>mm</sub> ÷ pitch. The axis hits the middle, (c<sub>x</sub>, c<sub>y</sub>), not (0, 0): add it.</p>
+      <div class="eq fragment">$$K=\begin{bmatrix}f_x&0&c_x\\0&f_y&c_y\\0&0&1\end{bmatrix}$$</div>
+      <div class="worked fragment"><span class="tag">Worked example · a phone: f 4 mm, pitch 2 µm, 4000 × 3000 pixels</span><p>f = 4 ÷ 0.002 = 2000 px · centre (2000, 1500) · a point 0.5 mm right, 0.25 mm down → (250 + 2000, 125 + 1500) = (2250, 1625)</p></div>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ที่มา K: mm ÷ ขนาด photosite = pixel (ย้อนคาบ 2 หน้า 25) · แกนแสงตกกลางภาพ ไม่ใช่ (0, 0) มุมซ้ายบน (คาบ 1 หน้า 4) → บวก (cx, cy) · ตัวอย่างกล้องมือถือ 4 mm / 2 µm</p><p>🇬🇧 Where K comes from: millimetres ÷ photosite size = pixels (session 2 slide 25); the optical axis lands in the middle, not at the top-left (0, 0) of session 1 slide 4 → add (cx, cy). The phone example: 4 mm, 2 µm.</p></aside>
+</section>
+
+<!-- 23 -->
+<section data-part="C">
+  <p class="kicker">C · The camera matrix</p>
+  <h2 class="claim">Extrinsics [R | t]: where the camera stands and looks</h2>
+  <div class="split">
+    <div><svg class="fig cvsvg" viewBox="0 0 390 325" style="max-width:520px;margin:0 auto" role="img" aria-label="top view: a camera at (2, 0, −4) looking up the page, and a point at (3, 1, 2) which the camera sees 1 to the right and 6 ahead"><defs><marker id="a70f1b2d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f1b2d"/></marker><marker id="a70f766e" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker><marker id="a7e0533d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e0533d"/></marker><marker id="a7c97a06" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c97a06"/></marker><marker id="a72f6fdb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2f6fdb"/></marker></defs><line x1="14" y1="150" x2="230" y2="150" stroke="#94a3b8"/><line x1="50" y1="312.0" x2="50" y2="34.8" stroke="#94a3b8"/><text x="234" y="155" class="tk">x</text><text x="56" y="38.8" class="tk">z</text><circle cx="50" cy="150" r="5" fill="#94a3b8"/><text x="56" y="168" class="tk">world origin</text><polygon points="122.0,294.0 135.0,268.0 109.0,268.0" fill="#2f6fdb" fill-opacity=".25" stroke="#2f6fdb" stroke-width="2.5"/><text x="122" y="316" text-anchor="middle" class="tk" style="fill:#2f6fdb">camera C = (2, 0, −4)</text><line x1="122" y1="294" x2="122" y2="45.60000000000001" stroke="#2f6fdb" stroke-dasharray="5 4"/><line x1="122" y1="294" x2="156.92000000000002" y2="83.39999999999999" stroke="#c97a06" stroke-width="2.5" marker-end="url(#a7c97a06)"/><circle cx="158" cy="78" r="6" fill="#c97a06"/><text x="168" y="74" class="lb" style="fill:#c97a06">(3, 1, 2) world</text><text x="168" y="94" class="tk" style="fill:#c97a06">(1, 1, 6) for the camera</text></svg><p class="gcap">top view · the camera is not at the origin, so world numbers must first become camera numbers</p></div>
+    <div class="say">
+      <p>The pinhole formula needs the point in the <b>camera's</b> coordinates: origin at the pinhole, z straight ahead.</p>
+      <div class="eq fragment">$$X_{\text{cam}}=R\,(X-C)=R\,X+t$$</div>
+      <p class="fragment">Subtract where the camera stands (C), then turn to where it looks (R — slide 6's matrix, in 3D); t = −RC. Together with K: <b>x = K [R | t] X</b>, a 3 × 4 matrix.</p>
+      <div class="worked fragment"><span class="tag">Worked example · the picture: R = I (looking along z)</span><p>t = −C = (−2, 0, 4) · (3, 1, 2) + t = (1, 1, 6): 1 m right, 1 m down, 6 m ahead</p></div>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ที่มา [R | t]: สูตร pinhole ต้องการพิกัดของกล้อง → ลบตำแหน่งกล้อง C แล้วหมุนด้วย R (matrix หมุนของหน้า 6 ในสามมิติ) → t = −RC · รวม K: x = K[R | t]X (3 × 4) · ตัวอย่างบนภาพ</p><p>🇬🇧 Where [R | t] comes from: the pinhole formula needs camera coordinates — subtract the camera position C, then turn by R (slide 6's rotation, in 3D) → t = −RC. With K: x = K[R | t]X, 3 × 4. Work the picture's example.</p></aside>
+</section>
+
+<!-- 24 -->
+<section data-part="C">
+  <p class="kicker">C · The camera matrix</p>
+  <h2 class="claim">A plane drops one column: that is the homography</h2>
+  <div class="split">
+    <div><svg class="fig cvsvg" viewBox="0 0 520 290" role="img" aria-label="a flat plane seen by two cameras; each view of the plane is a 3 by 3 matrix, and photo 1 is turned into photo 2 by H2 times the inverse of H1"><defs><marker id="a70f1b2d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f1b2d"/></marker><marker id="a70f766e" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker><marker id="a7e0533d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e0533d"/></marker><marker id="a7c97a06" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c97a06"/></marker><marker id="a72f6fdb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2f6fdb"/></marker></defs><polygon points="150,170 370,150 420,230 110,255" fill="#0f766e" fill-opacity=".12" stroke="#0f766e" stroke-width="2.5"/><line x1="205" y1="165" x2="188" y2="249" stroke="#0f766e" opacity=".35"/><line x1="260" y1="160" x2="265" y2="242" stroke="#0f766e" opacity=".35"/><line x1="315" y1="155" x2="342" y2="236" stroke="#0f766e" opacity=".35"/><text x="265" y="275" text-anchor="middle" class="lb" style="fill:#0f766e">a plane: Z = 0 in its own coordinates</text><rect x="50" y="30" width="80" height="55" rx="6" fill="#fff" stroke="#2f6fdb" stroke-width="2.5"/><text x="90" y="22" text-anchor="middle" class="tk" style="fill:#2f6fdb">camera 1</text><line x1="90" y1="88" x2="204" y2="185" stroke="#2f6fdb" stroke-width="2" marker-end="url(#a72f6fdb)"/><rect x="380" y="30" width="80" height="55" rx="6" fill="#fff" stroke="#c97a06" stroke-width="2.5"/><text x="420" y="22" text-anchor="middle" class="tk" style="fill:#c97a06">camera 2</text><line x1="420" y1="88" x2="319" y2="185" stroke="#c97a06" stroke-width="2" marker-end="url(#a7c97a06)"/><text x="160" y="140" class="lb" style="fill:#2f6fdb">H₁</text><text x="345" y="140" class="lb" style="fill:#c97a06">H₂</text><line x1="135" y1="57" x2="372" y2="57" stroke="#0f1b2d" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#a70f1b2d)"/><text x="255" y="48" text-anchor="middle" class="lb">H₂ H₁⁻¹</text></svg><p class="gcap">part B's flat scene: each camera turns the plane into its photo with one 3 × 3 matrix</p></div>
+    <div class="say">
+      <p>Put the world's z = 0 on the plane. Then the third column of [R | t] meets a 0 and drops out:</p>
+      <div class="eq fragment">$$K\,[\,r_1\;r_2\;r_3\;t\,]\begin{bmatrix}X\\Y\\0\\1\end{bmatrix}=\underbrace{K\,[\,r_1\;r_2\;t\,]}_{3\times3\;=\;H}\begin{bmatrix}X\\Y\\1\end{bmatrix}$$</div>
+      <p class="fragment">Plane → photo 1 is H₁, plane → photo 2 is H₂, so photo 1 → photo 2 is H₂H₁⁻¹: one 3 × 3 matrix — slide 13's claim.</p>
+      <div class="worked fragment"><span class="tag">Worked example · K: f 800, centre (400, 300) · R = I, t = (0, 0, 4)</span><p>H = K·[1 0 0 / 0 1 0 / 0 0 4] = [800 0 1600 / 0 800 1200 / 0 0 4] · plane point (1, 1) → (2400, 2000, 4) → (600, 500) — the same as K·(1, 1, 4)</p></div>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ปิดสัญญาหน้า 13: ตั้ง z = 0 บนระนาบ → คอลัมน์ r3 คูณกับ 0 หายไป → K[r1 r2 t] คือ 3 × 3 = H · สองกล้อง: H₂H₁⁻¹ · ตัวอย่าง: ทางลัด 3 × 3 ได้ pixel เดียวกับการฉายเต็ม (600, 500)</p><p>🇬🇧 Closing slide 13's promise: put z = 0 on the plane, the r3 column meets a 0 and drops → K[r1 r2 t] is a 3 × 3 H. Two cameras: H₂H₁⁻¹. The example: the 3 × 3 shortcut gives the same pixel as the full projection, (600, 500).</p></aside>
+</section>
+
+<!-- 25 -->
+<section data-part="C">
+  <p class="kicker">C · The camera matrix</p>
+  <h2 class="claim">Move the camera, watch the picture</h2>
+  <div class="split">
+    <div>
+      <canvas id="cmCv" class="democv" width="640" height="300" aria-label="left: the photo a camera takes of a 1 metre cube; right: the camera and the cube seen from above"></canvas>
+      <div class="ctrl tfc">
+        <label>f (px) <input class="slider" id="cmF" type="range" min="300" max="1200" step="50" value="800" aria-label="focal length in pixels"></label>
+        <label>distance <input class="slider" id="cmD" type="range" min="2" max="8" step="0.5" value="5" aria-label="camera distance in metres"></label>
+        <label>move x <input class="slider" id="cmX" type="range" min="-2" max="2" step="0.25" value="0.5" aria-label="camera position x in metres"></label>
+        <label>turn <input class="slider" id="cmT" type="range" min="-30" max="30" step="5" value="0" aria-label="camera turn in degrees"></label>
+      </div>
+    </div>
+    <div class="say">
+      <div class="flashback">Session 2 lab A: a 1 m cube in perspective — now with the whole camera.</div>
+      <p id="cmOut" class="calc big" style="margin-top:.5em"></p>
+      <p class="fragment">f zooms (K) · distance and move x change C · turn changes R. Turn the camera towards the cube and it comes back to the middle.</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ลาก f: ภาพใหญ่ขึ้นทั้งก้อน (K) · ลาก distance: ใกล้แล้วหน้าหน้ากับหน้าหลังต่างกันมาก (perspective) · move x แล้ว turn หันกลับหาก้อน · readout ไล่มุมหน้า-บน-ขวาผ่าน R(X − C) แล้ว K แล้วหาร</p><p>🇬🇧 Drag f: the whole cube grows (K). Drag distance: close up, front and back faces differ a lot (perspective). Move x, then turn back towards the cube. The readout follows the front-top-right corner through R(X − C), then K, then the division.</p></aside>
+</section>
+
+<!-- 26 -->
+<section data-part="C">
+  <p class="kicker">C · The camera matrix</p>
+  <h2 class="claim">Try it: where does the point land?</h2>
+  <div class="split">
+    <div class="tryit"><span class="tag">Try it</span>K has f = 500 px and centre (c<sub>x</sub>, c<sub>y</sub>) = (320, 240).
+      <ol style="margin:.4em 0 0 1.1em"><li>A point is at (1, 0.5, 5) m in camera coordinates. Compute K·X and the pixel.</li><li>The camera moves 1 m to the right (R unchanged). Where is the point now in camera coordinates, and at which pixel?</li></ol>
+      <details><summary>Answer</summary>1. (500·1 + 320·5, 500·0.5 + 240·5, 5) = (2100, 1450, 5) → ÷ 5 → <b>(420, 290)</b> · 2. X − C: (1 − 1, 0.5, 5) = (0, 0.5, 5) → (1600, 1450, 5) → <b>(320, 290)</b> — straight ahead, the image centre column.</details>
+    </div>
+    <div class="say"><p>K·X, then divide by the third number.</p><p>Camera coordinates: R (X − C).</p></div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ให้เวลา 2 นาที · แบบข้อสอบ Final · ข้อ 2: กล้องเลื่อนขวา จุดจึงเลื่อนซ้ายในพิกัดกล้อง</p><p>🇬🇧 Give two minutes. Final-exam style. Question 2: the camera moves right, so the point moves left in camera coordinates.</p></aside>
+</section>
+
+<!-- 27 -->
+<section data-part="C">
+  <p class="kicker">C · The camera matrix</p>
+  <h2 class="claim">A camera is K[R | t]</h2>
+  <div class="cards">
+    <div class="card"><b>K · inside the camera</b>f in pixels (mm ÷ photosite) and the image centre: millimetres to pixel numbers.</div>
+    <div class="card violet"><b>[R | t] · where it is</b>Subtract the camera position, turn to its direction: world to camera coordinates.</div>
+    <div class="card amber"><b>x = K[R | t] X</b>Multiply, divide by the depth. On a plane one column drops: the homography of part B.</div>
+  </div>
+  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-07/lab.ipynb#scrollTo=part-c" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part C</a><span>Project a cube with K[R | t] (session 2 lab A, continued): change f, move and turn the camera, check the plane's 3 × 3 shortcut</span></p>
+  <p class="more"><a target="_blank" rel="noopener" href="../practice/#s7c">More practice · Session 7 C — practice bank with worked solutions →</a></p>
+  <p class="takeaway"><span>Later: T7-1 — calibration measures K from photos of a chessboard. Next · D: two cameras, two K[R | t] — and the depth comes back.</span></p>
+
+  <aside class="notes"><p>🇹🇭 สรุป C · ชี้ต่อ T7-1 (calibration) · แล้วต่อ D: กล้องสองตัว = K[R | t] สองชุด</p><p>🇬🇧 Wrap up C. Forward: T7-1 (calibration). Then D: two cameras are two K[R | t].</p></aside>
+</section>
+
 </div>
 </div>
 
@@ -1025,7 +1159,7 @@ function renderMath(){
     });
   }
 }
-function initDemos(){ initFamilies(); initRectify(); /*<<INITS>>*/ initSliders(); }
+function initDemos(){ initFamilies(); initRectify(); initCamera(); /*<<INITS>>*/ initSliders(); }
 /* range sliders: a finger anywhere on the track sets and drags the value.
    Phones otherwise only move a native slider when the touch lands exactly on its thumb,
    and a touch on the track scrolls the page instead. */
@@ -1481,6 +1615,36 @@ function initRectify(){
   let img=loadImg('img/facade.jpg',im=>{ const c=document.createElement('canvas'); c.width=1000; c.height=750; const g=c.getContext('2d'); g.drawImage(im,0,0);
     try{ src=g.getImageData(0,0,1000,750).data; }catch(e){ src=null; } img=im; draw(); });
   img=null; draw();
+}
+/* C5: a 1 m cube, a camera at C = (move x, 0, −distance) turned by `turn` about the vertical; x = K R (X − C), then ÷ z */
+function initCamera(){
+  const cv=document.getElementById('cmCv'); if(!cv) return; const ctx=cv.getContext('2d'), $=id=>document.getElementById(id), S={f:$('cmF'),d:$('cmD'),x:$('cmX'),t:$('cmT')};
+  const IW=400, IH=300, sc=IW/640;                                   // the photo is a 640 × 480 image, drawn at 400 × 300
+  const V=[]; for(const x of [-.5,.5]) for(const y of [-.5,.5]) for(const z of [-.5,.5]) V.push([x,y,z]);
+  const E=[]; for(let i=0;i<8;i++) for(let j=i+1;j<8;j++){ const d=V[i].reduce((a,v,k)=>a+(v!==V[j][k]),0); if(d===1) E.push([i,j]); }
+  const f2=v=>v.toFixed(2).replace('-','−');
+  if(PRINTING){ S.x.value=1.5; S.t.value=15; }
+  const draw=()=>{ const f=+S.f.value, D=+S.d.value, cx=+S.x.value, th=+S.t.value*Math.PI/180, c=Math.cos(th), s=Math.sin(th), C=[cx,0,-D];
+    const cam=P=>{ const q=[P[0]-C[0],P[1]-C[1],P[2]-C[2]]; return [c*q[0]-s*q[2], q[1], s*q[0]+c*q[2]]; };      // R = Ry(θ)ᵀ
+    const pix=X=>[f*X[0]/X[2]+320, f*X[1]/X[2]+240];
+    ctx.fillStyle='#fff'; ctx.fillRect(0,0,cv.width,cv.height); ctx.fillStyle='#f5f7fa'; ctx.fillRect(0,0,IW,IH); ctx.strokeStyle='#cbd5e1'; ctx.lineWidth=1; ctx.strokeRect(0,0,IW,IH);
+    ctx.beginPath(); ctx.moveTo(IW/2-8,IH/2); ctx.lineTo(IW/2+8,IH/2); ctx.moveTo(IW/2,IH/2-8); ctx.lineTo(IW/2,IH/2+8); ctx.stroke();
+    const Xc=V.map(cam), ok=Xc.every(X=>X[2]>0.1);
+    ctx.save(); ctx.beginPath(); ctx.rect(0,0,IW,IH); ctx.clip();
+    if(ok){ const P=Xc.map(pix); E.forEach(([i,j])=>{ const front=V[i][2]<0&&V[j][2]<0; ctx.strokeStyle=front?'#e0533d':'#0f766e'; ctx.lineWidth=front?3:2;
+        ctx.beginPath(); ctx.moveTo(P[i][0]*sc,P[i][1]*sc); ctx.lineTo(P[j][0]*sc,P[j][1]*sc); ctx.stroke(); }); }
+    ctx.restore();
+    ctx.fillStyle='#667085'; ctx.font='600 12px "Space Grotesk",sans-serif'; ctx.textAlign='left'; ctx.fillText('the photo (640 × 480 px)',8,IH-8);
+    // top view: x right, z up, 1 m = 22 px, origin at (520, 200)
+    const T=(x,z)=>[520+x*22,110-z*22]; ctx.strokeStyle='#0f766e'; ctx.lineWidth=2; const a=T(-.5,.5), b=T(.5,-.5); ctx.strokeRect(a[0],a[1],b[0]-a[0],b[1]-a[1]);
+    const cp=T(C[0],C[2]), dir=[s,c]; ctx.fillStyle='#2f6fdb'; ctx.beginPath(); ctx.arc(cp[0],cp[1],6,0,7); ctx.fill();
+    ctx.strokeStyle='#2f6fdb'; ctx.beginPath(); ctx.moveTo(cp[0],cp[1]); ctx.lineTo(cp[0]+dir[0]*40,cp[1]-dir[1]*40); ctx.stroke();
+    const half=Math.atan(320/f); [-half,half].forEach(h=>{ const a2=th+h; ctx.setLineDash([4,4]); ctx.beginPath(); ctx.moveTo(cp[0],cp[1]); ctx.lineTo(cp[0]+Math.sin(a2)*170,cp[1]-Math.cos(a2)*170); ctx.stroke(); ctx.setLineDash([]); });
+    ctx.fillStyle='#667085'; ctx.textAlign='center'; ctx.fillText('seen from above',520,16);
+    const W=[.5,-.5,-.5], Q=cam(W), p=pix(Q);
+    $('cmOut').innerHTML=`corner (0.5, −0.5, −0.5): R(X − C) = (${f2(Q[0])}, ${f2(Q[1])}, ${f2(Q[2])})<br>K: (${f}·${f2(Q[0])} + 320·${f2(Q[2])}, ${f}·${f2(Q[1])} + 240·${f2(Q[2])}, ${f2(Q[2])}) → ÷ ${f2(Q[2])} → pixel (<b>${p[0].toFixed(1)}</b>, <b>${p[1].toFixed(1)}</b>)`+(ok?'':'<br>part of the cube is behind the camera');
+    cv.dataset.u=p[0].toFixed(3); cv.dataset.v=p[1].toFixed(3); };
+  for(const k in S) S[k].addEventListener('input',draw); draw();
 }
 /*<<JS>>*/
 </script>
