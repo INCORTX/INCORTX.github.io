@@ -350,11 +350,12 @@ html.reading .levels li{font-size:15px;grid-template-columns:3.6em 1fr;}
 html.reading .scale.mini{grid-template-columns:repeat(2,minmax(0,1fr));}
 /* project rubric: full criteria in small type */
 .tl.tl7{grid-template-columns:repeat(7,minmax(0,1fr));}
+.tl.tl8{grid-template-columns:repeat(8,minmax(0,1fr));}
 .pitch{display:flex;flex-wrap:wrap;align-items:center;gap:.3em .5em;background:var(--coral-soft);border:1px solid #f3c9c0;border-radius:10px;padding:.3em .6em;margin:0 0 .45em;font-size:.44em;line-height:1.3;}
 .pitch>b{font-family:var(--display);color:var(--coral);}
 .pitch span{background:#fff;border-radius:999px;padding:.1em .6em;border:1px solid #f3c9c0;}
 html.reading .pitch{font-size:14px;}
-html.reading .tl.tl7{grid-template-columns:repeat(3,minmax(0,1fr));}
+html.reading .tl.tl7,html.reading .tl.tl8{grid-template-columns:repeat(3,minmax(0,1fr));}
 
 .tl.tl-sm{margin:.1em 0 .45em;}
 .tl.tl-sm div{font-size:.46em;padding-top:1.9em;}
@@ -693,7 +694,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="blk" style="--c:var(--navy)"><h4>Motion</h4><div class="s"><i>9</i>Motion &amp; video</div><div class="fw"><b>Carries forward</b><span><em>all of it</em> → your project</span></div></div>
   </div>
   <div class="after">
-    <div class="keyidea coral" data-label="Project · weeks 5–14">Search from wk 5 · topic wk 8 · pitch wk 10 · proposal wk 11 · demo wk 14</div>
+    <div class="keyidea coral" data-label="Project · weeks 5–13">Search from wk 5 · topic wk 8 · pitch wk 10 · proposal wk 11 · demo wk 13</div>
     <div class="keyidea" data-label="Final exam · week 15">Sessions 2–9, hand calculation</div>
   </div>
   <aside class="notes"><p>🇹🇭 ไล่ 5 ก้อนซ้ายไปขวา · ชี้แถบ Carries forward: เลขในวงกลม = คาบที่ใช้ต่อ เช่น convolution (3) → CNN (4) · ขาดคาบไหน คาบปลายลูกศรจะตามยาก</p><p>🇬🇧 Walk the five blocks left to right. Point at Carries forward: the circled number is the session that reuses it — convolution (3) → CNNs (4). Miss one and the session at the arrow's end gets hard.</p></aside>
@@ -848,13 +849,14 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
 <section data-part="D">
   <p class="kicker">Project · 30 points · every criterion on the grading scale · <a target="_blank" rel="noopener" href="../project/">Full project brief →</a></p>
   <h2 class="claim">Two or three ways to solve one real problem</h2>
-  <div class="tl tl-sm tl7">
+  <div class="tl tl-sm tl8">
     <div><b>Week 5</b>Topic search starts</div>
     <div class="key"><b>Week 8</b>Topic chosen</div>
     <div class="key"><b>Week 10</b>Pitch + clinic</div>
     <div class="key"><b>Week 11</b>Proposal</div>
-    <div><b>Weeks 12–13</b>Build and test</div>
-    <div class="key"><b>Week 14</b>Demo</div>
+    <div><b>Week 12</b>Build and test</div>
+    <div class="key"><b>Week 13</b>Demo</div>
+    <div><b>Week 14</b>Review</div>
     <div><b>Week 15</b>Final exam</div>
   </div>
   <div class="pitch"><b>Week 10 · short problem pitch</b> — a few minutes per group, then again in the proposal: <span><b>Input</b> what goes in</span><span><b>Output</b> what comes out</span><span><b>Problem</b> what must be solved</span><span><b>Challenge</b> what makes it hard</span></div>
@@ -878,7 +880,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
       </ol>
     </div>
     <div>
-      <h3>Demo · week 14 · slides + notebook + video</h3>
+      <h3>Demo · week 13 · slides + notebook + video</h3>
       <ol>
         <li><span><b>Accuracy</b> — a metric that fits the problem, and why; same data for every solution</span></li>
         <li><span><b>Speed &amp; resources</b> — time, memory or parameter count of every solution</span></li>
@@ -1005,8 +1007,9 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
       <tr><td>9</td><td>9 · Motion &amp; video</td><td>A · T8</td></tr>
       <tr class="hl"><td>10</td><td>Last presentation round · <b>short problem pitch</b> + clinic</td><td>B · T9</td></tr>
       <tr class="hl"><td>11</td><td>Project 1 — proposal</td><td></td></tr>
-      <tr><td>12–13</td><td>Build and test + clinic</td><td></td></tr>
-      <tr class="hl"><td>14</td><td>Project 2 — demo</td><td></td></tr>
+      <tr><td>12</td><td>Build and test + clinic</td><td></td></tr>
+      <tr class="hl"><td>13</td><td>Project 2 — demo</td><td></td></tr>
+      <tr><td>14</td><td>Review of the whole course</td><td></td></tr>
       <tr class="hl"><td>15</td><td>Final exam</td><td></td></tr>
     </table>
   </div>
@@ -1021,7 +1024,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <li><span><b>Vision:</b> a computer sees numbers, not objects; new light means all new numbers, so fixed rules break.</span></li>
     <li><span><b>The course:</b> pixels → learning → features &amp; geometry → recognition → motion — one question, four parts, every session.</span></li>
     <li><span><b>Grade:</b> final 40 · project 30 · assignment 20 · participation 10; half the class presents each week, 4 times per group.</span></li>
-    <li><span><b>Project &amp; final:</b> search from week 5 · topic 8 · pitch 10 · proposal 11 · demo 14 · final 15; hand in files named <code>CV_ID_SLOT_Topic.ext</code>.</span></li>
+    <li><span><b>Project &amp; final:</b> search from week 5 · topic 8 · pitch 10 · proposal 11 · demo 13 · review 14 · final 15; hand in files named <code>CV_ID_SLOT_Topic.ext</code>.</span></li>
   </ol>
   <aside class="notes"><p>🇹🇭 ทวน 4 บรรทัด A–D</p><p>🇬🇧 Recap the four lines A–D.</p></aside>
 </section>
