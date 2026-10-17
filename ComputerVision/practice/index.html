@@ -60,7 +60,7 @@ h2.sess{font:700 26px var(--display);color:var(--ink);margin:30px 0 4px}
   <h1>Practice bank</h1>
   <p class="lead">Exam-style questions, session by session, with worked solutions. Work each one by hand first — no calculator needed — then open the solution and compare step by step; the mark for each step is in [ ].</p>
 
-  <div class="bar"><button class="chip on" data-k="sess" data-v="all">All sessions</button><button class="chip" data-k="sess" data-v="2">Session 2</button><button class="chip" data-k="sess" data-v="3">Session 3</button><button class="chip" data-k="sess" data-v="4">Session 4</button><button class="chip" data-k="sess" data-v="5">Session 5</button><button class="chip" data-k="sess" data-v="6">Session 6</button><button class="chip" data-k="sess" data-v="7">Session 7</button><button class="chip" data-k="sess" data-v="8">Session 8</button><span class="sep"></span><button class="chip on" data-k="stars" data-v="all">Any level</button><button class="chip" data-k="stars" data-v="1">⭐</button><button class="chip" data-k="stars" data-v="2">⭐⭐</button><button class="chip" data-k="stars" data-v="3">⭐⭐⭐</button><span class="sep"></span><button class="chip" data-k="hide">Hide done</button><button class="chip" data-k="open">Open all solutions</button><span class="prog" id="prog"></span></div>
+  <div class="bar"><button class="chip on" data-k="sess" data-v="all">All sessions</button><button class="chip" data-k="sess" data-v="2">Session 2</button><button class="chip" data-k="sess" data-v="3">Session 3</button><button class="chip" data-k="sess" data-v="4">Session 4</button><button class="chip" data-k="sess" data-v="5">Session 5</button><button class="chip" data-k="sess" data-v="6">Session 6</button><button class="chip" data-k="sess" data-v="7">Session 7</button><button class="chip" data-k="sess" data-v="8">Session 8</button><button class="chip" data-k="sess" data-v="9">Session 9</button><span class="sep"></span><button class="chip on" data-k="stars" data-v="all">Any level</button><button class="chip" data-k="stars" data-v="1">⭐</button><button class="chip" data-k="stars" data-v="2">⭐⭐</button><button class="chip" data-k="stars" data-v="3">⭐⭐⭐</button><span class="sep"></span><button class="chip" data-k="hide">Hide done</button><button class="chip" data-k="open">Open all solutions</button><span class="prog" id="prog"></span></div>
   <details class="ref"><summary>Reference values — sin / cos / tan, roots, powers of two</summary><table class="cov"><tr><th>θ (rad)</th><th>θ (deg)</th><th>sin θ</th><th>cos θ</th><th>tan θ</th></tr><tr><td>0</td><td>0°</td><td>0</td><td>1</td><td>0</td></tr><tr><td>π/6</td><td>30°</td><td>0.500</td><td>0.866</td><td>0.577</td></tr><tr><td>π/4</td><td>45°</td><td>0.707</td><td>0.707</td><td>1</td></tr><tr><td>π/3</td><td>60°</td><td>0.866</td><td>0.500</td><td>1.732</td></tr><tr><td>π/2</td><td>90°</td><td>1</td><td>0</td><td>undefined</td></tr><tr><td>π</td><td>180°</td><td>0</td><td>−1</td><td>0 †</td></tr><tr><td>3π/2</td><td>270°</td><td>−1</td><td>0</td><td>undefined</td></tr><tr><td>2π</td><td>360°</td><td>0</td><td>1</td><td>0 †</td></tr></table><p><strong>Reading arctan:</strong> find the ratio in the tan θ column and read the angle on the left — tan θ = 1 ⇒ θ = 45°. A gradient with $G_x = G_y$ therefore points at 45°. Every direction you are asked to name is one of the rows above; if your ratio is not in the tan θ column, re-check the arithmetic rather than reaching for a calculator.</p><p><strong>† forward only.</strong> tan repeats every 180°, but arctan answers only within −90° to 90°: tan 180° = 0 is true, yet arctan(0) = 0°, not 180°. Read backwards only from the 0°–90° rows.</p><p><strong>Negative ratios:</strong> arctan(−x) = −arctan(x), so arctan(−1) = −45°.</p><p><strong>Pythagorean triples</strong> — these give the <strong>magnitude</strong> $\sqrt{G_x^2+G_y^2}$ as a whole number, not an angle: 3-4-5 · 5-12-13 · 6-8-10 · 8-15-17 · 7-24-25 · 20-21-29 — and any multiple, e.g. 24-32-<strong>40</strong>. Magnitude and direction are separate questions; read the direction from the tan θ column above.</p><p><strong>Square roots:</strong> √2 ≈ 1.414 · √3 ≈ 1.732 · √5 ≈ 2.236 · √8 ≈ 2.828 · √32 ≈ 5.657</p><p><strong>Powers of two</strong> (bit depth, pyramid levels): $2^4 = 16$ · $2^6 = 64$ · $2^8 = 256$ · $2^{10} = 1024$ · $2^{24} = 16{,}777{,}216$ · log₂ 8 = 3 · log₂ 16 = 4 · log₂ 256 = 8</p></details>
   <h2 class="sess" id="s2" data-sess="2">Session 2 · Image Formation &amp; Sensing</h2>
   <div class="parthead" id="s2a" data-group="2A"><h3>A · Pinhole &amp; perspective</h3><span class="pc"></span><a href="../session-02/slides.html#/part-a">Slides for this part →</a></div>
@@ -1404,6 +1404,189 @@ Compute precision and recall at thresholds <strong>(a)</strong> 0.75, <strong>(b
 <strong>(b)</strong> precision and recall <strong>by group</strong> — e.g. wheelchair users, children, people in groups, at night — plus what it was not tested on [0.5]<br>
 <strong>(c)</strong> count on the device and keep only the number (no images stored), or use a sensor that cannot identify anyone [0.5]<br>
 <strong>Answer:</strong> (a) consent and purpose · (b) results by group and limits · (c) count on the device, store no images</div></details>
+      </article>
+  <h2 class="sess" id="s9" data-sess="9">Session 9 · Motion &amp; Video</h2>
+  <div class="parthead" id="s9a" data-group="9A"><h3>A · Optical flow</h3><span class="pc"></span><a href="../session-09/slides.html#/part-a">Slides for this part →</a></div>
+      <article class="item" id="p140" data-sess="9" data-part="A" data-stars="1">
+        <header><span class="iid">140</span><span class="stars" title="difficulty">⭐</span><span class="topic">Frames and time</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="140"> Done</label></header>
+        <div class="problem">A camera films at 50 frames per second. A ball moves 4 pixels between two frames. <strong>(a)</strong> How many milliseconds lie between frames? <strong>(b)</strong> How fast is the ball in pixels per second? <strong>(c)</strong> At 25 fps, how far does the same ball move between frames?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $1000 / 50 = 20$ ms [0.5]<br>
+<strong>(b)</strong> $4 \times 50 = 200$ px/s [0.5]<br>
+<strong>(c)</strong> $200 / 25 = 8$ px per frame — twice as far, so harder for flow to follow [0.5]<br>
+<strong>Answer:</strong> (a) 20 ms · (b) 200 px/s · (c) 8 px</div></details>
+      </article>
+      <article class="item" id="p141" data-sess="9" data-part="A" data-stars="2">
+        <header><span class="iid">141</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">A wheel with six spokes</span><span class="meta">2 pts · ~4 min</span>
+          <label class="done"><input type="checkbox" data-id="141"> Done</label></header>
+        <div class="problem">A wheel has 6 identical spokes and turns 3.75 times a second. A camera films it at 24 fps. <strong>(a)</strong> How far does it turn between frames? <strong>(b)</strong> Every how many degrees does it look the same? <strong>(c)</strong> What does the video show — which way, and how fast in turns per second? <strong>(d)</strong> At what speed would it seem to stand still?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $\Delta\theta = 360° \times 3.75 / 24 = 56.25°$ [0.5]<br>
+<strong>(b)</strong> $360° / 6 = 60°$ [0.25]<br>
+<strong>(c)</strong> nearest match $56.25 - 60 = -3.75°$ per frame → it seems to turn <strong>backwards</strong>, $3.75 \times 24 / 360 = 0.25$ turns per second [0.75]<br>
+<strong>(d)</strong> $60°$ per frame: $60 \times 24 / 360 = 4$ turns per second [0.5]<br>
+<strong>Answer:</strong> (a) 56.25° · (b) 60° · (c) backwards, 0.25 turns/s · (d) 4 turns/s</div></details>
+      </article>
+      <article class="item" id="p142" data-sess="9" data-part="A" data-stars="1">
+        <header><span class="iid">142</span><span class="stars" title="difficulty">⭐</span><span class="topic">One equation per pixel</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="142"> Done</label></header>
+        <div class="problem">Use $I_x u + I_y v + I_t = 0$. <strong>(a)</strong> A pixel has $I_x = 4$, $I_y = 0$, $I_t = -6$. Find what you can of $(u, v)$. <strong>(b)</strong> Another pixel has $I_x = 0$, $I_y = 5$, $I_t = 10$. Find what you can.</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $4u - 6 = 0$ → $u = 1.5$ [0.5]; $v$ is not fixed — the edge is vertical, motion along it is invisible [0.25]<br>
+<strong>(b)</strong> $5v + 10 = 0$ → $v = -2$ (2 pixels up) [0.5]; $u$ is not fixed [0.25]<br>
+<strong>Answer:</strong> (a) $u = 1.5$, $v$ unknown · (b) $v = -2$, $u$ unknown</div></details>
+      </article>
+      <article class="item" id="p143" data-sess="9" data-part="A" data-stars="2">
+        <header><span class="iid">143</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Normal flow</span><span class="meta">2 pts · ~4 min</span>
+          <label class="done"><input type="checkbox" data-id="143"> Done</label></header>
+        <div class="problem">A pixel has $I_x = 5$, $I_y = -12$, $I_t = 26$. <strong>(a)</strong> Find $\lVert \nabla I \rVert$. <strong>(b)</strong> Find the normal flow: its size and the motion vector it gives. <strong>(c)</strong> Could the true motion be $(2, 3)$? Check it.</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $\sqrt{25 + 144} = 13$ [0.5]<br>
+<strong>(b)</strong> $u_\perp = -I_t / \lVert \nabla I \rVert = -26 / 13 = -2$ along $(5, -12)/13$ → $-2 \cdot (5, -12)/13 = (-10/13,\ 24/13) \approx (-0.77,\ 1.85)$ [0.75]<br>
+<strong>(c)</strong> $5 \cdot 2 - 12 \cdot 3 + 26 = 10 - 36 + 26 = 0$ → yes: it satisfies the equation, so it is possible — one pixel cannot tell it apart from the normal flow [0.75]<br>
+<strong>Answer:</strong> (a) 13 · (b) size 2, about (−0.77, 1.85) · (c) yes<br>
+<strong>Common mistake:</strong> taking the normal flow as <em>the</em> motion — it is only the part across the edge.</div></details>
+      </article>
+      <article class="item" id="p144" data-sess="9" data-part="A" data-stars="2">
+        <header><span class="iid">144</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Motion field or optical flow?</span><span class="meta">2 pts · ~4 min</span>
+          <label class="done"><input type="checkbox" data-id="144"> Done</label></header>
+        <div class="problem">For each scene, say whether the motion field (true 3D motion, projected) and the optical flow (moving brightness) agree, and why: <strong>(a)</strong> a car with a printed logo drives past; <strong>(b)</strong> a smooth, evenly coloured ball spins in place; <strong>(c)</strong> the room light is switched on; <strong>(d)</strong> a barber's pole turns — its stripes seem to climb.</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> agree — texture moves with the surface [0.5]<br>
+<strong>(b)</strong> differ — the surface moves but the picture does not change: motion, no flow [0.5]<br>
+<strong>(c)</strong> differ — brightness changes, nothing moves: flow (or a broken brightness-constancy assumption), no motion [0.5]<br>
+<strong>(d)</strong> differ — the surface turns sideways, the stripes look as if they move up: the aperture problem on long stripes [0.5]<br>
+<strong>Answer:</strong> only (a) agrees</div></details>
+      </article>
+  <div class="parthead" id="s9b" data-group="9B"><h3>B · Lucas–Kanade</h3><span class="pc"></span><a href="../session-09/slides.html#/part-b">Slides for this part →</a></div>
+      <article class="item" id="p145" data-sess="9" data-part="B" data-stars="2">
+        <header><span class="iid">145</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Least squares on three pixels</span><span class="meta">2.5 pts · ~5 min</span>
+          <label class="done"><input type="checkbox" data-id="145"> Done</label></header>
+        <div class="problem">Three pixels in one window give $(I_x, I_y, I_t)$ = $(1, 0, -2)$, $(0, 3, 3)$ and $(2, 1, -3)$. <strong>(a)</strong> Write $A^\top A$ and $-A^\top \mathbf{b}$. <strong>(b)</strong> Solve for $(u, v)$. <strong>(c)</strong> Check the answer with the third pixel.</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $A^\top A$ = [1+0+4 0+0+2 / 2 0+9+1] = [5 2 / 2 10] [0.75] · $-A^\top\mathbf{b} = -(1 \cdot (-2) + 2 \cdot (-3),\ 3 \cdot 3 + 1 \cdot (-3)) = (8, -6)$ [0.5]<br>
+<strong>(b)</strong> $\det = 50 - 4 = 46$ → $u = (10 \cdot 8 - 2 \cdot (-6)) / 46 = 92/46 = 2$ · $v = (5 \cdot (-6) - 2 \cdot 8) / 46 = -46/46 = -1$ [1]<br>
+<strong>(c)</strong> $2 \cdot 2 + 1 \cdot (-1) - 3 = 0$ ✓ [0.25]<br>
+<strong>Answer:</strong> (a) [5 2 / 2 10] and (8, −6) · (b) $(u, v) = (2, -1)$</div></details>
+      </article>
+      <article class="item" id="p146" data-sess="9" data-part="B" data-stars="1">
+        <header><span class="iid">146</span><span class="stars" title="difficulty">⭐</span><span class="topic">Solve with a diagonal M</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="146"> Done</label></header>
+        <div class="problem">A window has $M$ = [8 0 / 0 4], $\sum I_x I_t = -12$ and $\sum I_y I_t = 6$. <strong>(a)</strong> Find $(u, v)$. <strong>(b)</strong> Is this window a corner, an edge or flat?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $M (u, v)^\top = (12, -6)$ → $u = 12/8 = 1.5$ [0.5], $v = -6/4 = -1.5$ [0.5]<br>
+<strong>(b)</strong> both eigenvalues (8 and 4) are large → a corner, so the answer can be trusted [0.5]<br>
+<strong>Answer:</strong> (a) (1.5, −1.5) · (b) a corner</div></details>
+      </article>
+      <article class="item" id="p147" data-sess="9" data-part="B" data-stars="2">
+        <header><span class="iid">147</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Which window can be solved?</span><span class="meta">2 pts · ~4 min</span>
+          <label class="done"><input type="checkbox" data-id="147"> Done</label></header>
+        <div class="problem">Three windows: $M_1$ = [6 2 / 2 6], $M_2$ = [4 2 / 2 1], $M_3$ = [0.2 0 / 0 0.1]. For each: $\det M$, the eigenvalues, and whether Lucas–Kanade can find $(u, v)$.</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln">$M_1$: $\det = 36 - 4 = 32$ · $\lambda = 6 \pm 2 = 8, 4$ → corner, solvable [0.75]<br>
+$M_2$: $\det = 4 - 4 = 0$ · trace 5 → $\lambda = 5, 0$ → edge: no inverse, only the normal flow (aperture problem) [0.75]<br>
+$M_3$: $\det = 0.02$ · $\lambda = 0.2, 0.1$ → flat: an answer exists on paper, but noise decides it [0.5]<br>
+<strong>Answer:</strong> only $M_1$ gives a reliable $(u, v)$</div></details>
+      </article>
+      <article class="item" id="p148" data-sess="9" data-part="B" data-stars="2">
+        <header><span class="iid">148</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Coarse to fine</span><span class="meta">2 pts · ~4 min</span>
+          <label class="done"><input type="checkbox" data-id="148"> Done</label></header>
+        <div class="problem">A car moves 40 pixels between frames. Lucas–Kanade only works for motions up to about 3 pixels. <strong>(a)</strong> How many pyramid levels (each half the size) are needed? <strong>(b)</strong> At the top level Lucas–Kanade finds 2.5 px. What first guess does that give at the full image?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $40 / 2^k \le 3$: $40/8 = 5$ is too big, $40/16 = 2.5$ is fine → $k = 4$ levels [1]<br>
+<strong>(b)</strong> each level down doubles the motion: $2.5 \times 2^4 = 40$ px, then refined at each level [1]<br>
+<strong>Answer:</strong> (a) 4 levels · (b) 40 px</div></details>
+      </article>
+      <article class="item" id="p149" data-sess="9" data-part="B" data-stars="3">
+        <header><span class="iid">149</span><span class="stars" title="difficulty">⭐⭐⭐</span><span class="topic">The same M as Harris</span><span class="meta">2.5 pts · ~5 min</span>
+          <label class="done"><input type="checkbox" data-id="149"> Done</label></header>
+        <div class="problem">A window has $M$ = [10 6 / 6 10], $\sum I_x I_t = -32$ and $\sum I_y I_t = -16$. <strong>(a)</strong> Compute the Harris response $R = \det M - 0.04\,(\mathrm{trace}\, M)^2$. Corner or edge? <strong>(b)</strong> Solve for $(u, v)$. <strong>(c)</strong> Why does a large $R$ mean Lucas–Kanade can be trusted here?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $\det = 100 - 36 = 64$ · trace $= 20$ → $R = 64 - 0.04 \cdot 400 = 48 &gt; 0$ → corner [0.75]<br>
+<strong>(b)</strong> $M (u, v)^\top = (32, 16)$ → $u = (10 \cdot 32 - 6 \cdot 16)/64 = 224/64 = 3.5$ · $v = (10 \cdot 16 - 6 \cdot 32)/64 = -32/64 = -0.5$ [1]<br>
+<strong>(c)</strong> both need the same thing — two large eigenvalues of the same $M$: then $M$ has a stable inverse [0.75]<br>
+<strong>Answer:</strong> (a) 48, a corner · (b) (3.5, −0.5) · (c) same matrix, same condition</div></details>
+      </article>
+  <div class="parthead" id="s9c" data-group="9C"><h3>C · Tracking</h3><span class="pc"></span><a href="../session-09/slides.html#/part-c">Slides for this part →</a></div>
+      <article class="item" id="p150" data-sess="9" data-part="C" data-stars="1">
+        <header><span class="iid">150</span><span class="stars" title="difficulty">⭐</span><span class="topic">Frame difference</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="150"> Done</label></header>
+        <div class="problem">Four pixels change from frame $t-1$ to frame $t$: 40 → 43 · 100 → 160 · 200 → 130 · 90 → 100. <strong>(a)</strong> With $\tau = 20$, which pixels are “moving”? <strong>(b)</strong> Why does a car that stops at a red light vanish from the result?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> differences 3, 60, 70, 10 → only 100 → 160 and 200 → 130 are moving [1]<br>
+<strong>(b)</strong> a still object gives the same values in both frames: difference 0 [0.5]<br>
+<strong>Answer:</strong> (a) the 2nd and 3rd pixel · (b) no change, so nothing is detected</div></details>
+      </article>
+      <article class="item" id="p151" data-sess="9" data-part="C" data-stars="2">
+        <header><span class="iid">151</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Normalised cross-correlation</span><span class="meta">2 pts · ~4 min</span>
+          <label class="done"><input type="checkbox" data-id="151"> Done</label></header>
+        <div class="problem">A template is $t = (2, 4, 6)$. Compute the NCC with the patches <strong>(a)</strong> $p = (5, 7, 9)$ and <strong>(b)</strong> $p = (6, 4, 2)$. <strong>(c)</strong> What does (a) show?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $\bar t = 4$, $\bar p = 7$ → deviations $(-2, 0, 2)$ and $(-2, 0, 2)$ → $\dfrac{4 + 0 + 4}{\sqrt{8 \cdot 8}} = 1$ [0.75]<br>
+<strong>(b)</strong> $\bar p = 4$ → deviations $(2, 0, -2)$ → $\dfrac{-4 + 0 - 4}{8} = -1$ [0.75]<br>
+<strong>(c)</strong> a patch made brighter by +3 still matches perfectly — NCC ignores a change of brightness [0.5]<br>
+<strong>Answer:</strong> (a) 1 · (b) −1 (the pattern reversed) · (c) brightness offsets do not matter</div></details>
+      </article>
+      <article class="item" id="p152" data-sess="9" data-part="C" data-stars="2">
+        <header><span class="iid">152</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Link two frames by IoU</span><span class="meta">2 pts · ~4 min</span>
+          <label class="done"><input type="checkbox" data-id="152"> Done</label></header>
+        <div class="problem">Frame $t$: A $(0, 0, 10, 10)$, B $(20, 0, 30, 10)$. Frame $t+1$: P $(2, 0, 12, 10)$, Q $(26, 0, 36, 10)$. <strong>(a)</strong> Compute IoU(A, P) and IoU(B, Q). <strong>(b)</strong> Link with threshold 0.3: who keeps an ID, who is lost, who is new? <strong>(c)</strong> And with threshold 0.2?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> A–P: $I = 8 \cdot 10 = 80$, $U = 200 - 80 = 120$ → $\approx 0.67$ [0.5] · B–Q: $I = 4 \cdot 10 = 40$, $U = 160$ → $0.25$ [0.5]<br>
+<strong>(b)</strong> A → P keeps its ID · $0.25 &lt; 0.3$: B is lost and Q gets a new ID [0.5]<br>
+<strong>(c)</strong> both pairs link: A → P, B → Q [0.5]<br>
+<strong>Answer:</strong> (a) 0.67 and 0.25 · (b) A→P; B lost, Q new · (c) both linked</div></details>
+      </article>
+      <article class="item" id="p153" data-sess="9" data-part="C" data-stars="2">
+        <header><span class="iid">153</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Highest IoU first</span><span class="meta">2 pts · ~4 min</span>
+          <label class="done"><input type="checkbox" data-id="153"> Done</label></header>
+        <div class="problem">Two tracks A, B and two new boxes P, Q have IoU: A–P 0.7 · B–P 0.5 · B–Q 0.45 · A–Q 0.1. Threshold 0.3. <strong>(a)</strong> Link them, highest IoU first, each box once. <strong>(b)</strong> Now A–P is 0.5 and B–P is 0.7 (the rest the same). Link again. <strong>(c)</strong> What went wrong for A in (b)?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> A–P 0.7 ✓ · B–P skipped (P taken) · B–Q 0.45 ✓ [0.75]<br>
+<strong>(b)</strong> B–P 0.7 ✓ · A–P skipped · B–Q skipped (B taken) · A–Q $0.1 &lt; 0.3$ ✗ → A is lost, Q gets a new ID [0.75]<br>
+<strong>(c)</strong> B took A's box: two people close together can swap or lose IDs [0.5]<br>
+<strong>Answer:</strong> (a) A→P, B→Q · (b) B→P; A lost, Q new</div></details>
+      </article>
+      <article class="item" id="p154" data-sess="9" data-part="C" data-stars="2">
+        <header><span class="iid">154</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Count IDs or crossings?</span><span class="meta">2 pts · ~4 min</span>
+          <label class="done"><input type="checkbox" data-id="154"> Done</label></header>
+        <div class="problem">A tracker at a shop door reports 52 different IDs in one minute; staff counted 30 people walking in. <strong>(a)</strong> Give two reasons the IDs over-count. <strong>(b)</strong> What should the system count instead, and how would you score it? <strong>(c)</strong> Give one way to keep less personal data.</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> any two: a track breaks when someone is hidden and restarts with a new ID · duplicate boxes on one person · people walking out also get IDs · fast motion or a low frame rate [1]<br>
+<strong>(b)</strong> count crossings of a line (inward only) and compare with a hand count: error $= |\text{count} - 30| / 30$ [0.5]<br>
+<strong>(c)</strong> keep only the totals and drop the tracks · blur faces · process on the device [0.5]<br>
+<strong>Answer:</strong> (a) broken tracks, duplicates · (b) line crossings vs a hand count · (c) store totals, not paths</div></details>
+      </article>
+  <div class="parthead" id="s9d" data-group="9D"><h3>D · Putting it all together</h3><span class="pc"></span><a href="../session-09/slides.html#/part-d">Slides for this part →</a></div>
+      <article class="item" id="p155" data-sess="9" data-part="D" data-stars="1">
+        <header><span class="iid">155</span><span class="stars" title="difficulty">⭐</span><span class="topic">The budget per frame</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="155"> Done</label></header>
+        <div class="problem">A system runs at 20 fps. Its stages take 22 ms (detector), 4 ms (tracker) and 15 ms (counting and drawing). <strong>(a)</strong> What is the budget per frame? <strong>(b)</strong> Does it fit, and how much time is left? <strong>(c)</strong> Would it fit at 30 fps?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $1000 / 20 = 50$ ms [0.5]<br>
+<strong>(b)</strong> $22 + 4 + 15 = 41$ ms ≤ 50 → fits, 9 ms spare [0.5]<br>
+<strong>(c)</strong> $1000/30 \approx 33.3$ ms &lt; 41 → no [0.5]<br>
+<strong>Answer:</strong> (a) 50 ms · (b) yes, 9 ms left · (c) no</div></details>
+      </article>
+      <article class="item" id="p156" data-sess="9" data-part="D" data-stars="2">
+        <header><span class="iid">156</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Run the slow stage less often</span><span class="meta">2 pts · ~4 min</span>
+          <label class="done"><input type="checkbox" data-id="156"> Done</label></header>
+        <div class="problem">At 20 fps a pipeline needs: detector 25 ms, tracker 2 ms, segmentation 40 ms. <strong>(a)</strong> Does it fit when every stage runs on every frame? What frame rate does it reach? <strong>(b)</strong> Run segmentation on every 2nd frame: average time per frame? <strong>(c)</strong> Every 4th frame? <strong>(d)</strong> How long does a frame with segmentation still take?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $25 + 2 + 40 = 67$ ms &gt; 50 ✗ → $1000/67 \approx 15$ fps [0.5]<br>
+<strong>(b)</strong> $27 + 40/2 = 47$ ms ✓ on average [0.5]<br>
+<strong>(c)</strong> $27 + 40/4 = 37$ ms ✓ [0.5]<br>
+<strong>(d)</strong> still $67$ ms — those frames come late unless they are buffered [0.5]<br>
+<strong>Answer:</strong> (a) no, about 15 fps · (b) 47 ms · (c) 37 ms · (d) 67 ms</div></details>
+      </article>
+      <article class="item" id="p157" data-sess="9" data-part="D" data-stars="2">
+        <header><span class="iid">157</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">From pixels to speed</span><span class="meta">2.5 pts · ~5 min</span>
+          <label class="done"><input type="checkbox" data-id="157"> Done</label></header>
+        <div class="problem">A camera on a bridge watches a road to measure car speeds. <strong>(a)</strong> Name the session that gives each step: find each car · follow it from frame to frame · map its wheels to metres on the road · check the speeds against a radar. <strong>(b)</strong> On the road map, a car moves from $(0, 5)$ m to $(0, 17)$ m in 12 frames at 24 fps. What is its speed in m/s and km/h?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> detector — session 8 · tracking — session 9 · a homography of the road plane — session 7 · a metric on the same data — session 8 [1]<br>
+<strong>(b)</strong> distance $17 - 5 = 12$ m [0.25]; time $12 / 24 = 0.5$ s [0.25]; speed $12 / 0.5 = 24$ m/s [0.5] $= 24 \times 3.6 = 86.4$ km/h [0.5]<br>
+<strong>Answer:</strong> (a) 8 · 9 · 7 · 8 · (b) 24 m/s = 86.4 km/h</div></details>
+      </article>
+      <article class="item" id="p158" data-sess="9" data-part="D" data-stars="2">
+        <header><span class="iid">158</span><span class="stars" title="difficulty">⭐⭐</span><span class="topic">Two solutions, one comparison</span><span class="meta">2 pts · ~4 min</span>
+          <label class="done"><input type="checkbox" data-id="158"> Done</label></header>
+        <div class="problem">Two solutions count people in the same 10-minute video; a hand count says 50. Solution 1 counts 47 and needs 35 ms per frame; solution 2 counts 41 and needs 8 ms. <strong>(a)</strong> Compute each count error in %. <strong>(b)</strong> Which fits at 30 fps? At 25 fps? <strong>(c)</strong> Which would you choose for a live counter at 25 fps, and why?</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> $|47 - 50|/50 = 6\,\%$ · $|41 - 50|/50 = 18\,\%$ [0.5]<br>
+<strong>(b)</strong> 30 fps → 33.3 ms: only solution 2 [0.5] · 25 fps → 40 ms: both [0.5]<br>
+<strong>(c)</strong> solution 1 — it fits 40 ms and is three times more accurate; same data, same metric, both numbers reported [0.5]<br>
+<strong>Answer:</strong> (a) 6 % and 18 % · (b) 30 fps: solution 2 only; 25 fps: both · (c) solution 1</div></details>
+      </article>
+      <article class="item" id="p159" data-sess="9" data-part="D" data-stars="1">
+        <header><span class="iid">159</span><span class="stars" title="difficulty">⭐</span><span class="topic">Name the risks</span><span class="meta">1.5 pts · ~3 min</span>
+          <label class="done"><input type="checkbox" data-id="159"> Done</label></header>
+        <div class="problem">A shopping mall wants to track shoppers across its cameras to learn which shops they visit. <strong>(a)</strong> Name two risks. <strong>(b)</strong> Name two design choices that reduce them.</div>
+        <details class="answer"><summary>Show solution</summary><div class="soln"><strong>(a)</strong> any two: paths of identifiable people are personal data (PDPA) · tracks joined across cameras show a person's whole visit · people did not agree · the footage could be used for something else [0.75]<br>
+<strong>(b)</strong> any two: keep counts per shop, not paths · delete tracks after counting · blur faces · tell visitors and state the purpose · limit who can see the data [0.75]<br>
+<strong>Answer:</strong> (a) e.g. personal paths, no consent · (b) e.g. totals only, short retention</div></details>
       </article>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
