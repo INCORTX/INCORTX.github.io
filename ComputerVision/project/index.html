@@ -29,14 +29,20 @@
   ul { padding-left:22px; } li { margin:4px 0; }
   .two { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
   @media (max-width:700px) { .two { grid-template-columns:1fr; } h1 { font-size:28px; } }
+  .scale{display:flex;flex-wrap:wrap;gap:.4rem;margin:.4rem 0 .5rem}
+  .scale span{border:1px solid var(--line);border-radius:999px;padding:.2rem .7rem;font-size:.9rem;background:#fff}
+  .scale b{color:var(--teal)}
+  code{overflow-wrap:anywhere}
   footer { margin-top:48px; color:var(--muted); font-size:13px; }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="crumb"><a href="../session-00/slides.html">📷 Computer Vision · Session 0</a> › Project Brief</div>
+  <div class="crumb"><a href="../session-01/slides.html">📷 Computer Vision · Session 1</a> › Project Brief</div>
   <h1>Course Project — 30 points</h1>
-  <p class="sub">Replaces the final exam · same group as your presentation rounds (1–3 people) · proposal <b>15</b> + results, code &amp; demo <b>15</b></p>
+  <p class="sub">Same group as your assignments (1–3 people) · proposal <b>15</b> + demo <b>15</b> · the final exam (week 15) is separate</p>
+
+  <p class="note" style="border-left:4px solid var(--teal)"><b>Who can do the project:</b> you must hand in <b>80%+ of the assignments</b> &mdash; with 4 rounds that means <b>all 4</b>, each with all its files, correctly named. Miss one, and both the project and the final exam are closed to you.<br><b>Grades:</b> A from 80 &middot; C from 60 &middot; F below 50 &middot; the grades in between set by the class&rsquo;s score groups.</p>
 
   <div class="goal">🎯 <b>What the project is graded on:</b> experiment design, how you evaluate what you built, your analysis, and your ideas and creativity — <b>not on how good the numbers turn out.</b> A solution that scores poorly but is compared well and explained is worth more than a pretty number nobody can trace.</div>
 
@@ -54,12 +60,27 @@
   </ul>
   <p><b>Data you can use</b> — shoot your own, or an open dataset: everyday photos / panoramas · CCTV / traffic cameras · medical images (X-ray, retina, MRI) · satellite / drone imagery · production-line images (defect checks) · agriculture (leaves / produce) · handwriting / documents</p>
 
-  <h2>2. Rubric</h2>
-  <h3>2.1 Proposal — 15 points</h3>
-  <div class="spec">Slides 30+ pages · page numbers on every slide · 20+ minutes · submit clip + slide deck</div>
+  <h2>2. Timeline</h2>
+  <table>
+    <tr><th>Week</th><th>What happens</th></tr>
+    <tr><td>5</td><td>Start looking for a topic &mdash; you have met CNNs, ViT and CLIP by now</td></tr>
+    <tr><td>8</td><td><b>Topic chosen</b> and handed in</td></tr>
+    <tr><td>10</td><td><b>Short problem pitch</b> + clinic &mdash; a few minutes per group: input, output, problem, challenge &middot; no files to hand in</td></tr>
+    <tr><td>11</td><td><b>Proposal</b> &mdash; present, hand in clip + slide PDF &middot; the topic can still change afterwards</td></tr>
+    <tr><td>12&ndash;13</td><td>Build and test &middot; clinic with the instructor if you want one</td></tr>
+    <tr><td>14</td><td><b>Demo</b> &mdash; present with a live run, hand in clip + slide PDF + notebook</td></tr>
+    <tr><td>15</td><td>Final exam (separate from the project)</td></tr>
+  </table>
+
+  <h2>3. Rubric</h2>
+  <p><b>Every criterion is marked on one grading scale</b> &mdash; points = the item&rsquo;s full points &times; the level:</p>
+  <div class="scale"><span><b>100%</b> Excellent</span><span><b>75%</b> Good</span><span><b>50%</b> Satisfactory</span><span><b>25%</b> Needs work</span><span><b>0%</b> Missing</span></div>
+  <p class="d">Counted directly instead: C15 (per file). A notebook that does not run scores 0 on C8.</p>
+  <h3>3.1 Proposal (week 11) — 15 points</h3>
+  <div class="spec">Slides 30+ pages · page numbers on every slide · 20+ minutes · hand in clip + slide PDF</div>
   <table>
     <tr><th>#</th><th>Criterion</th></tr>
-        <tr><td class="id">P1</td><td><b>Why this problem</b> <span class="d">— where it comes from and what makes it hard · what the solution will output</span></td></tr>
+        <tr><td class="id">P1</td><td><b>Problem pitch, refined</b> <span class="d">— the input, output, problem and challenge from your week-10 pitch, updated after the comments</span></td></tr>
         <tr><td class="id">P2</td><td><b>Dataset &amp; EDA</b> <span class="d">— where it comes from and how it was collected · <b>described in detail</b>: what the data looks like, its columns, the files, the metadata, what the images / sounds are like · <b>explored with EDA</b></span></td></tr>
         <tr><td class="id">P3</td><td><b>Three or more core techniques</b> <span class="d">— the techniques your solutions are built on, from the course or from the literature — every one explained in full, in your own words: the theory · what it does for this project · an example figure</span></td></tr>
         <tr><td class="id">P4</td><td><b>Experimental setting</b> <span class="d">— how the data is split (train / validation / test) and the other settings every solution shares — how you measure, seeds, the machine</span></td></tr>
@@ -74,8 +95,8 @@
         <tr><td class="id">P13</td><td><b>Submission</b> <span class="d">— clip + slide deck, on time</span></td></tr>
   </table>
 
-  <h3>2.2 Results, code &amp; demo — 15 points</h3>
-  <div class="spec">Slides 20+ pages · page numbers on every slide · 20+ minutes including a live run of the notebook · submit slide deck + .ipynb / Colab + clip</div>
+  <h3>3.2 Demo (week 14) — 15 points</h3>
+  <div class="spec">Slides 20+ pages · page numbers on every slide · 20+ minutes including a live run of the notebook · hand in clip + slide PDF + .ipynb</div>
   <table>
     <tr><th>#</th><th>Criterion</th></tr>
         <tr><td class="id">C1</td><td><b>Accuracy</b> <span class="d">— a metric that fits the task, and why · every solution measured with that metric on the same data</span></td></tr>
@@ -92,19 +113,19 @@
         <tr><td class="id">C12</td><td><b>Length</b> <span class="d">— <b>20+ minutes including the demo</b></span></td></tr>
         <tr><td class="id">C13</td><td><b>Delivery</b> <span class="d">— explained, not read off the slides · clear and fluent · well ordered, so listeners never get lost · easy to understand</span></td></tr>
         <tr><td class="id">C14</td><td><b>Q&amp;A</b> <span class="d">— questions from the instructor and classmates</span></td></tr>
-        <tr><td class="id">C15</td><td><b>Everything submitted</b> <span class="d">— all 15 files of the term: clip + slide PDF for each of the 5 presentation rounds and the proposal, plus clip + slide PDF + notebook for the results</span></td></tr>
+        <tr><td class="id">C15</td><td><b>Everything submitted</b> <span class="d">— all <b>13 files</b> of the term: clip + slide PDF for each of your 4 assignment rounds and for the proposal, plus clip + slide PDF + notebook for the demo &middot; 1.5 for all 13, <b>0.1 off for each file missing or wrongly named</b></span></td></tr>
   </table>
   <p class="note"><b>Group score</b> — everyone in the group gets the same points, Q&amp;A included; the instructor may ask anyone in the group, so <b>everyone must understand the group's code and results</b>.<br>
   <b>Running code is not a score</b> — if it doesn't run you can't submit (does not run = 0 on C8). The points are for explaining what every cell does and reading your own results.</p>
 
-  <h2>3. Sample Q&amp;A (prepare for these)</h2>
+  <h2>4. Sample Q&amp;A (prepare for these)</h2>
   <div class="two">
     <div><b>Proposal session</b><ul>
       <li>Why these core techniques — and where did each one come from (which session, which paper)?</li>
       <li>What really separates solution A from B? If they tie, which do you pick?</li>
       <li>What about this dataset needs care before you use it?</li>
     </ul></div>
-    <div><b>Results session</b><ul>
+    <div><b>Demo session</b><ul>
       <li>What does this cell do? If you delete it, what changes?</li>
       <li>Why this kernel size / threshold / pretrained model?</li>
       <li>Which cell produced the number on this slide?</li>
@@ -113,18 +134,23 @@
     </ul></div>
   </div>
 
-  <h2>4. What to submit</h2>
+  <h2>5. What to hand in, and how to name it</h2>
   <table>
-    <tr><th>Session</th><th>Files</th></tr>
-    <tr><td>Proposal</td><td>presentation clip + slide deck (PDF)</td></tr>
-    <tr><td>Results</td><td>slide deck (PDF) + code — a Colab notebook (shared, view access) or an <code>.ipynb</code>, <b>one file with every experiment</b> + presentation clip</td></tr>
+    <tr><th>Work</th><th>SLOT</th><th>Files</th></tr>
+    <tr><td>Assignment rounds 1–4</td><td><code>R1</code>–<code>R4</code></td><td>clip + slide PDF</td></tr>
+    <tr><td>Proposal</td><td><code>PROP</code></td><td>clip + slide PDF</td></tr>
+    <tr><td>Demo</td><td><code>DEMO</code></td><td>clip + slide PDF + <code>.ipynb</code> (one file with every experiment)</td></tr>
   </table>
-  <p class="note">Also for the results session: the data — the actual files, or a link / download script that yields the same set · a short README — how to run it, and who did what.</p>
+  <p>13 files in the term. Name every file <code>CV_ID_SLOT_Topic.ext</code> &mdash; ID is your group (<code>G08</code>) or, working alone, your 8-digit student ID (<code>69012345</code>) &middot; Topic in English CamelCase &middot; <code>.pdf</code> slides, <code>.mp4</code> clip (<code>.mov</code> accepted), <code>.ipynb</code> notebook.</p>
+  <p class="note"><b>Group</b> (group 8): <code>CV_G08_R1_PinholeCamera.pdf</code> · <code>CV_G08_R1_PinholeCamera.mp4</code> · <code>CV_G08_PROP_LeafDiseaseDetection.pdf</code> · <code>CV_G08_PROP_LeafDiseaseDetection.mp4</code> · <code>CV_G08_DEMO_LeafDiseaseDetection.pdf</code> · <code>CV_G08_DEMO_LeafDiseaseDetection.mp4</code> · <code>CV_G08_DEMO_LeafDiseaseDetection.ipynb</code><br>
+  <b>Solo</b> (student ID 69012345): <code>CV_69012345_R1_PinholeCamera.pdf</code> · <code>CV_69012345_R1_PinholeCamera.mp4</code> · <code>CV_69012345_PROP_LeafDiseaseDetection.pdf</code> · <code>CV_69012345_PROP_LeafDiseaseDetection.mp4</code> · <code>CV_69012345_DEMO_LeafDiseaseDetection.pdf</code> · <code>CV_69012345_DEMO_LeafDiseaseDetection.mp4</code> · <code>CV_69012345_DEMO_LeafDiseaseDetection.ipynb</code><br>
+  Letters, digits, <code>_</code> and <code>-</code> only — no spaces, no Thai · a resubmission ends in <code>_v2</code> · <b>files only — no links (Colab, Drive, YouTube) and no <code>.zip</code></b>; upload each file on its own · the one exception is the project dataset, which may be a link or a download script named in the README · <b>a wrongly named file counts as missing on C15</b>.</p>
+  <p class="note">Also for the demo: the data — the actual files, or a link / download script that yields the same set · a short README — how to run it, and who did what.</p>
 
-  <h2>5. AI and attribution</h2>
+  <h2>6. AI and attribution</h2>
   <p>You may use AI to help write code, <b>but you must understand every cell you submit</b> — the demo (C8) and the Q&amp;A (C14) are where that is checked. If you use a pretrained model or borrow code or data, cite the source on the slides and in the README (no citation = treated as copying).</p>
 
-  <footer>Computer Vision · Project brief · points are the same for both courses; only the domain differs · <a href="../session-00/slides.html" style="color:var(--teal)">back to Session 0</a></footer>
+  <footer>Computer Vision · Project brief · <a href="../session-01/slides.html" style="color:var(--teal)">back to Session 1</a></footer>
 </div>
 </body>
 </html>
