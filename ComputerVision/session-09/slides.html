@@ -30,8 +30,8 @@
 <style>
 :root{
   --bg:#ffffff; --ink:#0f1b2d; --body:#2b3645; --muted:#667085; --soft:#f5f7fa; --line:#e4e8ee;
-  --teal:#0f766e; --teal-soft:#e6f4f2; --coral:#e0533d; --coral-soft:#fdeeea;
-  --amber:#c97a06; --amber-soft:#fdf4e3; --violet:#6d5bd0; --violet-soft:#f0edfc; --navy:#0f1b2d;
+  --gold:#855400; --gold-soft:#fbf1dc; --coral:#e0533d; --coral-soft:#fdeeea;
+  --teal:#0f766e; --teal-soft:#e6f4f2; --violet:#6d5bd0; --violet-soft:#f0edfc; --navy:#0f1b2d;
   --font:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
   --display:'Space Grotesk','Plus Jakarta Sans',sans-serif;
   --font-th:'Anuphan','Plus Jakarta Sans',sans-serif;
@@ -44,24 +44,24 @@ html,body{background:var(--bg);}
 .reveal h1,.reveal h2,.reveal h3,.reveal h4{font-family:var(--display);color:var(--ink);text-transform:none;letter-spacing:-0.02em;margin:0 0 .45em;}
 .reveal h1{font-size:2.6em;font-weight:700;line-height:1.02;}
 .reveal h2{font-size:1.5em;font-weight:700;line-height:1.12;}
-.reveal h3{font-size:.95em;font-weight:600;color:var(--teal);margin-bottom:.35em;}
+.reveal h3{font-size:.95em;font-weight:600;color:var(--gold);margin-bottom:.35em;}
 .reveal p,.reveal li{line-height:1.5;}
 .reveal ul,.reveal ol{margin:0 0 0 1.05em;}
 .reveal li{margin:.3em 0;padding-left:.15em;}
-.reveal ul li::marker{color:var(--teal);font-size:1.1em;}
-.reveal ol li::marker{color:var(--teal);font-weight:700;font-family:var(--display);}
+.reveal ul li::marker{color:var(--gold);font-size:1.1em;}
+.reveal ol li::marker{color:var(--gold);font-weight:700;font-family:var(--display);}
 .reveal strong,.reveal b{font-weight:700;color:var(--ink);}
-.reveal a{color:var(--teal);text-decoration:underline;text-underline-offset:3px;}
+.reveal a{color:var(--gold);text-decoration:underline;text-underline-offset:3px;}
 .reveal code{font-family:var(--mono);font-size:.82em;background:var(--soft);padding:.05em .3em;border-radius:5px;}
 
 /* slide header: kicker + claim title */
-.kicker{display:flex;align-items:center;gap:.5em;font-family:var(--display);font-size:.5em;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin:0 0 .5em;}
-.kicker::before{content:"";width:1.8em;height:3px;border-radius:2px;background:var(--teal);}
+.kicker{display:flex;align-items:center;gap:.5em;font-family:var(--display);font-size:.5em;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 .5em;}
+.kicker::before{content:"";width:1.8em;height:3px;border-radius:2px;background:var(--gold);}
 .reveal h2.claim{max-width:26em;}
 .lead{font-size:.66em;line-height:1.5;color:#46505e;margin:-.15em 0 .8em;max-width:52em;text-wrap:pretty;}
-/* closing note under the content: small, with the kicker's teal rule in front */
+/* closing note under the content: small, with the kicker's gold rule in front */
 .takeaway{display:flex;align-items:baseline;gap:.7em;margin:.9em 0 0;font-size:.6em;line-height:1.5;font-weight:500;color:var(--muted);max-width:60em;text-wrap:pretty;}
-.takeaway::before{content:"";flex:0 0 1.8em;height:3px;border-radius:2px;background:var(--teal);transform:translateY(-.3em);}
+.takeaway::before{content:"";flex:0 0 1.8em;height:3px;border-radius:2px;background:var(--gold);transform:translateY(-.3em);}
 html.reading .lead,html.reading .takeaway{font-size:15px;}
 
 /* layout helpers */
@@ -76,11 +76,11 @@ html.reading .lead,html.reading .takeaway{font-size:15px;}
 .card .cardimg{display:block;width:calc(100% + 1.4em);max-width:none;margin:-.55em -.7em .4em;aspect-ratio:5/2;object-fit:cover;border-radius:8px 8px 0 0;}
 .cards.c5{grid-template-columns:repeat(5,minmax(0,1fr));}
 .cards.c5 .card{font-size:.66em;padding:.5em .65em .55em;}
-.card{position:relative;background:#fff;border:1px solid var(--line);border-top:4px solid var(--teal);border-radius:12px;padding:.6em .75em .65em;font-size:.74em;line-height:1.4;box-shadow:0 1px 2px rgba(15,27,45,.05),0 6px 16px -10px rgba(15,27,45,.18);}
+.card{position:relative;background:#fff;border:1px solid var(--line);border-top:4px solid var(--gold);border-radius:12px;padding:.6em .75em .65em;font-size:.74em;line-height:1.4;box-shadow:0 1px 2px rgba(15,27,45,.05),0 6px 16px -10px rgba(15,27,45,.18);}
 .card b{display:block;font-family:var(--display);font-size:1.12em;margin-bottom:.2em;color:var(--ink);}
 .card .n{display:block;font-family:var(--display);font-weight:700;color:#9aa6b5;font-size:.85em;letter-spacing:.06em;margin-bottom:.15em;}
-.card.teal{border-top-color:var(--teal);} .card.coral{border-top-color:var(--coral);}
-.card.amber{border-top-color:var(--amber);} .card.violet{border-top-color:var(--violet);} .card.navy{border-top-color:var(--navy);}
+.card.gold{border-top-color:var(--gold);} .card.coral{border-top-color:var(--coral);}
+.card.teal{border-top-color:var(--teal);} .card.violet{border-top-color:var(--violet);} .card.navy{border-top-color:var(--navy);}
 .small{font-size:.84em;}
 .muted{color:var(--muted);}
 .center{text-align:center;}
@@ -97,16 +97,16 @@ html.reading .pgno{display:none;}
 .deck-rule{position:absolute;left:4px;right:4px;bottom:46px;height:1px;background:var(--line);}
 
 /* key term with Thai meaning */
-.term{display:grid;grid-template-columns:auto 1fr;gap:.1em .6em;align-items:baseline;background:var(--teal-soft);border-radius:12px;padding:.5em .8em;font-size:.72em;margin:0 0 .5em;}
+.term{display:grid;grid-template-columns:auto 1fr;gap:.1em .6em;align-items:baseline;background:var(--gold-soft);border-radius:12px;padding:.5em .8em;font-size:.72em;margin:0 0 .5em;}
 .term b{font-family:var(--display);font-size:1.15em;}
 .term .th{justify-self:start;}
 .term .def{grid-column:1 / -1;color:var(--body);}
-.th{font-family:var(--font-th);color:var(--teal);font-weight:500;}
+.th{font-family:var(--font-th);color:var(--gold);font-weight:500;}
 
 /* Try it */
-.tryit{border:1px solid #f1d9a9;border-left:6px solid var(--amber);border-radius:12px;padding:.65em .9em;background:var(--amber-soft);font-size:.72em;line-height:1.45;}
-.tryit .tag{display:table;font-family:var(--display);font-weight:700;color:var(--amber);letter-spacing:.14em;text-transform:uppercase;font-size:.62em;margin-bottom:.45em;}
-.tryit details summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-family:var(--display);font-weight:600;font-size:.85em;color:var(--amber);list-style:none;}
+.tryit{border:1px solid #bfe3de;border-left:6px solid var(--teal);border-radius:12px;padding:.65em .9em;background:var(--teal-soft);font-size:.72em;line-height:1.45;}
+.tryit .tag{display:table;font-family:var(--display);font-weight:700;color:var(--teal);letter-spacing:.14em;text-transform:uppercase;font-size:.62em;margin-bottom:.45em;}
+.tryit details summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-family:var(--display);font-weight:600;font-size:.85em;color:var(--teal);list-style:none;}
 .tryit details summary::-webkit-details-marker{display:none;}
 .tryit details summary::before{content:"";width:0;height:0;border-left:.42em solid currentColor;border-top:.3em solid transparent;border-bottom:.3em solid transparent;margin-right:.5em;transition:transform .15s;}
 .tryit details[open] summary::before{transform:rotate(90deg);}
@@ -114,13 +114,13 @@ html.reading .pgno{display:none;}
 /* flashback */
 .flashback{border:1px solid #d9d2f6;border-left:6px solid var(--violet);background:var(--violet-soft);border-radius:12px;padding:.65em .9em;font-size:.72em;line-height:1.45;}
 .flashback::before{content:"Flashback";display:block;font-family:var(--display);font-weight:700;color:var(--violet);letter-spacing:.14em;text-transform:uppercase;font-size:.62em;margin-bottom:.4em;}
-/* key idea: same box shape, teal, label from data-label */
-.keyidea{border:1px solid #bfe3de;border-left:6px solid var(--teal);background:var(--teal-soft);border-radius:12px;padding:.65em .9em;font-size:.72em;line-height:1.45;}
-.keyidea::before{content:attr(data-label);display:block;font-family:var(--display);font-weight:700;color:var(--teal);letter-spacing:.14em;text-transform:uppercase;font-size:.62em;margin-bottom:.4em;}
+/* key idea: same box shape, gold, label from data-label */
+.keyidea{border:1px solid #ead7ac;border-left:6px solid var(--gold);background:var(--gold-soft);border-radius:12px;padding:.65em .9em;font-size:.72em;line-height:1.45;}
+.keyidea::before{content:attr(data-label);display:block;font-family:var(--display);font-weight:700;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;font-size:.62em;margin-bottom:.4em;}
 
 /* Colab button */
 .colab svg{width:.95em;height:.95em;fill:currentColor;}
-.colab{display:inline-flex;align-items:center;gap:.4em;min-height:44px;padding:0 1em;border-radius:999px;background:#f9ab00;color:#1b1f24 !important;font-family:var(--display);font-weight:700;font-size:.62em;text-decoration:none !important;box-shadow:0 4px 12px -6px rgba(201,122,6,.6);}
+.colab{display:inline-flex;align-items:center;gap:.4em;min-height:44px;padding:0 1em;border-radius:999px;background:#f9ab00;color:#1b1f24 !important;font-family:var(--display);font-weight:700;font-size:.62em;text-decoration:none !important;box-shadow:0 4px 12px -6px rgba(15, 118, 110,.6);}
 
 /* tables */
 .tscroll{overflow-x:auto;max-width:100%;border:1px solid var(--line);border-radius:12px;}
@@ -129,18 +129,18 @@ html.reading .pgno{display:none;}
 .reveal table th{background:var(--navy);color:#fff;font-family:var(--display);font-weight:600;letter-spacing:.02em;}
 .reveal table tr:nth-child(odd) td{background:#fafbfc;}
 .reveal table tr:last-child td{border-bottom:0;}
-.reveal table tr.hl td{background:var(--teal-soft);font-weight:600;color:var(--ink);}
+.reveal table tr.hl td{background:var(--gold-soft);font-weight:600;color:var(--ink);}
 .reveal table.tight{font-size:.5em;}
 .reveal table.tight th,.reveal table.tight td{padding:.3em .7em;}
-.reveal table td.pt{font-family:var(--display);font-weight:700;color:var(--teal);text-align:center;width:3em;}
+.reveal table td.pt{font-family:var(--display);font-weight:700;color:var(--gold);text-align:center;width:3em;}
 
 /* title slide — dark cover */
 .reveal .slides>section.title-slide,.reveal .slides .pdf-page>section.title-slide,.reveal .slides .ho-cell>section.title-slide{padding:0 34px !important;}
 .title-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:2.2em;align-items:center;height:100%;}
-.title-slide .pill{display:inline-flex;align-items:center;gap:.6em;margin:0 0 1.2em;padding:.4em 1em;border-radius:999px;background:var(--teal-soft);color:var(--teal);font-family:var(--display);font-weight:600;font-size:.46em;letter-spacing:.16em;text-transform:uppercase;}
-.title-slide .pill::before{content:"";width:.55em;height:.55em;border-radius:50%;background:var(--teal);}
+.title-slide .pill{display:inline-flex;align-items:center;gap:.6em;margin:0 0 1.2em;padding:.4em 1em;border-radius:999px;background:var(--gold-soft);color:var(--gold);font-family:var(--display);font-weight:600;font-size:.46em;letter-spacing:.16em;text-transform:uppercase;}
+.title-slide .pill::before{content:"";width:.55em;height:.55em;border-radius:50%;background:var(--gold);}
 .reveal .title-slide h1{color:var(--ink);font-size:3em;line-height:.98;margin:0 0 .32em;letter-spacing:-.035em;}
-.reveal .title-slide h1 em{font-style:normal;color:var(--teal);}
+.reveal .title-slide h1 em{font-style:normal;color:var(--gold);}
 .title-slide .sub{font-family:var(--display);font-size:1em;color:var(--body);font-weight:500;margin:0 0 1.9em;}
 .title-slide .who{border-top:1px solid var(--line);padding-top:.9em;max-width:17em;}
 .title-slide .who p{margin:0;}
@@ -148,14 +148,14 @@ html.reading .pgno{display:none;}
 .title-slide .name span{font-weight:500;color:var(--muted);}
 .title-slide .contact{display:flex;flex-wrap:wrap;gap:.2em 1.4em;margin-top:.35em !important;font-size:.56em;color:var(--muted);}
 .title-slide .contact a{color:inherit;text-decoration:none;}
-.title-slide .contact a:hover{color:var(--teal);}
+.title-slide .contact a:hover{color:var(--gold);}
 .title-slide .contact span+span::before{content:"";display:inline-block;width:.32em;height:.32em;border-radius:50%;background:#c3cad4;margin:0 .9em 0 -.8em;vertical-align:middle;}
-.title-slide .art{margin:0;padding:34px 34px 22px;border-radius:30px;background-color:var(--teal-soft);background-image:radial-gradient(rgba(15,118,110,.16) 1.4px,transparent 1.6px);background-size:22px 22px;}
+.title-slide .art{margin:0;padding:34px 34px 22px;border-radius:30px;background-color:var(--gold-soft);background-image:radial-gradient(rgba(133, 84, 0,.16) 1.4px,transparent 1.6px);background-size:22px 22px;}
 #titleArt{display:block;width:100%;height:auto;border-radius:16px;background:#fff;box-shadow:0 18px 40px -22px rgba(15,27,45,.35),0 0 0 1px var(--line);}
 @media print{#titleArt{box-shadow:0 0 0 1px var(--line);}.title-slide .art{background-image:none;}}
 html.print-pdf #titleArt{box-shadow:0 0 0 1px var(--line);}
 html.print-pdf .title-slide .art{background-image:none;}
-.title-slide figcaption{margin-top:.8em;text-align:center;font-family:var(--mono);font-size:.4em;color:var(--teal);letter-spacing:.02em;}
+.title-slide figcaption{margin-top:.8em;text-align:center;font-family:var(--mono);font-size:.4em;color:var(--gold);letter-spacing:.02em;}
 html.reading .reveal .slides>section.title-slide{padding:36px 18px !important;}
 html.reading .title-slide .pill,html.reading .title-slide figcaption,html.reading .title-slide .contact{font-size:13px;}
 html.reading .title-slide .art{padding:18px 18px 12px;border-radius:20px;}
@@ -164,9 +164,9 @@ html.reading .title-slide .art{padding:18px 18px 12px;border-radius:20px;}
 .cols.today{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:2em;}
 .reveal .steps{list-style:none;margin:0;padding:0;counter-reset:st;position:relative;}
 /* connector: one segment per item, from this circle's centre to the next — in the li's own em so it stays centred at any size */
-.steps li:not(:last-child)::after{content:"";position:absolute;left:calc(.855em - 1px);top:50%;height:100%;width:2px;background:#a9d8d4;}
+.steps li:not(:last-child)::after{content:"";position:absolute;left:calc(.855em - 1px);top:50%;height:100%;width:2px;background:#e2c88f;}
 .steps li{counter-increment:st;position:relative;margin:0;padding:.5em 0 .5em 2.7em;font-size:.8em;line-height:1.35;color:var(--ink);}
-.steps li::before{content:counter(st);position:absolute;left:0;top:50%;transform:translateY(-50%);box-sizing:border-box;z-index:1;width:1.9em;height:1.9em;border-radius:50%;background:#fff;border:2px solid var(--teal);color:var(--teal);font-family:var(--display);font-weight:700;font-size:.9em;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 4px #fff;}
+.steps li::before{content:counter(st);position:absolute;left:0;top:50%;transform:translateY(-50%);box-sizing:border-box;z-index:1;width:1.9em;height:1.9em;border-radius:50%;background:#fff;border:2px solid var(--gold);color:var(--gold);font-family:var(--display);font-weight:700;font-size:.9em;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 4px #fff;}
 .goals{display:grid;gap:.5em;}
 .goal{display:grid;grid-template-columns:5.4em 1fr;gap:.8em;align-items:center;background:#fff;border:1px solid var(--line);border-left:5px solid var(--c);border-radius:12px;padding:.6em .85em;font-size:.72em;line-height:1.4;color:var(--ink);box-shadow:0 6px 16px -12px rgba(15,27,45,.25);}
 .goal .verb{justify-self:start;font-family:var(--display);font-weight:700;font-size:.78em;letter-spacing:.12em;text-transform:uppercase;color:var(--c);}
@@ -176,11 +176,11 @@ html.reading .cols.today{grid-template-columns:1fr;}
 .outline{list-style:none;margin:0;padding:0;counter-reset:o;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6em 1.2em;}
 .outline.one{grid-template-columns:1fr;gap:.4em;}
 .outline li{counter-increment:o;display:flex;gap:.7em;align-items:flex-start;font-size:.82em;background:var(--soft);border-radius:12px;padding:.6em .8em;margin:0;}
-.outline li::before{content:counter(o,decimal-leading-zero);font-family:var(--display);font-weight:700;color:var(--teal);font-size:1.1em;line-height:1.35;}
+.outline li::before{content:counter(o,decimal-leading-zero);font-family:var(--display);font-weight:700;color:var(--gold);font-size:1.1em;line-height:1.35;}
 .outcomes{list-style:none;margin:0;padding:0;counter-reset:c;}
 .outcomes li{counter-increment:c;position:relative;padding:.45em 0 .45em 2.4em;margin:0;font-size:.84em;border-bottom:1px solid var(--line);}
 .outcomes li:last-child{border-bottom:0;}
-.outcomes li::before{content:counter(c);position:absolute;left:0;top:.42em;width:1.6em;height:1.6em;border-radius:50%;background:var(--teal);color:#fff;font-family:var(--display);font-weight:700;font-size:.85em;display:flex;align-items:center;justify-content:center;}
+.outcomes li::before{content:counter(c);position:absolute;left:0;top:.42em;width:1.6em;height:1.6em;border-radius:50%;background:var(--gold);color:#fff;font-family:var(--display);font-weight:700;font-size:.85em;display:flex;align-items:center;justify-content:center;}
 
 /* grading */
 .gtiles{display:grid;grid-template-columns:40fr 30fr 20fr 10fr;gap:.4em;margin:.2em 0 .6em;}
@@ -216,12 +216,12 @@ html.reading .after{flex-direction:column;}
 .reveal table.hintable{font-size:.54em;}
 .reveal table.hintable th,.reveal table.hintable td{padding:.22em .7em;}
 .reveal table.hintable td:nth-child(2){white-space:nowrap;}
-.reveal .fnames li.fh{font-family:var(--display);font-weight:600;color:var(--teal);font-size:.5em;margin-bottom:.2em;white-space:normal;}
+.reveal .fnames li.fh{font-family:var(--display);font-weight:600;color:var(--gold);font-size:.5em;margin-bottom:.2em;white-space:normal;}
 .reveal .hcount{margin:.4em 0 .55em;font-size:.56em;color:var(--muted);}
 .reveal .hcount b{color:var(--ink);}
 .pattern{border:1px solid var(--line);border-radius:12px;padding:.45em .7em .5em;background:#fff;}
 .reveal .pat{margin:0 0 .25em;font-family:var(--mono);font-size:.66em;font-weight:600;color:var(--muted);letter-spacing:.01em;}
-.pat span{color:var(--teal);}
+.pat span{color:var(--gold);}
 .reveal .pattern ul{list-style:none;margin:0;padding:0;display:grid;gap:.12em;}
 .reveal .pattern li{display:grid;grid-template-columns:3.2em 1fr;gap:.4em;font-size:.48em;line-height:1.35;margin:0;}
 .pattern li b{font-family:var(--display);color:var(--ink);}
@@ -235,7 +235,7 @@ html.reading .reveal .fnames li{font-size:12px;white-space:nowrap;}
 html.reading .reveal .pat{font-size:15px;}
 /* s6 · 1966 summer project */
 .memo{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.3fr);gap:1.4em;align-items:start;margin-top:.3em;}
-.mq{margin:0;font-family:var(--display);font-size:.8em;line-height:1.38;color:var(--ink);border-left:6px solid var(--teal);padding:.15em 0 .15em .8em;}
+.mq{margin:0;font-family:var(--display);font-size:.8em;line-height:1.38;color:var(--ink);border-left:6px solid var(--gold);padding:.15em 0 .15em .8em;}
 .mq span{display:block;font-family:var(--font);font-size:.68em;color:var(--muted);margin-top:.6em;}
 .memo h3{margin:0 0 .5em;}
 .memo .pipe .st{font-size:.6em;}
@@ -246,32 +246,32 @@ html.reading .mq{font-size:17px;}
 html.reading .memo-end{font-size:15px;}
 html.reading .reveal .mnote{font-size:14px;}
 .reveal .more{margin:.9em 0 0;font-size:.56em;}
-.reveal .more a{color:var(--teal);font-weight:600;text-decoration:none;border-bottom:2px solid var(--teal-soft);}
-.reveal .more a:hover{border-bottom-color:var(--teal);}
+.reveal .more a{color:var(--gold);font-weight:600;text-decoration:none;border-bottom:2px solid var(--gold-soft);}
+.reveal .more a:hover{border-bottom-color:var(--gold);}
 html.reading .reveal .more{font-size:15px;}
 /* session roadmap (slide 2) + part openers — shared by every session deck */
 .qband{display:flex;gap:.8em;align-items:center;background:var(--soft);border-radius:14px;padding:.6em .9em;margin:0 0 .8em;font-size:.74em;color:var(--ink);font-family:var(--display);font-weight:600;}
-.qband span{font-family:var(--font);font-weight:700;font-size:.62em;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);white-space:nowrap;}
+.qband span{font-family:var(--font);font-weight:700;font-size:.62em;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);white-space:nowrap;}
 .parts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6em;}
 .parts a{display:block;text-decoration:none;transition:border-color .15s,transform .15s;border:1px solid var(--line);border-radius:14px;padding:.6em .75em;font-size:.62em;line-height:1.4;color:var(--muted);background:#fff;}
 .parts a b{display:block;font-family:var(--display);font-size:1.25em;color:var(--ink);margin-bottom:.2em;}
 .parts a i{font-style:normal;display:inline-grid;place-items:center;width:1.7em;height:1.7em;border-radius:50%;background:var(--soft);color:var(--ink);font-family:var(--display);font-weight:700;margin-right:.35em;}
-.parts a.on{border:2px solid var(--teal);background:var(--teal-soft);color:var(--body);}
-.parts a.on i{background:var(--teal);color:#fff;}
+.parts a.on{border:2px solid var(--gold);background:var(--gold-soft);color:var(--body);}
+.parts a.on i{background:var(--gold);color:#fff;}
 /* the A–D strip sits in the normal flow (never absolute), so nothing can overlap it in any mode; auto margins centre the rest */
 .part-open{display:flex !important;flex-direction:column;justify-content:flex-start;}
 .po-strip{position:static;margin:34px 0 26px;display:grid;grid-template-columns:repeat(4,1fr);gap:.4em;font-family:var(--display);font-size:.5em;}
 .po-strip a{text-decoration:none;display:flex;align-items:center;gap:.5em;padding:.45em .7em;border-radius:999px;background:var(--soft);color:var(--muted);}
 .po-strip b{display:inline-grid;place-items:center;width:1.7em;height:1.7em;border-radius:50%;background:#fff;color:var(--muted);}
 .po-strip a.done{color:var(--body);}
-.po-strip a.done b{background:var(--teal-soft);color:var(--teal);}
-.po-strip a.on{background:var(--teal);color:#fff;}
-.po-strip a.on b{background:#fff;color:var(--teal);}
-.reveal .po-letter{margin:auto 0 0;font-family:var(--display);font-weight:700;font-size:3.2em;line-height:1;color:var(--teal);}
+.po-strip a.done b{background:var(--gold-soft);color:var(--gold);}
+.po-strip a.on{background:var(--gold);color:#fff;}
+.po-strip a.on b{background:#fff;color:var(--gold);}
+.reveal .po-letter{margin:auto 0 0;font-family:var(--display);font-weight:700;font-size:3.2em;line-height:1;color:var(--gold);}
 .part-open .claim{font-size:1.9em;margin:.1em 0 .3em;}
 .reveal .po-q{margin:0 0 1.2em;font-family:var(--display);font-size:.95em;color:var(--body);max-width:24em;}
-.reveal .po-out{margin:0 0 auto;max-width:34em;border-left:5px solid var(--teal);padding:.3em 0 .3em .8em;font-size:.62em;line-height:1.5;color:var(--body);}
-.po-out span{display:block;font-family:var(--display);font-weight:700;font-size:.8em;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:.15em;}
+.reveal .po-out{margin:0 0 auto;max-width:34em;border-left:5px solid var(--gold);padding:.3em 0 .3em .8em;font-size:.62em;line-height:1.5;color:var(--body);}
+.po-out span{display:block;font-family:var(--display);font-weight:700;font-size:.8em;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.15em;}
 html.reading .part-open{display:block !important;}
 html.reading .tryit .tag{font-size:12px;}
 .reveal sup{vertical-align:super;font-size:.68em;line-height:0;}
@@ -279,8 +279,8 @@ html.reading .tryit .tag{font-size:12px;}
 html.reading .po-strip{position:static;grid-template-columns:1fr 1fr;margin-bottom:1em;font-size:13px;}
 html.reading .po-q{font-size:18px;}
 html.reading .po-out{font-size:15px;}
-.parts a:hover{border-color:var(--teal);transform:translateY(-2px);}
-.po-strip a:hover{box-shadow:0 0 0 2px var(--teal-soft);}
+.parts a:hover{border-color:var(--gold);transform:translateY(-2px);}
+.po-strip a:hover{box-shadow:0 0 0 2px var(--gold-soft);}
 html.reading .parts{grid-template-columns:1fr;}
 html.reading .qband,html.reading .parts a{font-size:15px;}
 html.reading .qband span{font-size:12px;}
@@ -299,12 +299,12 @@ html.reading .cards.apps .card{font-size:15px;}
 .demo-out{font-family:var(--mono);font-size:.5em;color:var(--muted);margin-top:.35em;display:flex;justify-content:space-between;gap:.6em;flex-wrap:wrap;}
 .demo-out b{color:var(--ink);font-weight:600;}
 .reveal .more{margin:.9em 0 0;font-size:.56em;}
-.reveal .more a{color:var(--teal);font-weight:600;text-decoration:none;border-bottom:2px solid var(--teal-soft);}
-.reveal .more a:hover{border-bottom-color:var(--teal);}
+.reveal .more a{color:var(--gold);font-weight:600;text-decoration:none;border-bottom:2px solid var(--gold-soft);}
+.reveal .more a:hover{border-bottom-color:var(--gold);}
 html.reading .reveal .more{font-size:15px;}
 .chbtns{display:flex;gap:.35em;margin:.45em 0 0;flex-wrap:wrap;}
 .chbtns button{all:unset;cursor:pointer;padding:.3em .8em;border-radius:999px;border:1px solid var(--line);font-family:var(--display);font-weight:600;font-size:.5em;color:var(--body);background:#fff;}
-.chbtns button.on{background:var(--teal);border-color:var(--teal);color:#fff;}
+.chbtns button.on{background:var(--gold);border-color:var(--gold);color:#fff;}
 .reveal .labline{display:flex;align-items:center;gap:.8em;flex-wrap:wrap;margin:.9em 0 0;}
 .reveal .labline span{font-size:.56em;color:var(--muted);}
 html.reading .reveal .labline span{font-size:13px;}
@@ -314,19 +314,19 @@ html.reading .reveal .labline span{font-size:13px;}
 .title-slide .art img{display:block;width:100%;height:auto;border-radius:16px;box-shadow:0 18px 40px -22px rgba(15,27,45,.35),0 0 0 1px var(--line);}
 .democv{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);}
 .eq{font-size:.8em;margin:.2em 0 0;}
-.worked{border:1px solid var(--line);border-left:5px solid var(--amber);border-radius:10px;padding:.5em .8em;font-size:.6em;line-height:1.55;background:#fff;}
-.worked .tag{display:block;font-family:var(--display);font-weight:700;font-size:.72em;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:.2em;}
+.worked{border:1px solid var(--line);border-left:5px solid var(--teal);border-radius:10px;padding:.5em .8em;font-size:.6em;line-height:1.55;background:#fff;}
+.worked .tag{display:block;font-family:var(--display);font-weight:700;font-size:.72em;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:.2em;}
 .worked p{margin:0;font-family:var(--mono);font-size:.92em;}
 .say .worked{font-size:.9em;margin:.4em 0 .5em;}   /* inside a .say column (already .68em): keep the session-2 size */
 .reveal aside.notes,aside.notes{display:none !important;}
 /* number grids */
 .ng{display:grid;gap:3px;font-family:var(--mono);font-weight:600;width:100%;}
 .ng>div{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:5px;font-size:15px;line-height:1;position:relative;}
-.ng>div.pad{outline:2px dashed var(--amber);outline-offset:-3px;font-style:italic;}
-.ng>div.win{box-shadow:inset 0 0 0 3px var(--teal);}
+.ng>div.pad{outline:2px dashed var(--teal);outline-offset:-3px;font-style:italic;}
+.ng>div.win{box-shadow:inset 0 0 0 3px var(--gold);}
 .ng>div.cur{box-shadow:inset 0 0 0 3px var(--coral);}
 .ng>div.empty{background:var(--soft);color:var(--muted);}
-.ng>div.ker{background:var(--amber-soft);color:var(--ink);}
+.ng>div.ker{background:var(--teal-soft);color:var(--ink);}
 .ng>div.dot::after{content:"";position:absolute;width:30%;height:30%;border-radius:50%;background:var(--coral);}
 .gcap{font-family:var(--display);font-weight:600;font-size:.46em;color:var(--muted);text-align:center;margin:.35em 0 0;}
 .conv3{display:grid;grid-template-columns:minmax(0,7fr) auto minmax(0,3fr) auto minmax(0,5fr);gap:.6em;align-items:center;max-width:800px;margin:0 auto;}
@@ -336,7 +336,7 @@ html.reading .conv3{max-width:none;}
 .calc b{color:var(--coral);}
 .ctrl{display:flex;gap:.4em;align-items:center;flex-wrap:wrap;margin-top:.5em;}
 .ctrl button{all:unset;cursor:pointer;padding:.3em .9em;border-radius:999px;border:1px solid var(--line);font-family:var(--display);font-weight:600;font-size:.5em;color:var(--body);background:#fff;}
-.ctrl button:hover{border-color:var(--teal);color:var(--teal);}
+.ctrl button:hover{border-color:var(--gold);color:var(--gold);}
 .ctrl label{font-family:var(--display);font-weight:600;font-size:.5em;color:var(--body);display:flex;align-items:center;gap:.5em;}
 .ctrl input[type=range]{width:7em;}
 .curve{display:block;width:100%;max-width:220px;height:auto;margin:.3em auto 0;border:1px solid var(--line);border-radius:10px;background:#fff;}
@@ -345,9 +345,9 @@ html.reading .conv3{max-width:none;}
 .big-out b{color:var(--coral);}
 .reveal .tset{list-style:none;margin:.2em 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.45em .8em;}
 .reveal .tset li{margin:0;display:grid;grid-template-columns:1.6em 1fr;column-gap:.5em;align-items:baseline;border:1px solid var(--line);border-radius:12px;padding:.45em .7em;font-size:.56em;line-height:1.35;background:#fff;}
-.tset .tn{grid-row:1/3;font-family:var(--display);font-weight:700;color:var(--teal);font-size:1.2em;}
+.tset .tn{grid-row:1/3;font-family:var(--display);font-weight:700;color:var(--gold);font-size:1.2em;}
 .tset .tt{font-family:var(--display);font-weight:600;color:var(--ink);}
-.tset a{font-size:.85em;color:var(--teal);text-decoration:none;}
+.tset a{font-size:.85em;color:var(--gold);text-decoration:none;}
 html.reading .reveal .tset{grid-template-columns:1fr;}
 html.reading .reveal .tset li{font-size:15px;}
 .steps.recap li{font-size:.7em;}
@@ -386,8 +386,8 @@ html.reading .reveal sup{font-size:.8em;}
 /*<<CSS>>*//* pipeline */
 .pipe{display:flex;gap:.45em;align-items:stretch;counter-reset:p;}
 .pipe .st{flex:1 1 0;background:#fff;border:1px solid var(--line);border-radius:12px;padding:.6em .65em;font-size:.64em;line-height:1.35;box-shadow:0 6px 16px -12px rgba(15,27,45,.25);position:relative;}
-.pipe .st b{display:block;font-family:var(--display);color:var(--teal);font-size:1.1em;margin-bottom:.25em;}
-.pipe .ar{align-self:center;color:var(--teal);font-weight:700;font-size:.8em;}
+.pipe .st b{display:block;font-family:var(--display);color:var(--gold);font-size:1.1em;margin-bottom:.25em;}
+.pipe .ar{align-self:center;color:var(--gold);font-weight:700;font-size:.8em;}
 
 /* pixel demo */
 .pix-wrap{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.1fr) minmax(0,1fr);gap:1em;align-items:start;}
@@ -400,10 +400,10 @@ html.reading .reveal sup{font-size:.8em;}
 .lcmp dl{display:grid;grid-template-columns:1fr auto;gap:.3em .8em;margin:0 0 .7em;font-size:.56em;align-items:baseline;}
 .lcmp dt{color:var(--muted);}
 .lcmp dd{margin:0;font-family:var(--mono);color:var(--muted);white-space:nowrap;}
-.lcmp dd i{font-style:normal;color:var(--teal);}
+.lcmp dd i{font-style:normal;color:var(--gold);}
 .lcmp dd b{color:var(--ink);font-size:1.15em;}
-.lcmp .rule{border:1px solid var(--line);border-left:5px solid var(--teal);border-radius:10px;padding:.5em .75em .55em;background:#fff;font-size:.6em;line-height:1.4;}
-.lcmp .rule .tag{display:block;font-family:var(--display);font-weight:700;font-size:.72em;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:.2em;}
+.lcmp .rule{border:1px solid var(--line);border-left:5px solid var(--gold);border-radius:10px;padding:.5em .75em .55em;background:#fff;font-size:.6em;line-height:1.4;}
+.lcmp .rule .tag{display:block;font-family:var(--display);font-weight:700;font-size:.72em;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.2em;}
 .lcmp .rule p{margin:0;}
 .lcmp .verdict{margin-top:.35em !important;font-weight:600;color:var(--ink);}
 .lcmp .rule.bad{border-left-color:var(--coral);}
@@ -411,7 +411,7 @@ html.reading .reveal sup{font-size:.8em;}
 html.reading .litlab,html.reading .lcmp dl{font-size:14px;}
 html.reading .lcmp .rule{font-size:15px;}
 .pix-readout{font-family:var(--mono);font-size:.5em;color:var(--muted);min-height:1.6em;margin-top:.35em;}
-.slider{width:100%;accent-color:var(--teal);min-height:44px;touch-action:none;cursor:pointer;}
+.slider{width:100%;accent-color:var(--gold);min-height:44px;touch-action:none;cursor:pointer;}
 /* a thumb big enough for a finger */
 .slider::-webkit-slider-thumb{width:26px;height:26px;}
 .slider::-moz-range-thumb{width:26px;height:26px;}
@@ -420,7 +420,7 @@ html.reading .lcmp .rule{font-size:15px;}
 .tl{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;position:relative;margin:.3em 0 .9em;}
 .tl::before{content:"";position:absolute;left:4%;right:4%;top:.95em;height:3px;background:var(--line);}
 .tl div{position:relative;text-align:center;font-size:.58em;padding:2.2em .3em 0;line-height:1.3;}
-.tl div::before{content:"";position:absolute;top:.35em;left:50%;transform:translateX(-50%);width:1.1em;height:1.1em;border-radius:50%;background:#fff;border:3px solid var(--teal);}
+.tl div::before{content:"";position:absolute;top:.35em;left:50%;transform:translateX(-50%);width:1.1em;height:1.1em;border-radius:50%;background:#fff;border:3px solid var(--gold);}
 .tl div.key::before{background:var(--coral);border-color:var(--coral);}
 .tl b{display:block;font-family:var(--display);color:var(--ink);}
 
@@ -459,7 +459,7 @@ html.reading .tl.tl7,html.reading .tl.tl8{grid-template-columns:repeat(3,minmax(
 .rubric h3{font-size:.56em;margin:0 0 .3em;}
 .reveal .rubric ol{list-style:none;margin:0;padding:0;counter-reset:rb;display:grid;gap:2px;}
 .rubric li{counter-increment:rb;display:grid;grid-template-columns:1.6em 1fr;gap:.4em;align-items:baseline;margin:0;padding:.07em .45em;border-radius:6px;font-size:.44em;line-height:1.28;background:var(--soft);}
-.rubric li::before{content:counter(rb);font-family:var(--display);font-weight:700;color:var(--teal);text-align:right;}
+.rubric li::before{content:counter(rb);font-family:var(--display);font-weight:700;color:var(--gold);text-align:right;}
 html.reading .rubric li{font-size:14px;}
 html.reading .rubric h3{font-size:15px;}
 .rb-note{margin-top:.4em !important;font-size:.58em !important;}
@@ -469,8 +469,8 @@ html.reading .rb-note{font-size:14px !important;}
 .cols .checks li{font-size:.58em;padding:.3em .6em;}
 .cols .checks{gap:.35em;}
 .checks li{display:grid;grid-template-columns:2.2em 1fr auto;gap:.6em;align-items:center;background:var(--soft);border-radius:12px;padding:.5em .8em;margin:0;font-size:.74em;}
-.checks li::before{content:"✓";width:1.7em;height:1.7em;border-radius:50%;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;}
-.checks li span.pt{font-family:var(--display);font-weight:700;color:var(--teal);}
+.checks li::before{content:"✓";width:1.7em;height:1.7em;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;}
+.checks li span.pt{font-family:var(--display);font-weight:700;color:var(--gold);}
 
 /* halves */
 .halves{display:grid;grid-template-columns:1fr 1fr;gap:.8em;margin-bottom:.7em;}
@@ -486,7 +486,7 @@ html.reading .rb-note{font-size:14px !important;}
 .reveal .slides>section:not(.title-slide)::before,.reveal .slides .pdf-page>section:not(.title-slide)::before,.reveal .slides .ho-cell>section:not(.title-slide)::before{content:"Computer Vision · Session 9";position:absolute;right:4px;top:10px;font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#a0aab8;}
 html.reading .reveal .slides>section::before,html.reading .reveal .slides>section::after{display:none;}
 /* ---------- deck toolbar (replaces reveal's arrows + slide number) ---------- */
-.reveal .progress{height:4px;color:var(--teal);background:transparent;}
+.reveal .progress{height:4px;color:var(--gold);background:transparent;}
 .deckbar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:40;display:flex;align-items:center;gap:2px;padding:4px;border-radius:999px;background:rgba(255,255,255,.94);border:1px solid var(--line);box-shadow:0 8px 24px -12px rgba(15,27,45,.35);font-family:var(--display);transition:opacity .35s;backdrop-filter:blur(6px);}
 .deckbar.idle{opacity:0;pointer-events:none;}
 /* [hidden] loses to display:flex unless said again — the hidden desktop bar sat on top of the phone bar */
@@ -494,7 +494,7 @@ html.reading .reveal .slides>section::before,html.reading .reveal .slides>sectio
 .deckbar:hover,.deckbar:focus-within{opacity:1;}
 .deckbar button{all:unset;box-sizing:border-box;width:44px;height:44px;border-radius:999px;display:flex;align-items:center;justify-content:center;color:var(--ink);cursor:pointer;}
 .deckbar button:hover{background:var(--soft);}
-.deckbar button:focus-visible{outline:2px solid var(--teal);outline-offset:1px;}
+.deckbar button:focus-visible{outline:2px solid var(--gold);outline-offset:1px;}
 .deckbar button[disabled]{opacity:.3;cursor:default;}
 .deckbar svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
 .deckbar .count{min-width:4.2em;text-align:center;font-size:14px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums;}
@@ -514,7 +514,7 @@ html.reading .reveal .slides>section::before,html.reading .reveal .slides>sectio
 .keys dl{display:grid;grid-template-columns:minmax(10.8em,max-content) 1fr;gap:9px 16px;margin:0;font-size:14.5px;align-items:center;}   /* wide enough for Shift + ← →, the same in both lists */
 .keys dt{display:flex;gap:4px;justify-content:flex-end;align-items:center;white-space:nowrap;}
 .keys dd{margin:0;}
-.keys h4{margin:16px 0 10px;padding-top:12px;border-top:1px solid var(--line);font-family:var(--display);font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);}
+.keys h4{margin:16px 0 10px;padding-top:12px;border-top:1px solid var(--line);font-family:var(--display);font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);}
 .keys kbd{font-family:var(--mono);font-size:12.5px;min-width:1.9em;text-align:center;padding:3px 7px;border-radius:6px;border:1px solid var(--line);border-bottom-width:2px;background:var(--soft);color:var(--ink);}
 /* all slides = photo album: a grid of live clones of every slide, scaled to thumbnails */
 .album{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;background:#eef1f5;font-family:var(--display);}
@@ -522,23 +522,23 @@ html.reading .reveal .slides>section::before,html.reading .reveal .slides>sectio
 html.album-open .deckbar,html.album-open .rbar{display:none !important;}
 html.album-open body{overflow:hidden;}
 .aslides{display:none;}
-html.reading .aslides{display:flex;align-items:center;min-height:36px;margin-left:auto;font-size:14px;font-weight:600;color:var(--teal);text-decoration:none;}
+html.reading .aslides{display:flex;align-items:center;min-height:36px;margin-left:auto;font-size:14px;font-weight:600;color:var(--gold);text-decoration:none;}
 .ahead{display:flex;align-items:center;gap:14px;padding:14px 22px;background:#fff;border-bottom:1px solid var(--line);}
 .ahead h2{margin:0;font-size:18px;font-weight:700;color:var(--ink);letter-spacing:-.01em;}
 .ahead h2 span{color:var(--muted);font-weight:500;margin-left:.4em;}
 .ahead p{margin:0 0 0 auto;font-family:var(--font);font-size:13px;color:var(--muted);}
 .ahead button{flex:none;width:36px;height:36px;border:0;border-radius:50%;background:var(--soft);color:var(--ink);cursor:pointer;display:grid;place-items:center;}
-.ahead button:hover{background:var(--teal-soft);color:var(--teal);}
+.ahead button:hover{background:var(--gold-soft);color:var(--gold);}
 .ahead button svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;}
 .agrid{flex:1;overflow-y:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px 18px;align-content:start;padding:22px;overscroll-behavior:contain;touch-action:pan-y;}
 .agrid.dragging{cursor:grabbing;user-select:none;}
 .thumb{display:block;cursor:pointer;border-radius:12px;outline:none;}
 .tframe{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:10px;background:#fff;box-shadow:0 1px 2px rgba(15,27,45,.08),0 8px 20px -14px rgba(15,27,45,.35);transition:box-shadow .15s,transform .15s;}
-@media (hover:hover){.thumb:hover .tframe{transform:translateY(-2px);box-shadow:0 0 0 2px #b9dfe2,0 12px 26px -14px rgba(15,27,45,.4);}}
-.thumb.sel .tframe{box-shadow:0 0 0 4px var(--teal),0 12px 26px -14px rgba(15,27,45,.4);}
-.thumb.now .tn::after{content:"current";margin-left:.5em;padding:1px 7px;border-radius:999px;background:var(--teal-soft);color:var(--teal);font-size:11px;font-weight:600;letter-spacing:.04em;}
+@media (hover:hover){.thumb:hover .tframe{transform:translateY(-2px);box-shadow:0 0 0 2px #e8d3a6,0 12px 26px -14px rgba(15,27,45,.4);}}
+.thumb.sel .tframe{box-shadow:0 0 0 4px var(--gold),0 12px 26px -14px rgba(15,27,45,.4);}
+.thumb.now .tn::after{content:"current";margin-left:.5em;padding:1px 7px;border-radius:999px;background:var(--gold-soft);color:var(--gold);font-size:11px;font-weight:600;letter-spacing:.04em;}
 .tcap{display:flex;align-items:baseline;gap:8px;margin-top:8px;font-size:13px;line-height:1.3;}
-.tn{flex:none;font-weight:700;color:var(--teal);}
+.tn{flex:none;font-weight:700;color:var(--gold);}
 .tt{color:var(--body);font-family:var(--font);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .tframe>.thost{position:absolute;inset:0;}
 @media (max-width:600px){.agrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 10px;padding:12px 12px calc(16px + env(safe-area-inset-bottom));}.ahead{padding:10px 12px;gap:10px;}.ahead p{display:none;}.ahead h2{font-size:16px;}.tcap{font-size:12px;}}
@@ -807,7 +807,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <div class="cards">
     <div class="card"><b>Samples in time</b>Frames 41.7 ms apart; too few and the nearest match lies — wheels turn backwards.</div>
     <div class="card violet"><b>Brightness constancy</b>Iₓu + I_yv + Iₜ = 0 — the gradient (session 3) and the change over time give one equation per pixel.</div>
-    <div class="card amber"><b>Aperture problem</b>One equation, two unknowns: only the normal flow −Iₜ ÷ ‖∇I‖ across the edge.</div>
+    <div class="card teal"><b>Aperture problem</b>One equation, two unknowns: only the normal flow −Iₜ ÷ ‖∇I‖ across the edge.</div>
   </div>
   <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-09/lab.ipynb#scrollTo=part-a" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part A</a><span>a moving image with a known (u, v) → Farneback flow vs the truth; a bar behind a round hole</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s9a">More practice · Session 9 A — practice bank with worked solutions →</a></p>
@@ -831,7 +831,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="kicker">B · Lucas–Kanade</p>
   <h2 class="claim">Assume a small window moves together</h2>
   <div class="split">
-    <div><svg class="fig cvsvg" viewBox="0 0 540 260" style="max-width:640px;margin:0 auto" role="img" aria-label="three pixels in a window; each gives a line in the u–v plane; the three lines meet at u = 1, v = 3"><rect x="20" y="40" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="56" y="40" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="92" y="40" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="128" y="40" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="164" y="40" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="20" y="76" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="56" y="76" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="92" y="76" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="128" y="76" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="164" y="76" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="20" y="112" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="56" y="112" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="92" y="112" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="128" y="112" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="164" y="112" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="20" y="148" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="56" y="148" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="92" y="148" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="128" y="148" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="164" y="148" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="20" y="184" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="56" y="184" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="92" y="184" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="128" y="184" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="164" y="184" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="56" y="76" width="34" height="34" rx="4" fill="#2f6fdb" fill-opacity=".85"/><text x="73" y="98" text-anchor="middle" class="lb" style="fill:#fff;font-size:14px">p₁</text><rect x="128" y="112" width="34" height="34" rx="4" fill="#e0533d" fill-opacity=".85"/><text x="145" y="134" text-anchor="middle" class="lb" style="fill:#fff;font-size:14px">p₂</text><rect x="92" y="184" width="34" height="34" rx="4" fill="#0f766e" fill-opacity=".85"/><text x="109" y="206" text-anchor="middle" class="lb" style="fill:#fff;font-size:14px">p₃</text><text x="110" y="28" text-anchor="middle" class="tk">a 5 × 5 window — every pixel gives one equation</text><line x1="270" y1="230" x2="438.0" y2="230" stroke="#94a3b8"/><line x1="300" y1="260" x2="300" y2="50" stroke="#94a3b8"/><text x="438.0" y="248" text-anchor="end" class="tk">u</text><text x="292" y="54" text-anchor="end" class="tk">v</text><line x1="330" y1="260" x2="330" y2="50" stroke="#2f6fdb" stroke-width="3"/><line x1="270" y1="140" x2="438.0" y2="140" stroke="#e0533d" stroke-width="3"/><line x1="270" y1="80" x2="438.0" y2="248.0" stroke="#0f766e" stroke-width="3"/><circle cx="330" cy="140" r="7" fill="#c97a06" stroke="#fff" stroke-width="2"/><text x="320" y="164" text-anchor="end" class="lb">(1, 3)</text><text x="336" y="251.0" class="tk" style="fill:#2f6fdb">p₁: 2u − 2 = 0</text><text x="438.0" y="132" text-anchor="end" class="tk" style="fill:#e0533d">p₂: v − 3 = 0</text><text x="393.0" y="196.0" class="tk" style="fill:#0f766e">p₃: u + v − 4 = 0</text></svg><p class="gcap">one pixel: a line of possible (u, v) · three pixels: the lines meet at one answer</p></div>
+    <div><svg class="fig cvsvg" viewBox="0 0 540 260" style="max-width:640px;margin:0 auto" role="img" aria-label="three pixels in a window; each gives a line in the u–v plane; the three lines meet at u = 1, v = 3"><rect x="20" y="40" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="56" y="40" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="92" y="40" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="128" y="40" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="164" y="40" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="20" y="76" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="56" y="76" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="92" y="76" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="128" y="76" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="164" y="76" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="20" y="112" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="56" y="112" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="92" y="112" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="128" y="112" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="164" y="112" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="20" y="148" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="56" y="148" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="92" y="148" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="128" y="148" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="164" y="148" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="20" y="184" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="56" y="184" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="92" y="184" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="128" y="184" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="164" y="184" width="34" height="34" rx="4" fill="#eef2f7"/><rect x="56" y="76" width="34" height="34" rx="4" fill="#2f6fdb" fill-opacity=".85"/><text x="73" y="98" text-anchor="middle" class="lb" style="fill:#fff;font-size:14px">p₁</text><rect x="128" y="112" width="34" height="34" rx="4" fill="#e0533d" fill-opacity=".85"/><text x="145" y="134" text-anchor="middle" class="lb" style="fill:#fff;font-size:14px">p₂</text><rect x="92" y="184" width="34" height="34" rx="4" fill="#855400" fill-opacity=".85"/><text x="109" y="206" text-anchor="middle" class="lb" style="fill:#fff;font-size:14px">p₃</text><text x="110" y="28" text-anchor="middle" class="tk">a 5 × 5 window — every pixel gives one equation</text><line x1="270" y1="230" x2="438.0" y2="230" stroke="#94a3b8"/><line x1="300" y1="260" x2="300" y2="50" stroke="#94a3b8"/><text x="438.0" y="248" text-anchor="end" class="tk">u</text><text x="292" y="54" text-anchor="end" class="tk">v</text><line x1="330" y1="260" x2="330" y2="50" stroke="#2f6fdb" stroke-width="3"/><line x1="270" y1="140" x2="438.0" y2="140" stroke="#e0533d" stroke-width="3"/><line x1="270" y1="80" x2="438.0" y2="248.0" stroke="#855400" stroke-width="3"/><circle cx="330" cy="140" r="7" fill="#0f766e" stroke="#fff" stroke-width="2"/><text x="320" y="164" text-anchor="end" class="lb">(1, 3)</text><text x="336" y="251.0" class="tk" style="fill:#2f6fdb">p₁: 2u − 2 = 0</text><text x="438.0" y="132" text-anchor="end" class="tk" style="fill:#e0533d">p₂: v − 3 = 0</text><text x="393.0" y="196.0" class="tk" style="fill:#855400">p₃: u + v − 4 = 0</text></svg><p class="gcap">one pixel: a line of possible (u, v) · three pixels: the lines meet at one answer</p></div>
     <div class="say">
       <p>Assume <b>every pixel in a small window moves the same</b>: each adds one equation.</p>
       <div class="eq">$$\begin{bmatrix}I_{x1}&I_{y1}\\ \vdots&\vdots\\ I_{xn}&I_{yn}\end{bmatrix}\!\begin{bmatrix}u\\v\end{bmatrix}=-\begin{bmatrix}I_{t1}\\ \vdots\\ I_{tn}\end{bmatrix}\quad A\mathbf{u}=-\mathbf{b}$$</div>
@@ -924,7 +924,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <div class="cards">
     <div class="card"><b>One window, one motion</b>Every pixel adds Iₓu + I_yv + Iₜ = 0; least squares gives M (u, v)ᵀ = −(ΣIₓIₜ, ΣI_yIₜ)ᵀ.</div>
     <div class="card violet"><b>M decides</b>Session 6's matrix: two large eigenvalues track; an edge gives only the normal flow; flat areas follow the noise.</div>
-    <div class="card amber"><b>Coarse to fine</b>Big motion: solve on the smallest pyramid level, then refine — 31 of 40 points right on a 30-px cyclist instead of 2.</div>
+    <div class="card teal"><b>Coarse to fine</b>Big motion: solve on the smallest pyramid level, then refine — 31 of 40 points right on a 30-px cyclist instead of 2.</div>
   </div>
   <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-09/lab.ipynb#scrollTo=part-b" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part B</a><span>Lucas–Kanade by hand on a known shift (M from gradients, as in session 6's lab); goodFeaturesToTrack + calcOpticalFlowPyrLK: corners track, edges slide</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s9b">More practice · Session 9 B — practice bank with worked solutions →</a></p>
@@ -1059,7 +1059,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <div class="cards" style="grid-template-columns:repeat(2,minmax(0,1fr))">
     <div class="card"><b>A box is a moment; a track is a path</b>Session 8, slide 35 warned: tracking turns detections into where someone went, and when. This clip already holds 39 paths in 3.2 s.</div>
     <div class="card violet"><b>Who keeps the paths, and how long?</b>Under Thailand's PDPA a path of an identifiable person is personal data: a stated purpose, and delete it when the purpose is done.</div>
-    <div class="card amber"><b>Across cameras, a path becomes a person</b>Re-identification links one person's tracks between cameras (T9-5) — a full day of movement.</div>
+    <div class="card teal"><b>Across cameras, a path becomes a person</b>Re-identification links one person's tracks between cameras (T9-5) — a full day of movement.</div>
     <div class="card"><b>Design for less</b>Count at a line and drop the tracks; keep totals, not paths; blur faces; never store what the task does not need.</div>
   </div>
   <p class="takeaway"><span>For your project: say what you store, for how long, and why — in the proposal, not after the demo.</span></p>
@@ -1074,7 +1074,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <div class="cards">
     <div class="card"><b>What moved</b>|Iₜ − Iₜ₋₁| &gt; τ — free, but fooled by light, a moving camera and objects that stop.</div>
     <div class="card violet"><b>Follow a patch</b>NCC finds the patch in the next frame; the same patch fades as the object turns (0.85 → 0.37).</div>
-    <div class="card amber"><b>Detect, then link</b>A detector every frame, boxes linked by IoU, highest first. Fast motion, low fps and crowds break IDs.</div>
+    <div class="card teal"><b>Detect, then link</b>A detector every frame, boxes linked by IoU, highest first. Fast motion, low fps and crowds break IDs.</div>
   </div>
   <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-09/lab.ipynb#scrollTo=part-c" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part C</a><span>frame differencing with a threshold; an IoU tracker written by hand on two frames' boxes; YOLO + ByteTrack counting at a line</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s9c">More practice · Session 9 C — practice bank with worked solutions →</a></p>
@@ -1098,7 +1098,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="kicker">D · Putting it together</p>
   <h2 class="claim">One system, every session</h2>
   <div>
-    <svg class="fig" viewBox="0 0 1120 250" style="width:100%;margin:0 auto" role="img" aria-label="a pipeline that counts people on the crossing: camera, clean, find, outline, top view, follow, count, risks — each stage marked with the session it comes from"><defs><marker id="a9" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/></marker></defs><rect x="10" y="10" width="252" height="92" rx="12" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><text x="24" y="46" class="lb" style="font-size:22px">Camera</text><text x="24" y="80" class="tk" style="font-size:17px">frames, 24 per second</text><circle cx="242" cy="38" r="14" fill="#0f766e"/><text x="242" y="43.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">2</text><path d="M266,56.0 l21,0" stroke="#94a3b8" stroke-width="3" marker-end="url(#a9)"/><rect x="292" y="10" width="252" height="92" rx="12" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><text x="306" y="46" class="lb" style="font-size:22px">Clean the image</text><text x="306" y="80" class="tk" style="font-size:17px">blur away noise</text><circle cx="525" cy="38" r="14" fill="#0f766e"/><text x="525" y="43.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">3</text><path d="M548,56.0 l21,0" stroke="#94a3b8" stroke-width="3" marker-end="url(#a9)"/><rect x="575" y="10" width="252" height="92" rx="12" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><text x="589" y="46" class="lb" style="font-size:22px">Find people</text><text x="589" y="80" class="tk" style="font-size:17px">YOLO boxes · CNN backbone</text><circle cx="808" cy="38" r="14" fill="#0f766e"/><text x="808" y="43.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">8</text><circle cx="776" cy="38" r="14" fill="#0f766e"/><text x="776" y="43.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">4</text><path d="M830,56.0 l21,0" stroke="#94a3b8" stroke-width="3" marker-end="url(#a9)"/><rect x="858" y="10" width="252" height="92" rx="12" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><text x="872" y="46" class="lb" style="font-size:22px">Outline them</text><text x="872" y="80" class="tk" style="font-size:17px">masks, when needed</text><circle cx="1090" cy="38" r="14" fill="#0f766e"/><text x="1090" y="43.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">8</text><path d="M984,105 L984,124 L136,124 L136,142" fill="none" stroke="#94a3b8" stroke-width="3" marker-end="url(#a9)"/><rect x="10" y="148" width="252" height="92" rx="12" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><text x="24" y="184" class="lb" style="font-size:22px">Feet → top view</text><text x="24" y="218" class="tk" style="font-size:17px">homography of the road</text><circle cx="242" cy="176" r="14" fill="#0f766e"/><text x="242" y="181.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">7</text><path d="M266,194.0 l21,0" stroke="#94a3b8" stroke-width="3" marker-end="url(#a9)"/><rect x="292" y="148" width="252" height="92" rx="12" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><text x="306" y="184" class="lb" style="font-size:22px">Follow them</text><text x="306" y="218" class="tk" style="font-size:17px">IoU links → IDs</text><circle cx="525" cy="176" r="14" fill="#0f766e"/><text x="525" y="181.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">9</text><path d="M548,194.0 l21,0" stroke="#94a3b8" stroke-width="3" marker-end="url(#a9)"/><rect x="575" y="148" width="252" height="92" rx="12" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><text x="589" y="184" class="lb" style="font-size:22px">Count + measure</text><text x="589" y="218" class="tk" style="font-size:17px">crossings · a fitting metric</text><circle cx="808" cy="176" r="14" fill="#0f766e"/><text x="808" y="181.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">8</text><path d="M830,194.0 l21,0" stroke="#94a3b8" stroke-width="3" marker-end="url(#a9)"/><rect x="858" y="148" width="252" height="92" rx="12" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><text x="872" y="184" class="lb" style="font-size:22px">Name the risks</text><text x="872" y="218" class="tk" style="font-size:17px">who is watched, what is kept</text><circle cx="1090" cy="176" r="14" fill="#0f766e"/><text x="1090" y="181.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">9</text><circle cx="1058" cy="176" r="14" fill="#0f766e"/><text x="1058" y="181.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">8</text></svg>
+    <svg class="fig" viewBox="0 0 1120 250" style="width:100%;margin:0 auto" role="img" aria-label="a pipeline that counts people on the crossing: camera, clean, find, outline, top view, follow, count, risks — each stage marked with the session it comes from"><defs><marker id="a9" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/></marker></defs><rect x="10" y="10" width="252" height="92" rx="12" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><text x="24" y="46" class="lb" style="font-size:22px">Camera</text><text x="24" y="80" class="tk" style="font-size:17px">frames, 24 per second</text><circle cx="242" cy="38" r="14" fill="#855400"/><text x="242" y="43.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">2</text><path d="M266,56.0 l21,0" stroke="#94a3b8" stroke-width="3" marker-end="url(#a9)"/><rect x="292" y="10" width="252" height="92" rx="12" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><text x="306" y="46" class="lb" style="font-size:22px">Clean the image</text><text x="306" y="80" class="tk" style="font-size:17px">blur away noise</text><circle cx="525" cy="38" r="14" fill="#855400"/><text x="525" y="43.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">3</text><path d="M548,56.0 l21,0" stroke="#94a3b8" stroke-width="3" marker-end="url(#a9)"/><rect x="575" y="10" width="252" height="92" rx="12" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><text x="589" y="46" class="lb" style="font-size:22px">Find people</text><text x="589" y="80" class="tk" style="font-size:17px">YOLO boxes · CNN backbone</text><circle cx="808" cy="38" r="14" fill="#855400"/><text x="808" y="43.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">8</text><circle cx="776" cy="38" r="14" fill="#855400"/><text x="776" y="43.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">4</text><path d="M830,56.0 l21,0" stroke="#94a3b8" stroke-width="3" marker-end="url(#a9)"/><rect x="858" y="10" width="252" height="92" rx="12" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><text x="872" y="46" class="lb" style="font-size:22px">Outline them</text><text x="872" y="80" class="tk" style="font-size:17px">masks, when needed</text><circle cx="1090" cy="38" r="14" fill="#855400"/><text x="1090" y="43.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">8</text><path d="M984,105 L984,124 L136,124 L136,142" fill="none" stroke="#94a3b8" stroke-width="3" marker-end="url(#a9)"/><rect x="10" y="148" width="252" height="92" rx="12" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><text x="24" y="184" class="lb" style="font-size:22px">Feet → top view</text><text x="24" y="218" class="tk" style="font-size:17px">homography of the road</text><circle cx="242" cy="176" r="14" fill="#855400"/><text x="242" y="181.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">7</text><path d="M266,194.0 l21,0" stroke="#94a3b8" stroke-width="3" marker-end="url(#a9)"/><rect x="292" y="148" width="252" height="92" rx="12" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><text x="306" y="184" class="lb" style="font-size:22px">Follow them</text><text x="306" y="218" class="tk" style="font-size:17px">IoU links → IDs</text><circle cx="525" cy="176" r="14" fill="#855400"/><text x="525" y="181.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">9</text><path d="M548,194.0 l21,0" stroke="#94a3b8" stroke-width="3" marker-end="url(#a9)"/><rect x="575" y="148" width="252" height="92" rx="12" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><text x="589" y="184" class="lb" style="font-size:22px">Count + measure</text><text x="589" y="218" class="tk" style="font-size:17px">crossings · a fitting metric</text><circle cx="808" cy="176" r="14" fill="#855400"/><text x="808" y="181.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">8</text><path d="M830,194.0 l21,0" stroke="#94a3b8" stroke-width="3" marker-end="url(#a9)"/><rect x="858" y="148" width="252" height="92" rx="12" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><text x="872" y="184" class="lb" style="font-size:22px">Name the risks</text><text x="872" y="218" class="tk" style="font-size:17px">who is watched, what is kept</text><circle cx="1090" cy="176" r="14" fill="#855400"/><text x="1090" y="181.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">9</text><circle cx="1058" cy="176" r="14" fill="#855400"/><text x="1058" y="181.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">8</text></svg>
     <p class="takeaway" style="margin-top:.6em"><span>The job: count the people who use the crossing in this clip. Every box is a session you took; the number in each circle says which.</span></p>
   </div>
 
@@ -1150,7 +1150,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="kicker">D · Putting it together</p>
   <h2 class="claim">A real case: tracking people across cameras</h2>
   <div>
-    <svg class="fig" viewBox="0 0 1120 250" style="width:100%;margin:0 auto" role="img" aria-label="the paper's pipeline: find people, follow them, describe them, map feet to the floor, join cameras, measure"><defs><marker id="a9" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/></marker></defs><rect x="10" y="10" width="347" height="92" rx="12" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><text x="24" y="46" class="lb" style="font-size:22px">Find people</text><text x="24" y="80" class="tk" style="font-size:17px">YOLOv8, every camera</text><circle cx="337" cy="38" r="14" fill="#0f766e"/><text x="337" y="43.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">8</text><path d="M360,56.0 l21,0" stroke="#94a3b8" stroke-width="3" marker-end="url(#a9)"/><rect x="387" y="10" width="347" height="92" rx="12" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><text x="401" y="46" class="lb" style="font-size:22px">Follow them</text><text x="401" y="80" class="tk" style="font-size:17px">ByteTrack: Kalman + matching</text><circle cx="713" cy="38" r="14" fill="#0f766e"/><text x="713" y="43.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">9</text><path d="M736,56.0 l21,0" stroke="#94a3b8" stroke-width="3" marker-end="url(#a9)"/><rect x="763" y="10" width="347" height="92" rx="12" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><text x="777" y="46" class="lb" style="font-size:22px">Describe them</text><text x="777" y="80" class="tk" style="font-size:17px">OSNet embedding (ReID)</text><circle cx="1090" cy="38" r="14" fill="#0f766e"/><text x="1090" y="43.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">5</text><circle cx="1058" cy="38" r="14" fill="#0f766e"/><text x="1058" y="43.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">4</text><path d="M937,105 L937,124 L183,124 L183,142" fill="none" stroke="#94a3b8" stroke-width="3" marker-end="url(#a9)"/><rect x="10" y="148" width="347" height="92" rx="12" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><text x="24" y="184" class="lb" style="font-size:22px">Feet → floor map</text><text x="24" y="218" class="tk" style="font-size:17px">pose → feet → homography</text><circle cx="337" cy="176" r="14" fill="#0f766e"/><text x="337" y="181.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">7</text><path d="M360,194.0 l21,0" stroke="#94a3b8" stroke-width="3" marker-end="url(#a9)"/><rect x="387" y="148" width="347" height="92" rx="12" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><text x="401" y="184" class="lb" style="font-size:22px">Join cameras</text><text x="401" y="218" class="tk" style="font-size:17px">space-time rules + clustering</text><circle cx="713" cy="176" r="14" fill="#0f766e"/><text x="713" y="181.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">9</text><path d="M736,194.0 l21,0" stroke="#94a3b8" stroke-width="3" marker-end="url(#a9)"/><rect x="763" y="148" width="347" height="92" rx="12" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><text x="777" y="184" class="lb" style="font-size:22px">Measure</text><text x="777" y="218" class="tk" style="font-size:17px">HOTA on a benchmark</text><circle cx="1090" cy="176" r="14" fill="#0f766e"/><text x="1090" y="181.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">8</text></svg>
+    <svg class="fig" viewBox="0 0 1120 250" style="width:100%;margin:0 auto" role="img" aria-label="the paper's pipeline: find people, follow them, describe them, map feet to the floor, join cameras, measure"><defs><marker id="a9" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/></marker></defs><rect x="10" y="10" width="347" height="92" rx="12" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><text x="24" y="46" class="lb" style="font-size:22px">Find people</text><text x="24" y="80" class="tk" style="font-size:17px">YOLOv8, every camera</text><circle cx="337" cy="38" r="14" fill="#855400"/><text x="337" y="43.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">8</text><path d="M360,56.0 l21,0" stroke="#94a3b8" stroke-width="3" marker-end="url(#a9)"/><rect x="387" y="10" width="347" height="92" rx="12" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><text x="401" y="46" class="lb" style="font-size:22px">Follow them</text><text x="401" y="80" class="tk" style="font-size:17px">ByteTrack: Kalman + matching</text><circle cx="713" cy="38" r="14" fill="#855400"/><text x="713" y="43.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">9</text><path d="M736,56.0 l21,0" stroke="#94a3b8" stroke-width="3" marker-end="url(#a9)"/><rect x="763" y="10" width="347" height="92" rx="12" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><text x="777" y="46" class="lb" style="font-size:22px">Describe them</text><text x="777" y="80" class="tk" style="font-size:17px">OSNet embedding (ReID)</text><circle cx="1090" cy="38" r="14" fill="#855400"/><text x="1090" y="43.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">5</text><circle cx="1058" cy="38" r="14" fill="#855400"/><text x="1058" y="43.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">4</text><path d="M937,105 L937,124 L183,124 L183,142" fill="none" stroke="#94a3b8" stroke-width="3" marker-end="url(#a9)"/><rect x="10" y="148" width="347" height="92" rx="12" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><text x="24" y="184" class="lb" style="font-size:22px">Feet → floor map</text><text x="24" y="218" class="tk" style="font-size:17px">pose → feet → homography</text><circle cx="337" cy="176" r="14" fill="#855400"/><text x="337" y="181.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">7</text><path d="M360,194.0 l21,0" stroke="#94a3b8" stroke-width="3" marker-end="url(#a9)"/><rect x="387" y="148" width="347" height="92" rx="12" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><text x="401" y="184" class="lb" style="font-size:22px">Join cameras</text><text x="401" y="218" class="tk" style="font-size:17px">space-time rules + clustering</text><circle cx="713" cy="176" r="14" fill="#855400"/><text x="713" y="181.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">9</text><path d="M736,194.0 l21,0" stroke="#94a3b8" stroke-width="3" marker-end="url(#a9)"/><rect x="763" y="148" width="347" height="92" rx="12" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><text x="777" y="184" class="lb" style="font-size:22px">Measure</text><text x="777" y="218" class="tk" style="font-size:17px">HOTA on a benchmark</text><circle cx="1090" cy="176" r="14" fill="#855400"/><text x="1090" y="181.5" text-anchor="middle" style="font:700 15px Space Grotesk,sans-serif;fill:#fff">8</text></svg>
     <div class="split even" style="margin-top:.5em;align-items:start">
       <div class="say"><p><b>Online multi-camera people tracking</b> — Cherdchusakulchai, …, Kudisthalert, … (CVPR Workshops 2024). AI City Challenge 2024, Track 1 (synthetic scenes): HOTA <b>51.06 %</b>, 6th place.</p></div>
       <div class="say"><p>Every stage is a session of this course; the new part is joining the cameras. <a href="https://openaccess.thecvf.com/content/CVPR2024W/AICity/html/Cherdchusakulchai_Online_Multi-camera_People_Tracking_with_Spatial-temporal_Mechanism_and_Anchor-feature_Hierarchical_CVPRW_2024_paper.html" target="_blank" rel="noopener">Read the paper →</a> · it starts T9-5.</p></div>
@@ -1165,7 +1165,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="kicker">D · Putting it together</p>
   <h2 class="claim">From pixels to motion: the map, completed</h2>
   <div class="flashback">Session 1, slide 9: the course map promised where each idea would come back. Every line has now been used.</div>
-  <ol class="tset" style="grid-template-columns:repeat(3,minmax(0,1fr));margin-top:.5em"><li><span class="tn">✓</span><span class="tt">convolution → CNNs <span style="color:var(--teal)">4</span></span><span>session 4, slide 23</span></li><li><span class="tn">✓</span><span class="tt">gradients → corners <span style="color:var(--teal)">6</span></span><span>session 6, slide 7</span></li><li><span class="tn">✓</span><span class="tt">pinhole camera → camera matrix <span style="color:var(--teal)">7</span></span><span>session 7, slide 21</span></li><li><span class="tn">✓</span><span class="tt">upsampling → segmentation <span style="color:var(--teal)">8</span></span><span>session 8, slide 23</span></li><li><span class="tn">✓</span><span class="tt">CLIP → find by text <span style="color:var(--teal)">8</span></span><span>session 8, slide 30</span></li><li><span class="tn">✓</span><span class="tt">RANSAC → stitching <span style="color:var(--teal)">7</span></span><span>session 7, slide 16</span></li><li><span class="tn">✓</span><span class="tt">corner matrix → flow <span style="color:var(--teal)">9</span></span><span>session 9, slide 13</span></li><li><span class="tn">✓</span><span class="tt">IoU → tracking <span style="color:var(--teal)">9</span></span><span>session 9, slide 21</span></li><li><span class="tn">✓</span><span class="tt">all of it → your project <span style="color:var(--teal)">★</span></span><span>slide 28 · week-10 pitch</span></li></ol>
+  <ol class="tset" style="grid-template-columns:repeat(3,minmax(0,1fr));margin-top:.5em"><li><span class="tn">✓</span><span class="tt">convolution → CNNs <span style="color:var(--gold)">4</span></span><span>session 4, slide 23</span></li><li><span class="tn">✓</span><span class="tt">gradients → corners <span style="color:var(--gold)">6</span></span><span>session 6, slide 7</span></li><li><span class="tn">✓</span><span class="tt">pinhole camera → camera matrix <span style="color:var(--gold)">7</span></span><span>session 7, slide 21</span></li><li><span class="tn">✓</span><span class="tt">upsampling → segmentation <span style="color:var(--gold)">8</span></span><span>session 8, slide 23</span></li><li><span class="tn">✓</span><span class="tt">CLIP → find by text <span style="color:var(--gold)">8</span></span><span>session 8, slide 30</span></li><li><span class="tn">✓</span><span class="tt">RANSAC → stitching <span style="color:var(--gold)">7</span></span><span>session 7, slide 16</span></li><li><span class="tn">✓</span><span class="tt">corner matrix → flow <span style="color:var(--gold)">9</span></span><span>session 9, slide 13</span></li><li><span class="tn">✓</span><span class="tt">IoU → tracking <span style="color:var(--gold)">9</span></span><span>session 9, slide 21</span></li><li><span class="tn">✓</span><span class="tt">all of it → your project <span style="color:var(--gold)">★</span></span><span>slide 28 · week-10 pitch</span></li></ol>
 
   <aside class="notes"><p>🇹🇭 ย้อนแผนที่วิชาคาบ 1 หน้า 9 · ติ๊กครบทุกเส้น Carries forward พร้อมหน้าที่ใช้จริง · เส้นสุดท้าย all of it → your project = pitch สัปดาห์ 10</p><p>🇬🇧 Back to session 1 slide 9's course map: every Carries-forward line ticked, with the slide where it was used. The last line, all of it → your project, is the week-10 pitch.</p></aside>
 </section>
@@ -1192,7 +1192,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <div class="cards">
     <div class="card"><b>One system</b>Camera, filters, a detector, a homography, a tracker, a metric — each from a session of this course.</div>
     <div class="card violet"><b>A budget</b>1000 ÷ fps ms per frame: measure every stage on your machine; run the slow ones less often.</div>
-    <div class="card amber"><b>An honest comparison</b>Two or three solutions, one metric, the same data, the time of each — and the risks named.</div>
+    <div class="card teal"><b>An honest comparison</b>Two or three solutions, one metric, the same data, the time of each — and the risks named.</div>
   </div>
   <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-09/lab.ipynb#scrollTo=part-d" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part D</a><span>a small pipeline end to end: detect → track → count at a line → compare with a hand count → time each stage</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s9d">More practice · Session 9 D — practice bank with worked solutions →</a></p>
@@ -1223,7 +1223,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="cards" style="grid-template-columns:1fr">
       <div class="card"><b>Week 10 · short problem pitch</b>A few minutes per group: Input · Output · Problem · Challenge (session 1, slide 19). Comments, then the clinic.</div>
       <div class="card violet"><b>Week 11 · proposal</b>Video + slides: the pitch refined, data and EDA, 3+ core techniques, 2–3 solutions.</div>
-      <div class="card amber"><b>Week 13 · demo</b>One metric and the time of every solution; a notebook that runs end to end, live.</div>
+      <div class="card teal"><b>Week 13 · demo</b>One metric and the time of every solution; a notebook that runs end to end, live.</div>
     </div>
     <div class="say"><p>Today's part D is the shape of a good project: a pipeline from these sessions, a metric that fits, a time budget, risks named.</p><p><a href="../project/" target="_blank" rel="noopener">Full project brief →</a></p></div>
   </div>
@@ -1238,7 +1238,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="cards" style="grid-template-columns:1fr">
       <div class="card"><b>Sessions 2–9, by hand</b>No calculator; the numbers work out cleanly. Questions look like the Try it slides, with new numbers.</div>
       <div class="card violet"><b>One cheat sheet</b>One side of A4, in pen (any colour), your name on the back (session 1, slide 21).</div>
-      <div class="card amber"><b>From today</b>Normal flow or u from Iₓ, I_y, Iₜ · a Lucas–Kanade 2 × 2 · which window M can solve · linking boxes by IoU · a time budget.</div>
+      <div class="card teal"><b>From today</b>Normal flow or u from Iₓ, I_y, Iₜ · a Lucas–Kanade 2 × 2 · which window M can solve · linking boxes by IoU · a time budget.</div>
     </div>
     <div class="say"><p>Week 14 reviews the whole course — bring your questions.</p><p>Every session has a practice bank with worked solutions — the best way to prepare.</p><p><a href="../practice/" target="_blank" rel="noopener">Practice bank, all sessions →</a></p></div>
   </div>
@@ -1261,7 +1261,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <div class="cards">
     <div class="card"><b>Make pictures: diffusion</b>Start from noise and remove a little at a time with a network (T9-6) — session 3's noise, session 4's networks.</div>
     <div class="card violet"><b>Make 3D: NeRF and splatting</b>Photos from known cameras K[R | t] (session 7) teach a scene you can view from anywhere (T9-7).</div>
-    <div class="card amber"><b>Understand video</b>Motion and time together (session 9) — what happens, not just what is there (T9-3).</div>
+    <div class="card teal"><b>Understand video</b>Motion and time together (session 9) — what happens, not just what is there (T9-3).</div>
   </div>
   <p class="takeaway"><span>The same pieces keep coming back: convolution, gradients, cameras, embeddings, matching. You know them now.</span></p>
   <aside class="notes"><p>🇹🇭 ชี้ต่อหลังจบวิชา: diffusion · NeRF/3DGS · video · ทุกอย่างประกอบจากชิ้นที่เรียนแล้ว</p><p>🇬🇧 Beyond the course: diffusion, NeRF and splatting, video — all built from pieces you have learned.</p></aside>
@@ -1720,7 +1720,7 @@ function drawNumbers(canvas,img,gain,pick,thr=128){   /* cells below thr are sha
   for(let r=0;r<N;r++) for(let c=0;c<N;c++){
     const v=Math.max(0,Math.min(255,Math.round(img[r][c]*gain)));
     const hit=pick&&pick[0]===r&&pick[1]===c;
-    ctx.fillStyle=hit?'#fbeaea':(v<thr?'#e3f3f4':'#ffffff'); ctx.fillRect(c*s,r*s,s,s);
+    ctx.fillStyle=hit?'#fbeaea':(v<thr?'#f8ecd2':'#ffffff'); ctx.fillRect(c*s,r*s,s,s);
     ctx.fillStyle=hit?'#d9534f':'#1b1f24'; ctx.fillText(v,c*s+s/2,r*s+s/2);
   }
   ctx.strokeStyle='#dde3e8'; ctx.lineWidth=1;
@@ -1798,12 +1798,12 @@ function initBC(){
     const line=(arr,col)=>{ ctx.strokeStyle=col; ctx.lineWidth=3; ctx.beginPath(); arr.forEach((v,i)=>i?ctx.lineTo(X(i),Y(v)):ctx.moveTo(X(i),Y(v))); ctx.stroke(); };
     line(PRO,'#2f6fdb'); line(I1,'#e0533d');
     ctx.setLineDash([5,4]); ctx.strokeStyle='#94a3b8'; ctx.beginPath(); ctx.moveTo(X(XS),Y(0)); ctx.lineTo(X(XS),Y(250)); ctx.stroke();
-    ctx.strokeStyle='#c97a06'; ctx.lineWidth=2.5; ctx.beginPath(); ctx.moveTo(X(XS-3),Y(PRO[XS]-3*Ix)); ctx.lineTo(X(XS+3),Y(PRO[XS]+3*Ix)); ctx.stroke(); ctx.setLineDash([]);
+    ctx.strokeStyle='#0f766e'; ctx.lineWidth=2.5; ctx.beginPath(); ctx.moveTo(X(XS-3),Y(PRO[XS]-3*Ix)); ctx.lineTo(X(XS+3),Y(PRO[XS]+3*Ix)); ctx.stroke(); ctx.setLineDash([]);
     ctx.strokeStyle='#0f1b2d'; ctx.lineWidth=3; ctx.beginPath(); ctx.moveTo(X(XS),Y(PRO[XS])); ctx.lineTo(X(XS),Y(I1[XS])); ctx.stroke();
     [[PRO[XS],'#2f6fdb'],[I1[XS],'#e0533d']].forEach(([v,c])=>{ ctx.fillStyle=c; ctx.beginPath(); ctx.arc(X(XS),Y(v),5,0,7); ctx.fill(); });
     ctx.font='600 19px "Space Grotesk",sans-serif'; ctx.textAlign='left';
     ctx.fillStyle='#2f6fdb'; ctx.fillText('I at time t',X(30),Y(PRO[30])-14); ctx.fillStyle='#e0533d'; ctx.fillText(`I at t + 1 (moved ${u} px →)`,X(22),Y(PRO[30])+60);
-    ctx.textAlign='right'; ctx.fillStyle='#c97a06'; ctx.fillText('slope Iₓ',X(XS+3)-10,Y(PRO[XS]+3*Ix)-4); ctx.fillStyle='#0f1b2d'; ctx.fillText('Iₜ',X(XS)-10,Y((PRO[XS]+I1[XS])/2)+6);
+    ctx.textAlign='right'; ctx.fillStyle='#0f766e'; ctx.fillText('slope Iₓ',X(XS+3)-10,Y(PRO[XS]+3*Ix)-4); ctx.fillStyle='#0f1b2d'; ctx.fillText('Iₜ',X(XS)-10,Y((PRO[XS]+I1[XS])/2)+6);
     ctx.fillStyle='#667085'; ctx.textAlign='center'; ctx.fillText('pixel x along row 718: dark tyre → light road',X((n-1)/2),372);
     ctx.save(); ctx.translate(16,Y(125)); ctx.rotate(-Math.PI/2); ctx.fillText('brightness',0,0); ctx.restore();
     $('bcV').textContent=`${u} px`;
@@ -1832,9 +1832,9 @@ function initAperture(){
     ctx.strokeStyle='#0f1b2d'; ctx.lineWidth=34; ctx.lineCap='butt'; ctx.beginPath(); ctx.moveTo(bx-L*ax,by+L*ay); ctx.lineTo(bx+L*ax,by-L*ay); ctx.stroke(); ctx.restore();
     if(!open){ ctx.save(); ctx.fillStyle='#cbd5e1'; ctx.beginPath(); ctx.rect(0,0,560,380); ctx.moveTo(cx+R,cy); ctx.arc(cx,cy,R,0,2*Math.PI,true); ctx.fill('evenodd'); ctx.restore(); }
     ctx.lineWidth=2; ctx.strokeStyle='#94a3b8'; ctx.beginPath(); ctx.arc(cx,cy,R,0,7); ctx.stroke();
-    arrow(s,'#e0533d'); if(open) arrow(m,'#c97a06',[8,6]);
+    arrow(s,'#e0533d'); if(open) arrow(m,'#0f766e',[8,6]);
     ctx.font='600 14px "Space Grotesk",sans-serif'; ctx.fillStyle='#e0533d'; ctx.textAlign='left'; ctx.fillText('seen through the hole: normal flow',14,366);
-    if(open){ ctx.fillStyle='#c97a06'; ctx.fillText('true motion',14,344); } };
+    if(open){ ctx.fillStyle='#0f766e'; ctx.fillText('true motion',14,344); } };
   const loop=()=>{ if(onSlide(cv)) draw(performance.now()); requestAnimationFrame(loop); };
   [sN,sM].forEach(e=>e.addEventListener('input',()=>{ out(); draw(PRINTING?650:performance.now()); }));
   $('apW').onclick=()=>{ open=!open; $('apW').textContent=open?'Close the hole':'Open the hole'; draw(performance.now()); };
@@ -1856,7 +1856,7 @@ function initLK(){
     return {a,b,c,p,q,l1,l2,det,kind,u,v,e,un:-(e[0]*p+e[1]*q)/l1,lines}; };
   const f0=v=>{ const r=Math.round(v); return r===0?'0':mn(r.toLocaleString('en')); }, f2=v=>mn((Math.abs(v)<5e-3?0:v).toFixed(2));
   const draw=()=>{ if(!G0) return; const r=solve(cur.x,cur.y);
-    ctx.drawImage(show1?im1:im0,0,0,640,480); ctx.strokeStyle={corner:'#e0533d',edge:'#2f6fdb',flat:'#0f766e'}[r.kind]; ctx.lineWidth=3; ctx.strokeRect((cur.x-h)*2,(cur.y-h)*2,LKD.win*2,LKD.win*2);
+    ctx.drawImage(show1?im1:im0,0,0,640,480); ctx.strokeStyle={corner:'#e0533d',edge:'#2f6fdb',flat:'#855400'}[r.kind]; ctx.lineWidth=3; ctx.strokeRect((cur.x-h)*2,(cur.y-h)*2,LKD.win*2,LKD.win*2);
     ctx.fillStyle='rgba(15,27,45,.7)'; ctx.fillRect(8,8,show1?150:120,26); ctx.fillStyle='#fff'; ctx.font='600 15px "Space Grotesk",sans-serif'; ctx.fillText(show1?'frame t + 1':'frame t',16,26);
     /* the (u, v) plane, ±3 px, v drawn upwards */
     const S=34, ox=150, oy=115, X=u=>ox+u*S, Y=v=>oy-v*S; px.clearRect(0,0,300,230); px.strokeStyle='#94a3b8'; px.lineWidth=1;
@@ -1865,9 +1865,9 @@ function initLK(){
     px.save(); px.beginPath(); px.rect(0,0,300,230); px.clip(); px.strokeStyle='rgba(47,111,219,.35)'; px.lineWidth=1.5;
     L.forEach(([gx,gy,gt])=>{ const n=Math.hypot(gx,gy); if(n<1e-6) return; const u0=-gt*gx/(n*n), v0=-gt*gy/(n*n), dx=-gy/n, dy=gx/n;
       px.beginPath(); px.moveTo(X(u0-9*dx),Y(v0-9*dy)); px.lineTo(X(u0+9*dx),Y(v0+9*dy)); px.stroke(); }); px.restore();
-    px.strokeStyle='#c97a06'; px.lineWidth=3; px.beginPath(); px.arc(X(LKD.true[0]),Y(LKD.true[1]),8,0,7); px.stroke();
+    px.strokeStyle='#0f766e'; px.lineWidth=3; px.beginPath(); px.arc(X(LKD.true[0]),Y(LKD.true[1]),8,0,7); px.stroke();
     if(r.kind==='corner'){ px.fillStyle='#e0533d'; px.beginPath(); px.arc(X(r.u),Y(r.v),5,0,7); px.fill(); }
-    px.fillStyle='#667085'; px.font='600 12px "Space Grotesk",sans-serif'; px.fillText('u',X(4.2),Y(0)+14); px.fillText('v',X(0)+6,Y(3.2)); px.fillStyle='#c97a06'; px.fillText('truth',X(LKD.true[0])+10,Y(LKD.true[1])+16);
+    px.fillStyle='#667085'; px.font='600 12px "Space Grotesk",sans-serif'; px.fillText('u',X(4.2),Y(0)+14); px.fillText('v',X(0)+6,Y(3.2)); px.fillStyle='#0f766e'; px.fillText('truth',X(LKD.true[0])+10,Y(LKD.true[1])+16);
     let t=`M = [${f0(r.a)} ${f0(r.b)} / ${f0(r.b)} ${f0(r.c)}] · λ₁ ${f0(r.l1)} · λ₂ ${f0(r.l2)}<br>`;
     if(r.kind==='corner') t+=`<b>corner</b> → (u, v) = <b>(${f2(r.u)}, ${f2(r.v)})</b> · truth (1.0, −0.5)`;
     else if(r.kind==='edge') t+=`<b>edge</b>: det ≈ 0 → the solve gives (${f2(r.u)}, ${f2(r.v)}) — wrong<br>only across the edge: u⊥ = ${f2(r.un)} (truth ${f2(LKD.true[0]*r.e[0]+LKD.true[1]*r.e[1])})`;
@@ -1908,7 +1908,7 @@ function initDiff(){
 /* C4: link YOLOv8n person boxes of frame T to frame T+k by IoU — highest first, each box once, ≥ threshold */
 function initLink(){
   const cv=document.getElementById('lnCv'); if(!cv) return; const ctx=cv.getContext('2d'), $=id=>document.getElementById(id), th=$('lnT'), cache={}, s=0.5;
-  let k='1'; const PALC=['#22c55e','#f59e0b','#3b82f6','#ec4899','#14b8a6','#a855f7','#ef4444','#84cc16','#06b6d4','#f97316','#6366f1','#eab308','#10b981'];
+  let k='1'; const PALC=['#22c55e','#f59e0b','#3b82f6','#ec4899','#f2c46d','#a855f7','#ef4444','#84cc16','#06b6d4','#f97316','#6366f1','#eab308','#10b981'];
   const link=(A,B,t)=>{ const P=[]; A.forEach((a,i)=>B.forEach((b,j)=>P.push([iouOf(a,b).v,i,j]))); P.sort((x,y)=>y[0]-x[0]); const ua=new Set(), ub=new Set(), m=[];
     for(const [v,i,j] of P){ if(v<t) break; if(ua.has(i)||ub.has(j)) continue; ua.add(i); ub.add(j); m.push([i,j,v]); } return m; };
   const img=(kk,cb)=>{ if(cache[kk]) return cb(cache[kk]); loadImg(`img/f${kk}.jpg`,im=>{ cache[kk]=im; cb(im); }); };
@@ -1926,7 +1926,7 @@ function initLink(){
 function initBudget(){
   const cv=document.getElementById('tbCv'); if(!cv) return; const ctx=cv.getContext('2d'), $=id=>document.getElementById(id); let fps=24, det='yolo640', every=0;
   const NM={yolo640:'YOLO 640',yolo320:'YOLO 320',seg640:'YOLO + masks'};
-  const draw=()=>{ const bud=1000/fps, st=[[NM[det],TIM[det],'#2f6fdb'],['ByteTrack',TIM.bytetrack,'#0f766e'],['homography',TIM.homography,'#a855f7']];
+  const draw=()=>{ const bud=1000/fps, st=[[NM[det],TIM[det],'#2f6fdb'],['ByteTrack',TIM.bytetrack,'#855400'],['homography',TIM.homography,'#a855f7']];
     if(every) st.push([every===1?'flow':'flow ÷ '+every,TIM.flow/every,'#e0533d']);
     const avg=st.reduce((a,s)=>a+s[1],0), worst=avg-(every?TIM.flow/every:0)+(every?TIM.flow:0), ok=avg<=bud, S=560/90;
     ctx.clearRect(0,0,640,210); let x=40; ctx.font='600 13px "Space Grotesk",sans-serif';

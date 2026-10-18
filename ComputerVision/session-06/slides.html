@@ -30,8 +30,8 @@
 <style>
 :root{
   --bg:#ffffff; --ink:#0f1b2d; --body:#2b3645; --muted:#667085; --soft:#f5f7fa; --line:#e4e8ee;
-  --teal:#0f766e; --teal-soft:#e6f4f2; --coral:#e0533d; --coral-soft:#fdeeea;
-  --amber:#c97a06; --amber-soft:#fdf4e3; --violet:#6d5bd0; --violet-soft:#f0edfc; --navy:#0f1b2d;
+  --gold:#855400; --gold-soft:#fbf1dc; --coral:#e0533d; --coral-soft:#fdeeea;
+  --teal:#0f766e; --teal-soft:#e6f4f2; --violet:#6d5bd0; --violet-soft:#f0edfc; --navy:#0f1b2d;
   --font:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
   --display:'Space Grotesk','Plus Jakarta Sans',sans-serif;
   --font-th:'Anuphan','Plus Jakarta Sans',sans-serif;
@@ -44,24 +44,24 @@ html,body{background:var(--bg);}
 .reveal h1,.reveal h2,.reveal h3,.reveal h4{font-family:var(--display);color:var(--ink);text-transform:none;letter-spacing:-0.02em;margin:0 0 .45em;}
 .reveal h1{font-size:2.6em;font-weight:700;line-height:1.02;}
 .reveal h2{font-size:1.5em;font-weight:700;line-height:1.12;}
-.reveal h3{font-size:.95em;font-weight:600;color:var(--teal);margin-bottom:.35em;}
+.reveal h3{font-size:.95em;font-weight:600;color:var(--gold);margin-bottom:.35em;}
 .reveal p,.reveal li{line-height:1.5;}
 .reveal ul,.reveal ol{margin:0 0 0 1.05em;}
 .reveal li{margin:.3em 0;padding-left:.15em;}
-.reveal ul li::marker{color:var(--teal);font-size:1.1em;}
-.reveal ol li::marker{color:var(--teal);font-weight:700;font-family:var(--display);}
+.reveal ul li::marker{color:var(--gold);font-size:1.1em;}
+.reveal ol li::marker{color:var(--gold);font-weight:700;font-family:var(--display);}
 .reveal strong,.reveal b{font-weight:700;color:var(--ink);}
-.reveal a{color:var(--teal);text-decoration:underline;text-underline-offset:3px;}
+.reveal a{color:var(--gold);text-decoration:underline;text-underline-offset:3px;}
 .reveal code{font-family:var(--mono);font-size:.82em;background:var(--soft);padding:.05em .3em;border-radius:5px;}
 
 /* slide header: kicker + claim title */
-.kicker{display:flex;align-items:center;gap:.5em;font-family:var(--display);font-size:.5em;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin:0 0 .5em;}
-.kicker::before{content:"";width:1.8em;height:3px;border-radius:2px;background:var(--teal);}
+.kicker{display:flex;align-items:center;gap:.5em;font-family:var(--display);font-size:.5em;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 .5em;}
+.kicker::before{content:"";width:1.8em;height:3px;border-radius:2px;background:var(--gold);}
 .reveal h2.claim{max-width:26em;}
 .lead{font-size:.66em;line-height:1.5;color:#46505e;margin:-.15em 0 .8em;max-width:52em;text-wrap:pretty;}
-/* closing note under the content: small, with the kicker's teal rule in front */
+/* closing note under the content: small, with the kicker's gold rule in front */
 .takeaway{display:flex;align-items:baseline;gap:.7em;margin:.9em 0 0;font-size:.6em;line-height:1.5;font-weight:500;color:var(--muted);max-width:60em;text-wrap:pretty;}
-.takeaway::before{content:"";flex:0 0 1.8em;height:3px;border-radius:2px;background:var(--teal);transform:translateY(-.3em);}
+.takeaway::before{content:"";flex:0 0 1.8em;height:3px;border-radius:2px;background:var(--gold);transform:translateY(-.3em);}
 html.reading .lead,html.reading .takeaway{font-size:15px;}
 
 /* layout helpers */
@@ -76,11 +76,11 @@ html.reading .lead,html.reading .takeaway{font-size:15px;}
 .card .cardimg{display:block;width:calc(100% + 1.4em);max-width:none;margin:-.55em -.7em .4em;aspect-ratio:5/2;object-fit:cover;border-radius:8px 8px 0 0;}
 .cards.c5{grid-template-columns:repeat(5,minmax(0,1fr));}
 .cards.c5 .card{font-size:.66em;padding:.5em .65em .55em;}
-.card{position:relative;background:#fff;border:1px solid var(--line);border-top:4px solid var(--teal);border-radius:12px;padding:.6em .75em .65em;font-size:.74em;line-height:1.4;box-shadow:0 1px 2px rgba(15,27,45,.05),0 6px 16px -10px rgba(15,27,45,.18);}
+.card{position:relative;background:#fff;border:1px solid var(--line);border-top:4px solid var(--gold);border-radius:12px;padding:.6em .75em .65em;font-size:.74em;line-height:1.4;box-shadow:0 1px 2px rgba(15,27,45,.05),0 6px 16px -10px rgba(15,27,45,.18);}
 .card b{display:block;font-family:var(--display);font-size:1.12em;margin-bottom:.2em;color:var(--ink);}
 .card .n{display:block;font-family:var(--display);font-weight:700;color:#9aa6b5;font-size:.85em;letter-spacing:.06em;margin-bottom:.15em;}
-.card.teal{border-top-color:var(--teal);} .card.coral{border-top-color:var(--coral);}
-.card.amber{border-top-color:var(--amber);} .card.violet{border-top-color:var(--violet);} .card.navy{border-top-color:var(--navy);}
+.card.gold{border-top-color:var(--gold);} .card.coral{border-top-color:var(--coral);}
+.card.teal{border-top-color:var(--teal);} .card.violet{border-top-color:var(--violet);} .card.navy{border-top-color:var(--navy);}
 .small{font-size:.84em;}
 .muted{color:var(--muted);}
 .center{text-align:center;}
@@ -97,16 +97,16 @@ html.reading .pgno{display:none;}
 .deck-rule{position:absolute;left:4px;right:4px;bottom:46px;height:1px;background:var(--line);}
 
 /* key term with Thai meaning */
-.term{display:grid;grid-template-columns:auto 1fr;gap:.1em .6em;align-items:baseline;background:var(--teal-soft);border-radius:12px;padding:.5em .8em;font-size:.72em;margin:0 0 .5em;}
+.term{display:grid;grid-template-columns:auto 1fr;gap:.1em .6em;align-items:baseline;background:var(--gold-soft);border-radius:12px;padding:.5em .8em;font-size:.72em;margin:0 0 .5em;}
 .term b{font-family:var(--display);font-size:1.15em;}
 .term .th{justify-self:start;}
 .term .def{grid-column:1 / -1;color:var(--body);}
-.th{font-family:var(--font-th);color:var(--teal);font-weight:500;}
+.th{font-family:var(--font-th);color:var(--gold);font-weight:500;}
 
 /* Try it */
-.tryit{border:1px solid #f1d9a9;border-left:6px solid var(--amber);border-radius:12px;padding:.65em .9em;background:var(--amber-soft);font-size:.72em;line-height:1.45;}
-.tryit .tag{display:table;font-family:var(--display);font-weight:700;color:var(--amber);letter-spacing:.14em;text-transform:uppercase;font-size:.62em;margin-bottom:.45em;}
-.tryit details summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-family:var(--display);font-weight:600;font-size:.85em;color:var(--amber);list-style:none;}
+.tryit{border:1px solid #bfe3de;border-left:6px solid var(--teal);border-radius:12px;padding:.65em .9em;background:var(--teal-soft);font-size:.72em;line-height:1.45;}
+.tryit .tag{display:table;font-family:var(--display);font-weight:700;color:var(--teal);letter-spacing:.14em;text-transform:uppercase;font-size:.62em;margin-bottom:.45em;}
+.tryit details summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-family:var(--display);font-weight:600;font-size:.85em;color:var(--teal);list-style:none;}
 .tryit details summary::-webkit-details-marker{display:none;}
 .tryit details summary::before{content:"";width:0;height:0;border-left:.42em solid currentColor;border-top:.3em solid transparent;border-bottom:.3em solid transparent;margin-right:.5em;transition:transform .15s;}
 .tryit details[open] summary::before{transform:rotate(90deg);}
@@ -114,13 +114,13 @@ html.reading .pgno{display:none;}
 /* flashback */
 .flashback{border:1px solid #d9d2f6;border-left:6px solid var(--violet);background:var(--violet-soft);border-radius:12px;padding:.65em .9em;font-size:.72em;line-height:1.45;}
 .flashback::before{content:"Flashback";display:block;font-family:var(--display);font-weight:700;color:var(--violet);letter-spacing:.14em;text-transform:uppercase;font-size:.62em;margin-bottom:.4em;}
-/* key idea: same box shape, teal, label from data-label */
-.keyidea{border:1px solid #bfe3de;border-left:6px solid var(--teal);background:var(--teal-soft);border-radius:12px;padding:.65em .9em;font-size:.72em;line-height:1.45;}
-.keyidea::before{content:attr(data-label);display:block;font-family:var(--display);font-weight:700;color:var(--teal);letter-spacing:.14em;text-transform:uppercase;font-size:.62em;margin-bottom:.4em;}
+/* key idea: same box shape, gold, label from data-label */
+.keyidea{border:1px solid #ead7ac;border-left:6px solid var(--gold);background:var(--gold-soft);border-radius:12px;padding:.65em .9em;font-size:.72em;line-height:1.45;}
+.keyidea::before{content:attr(data-label);display:block;font-family:var(--display);font-weight:700;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;font-size:.62em;margin-bottom:.4em;}
 
 /* Colab button */
 .colab svg{width:.95em;height:.95em;fill:currentColor;}
-.colab{display:inline-flex;align-items:center;gap:.4em;min-height:44px;padding:0 1em;border-radius:999px;background:#f9ab00;color:#1b1f24 !important;font-family:var(--display);font-weight:700;font-size:.62em;text-decoration:none !important;box-shadow:0 4px 12px -6px rgba(201,122,6,.6);}
+.colab{display:inline-flex;align-items:center;gap:.4em;min-height:44px;padding:0 1em;border-radius:999px;background:#f9ab00;color:#1b1f24 !important;font-family:var(--display);font-weight:700;font-size:.62em;text-decoration:none !important;box-shadow:0 4px 12px -6px rgba(15, 118, 110,.6);}
 
 /* tables */
 .tscroll{overflow-x:auto;max-width:100%;border:1px solid var(--line);border-radius:12px;}
@@ -129,18 +129,18 @@ html.reading .pgno{display:none;}
 .reveal table th{background:var(--navy);color:#fff;font-family:var(--display);font-weight:600;letter-spacing:.02em;}
 .reveal table tr:nth-child(odd) td{background:#fafbfc;}
 .reveal table tr:last-child td{border-bottom:0;}
-.reveal table tr.hl td{background:var(--teal-soft);font-weight:600;color:var(--ink);}
+.reveal table tr.hl td{background:var(--gold-soft);font-weight:600;color:var(--ink);}
 .reveal table.tight{font-size:.5em;}
 .reveal table.tight th,.reveal table.tight td{padding:.3em .7em;}
-.reveal table td.pt{font-family:var(--display);font-weight:700;color:var(--teal);text-align:center;width:3em;}
+.reveal table td.pt{font-family:var(--display);font-weight:700;color:var(--gold);text-align:center;width:3em;}
 
 /* title slide — dark cover */
 .reveal .slides>section.title-slide,.reveal .slides .pdf-page>section.title-slide,.reveal .slides .ho-cell>section.title-slide{padding:0 34px !important;}
 .title-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:2.2em;align-items:center;height:100%;}
-.title-slide .pill{display:inline-flex;align-items:center;gap:.6em;margin:0 0 1.2em;padding:.4em 1em;border-radius:999px;background:var(--teal-soft);color:var(--teal);font-family:var(--display);font-weight:600;font-size:.46em;letter-spacing:.16em;text-transform:uppercase;}
-.title-slide .pill::before{content:"";width:.55em;height:.55em;border-radius:50%;background:var(--teal);}
+.title-slide .pill{display:inline-flex;align-items:center;gap:.6em;margin:0 0 1.2em;padding:.4em 1em;border-radius:999px;background:var(--gold-soft);color:var(--gold);font-family:var(--display);font-weight:600;font-size:.46em;letter-spacing:.16em;text-transform:uppercase;}
+.title-slide .pill::before{content:"";width:.55em;height:.55em;border-radius:50%;background:var(--gold);}
 .reveal .title-slide h1{color:var(--ink);font-size:3em;line-height:.98;margin:0 0 .32em;letter-spacing:-.035em;}
-.reveal .title-slide h1 em{font-style:normal;color:var(--teal);}
+.reveal .title-slide h1 em{font-style:normal;color:var(--gold);}
 .title-slide .sub{font-family:var(--display);font-size:1em;color:var(--body);font-weight:500;margin:0 0 1.9em;}
 .title-slide .who{border-top:1px solid var(--line);padding-top:.9em;max-width:17em;}
 .title-slide .who p{margin:0;}
@@ -148,14 +148,14 @@ html.reading .pgno{display:none;}
 .title-slide .name span{font-weight:500;color:var(--muted);}
 .title-slide .contact{display:flex;flex-wrap:wrap;gap:.2em 1.4em;margin-top:.35em !important;font-size:.56em;color:var(--muted);}
 .title-slide .contact a{color:inherit;text-decoration:none;}
-.title-slide .contact a:hover{color:var(--teal);}
+.title-slide .contact a:hover{color:var(--gold);}
 .title-slide .contact span+span::before{content:"";display:inline-block;width:.32em;height:.32em;border-radius:50%;background:#c3cad4;margin:0 .9em 0 -.8em;vertical-align:middle;}
-.title-slide .art{margin:0;padding:34px 34px 22px;border-radius:30px;background-color:var(--teal-soft);background-image:radial-gradient(rgba(15,118,110,.16) 1.4px,transparent 1.6px);background-size:22px 22px;}
+.title-slide .art{margin:0;padding:34px 34px 22px;border-radius:30px;background-color:var(--gold-soft);background-image:radial-gradient(rgba(133, 84, 0,.16) 1.4px,transparent 1.6px);background-size:22px 22px;}
 #titleArt{display:block;width:100%;height:auto;border-radius:16px;background:#fff;box-shadow:0 18px 40px -22px rgba(15,27,45,.35),0 0 0 1px var(--line);}
 @media print{#titleArt{box-shadow:0 0 0 1px var(--line);}.title-slide .art{background-image:none;}}
 html.print-pdf #titleArt{box-shadow:0 0 0 1px var(--line);}
 html.print-pdf .title-slide .art{background-image:none;}
-.title-slide figcaption{margin-top:.8em;text-align:center;font-family:var(--mono);font-size:.4em;color:var(--teal);letter-spacing:.02em;}
+.title-slide figcaption{margin-top:.8em;text-align:center;font-family:var(--mono);font-size:.4em;color:var(--gold);letter-spacing:.02em;}
 html.reading .reveal .slides>section.title-slide{padding:36px 18px !important;}
 html.reading .title-slide .pill,html.reading .title-slide figcaption,html.reading .title-slide .contact{font-size:13px;}
 html.reading .title-slide .art{padding:18px 18px 12px;border-radius:20px;}
@@ -164,9 +164,9 @@ html.reading .title-slide .art{padding:18px 18px 12px;border-radius:20px;}
 .cols.today{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:2em;}
 .reveal .steps{list-style:none;margin:0;padding:0;counter-reset:st;position:relative;}
 /* connector: one segment per item, from this circle's centre to the next — in the li's own em so it stays centred at any size */
-.steps li:not(:last-child)::after{content:"";position:absolute;left:calc(.855em - 1px);top:50%;height:100%;width:2px;background:#a9d8d4;}
+.steps li:not(:last-child)::after{content:"";position:absolute;left:calc(.855em - 1px);top:50%;height:100%;width:2px;background:#e2c88f;}
 .steps li{counter-increment:st;position:relative;margin:0;padding:.5em 0 .5em 2.7em;font-size:.8em;line-height:1.35;color:var(--ink);}
-.steps li::before{content:counter(st);position:absolute;left:0;top:50%;transform:translateY(-50%);box-sizing:border-box;z-index:1;width:1.9em;height:1.9em;border-radius:50%;background:#fff;border:2px solid var(--teal);color:var(--teal);font-family:var(--display);font-weight:700;font-size:.9em;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 4px #fff;}
+.steps li::before{content:counter(st);position:absolute;left:0;top:50%;transform:translateY(-50%);box-sizing:border-box;z-index:1;width:1.9em;height:1.9em;border-radius:50%;background:#fff;border:2px solid var(--gold);color:var(--gold);font-family:var(--display);font-weight:700;font-size:.9em;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 4px #fff;}
 .goals{display:grid;gap:.5em;}
 .goal{display:grid;grid-template-columns:5.4em 1fr;gap:.8em;align-items:center;background:#fff;border:1px solid var(--line);border-left:5px solid var(--c);border-radius:12px;padding:.6em .85em;font-size:.72em;line-height:1.4;color:var(--ink);box-shadow:0 6px 16px -12px rgba(15,27,45,.25);}
 .goal .verb{justify-self:start;font-family:var(--display);font-weight:700;font-size:.78em;letter-spacing:.12em;text-transform:uppercase;color:var(--c);}
@@ -176,11 +176,11 @@ html.reading .cols.today{grid-template-columns:1fr;}
 .outline{list-style:none;margin:0;padding:0;counter-reset:o;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6em 1.2em;}
 .outline.one{grid-template-columns:1fr;gap:.4em;}
 .outline li{counter-increment:o;display:flex;gap:.7em;align-items:flex-start;font-size:.82em;background:var(--soft);border-radius:12px;padding:.6em .8em;margin:0;}
-.outline li::before{content:counter(o,decimal-leading-zero);font-family:var(--display);font-weight:700;color:var(--teal);font-size:1.1em;line-height:1.35;}
+.outline li::before{content:counter(o,decimal-leading-zero);font-family:var(--display);font-weight:700;color:var(--gold);font-size:1.1em;line-height:1.35;}
 .outcomes{list-style:none;margin:0;padding:0;counter-reset:c;}
 .outcomes li{counter-increment:c;position:relative;padding:.45em 0 .45em 2.4em;margin:0;font-size:.84em;border-bottom:1px solid var(--line);}
 .outcomes li:last-child{border-bottom:0;}
-.outcomes li::before{content:counter(c);position:absolute;left:0;top:.42em;width:1.6em;height:1.6em;border-radius:50%;background:var(--teal);color:#fff;font-family:var(--display);font-weight:700;font-size:.85em;display:flex;align-items:center;justify-content:center;}
+.outcomes li::before{content:counter(c);position:absolute;left:0;top:.42em;width:1.6em;height:1.6em;border-radius:50%;background:var(--gold);color:#fff;font-family:var(--display);font-weight:700;font-size:.85em;display:flex;align-items:center;justify-content:center;}
 
 /* grading */
 .gtiles{display:grid;grid-template-columns:40fr 30fr 20fr 10fr;gap:.4em;margin:.2em 0 .6em;}
@@ -216,12 +216,12 @@ html.reading .after{flex-direction:column;}
 .reveal table.hintable{font-size:.54em;}
 .reveal table.hintable th,.reveal table.hintable td{padding:.22em .7em;}
 .reveal table.hintable td:nth-child(2){white-space:nowrap;}
-.reveal .fnames li.fh{font-family:var(--display);font-weight:600;color:var(--teal);font-size:.5em;margin-bottom:.2em;white-space:normal;}
+.reveal .fnames li.fh{font-family:var(--display);font-weight:600;color:var(--gold);font-size:.5em;margin-bottom:.2em;white-space:normal;}
 .reveal .hcount{margin:.4em 0 .55em;font-size:.56em;color:var(--muted);}
 .reveal .hcount b{color:var(--ink);}
 .pattern{border:1px solid var(--line);border-radius:12px;padding:.45em .7em .5em;background:#fff;}
 .reveal .pat{margin:0 0 .25em;font-family:var(--mono);font-size:.66em;font-weight:600;color:var(--muted);letter-spacing:.01em;}
-.pat span{color:var(--teal);}
+.pat span{color:var(--gold);}
 .reveal .pattern ul{list-style:none;margin:0;padding:0;display:grid;gap:.12em;}
 .reveal .pattern li{display:grid;grid-template-columns:3.2em 1fr;gap:.4em;font-size:.48em;line-height:1.35;margin:0;}
 .pattern li b{font-family:var(--display);color:var(--ink);}
@@ -235,7 +235,7 @@ html.reading .reveal .fnames li{font-size:12px;white-space:nowrap;}
 html.reading .reveal .pat{font-size:15px;}
 /* s6 · 1966 summer project */
 .memo{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.3fr);gap:1.4em;align-items:start;margin-top:.3em;}
-.mq{margin:0;font-family:var(--display);font-size:.8em;line-height:1.38;color:var(--ink);border-left:6px solid var(--teal);padding:.15em 0 .15em .8em;}
+.mq{margin:0;font-family:var(--display);font-size:.8em;line-height:1.38;color:var(--ink);border-left:6px solid var(--gold);padding:.15em 0 .15em .8em;}
 .mq span{display:block;font-family:var(--font);font-size:.68em;color:var(--muted);margin-top:.6em;}
 .memo h3{margin:0 0 .5em;}
 .memo .pipe .st{font-size:.6em;}
@@ -246,32 +246,32 @@ html.reading .mq{font-size:17px;}
 html.reading .memo-end{font-size:15px;}
 html.reading .reveal .mnote{font-size:14px;}
 .reveal .more{margin:.9em 0 0;font-size:.56em;}
-.reveal .more a{color:var(--teal);font-weight:600;text-decoration:none;border-bottom:2px solid var(--teal-soft);}
-.reveal .more a:hover{border-bottom-color:var(--teal);}
+.reveal .more a{color:var(--gold);font-weight:600;text-decoration:none;border-bottom:2px solid var(--gold-soft);}
+.reveal .more a:hover{border-bottom-color:var(--gold);}
 html.reading .reveal .more{font-size:15px;}
 /* session roadmap (slide 2) + part openers — shared by every session deck */
 .qband{display:flex;gap:.8em;align-items:center;background:var(--soft);border-radius:14px;padding:.6em .9em;margin:0 0 .8em;font-size:.74em;color:var(--ink);font-family:var(--display);font-weight:600;}
-.qband span{font-family:var(--font);font-weight:700;font-size:.62em;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);white-space:nowrap;}
+.qband span{font-family:var(--font);font-weight:700;font-size:.62em;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);white-space:nowrap;}
 .parts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6em;}
 .parts a{display:block;text-decoration:none;transition:border-color .15s,transform .15s;border:1px solid var(--line);border-radius:14px;padding:.6em .75em;font-size:.62em;line-height:1.4;color:var(--muted);background:#fff;}
 .parts a b{display:block;font-family:var(--display);font-size:1.25em;color:var(--ink);margin-bottom:.2em;}
 .parts a i{font-style:normal;display:inline-grid;place-items:center;width:1.7em;height:1.7em;border-radius:50%;background:var(--soft);color:var(--ink);font-family:var(--display);font-weight:700;margin-right:.35em;}
-.parts a.on{border:2px solid var(--teal);background:var(--teal-soft);color:var(--body);}
-.parts a.on i{background:var(--teal);color:#fff;}
+.parts a.on{border:2px solid var(--gold);background:var(--gold-soft);color:var(--body);}
+.parts a.on i{background:var(--gold);color:#fff;}
 /* the A–D strip sits in the normal flow (never absolute), so nothing can overlap it in any mode; auto margins centre the rest */
 .part-open{display:flex !important;flex-direction:column;justify-content:flex-start;}
 .po-strip{position:static;margin:34px 0 26px;display:grid;grid-template-columns:repeat(4,1fr);gap:.4em;font-family:var(--display);font-size:.5em;}
 .po-strip a{text-decoration:none;display:flex;align-items:center;gap:.5em;padding:.45em .7em;border-radius:999px;background:var(--soft);color:var(--muted);}
 .po-strip b{display:inline-grid;place-items:center;width:1.7em;height:1.7em;border-radius:50%;background:#fff;color:var(--muted);}
 .po-strip a.done{color:var(--body);}
-.po-strip a.done b{background:var(--teal-soft);color:var(--teal);}
-.po-strip a.on{background:var(--teal);color:#fff;}
-.po-strip a.on b{background:#fff;color:var(--teal);}
-.reveal .po-letter{margin:auto 0 0;font-family:var(--display);font-weight:700;font-size:3.2em;line-height:1;color:var(--teal);}
+.po-strip a.done b{background:var(--gold-soft);color:var(--gold);}
+.po-strip a.on{background:var(--gold);color:#fff;}
+.po-strip a.on b{background:#fff;color:var(--gold);}
+.reveal .po-letter{margin:auto 0 0;font-family:var(--display);font-weight:700;font-size:3.2em;line-height:1;color:var(--gold);}
 .part-open .claim{font-size:1.9em;margin:.1em 0 .3em;}
 .reveal .po-q{margin:0 0 1.2em;font-family:var(--display);font-size:.95em;color:var(--body);max-width:24em;}
-.reveal .po-out{margin:0 0 auto;max-width:34em;border-left:5px solid var(--teal);padding:.3em 0 .3em .8em;font-size:.62em;line-height:1.5;color:var(--body);}
-.po-out span{display:block;font-family:var(--display);font-weight:700;font-size:.8em;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:.15em;}
+.reveal .po-out{margin:0 0 auto;max-width:34em;border-left:5px solid var(--gold);padding:.3em 0 .3em .8em;font-size:.62em;line-height:1.5;color:var(--body);}
+.po-out span{display:block;font-family:var(--display);font-weight:700;font-size:.8em;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.15em;}
 html.reading .part-open{display:block !important;}
 html.reading .tryit .tag{font-size:12px;}
 .reveal sup{vertical-align:super;font-size:.68em;line-height:0;}
@@ -279,8 +279,8 @@ html.reading .tryit .tag{font-size:12px;}
 html.reading .po-strip{position:static;grid-template-columns:1fr 1fr;margin-bottom:1em;font-size:13px;}
 html.reading .po-q{font-size:18px;}
 html.reading .po-out{font-size:15px;}
-.parts a:hover{border-color:var(--teal);transform:translateY(-2px);}
-.po-strip a:hover{box-shadow:0 0 0 2px var(--teal-soft);}
+.parts a:hover{border-color:var(--gold);transform:translateY(-2px);}
+.po-strip a:hover{box-shadow:0 0 0 2px var(--gold-soft);}
 html.reading .parts{grid-template-columns:1fr;}
 html.reading .qband,html.reading .parts a{font-size:15px;}
 html.reading .qband span{font-size:12px;}
@@ -299,12 +299,12 @@ html.reading .cards.apps .card{font-size:15px;}
 .demo-out{font-family:var(--mono);font-size:.5em;color:var(--muted);margin-top:.35em;display:flex;justify-content:space-between;gap:.6em;flex-wrap:wrap;}
 .demo-out b{color:var(--ink);font-weight:600;}
 .reveal .more{margin:.9em 0 0;font-size:.56em;}
-.reveal .more a{color:var(--teal);font-weight:600;text-decoration:none;border-bottom:2px solid var(--teal-soft);}
-.reveal .more a:hover{border-bottom-color:var(--teal);}
+.reveal .more a{color:var(--gold);font-weight:600;text-decoration:none;border-bottom:2px solid var(--gold-soft);}
+.reveal .more a:hover{border-bottom-color:var(--gold);}
 html.reading .reveal .more{font-size:15px;}
 .chbtns{display:flex;gap:.35em;margin:.45em 0 0;flex-wrap:wrap;}
 .chbtns button{all:unset;cursor:pointer;padding:.3em .8em;border-radius:999px;border:1px solid var(--line);font-family:var(--display);font-weight:600;font-size:.5em;color:var(--body);background:#fff;}
-.chbtns button.on{background:var(--teal);border-color:var(--teal);color:#fff;}
+.chbtns button.on{background:var(--gold);border-color:var(--gold);color:#fff;}
 .reveal .labline{display:flex;align-items:center;gap:.8em;flex-wrap:wrap;margin:.9em 0 0;}
 .reveal .labline span{font-size:.56em;color:var(--muted);}
 html.reading .reveal .labline span{font-size:13px;}
@@ -314,19 +314,19 @@ html.reading .reveal .labline span{font-size:13px;}
 .title-slide .art img{display:block;width:100%;height:auto;border-radius:16px;box-shadow:0 18px 40px -22px rgba(15,27,45,.35),0 0 0 1px var(--line);}
 .democv{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);}
 .eq{font-size:.8em;margin:.2em 0 0;}
-.worked{border:1px solid var(--line);border-left:5px solid var(--amber);border-radius:10px;padding:.5em .8em;font-size:.6em;line-height:1.55;background:#fff;}
-.worked .tag{display:block;font-family:var(--display);font-weight:700;font-size:.72em;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:.2em;}
+.worked{border:1px solid var(--line);border-left:5px solid var(--teal);border-radius:10px;padding:.5em .8em;font-size:.6em;line-height:1.55;background:#fff;}
+.worked .tag{display:block;font-family:var(--display);font-weight:700;font-size:.72em;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:.2em;}
 .worked p{margin:0;font-family:var(--mono);font-size:.92em;}
 .say .worked{font-size:.9em;margin:.4em 0 .5em;}   /* inside a .say column (already .68em): keep the session-2 size */
 .reveal aside.notes,aside.notes{display:none !important;}
 /* number grids */
 .ng{display:grid;gap:3px;font-family:var(--mono);font-weight:600;width:100%;}
 .ng>div{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:5px;font-size:15px;line-height:1;position:relative;}
-.ng>div.pad{outline:2px dashed var(--amber);outline-offset:-3px;font-style:italic;}
-.ng>div.win{box-shadow:inset 0 0 0 3px var(--teal);}
+.ng>div.pad{outline:2px dashed var(--teal);outline-offset:-3px;font-style:italic;}
+.ng>div.win{box-shadow:inset 0 0 0 3px var(--gold);}
 .ng>div.cur{box-shadow:inset 0 0 0 3px var(--coral);}
 .ng>div.empty{background:var(--soft);color:var(--muted);}
-.ng>div.ker{background:var(--amber-soft);color:var(--ink);}
+.ng>div.ker{background:var(--teal-soft);color:var(--ink);}
 .ng>div.dot::after{content:"";position:absolute;width:30%;height:30%;border-radius:50%;background:var(--coral);}
 .gcap{font-family:var(--display);font-weight:600;font-size:.46em;color:var(--muted);text-align:center;margin:.35em 0 0;}
 .conv3{display:grid;grid-template-columns:minmax(0,7fr) auto minmax(0,3fr) auto minmax(0,5fr);gap:.6em;align-items:center;max-width:800px;margin:0 auto;}
@@ -336,7 +336,7 @@ html.reading .conv3{max-width:none;}
 .calc b{color:var(--coral);}
 .ctrl{display:flex;gap:.4em;align-items:center;flex-wrap:wrap;margin-top:.5em;}
 .ctrl button{all:unset;cursor:pointer;padding:.3em .9em;border-radius:999px;border:1px solid var(--line);font-family:var(--display);font-weight:600;font-size:.5em;color:var(--body);background:#fff;}
-.ctrl button:hover{border-color:var(--teal);color:var(--teal);}
+.ctrl button:hover{border-color:var(--gold);color:var(--gold);}
 .ctrl label{font-family:var(--display);font-weight:600;font-size:.5em;color:var(--body);display:flex;align-items:center;gap:.5em;}
 .ctrl input[type=range]{width:7em;}
 .curve{display:block;width:100%;max-width:220px;height:auto;margin:.3em auto 0;border:1px solid var(--line);border-radius:10px;background:#fff;}
@@ -345,9 +345,9 @@ html.reading .conv3{max-width:none;}
 .big-out b{color:var(--coral);}
 .reveal .tset{list-style:none;margin:.2em 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.45em .8em;}
 .reveal .tset li{margin:0;display:grid;grid-template-columns:1.6em 1fr;column-gap:.5em;align-items:baseline;border:1px solid var(--line);border-radius:12px;padding:.45em .7em;font-size:.56em;line-height:1.35;background:#fff;}
-.tset .tn{grid-row:1/3;font-family:var(--display);font-weight:700;color:var(--teal);font-size:1.2em;}
+.tset .tn{grid-row:1/3;font-family:var(--display);font-weight:700;color:var(--gold);font-size:1.2em;}
 .tset .tt{font-family:var(--display);font-weight:600;color:var(--ink);}
-.tset a{font-size:.85em;color:var(--teal);text-decoration:none;}
+.tset a{font-size:.85em;color:var(--gold);text-decoration:none;}
 html.reading .reveal .tset{grid-template-columns:1fr;}
 html.reading .reveal .tset li{font-size:15px;}
 .steps.recap li{font-size:.7em;}
@@ -379,8 +379,8 @@ html.reading .reveal sup{font-size:.8em;}
 /*<<CSS>>*//* pipeline */
 .pipe{display:flex;gap:.45em;align-items:stretch;counter-reset:p;}
 .pipe .st{flex:1 1 0;background:#fff;border:1px solid var(--line);border-radius:12px;padding:.6em .65em;font-size:.64em;line-height:1.35;box-shadow:0 6px 16px -12px rgba(15,27,45,.25);position:relative;}
-.pipe .st b{display:block;font-family:var(--display);color:var(--teal);font-size:1.1em;margin-bottom:.25em;}
-.pipe .ar{align-self:center;color:var(--teal);font-weight:700;font-size:.8em;}
+.pipe .st b{display:block;font-family:var(--display);color:var(--gold);font-size:1.1em;margin-bottom:.25em;}
+.pipe .ar{align-self:center;color:var(--gold);font-weight:700;font-size:.8em;}
 
 /* pixel demo */
 .pix-wrap{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.1fr) minmax(0,1fr);gap:1em;align-items:start;}
@@ -393,10 +393,10 @@ html.reading .reveal sup{font-size:.8em;}
 .lcmp dl{display:grid;grid-template-columns:1fr auto;gap:.3em .8em;margin:0 0 .7em;font-size:.56em;align-items:baseline;}
 .lcmp dt{color:var(--muted);}
 .lcmp dd{margin:0;font-family:var(--mono);color:var(--muted);white-space:nowrap;}
-.lcmp dd i{font-style:normal;color:var(--teal);}
+.lcmp dd i{font-style:normal;color:var(--gold);}
 .lcmp dd b{color:var(--ink);font-size:1.15em;}
-.lcmp .rule{border:1px solid var(--line);border-left:5px solid var(--teal);border-radius:10px;padding:.5em .75em .55em;background:#fff;font-size:.6em;line-height:1.4;}
-.lcmp .rule .tag{display:block;font-family:var(--display);font-weight:700;font-size:.72em;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:.2em;}
+.lcmp .rule{border:1px solid var(--line);border-left:5px solid var(--gold);border-radius:10px;padding:.5em .75em .55em;background:#fff;font-size:.6em;line-height:1.4;}
+.lcmp .rule .tag{display:block;font-family:var(--display);font-weight:700;font-size:.72em;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.2em;}
 .lcmp .rule p{margin:0;}
 .lcmp .verdict{margin-top:.35em !important;font-weight:600;color:var(--ink);}
 .lcmp .rule.bad{border-left-color:var(--coral);}
@@ -404,7 +404,7 @@ html.reading .reveal sup{font-size:.8em;}
 html.reading .litlab,html.reading .lcmp dl{font-size:14px;}
 html.reading .lcmp .rule{font-size:15px;}
 .pix-readout{font-family:var(--mono);font-size:.5em;color:var(--muted);min-height:1.6em;margin-top:.35em;}
-.slider{width:100%;accent-color:var(--teal);min-height:44px;touch-action:none;cursor:pointer;}
+.slider{width:100%;accent-color:var(--gold);min-height:44px;touch-action:none;cursor:pointer;}
 /* a thumb big enough for a finger */
 .slider::-webkit-slider-thumb{width:26px;height:26px;}
 .slider::-moz-range-thumb{width:26px;height:26px;}
@@ -413,7 +413,7 @@ html.reading .lcmp .rule{font-size:15px;}
 .tl{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;position:relative;margin:.3em 0 .9em;}
 .tl::before{content:"";position:absolute;left:4%;right:4%;top:.95em;height:3px;background:var(--line);}
 .tl div{position:relative;text-align:center;font-size:.58em;padding:2.2em .3em 0;line-height:1.3;}
-.tl div::before{content:"";position:absolute;top:.35em;left:50%;transform:translateX(-50%);width:1.1em;height:1.1em;border-radius:50%;background:#fff;border:3px solid var(--teal);}
+.tl div::before{content:"";position:absolute;top:.35em;left:50%;transform:translateX(-50%);width:1.1em;height:1.1em;border-radius:50%;background:#fff;border:3px solid var(--gold);}
 .tl div.key::before{background:var(--coral);border-color:var(--coral);}
 .tl b{display:block;font-family:var(--display);color:var(--ink);}
 
@@ -437,11 +437,12 @@ html.reading .levels li{font-size:15px;grid-template-columns:3.6em 1fr;}
 html.reading .scale.mini{grid-template-columns:repeat(2,minmax(0,1fr));}
 /* project rubric: full criteria in small type */
 .tl.tl7{grid-template-columns:repeat(7,minmax(0,1fr));}
+.tl.tl8{grid-template-columns:repeat(8,minmax(0,1fr));}
 .pitch{display:flex;flex-wrap:wrap;align-items:center;gap:.3em .5em;background:var(--coral-soft);border:1px solid #f3c9c0;border-radius:10px;padding:.3em .6em;margin:0 0 .45em;font-size:.44em;line-height:1.3;}
 .pitch>b{font-family:var(--display);color:var(--coral);}
 .pitch span{background:#fff;border-radius:999px;padding:.1em .6em;border:1px solid #f3c9c0;}
 html.reading .pitch{font-size:14px;}
-html.reading .tl.tl7{grid-template-columns:repeat(3,minmax(0,1fr));}
+html.reading .tl.tl7,html.reading .tl.tl8{grid-template-columns:repeat(3,minmax(0,1fr));}
 
 .tl.tl-sm{margin:.1em 0 .45em;}
 .tl.tl-sm div{font-size:.46em;padding-top:1.9em;}
@@ -450,8 +451,8 @@ html.reading .tl.tl7{grid-template-columns:repeat(3,minmax(0,1fr));}
 .rubric{gap:1em;}
 .rubric h3{font-size:.56em;margin:0 0 .3em;}
 .reveal .rubric ol{list-style:none;margin:0;padding:0;counter-reset:rb;display:grid;gap:2px;}
-.rubric li{counter-increment:rb;display:grid;grid-template-columns:1.6em 1fr;gap:.4em;align-items:baseline;margin:0;padding:.13em .45em;border-radius:6px;font-size:.44em;line-height:1.28;background:var(--soft);}
-.rubric li::before{content:counter(rb);font-family:var(--display);font-weight:700;color:var(--teal);text-align:right;}
+.rubric li{counter-increment:rb;display:grid;grid-template-columns:1.6em 1fr;gap:.4em;align-items:baseline;margin:0;padding:.07em .45em;border-radius:6px;font-size:.44em;line-height:1.28;background:var(--soft);}
+.rubric li::before{content:counter(rb);font-family:var(--display);font-weight:700;color:var(--gold);text-align:right;}
 html.reading .rubric li{font-size:14px;}
 html.reading .rubric h3{font-size:15px;}
 .rb-note{margin-top:.4em !important;font-size:.58em !important;}
@@ -461,8 +462,8 @@ html.reading .rb-note{font-size:14px !important;}
 .cols .checks li{font-size:.58em;padding:.3em .6em;}
 .cols .checks{gap:.35em;}
 .checks li{display:grid;grid-template-columns:2.2em 1fr auto;gap:.6em;align-items:center;background:var(--soft);border-radius:12px;padding:.5em .8em;margin:0;font-size:.74em;}
-.checks li::before{content:"✓";width:1.7em;height:1.7em;border-radius:50%;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;}
-.checks li span.pt{font-family:var(--display);font-weight:700;color:var(--teal);}
+.checks li::before{content:"✓";width:1.7em;height:1.7em;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;}
+.checks li span.pt{font-family:var(--display);font-weight:700;color:var(--gold);}
 
 /* halves */
 .halves{display:grid;grid-template-columns:1fr 1fr;gap:.8em;margin-bottom:.7em;}
@@ -478,7 +479,7 @@ html.reading .rb-note{font-size:14px !important;}
 .reveal .slides>section:not(.title-slide)::before,.reveal .slides .pdf-page>section:not(.title-slide)::before,.reveal .slides .ho-cell>section:not(.title-slide)::before{content:"Computer Vision · Session 6";position:absolute;right:4px;top:10px;font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#a0aab8;}
 html.reading .reveal .slides>section::before,html.reading .reveal .slides>section::after{display:none;}
 /* ---------- deck toolbar (replaces reveal's arrows + slide number) ---------- */
-.reveal .progress{height:4px;color:var(--teal);background:transparent;}
+.reveal .progress{height:4px;color:var(--gold);background:transparent;}
 .deckbar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:40;display:flex;align-items:center;gap:2px;padding:4px;border-radius:999px;background:rgba(255,255,255,.94);border:1px solid var(--line);box-shadow:0 8px 24px -12px rgba(15,27,45,.35);font-family:var(--display);transition:opacity .35s;backdrop-filter:blur(6px);}
 .deckbar.idle{opacity:0;pointer-events:none;}
 /* [hidden] loses to display:flex unless said again — the hidden desktop bar sat on top of the phone bar */
@@ -486,7 +487,7 @@ html.reading .reveal .slides>section::before,html.reading .reveal .slides>sectio
 .deckbar:hover,.deckbar:focus-within{opacity:1;}
 .deckbar button{all:unset;box-sizing:border-box;width:44px;height:44px;border-radius:999px;display:flex;align-items:center;justify-content:center;color:var(--ink);cursor:pointer;}
 .deckbar button:hover{background:var(--soft);}
-.deckbar button:focus-visible{outline:2px solid var(--teal);outline-offset:1px;}
+.deckbar button:focus-visible{outline:2px solid var(--gold);outline-offset:1px;}
 .deckbar button[disabled]{opacity:.3;cursor:default;}
 .deckbar svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
 .deckbar .count{min-width:4.2em;text-align:center;font-size:14px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums;}
@@ -506,7 +507,7 @@ html.reading .reveal .slides>section::before,html.reading .reveal .slides>sectio
 .keys dl{display:grid;grid-template-columns:minmax(10.8em,max-content) 1fr;gap:9px 16px;margin:0;font-size:14.5px;align-items:center;}   /* wide enough for Shift + ← →, the same in both lists */
 .keys dt{display:flex;gap:4px;justify-content:flex-end;align-items:center;white-space:nowrap;}
 .keys dd{margin:0;}
-.keys h4{margin:16px 0 10px;padding-top:12px;border-top:1px solid var(--line);font-family:var(--display);font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);}
+.keys h4{margin:16px 0 10px;padding-top:12px;border-top:1px solid var(--line);font-family:var(--display);font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);}
 .keys kbd{font-family:var(--mono);font-size:12.5px;min-width:1.9em;text-align:center;padding:3px 7px;border-radius:6px;border:1px solid var(--line);border-bottom-width:2px;background:var(--soft);color:var(--ink);}
 /* all slides = photo album: a grid of live clones of every slide, scaled to thumbnails */
 .album{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;background:#eef1f5;font-family:var(--display);}
@@ -514,23 +515,23 @@ html.reading .reveal .slides>section::before,html.reading .reveal .slides>sectio
 html.album-open .deckbar,html.album-open .rbar{display:none !important;}
 html.album-open body{overflow:hidden;}
 .aslides{display:none;}
-html.reading .aslides{display:flex;align-items:center;min-height:36px;margin-left:auto;font-size:14px;font-weight:600;color:var(--teal);text-decoration:none;}
+html.reading .aslides{display:flex;align-items:center;min-height:36px;margin-left:auto;font-size:14px;font-weight:600;color:var(--gold);text-decoration:none;}
 .ahead{display:flex;align-items:center;gap:14px;padding:14px 22px;background:#fff;border-bottom:1px solid var(--line);}
 .ahead h2{margin:0;font-size:18px;font-weight:700;color:var(--ink);letter-spacing:-.01em;}
 .ahead h2 span{color:var(--muted);font-weight:500;margin-left:.4em;}
 .ahead p{margin:0 0 0 auto;font-family:var(--font);font-size:13px;color:var(--muted);}
 .ahead button{flex:none;width:36px;height:36px;border:0;border-radius:50%;background:var(--soft);color:var(--ink);cursor:pointer;display:grid;place-items:center;}
-.ahead button:hover{background:var(--teal-soft);color:var(--teal);}
+.ahead button:hover{background:var(--gold-soft);color:var(--gold);}
 .ahead button svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;}
 .agrid{flex:1;overflow-y:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px 18px;align-content:start;padding:22px;overscroll-behavior:contain;touch-action:pan-y;}
 .agrid.dragging{cursor:grabbing;user-select:none;}
 .thumb{display:block;cursor:pointer;border-radius:12px;outline:none;}
 .tframe{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:10px;background:#fff;box-shadow:0 1px 2px rgba(15,27,45,.08),0 8px 20px -14px rgba(15,27,45,.35);transition:box-shadow .15s,transform .15s;}
-@media (hover:hover){.thumb:hover .tframe{transform:translateY(-2px);box-shadow:0 0 0 2px #b9dfe2,0 12px 26px -14px rgba(15,27,45,.4);}}
-.thumb.sel .tframe{box-shadow:0 0 0 4px var(--teal),0 12px 26px -14px rgba(15,27,45,.4);}
-.thumb.now .tn::after{content:"current";margin-left:.5em;padding:1px 7px;border-radius:999px;background:var(--teal-soft);color:var(--teal);font-size:11px;font-weight:600;letter-spacing:.04em;}
+@media (hover:hover){.thumb:hover .tframe{transform:translateY(-2px);box-shadow:0 0 0 2px #e8d3a6,0 12px 26px -14px rgba(15,27,45,.4);}}
+.thumb.sel .tframe{box-shadow:0 0 0 4px var(--gold),0 12px 26px -14px rgba(15,27,45,.4);}
+.thumb.now .tn::after{content:"current";margin-left:.5em;padding:1px 7px;border-radius:999px;background:var(--gold-soft);color:var(--gold);font-size:11px;font-weight:600;letter-spacing:.04em;}
 .tcap{display:flex;align-items:baseline;gap:8px;margin-top:8px;font-size:13px;line-height:1.3;}
-.tn{flex:none;font-weight:700;color:var(--teal);}
+.tn{flex:none;font-weight:700;color:var(--gold);}
 .tt{color:var(--body);font-family:var(--font);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .tframe>.thost{position:absolute;inset:0;}
 @media (max-width:600px){.agrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 10px;padding:12px 12px calc(16px + env(safe-area-inset-bottom));}.ahead{padding:10px 12px;gap:10px;}.ahead p{display:none;}.ahead h2{font-size:16px;}.tcap{font-size:12px;}}
@@ -673,7 +674,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="cards" style="grid-template-columns:1fr">
       <div class="card"><b>Stitch a panorama</b>The same points in two photos tell how to bend one onto the other — session 7.</div>
       <div class="card violet"><b>Measure depth</b>The same point seen from two cameras gives its distance — session 7.</div>
-      <div class="card amber"><b>Follow motion</b>The same point in the next video frame tells how things moved — session 9.</div>
+      <div class="card teal"><b>Follow motion</b>The same point in the next video frame tells how things moved — session 9.</div>
     </div>
     <div class="say">
       <div class="flashback">Session 2, slide 12: a program found the Tennoji vanishing point from the lines in the photo — with “RANSAC, session 6”. Part D shows how.</div>
@@ -708,7 +709,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="kicker">A · Corners</p>
   <h2 class="claim">Shift the window: one Taylor step gives a 2 × 2 matrix</h2>
   <div class="split">
-    <div><svg class="fig cvsvg" viewBox="0 0 360 270" style="max-width:380px;margin:0 auto" role="img" aria-label="a brightness ramp, a window and the same window shifted by u, v; the gradient arrow and the direction along which brightness does not change"><defs><linearGradient id="ramp6" gradientUnits="userSpaceOnUse" x1="40" y1="20" x2="300" y2="150"><stop offset="0" stop-color="#1f2937"/><stop offset="1" stop-color="#e5e7eb"/></linearGradient><marker id="a6e0533d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e0533d"/></marker><marker id="a6ffd166" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ffd166"/></marker><marker id="a60f766e" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker></defs><rect x="10" y="10" width="340" height="250" rx="8" fill="url(#ramp6)"/><rect x="110" y="80" width="90" height="90" fill="none" stroke="#e0533d" stroke-width="4"/><rect x="150" y="100" width="90" height="90" fill="none" stroke="#e0533d" stroke-width="3" stroke-dasharray="8 6"/><line x1="155" y1="125" x2="191" y2="143" stroke="#e0533d" stroke-width="4" marker-end="url(#a6e0533d)"/><text x="118" y="72" class="lb" style="fill:#fff">I(x, y)</text><text x="160" y="212" class="lb" style="fill:#e0533d">I(x + u, y + v)</text><line x1="40" y1="225" x2="110" y2="260" stroke="#ffd166" stroke-width="4" marker-end="url(#a6ffd166)"/><text x="30" y="210" class="lb" style="fill:#ffd166">g = (2, 1)</text><line x1="300" y1="26" x2="262" y2="102" stroke="#0f766e" stroke-width="4" stroke-dasharray="6 5" marker-end="url(#a60f766e)"/><text x="232" y="24" class="lb" style="fill:#0f766e">(1, −2): no change</text></svg><p class="gcap">brightness grows along the gradient g · the window (solid) and the window shifted by (u, v) (dashed)</p></div>
+    <div><svg class="fig cvsvg" viewBox="0 0 360 270" style="max-width:380px;margin:0 auto" role="img" aria-label="a brightness ramp, a window and the same window shifted by u, v; the gradient arrow and the direction along which brightness does not change"><defs><linearGradient id="ramp6" gradientUnits="userSpaceOnUse" x1="40" y1="20" x2="300" y2="150"><stop offset="0" stop-color="#1f2937"/><stop offset="1" stop-color="#e5e7eb"/></linearGradient><marker id="a6e0533d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e0533d"/></marker><marker id="a6ffd166" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ffd166"/></marker><marker id="a6855400" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#855400"/></marker></defs><rect x="10" y="10" width="340" height="250" rx="8" fill="url(#ramp6)"/><rect x="110" y="80" width="90" height="90" fill="none" stroke="#e0533d" stroke-width="4"/><rect x="150" y="100" width="90" height="90" fill="none" stroke="#e0533d" stroke-width="3" stroke-dasharray="8 6"/><line x1="155" y1="125" x2="191" y2="143" stroke="#e0533d" stroke-width="4" marker-end="url(#a6e0533d)"/><text x="118" y="72" class="lb" style="fill:#fff">I(x, y)</text><text x="160" y="212" class="lb" style="fill:#e0533d">I(x + u, y + v)</text><line x1="40" y1="225" x2="110" y2="260" stroke="#ffd166" stroke-width="4" marker-end="url(#a6ffd166)"/><text x="30" y="210" class="lb" style="fill:#ffd166">g = (2, 1)</text><line x1="300" y1="26" x2="262" y2="102" stroke="#855400" stroke-width="4" stroke-dasharray="6 5" marker-end="url(#a60f766e)"/><text x="232" y="24" class="lb" style="fill:#855400">(1, −2): no change</text></svg><p class="gcap">brightness grows along the gradient g · the window (solid) and the window shifted by (u, v) (dashed)</p></div>
     <div class="say">
       <div class="eq">$$E(u,v)=\sum w\,\big[I(x+u,y+v)-I(x,y)\big]^2$$</div>
       <div class="flashback fragment">Session 4, slide 13: one line of Taylor — I(x + u, y + v) ≈ I(x, y) + g<sub>x</sub>u + g<sub>y</sub>v.</div>
@@ -747,7 +748,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="kicker">A · Corners</p>
   <h2 class="claim">The change in any direction lies between the eigenvalues</h2>
   <div class="split">
-    <div><svg class="fig cvsvg" viewBox="0 0 580 300" role="img" aria-label="for the edge and the corner window, the change for a one-pixel shift in every direction drawn as a radius: a thin figure eight for the edge, a near circle for the corner"><circle cx="145" cy="150" r="112" fill="none" stroke="#e2e8f0"/><polygon points="252.7,150.0 251.0,153.7 248.9,157.3 246.5,160.7 243.8,163.9 240.7,166.9 237.4,169.6 233.8,172.2 230.0,174.4 226.0,176.3 221.9,178.0 217.6,179.3 213.2,180.4 208.8,181.1 204.3,181.5 199.8,181.7 195.4,181.5 191.1,181.1 186.8,180.4 182.7,179.4 178.7,178.3 174.9,176.9 171.3,175.4 167.9,173.7 164.7,171.9 161.8,170.0 159.1,168.1 156.7,166.1 154.5,164.1 152.6,162.2 150.9,160.3 149.5,158.5 148.3,156.8 147.4,155.3 146.6,154.0 146.0,152.8 145.6,151.9 145.3,151.2 145.2,150.7 145.1,150.5 145.1,150.5 145.1,150.8 145.1,151.4 145.2,152.3 145.1,153.4 145.0,154.8 144.8,156.4 144.4,158.3 143.9,160.3 143.2,162.6 142.4,165.0 141.3,167.6 139.9,170.3 138.4,173.1 136.6,175.9 134.5,178.8 132.2,181.7 129.6,184.5 126.8,187.3 123.7,190.0 120.4,192.6 116.9,195.0 113.2,197.2 109.3,199.2 105.2,201.0 101.0,202.5 96.7,203.7 92.3,204.6 87.8,205.2 83.3,205.5 78.9,205.5 74.4,205.1 70.1,204.4 65.9,203.4 61.8,202.0 57.9,200.3 54.2,198.3 50.8,196.0 47.6,193.4 44.7,190.5 42.1,187.4 39.9,184.1 38.0,180.7 36.6,177.0 35.5,173.3 34.8,169.4 34.5,165.5 34.6,161.6 35.1,157.7 36.0,153.8 37.3,150.0 39.0,146.3 41.1,142.7 43.5,139.3 46.2,136.1 49.3,133.1 52.6,130.4 56.2,127.8 60.0,125.6 64.0,123.7 68.1,122.0 72.4,120.7 76.8,119.6 81.2,118.9 85.7,118.5 90.2,118.3 94.6,118.5 98.9,118.9 103.2,119.6 107.3,120.6 111.3,121.7 115.1,123.1 118.7,124.6 122.1,126.3 125.3,128.1 128.2,130.0 130.9,131.9 133.3,133.9 135.5,135.9 137.4,137.8 139.1,139.7 140.5,141.5 141.7,143.2 142.6,144.7 143.4,146.0 144.0,147.2 144.4,148.1 144.7,148.8 144.8,149.3 144.9,149.5 144.9,149.5 144.9,149.2 144.9,148.6 144.8,147.7 144.9,146.6 145.0,145.2 145.2,143.6 145.6,141.7 146.1,139.7 146.8,137.4 147.6,135.0 148.7,132.4 150.1,129.7 151.6,126.9 153.4,124.1 155.5,121.2 157.8,118.3 160.4,115.5 163.2,112.7 166.3,110.0 169.6,107.4 173.1,105.0 176.8,102.8 180.7,100.8 184.8,99.0 189.0,97.5 193.3,96.3 197.7,95.4 202.2,94.8 206.7,94.5 211.1,94.5 215.6,94.9 219.9,95.6 224.1,96.6 228.2,98.0 232.1,99.7 235.8,101.7 239.2,104.0 242.4,106.6 245.3,109.5 247.9,112.6 250.1,115.9 252.0,119.3 253.4,123.0 254.5,126.7 255.2,130.6 255.5,134.5 255.4,138.4 254.9,142.3 254.0,146.2 252.7,150.0" fill="#c97a06" fill-opacity=".18" stroke="#c97a06" stroke-width="3"/><line x1="145" y1="150" x2="35.2" y2="172.0" stroke="#0f1b2d" stroke-width="2.5"/><line x1="145" y1="150" x2="144.9" y2="149.5" stroke="#0f1b2d" stroke-width="2.5" stroke-dasharray="5 4"/><text x="145" y="290" text-anchor="middle" class="lb" style="fill:#c97a06">edge: λ₁ 5.86 · λ₂ 0.02</text><circle cx="435" cy="150" r="112" fill="none" stroke="#e2e8f0"/><polygon points="474.4,150.0 474.0,151.4 473.6,152.7 473.1,154.0 472.5,155.3 471.9,156.5 471.3,157.7 470.6,158.9 469.9,160.0 469.2,161.1 468.4,162.2 467.6,163.2 466.8,164.1 465.9,165.1 465.1,166.0 464.2,166.9 463.4,167.7 462.5,168.5 461.6,169.3 460.7,170.1 459.8,170.8 458.9,171.5 458.0,172.2 457.1,172.9 456.2,173.5 455.3,174.2 454.4,174.8 453.5,175.4 452.5,176.0 451.6,176.6 450.7,177.2 449.8,177.7 448.8,178.3 447.9,178.9 446.9,179.4 445.9,180.0 444.9,180.5 443.9,181.0 442.9,181.5 441.8,182.1 440.7,182.5 439.6,183.0 438.5,183.5 437.4,183.9 436.2,184.3 435.0,184.7 433.8,185.0 432.5,185.3 431.3,185.6 430.0,185.8 428.7,186.0 427.3,186.2 426.0,186.2 424.6,186.3 423.2,186.3 421.8,186.2 420.4,186.1 419.0,185.9 417.6,185.6 416.2,185.3 414.8,184.9 413.5,184.4 412.1,183.9 410.8,183.3 409.5,182.7 408.2,181.9 407.0,181.1 405.8,180.3 404.6,179.4 403.5,178.4 402.4,177.3 401.4,176.2 400.5,175.1 399.6,173.9 398.8,172.6 398.0,171.3 397.4,170.0 396.8,168.6 396.2,167.3 395.8,165.8 395.4,164.4 395.1,163.0 394.9,161.5 394.7,160.0 394.6,158.6 394.6,157.1 394.7,155.7 394.8,154.2 395.0,152.8 395.3,151.4 395.6,150.0 396.0,148.6 396.4,147.3 396.9,146.0 397.5,144.7 398.1,143.5 398.7,142.3 399.4,141.1 400.1,140.0 400.8,138.9 401.6,137.8 402.4,136.8 403.2,135.9 404.1,134.9 404.9,134.0 405.8,133.1 406.6,132.3 407.5,131.5 408.4,130.7 409.3,129.9 410.2,129.2 411.1,128.5 412.0,127.8 412.9,127.1 413.8,126.5 414.7,125.8 415.6,125.2 416.5,124.6 417.5,124.0 418.4,123.4 419.3,122.8 420.2,122.3 421.2,121.7 422.1,121.1 423.1,120.6 424.1,120.0 425.1,119.5 426.1,119.0 427.1,118.5 428.2,117.9 429.3,117.5 430.4,117.0 431.5,116.5 432.6,116.1 433.8,115.7 435.0,115.3 436.2,115.0 437.5,114.7 438.7,114.4 440.0,114.2 441.3,114.0 442.7,113.8 444.0,113.8 445.4,113.7 446.8,113.7 448.2,113.8 449.6,113.9 451.0,114.1 452.4,114.4 453.8,114.7 455.2,115.1 456.5,115.6 457.9,116.1 459.2,116.7 460.5,117.3 461.8,118.1 463.0,118.9 464.2,119.7 465.4,120.6 466.5,121.6 467.6,122.7 468.6,123.8 469.5,124.9 470.4,126.1 471.2,127.4 472.0,128.7 472.6,130.0 473.2,131.4 473.8,132.7 474.2,134.2 474.6,135.6 474.9,137.0 475.1,138.5 475.3,140.0 475.4,141.4 475.4,142.9 475.3,144.3 475.2,145.8 475.0,147.2 474.7,148.6 474.4,150.0" fill="#e0533d" fill-opacity=".18" stroke="#e0533d" stroke-width="3"/><line x1="435" y1="150" x2="399.1" y2="173.0" stroke="#0f1b2d" stroke-width="2.5"/><line x1="435" y1="150" x2="418.1" y2="123.6" stroke="#0f1b2d" stroke-width="2.5" stroke-dasharray="5 4"/><text x="435" y="290" text-anchor="middle" class="lb" style="fill:#e0533d">corner: λ₁ 2.23 · λ₂ 1.64</text></svg><p class="gcap">radius = E for a one-pixel shift in that direction · M of slide 7's windows · solid line λ₁, dashed λ₂</p></div>
+    <div><svg class="fig cvsvg" viewBox="0 0 580 300" role="img" aria-label="for the edge and the corner window, the change for a one-pixel shift in every direction drawn as a radius: a thin figure eight for the edge, a near circle for the corner"><circle cx="145" cy="150" r="112" fill="none" stroke="#e2e8f0"/><polygon points="252.7,150.0 251.0,153.7 248.9,157.3 246.5,160.7 243.8,163.9 240.7,166.9 237.4,169.6 233.8,172.2 230.0,174.4 226.0,176.3 221.9,178.0 217.6,179.3 213.2,180.4 208.8,181.1 204.3,181.5 199.8,181.7 195.4,181.5 191.1,181.1 186.8,180.4 182.7,179.4 178.7,178.3 174.9,176.9 171.3,175.4 167.9,173.7 164.7,171.9 161.8,170.0 159.1,168.1 156.7,166.1 154.5,164.1 152.6,162.2 150.9,160.3 149.5,158.5 148.3,156.8 147.4,155.3 146.6,154.0 146.0,152.8 145.6,151.9 145.3,151.2 145.2,150.7 145.1,150.5 145.1,150.5 145.1,150.8 145.1,151.4 145.2,152.3 145.1,153.4 145.0,154.8 144.8,156.4 144.4,158.3 143.9,160.3 143.2,162.6 142.4,165.0 141.3,167.6 139.9,170.3 138.4,173.1 136.6,175.9 134.5,178.8 132.2,181.7 129.6,184.5 126.8,187.3 123.7,190.0 120.4,192.6 116.9,195.0 113.2,197.2 109.3,199.2 105.2,201.0 101.0,202.5 96.7,203.7 92.3,204.6 87.8,205.2 83.3,205.5 78.9,205.5 74.4,205.1 70.1,204.4 65.9,203.4 61.8,202.0 57.9,200.3 54.2,198.3 50.8,196.0 47.6,193.4 44.7,190.5 42.1,187.4 39.9,184.1 38.0,180.7 36.6,177.0 35.5,173.3 34.8,169.4 34.5,165.5 34.6,161.6 35.1,157.7 36.0,153.8 37.3,150.0 39.0,146.3 41.1,142.7 43.5,139.3 46.2,136.1 49.3,133.1 52.6,130.4 56.2,127.8 60.0,125.6 64.0,123.7 68.1,122.0 72.4,120.7 76.8,119.6 81.2,118.9 85.7,118.5 90.2,118.3 94.6,118.5 98.9,118.9 103.2,119.6 107.3,120.6 111.3,121.7 115.1,123.1 118.7,124.6 122.1,126.3 125.3,128.1 128.2,130.0 130.9,131.9 133.3,133.9 135.5,135.9 137.4,137.8 139.1,139.7 140.5,141.5 141.7,143.2 142.6,144.7 143.4,146.0 144.0,147.2 144.4,148.1 144.7,148.8 144.8,149.3 144.9,149.5 144.9,149.5 144.9,149.2 144.9,148.6 144.8,147.7 144.9,146.6 145.0,145.2 145.2,143.6 145.6,141.7 146.1,139.7 146.8,137.4 147.6,135.0 148.7,132.4 150.1,129.7 151.6,126.9 153.4,124.1 155.5,121.2 157.8,118.3 160.4,115.5 163.2,112.7 166.3,110.0 169.6,107.4 173.1,105.0 176.8,102.8 180.7,100.8 184.8,99.0 189.0,97.5 193.3,96.3 197.7,95.4 202.2,94.8 206.7,94.5 211.1,94.5 215.6,94.9 219.9,95.6 224.1,96.6 228.2,98.0 232.1,99.7 235.8,101.7 239.2,104.0 242.4,106.6 245.3,109.5 247.9,112.6 250.1,115.9 252.0,119.3 253.4,123.0 254.5,126.7 255.2,130.6 255.5,134.5 255.4,138.4 254.9,142.3 254.0,146.2 252.7,150.0" fill="#0f766e" fill-opacity=".18" stroke="#0f766e" stroke-width="3"/><line x1="145" y1="150" x2="35.2" y2="172.0" stroke="#0f1b2d" stroke-width="2.5"/><line x1="145" y1="150" x2="144.9" y2="149.5" stroke="#0f1b2d" stroke-width="2.5" stroke-dasharray="5 4"/><text x="145" y="290" text-anchor="middle" class="lb" style="fill:#0f766e">edge: λ₁ 5.86 · λ₂ 0.02</text><circle cx="435" cy="150" r="112" fill="none" stroke="#e2e8f0"/><polygon points="474.4,150.0 474.0,151.4 473.6,152.7 473.1,154.0 472.5,155.3 471.9,156.5 471.3,157.7 470.6,158.9 469.9,160.0 469.2,161.1 468.4,162.2 467.6,163.2 466.8,164.1 465.9,165.1 465.1,166.0 464.2,166.9 463.4,167.7 462.5,168.5 461.6,169.3 460.7,170.1 459.8,170.8 458.9,171.5 458.0,172.2 457.1,172.9 456.2,173.5 455.3,174.2 454.4,174.8 453.5,175.4 452.5,176.0 451.6,176.6 450.7,177.2 449.8,177.7 448.8,178.3 447.9,178.9 446.9,179.4 445.9,180.0 444.9,180.5 443.9,181.0 442.9,181.5 441.8,182.1 440.7,182.5 439.6,183.0 438.5,183.5 437.4,183.9 436.2,184.3 435.0,184.7 433.8,185.0 432.5,185.3 431.3,185.6 430.0,185.8 428.7,186.0 427.3,186.2 426.0,186.2 424.6,186.3 423.2,186.3 421.8,186.2 420.4,186.1 419.0,185.9 417.6,185.6 416.2,185.3 414.8,184.9 413.5,184.4 412.1,183.9 410.8,183.3 409.5,182.7 408.2,181.9 407.0,181.1 405.8,180.3 404.6,179.4 403.5,178.4 402.4,177.3 401.4,176.2 400.5,175.1 399.6,173.9 398.8,172.6 398.0,171.3 397.4,170.0 396.8,168.6 396.2,167.3 395.8,165.8 395.4,164.4 395.1,163.0 394.9,161.5 394.7,160.0 394.6,158.6 394.6,157.1 394.7,155.7 394.8,154.2 395.0,152.8 395.3,151.4 395.6,150.0 396.0,148.6 396.4,147.3 396.9,146.0 397.5,144.7 398.1,143.5 398.7,142.3 399.4,141.1 400.1,140.0 400.8,138.9 401.6,137.8 402.4,136.8 403.2,135.9 404.1,134.9 404.9,134.0 405.8,133.1 406.6,132.3 407.5,131.5 408.4,130.7 409.3,129.9 410.2,129.2 411.1,128.5 412.0,127.8 412.9,127.1 413.8,126.5 414.7,125.8 415.6,125.2 416.5,124.6 417.5,124.0 418.4,123.4 419.3,122.8 420.2,122.3 421.2,121.7 422.1,121.1 423.1,120.6 424.1,120.0 425.1,119.5 426.1,119.0 427.1,118.5 428.2,117.9 429.3,117.5 430.4,117.0 431.5,116.5 432.6,116.1 433.8,115.7 435.0,115.3 436.2,115.0 437.5,114.7 438.7,114.4 440.0,114.2 441.3,114.0 442.7,113.8 444.0,113.8 445.4,113.7 446.8,113.7 448.2,113.8 449.6,113.9 451.0,114.1 452.4,114.4 453.8,114.7 455.2,115.1 456.5,115.6 457.9,116.1 459.2,116.7 460.5,117.3 461.8,118.1 463.0,118.9 464.2,119.7 465.4,120.6 466.5,121.6 467.6,122.7 468.6,123.8 469.5,124.9 470.4,126.1 471.2,127.4 472.0,128.7 472.6,130.0 473.2,131.4 473.8,132.7 474.2,134.2 474.6,135.6 474.9,137.0 475.1,138.5 475.3,140.0 475.4,141.4 475.4,142.9 475.3,144.3 475.2,145.8 475.0,147.2 474.7,148.6 474.4,150.0" fill="#e0533d" fill-opacity=".18" stroke="#e0533d" stroke-width="3"/><line x1="435" y1="150" x2="399.1" y2="173.0" stroke="#0f1b2d" stroke-width="2.5"/><line x1="435" y1="150" x2="418.1" y2="123.6" stroke="#0f1b2d" stroke-width="2.5" stroke-dasharray="5 4"/><text x="435" y="290" text-anchor="middle" class="lb" style="fill:#e0533d">corner: λ₁ 2.23 · λ₂ 1.64</text></svg><p class="gcap">radius = E for a one-pixel shift in that direction · M of slide 7's windows · solid line λ₁, dashed λ₂</p></div>
     <div class="say">
       <div class="eq">$$E(u)=u^\top M u,\qquad \lVert u\rVert=1$$</div>
       <p class="fragment">M is symmetric, so its eigenvectors e₁ ⟂ e₂. Write u = cos α e₁ + sin α e₂:</p>
@@ -765,7 +766,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="kicker">A · Corners</p>
   <h2 class="claim">Two large eigenvalues mean a corner</h2>
   <div class="split">
-    <div><svg class="fig cvsvg" viewBox="0 0 440 330" role="img" aria-label="the eigenvalues of M for the flat, edge and corner windows"><polygon points="52.0,278.0 420.0,278.0 420.0,247.04" fill="#fdf4e3"/><polygon points="125.60000000000001,226.39999999999998 420.0,226.39999999999998 420.0,20.0" fill="#fdeeea"/><rect x="52.0" y="252.2" width="36.80000000000001" height="25.80000000000001" fill="#e6f4f2"/><line x1="52" y1="278" x2="430" y2="278" stroke="#94a3b8"/><line x1="52" y1="278" x2="52" y2="10" stroke="#94a3b8"/><line x1="52.0" y1="278.0" x2="420.0" y2="20.0" stroke="#cbd5e1" stroke-dasharray="4 4"/><text x="280.15999999999997" y="97.40000000000003" class="tk">λ₂ = λ₁</text><text x="246.0" y="316" text-anchor="middle" class="tk">λ₁ (the larger eigenvalue)</text><text x="18" y="139.0" class="tk" text-anchor="middle" transform="rotate(-90 18 139.0)">λ₂ (the smaller)</text><circle cx="52.0" cy="278.0" r="8" fill="#0f766e"/><text x="66.0" y="264.0" text-anchor="start" class="lb" style="fill:#0f766e">flat (0.00, 0.00)</text><circle cx="380.6" cy="277.0" r="8" fill="#c97a06"/><text x="368.6" y="261.0" text-anchor="end" class="lb" style="fill:#c97a06">edge (5.86, 0.02)</text><circle cx="177.3" cy="213.5" r="8" fill="#e0533d"/><text x="191.3" y="203.5" text-anchor="start" class="lb" style="fill:#e0533d">corner (2.23, 1.64)</text></svg></div>
+    <div><svg class="fig cvsvg" viewBox="0 0 440 330" role="img" aria-label="the eigenvalues of M for the flat, edge and corner windows"><polygon points="52.0,278.0 420.0,278.0 420.0,247.04" fill="#e6f4f2"/><polygon points="125.60000000000001,226.39999999999998 420.0,226.39999999999998 420.0,20.0" fill="#fdeeea"/><rect x="52.0" y="252.2" width="36.80000000000001" height="25.80000000000001" fill="#fbf1dc"/><line x1="52" y1="278" x2="430" y2="278" stroke="#94a3b8"/><line x1="52" y1="278" x2="52" y2="10" stroke="#94a3b8"/><line x1="52.0" y1="278.0" x2="420.0" y2="20.0" stroke="#cbd5e1" stroke-dasharray="4 4"/><text x="280.15999999999997" y="97.40000000000003" class="tk">λ₂ = λ₁</text><text x="246.0" y="316" text-anchor="middle" class="tk">λ₁ (the larger eigenvalue)</text><text x="18" y="139.0" class="tk" text-anchor="middle" transform="rotate(-90 18 139.0)">λ₂ (the smaller)</text><circle cx="52.0" cy="278.0" r="8" fill="#855400"/><text x="66.0" y="264.0" text-anchor="start" class="lb" style="fill:#855400">flat (0.00, 0.00)</text><circle cx="380.6" cy="277.0" r="8" fill="#0f766e"/><text x="368.6" y="261.0" text-anchor="end" class="lb" style="fill:#0f766e">edge (5.86, 0.02)</text><circle cx="177.3" cy="213.5" r="8" fill="#e0533d"/><text x="191.3" y="203.5" text-anchor="start" class="lb" style="fill:#e0533d">corner (2.23, 1.64)</text></svg></div>
     <div class="say">
       <p>The two <b>eigenvalues</b> λ₁ ≥ λ₂ of M measure how strongly the window changes along its steepest direction and across it.</p>
       <p class="fragment">Flat: both ≈ 0. Edge: λ₁ large, λ₂ ≈ 0 (here 5.86 and 0.02). Corner: <b>both</b> large (2.23 and 1.64).</p>
@@ -820,7 +821,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <div class="cards">
     <div class="card"><b>Repeatable points</b>Flat and edge points slide along; a corner can be found again exactly.</div>
     <div class="card violet"><b>The matrix M</b>Gradients in a Gaussian window: two large eigenvalues = corner.</div>
-    <div class="card amber"><b>Harris</b>R = det M − k·(trace M)²: corner if large, edge if negative.</div>
+    <div class="card teal"><b>Harris</b>R = det M − k·(trace M)²: corner if large, edge if negative.</div>
   </div>
   <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-06/lab.ipynb#scrollTo=part-a" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part A</a><span>Harris step by step from Sobel gradients, compared with cv2.cornerHarris; k and the threshold</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s6a">More practice · Session 6 A — practice bank with worked solutions →</a></p>
@@ -936,7 +937,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <div class="cards">
     <div class="card"><b>One window is not enough</b>Zoom in and a corner becomes an edge (slide 14).</div>
     <div class="card violet"><b>Scale space</b>Blur at every σ; a blob answers most at σ ≈ its radius ÷ √2.</div>
-    <div class="card amber"><b>SIFT points</b>Maxima over space and scale (26 neighbours): every point has a position and a size.</div>
+    <div class="card teal"><b>SIFT points</b>Maxima over space and scale (26 neighbours): every point has a position and a size.</div>
   </div>
   <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-06/lab.ipynb#scrollTo=part-b" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part B</a><span>Gaussian blur at many σ, the response of discs of three sizes, SIFT on the photo and on a shrunk copy</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s6b">More practice · Session 6 B — practice bank with worked solutions →</a></p>
@@ -1053,7 +1054,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <div class="cards">
     <div class="card"><b>Descriptor</b>SIFT: 4 × 4 cells × 8 gradient directions = 128 numbers, turned to the main direction and normalised.</div>
     <div class="card violet"><b>Matching</b>Nearest descriptor by Euclidean distance — session 5's nearest neighbour, point by point.</div>
-    <div class="card amber"><b>Ratio test</b>Keep a match only if best ÷ second best &lt; 0.8. Fewer, surer matches — but never all right.</div>
+    <div class="card teal"><b>Ratio test</b>Keep a match only if best ÷ second best &lt; 0.8. Fewer, surer matches — but never all right.</div>
   </div>
   <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-06/lab.ipynb#scrollTo=part-c" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part C</a><span>SIFT descriptors, brute-force matching, the ratio test with match lines before and after</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s6c">More practice · Session 6 C — practice bank with worked solutions →</a></p>
@@ -1077,7 +1078,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="kicker">D · RANSAC</p>
   <h2 class="claim">One wrong match ruins a least-squares fit</h2>
   <div class="split">
-    <div><svg class="fig cvsvg" viewBox="0 0 460 300" role="img" aria-label="twenty points on a line, three far above it, and two fitted lines"><line x1="40" y1="260" x2="450" y2="260" stroke="#94a3b8"/><line x1="40" y1="260" x2="40" y2="10" stroke="#94a3b8"/><line x1="40.0" y1="169.02030811900994" x2="446.0" y2="80.17662174780668" stroke="#e0533d" stroke-width="3"/><rect x="255" y="208" width="16" height="5" fill="#e0533d"/><text x="277" y="215" class="tk" style="fill:#e0533d">all 23 points: slope 0.36</text><line x1="40.0" y1="207.4200642124194" x2="446.0" y2="66.71940231869706" stroke="#0f766e" stroke-width="3"/><rect x="255" y="230" width="16" height="5" fill="#0f766e"/><text x="277" y="237" class="tk" style="fill:#0f766e">20 good ones: slope 0.57</text><circle cx="74.8" cy="198.1" r="5" fill="#0f1b2d"/><circle cx="78.2" cy="191.2" r="5" fill="#0f1b2d"/><circle cx="86.2" cy="192.0" r="5" fill="#0f1b2d"/><circle cx="104.9" cy="189.1" r="5" fill="#0f1b2d"/><circle cx="136.1" cy="176.5" r="5" fill="#0f1b2d"/><circle cx="155.4" cy="166.9" r="5" fill="#0f1b2d"/><circle cx="158.8" cy="160.5" r="5" fill="#0f1b2d"/><circle cx="198.8" cy="154.0" r="5" fill="#0f1b2d"/><circle cx="214.8" cy="148.1" r="5" fill="#0f1b2d"/><circle cx="215.8" cy="143.2" r="5" fill="#0f1b2d"/><circle cx="234.5" cy="143.4" r="5" fill="#0f1b2d"/><circle cx="249.8" cy="135.6" r="5" fill="#0f1b2d"/><circle cx="276.4" cy="121.6" r="5" fill="#0f1b2d"/><circle cx="278.2" cy="122.0" r="5" fill="#0f1b2d"/><circle cx="303.3" cy="114.7" r="5" fill="#0f1b2d"/><circle cx="322.7" cy="105.6" r="5" fill="#0f1b2d"/><circle cx="338.2" cy="112.8" r="5" fill="#0f1b2d"/><circle cx="339.6" cy="98.1" r="5" fill="#0f1b2d"/><circle cx="365.3" cy="96.1" r="5" fill="#0f1b2d"/><circle cx="428.2" cy="75.8" r="5" fill="#0f1b2d"/><circle cx="100.9" cy="50.9" r="6" fill="#fff" stroke="#e0533d" stroke-width="3"/><circle cx="141.5" cy="38.6" r="6" fill="#fff" stroke="#e0533d" stroke-width="3"/><circle cx="182.1" cy="63.2" r="6" fill="#fff" stroke="#e0533d" stroke-width="3"/></svg><p class="gcap">20 points near y = 0.6x + 2 (black) and 3 wrong ones (red rings) · both lines fitted by least squares</p></div>
+    <div><svg class="fig cvsvg" viewBox="0 0 460 300" role="img" aria-label="twenty points on a line, three far above it, and two fitted lines"><line x1="40" y1="260" x2="450" y2="260" stroke="#94a3b8"/><line x1="40" y1="260" x2="40" y2="10" stroke="#94a3b8"/><line x1="40.0" y1="169.02030811900994" x2="446.0" y2="80.17662174780668" stroke="#e0533d" stroke-width="3"/><rect x="255" y="208" width="16" height="5" fill="#e0533d"/><text x="277" y="215" class="tk" style="fill:#e0533d">all 23 points: slope 0.36</text><line x1="40.0" y1="207.4200642124194" x2="446.0" y2="66.71940231869706" stroke="#855400" stroke-width="3"/><rect x="255" y="230" width="16" height="5" fill="#855400"/><text x="277" y="237" class="tk" style="fill:#855400">20 good ones: slope 0.57</text><circle cx="74.8" cy="198.1" r="5" fill="#0f1b2d"/><circle cx="78.2" cy="191.2" r="5" fill="#0f1b2d"/><circle cx="86.2" cy="192.0" r="5" fill="#0f1b2d"/><circle cx="104.9" cy="189.1" r="5" fill="#0f1b2d"/><circle cx="136.1" cy="176.5" r="5" fill="#0f1b2d"/><circle cx="155.4" cy="166.9" r="5" fill="#0f1b2d"/><circle cx="158.8" cy="160.5" r="5" fill="#0f1b2d"/><circle cx="198.8" cy="154.0" r="5" fill="#0f1b2d"/><circle cx="214.8" cy="148.1" r="5" fill="#0f1b2d"/><circle cx="215.8" cy="143.2" r="5" fill="#0f1b2d"/><circle cx="234.5" cy="143.4" r="5" fill="#0f1b2d"/><circle cx="249.8" cy="135.6" r="5" fill="#0f1b2d"/><circle cx="276.4" cy="121.6" r="5" fill="#0f1b2d"/><circle cx="278.2" cy="122.0" r="5" fill="#0f1b2d"/><circle cx="303.3" cy="114.7" r="5" fill="#0f1b2d"/><circle cx="322.7" cy="105.6" r="5" fill="#0f1b2d"/><circle cx="338.2" cy="112.8" r="5" fill="#0f1b2d"/><circle cx="339.6" cy="98.1" r="5" fill="#0f1b2d"/><circle cx="365.3" cy="96.1" r="5" fill="#0f1b2d"/><circle cx="428.2" cy="75.8" r="5" fill="#0f1b2d"/><circle cx="100.9" cy="50.9" r="6" fill="#fff" stroke="#e0533d" stroke-width="3"/><circle cx="141.5" cy="38.6" r="6" fill="#fff" stroke="#e0533d" stroke-width="3"/><circle cx="182.1" cy="63.2" r="6" fill="#fff" stroke="#e0533d" stroke-width="3"/></svg><p class="gcap">20 points near y = 0.6x + 2 (black) and 3 wrong ones (red rings) · both lines fitted by least squares</p></div>
     <div class="say">
       <div class="flashback">Session 4 B: fitting = making the loss small. Least squares adds up the squared errors of every point.</div>
       <p style="margin-top:.6em">A wrong point far away has a huge squared error, so the line bends towards it: slope 0.36 instead of 0.57.</p>
@@ -1121,7 +1122,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     </div>
     <div class="say">
       <p>50 points: 30 near a line, 20 anywhere (w = 0.6). Each try: 2 random points (orange), their line, and the points within 0.35 of it.</p>
-      <p class="fragment">Most tries pick a wrong point and get few votes. Within a handful of tries one sample is two good points — and its line collects about 30. The green line is the best so far.</p>
+      <p class="fragment">Most tries pick a wrong point and get few votes. Within a handful of tries one sample is two good points — and its line collects about 30. The gold line is the best so far.</p>
     </div>
   </div>
 
@@ -1133,7 +1134,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="kicker">D · RANSAC</p>
   <h2 class="claim">Where N comes from: every try has to fail</h2>
   <div class="split">
-    <div><svg class="fig cvsvg" viewBox="0 0 560 280" role="img" aria-label="the chance that every one of N tries fails, 0.64 to the power N, falling below 0.01 at N = 11"><line x1="64" y1="16.0" x2="64" y2="236" stroke="#94a3b8"/><text x="56" y="21.0" text-anchor="end" class="tk">1</text><line x1="64" y1="16.0" x2="550" y2="16.0" stroke="#eef2f7"/><text x="56" y="94.33333333333333" text-anchor="end" class="tk">0.1</text><line x1="64" y1="89.33333333333333" x2="550" y2="89.33333333333333" stroke="#eef2f7"/><text x="56" y="167.66666666666666" text-anchor="end" class="tk">0.01</text><line x1="64" y1="162.66666666666666" x2="550" y2="162.66666666666666" stroke="#eef2f7"/><text x="56" y="241.0" text-anchor="end" class="tk">0.001</text><line x1="64" y1="236.0" x2="550" y2="236.0" stroke="#eef2f7"/><rect x="68.0" y="16.0" width="28.3" height="14.2" rx="3" fill="#e0533d" fill-opacity="0.55"/><text x="82.1" y="254" text-anchor="middle" class="tk">1</text><rect x="102.3" y="16.0" width="28.3" height="28.4" rx="3" fill="#e0533d" fill-opacity="0.55"/><text x="116.4" y="254" text-anchor="middle" class="tk">2</text><rect x="136.6" y="16.0" width="28.3" height="42.6" rx="3" fill="#e0533d" fill-opacity="0.55"/><text x="150.7" y="254" text-anchor="middle" class="tk">3</text><rect x="170.9" y="16.0" width="28.3" height="56.9" rx="3" fill="#e0533d" fill-opacity="0.55"/><text x="185.0" y="254" text-anchor="middle" class="tk">4</text><rect x="205.1" y="16.0" width="28.3" height="71.1" rx="3" fill="#e0533d" fill-opacity="0.55"/><text x="219.3" y="254" text-anchor="middle" class="tk">5</text><rect x="239.4" y="16.0" width="28.3" height="85.3" rx="3" fill="#e0533d" fill-opacity="0.55"/><text x="253.6" y="254" text-anchor="middle" class="tk">6</text><rect x="273.7" y="16.0" width="28.3" height="99.5" rx="3" fill="#e0533d" fill-opacity="0.55"/><text x="287.9" y="254" text-anchor="middle" class="tk">7</text><rect x="308.0" y="16.0" width="28.3" height="113.7" rx="3" fill="#e0533d" fill-opacity="0.55"/><text x="322.1" y="254" text-anchor="middle" class="tk">8</text><rect x="342.3" y="16.0" width="28.3" height="127.9" rx="3" fill="#e0533d" fill-opacity="0.55"/><text x="356.4" y="254" text-anchor="middle" class="tk">9</text><rect x="376.6" y="16.0" width="28.3" height="142.1" rx="3" fill="#e0533d" fill-opacity="0.55"/><text x="390.7" y="254" text-anchor="middle" class="tk">10</text><rect x="410.9" y="16.0" width="28.3" height="156.3" rx="3" fill="#0f766e" fill-opacity="1"/><text x="425.0" y="254" text-anchor="middle" class="tk">11</text><rect x="445.1" y="16.0" width="28.3" height="170.6" rx="3" fill="#0f766e" fill-opacity="0.55"/><text x="459.3" y="254" text-anchor="middle" class="tk">12</text><rect x="479.4" y="16.0" width="28.3" height="184.8" rx="3" fill="#0f766e" fill-opacity="0.55"/><text x="493.6" y="254" text-anchor="middle" class="tk">13</text><rect x="513.7" y="16.0" width="28.3" height="199.0" rx="3" fill="#0f766e" fill-opacity="0.55"/><text x="527.9" y="254" text-anchor="middle" class="tk">14</text><line x1="64" y1="162.66666666666666" x2="550" y2="162.66666666666666" stroke="#0f1b2d" stroke-width="2" stroke-dasharray="7 5"/><text x="74" y="184.66666666666666" class="lb">1 − p = 0.01</text><text x="312.0" y="276" text-anchor="middle" class="tk">tries N</text></svg><p class="gcap">chance that all N tries fail, (1 − 0.6²)<sup>N</sup> = 0.64<sup>N</sup> — slide 30's demo: w = 0.6, a line (s = 2)</p></div>
+    <div><svg class="fig cvsvg" viewBox="0 0 560 280" role="img" aria-label="the chance that every one of N tries fails, 0.64 to the power N, falling below 0.01 at N = 11"><line x1="64" y1="16.0" x2="64" y2="236" stroke="#94a3b8"/><text x="56" y="21.0" text-anchor="end" class="tk">1</text><line x1="64" y1="16.0" x2="550" y2="16.0" stroke="#eef2f7"/><text x="56" y="94.33333333333333" text-anchor="end" class="tk">0.1</text><line x1="64" y1="89.33333333333333" x2="550" y2="89.33333333333333" stroke="#eef2f7"/><text x="56" y="167.66666666666666" text-anchor="end" class="tk">0.01</text><line x1="64" y1="162.66666666666666" x2="550" y2="162.66666666666666" stroke="#eef2f7"/><text x="56" y="241.0" text-anchor="end" class="tk">0.001</text><line x1="64" y1="236.0" x2="550" y2="236.0" stroke="#eef2f7"/><rect x="68.0" y="16.0" width="28.3" height="14.2" rx="3" fill="#e0533d" fill-opacity="0.55"/><text x="82.1" y="254" text-anchor="middle" class="tk">1</text><rect x="102.3" y="16.0" width="28.3" height="28.4" rx="3" fill="#e0533d" fill-opacity="0.55"/><text x="116.4" y="254" text-anchor="middle" class="tk">2</text><rect x="136.6" y="16.0" width="28.3" height="42.6" rx="3" fill="#e0533d" fill-opacity="0.55"/><text x="150.7" y="254" text-anchor="middle" class="tk">3</text><rect x="170.9" y="16.0" width="28.3" height="56.9" rx="3" fill="#e0533d" fill-opacity="0.55"/><text x="185.0" y="254" text-anchor="middle" class="tk">4</text><rect x="205.1" y="16.0" width="28.3" height="71.1" rx="3" fill="#e0533d" fill-opacity="0.55"/><text x="219.3" y="254" text-anchor="middle" class="tk">5</text><rect x="239.4" y="16.0" width="28.3" height="85.3" rx="3" fill="#e0533d" fill-opacity="0.55"/><text x="253.6" y="254" text-anchor="middle" class="tk">6</text><rect x="273.7" y="16.0" width="28.3" height="99.5" rx="3" fill="#e0533d" fill-opacity="0.55"/><text x="287.9" y="254" text-anchor="middle" class="tk">7</text><rect x="308.0" y="16.0" width="28.3" height="113.7" rx="3" fill="#e0533d" fill-opacity="0.55"/><text x="322.1" y="254" text-anchor="middle" class="tk">8</text><rect x="342.3" y="16.0" width="28.3" height="127.9" rx="3" fill="#e0533d" fill-opacity="0.55"/><text x="356.4" y="254" text-anchor="middle" class="tk">9</text><rect x="376.6" y="16.0" width="28.3" height="142.1" rx="3" fill="#e0533d" fill-opacity="0.55"/><text x="390.7" y="254" text-anchor="middle" class="tk">10</text><rect x="410.9" y="16.0" width="28.3" height="156.3" rx="3" fill="#855400" fill-opacity="1"/><text x="425.0" y="254" text-anchor="middle" class="tk">11</text><rect x="445.1" y="16.0" width="28.3" height="170.6" rx="3" fill="#855400" fill-opacity="0.55"/><text x="459.3" y="254" text-anchor="middle" class="tk">12</text><rect x="479.4" y="16.0" width="28.3" height="184.8" rx="3" fill="#855400" fill-opacity="0.55"/><text x="493.6" y="254" text-anchor="middle" class="tk">13</text><rect x="513.7" y="16.0" width="28.3" height="199.0" rx="3" fill="#855400" fill-opacity="0.55"/><text x="527.9" y="254" text-anchor="middle" class="tk">14</text><line x1="64" y1="162.66666666666666" x2="550" y2="162.66666666666666" stroke="#0f1b2d" stroke-width="2" stroke-dasharray="7 5"/><text x="74" y="184.66666666666666" class="lb">1 − p = 0.01</text><text x="312.0" y="276" text-anchor="middle" class="tk">tries N</text></svg><p class="gcap">chance that all N tries fail, (1 − 0.6²)<sup>N</sup> = 0.64<sup>N</sup> — slide 30's demo: w = 0.6, a line (s = 2)</p></div>
     <div class="say">
       <p>One try is all-good with probability w<sup>s</sup> (s independent draws).</p>
       <div class="eq fragment">$$P(\text{all }N\text{ fail})=(1-w^s)^N\le 1-p$$</div>
@@ -1143,7 +1144,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     </div>
   </div>
 
-  <aside class="notes"><p>🇹🇭 ที่มา N: หนึ่งรอบดีหมดด้วยความน่าจะเป็น wˢ · N รอบพลาดหมด (1 − wˢ)ᴺ ≤ 1 − p · ใส่ ln (ค่าติดลบ หารแล้วกลับเครื่องหมาย) · ตัวอย่างตรงกับ demo หน้า 30: w 0.6 เส้นตรง → 11 รอบ · กราฟ: แท่งเขียวเริ่มที่ 11</p><p>🇬🇧 Where N comes from: one try is all-good with probability wˢ; N tries all fail with (1 − wˢ)ᴺ ≤ 1 − p. Take ln (negative — dividing flips the sign). The example is slide 30's demo: w 0.6, a line → 11 tries. Bars turn green at 11.</p></aside>
+  <aside class="notes"><p>🇹🇭 ที่มา N: หนึ่งรอบดีหมดด้วยความน่าจะเป็น wˢ · N รอบพลาดหมด (1 − wˢ)ᴺ ≤ 1 − p · ใส่ ln (ค่าติดลบ หารแล้วกลับเครื่องหมาย) · ตัวอย่างตรงกับ demo หน้า 30: w 0.6 เส้นตรง → 11 รอบ · กราฟ: แท่งสีทองเริ่มที่ 11</p><p>🇬🇧 Where N comes from: one try is all-good with probability wˢ; N tries all fail with (1 − wˢ)ᴺ ≤ 1 − p. Take ln (negative — dividing flips the sign). The example is slide 30's demo: w 0.6, a line → 11 tries. Bars turn gold at 11.</p></aside>
 </section>
 
 <!-- 32 -->
@@ -1203,7 +1204,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <div class="cards">
     <div class="card"><b>Least squares breaks</b>One far-off wrong point bends the fit.</div>
     <div class="card violet"><b>RANSAC</b>Sample the fewest points, fit, count inliers, keep the best, refit.</div>
-    <div class="card amber"><b>How many tries</b>N = log(1 − p) ÷ log(1 − wˢ): more outliers or bigger samples need far more.</div>
+    <div class="card teal"><b>How many tries</b>N = log(1 − p) ÷ log(1 − wˢ): more outliers or bigger samples need far more.</div>
   </div>
   <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-06/lab.ipynb#scrollTo=part-d" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part D</a><span>RANSAC for a line by hand, the number of tries, cv2.findHomography with RANSAC on a view with a known H</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s6d">More practice · Session 6 D — practice bank with worked solutions →</a></p>
@@ -1702,7 +1703,7 @@ function drawNumbers(canvas,img,gain,pick,thr=128){   /* cells below thr are sha
   for(let r=0;r<N;r++) for(let c=0;c<N;c++){
     const v=Math.max(0,Math.min(255,Math.round(img[r][c]*gain)));
     const hit=pick&&pick[0]===r&&pick[1]===c;
-    ctx.fillStyle=hit?'#fbeaea':(v<thr?'#e3f3f4':'#ffffff'); ctx.fillRect(c*s,r*s,s,s);
+    ctx.fillStyle=hit?'#fbeaea':(v<thr?'#f8ecd2':'#ffffff'); ctx.fillRect(c*s,r*s,s,s);
     ctx.fillStyle=hit?'#d9534f':'#1b1f24'; ctx.fillText(v,c*s+s/2,r*s+s/2);
   }
   ctx.strokeStyle='#dde3e8'; ctx.lineWidth=1;
@@ -1779,7 +1780,7 @@ function initWindow(){
     for(let v=-6;v<=6;v++) for(let u=-6;u<=6;u++){ let s=0; for(let i=-7;i<=7;i++) for(let j=-7;j<=7;j++){ const a=G[Math.min(H-1,Math.max(0,py+i))*W+Math.min(W-1,Math.max(0,px+j))], b=G[Math.min(H-1,Math.max(0,py+i+v))*W+Math.min(W-1,Math.max(0,px+j+u))]; s+=(a-b)**2; } E.push(s); mx=Math.max(mx,s); }
     const x0=W+20, cs=13;
     E.forEach((e,i)=>{ const g=Math.round(255*Math.sqrt(e/(Math.max(mx,0.5)))); ctx.fillStyle=`rgb(${g},${Math.round(g*.85)},${Math.round(g*.6)})`; ctx.fillRect(x0+(i%13)*cs,20+Math.floor(i/13)*cs,cs-1,cs-1); });
-    ctx.strokeStyle='#0f766e'; ctx.lineWidth=2; ctx.strokeRect(x0+6*cs,20+6*cs,cs-1,cs-1);
+    ctx.strokeStyle='#855400'; ctx.lineWidth=2; ctx.strokeRect(x0+6*cs,20+6*cs,cs-1,cs-1);
     ctx.fillStyle='#667085'; ctx.font='600 12px "Space Grotesk",sans-serif'; ctx.textAlign='center';
     ctx.fillText('change for each shift',x0+6.5*cs,14); ctx.fillText('← shift x →',x0+6.5*cs,20+13*cs+16);
     const i=py*W+px, a=Sxx[i], b=Sxy[i], c=Syy[i], m=(a+c)/2, d=Math.sqrt(((a-c)/2)**2+b*b), l1=m+d, l2=m-d, R=a*c-b*b-0.04*(a+c)**2;
@@ -1818,7 +1819,7 @@ function initScaleSpace(){
 /* B3: scale-normalised LoG at the centre of discs of radius 4, 8, 16 (computed in make_assets.py) */
 function initBlobs(){
   const cv=document.getElementById('blCv'); if(!cv) return; const ctx=cv.getContext('2d'), W=cv.width, H=cv.height, m=44, s=document.getElementById('blS');
-  const col={'4':'#0f766e','8':'#c97a06','16':'#e0533d'}, sig=BL.sigma, mx=Math.max(...Object.values(BL.curves).flat());
+  const col={'4':'#855400','8':'#0f766e','16':'#e0533d'}, sig=BL.sigma, mx=Math.max(...Object.values(BL.curves).flat());
   const X=v=>m+(v-1)/15*(W-m-20), Y=v=>H-m-v/mx*(H-m-24);
   const draw=()=>{ const sv=+s.value, i=sig.indexOf(sv); ctx.clearRect(0,0,W,H); ctx.fillStyle='#fff'; ctx.fillRect(0,0,W,H);
     ctx.strokeStyle='#94a3b8'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(m,H-m); ctx.lineTo(W-14,H-m); ctx.moveTo(m,H-m); ctx.lineTo(m,14); ctx.stroke();
@@ -1857,11 +1858,11 @@ function initRansac(){
   const line=(a,b,col,w,dash)=>{ const [x1,y1]=[RSP.x[a],RSP.y[a]], [x2,y2]=[RSP.x[b],RSP.y[b]]; if(Math.abs(x2-x1)<1e-9) return; const k=(y2-y1)/(x2-x1);
     ctx.strokeStyle=col; ctx.lineWidth=w; ctx.setLineDash(dash||[]); ctx.beginPath(); ctx.moveTo(X(0),Y(y1-k*x1)); ctx.lineTo(X(10),Y(y1+k*(10-x1))); ctx.stroke(); ctx.setLineDash([]); };
   const draw=()=>{ ctx.clearRect(0,0,W,H); ctx.fillStyle='#fff'; ctx.fillRect(0,0,W,H); ctx.save(); ctx.beginPath(); ctx.rect(m,m-20,W-2*m,H-2*m+20); ctx.clip();
-    if(best) line(best.a,best.b,'#0f766e',3.5); if(last) line(last.a,last.b,'#c97a06',2,[6,4]); ctx.restore();
+    if(best) line(best.a,best.b,'#855400',3.5); if(last) line(last.a,last.b,'#0f766e',2,[6,4]); ctx.restore();
     const lin=last?new Set(last.ids):new Set();
-    for(let i=0;i<N;i++){ ctx.beginPath(); ctx.arc(X(RSP.x[i]),Y(RSP.y[i]),5,0,7); ctx.fillStyle=lin.has(i)?'#c97a06':'#94a3b8'; ctx.fill(); }
+    for(let i=0;i<N;i++){ ctx.beginPath(); ctx.arc(X(RSP.x[i]),Y(RSP.y[i]),5,0,7); ctx.fillStyle=lin.has(i)?'#0f766e':'#94a3b8'; ctx.fill(); }
     if(last) for(const i of [last.a,last.b]){ ctx.beginPath(); ctx.arc(X(RSP.x[i]),Y(RSP.y[i]),9,0,7); ctx.strokeStyle='#e0533d'; ctx.lineWidth=3; ctx.stroke(); }
-    document.getElementById('rsOut').innerHTML=tries?`try <b>${tries}</b>: ${last.ids.length} inliers · best so far <b>${best.ids.length}</b> (green, from try ${best.t})`:'press One try';
+    document.getElementById('rsOut').innerHTML=tries?`try <b>${tries}</b>: ${last.ids.length} inliers · best so far <b>${best.ids.length}</b> (gold, from try ${best.t})`:'press One try';
     cv.dataset.best=best?best.ids.length:0; cv.dataset.tries=tries; };
   const once=()=>{ const a=Math.floor(rnd()*N); let b=Math.floor(rnd()*(N-1)); if(b>=a) b++; const ids=inl(a,b); tries++; last={a,b,ids}; if(!best||ids.length>best.ids.length) best={a,b,ids,t:tries}; };
   const reset=()=>{ seed=7; tries=0; best=null; last=null; draw(); };

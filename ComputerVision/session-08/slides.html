@@ -30,8 +30,8 @@
 <style>
 :root{
   --bg:#ffffff; --ink:#0f1b2d; --body:#2b3645; --muted:#667085; --soft:#f5f7fa; --line:#e4e8ee;
-  --teal:#0f766e; --teal-soft:#e6f4f2; --coral:#e0533d; --coral-soft:#fdeeea;
-  --amber:#c97a06; --amber-soft:#fdf4e3; --violet:#6d5bd0; --violet-soft:#f0edfc; --navy:#0f1b2d;
+  --gold:#855400; --gold-soft:#fbf1dc; --coral:#e0533d; --coral-soft:#fdeeea;
+  --teal:#0f766e; --teal-soft:#e6f4f2; --violet:#6d5bd0; --violet-soft:#f0edfc; --navy:#0f1b2d;
   --font:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
   --display:'Space Grotesk','Plus Jakarta Sans',sans-serif;
   --font-th:'Anuphan','Plus Jakarta Sans',sans-serif;
@@ -44,24 +44,24 @@ html,body{background:var(--bg);}
 .reveal h1,.reveal h2,.reveal h3,.reveal h4{font-family:var(--display);color:var(--ink);text-transform:none;letter-spacing:-0.02em;margin:0 0 .45em;}
 .reveal h1{font-size:2.6em;font-weight:700;line-height:1.02;}
 .reveal h2{font-size:1.5em;font-weight:700;line-height:1.12;}
-.reveal h3{font-size:.95em;font-weight:600;color:var(--teal);margin-bottom:.35em;}
+.reveal h3{font-size:.95em;font-weight:600;color:var(--gold);margin-bottom:.35em;}
 .reveal p,.reveal li{line-height:1.5;}
 .reveal ul,.reveal ol{margin:0 0 0 1.05em;}
 .reveal li{margin:.3em 0;padding-left:.15em;}
-.reveal ul li::marker{color:var(--teal);font-size:1.1em;}
-.reveal ol li::marker{color:var(--teal);font-weight:700;font-family:var(--display);}
+.reveal ul li::marker{color:var(--gold);font-size:1.1em;}
+.reveal ol li::marker{color:var(--gold);font-weight:700;font-family:var(--display);}
 .reveal strong,.reveal b{font-weight:700;color:var(--ink);}
-.reveal a{color:var(--teal);text-decoration:underline;text-underline-offset:3px;}
+.reveal a{color:var(--gold);text-decoration:underline;text-underline-offset:3px;}
 .reveal code{font-family:var(--mono);font-size:.82em;background:var(--soft);padding:.05em .3em;border-radius:5px;}
 
 /* slide header: kicker + claim title */
-.kicker{display:flex;align-items:center;gap:.5em;font-family:var(--display);font-size:.5em;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin:0 0 .5em;}
-.kicker::before{content:"";width:1.8em;height:3px;border-radius:2px;background:var(--teal);}
+.kicker{display:flex;align-items:center;gap:.5em;font-family:var(--display);font-size:.5em;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 .5em;}
+.kicker::before{content:"";width:1.8em;height:3px;border-radius:2px;background:var(--gold);}
 .reveal h2.claim{max-width:26em;}
 .lead{font-size:.66em;line-height:1.5;color:#46505e;margin:-.15em 0 .8em;max-width:52em;text-wrap:pretty;}
-/* closing note under the content: small, with the kicker's teal rule in front */
+/* closing note under the content: small, with the kicker's gold rule in front */
 .takeaway{display:flex;align-items:baseline;gap:.7em;margin:.9em 0 0;font-size:.6em;line-height:1.5;font-weight:500;color:var(--muted);max-width:60em;text-wrap:pretty;}
-.takeaway::before{content:"";flex:0 0 1.8em;height:3px;border-radius:2px;background:var(--teal);transform:translateY(-.3em);}
+.takeaway::before{content:"";flex:0 0 1.8em;height:3px;border-radius:2px;background:var(--gold);transform:translateY(-.3em);}
 html.reading .lead,html.reading .takeaway{font-size:15px;}
 
 /* layout helpers */
@@ -76,11 +76,11 @@ html.reading .lead,html.reading .takeaway{font-size:15px;}
 .card .cardimg{display:block;width:calc(100% + 1.4em);max-width:none;margin:-.55em -.7em .4em;aspect-ratio:5/2;object-fit:cover;border-radius:8px 8px 0 0;}
 .cards.c5{grid-template-columns:repeat(5,minmax(0,1fr));}
 .cards.c5 .card{font-size:.66em;padding:.5em .65em .55em;}
-.card{position:relative;background:#fff;border:1px solid var(--line);border-top:4px solid var(--teal);border-radius:12px;padding:.6em .75em .65em;font-size:.74em;line-height:1.4;box-shadow:0 1px 2px rgba(15,27,45,.05),0 6px 16px -10px rgba(15,27,45,.18);}
+.card{position:relative;background:#fff;border:1px solid var(--line);border-top:4px solid var(--gold);border-radius:12px;padding:.6em .75em .65em;font-size:.74em;line-height:1.4;box-shadow:0 1px 2px rgba(15,27,45,.05),0 6px 16px -10px rgba(15,27,45,.18);}
 .card b{display:block;font-family:var(--display);font-size:1.12em;margin-bottom:.2em;color:var(--ink);}
 .card .n{display:block;font-family:var(--display);font-weight:700;color:#9aa6b5;font-size:.85em;letter-spacing:.06em;margin-bottom:.15em;}
-.card.teal{border-top-color:var(--teal);} .card.coral{border-top-color:var(--coral);}
-.card.amber{border-top-color:var(--amber);} .card.violet{border-top-color:var(--violet);} .card.navy{border-top-color:var(--navy);}
+.card.gold{border-top-color:var(--gold);} .card.coral{border-top-color:var(--coral);}
+.card.teal{border-top-color:var(--teal);} .card.violet{border-top-color:var(--violet);} .card.navy{border-top-color:var(--navy);}
 .small{font-size:.84em;}
 .muted{color:var(--muted);}
 .center{text-align:center;}
@@ -97,16 +97,16 @@ html.reading .pgno{display:none;}
 .deck-rule{position:absolute;left:4px;right:4px;bottom:46px;height:1px;background:var(--line);}
 
 /* key term with Thai meaning */
-.term{display:grid;grid-template-columns:auto 1fr;gap:.1em .6em;align-items:baseline;background:var(--teal-soft);border-radius:12px;padding:.5em .8em;font-size:.72em;margin:0 0 .5em;}
+.term{display:grid;grid-template-columns:auto 1fr;gap:.1em .6em;align-items:baseline;background:var(--gold-soft);border-radius:12px;padding:.5em .8em;font-size:.72em;margin:0 0 .5em;}
 .term b{font-family:var(--display);font-size:1.15em;}
 .term .th{justify-self:start;}
 .term .def{grid-column:1 / -1;color:var(--body);}
-.th{font-family:var(--font-th);color:var(--teal);font-weight:500;}
+.th{font-family:var(--font-th);color:var(--gold);font-weight:500;}
 
 /* Try it */
-.tryit{border:1px solid #f1d9a9;border-left:6px solid var(--amber);border-radius:12px;padding:.65em .9em;background:var(--amber-soft);font-size:.72em;line-height:1.45;}
-.tryit .tag{display:table;font-family:var(--display);font-weight:700;color:var(--amber);letter-spacing:.14em;text-transform:uppercase;font-size:.62em;margin-bottom:.45em;}
-.tryit details summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-family:var(--display);font-weight:600;font-size:.85em;color:var(--amber);list-style:none;}
+.tryit{border:1px solid #bfe3de;border-left:6px solid var(--teal);border-radius:12px;padding:.65em .9em;background:var(--teal-soft);font-size:.72em;line-height:1.45;}
+.tryit .tag{display:table;font-family:var(--display);font-weight:700;color:var(--teal);letter-spacing:.14em;text-transform:uppercase;font-size:.62em;margin-bottom:.45em;}
+.tryit details summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-family:var(--display);font-weight:600;font-size:.85em;color:var(--teal);list-style:none;}
 .tryit details summary::-webkit-details-marker{display:none;}
 .tryit details summary::before{content:"";width:0;height:0;border-left:.42em solid currentColor;border-top:.3em solid transparent;border-bottom:.3em solid transparent;margin-right:.5em;transition:transform .15s;}
 .tryit details[open] summary::before{transform:rotate(90deg);}
@@ -114,13 +114,13 @@ html.reading .pgno{display:none;}
 /* flashback */
 .flashback{border:1px solid #d9d2f6;border-left:6px solid var(--violet);background:var(--violet-soft);border-radius:12px;padding:.65em .9em;font-size:.72em;line-height:1.45;}
 .flashback::before{content:"Flashback";display:block;font-family:var(--display);font-weight:700;color:var(--violet);letter-spacing:.14em;text-transform:uppercase;font-size:.62em;margin-bottom:.4em;}
-/* key idea: same box shape, teal, label from data-label */
-.keyidea{border:1px solid #bfe3de;border-left:6px solid var(--teal);background:var(--teal-soft);border-radius:12px;padding:.65em .9em;font-size:.72em;line-height:1.45;}
-.keyidea::before{content:attr(data-label);display:block;font-family:var(--display);font-weight:700;color:var(--teal);letter-spacing:.14em;text-transform:uppercase;font-size:.62em;margin-bottom:.4em;}
+/* key idea: same box shape, gold, label from data-label */
+.keyidea{border:1px solid #ead7ac;border-left:6px solid var(--gold);background:var(--gold-soft);border-radius:12px;padding:.65em .9em;font-size:.72em;line-height:1.45;}
+.keyidea::before{content:attr(data-label);display:block;font-family:var(--display);font-weight:700;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;font-size:.62em;margin-bottom:.4em;}
 
 /* Colab button */
 .colab svg{width:.95em;height:.95em;fill:currentColor;}
-.colab{display:inline-flex;align-items:center;gap:.4em;min-height:44px;padding:0 1em;border-radius:999px;background:#f9ab00;color:#1b1f24 !important;font-family:var(--display);font-weight:700;font-size:.62em;text-decoration:none !important;box-shadow:0 4px 12px -6px rgba(201,122,6,.6);}
+.colab{display:inline-flex;align-items:center;gap:.4em;min-height:44px;padding:0 1em;border-radius:999px;background:#f9ab00;color:#1b1f24 !important;font-family:var(--display);font-weight:700;font-size:.62em;text-decoration:none !important;box-shadow:0 4px 12px -6px rgba(15, 118, 110,.6);}
 
 /* tables */
 .tscroll{overflow-x:auto;max-width:100%;border:1px solid var(--line);border-radius:12px;}
@@ -129,18 +129,18 @@ html.reading .pgno{display:none;}
 .reveal table th{background:var(--navy);color:#fff;font-family:var(--display);font-weight:600;letter-spacing:.02em;}
 .reveal table tr:nth-child(odd) td{background:#fafbfc;}
 .reveal table tr:last-child td{border-bottom:0;}
-.reveal table tr.hl td{background:var(--teal-soft);font-weight:600;color:var(--ink);}
+.reveal table tr.hl td{background:var(--gold-soft);font-weight:600;color:var(--ink);}
 .reveal table.tight{font-size:.5em;}
 .reveal table.tight th,.reveal table.tight td{padding:.3em .7em;}
-.reveal table td.pt{font-family:var(--display);font-weight:700;color:var(--teal);text-align:center;width:3em;}
+.reveal table td.pt{font-family:var(--display);font-weight:700;color:var(--gold);text-align:center;width:3em;}
 
 /* title slide — dark cover */
 .reveal .slides>section.title-slide,.reveal .slides .pdf-page>section.title-slide,.reveal .slides .ho-cell>section.title-slide{padding:0 34px !important;}
 .title-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:2.2em;align-items:center;height:100%;}
-.title-slide .pill{display:inline-flex;align-items:center;gap:.6em;margin:0 0 1.2em;padding:.4em 1em;border-radius:999px;background:var(--teal-soft);color:var(--teal);font-family:var(--display);font-weight:600;font-size:.46em;letter-spacing:.16em;text-transform:uppercase;}
-.title-slide .pill::before{content:"";width:.55em;height:.55em;border-radius:50%;background:var(--teal);}
+.title-slide .pill{display:inline-flex;align-items:center;gap:.6em;margin:0 0 1.2em;padding:.4em 1em;border-radius:999px;background:var(--gold-soft);color:var(--gold);font-family:var(--display);font-weight:600;font-size:.46em;letter-spacing:.16em;text-transform:uppercase;}
+.title-slide .pill::before{content:"";width:.55em;height:.55em;border-radius:50%;background:var(--gold);}
 .reveal .title-slide h1{color:var(--ink);font-size:3em;line-height:.98;margin:0 0 .32em;letter-spacing:-.035em;}
-.reveal .title-slide h1 em{font-style:normal;color:var(--teal);}
+.reveal .title-slide h1 em{font-style:normal;color:var(--gold);}
 .title-slide .sub{font-family:var(--display);font-size:1em;color:var(--body);font-weight:500;margin:0 0 1.9em;}
 .title-slide .who{border-top:1px solid var(--line);padding-top:.9em;max-width:17em;}
 .title-slide .who p{margin:0;}
@@ -148,14 +148,14 @@ html.reading .pgno{display:none;}
 .title-slide .name span{font-weight:500;color:var(--muted);}
 .title-slide .contact{display:flex;flex-wrap:wrap;gap:.2em 1.4em;margin-top:.35em !important;font-size:.56em;color:var(--muted);}
 .title-slide .contact a{color:inherit;text-decoration:none;}
-.title-slide .contact a:hover{color:var(--teal);}
+.title-slide .contact a:hover{color:var(--gold);}
 .title-slide .contact span+span::before{content:"";display:inline-block;width:.32em;height:.32em;border-radius:50%;background:#c3cad4;margin:0 .9em 0 -.8em;vertical-align:middle;}
-.title-slide .art{margin:0;padding:34px 34px 22px;border-radius:30px;background-color:var(--teal-soft);background-image:radial-gradient(rgba(15,118,110,.16) 1.4px,transparent 1.6px);background-size:22px 22px;}
+.title-slide .art{margin:0;padding:34px 34px 22px;border-radius:30px;background-color:var(--gold-soft);background-image:radial-gradient(rgba(133, 84, 0,.16) 1.4px,transparent 1.6px);background-size:22px 22px;}
 #titleArt{display:block;width:100%;height:auto;border-radius:16px;background:#fff;box-shadow:0 18px 40px -22px rgba(15,27,45,.35),0 0 0 1px var(--line);}
 @media print{#titleArt{box-shadow:0 0 0 1px var(--line);}.title-slide .art{background-image:none;}}
 html.print-pdf #titleArt{box-shadow:0 0 0 1px var(--line);}
 html.print-pdf .title-slide .art{background-image:none;}
-.title-slide figcaption{margin-top:.8em;text-align:center;font-family:var(--mono);font-size:.4em;color:var(--teal);letter-spacing:.02em;}
+.title-slide figcaption{margin-top:.8em;text-align:center;font-family:var(--mono);font-size:.4em;color:var(--gold);letter-spacing:.02em;}
 html.reading .reveal .slides>section.title-slide{padding:36px 18px !important;}
 html.reading .title-slide .pill,html.reading .title-slide figcaption,html.reading .title-slide .contact{font-size:13px;}
 html.reading .title-slide .art{padding:18px 18px 12px;border-radius:20px;}
@@ -164,9 +164,9 @@ html.reading .title-slide .art{padding:18px 18px 12px;border-radius:20px;}
 .cols.today{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:2em;}
 .reveal .steps{list-style:none;margin:0;padding:0;counter-reset:st;position:relative;}
 /* connector: one segment per item, from this circle's centre to the next — in the li's own em so it stays centred at any size */
-.steps li:not(:last-child)::after{content:"";position:absolute;left:calc(.855em - 1px);top:50%;height:100%;width:2px;background:#a9d8d4;}
+.steps li:not(:last-child)::after{content:"";position:absolute;left:calc(.855em - 1px);top:50%;height:100%;width:2px;background:#e2c88f;}
 .steps li{counter-increment:st;position:relative;margin:0;padding:.5em 0 .5em 2.7em;font-size:.8em;line-height:1.35;color:var(--ink);}
-.steps li::before{content:counter(st);position:absolute;left:0;top:50%;transform:translateY(-50%);box-sizing:border-box;z-index:1;width:1.9em;height:1.9em;border-radius:50%;background:#fff;border:2px solid var(--teal);color:var(--teal);font-family:var(--display);font-weight:700;font-size:.9em;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 4px #fff;}
+.steps li::before{content:counter(st);position:absolute;left:0;top:50%;transform:translateY(-50%);box-sizing:border-box;z-index:1;width:1.9em;height:1.9em;border-radius:50%;background:#fff;border:2px solid var(--gold);color:var(--gold);font-family:var(--display);font-weight:700;font-size:.9em;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 4px #fff;}
 .goals{display:grid;gap:.5em;}
 .goal{display:grid;grid-template-columns:5.4em 1fr;gap:.8em;align-items:center;background:#fff;border:1px solid var(--line);border-left:5px solid var(--c);border-radius:12px;padding:.6em .85em;font-size:.72em;line-height:1.4;color:var(--ink);box-shadow:0 6px 16px -12px rgba(15,27,45,.25);}
 .goal .verb{justify-self:start;font-family:var(--display);font-weight:700;font-size:.78em;letter-spacing:.12em;text-transform:uppercase;color:var(--c);}
@@ -176,11 +176,11 @@ html.reading .cols.today{grid-template-columns:1fr;}
 .outline{list-style:none;margin:0;padding:0;counter-reset:o;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6em 1.2em;}
 .outline.one{grid-template-columns:1fr;gap:.4em;}
 .outline li{counter-increment:o;display:flex;gap:.7em;align-items:flex-start;font-size:.82em;background:var(--soft);border-radius:12px;padding:.6em .8em;margin:0;}
-.outline li::before{content:counter(o,decimal-leading-zero);font-family:var(--display);font-weight:700;color:var(--teal);font-size:1.1em;line-height:1.35;}
+.outline li::before{content:counter(o,decimal-leading-zero);font-family:var(--display);font-weight:700;color:var(--gold);font-size:1.1em;line-height:1.35;}
 .outcomes{list-style:none;margin:0;padding:0;counter-reset:c;}
 .outcomes li{counter-increment:c;position:relative;padding:.45em 0 .45em 2.4em;margin:0;font-size:.84em;border-bottom:1px solid var(--line);}
 .outcomes li:last-child{border-bottom:0;}
-.outcomes li::before{content:counter(c);position:absolute;left:0;top:.42em;width:1.6em;height:1.6em;border-radius:50%;background:var(--teal);color:#fff;font-family:var(--display);font-weight:700;font-size:.85em;display:flex;align-items:center;justify-content:center;}
+.outcomes li::before{content:counter(c);position:absolute;left:0;top:.42em;width:1.6em;height:1.6em;border-radius:50%;background:var(--gold);color:#fff;font-family:var(--display);font-weight:700;font-size:.85em;display:flex;align-items:center;justify-content:center;}
 
 /* grading */
 .gtiles{display:grid;grid-template-columns:40fr 30fr 20fr 10fr;gap:.4em;margin:.2em 0 .6em;}
@@ -216,12 +216,12 @@ html.reading .after{flex-direction:column;}
 .reveal table.hintable{font-size:.54em;}
 .reveal table.hintable th,.reveal table.hintable td{padding:.22em .7em;}
 .reveal table.hintable td:nth-child(2){white-space:nowrap;}
-.reveal .fnames li.fh{font-family:var(--display);font-weight:600;color:var(--teal);font-size:.5em;margin-bottom:.2em;white-space:normal;}
+.reveal .fnames li.fh{font-family:var(--display);font-weight:600;color:var(--gold);font-size:.5em;margin-bottom:.2em;white-space:normal;}
 .reveal .hcount{margin:.4em 0 .55em;font-size:.56em;color:var(--muted);}
 .reveal .hcount b{color:var(--ink);}
 .pattern{border:1px solid var(--line);border-radius:12px;padding:.45em .7em .5em;background:#fff;}
 .reveal .pat{margin:0 0 .25em;font-family:var(--mono);font-size:.66em;font-weight:600;color:var(--muted);letter-spacing:.01em;}
-.pat span{color:var(--teal);}
+.pat span{color:var(--gold);}
 .reveal .pattern ul{list-style:none;margin:0;padding:0;display:grid;gap:.12em;}
 .reveal .pattern li{display:grid;grid-template-columns:3.2em 1fr;gap:.4em;font-size:.48em;line-height:1.35;margin:0;}
 .pattern li b{font-family:var(--display);color:var(--ink);}
@@ -235,7 +235,7 @@ html.reading .reveal .fnames li{font-size:12px;white-space:nowrap;}
 html.reading .reveal .pat{font-size:15px;}
 /* s6 · 1966 summer project */
 .memo{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.3fr);gap:1.4em;align-items:start;margin-top:.3em;}
-.mq{margin:0;font-family:var(--display);font-size:.8em;line-height:1.38;color:var(--ink);border-left:6px solid var(--teal);padding:.15em 0 .15em .8em;}
+.mq{margin:0;font-family:var(--display);font-size:.8em;line-height:1.38;color:var(--ink);border-left:6px solid var(--gold);padding:.15em 0 .15em .8em;}
 .mq span{display:block;font-family:var(--font);font-size:.68em;color:var(--muted);margin-top:.6em;}
 .memo h3{margin:0 0 .5em;}
 .memo .pipe .st{font-size:.6em;}
@@ -246,32 +246,32 @@ html.reading .mq{font-size:17px;}
 html.reading .memo-end{font-size:15px;}
 html.reading .reveal .mnote{font-size:14px;}
 .reveal .more{margin:.9em 0 0;font-size:.56em;}
-.reveal .more a{color:var(--teal);font-weight:600;text-decoration:none;border-bottom:2px solid var(--teal-soft);}
-.reveal .more a:hover{border-bottom-color:var(--teal);}
+.reveal .more a{color:var(--gold);font-weight:600;text-decoration:none;border-bottom:2px solid var(--gold-soft);}
+.reveal .more a:hover{border-bottom-color:var(--gold);}
 html.reading .reveal .more{font-size:15px;}
 /* session roadmap (slide 2) + part openers — shared by every session deck */
 .qband{display:flex;gap:.8em;align-items:center;background:var(--soft);border-radius:14px;padding:.6em .9em;margin:0 0 .8em;font-size:.74em;color:var(--ink);font-family:var(--display);font-weight:600;}
-.qband span{font-family:var(--font);font-weight:700;font-size:.62em;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);white-space:nowrap;}
+.qband span{font-family:var(--font);font-weight:700;font-size:.62em;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);white-space:nowrap;}
 .parts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6em;}
 .parts a{display:block;text-decoration:none;transition:border-color .15s,transform .15s;border:1px solid var(--line);border-radius:14px;padding:.6em .75em;font-size:.62em;line-height:1.4;color:var(--muted);background:#fff;}
 .parts a b{display:block;font-family:var(--display);font-size:1.25em;color:var(--ink);margin-bottom:.2em;}
 .parts a i{font-style:normal;display:inline-grid;place-items:center;width:1.7em;height:1.7em;border-radius:50%;background:var(--soft);color:var(--ink);font-family:var(--display);font-weight:700;margin-right:.35em;}
-.parts a.on{border:2px solid var(--teal);background:var(--teal-soft);color:var(--body);}
-.parts a.on i{background:var(--teal);color:#fff;}
+.parts a.on{border:2px solid var(--gold);background:var(--gold-soft);color:var(--body);}
+.parts a.on i{background:var(--gold);color:#fff;}
 /* the A–D strip sits in the normal flow (never absolute), so nothing can overlap it in any mode; auto margins centre the rest */
 .part-open{display:flex !important;flex-direction:column;justify-content:flex-start;}
 .po-strip{position:static;margin:34px 0 26px;display:grid;grid-template-columns:repeat(4,1fr);gap:.4em;font-family:var(--display);font-size:.5em;}
 .po-strip a{text-decoration:none;display:flex;align-items:center;gap:.5em;padding:.45em .7em;border-radius:999px;background:var(--soft);color:var(--muted);}
 .po-strip b{display:inline-grid;place-items:center;width:1.7em;height:1.7em;border-radius:50%;background:#fff;color:var(--muted);}
 .po-strip a.done{color:var(--body);}
-.po-strip a.done b{background:var(--teal-soft);color:var(--teal);}
-.po-strip a.on{background:var(--teal);color:#fff;}
-.po-strip a.on b{background:#fff;color:var(--teal);}
-.reveal .po-letter{margin:auto 0 0;font-family:var(--display);font-weight:700;font-size:3.2em;line-height:1;color:var(--teal);}
+.po-strip a.done b{background:var(--gold-soft);color:var(--gold);}
+.po-strip a.on{background:var(--gold);color:#fff;}
+.po-strip a.on b{background:#fff;color:var(--gold);}
+.reveal .po-letter{margin:auto 0 0;font-family:var(--display);font-weight:700;font-size:3.2em;line-height:1;color:var(--gold);}
 .part-open .claim{font-size:1.9em;margin:.1em 0 .3em;}
 .reveal .po-q{margin:0 0 1.2em;font-family:var(--display);font-size:.95em;color:var(--body);max-width:24em;}
-.reveal .po-out{margin:0 0 auto;max-width:34em;border-left:5px solid var(--teal);padding:.3em 0 .3em .8em;font-size:.62em;line-height:1.5;color:var(--body);}
-.po-out span{display:block;font-family:var(--display);font-weight:700;font-size:.8em;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:.15em;}
+.reveal .po-out{margin:0 0 auto;max-width:34em;border-left:5px solid var(--gold);padding:.3em 0 .3em .8em;font-size:.62em;line-height:1.5;color:var(--body);}
+.po-out span{display:block;font-family:var(--display);font-weight:700;font-size:.8em;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.15em;}
 html.reading .part-open{display:block !important;}
 html.reading .tryit .tag{font-size:12px;}
 .reveal sup{vertical-align:super;font-size:.68em;line-height:0;}
@@ -279,8 +279,8 @@ html.reading .tryit .tag{font-size:12px;}
 html.reading .po-strip{position:static;grid-template-columns:1fr 1fr;margin-bottom:1em;font-size:13px;}
 html.reading .po-q{font-size:18px;}
 html.reading .po-out{font-size:15px;}
-.parts a:hover{border-color:var(--teal);transform:translateY(-2px);}
-.po-strip a:hover{box-shadow:0 0 0 2px var(--teal-soft);}
+.parts a:hover{border-color:var(--gold);transform:translateY(-2px);}
+.po-strip a:hover{box-shadow:0 0 0 2px var(--gold-soft);}
 html.reading .parts{grid-template-columns:1fr;}
 html.reading .qband,html.reading .parts a{font-size:15px;}
 html.reading .qband span{font-size:12px;}
@@ -299,12 +299,12 @@ html.reading .cards.apps .card{font-size:15px;}
 .demo-out{font-family:var(--mono);font-size:.5em;color:var(--muted);margin-top:.35em;display:flex;justify-content:space-between;gap:.6em;flex-wrap:wrap;}
 .demo-out b{color:var(--ink);font-weight:600;}
 .reveal .more{margin:.9em 0 0;font-size:.56em;}
-.reveal .more a{color:var(--teal);font-weight:600;text-decoration:none;border-bottom:2px solid var(--teal-soft);}
-.reveal .more a:hover{border-bottom-color:var(--teal);}
+.reveal .more a{color:var(--gold);font-weight:600;text-decoration:none;border-bottom:2px solid var(--gold-soft);}
+.reveal .more a:hover{border-bottom-color:var(--gold);}
 html.reading .reveal .more{font-size:15px;}
 .chbtns{display:flex;gap:.35em;margin:.45em 0 0;flex-wrap:wrap;}
 .chbtns button{all:unset;cursor:pointer;padding:.3em .8em;border-radius:999px;border:1px solid var(--line);font-family:var(--display);font-weight:600;font-size:.5em;color:var(--body);background:#fff;}
-.chbtns button.on{background:var(--teal);border-color:var(--teal);color:#fff;}
+.chbtns button.on{background:var(--gold);border-color:var(--gold);color:#fff;}
 .reveal .labline{display:flex;align-items:center;gap:.8em;flex-wrap:wrap;margin:.9em 0 0;}
 .reveal .labline span{font-size:.56em;color:var(--muted);}
 html.reading .reveal .labline span{font-size:13px;}
@@ -314,19 +314,19 @@ html.reading .reveal .labline span{font-size:13px;}
 .title-slide .art img{display:block;width:100%;height:auto;border-radius:16px;box-shadow:0 18px 40px -22px rgba(15,27,45,.35),0 0 0 1px var(--line);}
 .democv{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);}
 .eq{font-size:.8em;margin:.2em 0 0;}
-.worked{border:1px solid var(--line);border-left:5px solid var(--amber);border-radius:10px;padding:.5em .8em;font-size:.6em;line-height:1.55;background:#fff;}
-.worked .tag{display:block;font-family:var(--display);font-weight:700;font-size:.72em;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:.2em;}
+.worked{border:1px solid var(--line);border-left:5px solid var(--teal);border-radius:10px;padding:.5em .8em;font-size:.6em;line-height:1.55;background:#fff;}
+.worked .tag{display:block;font-family:var(--display);font-weight:700;font-size:.72em;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:.2em;}
 .worked p{margin:0;font-family:var(--mono);font-size:.92em;}
 .say .worked{font-size:.9em;margin:.4em 0 .5em;}   /* inside a .say column (already .68em): keep the session-2 size */
 .reveal aside.notes,aside.notes{display:none !important;}
 /* number grids */
 .ng{display:grid;gap:3px;font-family:var(--mono);font-weight:600;width:100%;}
 .ng>div{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:5px;font-size:15px;line-height:1;position:relative;}
-.ng>div.pad{outline:2px dashed var(--amber);outline-offset:-3px;font-style:italic;}
-.ng>div.win{box-shadow:inset 0 0 0 3px var(--teal);}
+.ng>div.pad{outline:2px dashed var(--teal);outline-offset:-3px;font-style:italic;}
+.ng>div.win{box-shadow:inset 0 0 0 3px var(--gold);}
 .ng>div.cur{box-shadow:inset 0 0 0 3px var(--coral);}
 .ng>div.empty{background:var(--soft);color:var(--muted);}
-.ng>div.ker{background:var(--amber-soft);color:var(--ink);}
+.ng>div.ker{background:var(--teal-soft);color:var(--ink);}
 .ng>div.dot::after{content:"";position:absolute;width:30%;height:30%;border-radius:50%;background:var(--coral);}
 .gcap{font-family:var(--display);font-weight:600;font-size:.46em;color:var(--muted);text-align:center;margin:.35em 0 0;}
 .conv3{display:grid;grid-template-columns:minmax(0,7fr) auto minmax(0,3fr) auto minmax(0,5fr);gap:.6em;align-items:center;max-width:800px;margin:0 auto;}
@@ -336,7 +336,7 @@ html.reading .conv3{max-width:none;}
 .calc b{color:var(--coral);}
 .ctrl{display:flex;gap:.4em;align-items:center;flex-wrap:wrap;margin-top:.5em;}
 .ctrl button{all:unset;cursor:pointer;padding:.3em .9em;border-radius:999px;border:1px solid var(--line);font-family:var(--display);font-weight:600;font-size:.5em;color:var(--body);background:#fff;}
-.ctrl button:hover{border-color:var(--teal);color:var(--teal);}
+.ctrl button:hover{border-color:var(--gold);color:var(--gold);}
 .ctrl label{font-family:var(--display);font-weight:600;font-size:.5em;color:var(--body);display:flex;align-items:center;gap:.5em;}
 .ctrl input[type=range]{width:7em;}
 .curve{display:block;width:100%;max-width:220px;height:auto;margin:.3em auto 0;border:1px solid var(--line);border-radius:10px;background:#fff;}
@@ -345,9 +345,9 @@ html.reading .conv3{max-width:none;}
 .big-out b{color:var(--coral);}
 .reveal .tset{list-style:none;margin:.2em 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.45em .8em;}
 .reveal .tset li{margin:0;display:grid;grid-template-columns:1.6em 1fr;column-gap:.5em;align-items:baseline;border:1px solid var(--line);border-radius:12px;padding:.45em .7em;font-size:.56em;line-height:1.35;background:#fff;}
-.tset .tn{grid-row:1/3;font-family:var(--display);font-weight:700;color:var(--teal);font-size:1.2em;}
+.tset .tn{grid-row:1/3;font-family:var(--display);font-weight:700;color:var(--gold);font-size:1.2em;}
 .tset .tt{font-family:var(--display);font-weight:600;color:var(--ink);}
-.tset a{font-size:.85em;color:var(--teal);text-decoration:none;}
+.tset a{font-size:.85em;color:var(--gold);text-decoration:none;}
 html.reading .reveal .tset{grid-template-columns:1fr;}
 html.reading .reveal .tset li{font-size:15px;}
 .steps.recap li{font-size:.7em;}
@@ -386,8 +386,8 @@ html.reading .reveal sup{font-size:.8em;}
 /*<<CSS>>*//* pipeline */
 .pipe{display:flex;gap:.45em;align-items:stretch;counter-reset:p;}
 .pipe .st{flex:1 1 0;background:#fff;border:1px solid var(--line);border-radius:12px;padding:.6em .65em;font-size:.64em;line-height:1.35;box-shadow:0 6px 16px -12px rgba(15,27,45,.25);position:relative;}
-.pipe .st b{display:block;font-family:var(--display);color:var(--teal);font-size:1.1em;margin-bottom:.25em;}
-.pipe .ar{align-self:center;color:var(--teal);font-weight:700;font-size:.8em;}
+.pipe .st b{display:block;font-family:var(--display);color:var(--gold);font-size:1.1em;margin-bottom:.25em;}
+.pipe .ar{align-self:center;color:var(--gold);font-weight:700;font-size:.8em;}
 
 /* pixel demo */
 .pix-wrap{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.1fr) minmax(0,1fr);gap:1em;align-items:start;}
@@ -400,10 +400,10 @@ html.reading .reveal sup{font-size:.8em;}
 .lcmp dl{display:grid;grid-template-columns:1fr auto;gap:.3em .8em;margin:0 0 .7em;font-size:.56em;align-items:baseline;}
 .lcmp dt{color:var(--muted);}
 .lcmp dd{margin:0;font-family:var(--mono);color:var(--muted);white-space:nowrap;}
-.lcmp dd i{font-style:normal;color:var(--teal);}
+.lcmp dd i{font-style:normal;color:var(--gold);}
 .lcmp dd b{color:var(--ink);font-size:1.15em;}
-.lcmp .rule{border:1px solid var(--line);border-left:5px solid var(--teal);border-radius:10px;padding:.5em .75em .55em;background:#fff;font-size:.6em;line-height:1.4;}
-.lcmp .rule .tag{display:block;font-family:var(--display);font-weight:700;font-size:.72em;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:.2em;}
+.lcmp .rule{border:1px solid var(--line);border-left:5px solid var(--gold);border-radius:10px;padding:.5em .75em .55em;background:#fff;font-size:.6em;line-height:1.4;}
+.lcmp .rule .tag{display:block;font-family:var(--display);font-weight:700;font-size:.72em;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.2em;}
 .lcmp .rule p{margin:0;}
 .lcmp .verdict{margin-top:.35em !important;font-weight:600;color:var(--ink);}
 .lcmp .rule.bad{border-left-color:var(--coral);}
@@ -411,7 +411,7 @@ html.reading .reveal sup{font-size:.8em;}
 html.reading .litlab,html.reading .lcmp dl{font-size:14px;}
 html.reading .lcmp .rule{font-size:15px;}
 .pix-readout{font-family:var(--mono);font-size:.5em;color:var(--muted);min-height:1.6em;margin-top:.35em;}
-.slider{width:100%;accent-color:var(--teal);min-height:44px;touch-action:none;cursor:pointer;}
+.slider{width:100%;accent-color:var(--gold);min-height:44px;touch-action:none;cursor:pointer;}
 /* a thumb big enough for a finger */
 .slider::-webkit-slider-thumb{width:26px;height:26px;}
 .slider::-moz-range-thumb{width:26px;height:26px;}
@@ -420,7 +420,7 @@ html.reading .lcmp .rule{font-size:15px;}
 .tl{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;position:relative;margin:.3em 0 .9em;}
 .tl::before{content:"";position:absolute;left:4%;right:4%;top:.95em;height:3px;background:var(--line);}
 .tl div{position:relative;text-align:center;font-size:.58em;padding:2.2em .3em 0;line-height:1.3;}
-.tl div::before{content:"";position:absolute;top:.35em;left:50%;transform:translateX(-50%);width:1.1em;height:1.1em;border-radius:50%;background:#fff;border:3px solid var(--teal);}
+.tl div::before{content:"";position:absolute;top:.35em;left:50%;transform:translateX(-50%);width:1.1em;height:1.1em;border-radius:50%;background:#fff;border:3px solid var(--gold);}
 .tl div.key::before{background:var(--coral);border-color:var(--coral);}
 .tl b{display:block;font-family:var(--display);color:var(--ink);}
 
@@ -444,11 +444,12 @@ html.reading .levels li{font-size:15px;grid-template-columns:3.6em 1fr;}
 html.reading .scale.mini{grid-template-columns:repeat(2,minmax(0,1fr));}
 /* project rubric: full criteria in small type */
 .tl.tl7{grid-template-columns:repeat(7,minmax(0,1fr));}
+.tl.tl8{grid-template-columns:repeat(8,minmax(0,1fr));}
 .pitch{display:flex;flex-wrap:wrap;align-items:center;gap:.3em .5em;background:var(--coral-soft);border:1px solid #f3c9c0;border-radius:10px;padding:.3em .6em;margin:0 0 .45em;font-size:.44em;line-height:1.3;}
 .pitch>b{font-family:var(--display);color:var(--coral);}
 .pitch span{background:#fff;border-radius:999px;padding:.1em .6em;border:1px solid #f3c9c0;}
 html.reading .pitch{font-size:14px;}
-html.reading .tl.tl7{grid-template-columns:repeat(3,minmax(0,1fr));}
+html.reading .tl.tl7,html.reading .tl.tl8{grid-template-columns:repeat(3,minmax(0,1fr));}
 
 .tl.tl-sm{margin:.1em 0 .45em;}
 .tl.tl-sm div{font-size:.46em;padding-top:1.9em;}
@@ -457,8 +458,8 @@ html.reading .tl.tl7{grid-template-columns:repeat(3,minmax(0,1fr));}
 .rubric{gap:1em;}
 .rubric h3{font-size:.56em;margin:0 0 .3em;}
 .reveal .rubric ol{list-style:none;margin:0;padding:0;counter-reset:rb;display:grid;gap:2px;}
-.rubric li{counter-increment:rb;display:grid;grid-template-columns:1.6em 1fr;gap:.4em;align-items:baseline;margin:0;padding:.13em .45em;border-radius:6px;font-size:.44em;line-height:1.28;background:var(--soft);}
-.rubric li::before{content:counter(rb);font-family:var(--display);font-weight:700;color:var(--teal);text-align:right;}
+.rubric li{counter-increment:rb;display:grid;grid-template-columns:1.6em 1fr;gap:.4em;align-items:baseline;margin:0;padding:.07em .45em;border-radius:6px;font-size:.44em;line-height:1.28;background:var(--soft);}
+.rubric li::before{content:counter(rb);font-family:var(--display);font-weight:700;color:var(--gold);text-align:right;}
 html.reading .rubric li{font-size:14px;}
 html.reading .rubric h3{font-size:15px;}
 .rb-note{margin-top:.4em !important;font-size:.58em !important;}
@@ -468,8 +469,8 @@ html.reading .rb-note{font-size:14px !important;}
 .cols .checks li{font-size:.58em;padding:.3em .6em;}
 .cols .checks{gap:.35em;}
 .checks li{display:grid;grid-template-columns:2.2em 1fr auto;gap:.6em;align-items:center;background:var(--soft);border-radius:12px;padding:.5em .8em;margin:0;font-size:.74em;}
-.checks li::before{content:"✓";width:1.7em;height:1.7em;border-radius:50%;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;}
-.checks li span.pt{font-family:var(--display);font-weight:700;color:var(--teal);}
+.checks li::before{content:"✓";width:1.7em;height:1.7em;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;}
+.checks li span.pt{font-family:var(--display);font-weight:700;color:var(--gold);}
 
 /* halves */
 .halves{display:grid;grid-template-columns:1fr 1fr;gap:.8em;margin-bottom:.7em;}
@@ -485,7 +486,7 @@ html.reading .rb-note{font-size:14px !important;}
 .reveal .slides>section:not(.title-slide)::before,.reveal .slides .pdf-page>section:not(.title-slide)::before,.reveal .slides .ho-cell>section:not(.title-slide)::before{content:"Computer Vision · Session 8";position:absolute;right:4px;top:10px;font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#a0aab8;}
 html.reading .reveal .slides>section::before,html.reading .reveal .slides>section::after{display:none;}
 /* ---------- deck toolbar (replaces reveal's arrows + slide number) ---------- */
-.reveal .progress{height:4px;color:var(--teal);background:transparent;}
+.reveal .progress{height:4px;color:var(--gold);background:transparent;}
 .deckbar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:40;display:flex;align-items:center;gap:2px;padding:4px;border-radius:999px;background:rgba(255,255,255,.94);border:1px solid var(--line);box-shadow:0 8px 24px -12px rgba(15,27,45,.35);font-family:var(--display);transition:opacity .35s;backdrop-filter:blur(6px);}
 .deckbar.idle{opacity:0;pointer-events:none;}
 /* [hidden] loses to display:flex unless said again — the hidden desktop bar sat on top of the phone bar */
@@ -493,7 +494,7 @@ html.reading .reveal .slides>section::before,html.reading .reveal .slides>sectio
 .deckbar:hover,.deckbar:focus-within{opacity:1;}
 .deckbar button{all:unset;box-sizing:border-box;width:44px;height:44px;border-radius:999px;display:flex;align-items:center;justify-content:center;color:var(--ink);cursor:pointer;}
 .deckbar button:hover{background:var(--soft);}
-.deckbar button:focus-visible{outline:2px solid var(--teal);outline-offset:1px;}
+.deckbar button:focus-visible{outline:2px solid var(--gold);outline-offset:1px;}
 .deckbar button[disabled]{opacity:.3;cursor:default;}
 .deckbar svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
 .deckbar .count{min-width:4.2em;text-align:center;font-size:14px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums;}
@@ -513,7 +514,7 @@ html.reading .reveal .slides>section::before,html.reading .reveal .slides>sectio
 .keys dl{display:grid;grid-template-columns:minmax(10.8em,max-content) 1fr;gap:9px 16px;margin:0;font-size:14.5px;align-items:center;}   /* wide enough for Shift + ← →, the same in both lists */
 .keys dt{display:flex;gap:4px;justify-content:flex-end;align-items:center;white-space:nowrap;}
 .keys dd{margin:0;}
-.keys h4{margin:16px 0 10px;padding-top:12px;border-top:1px solid var(--line);font-family:var(--display);font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);}
+.keys h4{margin:16px 0 10px;padding-top:12px;border-top:1px solid var(--line);font-family:var(--display);font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);}
 .keys kbd{font-family:var(--mono);font-size:12.5px;min-width:1.9em;text-align:center;padding:3px 7px;border-radius:6px;border:1px solid var(--line);border-bottom-width:2px;background:var(--soft);color:var(--ink);}
 /* all slides = photo album: a grid of live clones of every slide, scaled to thumbnails */
 .album{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;background:#eef1f5;font-family:var(--display);}
@@ -521,23 +522,23 @@ html.reading .reveal .slides>section::before,html.reading .reveal .slides>sectio
 html.album-open .deckbar,html.album-open .rbar{display:none !important;}
 html.album-open body{overflow:hidden;}
 .aslides{display:none;}
-html.reading .aslides{display:flex;align-items:center;min-height:36px;margin-left:auto;font-size:14px;font-weight:600;color:var(--teal);text-decoration:none;}
+html.reading .aslides{display:flex;align-items:center;min-height:36px;margin-left:auto;font-size:14px;font-weight:600;color:var(--gold);text-decoration:none;}
 .ahead{display:flex;align-items:center;gap:14px;padding:14px 22px;background:#fff;border-bottom:1px solid var(--line);}
 .ahead h2{margin:0;font-size:18px;font-weight:700;color:var(--ink);letter-spacing:-.01em;}
 .ahead h2 span{color:var(--muted);font-weight:500;margin-left:.4em;}
 .ahead p{margin:0 0 0 auto;font-family:var(--font);font-size:13px;color:var(--muted);}
 .ahead button{flex:none;width:36px;height:36px;border:0;border-radius:50%;background:var(--soft);color:var(--ink);cursor:pointer;display:grid;place-items:center;}
-.ahead button:hover{background:var(--teal-soft);color:var(--teal);}
+.ahead button:hover{background:var(--gold-soft);color:var(--gold);}
 .ahead button svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;}
 .agrid{flex:1;overflow-y:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px 18px;align-content:start;padding:22px;overscroll-behavior:contain;touch-action:pan-y;}
 .agrid.dragging{cursor:grabbing;user-select:none;}
 .thumb{display:block;cursor:pointer;border-radius:12px;outline:none;}
 .tframe{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:10px;background:#fff;box-shadow:0 1px 2px rgba(15,27,45,.08),0 8px 20px -14px rgba(15,27,45,.35);transition:box-shadow .15s,transform .15s;}
-@media (hover:hover){.thumb:hover .tframe{transform:translateY(-2px);box-shadow:0 0 0 2px #b9dfe2,0 12px 26px -14px rgba(15,27,45,.4);}}
-.thumb.sel .tframe{box-shadow:0 0 0 4px var(--teal),0 12px 26px -14px rgba(15,27,45,.4);}
-.thumb.now .tn::after{content:"current";margin-left:.5em;padding:1px 7px;border-radius:999px;background:var(--teal-soft);color:var(--teal);font-size:11px;font-weight:600;letter-spacing:.04em;}
+@media (hover:hover){.thumb:hover .tframe{transform:translateY(-2px);box-shadow:0 0 0 2px #e8d3a6,0 12px 26px -14px rgba(15,27,45,.4);}}
+.thumb.sel .tframe{box-shadow:0 0 0 4px var(--gold),0 12px 26px -14px rgba(15,27,45,.4);}
+.thumb.now .tn::after{content:"current";margin-left:.5em;padding:1px 7px;border-radius:999px;background:var(--gold-soft);color:var(--gold);font-size:11px;font-weight:600;letter-spacing:.04em;}
 .tcap{display:flex;align-items:baseline;gap:8px;margin-top:8px;font-size:13px;line-height:1.3;}
-.tn{flex:none;font-weight:700;color:var(--teal);}
+.tn{flex:none;font-weight:700;color:var(--gold);}
 .tt{color:var(--body);font-family:var(--font);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .tframe>.thost{position:absolute;inset:0;}
 @media (max-width:600px){.agrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 10px;padding:12px 12px calc(16px + env(safe-area-inset-bottom));}.ahead{padding:10px 12px;gap:10px;}.ahead p{display:none;}.ahead h2{font-size:16px;}.tcap{font-size:12px;}}
@@ -698,7 +699,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="kicker">A · Tasks &amp; metrics</p>
   <h2 class="claim">A box is four numbers — how close is close?</h2>
   <div class="split">
-    <div><svg class="fig cvsvg" viewBox="0 0 420 330" style="max-width:440px;margin:0 auto" role="img" aria-label="two overlapping boxes A and B on a grid; their overlap is the box from the larger left edge to the smaller right edge"><line x1="40" y1="300" x2="40" y2="24" stroke="#94a3b8"/><line x1="86" y1="300" x2="86" y2="24" stroke="#e8edf3"/><line x1="132" y1="300" x2="132" y2="24" stroke="#e8edf3"/><line x1="178" y1="300" x2="178" y2="24" stroke="#e8edf3"/><line x1="224" y1="300" x2="224" y2="24" stroke="#e8edf3"/><line x1="270" y1="300" x2="270" y2="24" stroke="#e8edf3"/><line x1="316" y1="300" x2="316" y2="24" stroke="#e8edf3"/><line x1="362" y1="300" x2="362" y2="24" stroke="#e8edf3"/><line x1="408" y1="300" x2="408" y2="24" stroke="#e8edf3"/><line x1="40" y1="300" x2="408" y2="300" stroke="#94a3b8"/><line x1="40" y1="254" x2="408" y2="254" stroke="#e8edf3"/><line x1="40" y1="208" x2="408" y2="208" stroke="#e8edf3"/><line x1="40" y1="162" x2="408" y2="162" stroke="#e8edf3"/><line x1="40" y1="116" x2="408" y2="116" stroke="#e8edf3"/><line x1="40" y1="70" x2="408" y2="70" stroke="#e8edf3"/><line x1="40" y1="24" x2="408" y2="24" stroke="#e8edf3"/><rect x="86" y="116" width="184" height="138" fill="#2f6fdb" fill-opacity="0.12" stroke="#2f6fdb" stroke-width="3"/><rect x="178" y="24" width="184" height="184" fill="#e0533d" fill-opacity="0.12" stroke="#e0533d" stroke-width="3"/><rect x="178" y="116" width="92" height="92" fill="#c97a06" fill-opacity="0.45" stroke="#c97a06" stroke-width="3" stroke-dasharray="6 4"/><text x="94" y="138" class="lb" style="fill:#2f6fdb">A (1, 1, 5, 4)</text><text x="354" y="198" text-anchor="end" class="lb" style="fill:#e0533d">B (3, 2, 7, 6)</text><text x="224" y="168" text-anchor="middle" class="lb" style="fill:#7a4a00">A ∩ B</text><text x="178" y="322" text-anchor="middle" class="tk">max x₁ = 3</text><text x="270" y="322" text-anchor="middle" class="tk">min x₂ = 5</text></svg><p class="gcap">two boxes as (x₁, y₁, x₂, y₂) — their overlap is a box too</p></div>
+    <div><svg class="fig cvsvg" viewBox="0 0 420 330" style="max-width:440px;margin:0 auto" role="img" aria-label="two overlapping boxes A and B on a grid; their overlap is the box from the larger left edge to the smaller right edge"><line x1="40" y1="300" x2="40" y2="24" stroke="#94a3b8"/><line x1="86" y1="300" x2="86" y2="24" stroke="#e8edf3"/><line x1="132" y1="300" x2="132" y2="24" stroke="#e8edf3"/><line x1="178" y1="300" x2="178" y2="24" stroke="#e8edf3"/><line x1="224" y1="300" x2="224" y2="24" stroke="#e8edf3"/><line x1="270" y1="300" x2="270" y2="24" stroke="#e8edf3"/><line x1="316" y1="300" x2="316" y2="24" stroke="#e8edf3"/><line x1="362" y1="300" x2="362" y2="24" stroke="#e8edf3"/><line x1="408" y1="300" x2="408" y2="24" stroke="#e8edf3"/><line x1="40" y1="300" x2="408" y2="300" stroke="#94a3b8"/><line x1="40" y1="254" x2="408" y2="254" stroke="#e8edf3"/><line x1="40" y1="208" x2="408" y2="208" stroke="#e8edf3"/><line x1="40" y1="162" x2="408" y2="162" stroke="#e8edf3"/><line x1="40" y1="116" x2="408" y2="116" stroke="#e8edf3"/><line x1="40" y1="70" x2="408" y2="70" stroke="#e8edf3"/><line x1="40" y1="24" x2="408" y2="24" stroke="#e8edf3"/><rect x="86" y="116" width="184" height="138" fill="#2f6fdb" fill-opacity="0.12" stroke="#2f6fdb" stroke-width="3"/><rect x="178" y="24" width="184" height="184" fill="#e0533d" fill-opacity="0.12" stroke="#e0533d" stroke-width="3"/><rect x="178" y="116" width="92" height="92" fill="#0f766e" fill-opacity="0.45" stroke="#0f766e" stroke-width="3" stroke-dasharray="6 4"/><text x="94" y="138" class="lb" style="fill:#2f6fdb">A (1, 1, 5, 4)</text><text x="354" y="198" text-anchor="end" class="lb" style="fill:#e0533d">B (3, 2, 7, 6)</text><text x="224" y="168" text-anchor="middle" class="lb" style="fill:#0b5d57">A ∩ B</text><text x="178" y="322" text-anchor="middle" class="tk">max x₁ = 3</text><text x="270" y="322" text-anchor="middle" class="tk">min x₂ = 5</text></svg><p class="gcap">two boxes as (x₁, y₁, x₂, y₂) — their overlap is a box too</p></div>
     <div class="say">
       <div class="flashback">Session 7: a box is four numbers in pixel coordinates — where on the image, not how far away (session 2).</div>
       <p style="margin-top:.6em">The overlap starts at the larger left edge and ends at the smaller right edge (same for top and bottom; 0 if they miss):</p>
@@ -796,7 +797,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <div class="cards" style="grid-template-columns:repeat(2,minmax(0,1fr))">
     <div class="card"><b>Missing is costly → recall</b>A tumour screen, a person on a level crossing: a lower threshold, and a human checks the extra boxes.</div>
     <div class="card violet"><b>False alarms are costly → precision</b>An automatic fine, a door that locks: a higher threshold, and accept some misses.</div>
-    <div class="card amber"><b>Counting → per-image count error</b>Cars in a car park, birds on a wire: whether the number is right matters more than each box.</div>
+    <div class="card teal"><b>Counting → per-image count error</b>Cars in a car park, birds on a wire: whether the number is right matters more than each box.</div>
     <div class="card"><b>Exact outline → mask IoU (part C)</b>Measuring a leaf or a wound: boxes are not enough.</div>
   </div>
   <p class="takeaway"><span>Project Demo, criterion 1: “a metric that fits the problem; the same data for every solution”. Say which mistake hurts more — then choose the metric.</span></p>
@@ -826,7 +827,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <div class="cards">
     <div class="card"><b>IoU</b>Overlap ÷ union of two boxes; ≥ 0.5 counts as a hit.</div>
     <div class="card violet"><b>Precision · recall</b>Right boxes ÷ all boxes · found objects ÷ all objects. The threshold trades one for the other; AP is the area under the curve.</div>
-    <div class="card amber"><b>NMS</b>Keep the best box, drop its overlapping copies, repeat — one box per object.</div>
+    <div class="card teal"><b>NMS</b>Keep the best box, drop its overlapping copies, repeat — one box per object.</div>
   </div>
   <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-08/lab.ipynb#scrollTo=part-a" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part A</a><span>IoU, NMS and precision / recall in NumPy on this photo's boxes, checked against torchvision; a PR curve from the scores</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s8a">More practice · Session 8 A — practice bank with worked solutions →</a></p>
@@ -901,7 +902,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="kicker">B · One-stage detection</p>
   <h2 class="claim">A backbone, a neck, a head</h2>
   <div>
-    <svg class="fig cvsvg" viewBox="0 0 680 290" style="max-width:600px;margin:0 auto" role="img" aria-label="YOLOv8n as three blocks: a backbone, a neck that passes on three feature maps of 80, 40 and 20 cells a side, and a head that predicts 84 numbers per cell"><defs><marker id="a80f1b2d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f1b2d"/></marker><marker id="a80f766e" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker><marker id="a8e0533d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e0533d"/></marker><marker id="a8c97a06" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c97a06"/></marker><marker id="a82f6fdb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2f6fdb"/></marker></defs><rect x="10" y="90" width="130" height="120" rx="10" fill="#0f1b2d" fill-opacity=".14" stroke="#0f1b2d" stroke-width="2.5"/><text x="75.0" y="114" text-anchor="middle" class="lb" style="fill:#0f1b2d">input</text><text x="75.0" y="134" text-anchor="middle" class="tk">640 × 640 × 3</text><rect x="170" y="30" width="150" height="240" rx="10" fill="#2f6fdb" fill-opacity=".14" stroke="#2f6fdb" stroke-width="2.5"/><text x="245.0" y="54" text-anchor="middle" class="lb" style="fill:#2f6fdb">backbone</text><text x="245.0" y="74" text-anchor="middle" class="tk">1,272,656 weights</text><rect x="350" y="30" width="140" height="240" rx="10" fill="#c97a06" fill-opacity=".14" stroke="#c97a06" stroke-width="2.5"/><text x="420.0" y="54" text-anchor="middle" class="lb" style="fill:#c97a06">neck</text><text x="420.0" y="74" text-anchor="middle" class="tk">986,880</text><rect x="520" y="30" width="150" height="240" rx="10" fill="#e0533d" fill-opacity=".14" stroke="#e0533d" stroke-width="2.5"/><text x="595.0" y="54" text-anchor="middle" class="lb" style="fill:#e0533d">head</text><text x="595.0" y="74" text-anchor="middle" class="tk">897,664</text><text x="420" y="125" text-anchor="middle" class="tk">80 × 80 × 64</text><line x1="490" y1="121" x2="518" y2="121" stroke="#0f1b2d" stroke-width="2" marker-end="url(#a80f1b2d)"/><text x="595" y="125" text-anchor="middle" class="tk">6,400 × (4 + 80)</text><text x="420" y="180" text-anchor="middle" class="tk">40 × 40 × 128</text><line x1="490" y1="176" x2="518" y2="176" stroke="#0f1b2d" stroke-width="2" marker-end="url(#a80f1b2d)"/><text x="595" y="180" text-anchor="middle" class="tk">1,600 × (4 + 80)</text><text x="420" y="235" text-anchor="middle" class="tk">20 × 20 × 256</text><line x1="490" y1="231" x2="518" y2="231" stroke="#0f1b2d" stroke-width="2" marker-end="url(#a80f1b2d)"/><text x="595" y="235" text-anchor="middle" class="tk">400 × (4 + 80)</text><line x1="140" y1="150" x2="168" y2="150" stroke="#0f1b2d" stroke-width="2" marker-end="url(#a80f1b2d)"/><line x1="320" y1="150" x2="348" y2="150" stroke="#0f1b2d" stroke-width="2" marker-end="url(#a80f1b2d)"/></svg>
+    <svg class="fig cvsvg" viewBox="0 0 680 290" style="max-width:600px;margin:0 auto" role="img" aria-label="YOLOv8n as three blocks: a backbone, a neck that passes on three feature maps of 80, 40 and 20 cells a side, and a head that predicts 84 numbers per cell"><defs><marker id="a80f1b2d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f1b2d"/></marker><marker id="a8855400" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#855400"/></marker><marker id="a8e0533d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e0533d"/></marker><marker id="a80f766e" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker><marker id="a82f6fdb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2f6fdb"/></marker></defs><rect x="10" y="90" width="130" height="120" rx="10" fill="#0f1b2d" fill-opacity=".14" stroke="#0f1b2d" stroke-width="2.5"/><text x="75.0" y="114" text-anchor="middle" class="lb" style="fill:#0f1b2d">input</text><text x="75.0" y="134" text-anchor="middle" class="tk">640 × 640 × 3</text><rect x="170" y="30" width="150" height="240" rx="10" fill="#2f6fdb" fill-opacity=".14" stroke="#2f6fdb" stroke-width="2.5"/><text x="245.0" y="54" text-anchor="middle" class="lb" style="fill:#2f6fdb">backbone</text><text x="245.0" y="74" text-anchor="middle" class="tk">1,272,656 weights</text><rect x="350" y="30" width="140" height="240" rx="10" fill="#0f766e" fill-opacity=".14" stroke="#0f766e" stroke-width="2.5"/><text x="420.0" y="54" text-anchor="middle" class="lb" style="fill:#0f766e">neck</text><text x="420.0" y="74" text-anchor="middle" class="tk">986,880</text><rect x="520" y="30" width="150" height="240" rx="10" fill="#e0533d" fill-opacity=".14" stroke="#e0533d" stroke-width="2.5"/><text x="595.0" y="54" text-anchor="middle" class="lb" style="fill:#e0533d">head</text><text x="595.0" y="74" text-anchor="middle" class="tk">897,664</text><text x="420" y="125" text-anchor="middle" class="tk">80 × 80 × 64</text><line x1="490" y1="121" x2="518" y2="121" stroke="#0f1b2d" stroke-width="2" marker-end="url(#a80f1b2d)"/><text x="595" y="125" text-anchor="middle" class="tk">6,400 × (4 + 80)</text><text x="420" y="180" text-anchor="middle" class="tk">40 × 40 × 128</text><line x1="490" y1="176" x2="518" y2="176" stroke="#0f1b2d" stroke-width="2" marker-end="url(#a80f1b2d)"/><text x="595" y="180" text-anchor="middle" class="tk">1,600 × (4 + 80)</text><text x="420" y="235" text-anchor="middle" class="tk">20 × 20 × 256</text><line x1="490" y1="231" x2="518" y2="231" stroke="#0f1b2d" stroke-width="2" marker-end="url(#a80f1b2d)"/><text x="595" y="235" text-anchor="middle" class="tk">400 × (4 + 80)</text><line x1="140" y1="150" x2="168" y2="150" stroke="#0f1b2d" stroke-width="2" marker-end="url(#a80f1b2d)"/><line x1="320" y1="150" x2="348" y2="150" stroke="#0f1b2d" stroke-width="2" marker-end="url(#a80f1b2d)"/></svg>
     <p class="gcap">YOLOv8n, counted from its weights: 3,157,200 in all · the three feature maps that reach the head, measured</p>
     <div class="split even" style="margin-top:.4em;align-items:start">
       <div class="say"><div class="flashback">Session 4 D: a backbone trained on millions of photos, then a new head. Same here.</div>
@@ -958,7 +959,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <div class="cards">
     <div class="card"><b>A grid of guesses</b>Every cell predicts a box and a score per class, in one pass.</div>
     <div class="card violet"><b>Three scales</b>Strides 8 / 16 / 32: 80² + 40² + 20² = 8,400 guesses at 640 — small things on the fine grid.</div>
-    <div class="card amber"><b>Then filter</b>A score threshold and NMS leave one box per object. Fine-tune: a new head, your labelled boxes.</div>
+    <div class="card teal"><b>Then filter</b>A score threshold and NMS leave one box per object. Fine-tune: a new head, your labelled boxes.</div>
   </div>
   <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-08/lab.ipynb#scrollTo=part-b" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part B</a><span>YOLOv8n on the photo: the 84 × 8,400 output, score and NMS thresholds, three grids; a short fine-tune on a tiny dataset</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s8b">More practice · Session 8 B — practice bank with worked solutions →</a></p>
@@ -998,7 +999,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="kicker">C · Segmentation</p>
   <h2 class="claim">Shrink to understand, grow back to point</h2>
   <div class="split">
-    <div><svg class="fig cvsvg" viewBox="0 0 640 310" role="img" aria-label="a U shape: blue blocks shrink from 256 to 16, red blocks grow back from 16 to 256, dashed lines join blocks of the same size"><defs><marker id="a80f1b2d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f1b2d"/></marker><marker id="a80f766e" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker><marker id="a8e0533d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e0533d"/></marker><marker id="a8c97a06" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c97a06"/></marker><marker id="a82f6fdb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2f6fdb"/></marker></defs><rect x="40" y="60" width="34" height="218" rx="5" fill="#2f6fdb" fill-opacity=".18" stroke="#2f6fdb" stroke-width="2"/><text x="57" y="54" text-anchor="middle" class="tk">256</text><rect x="566" y="60" width="34" height="218" rx="5" fill="#e0533d" fill-opacity=".18" stroke="#e0533d" stroke-width="2"/><text x="583" y="54" text-anchor="middle" class="tk">256</text><line x1="76" y1="74" x2="562" y2="74" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="6 5" marker-end="url(#a80f1b2d)"/><rect x="110" y="102" width="34" height="122" rx="5" fill="#2f6fdb" fill-opacity=".18" stroke="#2f6fdb" stroke-width="2"/><text x="127" y="96" text-anchor="middle" class="tk">128</text><rect x="496" y="102" width="34" height="122" rx="5" fill="#e0533d" fill-opacity=".18" stroke="#e0533d" stroke-width="2"/><text x="513" y="96" text-anchor="middle" class="tk">128</text><line x1="146" y1="116" x2="492" y2="116" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="6 5" marker-end="url(#a80f1b2d)"/><rect x="180" y="144" width="34" height="74" rx="5" fill="#2f6fdb" fill-opacity=".18" stroke="#2f6fdb" stroke-width="2"/><text x="197" y="138" text-anchor="middle" class="tk">64</text><rect x="426" y="144" width="34" height="74" rx="5" fill="#e0533d" fill-opacity=".18" stroke="#e0533d" stroke-width="2"/><text x="443" y="138" text-anchor="middle" class="tk">64</text><line x1="216" y1="158" x2="422" y2="158" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="6 5" marker-end="url(#a80f1b2d)"/><rect x="250" y="186" width="34" height="50" rx="5" fill="#2f6fdb" fill-opacity=".18" stroke="#2f6fdb" stroke-width="2"/><text x="267" y="180" text-anchor="middle" class="tk">32</text><rect x="356" y="186" width="34" height="50" rx="5" fill="#e0533d" fill-opacity=".18" stroke="#e0533d" stroke-width="2"/><text x="373" y="180" text-anchor="middle" class="tk">32</text><line x1="286" y1="200" x2="352" y2="200" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="6 5" marker-end="url(#a80f1b2d)"/><rect x="303" y="228" width="34" height="38" rx="5" fill="#c97a06" fill-opacity=".25" stroke="#c97a06" stroke-width="2"/><text x="320" y="222" text-anchor="middle" class="tk">16</text><text x="120" y="300" text-anchor="middle" class="lb" style="fill:#2f6fdb">encoder: ÷ 2, four times</text><text x="520" y="300" text-anchor="middle" class="lb" style="fill:#e0533d">decoder: × 2, four times</text><text x="320" y="30" text-anchor="middle" class="tk">dashed: skip connections (slide 24)</text></svg><p class="gcap">sizes in pixels per side · an encoder–decoder (the U-Net shape)</p></div>
+    <div><svg class="fig cvsvg" viewBox="0 0 640 310" role="img" aria-label="a U shape: blue blocks shrink from 256 to 16, red blocks grow back from 16 to 256, dashed lines join blocks of the same size"><defs><marker id="a80f1b2d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f1b2d"/></marker><marker id="a8855400" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#855400"/></marker><marker id="a8e0533d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e0533d"/></marker><marker id="a80f766e" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker><marker id="a82f6fdb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2f6fdb"/></marker></defs><rect x="40" y="60" width="34" height="218" rx="5" fill="#2f6fdb" fill-opacity=".18" stroke="#2f6fdb" stroke-width="2"/><text x="57" y="54" text-anchor="middle" class="tk">256</text><rect x="566" y="60" width="34" height="218" rx="5" fill="#e0533d" fill-opacity=".18" stroke="#e0533d" stroke-width="2"/><text x="583" y="54" text-anchor="middle" class="tk">256</text><line x1="76" y1="74" x2="562" y2="74" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="6 5" marker-end="url(#a80f1b2d)"/><rect x="110" y="102" width="34" height="122" rx="5" fill="#2f6fdb" fill-opacity=".18" stroke="#2f6fdb" stroke-width="2"/><text x="127" y="96" text-anchor="middle" class="tk">128</text><rect x="496" y="102" width="34" height="122" rx="5" fill="#e0533d" fill-opacity=".18" stroke="#e0533d" stroke-width="2"/><text x="513" y="96" text-anchor="middle" class="tk">128</text><line x1="146" y1="116" x2="492" y2="116" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="6 5" marker-end="url(#a80f1b2d)"/><rect x="180" y="144" width="34" height="74" rx="5" fill="#2f6fdb" fill-opacity=".18" stroke="#2f6fdb" stroke-width="2"/><text x="197" y="138" text-anchor="middle" class="tk">64</text><rect x="426" y="144" width="34" height="74" rx="5" fill="#e0533d" fill-opacity=".18" stroke="#e0533d" stroke-width="2"/><text x="443" y="138" text-anchor="middle" class="tk">64</text><line x1="216" y1="158" x2="422" y2="158" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="6 5" marker-end="url(#a80f1b2d)"/><rect x="250" y="186" width="34" height="50" rx="5" fill="#2f6fdb" fill-opacity=".18" stroke="#2f6fdb" stroke-width="2"/><text x="267" y="180" text-anchor="middle" class="tk">32</text><rect x="356" y="186" width="34" height="50" rx="5" fill="#e0533d" fill-opacity=".18" stroke="#e0533d" stroke-width="2"/><text x="373" y="180" text-anchor="middle" class="tk">32</text><line x1="286" y1="200" x2="352" y2="200" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="6 5" marker-end="url(#a80f1b2d)"/><rect x="303" y="228" width="34" height="38" rx="5" fill="#0f766e" fill-opacity=".25" stroke="#0f766e" stroke-width="2"/><text x="320" y="222" text-anchor="middle" class="tk">16</text><text x="120" y="300" text-anchor="middle" class="lb" style="fill:#2f6fdb">encoder: ÷ 2, four times</text><text x="520" y="300" text-anchor="middle" class="lb" style="fill:#e0533d">decoder: × 2, four times</text><text x="320" y="30" text-anchor="middle" class="tk">dashed: skip connections (slide 24)</text></svg><p class="gcap">sizes in pixels per side · an encoder–decoder (the U-Net shape)</p></div>
     <div class="say">
       <div class="flashback">Session 4, slide 31: a transposed convolution grows a map — out = (n − 1)s − 2p + k.</div>
       <p style="margin-top:.6em">The <b>encoder</b> (a CNN, stride 2 again and again) trades size for meaning. The <b>decoder</b> grows it back with transposed convolutions:</p>
@@ -1091,7 +1092,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <div class="cards">
     <div class="card"><b>Every pixel</b>Semantic: a class per pixel · instance: which object. The output is image-sized.</div>
     <div class="card violet"><b>Encoder–decoder</b>Shrink for meaning, grow back with transposed convolutions; skip connections return the edges. Mask IoU counts pixels.</div>
-    <div class="card amber"><b>SAM</b>A ViT encoder once, a light decoder per click or box: three masks to choose from — no training for new things.</div>
+    <div class="card teal"><b>SAM</b>A ViT encoder once, a light decoder per click or box: three masks to choose from — no training for new things.</div>
   </div>
   <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-08/lab.ipynb#scrollTo=part-c" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part C</a><span>A small encoder–decoder's shapes; SAM with a click and a box on the photo; mask IoU between two masks</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s8c">More practice · Session 8 C — practice bank with worked solutions →</a></p>
@@ -1173,7 +1174,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <div class="cards" style="grid-template-columns:repeat(2,minmax(0,1fr))">
     <div class="card"><b>Who took it, who is in it</b>CLIP learned from 400 million image–text pairs from the internet (session 5, slide 34). The people in them were not asked.</div>
     <div class="card violet"><b>Who labelled it</b>Captions and labels carry their writers' views. Even our 12 “true” boxes on this session's photo were drawn by one person — us.</div>
-    <div class="card amber"><b>Whose world</b>If most photos come from some countries and some groups, the model sees the world that way — and tests drawn from the same source will not notice (session 4, slide 19).</div>
+    <div class="card teal"><b>Whose world</b>If most photos come from some countries and some groups, the model sees the world that way — and tests drawn from the same source will not notice (session 4, slide 19).</div>
     <div class="card"><b>Write it down</b>A datasheet says where data came from, who is in it, who labelled it and what it should not be used for (Gebru et al., 2021).</div>
   </div>
   <p class="takeaway"><span>Proposal item P2: where your data comes from and how it was collected. Our own photo is CC0 — the cyclists in it still did not choose to be in a lecture.</span></p>
@@ -1209,7 +1210,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <div class="cards" style="grid-template-columns:repeat(2,minmax(0,1fr))">
     <div class="card"><b>A person detector is a surveillance tool</b>Session 1, slide 5 showed traffic-safety cameras. CLIP's authors tested CCTV images and celebrity recognition themselves — “given its societal implications” (Radford et al., 2021, §7.2).</div>
     <div class="card violet"><b>Consent and purpose</b>Who agreed to be filmed? What is the system for — counting cyclists, or finding one person? Who can see the footage, and for how long is it kept?</div>
-    <div class="card amber"><b>The law</b>Under Thailand's Personal Data Protection Act (PDPA, B.E. 2562), images in which a person can be identified are personal data: there must be a lawful basis and a stated purpose.</div>
+    <div class="card teal"><b>The law</b>Under Thailand's Personal Data Protection Act (PDPA, B.E. 2562), images in which a person can be identified are personal data: there must be a lawful basis and a stated purpose.</div>
     <div class="card"><b>Next week makes it sharper</b>Session 9's tracking joins detections over time: a box becomes a path — where someone went, and when.</div>
   </div>
 
@@ -1245,7 +1246,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <div class="cards">
     <div class="card"><b>Words → boxes → masks</b>Region embeddings against sentence embeddings; σ((cos + b)·s) per word; SAM turns each box into a mask.</div>
     <div class="card violet"><b>Inherited views</b>Web data carries who is in it and who wrote about them; the words you choose decide who is harmed.</div>
-    <div class="card amber"><b>Before you deploy</b>Ask who is watched and who agreed; measure by group; write the limits down.</div>
+    <div class="card teal"><b>Before you deploy</b>Ask who is watched and who agreed; measure by group; write the limits down.</div>
   </div>
   <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-08/lab.ipynb#scrollTo=part-d" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part D</a><span>Text queries → OWL-ViT boxes → SAM masks on the photo; change a word and compare</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s8d">More practice · Session 8 D — practice bank with worked solutions →</a></p>
@@ -1744,7 +1745,7 @@ function drawNumbers(canvas,img,gain,pick,thr=128){   /* cells below thr are sha
   for(let r=0;r<N;r++) for(let c=0;c<N;c++){
     const v=Math.max(0,Math.min(255,Math.round(img[r][c]*gain)));
     const hit=pick&&pick[0]===r&&pick[1]===c;
-    ctx.fillStyle=hit?'#fbeaea':(v<thr?'#e3f3f4':'#ffffff'); ctx.fillRect(c*s,r*s,s,s);
+    ctx.fillStyle=hit?'#fbeaea':(v<thr?'#f8ecd2':'#ffffff'); ctx.fillRect(c*s,r*s,s,s);
     ctx.fillStyle=hit?'#d9534f':'#1b1f24'; ctx.fillText(v,c*s+s/2,r*s+s/2);
   }
   ctx.strokeStyle='#dde3e8'; ctx.lineWidth=1;
@@ -1813,7 +1814,7 @@ function initPR(){
     ctx.save(); ctx.translate(0,10); const hit=new Set(on.filter(d=>d.tp).map(d=>d.gt));
     GT.forEach((g,j)=>{ if(!hit.has(j)) box(ctx,g,s,'#ffd166',3,[8,5]); }); on.forEach(d=>box(ctx,d.box,s,d.tp?'#22c55e':'#ef4444',3)); ctx.restore();
     const X=v=>520+v*220, Y=v=>340-v*300; ctx.strokeStyle='#94a3b8'; ctx.lineWidth=1; ctx.strokeRect(X(0),Y(1),220,300);
-    ctx.strokeStyle='#0f766e'; ctx.lineWidth=2.5; ctx.beginPath(); PR.r.forEach((r,i)=>i?ctx.lineTo(X(r),Y(PR.p[i])):ctx.moveTo(X(r),Y(PR.p[i]))); ctx.stroke();
+    ctx.strokeStyle='#855400'; ctx.lineWidth=2.5; ctx.beginPath(); PR.r.forEach((r,i)=>i?ctx.lineTo(X(r),Y(PR.p[i])):ctx.moveTo(X(r),Y(PR.p[i]))); ctx.stroke();
     ctx.fillStyle='#e0533d'; ctx.beginPath(); ctx.arc(X(R),Y(P),7,0,7); ctx.fill();
     ctx.fillStyle='#667085'; ctx.font='600 13px "Space Grotesk",sans-serif'; ctx.textAlign='center'; ctx.fillText('recall',X(.5),Y(0)+22); ctx.fillText('precision-recall curve',X(.5),Y(1)-8);
     ctx.save(); ctx.translate(X(0)-12,Y(.5)); ctx.rotate(-Math.PI/2); ctx.fillText('precision',0,0); ctx.restore();

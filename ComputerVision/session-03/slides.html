@@ -30,8 +30,8 @@
 <style>
 :root{
   --bg:#ffffff; --ink:#0f1b2d; --body:#2b3645; --muted:#667085; --soft:#f5f7fa; --line:#e4e8ee;
-  --teal:#0f766e; --teal-soft:#e6f4f2; --coral:#e0533d; --coral-soft:#fdeeea;
-  --amber:#c97a06; --amber-soft:#fdf4e3; --violet:#6d5bd0; --violet-soft:#f0edfc; --navy:#0f1b2d;
+  --gold:#855400; --gold-soft:#fbf1dc; --coral:#e0533d; --coral-soft:#fdeeea;
+  --teal:#0f766e; --teal-soft:#e6f4f2; --violet:#6d5bd0; --violet-soft:#f0edfc; --navy:#0f1b2d;
   --font:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
   --display:'Space Grotesk','Plus Jakarta Sans',sans-serif;
   --font-th:'Anuphan','Plus Jakarta Sans',sans-serif;
@@ -44,24 +44,24 @@ html,body{background:var(--bg);}
 .reveal h1,.reveal h2,.reveal h3,.reveal h4{font-family:var(--display);color:var(--ink);text-transform:none;letter-spacing:-0.02em;margin:0 0 .45em;}
 .reveal h1{font-size:2.6em;font-weight:700;line-height:1.02;}
 .reveal h2{font-size:1.5em;font-weight:700;line-height:1.12;}
-.reveal h3{font-size:.95em;font-weight:600;color:var(--teal);margin-bottom:.35em;}
+.reveal h3{font-size:.95em;font-weight:600;color:var(--gold);margin-bottom:.35em;}
 .reveal p,.reveal li{line-height:1.5;}
 .reveal ul,.reveal ol{margin:0 0 0 1.05em;}
 .reveal li{margin:.3em 0;padding-left:.15em;}
-.reveal ul li::marker{color:var(--teal);font-size:1.1em;}
-.reveal ol li::marker{color:var(--teal);font-weight:700;font-family:var(--display);}
+.reveal ul li::marker{color:var(--gold);font-size:1.1em;}
+.reveal ol li::marker{color:var(--gold);font-weight:700;font-family:var(--display);}
 .reveal strong,.reveal b{font-weight:700;color:var(--ink);}
-.reveal a{color:var(--teal);text-decoration:underline;text-underline-offset:3px;}
+.reveal a{color:var(--gold);text-decoration:underline;text-underline-offset:3px;}
 .reveal code{font-family:var(--mono);font-size:.82em;background:var(--soft);padding:.05em .3em;border-radius:5px;}
 
 /* slide header: kicker + claim title */
-.kicker{display:flex;align-items:center;gap:.5em;font-family:var(--display);font-size:.5em;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin:0 0 .5em;}
-.kicker::before{content:"";width:1.8em;height:3px;border-radius:2px;background:var(--teal);}
+.kicker{display:flex;align-items:center;gap:.5em;font-family:var(--display);font-size:.5em;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 .5em;}
+.kicker::before{content:"";width:1.8em;height:3px;border-radius:2px;background:var(--gold);}
 .reveal h2.claim{max-width:26em;}
 .lead{font-size:.66em;line-height:1.5;color:#46505e;margin:-.15em 0 .8em;max-width:52em;text-wrap:pretty;}
-/* closing note under the content: small, with the kicker's teal rule in front */
+/* closing note under the content: small, with the kicker's gold rule in front */
 .takeaway{display:flex;align-items:baseline;gap:.7em;margin:.9em 0 0;font-size:.6em;line-height:1.5;font-weight:500;color:var(--muted);max-width:60em;text-wrap:pretty;}
-.takeaway::before{content:"";flex:0 0 1.8em;height:3px;border-radius:2px;background:var(--teal);transform:translateY(-.3em);}
+.takeaway::before{content:"";flex:0 0 1.8em;height:3px;border-radius:2px;background:var(--gold);transform:translateY(-.3em);}
 html.reading .lead,html.reading .takeaway{font-size:15px;}
 
 /* layout helpers */
@@ -76,11 +76,11 @@ html.reading .lead,html.reading .takeaway{font-size:15px;}
 .card .cardimg{display:block;width:calc(100% + 1.4em);max-width:none;margin:-.55em -.7em .4em;aspect-ratio:5/2;object-fit:cover;border-radius:8px 8px 0 0;}
 .cards.c5{grid-template-columns:repeat(5,minmax(0,1fr));}
 .cards.c5 .card{font-size:.66em;padding:.5em .65em .55em;}
-.card{position:relative;background:#fff;border:1px solid var(--line);border-top:4px solid var(--teal);border-radius:12px;padding:.6em .75em .65em;font-size:.74em;line-height:1.4;box-shadow:0 1px 2px rgba(15,27,45,.05),0 6px 16px -10px rgba(15,27,45,.18);}
+.card{position:relative;background:#fff;border:1px solid var(--line);border-top:4px solid var(--gold);border-radius:12px;padding:.6em .75em .65em;font-size:.74em;line-height:1.4;box-shadow:0 1px 2px rgba(15,27,45,.05),0 6px 16px -10px rgba(15,27,45,.18);}
 .card b{display:block;font-family:var(--display);font-size:1.12em;margin-bottom:.2em;color:var(--ink);}
 .card .n{display:block;font-family:var(--display);font-weight:700;color:#9aa6b5;font-size:.85em;letter-spacing:.06em;margin-bottom:.15em;}
-.card.teal{border-top-color:var(--teal);} .card.coral{border-top-color:var(--coral);}
-.card.amber{border-top-color:var(--amber);} .card.violet{border-top-color:var(--violet);} .card.navy{border-top-color:var(--navy);}
+.card.gold{border-top-color:var(--gold);} .card.coral{border-top-color:var(--coral);}
+.card.teal{border-top-color:var(--teal);} .card.violet{border-top-color:var(--violet);} .card.navy{border-top-color:var(--navy);}
 .small{font-size:.84em;}
 .muted{color:var(--muted);}
 .center{text-align:center;}
@@ -97,16 +97,16 @@ html.reading .pgno{display:none;}
 .deck-rule{position:absolute;left:4px;right:4px;bottom:46px;height:1px;background:var(--line);}
 
 /* key term with Thai meaning */
-.term{display:grid;grid-template-columns:auto 1fr;gap:.1em .6em;align-items:baseline;background:var(--teal-soft);border-radius:12px;padding:.5em .8em;font-size:.72em;margin:0 0 .5em;}
+.term{display:grid;grid-template-columns:auto 1fr;gap:.1em .6em;align-items:baseline;background:var(--gold-soft);border-radius:12px;padding:.5em .8em;font-size:.72em;margin:0 0 .5em;}
 .term b{font-family:var(--display);font-size:1.15em;}
 .term .th{justify-self:start;}
 .term .def{grid-column:1 / -1;color:var(--body);}
-.th{font-family:var(--font-th);color:var(--teal);font-weight:500;}
+.th{font-family:var(--font-th);color:var(--gold);font-weight:500;}
 
 /* Try it */
-.tryit{border:1px solid #f1d9a9;border-left:6px solid var(--amber);border-radius:12px;padding:.65em .9em;background:var(--amber-soft);font-size:.72em;line-height:1.45;}
-.tryit .tag{display:table;font-family:var(--display);font-weight:700;color:var(--amber);letter-spacing:.14em;text-transform:uppercase;font-size:.62em;margin-bottom:.45em;}
-.tryit details summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-family:var(--display);font-weight:600;font-size:.85em;color:var(--amber);list-style:none;}
+.tryit{border:1px solid #bfe3de;border-left:6px solid var(--teal);border-radius:12px;padding:.65em .9em;background:var(--teal-soft);font-size:.72em;line-height:1.45;}
+.tryit .tag{display:table;font-family:var(--display);font-weight:700;color:var(--teal);letter-spacing:.14em;text-transform:uppercase;font-size:.62em;margin-bottom:.45em;}
+.tryit details summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-family:var(--display);font-weight:600;font-size:.85em;color:var(--teal);list-style:none;}
 .tryit details summary::-webkit-details-marker{display:none;}
 .tryit details summary::before{content:"";width:0;height:0;border-left:.42em solid currentColor;border-top:.3em solid transparent;border-bottom:.3em solid transparent;margin-right:.5em;transition:transform .15s;}
 .tryit details[open] summary::before{transform:rotate(90deg);}
@@ -114,13 +114,13 @@ html.reading .pgno{display:none;}
 /* flashback */
 .flashback{border:1px solid #d9d2f6;border-left:6px solid var(--violet);background:var(--violet-soft);border-radius:12px;padding:.65em .9em;font-size:.72em;line-height:1.45;}
 .flashback::before{content:"Flashback";display:block;font-family:var(--display);font-weight:700;color:var(--violet);letter-spacing:.14em;text-transform:uppercase;font-size:.62em;margin-bottom:.4em;}
-/* key idea: same box shape, teal, label from data-label */
-.keyidea{border:1px solid #bfe3de;border-left:6px solid var(--teal);background:var(--teal-soft);border-radius:12px;padding:.65em .9em;font-size:.72em;line-height:1.45;}
-.keyidea::before{content:attr(data-label);display:block;font-family:var(--display);font-weight:700;color:var(--teal);letter-spacing:.14em;text-transform:uppercase;font-size:.62em;margin-bottom:.4em;}
+/* key idea: same box shape, gold, label from data-label */
+.keyidea{border:1px solid #ead7ac;border-left:6px solid var(--gold);background:var(--gold-soft);border-radius:12px;padding:.65em .9em;font-size:.72em;line-height:1.45;}
+.keyidea::before{content:attr(data-label);display:block;font-family:var(--display);font-weight:700;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;font-size:.62em;margin-bottom:.4em;}
 
 /* Colab button */
 .colab svg{width:.95em;height:.95em;fill:currentColor;}
-.colab{display:inline-flex;align-items:center;gap:.4em;min-height:44px;padding:0 1em;border-radius:999px;background:#f9ab00;color:#1b1f24 !important;font-family:var(--display);font-weight:700;font-size:.62em;text-decoration:none !important;box-shadow:0 4px 12px -6px rgba(201,122,6,.6);}
+.colab{display:inline-flex;align-items:center;gap:.4em;min-height:44px;padding:0 1em;border-radius:999px;background:#f9ab00;color:#1b1f24 !important;font-family:var(--display);font-weight:700;font-size:.62em;text-decoration:none !important;box-shadow:0 4px 12px -6px rgba(15, 118, 110,.6);}
 
 /* tables */
 .tscroll{overflow-x:auto;max-width:100%;border:1px solid var(--line);border-radius:12px;}
@@ -129,18 +129,18 @@ html.reading .pgno{display:none;}
 .reveal table th{background:var(--navy);color:#fff;font-family:var(--display);font-weight:600;letter-spacing:.02em;}
 .reveal table tr:nth-child(odd) td{background:#fafbfc;}
 .reveal table tr:last-child td{border-bottom:0;}
-.reveal table tr.hl td{background:var(--teal-soft);font-weight:600;color:var(--ink);}
+.reveal table tr.hl td{background:var(--gold-soft);font-weight:600;color:var(--ink);}
 .reveal table.tight{font-size:.5em;}
 .reveal table.tight th,.reveal table.tight td{padding:.3em .7em;}
-.reveal table td.pt{font-family:var(--display);font-weight:700;color:var(--teal);text-align:center;width:3em;}
+.reveal table td.pt{font-family:var(--display);font-weight:700;color:var(--gold);text-align:center;width:3em;}
 
 /* title slide — dark cover */
 .reveal .slides>section.title-slide,.reveal .slides .pdf-page>section.title-slide,.reveal .slides .ho-cell>section.title-slide{padding:0 34px !important;}
 .title-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:2.2em;align-items:center;height:100%;}
-.title-slide .pill{display:inline-flex;align-items:center;gap:.6em;margin:0 0 1.2em;padding:.4em 1em;border-radius:999px;background:var(--teal-soft);color:var(--teal);font-family:var(--display);font-weight:600;font-size:.46em;letter-spacing:.16em;text-transform:uppercase;}
-.title-slide .pill::before{content:"";width:.55em;height:.55em;border-radius:50%;background:var(--teal);}
+.title-slide .pill{display:inline-flex;align-items:center;gap:.6em;margin:0 0 1.2em;padding:.4em 1em;border-radius:999px;background:var(--gold-soft);color:var(--gold);font-family:var(--display);font-weight:600;font-size:.46em;letter-spacing:.16em;text-transform:uppercase;}
+.title-slide .pill::before{content:"";width:.55em;height:.55em;border-radius:50%;background:var(--gold);}
 .reveal .title-slide h1{color:var(--ink);font-size:3em;line-height:.98;margin:0 0 .32em;letter-spacing:-.035em;}
-.reveal .title-slide h1 em{font-style:normal;color:var(--teal);}
+.reveal .title-slide h1 em{font-style:normal;color:var(--gold);}
 .title-slide .sub{font-family:var(--display);font-size:1em;color:var(--body);font-weight:500;margin:0 0 1.9em;}
 .title-slide .who{border-top:1px solid var(--line);padding-top:.9em;max-width:17em;}
 .title-slide .who p{margin:0;}
@@ -148,14 +148,14 @@ html.reading .pgno{display:none;}
 .title-slide .name span{font-weight:500;color:var(--muted);}
 .title-slide .contact{display:flex;flex-wrap:wrap;gap:.2em 1.4em;margin-top:.35em !important;font-size:.56em;color:var(--muted);}
 .title-slide .contact a{color:inherit;text-decoration:none;}
-.title-slide .contact a:hover{color:var(--teal);}
+.title-slide .contact a:hover{color:var(--gold);}
 .title-slide .contact span+span::before{content:"";display:inline-block;width:.32em;height:.32em;border-radius:50%;background:#c3cad4;margin:0 .9em 0 -.8em;vertical-align:middle;}
-.title-slide .art{margin:0;padding:34px 34px 22px;border-radius:30px;background-color:var(--teal-soft);background-image:radial-gradient(rgba(15,118,110,.16) 1.4px,transparent 1.6px);background-size:22px 22px;}
+.title-slide .art{margin:0;padding:34px 34px 22px;border-radius:30px;background-color:var(--gold-soft);background-image:radial-gradient(rgba(133, 84, 0,.16) 1.4px,transparent 1.6px);background-size:22px 22px;}
 #titleArt{display:block;width:100%;height:auto;border-radius:16px;background:#fff;box-shadow:0 18px 40px -22px rgba(15,27,45,.35),0 0 0 1px var(--line);}
 @media print{#titleArt{box-shadow:0 0 0 1px var(--line);}.title-slide .art{background-image:none;}}
 html.print-pdf #titleArt{box-shadow:0 0 0 1px var(--line);}
 html.print-pdf .title-slide .art{background-image:none;}
-.title-slide figcaption{margin-top:.8em;text-align:center;font-family:var(--mono);font-size:.4em;color:var(--teal);letter-spacing:.02em;}
+.title-slide figcaption{margin-top:.8em;text-align:center;font-family:var(--mono);font-size:.4em;color:var(--gold);letter-spacing:.02em;}
 html.reading .reveal .slides>section.title-slide{padding:36px 18px !important;}
 html.reading .title-slide .pill,html.reading .title-slide figcaption,html.reading .title-slide .contact{font-size:13px;}
 html.reading .title-slide .art{padding:18px 18px 12px;border-radius:20px;}
@@ -164,9 +164,9 @@ html.reading .title-slide .art{padding:18px 18px 12px;border-radius:20px;}
 .cols.today{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:2em;}
 .reveal .steps{list-style:none;margin:0;padding:0;counter-reset:st;position:relative;}
 /* connector: one segment per item, from this circle's centre to the next — in the li's own em so it stays centred at any size */
-.steps li:not(:last-child)::after{content:"";position:absolute;left:calc(.855em - 1px);top:50%;height:100%;width:2px;background:#a9d8d4;}
+.steps li:not(:last-child)::after{content:"";position:absolute;left:calc(.855em - 1px);top:50%;height:100%;width:2px;background:#e2c88f;}
 .steps li{counter-increment:st;position:relative;margin:0;padding:.5em 0 .5em 2.7em;font-size:.8em;line-height:1.35;color:var(--ink);}
-.steps li::before{content:counter(st);position:absolute;left:0;top:50%;transform:translateY(-50%);box-sizing:border-box;z-index:1;width:1.9em;height:1.9em;border-radius:50%;background:#fff;border:2px solid var(--teal);color:var(--teal);font-family:var(--display);font-weight:700;font-size:.9em;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 4px #fff;}
+.steps li::before{content:counter(st);position:absolute;left:0;top:50%;transform:translateY(-50%);box-sizing:border-box;z-index:1;width:1.9em;height:1.9em;border-radius:50%;background:#fff;border:2px solid var(--gold);color:var(--gold);font-family:var(--display);font-weight:700;font-size:.9em;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 4px #fff;}
 .goals{display:grid;gap:.5em;}
 .goal{display:grid;grid-template-columns:5.4em 1fr;gap:.8em;align-items:center;background:#fff;border:1px solid var(--line);border-left:5px solid var(--c);border-radius:12px;padding:.6em .85em;font-size:.72em;line-height:1.4;color:var(--ink);box-shadow:0 6px 16px -12px rgba(15,27,45,.25);}
 .goal .verb{justify-self:start;font-family:var(--display);font-weight:700;font-size:.78em;letter-spacing:.12em;text-transform:uppercase;color:var(--c);}
@@ -176,11 +176,11 @@ html.reading .cols.today{grid-template-columns:1fr;}
 .outline{list-style:none;margin:0;padding:0;counter-reset:o;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6em 1.2em;}
 .outline.one{grid-template-columns:1fr;gap:.4em;}
 .outline li{counter-increment:o;display:flex;gap:.7em;align-items:flex-start;font-size:.82em;background:var(--soft);border-radius:12px;padding:.6em .8em;margin:0;}
-.outline li::before{content:counter(o,decimal-leading-zero);font-family:var(--display);font-weight:700;color:var(--teal);font-size:1.1em;line-height:1.35;}
+.outline li::before{content:counter(o,decimal-leading-zero);font-family:var(--display);font-weight:700;color:var(--gold);font-size:1.1em;line-height:1.35;}
 .outcomes{list-style:none;margin:0;padding:0;counter-reset:c;}
 .outcomes li{counter-increment:c;position:relative;padding:.45em 0 .45em 2.4em;margin:0;font-size:.84em;border-bottom:1px solid var(--line);}
 .outcomes li:last-child{border-bottom:0;}
-.outcomes li::before{content:counter(c);position:absolute;left:0;top:.42em;width:1.6em;height:1.6em;border-radius:50%;background:var(--teal);color:#fff;font-family:var(--display);font-weight:700;font-size:.85em;display:flex;align-items:center;justify-content:center;}
+.outcomes li::before{content:counter(c);position:absolute;left:0;top:.42em;width:1.6em;height:1.6em;border-radius:50%;background:var(--gold);color:#fff;font-family:var(--display);font-weight:700;font-size:.85em;display:flex;align-items:center;justify-content:center;}
 
 /* grading */
 .gtiles{display:grid;grid-template-columns:40fr 30fr 20fr 10fr;gap:.4em;margin:.2em 0 .6em;}
@@ -216,12 +216,12 @@ html.reading .after{flex-direction:column;}
 .reveal table.hintable{font-size:.54em;}
 .reveal table.hintable th,.reveal table.hintable td{padding:.22em .7em;}
 .reveal table.hintable td:nth-child(2){white-space:nowrap;}
-.reveal .fnames li.fh{font-family:var(--display);font-weight:600;color:var(--teal);font-size:.5em;margin-bottom:.2em;white-space:normal;}
+.reveal .fnames li.fh{font-family:var(--display);font-weight:600;color:var(--gold);font-size:.5em;margin-bottom:.2em;white-space:normal;}
 .reveal .hcount{margin:.4em 0 .55em;font-size:.56em;color:var(--muted);}
 .reveal .hcount b{color:var(--ink);}
 .pattern{border:1px solid var(--line);border-radius:12px;padding:.45em .7em .5em;background:#fff;}
 .reveal .pat{margin:0 0 .25em;font-family:var(--mono);font-size:.66em;font-weight:600;color:var(--muted);letter-spacing:.01em;}
-.pat span{color:var(--teal);}
+.pat span{color:var(--gold);}
 .reveal .pattern ul{list-style:none;margin:0;padding:0;display:grid;gap:.12em;}
 .reveal .pattern li{display:grid;grid-template-columns:3.2em 1fr;gap:.4em;font-size:.48em;line-height:1.35;margin:0;}
 .pattern li b{font-family:var(--display);color:var(--ink);}
@@ -235,7 +235,7 @@ html.reading .reveal .fnames li{font-size:12px;white-space:nowrap;}
 html.reading .reveal .pat{font-size:15px;}
 /* s6 · 1966 summer project */
 .memo{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.3fr);gap:1.4em;align-items:start;margin-top:.3em;}
-.mq{margin:0;font-family:var(--display);font-size:.8em;line-height:1.38;color:var(--ink);border-left:6px solid var(--teal);padding:.15em 0 .15em .8em;}
+.mq{margin:0;font-family:var(--display);font-size:.8em;line-height:1.38;color:var(--ink);border-left:6px solid var(--gold);padding:.15em 0 .15em .8em;}
 .mq span{display:block;font-family:var(--font);font-size:.68em;color:var(--muted);margin-top:.6em;}
 .memo h3{margin:0 0 .5em;}
 .memo .pipe .st{font-size:.6em;}
@@ -246,32 +246,32 @@ html.reading .mq{font-size:17px;}
 html.reading .memo-end{font-size:15px;}
 html.reading .reveal .mnote{font-size:14px;}
 .reveal .more{margin:.9em 0 0;font-size:.56em;}
-.reveal .more a{color:var(--teal);font-weight:600;text-decoration:none;border-bottom:2px solid var(--teal-soft);}
-.reveal .more a:hover{border-bottom-color:var(--teal);}
+.reveal .more a{color:var(--gold);font-weight:600;text-decoration:none;border-bottom:2px solid var(--gold-soft);}
+.reveal .more a:hover{border-bottom-color:var(--gold);}
 html.reading .reveal .more{font-size:15px;}
 /* session roadmap (slide 2) + part openers — shared by every session deck */
 .qband{display:flex;gap:.8em;align-items:center;background:var(--soft);border-radius:14px;padding:.6em .9em;margin:0 0 .8em;font-size:.74em;color:var(--ink);font-family:var(--display);font-weight:600;}
-.qband span{font-family:var(--font);font-weight:700;font-size:.62em;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);white-space:nowrap;}
+.qband span{font-family:var(--font);font-weight:700;font-size:.62em;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);white-space:nowrap;}
 .parts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6em;}
 .parts a{display:block;text-decoration:none;transition:border-color .15s,transform .15s;border:1px solid var(--line);border-radius:14px;padding:.6em .75em;font-size:.62em;line-height:1.4;color:var(--muted);background:#fff;}
 .parts a b{display:block;font-family:var(--display);font-size:1.25em;color:var(--ink);margin-bottom:.2em;}
 .parts a i{font-style:normal;display:inline-grid;place-items:center;width:1.7em;height:1.7em;border-radius:50%;background:var(--soft);color:var(--ink);font-family:var(--display);font-weight:700;margin-right:.35em;}
-.parts a.on{border:2px solid var(--teal);background:var(--teal-soft);color:var(--body);}
-.parts a.on i{background:var(--teal);color:#fff;}
+.parts a.on{border:2px solid var(--gold);background:var(--gold-soft);color:var(--body);}
+.parts a.on i{background:var(--gold);color:#fff;}
 /* the A–D strip sits in the normal flow (never absolute), so nothing can overlap it in any mode; auto margins centre the rest */
 .part-open{display:flex !important;flex-direction:column;justify-content:flex-start;}
 .po-strip{position:static;margin:34px 0 26px;display:grid;grid-template-columns:repeat(4,1fr);gap:.4em;font-family:var(--display);font-size:.5em;}
 .po-strip a{text-decoration:none;display:flex;align-items:center;gap:.5em;padding:.45em .7em;border-radius:999px;background:var(--soft);color:var(--muted);}
 .po-strip b{display:inline-grid;place-items:center;width:1.7em;height:1.7em;border-radius:50%;background:#fff;color:var(--muted);}
 .po-strip a.done{color:var(--body);}
-.po-strip a.done b{background:var(--teal-soft);color:var(--teal);}
-.po-strip a.on{background:var(--teal);color:#fff;}
-.po-strip a.on b{background:#fff;color:var(--teal);}
-.reveal .po-letter{margin:auto 0 0;font-family:var(--display);font-weight:700;font-size:3.2em;line-height:1;color:var(--teal);}
+.po-strip a.done b{background:var(--gold-soft);color:var(--gold);}
+.po-strip a.on{background:var(--gold);color:#fff;}
+.po-strip a.on b{background:#fff;color:var(--gold);}
+.reveal .po-letter{margin:auto 0 0;font-family:var(--display);font-weight:700;font-size:3.2em;line-height:1;color:var(--gold);}
 .part-open .claim{font-size:1.9em;margin:.1em 0 .3em;}
 .reveal .po-q{margin:0 0 1.2em;font-family:var(--display);font-size:.95em;color:var(--body);max-width:24em;}
-.reveal .po-out{margin:0 0 auto;max-width:34em;border-left:5px solid var(--teal);padding:.3em 0 .3em .8em;font-size:.62em;line-height:1.5;color:var(--body);}
-.po-out span{display:block;font-family:var(--display);font-weight:700;font-size:.8em;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:.15em;}
+.reveal .po-out{margin:0 0 auto;max-width:34em;border-left:5px solid var(--gold);padding:.3em 0 .3em .8em;font-size:.62em;line-height:1.5;color:var(--body);}
+.po-out span{display:block;font-family:var(--display);font-weight:700;font-size:.8em;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.15em;}
 html.reading .part-open{display:block !important;}
 html.reading .tryit .tag{font-size:12px;}
 .reveal sup{vertical-align:super;font-size:.68em;line-height:0;}
@@ -279,8 +279,8 @@ html.reading .tryit .tag{font-size:12px;}
 html.reading .po-strip{position:static;grid-template-columns:1fr 1fr;margin-bottom:1em;font-size:13px;}
 html.reading .po-q{font-size:18px;}
 html.reading .po-out{font-size:15px;}
-.parts a:hover{border-color:var(--teal);transform:translateY(-2px);}
-.po-strip a:hover{box-shadow:0 0 0 2px var(--teal-soft);}
+.parts a:hover{border-color:var(--gold);transform:translateY(-2px);}
+.po-strip a:hover{box-shadow:0 0 0 2px var(--gold-soft);}
 html.reading .parts{grid-template-columns:1fr;}
 html.reading .qband,html.reading .parts a{font-size:15px;}
 html.reading .qband span{font-size:12px;}
@@ -299,12 +299,12 @@ html.reading .cards.apps .card{font-size:15px;}
 .demo-out{font-family:var(--mono);font-size:.5em;color:var(--muted);margin-top:.35em;display:flex;justify-content:space-between;gap:.6em;flex-wrap:wrap;}
 .demo-out b{color:var(--ink);font-weight:600;}
 .reveal .more{margin:.9em 0 0;font-size:.56em;}
-.reveal .more a{color:var(--teal);font-weight:600;text-decoration:none;border-bottom:2px solid var(--teal-soft);}
-.reveal .more a:hover{border-bottom-color:var(--teal);}
+.reveal .more a{color:var(--gold);font-weight:600;text-decoration:none;border-bottom:2px solid var(--gold-soft);}
+.reveal .more a:hover{border-bottom-color:var(--gold);}
 html.reading .reveal .more{font-size:15px;}
 .chbtns{display:flex;gap:.35em;margin:.45em 0 0;flex-wrap:wrap;}
 .chbtns button{all:unset;cursor:pointer;padding:.3em .8em;border-radius:999px;border:1px solid var(--line);font-family:var(--display);font-weight:600;font-size:.5em;color:var(--body);background:#fff;}
-.chbtns button.on{background:var(--teal);border-color:var(--teal);color:#fff;}
+.chbtns button.on{background:var(--gold);border-color:var(--gold);color:#fff;}
 .reveal .labline{display:flex;align-items:center;gap:.8em;flex-wrap:wrap;margin:.9em 0 0;}
 .reveal .labline span{font-size:.56em;color:var(--muted);}
 html.reading .reveal .labline span{font-size:13px;}
@@ -314,19 +314,19 @@ html.reading .reveal .labline span{font-size:13px;}
 .title-slide .art img{display:block;width:100%;height:auto;border-radius:16px;box-shadow:0 18px 40px -22px rgba(15,27,45,.35),0 0 0 1px var(--line);}
 .democv{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);}
 .eq{font-size:.8em;margin:.2em 0 0;}
-.worked{border:1px solid var(--line);border-left:5px solid var(--amber);border-radius:10px;padding:.5em .8em;font-size:.6em;line-height:1.55;background:#fff;}
-.worked .tag{display:block;font-family:var(--display);font-weight:700;font-size:.72em;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:.2em;}
+.worked{border:1px solid var(--line);border-left:5px solid var(--teal);border-radius:10px;padding:.5em .8em;font-size:.6em;line-height:1.55;background:#fff;}
+.worked .tag{display:block;font-family:var(--display);font-weight:700;font-size:.72em;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:.2em;}
 .worked p{margin:0;font-family:var(--mono);font-size:.92em;}
 .say .worked{font-size:.9em;margin:.4em 0 .5em;}   /* inside a .say column (already .68em): keep the session-2 size */
 .reveal aside.notes,aside.notes{display:none !important;}
 /* number grids */
 .ng{display:grid;gap:3px;font-family:var(--mono);font-weight:600;width:100%;}
 .ng>div{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:5px;font-size:15px;line-height:1;position:relative;}
-.ng>div.pad{outline:2px dashed var(--amber);outline-offset:-3px;font-style:italic;}
-.ng>div.win{box-shadow:inset 0 0 0 3px var(--teal);}
+.ng>div.pad{outline:2px dashed var(--teal);outline-offset:-3px;font-style:italic;}
+.ng>div.win{box-shadow:inset 0 0 0 3px var(--gold);}
 .ng>div.cur{box-shadow:inset 0 0 0 3px var(--coral);}
 .ng>div.empty{background:var(--soft);color:var(--muted);}
-.ng>div.ker{background:var(--amber-soft);color:var(--ink);}
+.ng>div.ker{background:var(--teal-soft);color:var(--ink);}
 .ng>div.dot::after{content:"";position:absolute;width:30%;height:30%;border-radius:50%;background:var(--coral);}
 .gcap{font-family:var(--display);font-weight:600;font-size:.46em;color:var(--muted);text-align:center;margin:.35em 0 0;}
 .conv3{display:grid;grid-template-columns:minmax(0,7fr) auto minmax(0,3fr) auto minmax(0,5fr);gap:.6em;align-items:center;max-width:800px;margin:0 auto;}
@@ -336,7 +336,7 @@ html.reading .conv3{max-width:none;}
 .calc b{color:var(--coral);}
 .ctrl{display:flex;gap:.4em;align-items:center;flex-wrap:wrap;margin-top:.5em;}
 .ctrl button{all:unset;cursor:pointer;padding:.3em .9em;border-radius:999px;border:1px solid var(--line);font-family:var(--display);font-weight:600;font-size:.5em;color:var(--body);background:#fff;}
-.ctrl button:hover{border-color:var(--teal);color:var(--teal);}
+.ctrl button:hover{border-color:var(--gold);color:var(--gold);}
 .ctrl label{font-family:var(--display);font-weight:600;font-size:.5em;color:var(--body);display:flex;align-items:center;gap:.5em;}
 .ctrl input[type=range]{width:7em;}
 .curve{display:block;width:100%;max-width:220px;height:auto;margin:.3em auto 0;border:1px solid var(--line);border-radius:10px;background:#fff;}
@@ -345,9 +345,9 @@ html.reading .conv3{max-width:none;}
 .big-out b{color:var(--coral);}
 .reveal .tset{list-style:none;margin:.2em 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.45em .8em;}
 .reveal .tset li{margin:0;display:grid;grid-template-columns:1.6em 1fr;column-gap:.5em;align-items:baseline;border:1px solid var(--line);border-radius:12px;padding:.45em .7em;font-size:.56em;line-height:1.35;background:#fff;}
-.tset .tn{grid-row:1/3;font-family:var(--display);font-weight:700;color:var(--teal);font-size:1.2em;}
+.tset .tn{grid-row:1/3;font-family:var(--display);font-weight:700;color:var(--gold);font-size:1.2em;}
 .tset .tt{font-family:var(--display);font-weight:600;color:var(--ink);}
-.tset a{font-size:.85em;color:var(--teal);text-decoration:none;}
+.tset a{font-size:.85em;color:var(--gold);text-decoration:none;}
 html.reading .reveal .tset{grid-template-columns:1fr;}
 html.reading .reveal .tset li{font-size:15px;}
 .steps.recap li{font-size:.7em;}
@@ -370,8 +370,8 @@ html.reading .reveal ul.small li{font-size:14px;}
 /* pipeline */
 .pipe{display:flex;gap:.45em;align-items:stretch;counter-reset:p;}
 .pipe .st{flex:1 1 0;background:#fff;border:1px solid var(--line);border-radius:12px;padding:.6em .65em;font-size:.64em;line-height:1.35;box-shadow:0 6px 16px -12px rgba(15,27,45,.25);position:relative;}
-.pipe .st b{display:block;font-family:var(--display);color:var(--teal);font-size:1.1em;margin-bottom:.25em;}
-.pipe .ar{align-self:center;color:var(--teal);font-weight:700;font-size:.8em;}
+.pipe .st b{display:block;font-family:var(--display);color:var(--gold);font-size:1.1em;margin-bottom:.25em;}
+.pipe .ar{align-self:center;color:var(--gold);font-weight:700;font-size:.8em;}
 
 /* pixel demo */
 .pix-wrap{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.1fr) minmax(0,1fr);gap:1em;align-items:start;}
@@ -384,10 +384,10 @@ html.reading .reveal ul.small li{font-size:14px;}
 .lcmp dl{display:grid;grid-template-columns:1fr auto;gap:.3em .8em;margin:0 0 .7em;font-size:.56em;align-items:baseline;}
 .lcmp dt{color:var(--muted);}
 .lcmp dd{margin:0;font-family:var(--mono);color:var(--muted);white-space:nowrap;}
-.lcmp dd i{font-style:normal;color:var(--teal);}
+.lcmp dd i{font-style:normal;color:var(--gold);}
 .lcmp dd b{color:var(--ink);font-size:1.15em;}
-.lcmp .rule{border:1px solid var(--line);border-left:5px solid var(--teal);border-radius:10px;padding:.5em .75em .55em;background:#fff;font-size:.6em;line-height:1.4;}
-.lcmp .rule .tag{display:block;font-family:var(--display);font-weight:700;font-size:.72em;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:.2em;}
+.lcmp .rule{border:1px solid var(--line);border-left:5px solid var(--gold);border-radius:10px;padding:.5em .75em .55em;background:#fff;font-size:.6em;line-height:1.4;}
+.lcmp .rule .tag{display:block;font-family:var(--display);font-weight:700;font-size:.72em;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.2em;}
 .lcmp .rule p{margin:0;}
 .lcmp .verdict{margin-top:.35em !important;font-weight:600;color:var(--ink);}
 .lcmp .rule.bad{border-left-color:var(--coral);}
@@ -395,7 +395,7 @@ html.reading .reveal ul.small li{font-size:14px;}
 html.reading .litlab,html.reading .lcmp dl{font-size:14px;}
 html.reading .lcmp .rule{font-size:15px;}
 .pix-readout{font-family:var(--mono);font-size:.5em;color:var(--muted);min-height:1.6em;margin-top:.35em;}
-.slider{width:100%;accent-color:var(--teal);min-height:44px;touch-action:none;cursor:pointer;}
+.slider{width:100%;accent-color:var(--gold);min-height:44px;touch-action:none;cursor:pointer;}
 /* a thumb big enough for a finger */
 .slider::-webkit-slider-thumb{width:26px;height:26px;}
 .slider::-moz-range-thumb{width:26px;height:26px;}
@@ -404,7 +404,7 @@ html.reading .lcmp .rule{font-size:15px;}
 .tl{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;position:relative;margin:.3em 0 .9em;}
 .tl::before{content:"";position:absolute;left:4%;right:4%;top:.95em;height:3px;background:var(--line);}
 .tl div{position:relative;text-align:center;font-size:.58em;padding:2.2em .3em 0;line-height:1.3;}
-.tl div::before{content:"";position:absolute;top:.35em;left:50%;transform:translateX(-50%);width:1.1em;height:1.1em;border-radius:50%;background:#fff;border:3px solid var(--teal);}
+.tl div::before{content:"";position:absolute;top:.35em;left:50%;transform:translateX(-50%);width:1.1em;height:1.1em;border-radius:50%;background:#fff;border:3px solid var(--gold);}
 .tl div.key::before{background:var(--coral);border-color:var(--coral);}
 .tl b{display:block;font-family:var(--display);color:var(--ink);}
 
@@ -428,11 +428,12 @@ html.reading .levels li{font-size:15px;grid-template-columns:3.6em 1fr;}
 html.reading .scale.mini{grid-template-columns:repeat(2,minmax(0,1fr));}
 /* project rubric: full criteria in small type */
 .tl.tl7{grid-template-columns:repeat(7,minmax(0,1fr));}
+.tl.tl8{grid-template-columns:repeat(8,minmax(0,1fr));}
 .pitch{display:flex;flex-wrap:wrap;align-items:center;gap:.3em .5em;background:var(--coral-soft);border:1px solid #f3c9c0;border-radius:10px;padding:.3em .6em;margin:0 0 .45em;font-size:.44em;line-height:1.3;}
 .pitch>b{font-family:var(--display);color:var(--coral);}
 .pitch span{background:#fff;border-radius:999px;padding:.1em .6em;border:1px solid #f3c9c0;}
 html.reading .pitch{font-size:14px;}
-html.reading .tl.tl7{grid-template-columns:repeat(3,minmax(0,1fr));}
+html.reading .tl.tl7,html.reading .tl.tl8{grid-template-columns:repeat(3,minmax(0,1fr));}
 
 .tl.tl-sm{margin:.1em 0 .45em;}
 .tl.tl-sm div{font-size:.46em;padding-top:1.9em;}
@@ -441,8 +442,8 @@ html.reading .tl.tl7{grid-template-columns:repeat(3,minmax(0,1fr));}
 .rubric{gap:1em;}
 .rubric h3{font-size:.56em;margin:0 0 .3em;}
 .reveal .rubric ol{list-style:none;margin:0;padding:0;counter-reset:rb;display:grid;gap:2px;}
-.rubric li{counter-increment:rb;display:grid;grid-template-columns:1.6em 1fr;gap:.4em;align-items:baseline;margin:0;padding:.13em .45em;border-radius:6px;font-size:.44em;line-height:1.28;background:var(--soft);}
-.rubric li::before{content:counter(rb);font-family:var(--display);font-weight:700;color:var(--teal);text-align:right;}
+.rubric li{counter-increment:rb;display:grid;grid-template-columns:1.6em 1fr;gap:.4em;align-items:baseline;margin:0;padding:.07em .45em;border-radius:6px;font-size:.44em;line-height:1.28;background:var(--soft);}
+.rubric li::before{content:counter(rb);font-family:var(--display);font-weight:700;color:var(--gold);text-align:right;}
 html.reading .rubric li{font-size:14px;}
 html.reading .rubric h3{font-size:15px;}
 .rb-note{margin-top:.4em !important;font-size:.58em !important;}
@@ -452,8 +453,8 @@ html.reading .rb-note{font-size:14px !important;}
 .cols .checks li{font-size:.58em;padding:.3em .6em;}
 .cols .checks{gap:.35em;}
 .checks li{display:grid;grid-template-columns:2.2em 1fr auto;gap:.6em;align-items:center;background:var(--soft);border-radius:12px;padding:.5em .8em;margin:0;font-size:.74em;}
-.checks li::before{content:"✓";width:1.7em;height:1.7em;border-radius:50%;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;}
-.checks li span.pt{font-family:var(--display);font-weight:700;color:var(--teal);}
+.checks li::before{content:"✓";width:1.7em;height:1.7em;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;}
+.checks li span.pt{font-family:var(--display);font-weight:700;color:var(--gold);}
 
 /* halves */
 .halves{display:grid;grid-template-columns:1fr 1fr;gap:.8em;margin-bottom:.7em;}
@@ -469,7 +470,7 @@ html.reading .rb-note{font-size:14px !important;}
 .reveal .slides>section:not(.title-slide)::before,.reveal .slides .pdf-page>section:not(.title-slide)::before,.reveal .slides .ho-cell>section:not(.title-slide)::before{content:"Computer Vision · Session 3";position:absolute;right:4px;top:10px;font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#a0aab8;}
 html.reading .reveal .slides>section::before,html.reading .reveal .slides>section::after{display:none;}
 /* ---------- deck toolbar (replaces reveal's arrows + slide number) ---------- */
-.reveal .progress{height:4px;color:var(--teal);background:transparent;}
+.reveal .progress{height:4px;color:var(--gold);background:transparent;}
 .deckbar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:40;display:flex;align-items:center;gap:2px;padding:4px;border-radius:999px;background:rgba(255,255,255,.94);border:1px solid var(--line);box-shadow:0 8px 24px -12px rgba(15,27,45,.35);font-family:var(--display);transition:opacity .35s;backdrop-filter:blur(6px);}
 .deckbar.idle{opacity:0;pointer-events:none;}
 /* [hidden] loses to display:flex unless said again — the hidden desktop bar sat on top of the phone bar */
@@ -477,7 +478,7 @@ html.reading .reveal .slides>section::before,html.reading .reveal .slides>sectio
 .deckbar:hover,.deckbar:focus-within{opacity:1;}
 .deckbar button{all:unset;box-sizing:border-box;width:44px;height:44px;border-radius:999px;display:flex;align-items:center;justify-content:center;color:var(--ink);cursor:pointer;}
 .deckbar button:hover{background:var(--soft);}
-.deckbar button:focus-visible{outline:2px solid var(--teal);outline-offset:1px;}
+.deckbar button:focus-visible{outline:2px solid var(--gold);outline-offset:1px;}
 .deckbar button[disabled]{opacity:.3;cursor:default;}
 .deckbar svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
 .deckbar .count{min-width:4.2em;text-align:center;font-size:14px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums;}
@@ -497,7 +498,7 @@ html.reading .reveal .slides>section::before,html.reading .reveal .slides>sectio
 .keys dl{display:grid;grid-template-columns:minmax(10.8em,max-content) 1fr;gap:9px 16px;margin:0;font-size:14.5px;align-items:center;}   /* wide enough for Shift + ← →, the same in both lists */
 .keys dt{display:flex;gap:4px;justify-content:flex-end;align-items:center;white-space:nowrap;}
 .keys dd{margin:0;}
-.keys h4{margin:16px 0 10px;padding-top:12px;border-top:1px solid var(--line);font-family:var(--display);font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);}
+.keys h4{margin:16px 0 10px;padding-top:12px;border-top:1px solid var(--line);font-family:var(--display);font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);}
 .keys kbd{font-family:var(--mono);font-size:12.5px;min-width:1.9em;text-align:center;padding:3px 7px;border-radius:6px;border:1px solid var(--line);border-bottom-width:2px;background:var(--soft);color:var(--ink);}
 /* all slides = photo album: a grid of live clones of every slide, scaled to thumbnails */
 .album{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;background:#eef1f5;font-family:var(--display);}
@@ -505,23 +506,23 @@ html.reading .reveal .slides>section::before,html.reading .reveal .slides>sectio
 html.album-open .deckbar,html.album-open .rbar{display:none !important;}
 html.album-open body{overflow:hidden;}
 .aslides{display:none;}
-html.reading .aslides{display:flex;align-items:center;min-height:36px;margin-left:auto;font-size:14px;font-weight:600;color:var(--teal);text-decoration:none;}
+html.reading .aslides{display:flex;align-items:center;min-height:36px;margin-left:auto;font-size:14px;font-weight:600;color:var(--gold);text-decoration:none;}
 .ahead{display:flex;align-items:center;gap:14px;padding:14px 22px;background:#fff;border-bottom:1px solid var(--line);}
 .ahead h2{margin:0;font-size:18px;font-weight:700;color:var(--ink);letter-spacing:-.01em;}
 .ahead h2 span{color:var(--muted);font-weight:500;margin-left:.4em;}
 .ahead p{margin:0 0 0 auto;font-family:var(--font);font-size:13px;color:var(--muted);}
 .ahead button{flex:none;width:36px;height:36px;border:0;border-radius:50%;background:var(--soft);color:var(--ink);cursor:pointer;display:grid;place-items:center;}
-.ahead button:hover{background:var(--teal-soft);color:var(--teal);}
+.ahead button:hover{background:var(--gold-soft);color:var(--gold);}
 .ahead button svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;}
 .agrid{flex:1;overflow-y:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px 18px;align-content:start;padding:22px;overscroll-behavior:contain;touch-action:pan-y;}
 .agrid.dragging{cursor:grabbing;user-select:none;}
 .thumb{display:block;cursor:pointer;border-radius:12px;outline:none;}
 .tframe{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:10px;background:#fff;box-shadow:0 1px 2px rgba(15,27,45,.08),0 8px 20px -14px rgba(15,27,45,.35);transition:box-shadow .15s,transform .15s;}
-@media (hover:hover){.thumb:hover .tframe{transform:translateY(-2px);box-shadow:0 0 0 2px #b9dfe2,0 12px 26px -14px rgba(15,27,45,.4);}}
-.thumb.sel .tframe{box-shadow:0 0 0 4px var(--teal),0 12px 26px -14px rgba(15,27,45,.4);}
-.thumb.now .tn::after{content:"current";margin-left:.5em;padding:1px 7px;border-radius:999px;background:var(--teal-soft);color:var(--teal);font-size:11px;font-weight:600;letter-spacing:.04em;}
+@media (hover:hover){.thumb:hover .tframe{transform:translateY(-2px);box-shadow:0 0 0 2px #e8d3a6,0 12px 26px -14px rgba(15,27,45,.4);}}
+.thumb.sel .tframe{box-shadow:0 0 0 4px var(--gold),0 12px 26px -14px rgba(15,27,45,.4);}
+.thumb.now .tn::after{content:"current";margin-left:.5em;padding:1px 7px;border-radius:999px;background:var(--gold-soft);color:var(--gold);font-size:11px;font-weight:600;letter-spacing:.04em;}
 .tcap{display:flex;align-items:baseline;gap:8px;margin-top:8px;font-size:13px;line-height:1.3;}
-.tn{flex:none;font-weight:700;color:var(--teal);}
+.tn{flex:none;font-weight:700;color:var(--gold);}
 .tt{color:var(--body);font-family:var(--font);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .tframe>.thost{position:absolute;inset:0;}
 @media (max-width:600px){.agrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 10px;padding:12px 12px calc(16px + env(safe-area-inset-bottom));}.ahead{padding:10px 12px;gap:10px;}.ahead p{display:none;}.ahead h2{font-size:16px;}.tcap{font-size:12px;}}
@@ -786,7 +787,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="kicker">A · Convolution</p>
   <h2 class="claim">Count the places the kernel fits</h2>
   <div class="split">
-    <div><svg class="fig" viewBox="0 0 680 286" role="img" aria-label="nine cells and the kernel of width three placed at every position it fits, for stride one and stride two"><rect x="20" y="20" width="40" height="40" rx="5" fill="#fdf4e3" stroke="#c97a06" stroke-dasharray="5 4"/><text x="40" y="47" text-anchor="middle" class="lb">0</text><rect x="64" y="20" width="40" height="40" rx="5" fill="#f5f7fa" stroke="#cbd5e1" stroke-dasharray="none"/><text x="84" y="47" text-anchor="middle" class="lb">1</text><rect x="108" y="20" width="40" height="40" rx="5" fill="#f5f7fa" stroke="#cbd5e1" stroke-dasharray="none"/><text x="128" y="47" text-anchor="middle" class="lb">2</text><rect x="152" y="20" width="40" height="40" rx="5" fill="#f5f7fa" stroke="#cbd5e1" stroke-dasharray="none"/><text x="172" y="47" text-anchor="middle" class="lb">3</text><rect x="196" y="20" width="40" height="40" rx="5" fill="#f5f7fa" stroke="#cbd5e1" stroke-dasharray="none"/><text x="216" y="47" text-anchor="middle" class="lb">4</text><rect x="240" y="20" width="40" height="40" rx="5" fill="#f5f7fa" stroke="#cbd5e1" stroke-dasharray="none"/><text x="260" y="47" text-anchor="middle" class="lb">5</text><rect x="284" y="20" width="40" height="40" rx="5" fill="#f5f7fa" stroke="#cbd5e1" stroke-dasharray="none"/><text x="304" y="47" text-anchor="middle" class="lb">6</text><rect x="328" y="20" width="40" height="40" rx="5" fill="#f5f7fa" stroke="#cbd5e1" stroke-dasharray="none"/><text x="348" y="47" text-anchor="middle" class="lb">7</text><rect x="372" y="20" width="40" height="40" rx="5" fill="#fdf4e3" stroke="#c97a06" stroke-dasharray="5 4"/><text x="392" y="47" text-anchor="middle" class="lb">8</text><text x="426" y="47" class="lb">n + 2p = 9 cells</text><rect x="22" y="92" width="124" height="9" rx="4" fill="#0f766e" opacity=".8"/><rect x="66" y="106" width="124" height="9" rx="4" fill="#0f766e" opacity=".8"/><rect x="110" y="120" width="124" height="9" rx="4" fill="#0f766e" opacity=".8"/><rect x="154" y="134" width="124" height="9" rx="4" fill="#0f766e" opacity=".8"/><rect x="198" y="148" width="124" height="9" rx="4" fill="#0f766e" opacity=".8"/><rect x="242" y="162" width="124" height="9" rx="4" fill="#0f766e" opacity=".8"/><rect x="286" y="176" width="124" height="9" rx="4" fill="#0f766e" opacity=".8"/><text x="426" y="102" class="lb" style="fill:#0f766e">stride 1: left edge at 0, 1, 2, 3, 4, 5, 6</text><text x="426" y="126" class="lb" style="fill:#0f1b2d">→ 7 places</text><rect x="22" y="220" width="124" height="9" rx="4" fill="#6d5bd0" opacity=".8"/><rect x="110" y="234" width="124" height="9" rx="4" fill="#6d5bd0" opacity=".8"/><rect x="198" y="248" width="124" height="9" rx="4" fill="#6d5bd0" opacity=".8"/><rect x="286" y="262" width="124" height="9" rx="4" fill="#6d5bd0" opacity=".8"/><text x="426" y="230" class="lb" style="fill:#6d5bd0">stride 2: left edge at 0, 2, 4, 6</text><text x="426" y="254" class="lb" style="fill:#0f1b2d">→ 4 places</text></svg><p class="gcap">n = 7 pixels, padding p = 1 on each side (dashed), kernel k = 3</p></div>
+    <div><svg class="fig" viewBox="0 0 680 286" role="img" aria-label="nine cells and the kernel of width three placed at every position it fits, for stride one and stride two"><rect x="20" y="20" width="40" height="40" rx="5" fill="#e6f4f2" stroke="#0f766e" stroke-dasharray="5 4"/><text x="40" y="47" text-anchor="middle" class="lb">0</text><rect x="64" y="20" width="40" height="40" rx="5" fill="#f5f7fa" stroke="#cbd5e1" stroke-dasharray="none"/><text x="84" y="47" text-anchor="middle" class="lb">1</text><rect x="108" y="20" width="40" height="40" rx="5" fill="#f5f7fa" stroke="#cbd5e1" stroke-dasharray="none"/><text x="128" y="47" text-anchor="middle" class="lb">2</text><rect x="152" y="20" width="40" height="40" rx="5" fill="#f5f7fa" stroke="#cbd5e1" stroke-dasharray="none"/><text x="172" y="47" text-anchor="middle" class="lb">3</text><rect x="196" y="20" width="40" height="40" rx="5" fill="#f5f7fa" stroke="#cbd5e1" stroke-dasharray="none"/><text x="216" y="47" text-anchor="middle" class="lb">4</text><rect x="240" y="20" width="40" height="40" rx="5" fill="#f5f7fa" stroke="#cbd5e1" stroke-dasharray="none"/><text x="260" y="47" text-anchor="middle" class="lb">5</text><rect x="284" y="20" width="40" height="40" rx="5" fill="#f5f7fa" stroke="#cbd5e1" stroke-dasharray="none"/><text x="304" y="47" text-anchor="middle" class="lb">6</text><rect x="328" y="20" width="40" height="40" rx="5" fill="#f5f7fa" stroke="#cbd5e1" stroke-dasharray="none"/><text x="348" y="47" text-anchor="middle" class="lb">7</text><rect x="372" y="20" width="40" height="40" rx="5" fill="#e6f4f2" stroke="#0f766e" stroke-dasharray="5 4"/><text x="392" y="47" text-anchor="middle" class="lb">8</text><text x="426" y="47" class="lb">n + 2p = 9 cells</text><rect x="22" y="92" width="124" height="9" rx="4" fill="#855400" opacity=".8"/><rect x="66" y="106" width="124" height="9" rx="4" fill="#855400" opacity=".8"/><rect x="110" y="120" width="124" height="9" rx="4" fill="#855400" opacity=".8"/><rect x="154" y="134" width="124" height="9" rx="4" fill="#855400" opacity=".8"/><rect x="198" y="148" width="124" height="9" rx="4" fill="#855400" opacity=".8"/><rect x="242" y="162" width="124" height="9" rx="4" fill="#855400" opacity=".8"/><rect x="286" y="176" width="124" height="9" rx="4" fill="#855400" opacity=".8"/><text x="426" y="102" class="lb" style="fill:#855400">stride 1: left edge at 0, 1, 2, 3, 4, 5, 6</text><text x="426" y="126" class="lb" style="fill:#0f1b2d">→ 7 places</text><rect x="22" y="220" width="124" height="9" rx="4" fill="#6d5bd0" opacity=".8"/><rect x="110" y="234" width="124" height="9" rx="4" fill="#6d5bd0" opacity=".8"/><rect x="198" y="248" width="124" height="9" rx="4" fill="#6d5bd0" opacity=".8"/><rect x="286" y="262" width="124" height="9" rx="4" fill="#6d5bd0" opacity=".8"/><text x="426" y="230" class="lb" style="fill:#6d5bd0">stride 2: left edge at 0, 2, 4, 6</text><text x="426" y="254" class="lb" style="fill:#0f1b2d">→ 4 places</text></svg><p class="gcap">n = 7 pixels, padding p = 1 on each side (dashed), kernel k = 3</p></div>
     <div class="say">
       <p>Pad the row: it is now <b>n + 2p</b> cells long.</p>
       <p>The kernel's left edge can sit at 0, 1, … up to <b>n + 2p − k</b>, where its right edge meets the end: that is <b>n + 2p − k + 1</b> places.</p>
@@ -795,7 +796,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     </div>
   </div>
 
-  <aside class="notes"><p>🇹🇭 ชี้แถวเขียว: ขอบซ้ายของ kernel อยู่ได้ 0–6 = 7 ที่ (9 − 3 + 1) · แถวม่วง stride 2: 0, 2, 4, 6 = 4 ที่ = ⌊6/2⌋ + 1 · สูตรมาจากการนับ ไม่ต้องจำ</p><p>🇬🇧 The green row: the kernel's left edge fits at 0–6, 7 places (9 − 3 + 1). The violet row, stride 2: 0, 2, 4, 6 — 4 places = ⌊6/2⌋ + 1. The formula is counting, not memorising.</p></aside>
+  <aside class="notes"><p>🇹🇭 ชี้แถวสีทอง: ขอบซ้ายของ kernel อยู่ได้ 0–6 = 7 ที่ (9 − 3 + 1) · แถวม่วง stride 2: 0, 2, 4, 6 = 4 ที่ = ⌊6/2⌋ + 1 · สูตรมาจากการนับ ไม่ต้องจำ</p><p>🇬🇧 The gold row: the kernel's left edge fits at 0–6, 7 places (9 − 3 + 1). The violet row, stride 2: 0, 2, 4, 6 — 4 places = ⌊6/2⌋ + 1. The formula is counting, not memorising.</p></aside>
 </section>
 
 <!-- 11 -->
@@ -847,7 +848,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <div class="cards">
     <div class="card"><b>Neighbours</b>A pixel alone cannot tell noise from detail; its 3 × 3 neighbourhood can.</div>
     <div class="card violet"><b>Kernel</b>Weights × window, then add — slid over every pixel. Convolution rotates the kernel first.</div>
-    <div class="card amber"><b>Size</b>Padding invents border neighbours; stride skips positions: ⌊(n + 2p − k) / s⌋ + 1.</div>
+    <div class="card teal"><b>Size</b>Padding invents border neighbours; stride skips positions: ⌊(n + 2p − k) / s⌋ + 1.</div>
   </div>
   <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-03/lab.ipynb#scrollTo=part-a" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part A</a><span>point operations, convolution by hand vs OpenCV, padding, output size</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s3a">More practice · Session 3 A — practice bank with worked solutions →</a></p>
@@ -891,7 +892,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="kicker">B · Smoothing &amp; sharpening</p>
   <h2 class="claim">Why the average of n pixels has √n less noise</h2>
   <div class="split">
-    <div><svg class="fig" viewBox="0 0 520 230" role="img" aria-label="a wide bell curve for one pixel and a narrow one, three times narrower, for the average of nine"><line x1="30" y1="190" x2="490" y2="190" stroke="#94a3b8"/><polyline points="30.0,189.8 35.8,189.7 41.5,189.7 47.2,189.6 53.0,189.4 58.8,189.3 64.5,189.1 70.2,188.9 76.0,188.6 81.8,188.2 87.5,187.8 93.2,187.3 99.0,186.7 104.8,186.0 110.5,185.2 116.2,184.3 122.0,183.2 127.8,182.0 133.5,180.7 139.2,179.2 145.0,177.5 150.8,175.7 156.5,173.8 162.2,171.7 168.0,169.4 173.8,167.1 179.5,164.7 185.2,162.2 191.0,159.7 196.8,157.2 202.5,154.7 208.2,152.3 214.0,150.0 219.8,147.8 225.5,145.9 231.2,144.2 237.0,142.7 242.8,141.5 248.5,140.7 254.2,140.2 260.0,140.0 265.8,140.2 271.5,140.7 277.2,141.5 283.0,142.7 288.8,144.2 294.5,145.9 300.2,147.8 306.0,150.0 311.8,152.3 317.5,154.7 323.2,157.2 329.0,159.7 334.8,162.2 340.5,164.7 346.2,167.1 352.0,169.4 357.8,171.7 363.5,173.8 369.2,175.7 375.0,177.5 380.8,179.2 386.5,180.7 392.2,182.0 398.0,183.2 403.8,184.3 409.5,185.2 415.2,186.0 421.0,186.7 426.8,187.3 432.5,187.8 438.2,188.2 444.0,188.6 449.8,188.9 455.5,189.1 461.2,189.3 467.0,189.4 472.8,189.6 478.5,189.7 484.2,189.7 490.0,189.8" fill="none" stroke="#c97a06" stroke-width="3"/><polyline points="30.0,190.0 35.8,190.0 41.5,190.0 47.2,190.0 53.0,190.0 58.8,190.0 64.5,190.0 70.2,190.0 76.0,190.0 81.8,190.0 87.5,190.0 93.2,190.0 99.0,190.0 104.8,190.0 110.5,190.0 116.2,190.0 122.0,190.0 127.8,190.0 133.5,190.0 139.2,190.0 145.0,190.0 150.8,190.0 156.5,190.0 162.2,190.0 168.0,189.9 173.8,189.9 179.5,189.7 185.2,189.2 191.0,188.3 196.8,186.6 202.5,183.4 208.2,178.1 214.0,169.7 219.8,157.6 225.5,141.3 231.2,121.3 237.0,99.0 242.8,76.8 248.5,57.6 254.2,44.6 260.0,40.0 265.8,44.6 271.5,57.6 277.2,76.8 283.0,99.0 288.8,121.3 294.5,141.3 300.2,157.6 306.0,169.7 311.8,178.1 317.5,183.4 323.2,186.6 329.0,188.3 334.8,189.2 340.5,189.7 346.2,189.9 352.0,189.9 357.8,190.0 363.5,190.0 369.2,190.0 375.0,190.0 380.8,190.0 386.5,190.0 392.2,190.0 398.0,190.0 403.8,190.0 409.5,190.0 415.2,190.0 421.0,190.0 426.8,190.0 432.5,190.0 438.2,190.0 444.0,190.0 449.8,190.0 455.5,190.0 461.2,190.0 467.0,190.0 472.8,190.0 478.5,190.0 484.2,190.0 490.0,190.0" fill="none" stroke="#0f766e" stroke-width="3"/><text x="346.25" y="148" class="lb" style="fill:#c97a06">one pixel: σ = 24</text><text x="285.875" y="65" class="lb" style="fill:#0f766e">average of 9: σ = 24 ÷ √9 = 8</text><text x="260.0" y="216" text-anchor="middle" class="lb">noise value</text></svg><p class="gcap">how far the value wanders from the truth: one pixel vs the average of a 3 × 3 box</p></div>
+    <div><svg class="fig" viewBox="0 0 520 230" role="img" aria-label="a wide bell curve for one pixel and a narrow one, three times narrower, for the average of nine"><line x1="30" y1="190" x2="490" y2="190" stroke="#94a3b8"/><polyline points="30.0,189.8 35.8,189.7 41.5,189.7 47.2,189.6 53.0,189.4 58.8,189.3 64.5,189.1 70.2,188.9 76.0,188.6 81.8,188.2 87.5,187.8 93.2,187.3 99.0,186.7 104.8,186.0 110.5,185.2 116.2,184.3 122.0,183.2 127.8,182.0 133.5,180.7 139.2,179.2 145.0,177.5 150.8,175.7 156.5,173.8 162.2,171.7 168.0,169.4 173.8,167.1 179.5,164.7 185.2,162.2 191.0,159.7 196.8,157.2 202.5,154.7 208.2,152.3 214.0,150.0 219.8,147.8 225.5,145.9 231.2,144.2 237.0,142.7 242.8,141.5 248.5,140.7 254.2,140.2 260.0,140.0 265.8,140.2 271.5,140.7 277.2,141.5 283.0,142.7 288.8,144.2 294.5,145.9 300.2,147.8 306.0,150.0 311.8,152.3 317.5,154.7 323.2,157.2 329.0,159.7 334.8,162.2 340.5,164.7 346.2,167.1 352.0,169.4 357.8,171.7 363.5,173.8 369.2,175.7 375.0,177.5 380.8,179.2 386.5,180.7 392.2,182.0 398.0,183.2 403.8,184.3 409.5,185.2 415.2,186.0 421.0,186.7 426.8,187.3 432.5,187.8 438.2,188.2 444.0,188.6 449.8,188.9 455.5,189.1 461.2,189.3 467.0,189.4 472.8,189.6 478.5,189.7 484.2,189.7 490.0,189.8" fill="none" stroke="#0f766e" stroke-width="3"/><polyline points="30.0,190.0 35.8,190.0 41.5,190.0 47.2,190.0 53.0,190.0 58.8,190.0 64.5,190.0 70.2,190.0 76.0,190.0 81.8,190.0 87.5,190.0 93.2,190.0 99.0,190.0 104.8,190.0 110.5,190.0 116.2,190.0 122.0,190.0 127.8,190.0 133.5,190.0 139.2,190.0 145.0,190.0 150.8,190.0 156.5,190.0 162.2,190.0 168.0,189.9 173.8,189.9 179.5,189.7 185.2,189.2 191.0,188.3 196.8,186.6 202.5,183.4 208.2,178.1 214.0,169.7 219.8,157.6 225.5,141.3 231.2,121.3 237.0,99.0 242.8,76.8 248.5,57.6 254.2,44.6 260.0,40.0 265.8,44.6 271.5,57.6 277.2,76.8 283.0,99.0 288.8,121.3 294.5,141.3 300.2,157.6 306.0,169.7 311.8,178.1 317.5,183.4 323.2,186.6 329.0,188.3 334.8,189.2 340.5,189.7 346.2,189.9 352.0,189.9 357.8,190.0 363.5,190.0 369.2,190.0 375.0,190.0 380.8,190.0 386.5,190.0 392.2,190.0 398.0,190.0 403.8,190.0 409.5,190.0 415.2,190.0 421.0,190.0 426.8,190.0 432.5,190.0 438.2,190.0 444.0,190.0 449.8,190.0 455.5,190.0 461.2,190.0 467.0,190.0 472.8,190.0 478.5,190.0 484.2,190.0 490.0,190.0" fill="none" stroke="#855400" stroke-width="3"/><text x="346.25" y="148" class="lb" style="fill:#0f766e">one pixel: σ = 24</text><text x="285.875" y="65" class="lb" style="fill:#855400">average of 9: σ = 24 ÷ √9 = 8</text><text x="260.0" y="216" text-anchor="middle" class="lb">noise value</text></svg><p class="gcap">how far the value wanders from the truth: one pixel vs the average of a 3 × 3 box</p></div>
     <div class="say">
       <p>Each pixel = true value + noise of spread σ (variance σ²), independent of its neighbours.</p>
       <p class="fragment">Add n of them: independent variances <b>add</b> → the sum has variance nσ².</p>
@@ -908,7 +909,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="kicker">B · Smoothing &amp; sharpening</p>
   <h2 class="claim">Average n pixels, cut the noise by √n</h2>
   <div class="split">
-    <div><svg class="fig" viewBox="0 0 560 300" role="img" aria-label="noise left after averaging n pixels: measured points on the 24 over root n curve"><line x1="58" y1="254.0" x2="540" y2="254.0" stroke="#cbd5e1"/><line x1="58" y1="18" x2="58" y2="254.0" stroke="#cbd5e1"/><text x="50" y="260.0" text-anchor="end" class="lb">0</text><text x="50" y="187.3846153846154" text-anchor="end" class="lb">8</text><text x="50" y="114.76923076923076" text-anchor="end" class="lb">16</text><text x="50" y="42.153846153846146" text-anchor="end" class="lb">24</text><polyline points="63.7,36.2 66.5,76.1 69.3,100.0 72.2,116.2 75.0,128.2 77.8,137.6 80.7,145.1 83.5,151.3 86.4,156.6 89.2,161.1 92.0,165.1 94.9,168.6 97.7,171.7 100.5,174.5 103.4,177.0 106.2,179.3 109.0,181.4 111.9,183.3 114.7,185.1 117.5,186.8 120.4,188.3 123.2,189.8 126.0,191.1 128.9,192.4 131.7,193.6 134.6,194.7 137.4,195.8 140.2,196.8 143.1,197.8 145.9,198.7 148.7,199.5 151.6,200.4 154.4,201.2 157.2,201.9 160.1,202.7 162.9,203.4 165.7,204.0 168.6,204.7 171.4,205.3 174.2,205.9 177.1,206.5 179.9,207.0 182.8,207.6 185.6,208.1 188.4,208.6 191.3,209.1 194.1,209.5 196.9,210.0 199.8,210.4 202.6,210.9 205.4,211.3 208.3,211.7 211.1,212.1 213.9,212.5 216.8,212.8 219.6,213.2 222.4,213.5 225.3,213.9 228.1,214.2 231.0,214.6 233.8,214.9 236.6,215.2 239.5,215.5 242.3,215.8 245.1,216.1 248.0,216.4 250.8,216.6 253.6,216.9 256.5,217.2 259.3,217.4 262.1,217.7 265.0,217.9 267.8,218.2 270.6,218.4 273.5,218.7 276.3,218.9 279.2,219.1 282.0,219.3 284.8,219.6 287.7,219.8 290.5,220.0 293.3,220.2 296.2,220.4 299.0,220.6 301.8,220.8 304.7,221.0 307.5,221.2 310.3,221.3 313.2,221.5 316.0,221.7 318.8,221.9 321.7,222.1 324.5,222.2 327.4,222.4 330.2,222.6 333.0,222.7 335.9,222.9 338.7,223.0 341.5,223.2 344.4,223.3 347.2,223.5 350.0,223.6 352.9,223.8 355.7,223.9 358.5,224.1 361.4,224.2 364.2,224.4 367.0,224.5 369.9,224.6 372.7,224.8 375.6,224.9 378.4,225.0 381.2,225.1 384.1,225.3 386.9,225.4 389.7,225.5 392.6,225.6 395.4,225.8 398.2,225.9 401.1,226.0 403.9,226.1 406.7,226.2 409.6,226.3 412.4,226.4 415.2,226.6 418.1,226.7 420.9,226.8 423.8,226.9 426.6,227.0 429.4,227.1 432.3,227.2 435.1,227.3 437.9,227.4 440.8,227.5 443.6,227.6 446.4,227.7 449.3,227.8 452.1,227.9 454.9,228.0 457.8,228.1 460.6,228.1 463.4,228.2 466.3,228.3 469.1,228.4 472.0,228.5 474.8,228.6 477.6,228.7 480.5,228.8 483.3,228.8 486.1,228.9 489.0,229.0 491.8,229.1 494.6,229.2 497.5,229.3 500.3,229.3 503.1,229.4 506.0,229.5 508.8,229.6 511.6,229.6 514.5,229.7 517.3,229.8 520.2,229.9 523.0,229.9 525.8,230.0 528.7,230.1 531.5,230.2 534.3,230.2 537.2,230.3 540.0,230.4" fill="none" stroke="#6d5bd0" stroke-width="3" stroke-dasharray="7 6"/><circle cx="63.7" cy="36.3" r="8" fill="#0f766e"/><text x="63.7" y="22.3" text-anchor="middle" class="lb" style="fill:#0f1b2d">24.0</text><text x="63.7" y="276.0" text-anchor="middle" class="lb">1×1</text><circle cx="109.0" cy="181.6" r="8" fill="#0f766e"/><text x="109.0" y="167.6" text-anchor="middle" class="lb" style="fill:#0f1b2d">8.0</text><text x="109.0" y="276.0" text-anchor="middle" class="lb">3×3</text><circle cx="199.8" cy="210.5" r="8" fill="#0f766e"/><text x="199.8" y="196.5" text-anchor="middle" class="lb" style="fill:#0f1b2d">4.8</text><text x="199.8" y="276.0" text-anchor="middle" class="lb">5×5</text><circle cx="335.9" cy="222.9" r="8" fill="#0f766e"/><text x="335.9" y="208.9" text-anchor="middle" class="lb" style="fill:#0f1b2d">3.4</text><text x="335.9" y="276.0" text-anchor="middle" class="lb">7×7</text><circle cx="517.3" cy="229.7" r="8" fill="#0f766e"/><text x="517.3" y="215.7" text-anchor="middle" class="lb" style="fill:#0f1b2d">2.7</text><text x="517.3" y="276.0" text-anchor="middle" class="lb">9×9</text><text x="540" y="298" text-anchor="end" class="lb">box size (n = k² pixels averaged)</text><text x="398.2352941176471" y="172.30769230769232" class="lb" style="fill:#6d5bd0">24 ÷ √n</text></svg><p class="gcap">noise left (σ) after a k × k box · dots measured on flat noise of σ = 24 · dashed line 24 ÷ √n</p></div>
+    <div><svg class="fig" viewBox="0 0 560 300" role="img" aria-label="noise left after averaging n pixels: measured points on the 24 over root n curve"><line x1="58" y1="254.0" x2="540" y2="254.0" stroke="#cbd5e1"/><line x1="58" y1="18" x2="58" y2="254.0" stroke="#cbd5e1"/><text x="50" y="260.0" text-anchor="end" class="lb">0</text><text x="50" y="187.3846153846154" text-anchor="end" class="lb">8</text><text x="50" y="114.76923076923076" text-anchor="end" class="lb">16</text><text x="50" y="42.153846153846146" text-anchor="end" class="lb">24</text><polyline points="63.7,36.2 66.5,76.1 69.3,100.0 72.2,116.2 75.0,128.2 77.8,137.6 80.7,145.1 83.5,151.3 86.4,156.6 89.2,161.1 92.0,165.1 94.9,168.6 97.7,171.7 100.5,174.5 103.4,177.0 106.2,179.3 109.0,181.4 111.9,183.3 114.7,185.1 117.5,186.8 120.4,188.3 123.2,189.8 126.0,191.1 128.9,192.4 131.7,193.6 134.6,194.7 137.4,195.8 140.2,196.8 143.1,197.8 145.9,198.7 148.7,199.5 151.6,200.4 154.4,201.2 157.2,201.9 160.1,202.7 162.9,203.4 165.7,204.0 168.6,204.7 171.4,205.3 174.2,205.9 177.1,206.5 179.9,207.0 182.8,207.6 185.6,208.1 188.4,208.6 191.3,209.1 194.1,209.5 196.9,210.0 199.8,210.4 202.6,210.9 205.4,211.3 208.3,211.7 211.1,212.1 213.9,212.5 216.8,212.8 219.6,213.2 222.4,213.5 225.3,213.9 228.1,214.2 231.0,214.6 233.8,214.9 236.6,215.2 239.5,215.5 242.3,215.8 245.1,216.1 248.0,216.4 250.8,216.6 253.6,216.9 256.5,217.2 259.3,217.4 262.1,217.7 265.0,217.9 267.8,218.2 270.6,218.4 273.5,218.7 276.3,218.9 279.2,219.1 282.0,219.3 284.8,219.6 287.7,219.8 290.5,220.0 293.3,220.2 296.2,220.4 299.0,220.6 301.8,220.8 304.7,221.0 307.5,221.2 310.3,221.3 313.2,221.5 316.0,221.7 318.8,221.9 321.7,222.1 324.5,222.2 327.4,222.4 330.2,222.6 333.0,222.7 335.9,222.9 338.7,223.0 341.5,223.2 344.4,223.3 347.2,223.5 350.0,223.6 352.9,223.8 355.7,223.9 358.5,224.1 361.4,224.2 364.2,224.4 367.0,224.5 369.9,224.6 372.7,224.8 375.6,224.9 378.4,225.0 381.2,225.1 384.1,225.3 386.9,225.4 389.7,225.5 392.6,225.6 395.4,225.8 398.2,225.9 401.1,226.0 403.9,226.1 406.7,226.2 409.6,226.3 412.4,226.4 415.2,226.6 418.1,226.7 420.9,226.8 423.8,226.9 426.6,227.0 429.4,227.1 432.3,227.2 435.1,227.3 437.9,227.4 440.8,227.5 443.6,227.6 446.4,227.7 449.3,227.8 452.1,227.9 454.9,228.0 457.8,228.1 460.6,228.1 463.4,228.2 466.3,228.3 469.1,228.4 472.0,228.5 474.8,228.6 477.6,228.7 480.5,228.8 483.3,228.8 486.1,228.9 489.0,229.0 491.8,229.1 494.6,229.2 497.5,229.3 500.3,229.3 503.1,229.4 506.0,229.5 508.8,229.6 511.6,229.6 514.5,229.7 517.3,229.8 520.2,229.9 523.0,229.9 525.8,230.0 528.7,230.1 531.5,230.2 534.3,230.2 537.2,230.3 540.0,230.4" fill="none" stroke="#6d5bd0" stroke-width="3" stroke-dasharray="7 6"/><circle cx="63.7" cy="36.3" r="8" fill="#855400"/><text x="63.7" y="22.3" text-anchor="middle" class="lb" style="fill:#0f1b2d">24.0</text><text x="63.7" y="276.0" text-anchor="middle" class="lb">1×1</text><circle cx="109.0" cy="181.6" r="8" fill="#855400"/><text x="109.0" y="167.6" text-anchor="middle" class="lb" style="fill:#0f1b2d">8.0</text><text x="109.0" y="276.0" text-anchor="middle" class="lb">3×3</text><circle cx="199.8" cy="210.5" r="8" fill="#855400"/><text x="199.8" y="196.5" text-anchor="middle" class="lb" style="fill:#0f1b2d">4.8</text><text x="199.8" y="276.0" text-anchor="middle" class="lb">5×5</text><circle cx="335.9" cy="222.9" r="8" fill="#855400"/><text x="335.9" y="208.9" text-anchor="middle" class="lb" style="fill:#0f1b2d">3.4</text><text x="335.9" y="276.0" text-anchor="middle" class="lb">7×7</text><circle cx="517.3" cy="229.7" r="8" fill="#855400"/><text x="517.3" y="215.7" text-anchor="middle" class="lb" style="fill:#0f1b2d">2.7</text><text x="517.3" y="276.0" text-anchor="middle" class="lb">9×9</text><text x="540" y="298" text-anchor="end" class="lb">box size (n = k² pixels averaged)</text><text x="398.2352941176471" y="172.30769230769232" class="lb" style="fill:#6d5bd0">24 ÷ √n</text></svg><p class="gcap">noise left (σ) after a k × k box · dots measured on flat noise of σ = 24 · dashed line 24 ÷ √n</p></div>
     <div class="say">
       <div class="flashback">Session 2 C: N photons → SNR = √N. Same maths: adding n independent noisy values grows the noise only by √n.</div>
       <div class="worked" style="margin-top:.6em"><span class="tag">Worked example · σ = 24, measured on the slide's noise</span><p>3 × 3: n = 9 → 24 ÷ 3 = 8.0 · measured 8.0</p><p>5 × 5: n = 25 → 24 ÷ 5 = 4.8 · measured 4.8</p></div>
@@ -917,7 +918,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     </div>
   </div>
 
-  <aside class="notes"><p>🇹🇭 ชี้จุดเขียวตรงเส้นประ · ถาม: อยากให้ noise เหลือ 1/4 ต้องเฉลี่ยกี่ pixel? (16 = 4×4)</p><p>🇬🇧 The green dots sit on the dashed line. Ask: to cut noise to a quarter, how many pixels? (16 — a 4 × 4 box)</p></aside>
+  <aside class="notes"><p>🇹🇭 ชี้จุดสีทองตรงเส้นประ · ถาม: อยากให้ noise เหลือ 1/4 ต้องเฉลี่ยกี่ pixel? (16 = 4×4)</p><p>🇬🇧 The gold dots sit on the dashed line. Ask: to cut noise to a quarter, how many pixels? (16 — a 4 × 4 box)</p></aside>
 </section>
 
 <!-- 18 -->
@@ -1033,7 +1034,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <div class="cards">
     <div class="card"><b>Low-pass</b>Averaging n pixels cuts noise by √n — and blurs detail by the same move.</div>
     <div class="card violet"><b>Gaussian</b>Weights fall with distance: smooth, round blur. σ sets the width (~6σ + 1).</div>
-    <div class="card amber"><b>Separable &amp; sharp</b>Row then column: 2k instead of k². Sharp = f + α(f − blur).</div>
+    <div class="card teal"><b>Separable &amp; sharp</b>Row then column: 2k instead of k². Sharp = f + α(f − blur).</div>
   </div>
   <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-03/lab.ipynb#scrollTo=part-b" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part B</a><span>box vs Gaussian on noise, noise ÷ √n, separable timing, unsharp mask</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s3b">More practice · Session 3 B — practice bank with worked solutions →</a></p>
@@ -1077,7 +1078,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="kicker">C · Edges</p>
   <h2 class="claim">The derivative, with the smallest step a picture allows</h2>
   <div class="split">
-    <div><svg class="fig" viewBox="0 0 520 250" role="img" aria-label="a brightness curve, its tangent at one pixel, and the nearly parallel line through the two neighbouring pixels"><polyline points="30.0,179.8 34.6,179.8 39.2,179.7 43.8,179.7 48.4,179.6 53.0,179.6 57.6,179.5 62.2,179.5 66.8,179.4 71.4,179.3 76.0,179.2 80.6,179.1 85.2,179.0 89.8,178.9 94.4,178.7 99.0,178.5 103.6,178.3 108.2,178.1 112.8,177.8 117.4,177.6 122.0,177.2 126.6,176.8 131.2,176.4 135.8,175.9 140.4,175.4 145.0,174.8 149.6,174.1 154.2,173.3 158.8,172.4 163.4,171.4 168.0,170.3 172.6,169.1 177.2,167.7 181.8,166.2 186.4,164.5 191.0,162.6 195.6,160.5 200.2,158.2 204.8,155.7 209.4,153.0 214.0,150.0 218.6,146.8 223.2,143.4 227.8,139.8 232.4,136.0 237.0,132.0 241.6,127.8 246.2,123.5 250.8,119.0 255.4,114.5 260.0,110.0 264.6,105.5 269.2,101.0 273.8,96.5 278.4,92.2 283.0,88.0 287.6,84.0 292.2,80.2 296.8,76.6 301.4,73.2 306.0,70.0 310.6,67.0 315.2,64.3 319.8,61.8 324.4,59.5 329.0,57.4 333.6,55.5 338.2,53.8 342.8,52.3 347.4,50.9 352.0,49.7 356.6,48.6 361.2,47.6 365.8,46.7 370.4,45.9 375.0,45.2 379.6,44.6 384.2,44.1 388.8,43.6 393.4,43.2 398.0,42.8 402.6,42.4 407.2,42.2 411.8,41.9 416.4,41.7 421.0,41.5 425.6,41.3 430.2,41.1 434.8,41.0 439.4,40.9 444.0,40.8 448.6,40.7 453.2,40.6 457.8,40.5 462.4,40.5 467.0,40.4 471.6,40.4 476.2,40.3 480.8,40.3 485.4,40.2 490.0,40.2" fill="none" stroke="#0f1b2d" stroke-width="3"/><line x1="167.99999999999997" y1="183.42159990638635" x2="315.2" y2="61.062441927627106" stroke="#0f766e" stroke-width="3"/><line x1="167.99999999999997" y1="195.89297889047393" x2="315.2" y2="59.708395677220864" stroke="#c97a06" stroke-width="2.5" stroke-dasharray="6 5"/><circle cx="195.6" cy="160.479257785369" r="6" fill="#e0533d"/><line x1="195.6" y1="160.479257785369" x2="195.6" y2="220" stroke="#cbd5e1" stroke-dasharray="3 3"/><text x="195.6" y="240" text-anchor="middle" class="lb">j − 1</text><circle cx="241.6" cy="127.8006872838474" r="6" fill="#e0533d"/><line x1="241.6" y1="127.8006872838474" x2="241.6" y2="220" stroke="#cbd5e1" stroke-dasharray="3 3"/><text x="241.6" y="240" text-anchor="middle" class="lb">j</text><circle cx="287.59999999999997" cy="84.00478404864447" r="6" fill="#e0533d"/><line x1="287.59999999999997" y1="84.00478404864447" x2="287.59999999999997" y2="220" stroke="#cbd5e1" stroke-dasharray="3 3"/><text x="287.59999999999997" y="240" text-anchor="middle" class="lb">j + 1</text><text x="319.8" y="51.23871824079089" class="lb" style="fill:#0f766e">through the neighbours</text><text x="172.6" y="213.63721066505977" class="lb" style="fill:#c97a06">true slope at j</text></svg><p class="gcap">brightness along a row: the line through the two neighbours is almost the slope at j</p></div>
+    <div><svg class="fig" viewBox="0 0 520 250" role="img" aria-label="a brightness curve, its tangent at one pixel, and the nearly parallel line through the two neighbouring pixels"><polyline points="30.0,179.8 34.6,179.8 39.2,179.7 43.8,179.7 48.4,179.6 53.0,179.6 57.6,179.5 62.2,179.5 66.8,179.4 71.4,179.3 76.0,179.2 80.6,179.1 85.2,179.0 89.8,178.9 94.4,178.7 99.0,178.5 103.6,178.3 108.2,178.1 112.8,177.8 117.4,177.6 122.0,177.2 126.6,176.8 131.2,176.4 135.8,175.9 140.4,175.4 145.0,174.8 149.6,174.1 154.2,173.3 158.8,172.4 163.4,171.4 168.0,170.3 172.6,169.1 177.2,167.7 181.8,166.2 186.4,164.5 191.0,162.6 195.6,160.5 200.2,158.2 204.8,155.7 209.4,153.0 214.0,150.0 218.6,146.8 223.2,143.4 227.8,139.8 232.4,136.0 237.0,132.0 241.6,127.8 246.2,123.5 250.8,119.0 255.4,114.5 260.0,110.0 264.6,105.5 269.2,101.0 273.8,96.5 278.4,92.2 283.0,88.0 287.6,84.0 292.2,80.2 296.8,76.6 301.4,73.2 306.0,70.0 310.6,67.0 315.2,64.3 319.8,61.8 324.4,59.5 329.0,57.4 333.6,55.5 338.2,53.8 342.8,52.3 347.4,50.9 352.0,49.7 356.6,48.6 361.2,47.6 365.8,46.7 370.4,45.9 375.0,45.2 379.6,44.6 384.2,44.1 388.8,43.6 393.4,43.2 398.0,42.8 402.6,42.4 407.2,42.2 411.8,41.9 416.4,41.7 421.0,41.5 425.6,41.3 430.2,41.1 434.8,41.0 439.4,40.9 444.0,40.8 448.6,40.7 453.2,40.6 457.8,40.5 462.4,40.5 467.0,40.4 471.6,40.4 476.2,40.3 480.8,40.3 485.4,40.2 490.0,40.2" fill="none" stroke="#0f1b2d" stroke-width="3"/><line x1="167.99999999999997" y1="183.42159990638635" x2="315.2" y2="61.062441927627106" stroke="#855400" stroke-width="3"/><line x1="167.99999999999997" y1="195.89297889047393" x2="315.2" y2="59.708395677220864" stroke="#0f766e" stroke-width="2.5" stroke-dasharray="6 5"/><circle cx="195.6" cy="160.479257785369" r="6" fill="#e0533d"/><line x1="195.6" y1="160.479257785369" x2="195.6" y2="220" stroke="#cbd5e1" stroke-dasharray="3 3"/><text x="195.6" y="240" text-anchor="middle" class="lb">j − 1</text><circle cx="241.6" cy="127.8006872838474" r="6" fill="#e0533d"/><line x1="241.6" y1="127.8006872838474" x2="241.6" y2="220" stroke="#cbd5e1" stroke-dasharray="3 3"/><text x="241.6" y="240" text-anchor="middle" class="lb">j</text><circle cx="287.59999999999997" cy="84.00478404864447" r="6" fill="#e0533d"/><line x1="287.59999999999997" y1="84.00478404864447" x2="287.59999999999997" y2="220" stroke="#cbd5e1" stroke-dasharray="3 3"/><text x="287.59999999999997" y="240" text-anchor="middle" class="lb">j + 1</text><text x="319.8" y="51.23871824079089" class="lb" style="fill:#855400">through the neighbours</text><text x="172.6" y="213.63721066505977" class="lb" style="fill:#0f766e">true slope at j</text></svg><p class="gcap">brightness along a row: the line through the two neighbours is almost the slope at j</p></div>
     <div class="say">
       <p>The slope of a curve at x is the rise over a step h, as the step shrinks:</p>
       <div class="eq">$$f'(x)=\lim_{h\to 0}\frac{f(x+h)-f(x-h)}{2h}$$</div>
@@ -1086,7 +1087,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     </div>
   </div>
 
-  <aside class="notes"><p>🇹🇭 นิยามอนุพันธ์ → ภาพไม่มีระยะเล็กกว่า 1 pixel → h = 1 → ตัด ÷ 2 ได้ [−1 0 1] · ชี้เส้นเขียวเกือบขนานกับเส้นส้ม</p><p>🇬🇧 The definition of the derivative → a photo has no step under one pixel → h = 1 → drop the ÷ 2 → [−1 0 1]. The green line is almost parallel to the orange one.</p></aside>
+  <aside class="notes"><p>🇹🇭 นิยามอนุพันธ์ → ภาพไม่มีระยะเล็กกว่า 1 pixel → h = 1 → ตัด ÷ 2 ได้ [−1 0 1] · ชี้เส้นสีทองเกือบขนานกับเส้นสีเขียวอมฟ้า</p><p>🇬🇧 The definition of the derivative → a photo has no step under one pixel → h = 1 → drop the ÷ 2 → [−1 0 1]. The gold line is almost parallel to the teal one.</p></aside>
 </section>
 
 <!-- 27 -->
@@ -1116,7 +1117,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="kicker">C · Edges</p>
   <h2 class="claim">Noise wrecks derivatives — smooth first</h2>
   <div class="split">
-    <div><svg class="fig" viewBox="0 0 560 330" role="img" aria-label="a noisy edge, its noisy derivative, and the clean derivative after smoothing"><polyline points="12.0,85.3 16.5,87.1 21.0,83.4 25.5,81.1 30.0,78.7 34.5,82.2 39.0,84.5 43.5,85.3 48.0,80.0 52.5,77.0 57.0,81.6 61.5,86.8 66.1,85.9 70.6,77.1 75.1,81.9 79.6,88.5 84.1,82.9 88.6,86.6 93.1,84.7 97.6,84.2 102.1,85.0 106.6,80.7 111.1,82.8 115.6,84.6 120.1,81.2 124.6,79.7 129.1,88.2 133.6,83.5 138.1,85.9 142.6,83.2 147.1,87.0 151.6,82.5 156.1,82.7 160.6,83.6 165.1,86.2 169.6,83.9 174.2,86.3 178.7,87.2 183.2,81.8 187.7,86.4 192.2,78.5 196.7,80.1 201.2,89.4 205.7,81.6 210.2,86.3 214.7,82.3 219.2,82.2 223.7,89.1 228.2,82.9 232.7,82.8 237.2,78.2 241.7,85.1 246.2,77.8 250.7,83.1 255.2,79.0 259.7,78.6 264.2,68.0 268.7,67.4 273.2,56.5 277.7,57.4 282.3,51.1 286.8,45.5 291.3,45.2 295.8,38.9 300.3,30.4 304.8,33.6 309.3,29.5 313.8,28.8 318.3,25.6 322.8,28.2 327.3,27.0 331.8,25.3 336.3,25.5 340.8,28.7 345.3,22.6 349.8,30.0 354.3,29.6 358.8,29.9 363.3,22.2 367.8,26.7 372.3,28.8 376.8,29.3 381.3,24.0 385.8,29.1 390.4,29.8 394.9,23.3 399.4,29.5 403.9,26.5 408.4,25.5 412.9,27.0 417.4,25.6 421.9,20.8 426.4,27.2 430.9,29.7 435.4,31.7 439.9,26.1 444.4,26.6 448.9,24.5 453.4,27.0 457.9,27.1 462.4,27.9 466.9,27.2 471.4,24.9 475.9,26.7 480.4,25.1 484.9,18.9 489.4,23.8 493.9,30.8 498.5,19.5 503.0,24.2 507.5,28.7 512.0,22.3 516.5,25.4 521.0,27.5 525.5,27.6 530.0,28.8 534.5,25.3 539.0,21.8 543.5,26.5 548.0,24.0" fill="none" stroke="#0f1b2d" stroke-width="2.5"/><text x="12" y="18" class="lb">1 · a soft edge, with noise</text><line x1="12" x2="548" y1="170.0" y2="170.0" stroke="#cbd5e1"/><polyline points="12.0,170.0 16.5,166.5 21.0,158.8 25.5,161.1 30.0,172.0 34.5,180.8 39.0,175.7 43.5,161.7 48.0,154.5 52.5,173.0 57.0,188.4 61.5,177.9 66.1,151.9 70.6,162.6 75.1,191.3 79.6,171.8 84.1,166.4 88.6,173.5 93.1,165.7 97.6,170.5 102.1,163.3 106.6,165.8 111.1,177.3 115.6,167.0 120.1,160.9 124.6,183.1 129.1,177.0 133.6,165.8 138.1,169.5 142.6,172.0 147.1,168.8 151.6,162.0 156.1,172.1 160.6,176.5 165.1,170.6 169.6,170.3 174.2,176.1 178.7,161.6 183.2,168.4 187.7,163.9 192.2,158.3 196.7,190.2 201.2,172.8 205.7,164.2 210.2,171.4 214.7,162.5 219.2,182.6 223.7,171.3 228.2,158.2 232.7,161.3 237.2,174.4 241.7,169.2 246.2,166.2 250.7,172.1 255.2,161.7 259.7,149.6 264.2,149.0 268.7,148.6 273.2,151.4 277.7,159.9 282.3,147.7 286.8,159.0 291.3,157.7 295.8,142.3 300.3,160.1 304.8,168.4 309.3,161.0 313.8,162.6 318.3,168.9 322.8,172.6 327.3,164.6 331.8,167.3 336.3,176.4 340.8,164.4 345.3,172.5 349.8,183.2 354.3,169.8 358.8,156.0 363.3,164.0 367.8,182.4 372.3,174.9 376.8,161.1 381.3,169.5 385.8,180.8 390.4,159.3 394.9,169.5 399.4,176.0 403.9,162.4 408.4,170.8 412.9,170.3 417.4,158.6 421.9,173.0 426.4,186.6 430.9,178.4 435.4,163.3 439.9,160.5 444.4,167.0 448.9,170.7 453.4,174.8 457.9,171.6 462.4,170.3 466.9,164.4 471.4,169.1 475.9,170.4 480.4,155.4 484.9,167.6 489.4,192.3 493.9,162.0 498.5,157.7 503.0,187.1 507.5,166.4 512.0,163.9 516.5,179.7 521.0,174.2 525.5,172.4 530.0,165.6 534.5,156.8 539.0,172.4 543.5,174.1 548.0,170.0" fill="none" stroke="#e0533d" stroke-width="2.5"/><text x="12" y="126" class="lb">2 · its derivative: noise everywhere</text><line x1="12" x2="548" y1="280.0" y2="280.0" stroke="#cbd5e1"/><polyline points="12.0,280.0 16.5,280.0 21.0,280.0 25.5,280.0 30.0,280.0 34.5,280.0 39.0,280.0 43.5,280.0 48.0,280.0 52.5,280.0 57.0,280.7 61.5,281.0 66.1,281.1 70.6,281.2 75.1,281.2 79.6,280.9 84.1,280.6 88.6,280.1 93.1,279.7 97.6,279.3 102.1,279.2 106.6,279.3 111.1,279.6 115.6,280.1 120.1,280.5 124.6,280.8 129.1,280.8 133.6,280.7 138.1,280.5 142.6,280.3 147.1,280.1 151.6,280.1 156.1,280.2 160.6,280.2 165.1,280.2 169.6,279.9 174.2,279.6 178.7,279.3 183.2,279.2 187.7,279.3 192.2,279.6 196.7,280.0 201.2,280.2 205.7,280.2 210.2,280.1 214.7,279.7 219.2,279.3 223.7,278.7 228.2,278.1 232.7,277.5 237.2,276.7 241.7,275.6 246.2,274.1 250.7,272.2 255.2,270.0 259.7,267.9 264.2,266.1 268.7,264.8 273.2,264.1 277.7,264.0 282.3,264.3 286.8,265.0 291.3,266.0 295.8,267.4 300.3,269.0 304.8,270.7 309.3,272.6 313.8,274.3 318.3,275.8 322.8,277.1 327.3,278.2 331.8,279.1 336.3,279.7 340.8,280.2 345.3,280.4 349.8,280.4 354.3,280.2 358.8,280.1 363.3,280.0 367.8,280.0 372.3,280.0 376.8,280.0 381.3,279.9 385.8,279.7 390.4,279.5 394.9,279.4 399.4,279.3 403.9,279.3 408.4,279.5 412.9,279.9 417.4,280.3 421.9,280.7 426.4,280.8 430.9,280.7 435.4,280.3 439.9,280.0 444.4,279.6 448.9,279.5 453.4,279.4 457.9,279.2 462.4,279.0 466.9,278.8 471.4,278.6 475.9,278.7 480.4,278.9 484.9,279.3 489.4,279.8 493.9,280.2 498.5,280.6 503.0,280.8 507.5,280.0 512.0,280.0 516.5,280.0 521.0,280.0 525.5,280.0 530.0,280.0 534.5,280.0 539.0,280.0 543.5,280.0 548.0,280.0" fill="none" stroke="#0f766e" stroke-width="2.5"/><text x="12" y="236" class="lb">3 · smooth first, then derivative: one clean peak</text></svg></div>
+    <div><svg class="fig" viewBox="0 0 560 330" role="img" aria-label="a noisy edge, its noisy derivative, and the clean derivative after smoothing"><polyline points="12.0,85.3 16.5,87.1 21.0,83.4 25.5,81.1 30.0,78.7 34.5,82.2 39.0,84.5 43.5,85.3 48.0,80.0 52.5,77.0 57.0,81.6 61.5,86.8 66.1,85.9 70.6,77.1 75.1,81.9 79.6,88.5 84.1,82.9 88.6,86.6 93.1,84.7 97.6,84.2 102.1,85.0 106.6,80.7 111.1,82.8 115.6,84.6 120.1,81.2 124.6,79.7 129.1,88.2 133.6,83.5 138.1,85.9 142.6,83.2 147.1,87.0 151.6,82.5 156.1,82.7 160.6,83.6 165.1,86.2 169.6,83.9 174.2,86.3 178.7,87.2 183.2,81.8 187.7,86.4 192.2,78.5 196.7,80.1 201.2,89.4 205.7,81.6 210.2,86.3 214.7,82.3 219.2,82.2 223.7,89.1 228.2,82.9 232.7,82.8 237.2,78.2 241.7,85.1 246.2,77.8 250.7,83.1 255.2,79.0 259.7,78.6 264.2,68.0 268.7,67.4 273.2,56.5 277.7,57.4 282.3,51.1 286.8,45.5 291.3,45.2 295.8,38.9 300.3,30.4 304.8,33.6 309.3,29.5 313.8,28.8 318.3,25.6 322.8,28.2 327.3,27.0 331.8,25.3 336.3,25.5 340.8,28.7 345.3,22.6 349.8,30.0 354.3,29.6 358.8,29.9 363.3,22.2 367.8,26.7 372.3,28.8 376.8,29.3 381.3,24.0 385.8,29.1 390.4,29.8 394.9,23.3 399.4,29.5 403.9,26.5 408.4,25.5 412.9,27.0 417.4,25.6 421.9,20.8 426.4,27.2 430.9,29.7 435.4,31.7 439.9,26.1 444.4,26.6 448.9,24.5 453.4,27.0 457.9,27.1 462.4,27.9 466.9,27.2 471.4,24.9 475.9,26.7 480.4,25.1 484.9,18.9 489.4,23.8 493.9,30.8 498.5,19.5 503.0,24.2 507.5,28.7 512.0,22.3 516.5,25.4 521.0,27.5 525.5,27.6 530.0,28.8 534.5,25.3 539.0,21.8 543.5,26.5 548.0,24.0" fill="none" stroke="#0f1b2d" stroke-width="2.5"/><text x="12" y="18" class="lb">1 · a soft edge, with noise</text><line x1="12" x2="548" y1="170.0" y2="170.0" stroke="#cbd5e1"/><polyline points="12.0,170.0 16.5,166.5 21.0,158.8 25.5,161.1 30.0,172.0 34.5,180.8 39.0,175.7 43.5,161.7 48.0,154.5 52.5,173.0 57.0,188.4 61.5,177.9 66.1,151.9 70.6,162.6 75.1,191.3 79.6,171.8 84.1,166.4 88.6,173.5 93.1,165.7 97.6,170.5 102.1,163.3 106.6,165.8 111.1,177.3 115.6,167.0 120.1,160.9 124.6,183.1 129.1,177.0 133.6,165.8 138.1,169.5 142.6,172.0 147.1,168.8 151.6,162.0 156.1,172.1 160.6,176.5 165.1,170.6 169.6,170.3 174.2,176.1 178.7,161.6 183.2,168.4 187.7,163.9 192.2,158.3 196.7,190.2 201.2,172.8 205.7,164.2 210.2,171.4 214.7,162.5 219.2,182.6 223.7,171.3 228.2,158.2 232.7,161.3 237.2,174.4 241.7,169.2 246.2,166.2 250.7,172.1 255.2,161.7 259.7,149.6 264.2,149.0 268.7,148.6 273.2,151.4 277.7,159.9 282.3,147.7 286.8,159.0 291.3,157.7 295.8,142.3 300.3,160.1 304.8,168.4 309.3,161.0 313.8,162.6 318.3,168.9 322.8,172.6 327.3,164.6 331.8,167.3 336.3,176.4 340.8,164.4 345.3,172.5 349.8,183.2 354.3,169.8 358.8,156.0 363.3,164.0 367.8,182.4 372.3,174.9 376.8,161.1 381.3,169.5 385.8,180.8 390.4,159.3 394.9,169.5 399.4,176.0 403.9,162.4 408.4,170.8 412.9,170.3 417.4,158.6 421.9,173.0 426.4,186.6 430.9,178.4 435.4,163.3 439.9,160.5 444.4,167.0 448.9,170.7 453.4,174.8 457.9,171.6 462.4,170.3 466.9,164.4 471.4,169.1 475.9,170.4 480.4,155.4 484.9,167.6 489.4,192.3 493.9,162.0 498.5,157.7 503.0,187.1 507.5,166.4 512.0,163.9 516.5,179.7 521.0,174.2 525.5,172.4 530.0,165.6 534.5,156.8 539.0,172.4 543.5,174.1 548.0,170.0" fill="none" stroke="#e0533d" stroke-width="2.5"/><text x="12" y="126" class="lb">2 · its derivative: noise everywhere</text><line x1="12" x2="548" y1="280.0" y2="280.0" stroke="#cbd5e1"/><polyline points="12.0,280.0 16.5,280.0 21.0,280.0 25.5,280.0 30.0,280.0 34.5,280.0 39.0,280.0 43.5,280.0 48.0,280.0 52.5,280.0 57.0,280.7 61.5,281.0 66.1,281.1 70.6,281.2 75.1,281.2 79.6,280.9 84.1,280.6 88.6,280.1 93.1,279.7 97.6,279.3 102.1,279.2 106.6,279.3 111.1,279.6 115.6,280.1 120.1,280.5 124.6,280.8 129.1,280.8 133.6,280.7 138.1,280.5 142.6,280.3 147.1,280.1 151.6,280.1 156.1,280.2 160.6,280.2 165.1,280.2 169.6,279.9 174.2,279.6 178.7,279.3 183.2,279.2 187.7,279.3 192.2,279.6 196.7,280.0 201.2,280.2 205.7,280.2 210.2,280.1 214.7,279.7 219.2,279.3 223.7,278.7 228.2,278.1 232.7,277.5 237.2,276.7 241.7,275.6 246.2,274.1 250.7,272.2 255.2,270.0 259.7,267.9 264.2,266.1 268.7,264.8 273.2,264.1 277.7,264.0 282.3,264.3 286.8,265.0 291.3,266.0 295.8,267.4 300.3,269.0 304.8,270.7 309.3,272.6 313.8,274.3 318.3,275.8 322.8,277.1 327.3,278.2 331.8,279.1 336.3,279.7 340.8,280.2 345.3,280.4 349.8,280.4 354.3,280.2 358.8,280.1 363.3,280.0 367.8,280.0 372.3,280.0 376.8,280.0 381.3,279.9 385.8,279.7 390.4,279.5 394.9,279.4 399.4,279.3 403.9,279.3 408.4,279.5 412.9,279.9 417.4,280.3 421.9,280.7 426.4,280.8 430.9,280.7 435.4,280.3 439.9,280.0 444.4,279.6 448.9,279.5 453.4,279.4 457.9,279.2 462.4,279.0 466.9,278.8 471.4,278.6 475.9,278.7 480.4,278.9 484.9,279.3 489.4,279.8 493.9,280.2 498.5,280.6 503.0,280.8 507.5,280.0 512.0,280.0 516.5,280.0 521.0,280.0 525.5,280.0 530.0,280.0 534.5,280.0 539.0,280.0 543.5,280.0 548.0,280.0" fill="none" stroke="#855400" stroke-width="2.5"/><text x="12" y="236" class="lb">3 · smooth first, then derivative: one clean peak</text></svg></div>
     <div class="say">
       <p>A difference <b>amplifies</b> noise: two noisy values subtracted are noisier still.</p>
       <p>So smooth along the edge, then take the difference. <b>Sobel</b> does both in one 3 × 3 kernel:</p>
@@ -1219,7 +1220,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <div class="cards">
     <div class="card"><b>Difference</b>An edge is a jump; [−1 0 1] measures it. Smooth first, or noise wins — Sobel does both.</div>
     <div class="card violet"><b>Gradient</b>|∇f| = √(g<sub>x</sub>² + g<sub>y</sub>²) is the strength; θ = atan2(g<sub>y</sub>, g<sub>x</sub>) points to brighter.</div>
-    <div class="card amber"><b>Later</b>Session 4: a CNN's first layer learns kernels like Sobel. Session 6: gradients in two directions find corners.</div>
+    <div class="card teal"><b>Later</b>Session 4: a CNN's first layer learns kernels like Sobel. Session 6: gradients in two directions find corners.</div>
   </div>
   <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-03/lab.ipynb#scrollTo=part-c" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part C</a><span>brightness profile, Sobel gx gy, magnitude and direction, Canny thresholds</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s3c">More practice · Session 3 C — practice bank with worked solutions →</a></p>
@@ -1290,7 +1291,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="kicker">D · Frequency &amp; sampling</p>
   <h2 class="claim">Blurring keeps the low frequencies</h2>
   <div class="split">
-    <div><svg class="fig" viewBox="0 0 560 300" role="img" aria-label="a box kernel has rippling frequencies, a Gaussian kernel has one smooth bump"><line x1="24.6" x2="24.6" y1="130" y2="130.0" stroke="#c97a06" stroke-width="3"/><line x1="33.8" x2="33.8" y1="130" y2="130.0" stroke="#c97a06" stroke-width="3"/><line x1="43.0" x2="43.0" y1="130" y2="130.0" stroke="#c97a06" stroke-width="3"/><line x1="52.2" x2="52.2" y1="130" y2="130.0" stroke="#c97a06" stroke-width="3"/><line x1="61.4" x2="61.4" y1="130" y2="130.0" stroke="#c97a06" stroke-width="3"/><line x1="70.6" x2="70.6" y1="130" y2="130.0" stroke="#c97a06" stroke-width="3"/><line x1="79.8" x2="79.8" y1="130" y2="130.0" stroke="#c97a06" stroke-width="3"/><line x1="89.0" x2="89.0" y1="130" y2="130.0" stroke="#c97a06" stroke-width="3"/><line x1="98.2" x2="98.2" y1="130" y2="40.0" stroke="#c97a06" stroke-width="3"/><line x1="107.4" x2="107.4" y1="130" y2="40.0" stroke="#c97a06" stroke-width="3"/><line x1="116.6" x2="116.6" y1="130" y2="40.0" stroke="#c97a06" stroke-width="3"/><line x1="125.8" x2="125.8" y1="130" y2="40.0" stroke="#c97a06" stroke-width="3"/><line x1="135.0" x2="135.0" y1="130" y2="40.0" stroke="#c97a06" stroke-width="3"/><line x1="144.2" x2="144.2" y1="130" y2="40.0" stroke="#c97a06" stroke-width="3"/><line x1="153.4" x2="153.4" y1="130" y2="40.0" stroke="#c97a06" stroke-width="3"/><line x1="162.6" x2="162.6" y1="130" y2="40.0" stroke="#c97a06" stroke-width="3"/><line x1="171.8" x2="171.8" y1="130" y2="40.0" stroke="#c97a06" stroke-width="3"/><line x1="181.0" x2="181.0" y1="130" y2="130.0" stroke="#c97a06" stroke-width="3"/><line x1="190.2" x2="190.2" y1="130" y2="130.0" stroke="#c97a06" stroke-width="3"/><line x1="199.4" x2="199.4" y1="130" y2="130.0" stroke="#c97a06" stroke-width="3"/><line x1="208.6" x2="208.6" y1="130" y2="130.0" stroke="#c97a06" stroke-width="3"/><line x1="217.8" x2="217.8" y1="130" y2="130.0" stroke="#c97a06" stroke-width="3"/><line x1="227.0" x2="227.0" y1="130" y2="130.0" stroke="#c97a06" stroke-width="3"/><line x1="236.2" x2="236.2" y1="130" y2="130.0" stroke="#c97a06" stroke-width="3"/><line x1="245.4" x2="245.4" y1="130" y2="130.0" stroke="#c97a06" stroke-width="3"/><line x1="20" x2="250" y1="130" y2="130" stroke="#cbd5e1"/><polyline points="311.8,120.0 315.4,120.9 319.0,123.6 322.6,127.5 326.2,128.0 329.8,123.9 333.4,120.8 337.0,119.4 340.5,120.0 344.1,122.6 347.7,126.7 351.3,128.3 354.9,123.3 358.5,119.3 362.1,117.1 365.7,117.3 369.3,120.0 372.9,125.0 376.5,128.5 380.1,121.4 383.7,115.0 387.3,110.8 390.9,109.7 394.5,112.7 398.0,120.0 401.6,128.5 405.2,113.8 408.8,96.9 412.4,79.7 416.0,63.9 419.6,51.1 423.2,42.9 426.8,40.0 430.4,42.9 434.0,51.1 437.6,63.9 441.2,79.7 444.8,96.9 448.4,113.8 452.0,128.5 455.5,120.0 459.1,112.7 462.7,109.7 466.3,110.8 469.9,115.0 473.5,121.4 477.1,128.5 480.7,125.0 484.3,120.0 487.9,117.3 491.5,117.1 495.1,119.3 498.7,123.3 502.3,128.3 505.9,126.7 509.5,122.6 513.0,120.0 516.6,119.4 520.2,120.8 523.8,123.9 527.4,128.0 531.0,127.5 534.6,123.6 538.2,120.9" fill="none" stroke="#c97a06" stroke-width="3"/><line x1="310" x2="540" y1="130" y2="130" stroke="#cbd5e1"/><line x1="24.6" x2="24.6" y1="280" y2="280.0" stroke="#0f766e" stroke-width="3"/><line x1="33.8" x2="33.8" y1="280" y2="280.0" stroke="#0f766e" stroke-width="3"/><line x1="43.0" x2="43.0" y1="280" y2="280.0" stroke="#0f766e" stroke-width="3"/><line x1="52.2" x2="52.2" y1="280" y2="279.8" stroke="#0f766e" stroke-width="3"/><line x1="61.4" x2="61.4" y1="280" y2="279.3" stroke="#0f766e" stroke-width="3"/><line x1="70.6" x2="70.6" y1="280" y2="277.7" stroke="#0f766e" stroke-width="3"/><line x1="79.8" x2="79.8" y1="280" y2="274.0" stroke="#0f766e" stroke-width="3"/><line x1="89.0" x2="89.0" y1="280" y2="266.2" stroke="#0f766e" stroke-width="3"/><line x1="98.2" x2="98.2" y1="280" y2="252.9" stroke="#0f766e" stroke-width="3"/><line x1="107.4" x2="107.4" y1="280" y2="234.2" stroke="#0f766e" stroke-width="3"/><line x1="116.6" x2="116.6" y1="280" y2="213.4" stroke="#0f766e" stroke-width="3"/><line x1="125.8" x2="125.8" y1="280" y2="196.5" stroke="#0f766e" stroke-width="3"/><line x1="135.0" x2="135.0" y1="280" y2="190.0" stroke="#0f766e" stroke-width="3"/><line x1="144.2" x2="144.2" y1="280" y2="196.5" stroke="#0f766e" stroke-width="3"/><line x1="153.4" x2="153.4" y1="280" y2="213.4" stroke="#0f766e" stroke-width="3"/><line x1="162.6" x2="162.6" y1="280" y2="234.2" stroke="#0f766e" stroke-width="3"/><line x1="171.8" x2="171.8" y1="280" y2="252.9" stroke="#0f766e" stroke-width="3"/><line x1="181.0" x2="181.0" y1="280" y2="266.2" stroke="#0f766e" stroke-width="3"/><line x1="190.2" x2="190.2" y1="280" y2="274.0" stroke="#0f766e" stroke-width="3"/><line x1="199.4" x2="199.4" y1="280" y2="277.7" stroke="#0f766e" stroke-width="3"/><line x1="208.6" x2="208.6" y1="280" y2="279.3" stroke="#0f766e" stroke-width="3"/><line x1="217.8" x2="217.8" y1="280" y2="279.8" stroke="#0f766e" stroke-width="3"/><line x1="227.0" x2="227.0" y1="280" y2="280.0" stroke="#0f766e" stroke-width="3"/><line x1="236.2" x2="236.2" y1="280" y2="280.0" stroke="#0f766e" stroke-width="3"/><line x1="245.4" x2="245.4" y1="280" y2="280.0" stroke="#0f766e" stroke-width="3"/><line x1="20" x2="250" y1="280" y2="280" stroke="#cbd5e1"/><polyline points="311.8,280.0 315.4,280.0 319.0,280.0 322.6,280.0 326.2,280.0 329.8,280.0 333.4,280.0 337.0,280.0 340.5,280.0 344.1,280.0 347.7,280.0 351.3,280.0 354.9,280.0 358.5,280.0 362.1,280.0 365.7,280.0 369.3,280.0 372.9,279.9 376.5,279.8 380.1,279.6 383.7,279.1 387.3,278.1 390.9,276.4 394.5,273.3 398.0,268.4 401.6,261.3 405.2,251.6 408.8,239.6 412.4,226.1 416.0,212.6 419.6,200.8 423.2,192.8 426.8,190.0 430.4,192.8 434.0,200.8 437.6,212.6 441.2,226.1 444.8,239.6 448.4,251.6 452.0,261.3 455.5,268.4 459.1,273.3 462.7,276.4 466.3,278.1 469.9,279.1 473.5,279.6 477.1,279.8 480.7,279.9 484.3,280.0 487.9,280.0 491.5,280.0 495.1,280.0 498.7,280.0 502.3,280.0 505.9,280.0 509.5,280.0 513.0,280.0 516.6,280.0 520.2,280.0 523.8,280.0 527.4,280.0 531.0,280.0 534.6,280.0 538.2,280.0" fill="none" stroke="#0f766e" stroke-width="3"/><line x1="310" x2="540" y1="280" y2="280" stroke="#cbd5e1"/><text x="20" y="28" class="lb">box kernel (9 wide)</text><text x="310" y="28" class="lb">its frequencies: ripples</text><text x="20" y="178" class="lb">Gaussian kernel (same spread)</text><text x="310" y="178" class="lb">its frequencies: smooth</text><text x="425" y="146" class="lb" text-anchor="middle">low ← 0 → low</text><text x="425" y="296" class="lb" text-anchor="middle">low ← 0 → low</text></svg></div>
+    <div><svg class="fig" viewBox="0 0 560 300" role="img" aria-label="a box kernel has rippling frequencies, a Gaussian kernel has one smooth bump"><line x1="24.6" x2="24.6" y1="130" y2="130.0" stroke="#0f766e" stroke-width="3"/><line x1="33.8" x2="33.8" y1="130" y2="130.0" stroke="#0f766e" stroke-width="3"/><line x1="43.0" x2="43.0" y1="130" y2="130.0" stroke="#0f766e" stroke-width="3"/><line x1="52.2" x2="52.2" y1="130" y2="130.0" stroke="#0f766e" stroke-width="3"/><line x1="61.4" x2="61.4" y1="130" y2="130.0" stroke="#0f766e" stroke-width="3"/><line x1="70.6" x2="70.6" y1="130" y2="130.0" stroke="#0f766e" stroke-width="3"/><line x1="79.8" x2="79.8" y1="130" y2="130.0" stroke="#0f766e" stroke-width="3"/><line x1="89.0" x2="89.0" y1="130" y2="130.0" stroke="#0f766e" stroke-width="3"/><line x1="98.2" x2="98.2" y1="130" y2="40.0" stroke="#0f766e" stroke-width="3"/><line x1="107.4" x2="107.4" y1="130" y2="40.0" stroke="#0f766e" stroke-width="3"/><line x1="116.6" x2="116.6" y1="130" y2="40.0" stroke="#0f766e" stroke-width="3"/><line x1="125.8" x2="125.8" y1="130" y2="40.0" stroke="#0f766e" stroke-width="3"/><line x1="135.0" x2="135.0" y1="130" y2="40.0" stroke="#0f766e" stroke-width="3"/><line x1="144.2" x2="144.2" y1="130" y2="40.0" stroke="#0f766e" stroke-width="3"/><line x1="153.4" x2="153.4" y1="130" y2="40.0" stroke="#0f766e" stroke-width="3"/><line x1="162.6" x2="162.6" y1="130" y2="40.0" stroke="#0f766e" stroke-width="3"/><line x1="171.8" x2="171.8" y1="130" y2="40.0" stroke="#0f766e" stroke-width="3"/><line x1="181.0" x2="181.0" y1="130" y2="130.0" stroke="#0f766e" stroke-width="3"/><line x1="190.2" x2="190.2" y1="130" y2="130.0" stroke="#0f766e" stroke-width="3"/><line x1="199.4" x2="199.4" y1="130" y2="130.0" stroke="#0f766e" stroke-width="3"/><line x1="208.6" x2="208.6" y1="130" y2="130.0" stroke="#0f766e" stroke-width="3"/><line x1="217.8" x2="217.8" y1="130" y2="130.0" stroke="#0f766e" stroke-width="3"/><line x1="227.0" x2="227.0" y1="130" y2="130.0" stroke="#0f766e" stroke-width="3"/><line x1="236.2" x2="236.2" y1="130" y2="130.0" stroke="#0f766e" stroke-width="3"/><line x1="245.4" x2="245.4" y1="130" y2="130.0" stroke="#0f766e" stroke-width="3"/><line x1="20" x2="250" y1="130" y2="130" stroke="#cbd5e1"/><polyline points="311.8,120.0 315.4,120.9 319.0,123.6 322.6,127.5 326.2,128.0 329.8,123.9 333.4,120.8 337.0,119.4 340.5,120.0 344.1,122.6 347.7,126.7 351.3,128.3 354.9,123.3 358.5,119.3 362.1,117.1 365.7,117.3 369.3,120.0 372.9,125.0 376.5,128.5 380.1,121.4 383.7,115.0 387.3,110.8 390.9,109.7 394.5,112.7 398.0,120.0 401.6,128.5 405.2,113.8 408.8,96.9 412.4,79.7 416.0,63.9 419.6,51.1 423.2,42.9 426.8,40.0 430.4,42.9 434.0,51.1 437.6,63.9 441.2,79.7 444.8,96.9 448.4,113.8 452.0,128.5 455.5,120.0 459.1,112.7 462.7,109.7 466.3,110.8 469.9,115.0 473.5,121.4 477.1,128.5 480.7,125.0 484.3,120.0 487.9,117.3 491.5,117.1 495.1,119.3 498.7,123.3 502.3,128.3 505.9,126.7 509.5,122.6 513.0,120.0 516.6,119.4 520.2,120.8 523.8,123.9 527.4,128.0 531.0,127.5 534.6,123.6 538.2,120.9" fill="none" stroke="#0f766e" stroke-width="3"/><line x1="310" x2="540" y1="130" y2="130" stroke="#cbd5e1"/><line x1="24.6" x2="24.6" y1="280" y2="280.0" stroke="#855400" stroke-width="3"/><line x1="33.8" x2="33.8" y1="280" y2="280.0" stroke="#855400" stroke-width="3"/><line x1="43.0" x2="43.0" y1="280" y2="280.0" stroke="#855400" stroke-width="3"/><line x1="52.2" x2="52.2" y1="280" y2="279.8" stroke="#855400" stroke-width="3"/><line x1="61.4" x2="61.4" y1="280" y2="279.3" stroke="#855400" stroke-width="3"/><line x1="70.6" x2="70.6" y1="280" y2="277.7" stroke="#855400" stroke-width="3"/><line x1="79.8" x2="79.8" y1="280" y2="274.0" stroke="#855400" stroke-width="3"/><line x1="89.0" x2="89.0" y1="280" y2="266.2" stroke="#855400" stroke-width="3"/><line x1="98.2" x2="98.2" y1="280" y2="252.9" stroke="#855400" stroke-width="3"/><line x1="107.4" x2="107.4" y1="280" y2="234.2" stroke="#855400" stroke-width="3"/><line x1="116.6" x2="116.6" y1="280" y2="213.4" stroke="#855400" stroke-width="3"/><line x1="125.8" x2="125.8" y1="280" y2="196.5" stroke="#855400" stroke-width="3"/><line x1="135.0" x2="135.0" y1="280" y2="190.0" stroke="#855400" stroke-width="3"/><line x1="144.2" x2="144.2" y1="280" y2="196.5" stroke="#855400" stroke-width="3"/><line x1="153.4" x2="153.4" y1="280" y2="213.4" stroke="#855400" stroke-width="3"/><line x1="162.6" x2="162.6" y1="280" y2="234.2" stroke="#855400" stroke-width="3"/><line x1="171.8" x2="171.8" y1="280" y2="252.9" stroke="#855400" stroke-width="3"/><line x1="181.0" x2="181.0" y1="280" y2="266.2" stroke="#855400" stroke-width="3"/><line x1="190.2" x2="190.2" y1="280" y2="274.0" stroke="#855400" stroke-width="3"/><line x1="199.4" x2="199.4" y1="280" y2="277.7" stroke="#855400" stroke-width="3"/><line x1="208.6" x2="208.6" y1="280" y2="279.3" stroke="#855400" stroke-width="3"/><line x1="217.8" x2="217.8" y1="280" y2="279.8" stroke="#855400" stroke-width="3"/><line x1="227.0" x2="227.0" y1="280" y2="280.0" stroke="#855400" stroke-width="3"/><line x1="236.2" x2="236.2" y1="280" y2="280.0" stroke="#855400" stroke-width="3"/><line x1="245.4" x2="245.4" y1="280" y2="280.0" stroke="#855400" stroke-width="3"/><line x1="20" x2="250" y1="280" y2="280" stroke="#cbd5e1"/><polyline points="311.8,280.0 315.4,280.0 319.0,280.0 322.6,280.0 326.2,280.0 329.8,280.0 333.4,280.0 337.0,280.0 340.5,280.0 344.1,280.0 347.7,280.0 351.3,280.0 354.9,280.0 358.5,280.0 362.1,280.0 365.7,280.0 369.3,280.0 372.9,279.9 376.5,279.8 380.1,279.6 383.7,279.1 387.3,278.1 390.9,276.4 394.5,273.3 398.0,268.4 401.6,261.3 405.2,251.6 408.8,239.6 412.4,226.1 416.0,212.6 419.6,200.8 423.2,192.8 426.8,190.0 430.4,192.8 434.0,200.8 437.6,212.6 441.2,226.1 444.8,239.6 448.4,251.6 452.0,261.3 455.5,268.4 459.1,273.3 462.7,276.4 466.3,278.1 469.9,279.1 473.5,279.6 477.1,279.8 480.7,279.9 484.3,280.0 487.9,280.0 491.5,280.0 495.1,280.0 498.7,280.0 502.3,280.0 505.9,280.0 509.5,280.0 513.0,280.0 516.6,280.0 520.2,280.0 523.8,280.0 527.4,280.0 531.0,280.0 534.6,280.0 538.2,280.0" fill="none" stroke="#855400" stroke-width="3"/><line x1="310" x2="540" y1="280" y2="280" stroke="#cbd5e1"/><text x="20" y="28" class="lb">box kernel (9 wide)</text><text x="310" y="28" class="lb">its frequencies: ripples</text><text x="20" y="178" class="lb">Gaussian kernel (same spread)</text><text x="310" y="178" class="lb">its frequencies: smooth</text><text x="425" y="146" class="lb" text-anchor="middle">low ← 0 → low</text><text x="425" y="296" class="lb" text-anchor="middle">low ← 0 → low</text></svg></div>
     <div class="say">
       <p><b>Convolution theorem</b>: convolving in the image = <b>multiplying</b> the frequencies by the kernel's own frequencies.</p>
       <p>A <b>Gaussian</b>'s frequencies are one smooth bump: slow waves pass, fast ones fade — a clean low-pass.</p>
@@ -1348,7 +1349,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="kicker">D · Frequency &amp; sampling</p>
   <h2 class="claim">Two waves can pass through the same samples</h2>
   <div class="split">
-    <div><svg class="fig" viewBox="0 0 540 220" role="img" aria-label="a five-cycle wave and a three-cycle wave passing through the same eight sample points"><polyline points="20.0,30.0 21.2,30.2 22.5,31.0 23.8,32.2 25.0,33.9 26.2,36.1 27.5,38.7 28.8,41.8 30.0,45.3 31.2,49.2 32.5,53.4 33.8,58.0 35.0,63.0 36.2,68.2 37.5,73.7 38.8,79.4 40.0,85.3 41.2,91.3 42.5,97.5 43.8,103.7 45.0,110.0 46.2,116.3 47.5,122.5 48.8,128.7 50.0,134.7 51.2,140.6 52.5,146.3 53.8,151.8 55.0,157.0 56.2,162.0 57.5,166.6 58.8,170.8 60.0,174.7 61.2,178.2 62.5,181.3 63.8,183.9 65.0,186.1 66.2,187.8 67.5,189.0 68.8,189.8 70.0,190.0 71.2,189.8 72.5,189.0 73.8,187.8 75.0,186.1 76.2,183.9 77.5,181.3 78.8,178.2 80.0,174.7 81.2,170.8 82.5,166.6 83.8,162.0 85.0,157.0 86.2,151.8 87.5,146.3 88.8,140.6 90.0,134.7 91.2,128.7 92.5,122.5 93.8,116.3 95.0,110.0 96.2,103.7 97.5,97.5 98.8,91.3 100.0,85.3 101.2,79.4 102.5,73.7 103.8,68.2 105.0,63.0 106.2,58.0 107.5,53.4 108.8,49.2 110.0,45.3 111.2,41.8 112.5,38.7 113.8,36.1 115.0,33.9 116.2,32.2 117.5,31.0 118.8,30.2 120.0,30.0 121.2,30.2 122.5,31.0 123.8,32.2 125.0,33.9 126.2,36.1 127.5,38.7 128.8,41.8 130.0,45.3 131.2,49.2 132.5,53.4 133.8,58.0 135.0,63.0 136.2,68.2 137.5,73.7 138.8,79.4 140.0,85.3 141.2,91.3 142.5,97.5 143.8,103.7 145.0,110.0 146.2,116.3 147.5,122.5 148.8,128.7 150.0,134.7 151.2,140.6 152.5,146.3 153.8,151.8 155.0,157.0 156.2,162.0 157.5,166.6 158.8,170.8 160.0,174.7 161.2,178.2 162.5,181.3 163.8,183.9 165.0,186.1 166.2,187.8 167.5,189.0 168.8,189.8 170.0,190.0 171.2,189.8 172.5,189.0 173.8,187.8 175.0,186.1 176.2,183.9 177.5,181.3 178.8,178.2 180.0,174.7 181.2,170.8 182.5,166.6 183.8,162.0 185.0,157.0 186.2,151.8 187.5,146.3 188.8,140.6 190.0,134.7 191.2,128.7 192.5,122.5 193.8,116.3 195.0,110.0 196.2,103.7 197.5,97.5 198.8,91.3 200.0,85.3 201.2,79.4 202.5,73.7 203.8,68.2 205.0,63.0 206.2,58.0 207.5,53.4 208.8,49.2 210.0,45.3 211.2,41.8 212.5,38.7 213.8,36.1 215.0,33.9 216.2,32.2 217.5,31.0 218.8,30.2 220.0,30.0 221.2,30.2 222.5,31.0 223.8,32.2 225.0,33.9 226.2,36.1 227.5,38.7 228.8,41.8 230.0,45.3 231.2,49.2 232.5,53.4 233.8,58.0 235.0,63.0 236.2,68.2 237.5,73.7 238.8,79.4 240.0,85.3 241.2,91.3 242.5,97.5 243.8,103.7 245.0,110.0 246.2,116.3 247.5,122.5 248.8,128.7 250.0,134.7 251.2,140.6 252.5,146.3 253.8,151.8 255.0,157.0 256.2,162.0 257.5,166.6 258.8,170.8 260.0,174.7 261.2,178.2 262.5,181.3 263.8,183.9 265.0,186.1 266.2,187.8 267.5,189.0 268.8,189.8 270.0,190.0 271.2,189.8 272.5,189.0 273.8,187.8 275.0,186.1 276.2,183.9 277.5,181.3 278.8,178.2 280.0,174.7 281.2,170.8 282.5,166.6 283.8,162.0 285.0,157.0 286.2,151.8 287.5,146.3 288.8,140.6 290.0,134.7 291.2,128.7 292.5,122.5 293.8,116.3 295.0,110.0 296.2,103.7 297.5,97.5 298.8,91.3 300.0,85.3 301.2,79.4 302.5,73.7 303.8,68.2 305.0,63.0 306.2,58.0 307.5,53.4 308.8,49.2 310.0,45.3 311.2,41.8 312.5,38.7 313.8,36.1 315.0,33.9 316.2,32.2 317.5,31.0 318.8,30.2 320.0,30.0 321.2,30.2 322.5,31.0 323.8,32.2 325.0,33.9 326.2,36.1 327.5,38.7 328.8,41.8 330.0,45.3 331.2,49.2 332.5,53.4 333.8,58.0 335.0,63.0 336.2,68.2 337.5,73.7 338.8,79.4 340.0,85.3 341.2,91.3 342.5,97.5 343.8,103.7 345.0,110.0 346.2,116.3 347.5,122.5 348.8,128.7 350.0,134.7 351.2,140.6 352.5,146.3 353.8,151.8 355.0,157.0 356.2,162.0 357.5,166.6 358.8,170.8 360.0,174.7 361.2,178.2 362.5,181.3 363.8,183.9 365.0,186.1 366.2,187.8 367.5,189.0 368.8,189.8 370.0,190.0 371.2,189.8 372.5,189.0 373.8,187.8 375.0,186.1 376.2,183.9 377.5,181.3 378.8,178.2 380.0,174.7 381.2,170.8 382.5,166.6 383.8,162.0 385.0,157.0 386.2,151.8 387.5,146.3 388.8,140.6 390.0,134.7 391.2,128.7 392.5,122.5 393.8,116.3 395.0,110.0 396.2,103.7 397.5,97.5 398.8,91.3 400.0,85.3 401.2,79.4 402.5,73.7 403.8,68.2 405.0,63.0 406.2,58.0 407.5,53.4 408.8,49.2 410.0,45.3 411.2,41.8 412.5,38.7 413.8,36.1 415.0,33.9 416.2,32.2 417.5,31.0 418.8,30.2 420.0,30.0 421.2,30.2 422.5,31.0 423.8,32.2 425.0,33.9 426.2,36.1 427.5,38.7 428.8,41.8 430.0,45.3 431.2,49.2 432.5,53.4 433.8,58.0 435.0,63.0 436.2,68.2 437.5,73.7 438.8,79.4 440.0,85.3 441.2,91.3 442.5,97.5 443.8,103.7 445.0,110.0 446.2,116.3 447.5,122.5 448.8,128.7 450.0,134.7 451.2,140.6 452.5,146.3 453.8,151.8 455.0,157.0 456.2,162.0 457.5,166.6 458.8,170.8 460.0,174.7 461.2,178.2 462.5,181.3 463.8,183.9 465.0,186.1 466.2,187.8 467.5,189.0 468.8,189.8 470.0,190.0 471.2,189.8 472.5,189.0 473.8,187.8 475.0,186.1 476.2,183.9 477.5,181.3 478.8,178.2 480.0,174.7 481.2,170.8 482.5,166.6 483.8,162.0 485.0,157.0 486.2,151.8 487.5,146.3 488.8,140.6 490.0,134.7 491.2,128.7 492.5,122.5 493.8,116.3 495.0,110.0 496.2,103.7 497.5,97.5 498.8,91.3 500.0,85.3 501.2,79.4 502.5,73.7 503.8,68.2 505.0,63.0 506.2,58.0 507.5,53.4 508.8,49.2 510.0,45.3 511.2,41.8 512.5,38.7 513.8,36.1 515.0,33.9 516.2,32.2 517.5,31.0 518.8,30.2 520.0,30.0" fill="none" stroke="#94a3b8" stroke-width="2.5"/><polyline points="20.0,30.0 21.2,30.1 22.5,30.4 23.8,30.8 25.0,31.4 26.2,32.2 27.5,33.2 28.8,34.3 30.0,35.6 31.2,37.1 32.5,38.7 33.8,40.5 35.0,42.5 36.2,44.5 37.5,46.8 38.8,49.2 40.0,51.7 41.2,54.3 42.5,57.1 43.8,60.0 45.0,63.0 46.2,66.1 47.5,69.3 48.8,72.6 50.0,75.9 51.2,79.4 52.5,82.9 53.8,86.5 55.0,90.1 56.2,93.8 57.5,97.5 58.8,101.2 60.0,105.0 61.2,108.7 62.5,112.5 63.8,116.3 65.0,120.0 66.2,123.8 67.5,127.5 68.8,131.1 70.0,134.7 71.2,138.3 72.5,141.8 73.8,145.2 75.0,148.5 76.2,151.8 77.5,155.0 78.8,158.0 80.0,161.0 81.2,163.8 82.5,166.6 83.8,169.2 85.0,171.6 86.2,174.0 87.5,176.2 88.8,178.2 90.0,180.1 91.2,181.8 92.5,183.4 93.8,184.8 95.0,186.1 96.2,187.2 97.5,188.1 98.8,188.8 100.0,189.4 101.2,189.8 102.5,190.0 103.8,190.0 105.0,189.8 106.2,189.5 107.5,189.0 108.8,188.3 110.0,187.5 111.2,186.5 112.5,185.3 113.8,183.9 115.0,182.4 116.2,180.7 117.5,178.9 118.8,176.9 120.0,174.7 121.2,172.4 122.5,170.0 123.8,167.5 125.0,164.8 126.2,162.0 127.5,159.0 128.8,156.0 130.0,152.9 131.2,149.6 132.5,146.3 133.8,142.9 135.0,139.4 136.2,135.9 137.5,132.3 138.8,128.7 140.0,125.0 141.2,121.3 142.5,117.5 143.8,113.8 145.0,110.0 146.2,106.2 147.5,102.5 148.8,98.7 150.0,95.0 151.2,91.3 152.5,87.7 153.8,84.1 155.0,80.6 156.2,77.1 157.5,73.7 158.8,70.4 160.0,67.1 161.2,64.0 162.5,61.0 163.8,58.0 165.0,55.2 166.2,52.5 167.5,50.0 168.8,47.6 170.0,45.3 171.2,43.1 172.5,41.1 173.8,39.3 175.0,37.6 176.2,36.1 177.5,34.7 178.8,33.5 180.0,32.5 181.2,31.7 182.5,31.0 183.8,30.5 185.0,30.2 186.2,30.0 187.5,30.0 188.8,30.2 190.0,30.6 191.2,31.2 192.5,31.9 193.8,32.8 195.0,33.9 196.2,35.2 197.5,36.6 198.8,38.2 200.0,39.9 201.2,41.8 202.5,43.8 203.8,46.0 205.0,48.4 206.2,50.8 207.5,53.4 208.8,56.2 210.0,59.0 211.2,62.0 212.5,65.0 213.8,68.2 215.0,71.5 216.2,74.8 217.5,78.2 218.8,81.7 220.0,85.3 221.2,88.9 222.5,92.5 223.8,96.2 225.0,100.0 226.2,103.7 227.5,107.5 228.8,111.3 230.0,115.0 231.2,118.8 232.5,122.5 233.8,126.2 235.0,129.9 236.2,133.5 237.5,137.1 238.8,140.6 240.0,144.1 241.2,147.4 242.5,150.7 243.8,153.9 245.0,157.0 246.2,160.0 247.5,162.9 248.8,165.7 250.0,168.3 251.2,170.8 252.5,173.2 253.8,175.5 255.0,177.5 256.2,179.5 257.5,181.3 258.8,182.9 260.0,184.4 261.2,185.7 262.5,186.8 263.8,187.8 265.0,188.6 266.2,189.2 267.5,189.6 268.8,189.9 270.0,190.0 271.2,189.9 272.5,189.6 273.8,189.2 275.0,188.6 276.2,187.8 277.5,186.8 278.8,185.7 280.0,184.4 281.2,182.9 282.5,181.3 283.8,179.5 285.0,177.5 286.2,175.5 287.5,173.2 288.8,170.8 290.0,168.3 291.2,165.7 292.5,162.9 293.8,160.0 295.0,157.0 296.2,153.9 297.5,150.7 298.8,147.4 300.0,144.1 301.2,140.6 302.5,137.1 303.8,133.5 305.0,129.9 306.2,126.2 307.5,122.5 308.8,118.8 310.0,115.0 311.2,111.3 312.5,107.5 313.8,103.7 315.0,100.0 316.2,96.2 317.5,92.5 318.8,88.9 320.0,85.3 321.2,81.7 322.5,78.2 323.8,74.8 325.0,71.5 326.2,68.2 327.5,65.0 328.8,62.0 330.0,59.0 331.2,56.2 332.5,53.4 333.8,50.8 335.0,48.4 336.2,46.0 337.5,43.8 338.8,41.8 340.0,39.9 341.2,38.2 342.5,36.6 343.8,35.2 345.0,33.9 346.2,32.8 347.5,31.9 348.8,31.2 350.0,30.6 351.2,30.2 352.5,30.0 353.8,30.0 355.0,30.2 356.2,30.5 357.5,31.0 358.8,31.7 360.0,32.5 361.2,33.5 362.5,34.7 363.8,36.1 365.0,37.6 366.2,39.3 367.5,41.1 368.8,43.1 370.0,45.3 371.2,47.6 372.5,50.0 373.8,52.5 375.0,55.2 376.2,58.0 377.5,61.0 378.8,64.0 380.0,67.1 381.2,70.4 382.5,73.7 383.8,77.1 385.0,80.6 386.2,84.1 387.5,87.7 388.8,91.3 390.0,95.0 391.2,98.7 392.5,102.5 393.8,106.2 395.0,110.0 396.2,113.8 397.5,117.5 398.8,121.3 400.0,125.0 401.2,128.7 402.5,132.3 403.8,135.9 405.0,139.4 406.2,142.9 407.5,146.3 408.8,149.6 410.0,152.9 411.2,156.0 412.5,159.0 413.8,162.0 415.0,164.8 416.2,167.5 417.5,170.0 418.8,172.4 420.0,174.7 421.2,176.9 422.5,178.9 423.8,180.7 425.0,182.4 426.2,183.9 427.5,185.3 428.8,186.5 430.0,187.5 431.2,188.3 432.5,189.0 433.8,189.5 435.0,189.8 436.2,190.0 437.5,190.0 438.8,189.8 440.0,189.4 441.2,188.8 442.5,188.1 443.8,187.2 445.0,186.1 446.2,184.8 447.5,183.4 448.8,181.8 450.0,180.1 451.2,178.2 452.5,176.2 453.8,174.0 455.0,171.6 456.2,169.2 457.5,166.6 458.8,163.8 460.0,161.0 461.2,158.0 462.5,155.0 463.8,151.8 465.0,148.5 466.2,145.2 467.5,141.8 468.8,138.3 470.0,134.7 471.2,131.1 472.5,127.5 473.8,123.8 475.0,120.0 476.2,116.3 477.5,112.5 478.8,108.7 480.0,105.0 481.2,101.2 482.5,97.5 483.8,93.8 485.0,90.1 486.2,86.5 487.5,82.9 488.8,79.4 490.0,75.9 491.2,72.6 492.5,69.3 493.8,66.1 495.0,63.0 496.2,60.0 497.5,57.1 498.8,54.3 500.0,51.7 501.2,49.2 502.5,46.8 503.8,44.5 505.0,42.5 506.2,40.5 507.5,38.7 508.8,37.1 510.0,35.6 511.2,34.3 512.5,33.2 513.8,32.2 515.0,31.4 516.2,30.8 517.5,30.4 518.8,30.1 520.0,30.0" fill="none" stroke="#0f766e" stroke-width="3"/><circle cx="20.0" cy="30.0" r="7" fill="#e0533d"/><circle cx="82.5" cy="166.6" r="7" fill="#e0533d"/><circle cx="145.0" cy="110.0" r="7" fill="#e0533d"/><circle cx="207.5" cy="53.4" r="7" fill="#e0533d"/><circle cx="270.0" cy="190.0" r="7" fill="#e0533d"/><circle cx="332.5" cy="53.4" r="7" fill="#e0533d"/><circle cx="395.0" cy="110.0" r="7" fill="#e0533d"/><circle cx="457.5" cy="166.6" r="7" fill="#e0533d"/><circle cx="520.0" cy="30.0" r="7" fill="#e0533d"/><text x="520" y="18" text-anchor="end" class="lb" style="fill:#94a3b8">5 cycles</text><text x="520" y="214" text-anchor="end" class="lb" style="fill:#0f766e">3 cycles = 8 − 5</text></svg><p class="gcap">N = 8 samples (red) across the strip: the 5-cycle and the 3-cycle wave give the same 8 numbers</p></div>
+    <div><svg class="fig" viewBox="0 0 540 220" role="img" aria-label="a five-cycle wave and a three-cycle wave passing through the same eight sample points"><polyline points="20.0,30.0 21.2,30.2 22.5,31.0 23.8,32.2 25.0,33.9 26.2,36.1 27.5,38.7 28.8,41.8 30.0,45.3 31.2,49.2 32.5,53.4 33.8,58.0 35.0,63.0 36.2,68.2 37.5,73.7 38.8,79.4 40.0,85.3 41.2,91.3 42.5,97.5 43.8,103.7 45.0,110.0 46.2,116.3 47.5,122.5 48.8,128.7 50.0,134.7 51.2,140.6 52.5,146.3 53.8,151.8 55.0,157.0 56.2,162.0 57.5,166.6 58.8,170.8 60.0,174.7 61.2,178.2 62.5,181.3 63.8,183.9 65.0,186.1 66.2,187.8 67.5,189.0 68.8,189.8 70.0,190.0 71.2,189.8 72.5,189.0 73.8,187.8 75.0,186.1 76.2,183.9 77.5,181.3 78.8,178.2 80.0,174.7 81.2,170.8 82.5,166.6 83.8,162.0 85.0,157.0 86.2,151.8 87.5,146.3 88.8,140.6 90.0,134.7 91.2,128.7 92.5,122.5 93.8,116.3 95.0,110.0 96.2,103.7 97.5,97.5 98.8,91.3 100.0,85.3 101.2,79.4 102.5,73.7 103.8,68.2 105.0,63.0 106.2,58.0 107.5,53.4 108.8,49.2 110.0,45.3 111.2,41.8 112.5,38.7 113.8,36.1 115.0,33.9 116.2,32.2 117.5,31.0 118.8,30.2 120.0,30.0 121.2,30.2 122.5,31.0 123.8,32.2 125.0,33.9 126.2,36.1 127.5,38.7 128.8,41.8 130.0,45.3 131.2,49.2 132.5,53.4 133.8,58.0 135.0,63.0 136.2,68.2 137.5,73.7 138.8,79.4 140.0,85.3 141.2,91.3 142.5,97.5 143.8,103.7 145.0,110.0 146.2,116.3 147.5,122.5 148.8,128.7 150.0,134.7 151.2,140.6 152.5,146.3 153.8,151.8 155.0,157.0 156.2,162.0 157.5,166.6 158.8,170.8 160.0,174.7 161.2,178.2 162.5,181.3 163.8,183.9 165.0,186.1 166.2,187.8 167.5,189.0 168.8,189.8 170.0,190.0 171.2,189.8 172.5,189.0 173.8,187.8 175.0,186.1 176.2,183.9 177.5,181.3 178.8,178.2 180.0,174.7 181.2,170.8 182.5,166.6 183.8,162.0 185.0,157.0 186.2,151.8 187.5,146.3 188.8,140.6 190.0,134.7 191.2,128.7 192.5,122.5 193.8,116.3 195.0,110.0 196.2,103.7 197.5,97.5 198.8,91.3 200.0,85.3 201.2,79.4 202.5,73.7 203.8,68.2 205.0,63.0 206.2,58.0 207.5,53.4 208.8,49.2 210.0,45.3 211.2,41.8 212.5,38.7 213.8,36.1 215.0,33.9 216.2,32.2 217.5,31.0 218.8,30.2 220.0,30.0 221.2,30.2 222.5,31.0 223.8,32.2 225.0,33.9 226.2,36.1 227.5,38.7 228.8,41.8 230.0,45.3 231.2,49.2 232.5,53.4 233.8,58.0 235.0,63.0 236.2,68.2 237.5,73.7 238.8,79.4 240.0,85.3 241.2,91.3 242.5,97.5 243.8,103.7 245.0,110.0 246.2,116.3 247.5,122.5 248.8,128.7 250.0,134.7 251.2,140.6 252.5,146.3 253.8,151.8 255.0,157.0 256.2,162.0 257.5,166.6 258.8,170.8 260.0,174.7 261.2,178.2 262.5,181.3 263.8,183.9 265.0,186.1 266.2,187.8 267.5,189.0 268.8,189.8 270.0,190.0 271.2,189.8 272.5,189.0 273.8,187.8 275.0,186.1 276.2,183.9 277.5,181.3 278.8,178.2 280.0,174.7 281.2,170.8 282.5,166.6 283.8,162.0 285.0,157.0 286.2,151.8 287.5,146.3 288.8,140.6 290.0,134.7 291.2,128.7 292.5,122.5 293.8,116.3 295.0,110.0 296.2,103.7 297.5,97.5 298.8,91.3 300.0,85.3 301.2,79.4 302.5,73.7 303.8,68.2 305.0,63.0 306.2,58.0 307.5,53.4 308.8,49.2 310.0,45.3 311.2,41.8 312.5,38.7 313.8,36.1 315.0,33.9 316.2,32.2 317.5,31.0 318.8,30.2 320.0,30.0 321.2,30.2 322.5,31.0 323.8,32.2 325.0,33.9 326.2,36.1 327.5,38.7 328.8,41.8 330.0,45.3 331.2,49.2 332.5,53.4 333.8,58.0 335.0,63.0 336.2,68.2 337.5,73.7 338.8,79.4 340.0,85.3 341.2,91.3 342.5,97.5 343.8,103.7 345.0,110.0 346.2,116.3 347.5,122.5 348.8,128.7 350.0,134.7 351.2,140.6 352.5,146.3 353.8,151.8 355.0,157.0 356.2,162.0 357.5,166.6 358.8,170.8 360.0,174.7 361.2,178.2 362.5,181.3 363.8,183.9 365.0,186.1 366.2,187.8 367.5,189.0 368.8,189.8 370.0,190.0 371.2,189.8 372.5,189.0 373.8,187.8 375.0,186.1 376.2,183.9 377.5,181.3 378.8,178.2 380.0,174.7 381.2,170.8 382.5,166.6 383.8,162.0 385.0,157.0 386.2,151.8 387.5,146.3 388.8,140.6 390.0,134.7 391.2,128.7 392.5,122.5 393.8,116.3 395.0,110.0 396.2,103.7 397.5,97.5 398.8,91.3 400.0,85.3 401.2,79.4 402.5,73.7 403.8,68.2 405.0,63.0 406.2,58.0 407.5,53.4 408.8,49.2 410.0,45.3 411.2,41.8 412.5,38.7 413.8,36.1 415.0,33.9 416.2,32.2 417.5,31.0 418.8,30.2 420.0,30.0 421.2,30.2 422.5,31.0 423.8,32.2 425.0,33.9 426.2,36.1 427.5,38.7 428.8,41.8 430.0,45.3 431.2,49.2 432.5,53.4 433.8,58.0 435.0,63.0 436.2,68.2 437.5,73.7 438.8,79.4 440.0,85.3 441.2,91.3 442.5,97.5 443.8,103.7 445.0,110.0 446.2,116.3 447.5,122.5 448.8,128.7 450.0,134.7 451.2,140.6 452.5,146.3 453.8,151.8 455.0,157.0 456.2,162.0 457.5,166.6 458.8,170.8 460.0,174.7 461.2,178.2 462.5,181.3 463.8,183.9 465.0,186.1 466.2,187.8 467.5,189.0 468.8,189.8 470.0,190.0 471.2,189.8 472.5,189.0 473.8,187.8 475.0,186.1 476.2,183.9 477.5,181.3 478.8,178.2 480.0,174.7 481.2,170.8 482.5,166.6 483.8,162.0 485.0,157.0 486.2,151.8 487.5,146.3 488.8,140.6 490.0,134.7 491.2,128.7 492.5,122.5 493.8,116.3 495.0,110.0 496.2,103.7 497.5,97.5 498.8,91.3 500.0,85.3 501.2,79.4 502.5,73.7 503.8,68.2 505.0,63.0 506.2,58.0 507.5,53.4 508.8,49.2 510.0,45.3 511.2,41.8 512.5,38.7 513.8,36.1 515.0,33.9 516.2,32.2 517.5,31.0 518.8,30.2 520.0,30.0" fill="none" stroke="#94a3b8" stroke-width="2.5"/><polyline points="20.0,30.0 21.2,30.1 22.5,30.4 23.8,30.8 25.0,31.4 26.2,32.2 27.5,33.2 28.8,34.3 30.0,35.6 31.2,37.1 32.5,38.7 33.8,40.5 35.0,42.5 36.2,44.5 37.5,46.8 38.8,49.2 40.0,51.7 41.2,54.3 42.5,57.1 43.8,60.0 45.0,63.0 46.2,66.1 47.5,69.3 48.8,72.6 50.0,75.9 51.2,79.4 52.5,82.9 53.8,86.5 55.0,90.1 56.2,93.8 57.5,97.5 58.8,101.2 60.0,105.0 61.2,108.7 62.5,112.5 63.8,116.3 65.0,120.0 66.2,123.8 67.5,127.5 68.8,131.1 70.0,134.7 71.2,138.3 72.5,141.8 73.8,145.2 75.0,148.5 76.2,151.8 77.5,155.0 78.8,158.0 80.0,161.0 81.2,163.8 82.5,166.6 83.8,169.2 85.0,171.6 86.2,174.0 87.5,176.2 88.8,178.2 90.0,180.1 91.2,181.8 92.5,183.4 93.8,184.8 95.0,186.1 96.2,187.2 97.5,188.1 98.8,188.8 100.0,189.4 101.2,189.8 102.5,190.0 103.8,190.0 105.0,189.8 106.2,189.5 107.5,189.0 108.8,188.3 110.0,187.5 111.2,186.5 112.5,185.3 113.8,183.9 115.0,182.4 116.2,180.7 117.5,178.9 118.8,176.9 120.0,174.7 121.2,172.4 122.5,170.0 123.8,167.5 125.0,164.8 126.2,162.0 127.5,159.0 128.8,156.0 130.0,152.9 131.2,149.6 132.5,146.3 133.8,142.9 135.0,139.4 136.2,135.9 137.5,132.3 138.8,128.7 140.0,125.0 141.2,121.3 142.5,117.5 143.8,113.8 145.0,110.0 146.2,106.2 147.5,102.5 148.8,98.7 150.0,95.0 151.2,91.3 152.5,87.7 153.8,84.1 155.0,80.6 156.2,77.1 157.5,73.7 158.8,70.4 160.0,67.1 161.2,64.0 162.5,61.0 163.8,58.0 165.0,55.2 166.2,52.5 167.5,50.0 168.8,47.6 170.0,45.3 171.2,43.1 172.5,41.1 173.8,39.3 175.0,37.6 176.2,36.1 177.5,34.7 178.8,33.5 180.0,32.5 181.2,31.7 182.5,31.0 183.8,30.5 185.0,30.2 186.2,30.0 187.5,30.0 188.8,30.2 190.0,30.6 191.2,31.2 192.5,31.9 193.8,32.8 195.0,33.9 196.2,35.2 197.5,36.6 198.8,38.2 200.0,39.9 201.2,41.8 202.5,43.8 203.8,46.0 205.0,48.4 206.2,50.8 207.5,53.4 208.8,56.2 210.0,59.0 211.2,62.0 212.5,65.0 213.8,68.2 215.0,71.5 216.2,74.8 217.5,78.2 218.8,81.7 220.0,85.3 221.2,88.9 222.5,92.5 223.8,96.2 225.0,100.0 226.2,103.7 227.5,107.5 228.8,111.3 230.0,115.0 231.2,118.8 232.5,122.5 233.8,126.2 235.0,129.9 236.2,133.5 237.5,137.1 238.8,140.6 240.0,144.1 241.2,147.4 242.5,150.7 243.8,153.9 245.0,157.0 246.2,160.0 247.5,162.9 248.8,165.7 250.0,168.3 251.2,170.8 252.5,173.2 253.8,175.5 255.0,177.5 256.2,179.5 257.5,181.3 258.8,182.9 260.0,184.4 261.2,185.7 262.5,186.8 263.8,187.8 265.0,188.6 266.2,189.2 267.5,189.6 268.8,189.9 270.0,190.0 271.2,189.9 272.5,189.6 273.8,189.2 275.0,188.6 276.2,187.8 277.5,186.8 278.8,185.7 280.0,184.4 281.2,182.9 282.5,181.3 283.8,179.5 285.0,177.5 286.2,175.5 287.5,173.2 288.8,170.8 290.0,168.3 291.2,165.7 292.5,162.9 293.8,160.0 295.0,157.0 296.2,153.9 297.5,150.7 298.8,147.4 300.0,144.1 301.2,140.6 302.5,137.1 303.8,133.5 305.0,129.9 306.2,126.2 307.5,122.5 308.8,118.8 310.0,115.0 311.2,111.3 312.5,107.5 313.8,103.7 315.0,100.0 316.2,96.2 317.5,92.5 318.8,88.9 320.0,85.3 321.2,81.7 322.5,78.2 323.8,74.8 325.0,71.5 326.2,68.2 327.5,65.0 328.8,62.0 330.0,59.0 331.2,56.2 332.5,53.4 333.8,50.8 335.0,48.4 336.2,46.0 337.5,43.8 338.8,41.8 340.0,39.9 341.2,38.2 342.5,36.6 343.8,35.2 345.0,33.9 346.2,32.8 347.5,31.9 348.8,31.2 350.0,30.6 351.2,30.2 352.5,30.0 353.8,30.0 355.0,30.2 356.2,30.5 357.5,31.0 358.8,31.7 360.0,32.5 361.2,33.5 362.5,34.7 363.8,36.1 365.0,37.6 366.2,39.3 367.5,41.1 368.8,43.1 370.0,45.3 371.2,47.6 372.5,50.0 373.8,52.5 375.0,55.2 376.2,58.0 377.5,61.0 378.8,64.0 380.0,67.1 381.2,70.4 382.5,73.7 383.8,77.1 385.0,80.6 386.2,84.1 387.5,87.7 388.8,91.3 390.0,95.0 391.2,98.7 392.5,102.5 393.8,106.2 395.0,110.0 396.2,113.8 397.5,117.5 398.8,121.3 400.0,125.0 401.2,128.7 402.5,132.3 403.8,135.9 405.0,139.4 406.2,142.9 407.5,146.3 408.8,149.6 410.0,152.9 411.2,156.0 412.5,159.0 413.8,162.0 415.0,164.8 416.2,167.5 417.5,170.0 418.8,172.4 420.0,174.7 421.2,176.9 422.5,178.9 423.8,180.7 425.0,182.4 426.2,183.9 427.5,185.3 428.8,186.5 430.0,187.5 431.2,188.3 432.5,189.0 433.8,189.5 435.0,189.8 436.2,190.0 437.5,190.0 438.8,189.8 440.0,189.4 441.2,188.8 442.5,188.1 443.8,187.2 445.0,186.1 446.2,184.8 447.5,183.4 448.8,181.8 450.0,180.1 451.2,178.2 452.5,176.2 453.8,174.0 455.0,171.6 456.2,169.2 457.5,166.6 458.8,163.8 460.0,161.0 461.2,158.0 462.5,155.0 463.8,151.8 465.0,148.5 466.2,145.2 467.5,141.8 468.8,138.3 470.0,134.7 471.2,131.1 472.5,127.5 473.8,123.8 475.0,120.0 476.2,116.3 477.5,112.5 478.8,108.7 480.0,105.0 481.2,101.2 482.5,97.5 483.8,93.8 485.0,90.1 486.2,86.5 487.5,82.9 488.8,79.4 490.0,75.9 491.2,72.6 492.5,69.3 493.8,66.1 495.0,63.0 496.2,60.0 497.5,57.1 498.8,54.3 500.0,51.7 501.2,49.2 502.5,46.8 503.8,44.5 505.0,42.5 506.2,40.5 507.5,38.7 508.8,37.1 510.0,35.6 511.2,34.3 512.5,33.2 513.8,32.2 515.0,31.4 516.2,30.8 517.5,30.4 518.8,30.1 520.0,30.0" fill="none" stroke="#855400" stroke-width="3"/><circle cx="20.0" cy="30.0" r="7" fill="#e0533d"/><circle cx="82.5" cy="166.6" r="7" fill="#e0533d"/><circle cx="145.0" cy="110.0" r="7" fill="#e0533d"/><circle cx="207.5" cy="53.4" r="7" fill="#e0533d"/><circle cx="270.0" cy="190.0" r="7" fill="#e0533d"/><circle cx="332.5" cy="53.4" r="7" fill="#e0533d"/><circle cx="395.0" cy="110.0" r="7" fill="#e0533d"/><circle cx="457.5" cy="166.6" r="7" fill="#e0533d"/><circle cx="520.0" cy="30.0" r="7" fill="#e0533d"/><text x="520" y="18" text-anchor="end" class="lb" style="fill:#94a3b8">5 cycles</text><text x="520" y="214" text-anchor="end" class="lb" style="fill:#855400">3 cycles = 8 − 5</text></svg><p class="gcap">N = 8 samples (red) across the strip: the 5-cycle and the 3-cycle wave give the same 8 numbers</p></div>
     <div class="say">
       <p>Sample a wave of f cycles at N evenly spaced points, n = 0 … N − 1:</p>
       <div class="eq">$$\cos\!\Big(2\pi\,(N-f)\tfrac{n}{N}\Big)=\cos\!\Big(2\pi n-2\pi f\tfrac{n}{N}\Big)$$</div>
@@ -1372,14 +1373,14 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
       <div class="demo-out"><span id="nyOut"></span></div>
     </div>
     <div class="say">
-      <p>Grey: the true wave, <b>5 cycles</b>. Dots: the samples. Teal: the <b>slowest</b> wave through the dots — what we would rebuild.</p>
+      <p>Grey: the true wave, <b>5 cycles</b>. Dots: the samples. Gold: the <b>slowest</b> wave through the dots — what we would rebuild.</p>
       <div class="term"><b>Nyquist rate</b><span class="th">อัตรานายควิสต์</span><span class="def">sample more than twice per cycle of the finest detail, or it can come back as a false, slower wave</span></div>
       <p class="fragment">5 cycles need more than <b>10</b> samples. At 8, they look like 3 cycles.</p>
       <div class="worked"><span class="tag">Worked example · f = 5 cycles</span><p>N = 12 &gt; 10 → rebuilt as 5 ✓ · N = 6 → 6 − 5 = 1 cycle (false)</p></div>
     </div>
   </div>
 
-  <aside class="notes"><p>🇹🇭 ลาก samples ลงจาก 24 ไป 12 (ยังถูก) แล้ว 8: เส้นเขียวกลายเป็น 3 รอบ · เกณฑ์ = 2 ต่อรอบ</p><p>🇬🇧 Drag the samples from 24 down to 12 (still right), then 8: the teal wave shows 3 cycles. The rule: 2 per cycle.</p></aside>
+  <aside class="notes"><p>🇹🇭 ลาก samples ลงจาก 24 ไป 12 (ยังถูก) แล้ว 8: เส้นสีทองกลายเป็น 3 รอบ · เกณฑ์ = 2 ต่อรอบ</p><p>🇬🇧 Drag the samples from 24 down to 12 (still right), then 8: the gold wave shows 3 cycles. The rule: 2 per cycle.</p></aside>
 </section>
 
 <!-- 42 -->
@@ -1406,7 +1407,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <div class="cards" style="margin-top:.6em">
     <div class="card"><b>Cheap</b>Each level has ¼ the pixels: the whole pyramid is only ⅓ more than the original.</div>
     <div class="card violet"><b>Every size</b>A detector built for one size finds objects of any size by running on every level (sessions 6 and 8).</div>
-    <div class="card amber"><b>Inside CNNs</b>Networks shrink their feature maps step by step the same way (session 4).</div>
+    <div class="card teal"><b>Inside CNNs</b>Networks shrink their feature maps step by step the same way (session 4).</div>
   </div>
 
   <aside class="notes"><p>🇹🇭 ชี้แต่ละชั้น: blur แล้วลดครึ่ง · ถาม: ทำไมต้อง blur ก่อน? (หน้าก่อน)</p><p>🇬🇧 Point at each level: blur, then halve. Ask: why blur first? (the previous slide)</p></aside>
@@ -1434,7 +1435,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <div class="cards">
     <div class="card"><b>Waves</b>Every image is a sum of waves. Slow = smooth areas; fast = edges, texture and noise.</div>
     <div class="card violet"><b>Filters</b>Convolving multiplies the frequencies: a Gaussian is a clean low-pass; a box ripples.</div>
-    <div class="card amber"><b>Sampling</b>2 or fewer samples per cycle → aliasing. Blur first, then shrink — the idea behind every pyramid.</div>
+    <div class="card teal"><b>Sampling</b>2 or fewer samples per cycle → aliasing. Blur first, then shrink — the idea behind every pyramid.</div>
   </div>
   <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-03/lab.ipynb#scrollTo=part-d" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part D</a><span>sum of waves, Fourier low-/high-pass, aliasing with and without blur, Gaussian pyramid</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s3d">More practice · Session 3 D — practice bank with worked solutions →</a></p>
@@ -1931,7 +1932,7 @@ function drawNumbers(canvas,img,gain,pick,thr=128){   /* cells below thr are sha
   for(let r=0;r<N;r++) for(let c=0;c<N;c++){
     const v=Math.max(0,Math.min(255,Math.round(img[r][c]*gain)));
     const hit=pick&&pick[0]===r&&pick[1]===c;
-    ctx.fillStyle=hit?'#fbeaea':(v<thr?'#e3f3f4':'#ffffff'); ctx.fillRect(c*s,r*s,s,s);
+    ctx.fillStyle=hit?'#fbeaea':(v<thr?'#f8ecd2':'#ffffff'); ctx.fillRect(c*s,r*s,s,s);
     ctx.fillStyle=hit?'#d9534f':'#1b1f24'; ctx.fillText(v,c*s+s/2,r*s+s/2);
   }
   ctx.strokeStyle='#dde3e8'; ctx.lineWidth=1;
@@ -1997,7 +1998,7 @@ function initPointOps(){
       for(let i=0;i<d.length;i+=4){ d[i]=lut[d[i]]; d[i+1]=lut[d[i+1]]; d[i+2]=lut[d[i+2]]; } ctx.putImageData(img,0,0); cv.dataset.drawn=op+':'+sl.value; }
     const W=cu.width, H=cu.height, m=22; cx.clearRect(0,0,W,H); cx.strokeStyle='#e4e8ee'; cx.lineWidth=1; cx.strokeRect(m,m,W-2*m,H-2*m);
     cx.setLineDash([4,4]); cx.beginPath(); cx.moveTo(m,H-m); cx.lineTo(W-m,m); cx.stroke(); cx.setLineDash([]);
-    cx.strokeStyle='#0f766e'; cx.lineWidth=3; cx.beginPath();
+    cx.strokeStyle='#855400'; cx.lineWidth=3; cx.beginPath();
     for(let v=0;v<256;v++){ const x=m+v/255*(W-2*m), y=H-m-lut[v]/255*(H-2*m); v?cx.lineTo(x,y):cx.moveTo(x,y); } cx.stroke();
     cx.fillStyle='#667085'; cx.font='600 12px "Space Grotesk",sans-serif'; cx.textAlign='center'; cx.fillText('in 0 … 255',W/2,H-5);
     cx.save(); cx.translate(11,H/2); cx.rotate(-Math.PI/2); cx.fillText('out',0,0); cx.restore();
@@ -2010,7 +2011,7 @@ function initPointOps(){
     document.getElementById('ptPx').textContent=`grey in ${v} → out ${Math.max(0,Math.min(255,Math.round(T()[0](v))))}`; };
   cv.addEventListener('pointermove',read); cv.addEventListener('pointerdown',read);
 }
-/* A2: once the answer fragment shows, outline the line (teal) and the lone value (coral) */
+/* A2: once the answer fragment shows, outline the line (gold) and the lone value (coral) */
 function initNoiseHint(){
   const g=document.getElementById('nzG'), ans=document.getElementById('nzAns'); if(!g||!ans||!window.Reveal||!Reveal.on) return;
   const mark=on=>{ for(let r=0;r<8;r++) g.children[r*8+5].classList.toggle('win',on); g.children[2*8+1].classList.toggle('cur',on); };
@@ -2101,7 +2102,7 @@ function initGaussK(){
   const cv=document.getElementById('gkCv'), sl=document.getElementById('gkS'); if(!cv) return; const ctx=cv.getContext('2d');
   const draw=()=>{ const sig=+sl.value/2, k=gauss1(sig), n=k.length, c=(n-1)/2, mx=k[c]*k[c];
     ctx.clearRect(0,0,cv.width,cv.height); const S=250, cs=S/n, ox=20, oy=12;
-    for(let i=0;i<n;i++) for(let j=0;j<n;j++){ const w=k[i]*k[j]/mx; ctx.fillStyle=`rgba(15,118,110,${w.toFixed(3)})`; ctx.fillRect(ox+j*cs,oy+i*cs,cs-(n<16?1:0),cs-(n<16?1:0)); }
+    for(let i=0;i<n;i++) for(let j=0;j<n;j++){ const w=k[i]*k[j]/mx; ctx.fillStyle=`rgba(133, 84, 0,${w.toFixed(3)})`; ctx.fillRect(ox+j*cs,oy+i*cs,cs-(n<16?1:0),cs-(n<16?1:0)); }
     ctx.strokeStyle='#e4e8ee'; ctx.strokeRect(ox,oy,S,S);
     const bx=310, bw=230, base=255, bwid=bw/n; ctx.fillStyle='#6d5bd0';
     for(let j=0;j<n;j++){ const h=k[j]/k[c]*200; ctx.fillRect(bx+j*bwid+bwid*.1,base-h,bwid*.8,h); }
@@ -2195,7 +2196,7 @@ function initWaves(){
   const cv=document.getElementById('wvCv'), sl=document.getElementById('wvN'); if(!cv) return; const ctx=cv.getContext('2d'), W=cv.width, H=cv.height;
   const draw=()=>{ const n=+sl.value; ctx.clearRect(0,0,W,H); const y=v=>H/2-v*H*.36, X=i=>i/W*4*Math.PI;
     ctx.strokeStyle='#cbd5e1'; ctx.lineWidth=2; ctx.beginPath(); for(let i=0;i<W;i++){ const v=Math.sin(X(i))>=0?1:-1; i?ctx.lineTo(i,y(v)):ctx.moveTo(i,y(v)); } ctx.stroke();
-    ctx.strokeStyle='#0f766e'; ctx.lineWidth=3; ctx.beginPath();
+    ctx.strokeStyle='#855400'; ctx.lineWidth=3; ctx.beginPath();
     for(let i=0;i<W;i++){ let v=0; for(let k=1;k<=n;k++){ const m=2*k-1; v+=Math.sin(m*X(i))/m; } v*=4/Math.PI; i?ctx.lineTo(i,y(v)):ctx.moveTo(i,y(v)); } ctx.stroke();
     document.getElementById('wvOut').textContent=`${n} wave${n>1?'s':''}: frequencies 1, 3, … ${2*n-1}`; cv.dataset.n=n; };
   sl.addEventListener('input',draw); draw();
@@ -2256,7 +2257,7 @@ function initWheel(){
   const paint=()=>{ const W=cv.width, c=W/2; ctx.clearRect(0,0,W,W); ctx.fillStyle='#f5f7fa'; ctx.beginPath(); ctx.arc(c,c,c-4,0,7); ctx.fill();
     ctx.strokeStyle='#0f1b2d'; ctx.lineWidth=10; ctx.beginPath(); ctx.arc(c,c,c-12,0,7); ctx.stroke(); ctx.lineWidth=7;
     for(let k=0;k<8;k++){ const a=(ang+k*45)*Math.PI/180; ctx.beginPath(); ctx.moveTo(c,c); ctx.lineTo(c+(c-14)*Math.cos(a),c+(c-14)*Math.sin(a)); ctx.stroke(); }
-    ctx.fillStyle='#0f766e'; ctx.beginPath(); ctx.arc(c,c,16,0,7); ctx.fill(); };
+    ctx.fillStyle='#855400'; ctx.beginPath(); ctx.arc(c,c,16,0,7); ctx.fill(); };
   const tick=()=>{ ang=(ang+(+sl.value))%360; paint(); };
   const run=on=>{ clearInterval(timer); if(on) timer=setInterval(tick,110); };
   sl.addEventListener('input',show); show(); paint();
@@ -2267,7 +2268,7 @@ function initNyquist(){
   const cv=document.getElementById('nyCv'), sl=document.getElementById('nyN'); if(!cv) return; if(PRINTING) sl.value=8; const ctx=cv.getContext('2d'), W=cv.width, H=cv.height, f=5;
   const draw=()=>{ const N=+sl.value, fa=f-N*Math.round(f/N), y=v=>H/2-v*H*.38; ctx.clearRect(0,0,W,H);
     ctx.strokeStyle='#cbd5e1'; ctx.lineWidth=2; ctx.beginPath(); for(let i=0;i<=W;i++){ const v=Math.sin(2*Math.PI*f*i/W); i?ctx.lineTo(i,y(v)):ctx.moveTo(i,y(v)); } ctx.stroke();
-    ctx.strokeStyle='#0f766e'; ctx.lineWidth=3; ctx.beginPath(); for(let i=0;i<=W;i++){ const v=Math.sin(2*Math.PI*fa*i/W); i?ctx.lineTo(i,y(v)):ctx.moveTo(i,y(v)); } ctx.stroke();
+    ctx.strokeStyle='#855400'; ctx.lineWidth=3; ctx.beginPath(); for(let i=0;i<=W;i++){ const v=Math.sin(2*Math.PI*fa*i/W); i?ctx.lineTo(i,y(v)):ctx.moveTo(i,y(v)); } ctx.stroke();
     ctx.fillStyle='#e0533d'; for(let n=0;n<N;n++){ const x=n/N*W; ctx.beginPath(); ctx.arc(x,y(Math.sin(2*Math.PI*f*n/N)),6,0,7); ctx.fill(); }
     const per=(N/f).toFixed(1); document.getElementById('nyOut').textContent=`${N} samples · ${per} per cycle → rebuilt: ${Math.abs(fa)} cycle${Math.abs(fa)===1?'':'s'}${N>2*f?' ✓':(N===2*f?' (exactly 2: too few)':' — aliased')}`; cv.dataset.fa=Math.abs(fa); };
   sl.addEventListener('input',draw); draw();
