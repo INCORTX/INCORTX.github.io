@@ -1,907 +1,770 @@
 <!DOCTYPE html>
-<html lang="en" style="color-scheme: dark;">
-
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INCORTX | Advanced Machine Intelligence</title>
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-
-    <!-- Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
-    <style>
-        /* CSS Reset & Variables */
-        :root {
-            --bg-void: #050811;
-            --bg-deep: #0a101f;
-            --text-primary: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent-glow-teal: rgba(13, 148, 136, 0.4);
-            --accent-glow-violet: rgba(76, 29, 149, 0.4);
-            --glass-bg: rgba(15, 23, 42, 0.45);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --glass-highlight: rgba(255, 255, 255, 0.15);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-            background-color: var(--bg-void);
-            color: var(--text-primary);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Ambient Glowing Background (Glassmorphism Environment) */
-        .ambient-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            overflow: hidden;
-            background: var(--bg-void);
-        }
-
-        .orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.6;
-            animation: float 20s infinite ease-in-out alternate;
-        }
-
-        .orb-1 {
-            width: 500px;
-            height: 500px;
-            background: var(--accent-glow-teal);
-            top: -10%;
-            left: -10%;
-            animation-delay: 0s;
-        }
-
-        .orb-2 {
-            width: 600px;
-            height: 600px;
-            background: var(--accent-glow-violet);
-            bottom: -20%;
-            right: -10%;
-            animation-delay: -5s;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
-
-            100% {
-                transform: translate(50px, 80px) scale(1.1);
-            }
-        }
-
-        /* Main Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        /* Header / Navigation */
-        header {
-            padding: 2.5rem 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 10;
-        }
-
-        .brand {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 700;
-            font-size: 1.5rem;
-            letter-spacing: 0.15em;
-            color: var(--text-primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: var(--text-primary);
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-
-        .nav-profile-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.45rem 1.1rem;
-            background: rgba(45, 212, 191, 0.08);
-            border: 1px solid rgba(45, 212, 191, 0.2);
-            border-radius: 99px;
-            color: #2dd4bf !important;
-            font-size: 0.78rem !important;
-            font-weight: 700 !important;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            text-decoration: none;
-            transition: all 0.3s ease !important;
-        }
-
-        .nav-profile-btn:hover {
-            background: rgba(45, 212, 191, 0.15) !important;
-            border-color: rgba(45, 212, 191, 0.4) !important;
-            color: #5eead4 !important;
-            transform: none !important;
-        }
-
-        .nav-profile-btn::after {
-            display: none !important;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 6rem 0 4rem;
-            text-align: center;
-            z-index: 10;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            padding: 0.4rem 1rem;
-            background: rgba(13, 148, 136, 0.1);
-            border: 1px solid rgba(13, 148, 136, 0.2);
-            border-radius: 99px;
-            color: #2dd4bf;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 2rem;
-        }
-
-        .hero h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(3rem, 6vw, 5.5rem);
-            font-weight: 600;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
-            font-weight: 300;
-        }
-
-        /* Philosophy Section - Premium Glassmorphism */
-        .philosophy {
-            margin: 2rem auto 6rem;
-            max-width: 900px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .glass-panel {
-            background: rgba(15, 23, 42, 0.4);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(0, 229, 255, 0.08);
-            border-radius: 24px;
-            padding: 3.5rem;
-            box-shadow:
-                0 4px 24px -1px rgba(0, 0, 0, 0.3),
-                inset 0 1px 1px rgba(255, 255, 255, 0.05),
-                inset 0 0 40px rgba(0, 229, 255, 0.03);
-            transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
-        }
-
-        .glass-panel:hover {
-            border-color: rgba(0, 229, 255, 0.25);
-            box-shadow:
-                0 10px 40px -1px rgba(0, 229, 255, 0.1),
-                inset 0 1px 1px rgba(255, 255, 255, 0.1),
-                inset 0 0 40px rgba(0, 229, 255, 0.05);
-            transform: translateY(-2px);
-        }
-
-        .philosophy-layout {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2.5rem;
-        }
-
-        .philosophy-quote {
-            text-align: center;
-            position: relative;
-        }
-
-        .philosophy-quote i {
-            font-size: 2.5rem;
-            color: rgba(0, 229, 255, 0.2);
-            margin-bottom: 1rem;
-            display: inline-block;
-        }
-
-        .philosophy-desc {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
-            line-height: 1.5;
-            color: #f8fafc;
-            font-style: italic;
-            font-weight: 400;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .philosophy-divider {
-            height: 1px;
-            width: 120px;
-            background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.4), transparent);
-        }
-
-        .philosophy-breakdown {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            width: 100%;
-            flex-wrap: wrap;
-        }
-
-        .breakdown-item {
-            flex: 1;
-            min-width: 240px;
-            background: rgba(255, 255, 255, 0.015);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            padding: 1.5rem;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .breakdown-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.2), transparent);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .breakdown-item:hover {
-            background: rgba(0, 229, 255, 0.02);
-            border-color: rgba(0, 229, 255, 0.15);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.2);
-        }
-
-        .breakdown-item:hover::before {
-            opacity: 1;
-        }
-
-        .breakdown-item .prefix {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 700;
-            font-size: 1.4rem;
-            letter-spacing: 0.15em;
-            background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-        }
-
-        .breakdown-item:nth-child(2) .prefix {
-            background: linear-gradient(135deg, #fff 0%, #2dd4bf 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .breakdown-item:nth-child(3) .prefix {
-            background: linear-gradient(135deg, #fff 0%, #fcd34d 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .meaning-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            justify-content: center;
-        }
-
-        .meaning-tags span {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 500;
-            color: #94a3b8;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            padding: 0.35rem 0.6rem;
-            border-radius: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            transition: all 0.3s ease;
-        }
-
-        .breakdown-item:hover .meaning-tags span {
-            color: #e2e8f0;
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .breakdown-item:hover .meaning-tags span:hover {
-            color: #fff;
-            background: rgba(0, 229, 255, 0.15);
-            border-color: rgba(0, 229, 255, 0.3);
-            transform: translateY(-1px);
-        }
-
-        /* Course Grid */
-        .course-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin: 4rem 0 8rem;
-            z-index: 10;
-        }
-
-        .course-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 2.5rem;
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Hover effect mask */
-        .course-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.06), transparent 40%);
-            z-index: 0;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            pointer-events: none;
-        }
-
-        .course-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--glass-highlight);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05);
-        }
-
-        .course-card:hover::before {
-            opacity: 1;
-        }
-
-        .card-icon {
-            width: 56px;
-            height: 56px;
-            border-radius: 14px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--glass-border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            color: #e2e8f0;
-            z-index: 1;
-        }
-
-        .card-content {
-            z-index: 1;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: #ffffff;
-            margin-bottom: 0.75rem;
-            line-height: 1.2;
-        }
-
-        .card-desc {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin-bottom: 2rem;
-            flex: 1;
-        }
-
-        .card-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: #94a3b8;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-top: auto;
-        }
-
-        .card-footer i {
-            font-size: 1.2rem;
-            transition: transform 0.3s ease;
-        }
-
-        .course-card:hover .card-footer {
-            color: #38bdf8;
-        }
-
-        .course-card:hover .card-footer i {
-            transform: translateX(4px);
-        }
-
-        /* Talks — standalone presentations, not course material */
-        .talks-section {
-            position: relative;
-            z-index: 10;
-            margin: 0 0 8rem;
-        }
-
-        .talks-head {
-            display: flex;
-            align-items: baseline;
-            gap: 1.25rem;
-            flex-wrap: wrap;
-            margin-bottom: 1.75rem;
-        }
-
-        .talks-head h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
-            font-weight: 600;
-            color: #ffffff;
-            line-height: 1.2;
-        }
-
-        .talks-head p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        .talks-grid {
-            margin: 0;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 520px));
-        }
-
-        /* Footer */
-        footer {
-            border-top: 1px solid var(--glass-border);
-            padding: 2rem 0;
-            margin-top: auto;
-            z-index: 10;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .footer-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .footer-links a:hover {
-            color: var(--text-primary);
-        }
-
-        /* ───────────────────────────────────────────
-        MOBILE-FIRST RESPONSIVE DESIGN
-        Primary target: ≤ 375px portrait smartphone.
-        Desktop is an enhancement.
-        ─────────────────────────────────────────── */
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 1rem;
-            }
-
-            header {
-                padding: 1.5rem 0;
-            }
-
-            .brand {
-                font-size: 1.25rem;
-            }
-
-            .nav-profile-btn {
-                padding: 0.35rem 0.8rem;
-                font-size: 0.7rem !important;
-            }
-
-            .hero {
-                padding: 4rem 0 2.5rem;
-            }
-
-            .hero h1 {
-                font-size: clamp(2.2rem, 10vw, 3rem);
-                margin-bottom: 1rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .philosophy {
-                margin: 1rem auto 4rem;
-            }
-
-            .glass-panel {
-                padding: 2rem 1.25rem;
-                border-radius: 16px;
-            }
-
-            .philosophy-desc {
-                font-size: 1.3rem;
-            }
-
-            .philosophy-breakdown {
-                flex-direction: column;
-                gap: 1.2rem;
-                align-items: stretch;
-            }
-
-            .breakdown-item {
-                min-width: 100%;
-                padding: 1.25rem;
-            }
-
-            .course-grid {
-                grid-template-columns: 1fr;
-                margin: 2rem 0 4rem;
-                gap: 1.5rem;
-            }
-
-            .course-card {
-                padding: 1.75rem;
-                border-radius: 16px;
-                gap: 1rem;
-            }
-
-            .card-icon {
-                width: 48px;
-                height: 48px;
-                font-size: 1.5rem;
-            }
-
-            .card-title {
-                font-size: 1.5rem;
-            }
-
-            .card-desc {
-                font-size: 0.9rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                gap: 1.25rem;
-                text-align: center;
-            }
-
-            .footer-links {
-                gap: 1rem;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-        }
-
-        @media (min-width: 481px) and (max-width: 768px) {
-            .philosophy-breakdown {
-                flex-direction: column;
-                gap: 1.5rem;
-                align-items: stretch;
-            }
-
-            .breakdown-item {
-                min-width: 100%;
-            }
-
-            .glass-panel {
-                padding: 2.5rem 1.5rem;
-            }
-
-            .philosophy-desc {
-                font-size: 1.45rem;
-            }
-
-            .course-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>INCORTX Classes</title>
+<meta name="description" content="Slides, labs and project briefs for Signal Processing, Computer Vision and Data Analytics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* base reset (the artifact preview supplied these) */
+body { margin: 0; }
+img, svg { max-width: 100%; }
+[hidden] { display: none !important; }
+/* Colours: Deep space (dark) / Space × lift (light: near-white cards lifted by a shadow). Layout: the hero is one live 3D field. Time = waves (Signal Processing, violet), Light = a pinhole camera (Computer Vision, teal as in its deck), Entropy = scattered points settling into clusters (Data Analytics). Course hub below. */
+:root {
+  --bg: #050608; --surface: #0D0F13; --soft: #15181E; --line: #23272F;
+  --fg: #ECEDF0; --muted: #9EA3AD;
+  --time: #A78BFA; --light: #2DD4BF; --entropy: #7AA7FF;
+  --in: #A5B4FC; --cor: #2DD4BF; --tx: #FCD34D;
+  --display: 'Instrument Serif', 'Iowan Old Style', Georgia, serif;
+  --sans: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --accent: var(--time);
+  --shadow: none;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) {
+  --bg: #FFFFFF; --surface: #FCFCFD; --soft: #F4F5F7; --line: #DDE1E7;
+  --fg: #0B0D12; --muted: #4B505A; --shadow: 0 1px 2px rgba(16, 24, 40, 0.05), 0 14px 32px -16px rgba(16, 24, 40, 0.22);
+  --time: #6D4AC9; --light: #0E7C86; --entropy: #2F5BD3;
+  --in: #4F46E5; --cor: #0A666F; --tx: #855400; color-scheme: light; } }
+:root[data-theme="light"] {
+  --bg: #FFFFFF; --surface: #FCFCFD; --soft: #F4F5F7; --line: #DDE1E7;
+  --fg: #0B0D12; --muted: #4B505A; --shadow: 0 1px 2px rgba(16, 24, 40, 0.05), 0 14px 32px -16px rgba(16, 24, 40, 0.22);
+  --time: #6D4AC9; --light: #0E7C86; --entropy: #2F5BD3;
+  --in: #4F46E5; --cor: #0A666F; --tx: #855400; color-scheme: light; }
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 16px; line-height: 1.55; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+header .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 28px; padding-block: 18px; }
+.brand { font-weight: 800; letter-spacing: 0.16em; text-decoration: none; font-size: 15px; }
+.brand span { font-weight: 500; letter-spacing: 0; color: var(--muted); margin-left: 6px; }
+nav { display: flex; flex-wrap: wrap; gap: 0 22px; font-size: 15px; font-weight: 600; }
+nav a { text-decoration: none; padding: 12px 0; color: var(--muted); }
+nav a:hover { color: var(--fg); }
+
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 24px 40px; align-items: center; padding-block: 12px 32px; }
+.hero h1 { font-family: var(--display); font-weight: 400; font-size: clamp(56px, 8vw, 112px); line-height: 0.92; letter-spacing: -0.02em; margin: 0 0 22px; }
+.hero h1 span { display: block; transition: color .5s, opacity .5s; opacity: 0.38; }
+.hero h1 span.on { opacity: 1; color: var(--c); font-style: italic; }
+.lede { color: var(--muted); font-size: 17px; margin: 0 0 26px; max-width: 40ch; }
+.switch { display: flex; flex-wrap: wrap; gap: 8px; }
+.switch button {
+  font: 600 14.5px/1.2 var(--sans); color: var(--muted); background: transparent; cursor: pointer; text-align: left;
+  border: 1px solid var(--line); border-radius: 14px; min-height: 52px; padding: 8px 16px;
+  display: inline-flex; flex-direction: column; justify-content: center; gap: 2px; transition: color .2s, border-color .2s, background .2s;
+}
+.switch button small { font: 500 11.5px/1.2 var(--mono); letter-spacing: 0.04em; color: var(--muted); }
+.switch button[aria-pressed="true"] { color: var(--fg); border-color: var(--c); background: var(--soft); }
+.switch button[aria-pressed="true"] small { color: var(--c); }
+
+.stage { position: relative; min-width: 0; margin: 0; }
+.stage canvas { display: block; width: 100%; aspect-ratio: 7 / 5; max-width: 100%; cursor: grab; touch-action: pan-y; }
+.stage canvas:active { cursor: grabbing; }
+.caption { font-family: var(--mono); font-size: 12.5px; line-height: 1.6; color: var(--muted); max-width: 70ch; min-height: 3.2em; }
+.caption b { color: var(--accent); font-weight: 500; }
+
+main .wrap { display: flex; flex-direction: column; gap: 56px; padding-block: 24px 56px; }
+.courses { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+/* Course card: a small diagram of its idea on top (still at rest, moving on hover), the idea word, the course, one way in */
+.card { box-shadow: var(--shadow); position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: border-color .3s, transform .3s; }
+.card:hover, .card:focus-within { border-color: var(--c); transform: translateY(-3px); }
+.motif { height: 132px; background: var(--soft); border-bottom: 1px solid var(--line); color: var(--c); }
+.motif svg { display: block; width: 100%; height: 100%; }
+.motif .grid { stroke: var(--line); stroke-width: 1; }
+.card-body { display: flex; flex-direction: column; gap: 10px; padding: 22px 24px 20px; flex: 1; }
+.kicker { font-family: var(--display); font-style: italic; font-size: 46px; line-height: 0.95; color: var(--c); }
+.card h2 { margin: 0; font-size: 20px; font-weight: 800; }
+.card h2 a { text-decoration: none; }
+.card h2 a::after { content: ""; position: absolute; inset: 0; border-radius: 20px; }
+.card h2 a:focus-visible { outline: none; }
+.card:has(h2 a:focus-visible) { outline: 2px solid var(--c); outline-offset: 3px; }
+.card p { margin: 0; color: var(--muted); font-size: 15px; }
+.card-foot { margin-top: auto; padding-top: 16px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 16px; }
+.enter { font-weight: 700; font-size: 15px; color: var(--c); }
+.enter i { font-style: normal; display: inline-block; transition: transform .3s; }
+.card:hover .enter i { transform: translateX(4px); }
+.sub { position: relative; z-index: 1; display: flex; gap: 0 16px; font-size: 14px; font-weight: 600; }
+.sub a { color: var(--muted); text-decoration: none; padding: 12px 0; }
+.sub a:hover { color: var(--fg); text-decoration: underline; }
+/* motion only while the card is hovered or focused */
+.wave-run { animation: wave 2.4s linear infinite; animation-play-state: paused; }
+.ray { stroke-dasharray: 3 9; animation: ray 1.2s linear infinite; animation-play-state: paused; }
+.card:hover .wave-run, .card:focus-within .wave-run, .card.play .wave-run, .card:hover .ray, .card:focus-within .ray, .card.play .ray { animation-play-state: running; }
+.dot { transition: transform 1.3s cubic-bezier(0.45, 0, 0.2, 1); }
+@keyframes wave { to { transform: translateX(-160px); } }
+@keyframes ray { to { stroke-dashoffset: -12; } }
+@media (prefers-reduced-motion: reduce) { .wave-run, .ray { animation: none; } .dot, .card, .enter i { transition: none; } .card:hover { transform: none; } }
+
+/* Talks: section head, then one card per talk (visual of its core idea | text) */
+.talks { display: flex; flex-direction: column; gap: 20px; }
+.talks-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 24px; }
+.talks-head h2 { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(36px, 4.4vw, 48px); line-height: 1; }
+.talks-head p { margin: 0; color: var(--muted); font-size: 15px; }
+.talk { box-shadow: var(--shadow); --c: var(--entropy); position: relative; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); border: 1px solid var(--line); border-radius: 20px; background: var(--surface); overflow: hidden; transition: border-color .3s, transform .3s; }
+.talk:hover, .talk:focus-within { border-color: var(--c); transform: translateY(-3px); }
+.talk-visual { display: flex; flex-direction: column; justify-content: center; gap: 10px; padding: 28px; background: var(--soft); border-right: 1px solid var(--line); color: var(--c); }
+.talk-visual > img { display: block; width: 100%; height: auto; max-width: 100%; border-radius: 12px; border: 1px solid var(--line); box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.45); transition: transform .5s cubic-bezier(0.2, 0.85, 0.25, 1); }
+.talk:hover .talk-visual > img, .talk:focus-within .talk-visual > img { transform: scale(1.025); }
+/* talk visual: iceberg (80 / 20 from slide 8) + the golden rule (slide 19) */
+.berg { display: block; width: 100%; height: auto; }
+.berg .surface { fill: none; stroke: currentColor; stroke-opacity: 0.7; stroke-width: 1.5; }
+.berg-tip { fill: currentColor; fill-opacity: 0.9; }
+.berg-under { fill: currentColor; fill-opacity: 0.16; stroke: currentColor; stroke-opacity: 0.45; stroke-width: 1.5; transition: fill-opacity .5s, stroke-opacity .5s; }
+.talk:hover .berg-under, .talk:focus-within .berg-under { fill-opacity: 0.4; stroke-opacity: 1; }
+.berg text { font: 12px var(--mono); fill: var(--muted); }
+.berg .lab-under { fill: var(--fg); opacity: 0.7; transition: opacity .5s; }
+.talk:hover .berg .lab-under { opacity: 1; }
+.berg .leader { fill: none; stroke: var(--muted); stroke-dasharray: 2 3; }
+.talk-combo { gap: 4px; }
+.talk-combo blockquote { margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.talk-combo p { margin: 0; font-family: var(--display); font-size: clamp(26px, 2.6vw, 32px); line-height: 1.05; color: var(--c); }
+.talk-combo cite { font: normal 12px/1.4 var(--mono); color: var(--muted); }
+.talk-body { display: flex; flex-direction: column; gap: 12px; padding: 28px 32px; min-width: 0; }
+.talk-meta { margin: 0; font: 500 12px/1.4 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.talk-meta b { font-weight: 500; color: var(--c); }
+.talk h3 { margin: 0; font-size: 24px; font-weight: 800; line-height: 1.2; }
+.talk h3 a { text-decoration: none; }
+.talk h3 a::after { content: ""; position: absolute; inset: 0; border-radius: 20px; }
+.talk h3 a:focus-visible { outline: none; }
+.talk:has(h3 a:focus-visible) { outline: 2px solid var(--c); outline-offset: 3px; }
+.talk .subtitle { margin: -6px 0 0; font-family: var(--display); font-style: italic; font-size: 22px; color: var(--c); }
+.talk-body > p.desc { margin: 0; color: var(--muted); font-size: 15px; max-width: 60ch; }
+.phases { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: 15px; }
+.phases li { display: flex; gap: 12px; align-items: baseline; }
+.phases li span { font: 500 12px/1 var(--mono); color: var(--c); min-width: 18px; }
+.phases li small { color: var(--muted); font-size: 13.5px; }
+.talk-cta { margin-top: auto; padding-top: 10px; font-weight: 700; font-size: 15px; color: var(--c); }
+.talk-cta i { font-style: normal; display: inline-block; transition: transform .3s; }
+.talk:hover .talk-cta i { transform: translateX(4px); }
+@media (max-width: 760px) {
+  .talk { grid-template-columns: minmax(0, 1fr); }
+  .talk-visual { border-right: 0; border-bottom: 1px solid var(--line); padding: 22px; }
+  .talk-body { padding: 22px; }
+}
+@media (prefers-reduced-motion: reduce) { .talk-visual img, .berg-under, .berg .lab-under, .talk, .talk-cta i { transition: none; } .talk:hover { transform: none; } }
+footer .wrap { padding-block: 0 40px; }
+.foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+footer b { color: var(--fg); letter-spacing: 0.12em; }
+footer .contact { display: flex; flex-wrap: wrap; gap: 4px 18px; }
+footer a { color: var(--entropy); text-decoration: none; }
+
+/* The name: three six-sided prisms, one word per face (CSS 3D, ported from cv-next d68c6b9) */
+.name { box-shadow: var(--shadow); display: flex; flex-direction: column; align-items: center; gap: 22px; padding: 44px max(16px, 3vw) 40px; border: 1px solid var(--line); border-radius: 24px; background: var(--surface); text-align: center; }
+.name .label { margin: 0; font: 500 12.5px/1.4 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.name h2 { margin: -10px 0 0; font-family: var(--display); font-weight: 400; font-size: clamp(36px, 5vw, 56px); line-height: 1.05; letter-spacing: -0.01em; text-wrap: balance; }
+.name .sub { margin: 0; color: var(--muted); font-size: 16px; max-width: 56ch; }
+.flow { align-self: center; transform: translateY(8px); font: 400 22px/1 var(--mono); color: var(--muted); }
+.gloss { margin: -4px 0 0; font: 12.5px/1.4 var(--mono); color: var(--muted); }
+.gloss b { font-weight: 500; color: var(--c); }
+.gloss-note { margin-top: -10px; opacity: 0.75; }
+.gloss-note i { font-family: var(--display); font-size: 15px; color: var(--c); }
+.name-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 20px; }
+.spin { font: 600 14.5px/1 var(--sans); color: var(--fg); background: var(--soft); border: 1px solid var(--line); border-radius: 99px; min-height: 44px; padding: 0 20px; cursor: pointer; transition: border-color .2s; }
+.spin:hover { border-color: var(--muted); }
+.prisms { --fh: 64px; --r: calc(var(--fh) * 1.539);   /* decagon: r = h / (2·tan 18°) */ display: flex; justify-content: center; flex-wrap: wrap; gap: 8px clamp(16px, 3vw, 36px); width: 100%; }
+.prism-col { flex: 1; min-width: 200px; max-width: 250px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.prism-col[data-k="in"] { --c: var(--in); }
+.prism-col[data-k="cor"] { --c: var(--cor); }
+.prism-col[data-k="tx"] { --c: var(--tx); }
+.prism-tag { font-weight: 800; font-size: 22px; letter-spacing: 0.15em; color: var(--c); }
+.prism { all: unset; box-sizing: border-box; display: block; width: 100%; height: var(--fh); margin: calc(var(--fh) * 0.8) 0; perspective: 700px; cursor: pointer; border-radius: 14px; -webkit-tap-highlight-color: transparent; }
+.prism:focus-visible { outline: none; }
+.prism:focus-visible .face.on { outline: 2px solid var(--c); outline-offset: 3px; }
+.drum { position: relative; display: block; width: 100%; height: 100%; transform-style: preserve-3d; transform: translateZ(calc(var(--r) * -1)); }
+.prism.dragging .face { transition: none; }
+.face {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  border-radius: 12px; border: 1px solid var(--line);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--fg) 7%, transparent), color-mix(in srgb, var(--fg) 1.5%, transparent)), var(--surface);
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  transform: rotateX(calc((var(--i) - var(--k, 0)) * -36deg)) translateZ(var(--r));
+  font: 600 15px/1 var(--sans); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+  transition: transform 0.9s cubic-bezier(0.2, 0.85, 0.25, 1), color 0.6s, border-color 0.6s, box-shadow 0.6s, opacity 0.5s;
+}
+.face:not(.on):not(.near) { opacity: 0; }
+.face.near { opacity: 0.5; }
+.face.on { z-index: 2; color: var(--fg); border-color: var(--c); box-shadow: 0 0 28px -6px color-mix(in srgb, var(--c) 40%, transparent), inset 0 0 18px -8px color-mix(in srgb, var(--c) 40%, transparent); }
+.prism:hover .face.on { box-shadow: 0 0 36px -4px color-mix(in srgb, var(--c) 45%, transparent), inset 0 0 22px -8px color-mix(in srgb, var(--c) 45%, transparent); }
+.reading { margin: 0; font-family: var(--display); font-style: italic; font-size: clamp(26px, 3.4vw, 36px); line-height: 1.2; }
+.reading b { font-style: normal; font-weight: 400; }
+.reading .r-in { color: var(--in); } .reading .r-cor { color: var(--cor); } .reading .r-tx { color: var(--tx); }
+.reading-note { margin: 0; font: 12.5px/1.5 var(--mono); color: var(--muted); }
+@media (prefers-reduced-motion: reduce) { .face { transition: none; } }
+@media (max-width: 560px) {
+  .prisms { --fh: 52px; row-gap: 0; }
+  .prism-col { min-width: 100%; gap: 4px; }
+  .prism { margin: calc(var(--fh) * 0.85) 0; }
+  .flow { flex-basis: 100%; transform: rotate(90deg); margin: 2px 0; }
+  .switch { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .switch button { min-height: 44px; padding: 6px 10px; align-items: center; text-align: center; }
+  .switch button small { display: none; }
+  .stage canvas { aspect-ratio: 5 / 4; }
+}
+
+
+@media (max-width: 900px) {
+  .hero .wrap { grid-template-columns: minmax(0, 1fr); }
+  .hero h1 { font-size: clamp(48px, 14vw, 76px); margin-bottom: 14px; }
+  .hero h1 span { display: inline; margin-right: 0.18em; }
+  .courses { grid-template-columns: minmax(0, 1fr); }
+}
+</style>
 </head>
-
 <body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="#">INCORTX<span>Classes</span></a>
+    <nav aria-label="Main">
+      <a href="#courses">Courses</a>
+      <a href="#talks">Talks</a>
+      <a href="#name">Behind the name</a>
+      <a href="https://profile.wkneil.com">Instructor</a>
+    </nav>
+  </div>
+</header>
 
-    <!-- Ambient Background -->
-    <div class="ambient-bg">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1 aria-label="Time. Light. Entropy.">
+        <span data-scene="time" style="--c: var(--time)" class="on">Time.</span>
+        <span data-scene="light" style="--c: var(--light)">Light.</span>
+        <span data-scene="entropy" style="--c: var(--entropy)">Entropy.</span>
+      </h1>
+      <p class="lede">Light gives time its shape. Entropy gives it a direction. Each course here measures one of them: signals that change over time, images made of light, and data whose uncertainty we learn to reduce.</p>
+      <div class="switch" role="group" aria-label="Show an idea">
+        <button type="button" data-scene="time" style="--c: var(--time)" aria-pressed="true">Time<small>Signal Processing</small></button>
+        <button type="button" data-scene="light" style="--c: var(--light)" aria-pressed="false">Light<small>Computer Vision</small></button>
+        <button type="button" data-scene="entropy" style="--c: var(--entropy)" aria-pressed="false">Entropy<small>Data Analytics</small></button>
+      </div>
     </div>
+    <figure class="stage">
+      <canvas id="field" role="img" aria-label="Four sine waves at odd harmonics move through time; the front line is their sum, a square wave"></canvas>
+      <figcaption class="caption" id="caption"><b>Time</b> · sine waves at 1, 3, 5 and 7 × the base frequency add up to a square wave: the Fourier series.</figcaption>
+    </figure>
+  </div>
+</section>
 
-    <!-- Main Content -->
-    <div class="container">
-        <!-- Navigation -->
-        <header>
-            <a href="#" class="brand">
-                INCORTX
-            </a>
-            <nav class="nav-links">
-                <a href="https://profile.wkneil.com" target="_blank" class="nav-profile-btn">
-                    <i class="ph ph-user-circle"></i> Instructor Profile
-                </a>
-            </nav>
-        </header>
-
-        <!-- Hero -->
-        <section class="hero fade-up">
-            <div class="hero-badge">Academic Portal</div>
-            <h1>Advanced Machine<br>Intelligence</h1>
-            <p>Exclusive academic resources, engineering fundamentals, and advanced research materials designed for
-                elite scientists, researchers, and innovators.</p>
-        </section>
-
-        <!-- Philosophy Section -->
-        <section class="philosophy glass-panel fade-up">
-            <div class="philosophy-layout">
-                <div class="philosophy-quote">
-                    <i class="ph-fill ph-quotes"></i>
-                    <p class="philosophy-desc">
-                        "A cognitive processing core that intelligently fuses innovation and technology, architecting
-                        advanced systems capable of deep analytical reasoning and seamless universal integration."
-                    </p>
-                </div>
-
-                <div class="philosophy-divider"></div>
-
-                <div class="philosophy-breakdown">
-                    <div class="breakdown-item">
-                        <div class="prefix">IN-</div>
-                        <div class="meaning-tags">
-                            <span>Intelligence</span>
-                            <span>Inference</span>
-                            <span>Insight</span>
-                            <span>Integration</span>
-                            <span>Incorporate</span>
-                            <span>Innovation</span>
-                        </div>
-                    </div>
-                    <div class="breakdown-item">
-                        <div class="prefix">COR</div>
-                        <div class="meaning-tags">
-                            <span>Cortex</span>
-                            <span>Core</span>
-                            <span>Corpus</span>
-                            <span>Correlation</span>
-                            <span>Coordination</span>
-                            <span>Correction</span>
-                        </div>
-                    </div>
-                    <div class="breakdown-item">
-                        <div class="prefix">-TX</div>
-                        <div class="meaning-tags">
-                            <span>Technology</span>
-                            <span>Transformation</span>
-                            <span>Transmission</span>
-                            <span>Transfer</span>
-                            <span>Tensor</span>
-                            <span>Transaction</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Course Grid -->
-        <section class="course-grid">
-            <!-- Signal Processing -->
-            <a href="SignalProcessing/session-00/slides.html" target="_blank" class="course-card">
-                <div class="card-icon">
-                    <i class="ph ph-waveform"></i>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Signal Processing</h3>
-                    <p class="card-desc">Mathematical foundations of signal analysis in the frequency domain. Covering
-                        Fourier transforms, digital filters, and real-time audio systems.</p>
-                    <div class="card-footer">
-                        <span>Enter Course</span>
-                        <i class="ph-bold ph-arrow-right"></i>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Computer Vision -->
-            <a href="ComputerVision/session-00/slides.html" target="_blank" class="course-card">
-                <div class="card-icon">
-                    <i class="ph ph-bounding-box"></i>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Computer Vision</h3>
-                    <p class="card-desc">Advanced techniques for spatial intelligence. Deep learning algorithms, feature
-                        extraction, and real-time inference on edge devices.</p>
-                    <div class="card-footer">
-                        <span>Enter Course</span>
-                        <i class="ph-bold ph-arrow-right"></i>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Data Analytics -->
-            <a href="DataAnalytics/index.html" target="_blank" class="course-card">
-                <div class="card-icon">
-                    <i class="ph ph-chart-scatter"></i>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Data Analytics</h3>
-                    <p class="card-desc">Turning raw data into decisions you can defend. Collection and
-                        cleaning, supervised and unsupervised learning, generative models, and the habits
-                        that keep a result honest.</p>
-                    <div class="card-footer">
-                        <span>Enter Course</span>
-                        <i class="ph-bold ph-arrow-right"></i>
-                    </div>
-                </div>
-            </a>
-        </section>
-
-        <!-- Talks -->
-        <section class="talks-section fade-up">
-            <div class="talks-head">
-                <h2>Talks</h2>
-                <p>Standalone presentations — not part of any course.</p>
-            </div>
-            <div class="course-grid talks-grid">
-                <a href="Talks/data-first-data-science/index.html" target="_blank" class="course-card">
-                    <div class="card-icon">
-                        <i class="ph ph-presentation-chart"></i>
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">Data-First Data Science</h3>
-                        <p class="card-desc">Foundations and strategic preparation — why the decisions made about
-                            the data, before a single model is trained, are the ones that decide the result.
-                            A 20-minute talk.</p>
-                        <div class="card-footer">
-                            <span>Open the slides</span>
-                            <i class="ph-bold ph-arrow-right"></i>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </section>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <p>&copy; INCORTX Research Lab. All rights reserved.</p>
-            <div class="footer-links">
-                <a href="https://profile.wkneil.com" target="_blank">Instructor Profile</a>
-                <a href="mailto:wasu.ku@kmitl.ac.th">Contact</a>
-            </div>
+<main>
+  <div class="wrap">
+    <section id="courses" class="courses" aria-label="Courses">
+      <article class="card" data-scene="time" style="--c: var(--time)">
+        <div class="motif" data-motif="time" aria-hidden="true"></div>
+        <div class="card-body">
+          <span class="kicker">Time</span>
+          <h2><a href="SignalProcessing/index.html">Signal Processing</a></h2>
+          <p>From sampling and convolution to the DFT, spectrograms and digital filters, every idea run on real signals and sounds.</p>
+          <div class="card-foot">
+            <span class="enter" aria-hidden="true">Enter course <i>→</i></span>
+            <span class="sub"><a href="SignalProcessing/project/index.html">Project</a><a href="SignalProcessing/practice/index.html">Practice</a></span>
+          </div>
         </div>
-    </footer>
+      </article>
+      <article class="card" data-scene="light" style="--c: var(--light)">
+        <div class="motif" data-motif="light" aria-hidden="true"></div>
+        <div class="card-body">
+          <span class="kicker">Light</span>
+          <h2><a href="ComputerVision/index.html">Computer Vision</a></h2>
+          <p>From image formation and filtering to features, geometry, CNNs, detection and segmentation, on real images and video.</p>
+          <div class="card-foot">
+            <span class="enter" aria-hidden="true">Enter course <i>→</i></span>
+            <span class="sub"><a href="ComputerVision/project/index.html">Project</a><a href="ComputerVision/practice/index.html">Practice</a></span>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-scene="entropy" style="--c: var(--entropy)">
+        <div class="motif" data-motif="entropy" aria-hidden="true"></div>
+        <div class="card-body">
+          <span class="kicker">Entropy</span>
+          <h2><a href="DataAnalytics/index.html">Data Analytics</a></h2>
+          <p>Turning raw data into decisions you can defend: cleaning, supervised and unsupervised learning, generative models, and honest results.</p>
+          <div class="card-foot">
+            <span class="enter" aria-hidden="true">Enter course <i>→</i></span>
+            <span class="sub"><a href="DataAnalytics/project/index.html">Project</a><a href="DataAnalytics/rules/index.html">Rules</a></span>
+          </div>
+        </div>
+      </article>
+    </section>
 
-    <!-- Interactive Mouse Tracking for Cards -->
-    <script>
-        document.querySelectorAll('.course-card').forEach(card => {
-            card.addEventListener('mousemove', e => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
-            });
-        });
-    </script>
+    <section id="talks" class="talks" aria-labelledby="talks-h">
+      <div class="talks-head">
+        <h2 id="talks-h">Talks</h2>
+        <p>Standalone presentations, outside the courses.</p>
+      </div>
+      <article class="talk">
+        <div class="talk-visual talk-combo">
+          <svg class="berg" viewBox="0 0 360 220" role="img" aria-label="Iceberg: modeling is the 20% above the water, data preparation the 80% below">
+            <defs><linearGradient id="water-fade-e" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="currentColor" stop-opacity="0.1"/><stop offset="1" stop-color="currentColor" stop-opacity="0"/></linearGradient></defs>
+            <rect class="water" x="0" y="80" width="360" height="140" fill="url(#water-fade-e)"/>
+            <path class="berg-under" d="M118,80 L232,80 L270,122 L258,168 L212,204 L150,210 L104,176 L94,126 Z"/>
+            <path class="berg-tip" d="M140,80 L160,46 L178,24 L198,44 L216,80 Z"/>
+            <path class="surface" d="M0,80 q7.5,-3.5 15,0 t15,0 t15,0 t15,0 t15,0 t15,0 t15,0 t15,0 t15,0 t15,0 t15,0 t15,0 t15,0 t15,0 t15,0 t15,0 t15,0 t15,0 t15,0 t15,0 t15,0 t15,0 t15,0 t15,0"/>
+            <path class="leader" d="M200,40 H232"/>
+            <text x="238" y="44">Modeling · 20%</text>
+            <text class="lab-under" x="182" y="140" text-anchor="middle">Data preparation</text>
+            <text class="lab-under" x="182" y="158" text-anchor="middle">80%</text>
+          </svg>
+          <blockquote>
+            <p>Garbage in, garbage out.</p>
+            <cite>The golden rule, final slide</cite>
+          </blockquote>
+        </div>
+        <div class="talk-body">
+          <p class="talk-meta"><b>Advanced Machine Learning Series</b> · 20-minute talk</p>
+          <h3><a href="Talks/data-first-data-science/index.html">Data-First Data Science</a></h3>
+          <p class="subtitle">Foundations and strategic preparation</p>
+          <p class="desc">Why the decisions made about the data, before a single model is trained, are the ones that decide the result.</p>
+          <ol class="phases" aria-label="The three phases in the talk">
+            <li><span>01</span><div>Essential preprocessing</div></li>
+            <li><span>02</span><div>The separation strategy <small>· random, stratified and group splits</small></div></li>
+            <li><span>03</span><div>Augmentation and resampling</div></li>
+          </ol>
+          <span class="talk-cta" aria-hidden="true">Open the slides <i>→</i></span>
+        </div>
+      </article>
+    </section>
+
+    <section id="name" class="name" aria-labelledby="name-h">
+      <p class="label">Behind the name</p>
+      <h2 id="name-h">One name, 1,000 readings.</h2>
+      <p class="sub">Read left to right, INCORTX is a signal path: something comes in, a core makes sense of it, something goes out. Each root also opens onto ten words, from the mind, the courses and the cosmos. Turn a prism to read the name another way.</p>
+      <div class="prisms" role="group" aria-label="INCORTX, one word from each part of the name">
+        <div class="prism-col" data-k="in">
+          <div class="prism-tag">IN-</div>
+          <button type="button" class="prism" aria-label="IN- Intelligence, next word">
+            <span class="drum"><span class="face on" style="--i:0">Intelligence</span><span class="face near" style="--i:1">Interference</span><span class="face" style="--i:2">Input</span><span class="face" style="--i:3">Insight</span><span class="face" style="--i:4">Infinity</span><span class="face" style="--i:5">Information</span><span class="face" style="--i:6">Innovation</span><span class="face" style="--i:7">Intensity</span><span class="face" style="--i:8">Inference</span><span class="face near" style="--i:9">Integration</span></span>
+          </button>
+          <p class="gloss"><b>in</b> · what comes in</p>
+        </div>
+        <span class="flow" aria-hidden="true">→</span>
+        <div class="prism-col" data-k="cor">
+          <div class="prism-tag">COR</div>
+          <button type="button" class="prism" aria-label="COR Cortex, next word">
+            <span class="drum"><span class="face on" style="--i:0">Cortex</span><span class="face near" style="--i:1">Corona</span><span class="face" style="--i:2">Correlation</span><span class="face" style="--i:3">Cornea</span><span class="face" style="--i:4">Core</span><span class="face" style="--i:5">Correlator</span><span class="face" style="--i:6">Corpus</span><span class="face" style="--i:7">Correspondence</span><span class="face" style="--i:8">Coordination</span><span class="face near" style="--i:9">Correction</span></span>
+          </button>
+          <p class="gloss"><b>core</b> · what makes sense of it</p>
+          <p class="gloss gloss-note"><i>cor</i> is Latin for heart</p>
+        </div>
+        <span class="flow" aria-hidden="true">→</span>
+        <div class="prism-col" data-k="tx">
+          <div class="prism-tag">-TX</div>
+          <button type="button" class="prism" aria-label="-TX Technology, next word">
+            <span class="drum"><span class="face on" style="--i:0">Technology</span><span class="face near" style="--i:1">Time</span><span class="face" style="--i:2">Transform</span><span class="face" style="--i:3">Trend</span><span class="face" style="--i:4">Transmission</span><span class="face" style="--i:5">Trajectory</span><span class="face" style="--i:6">Transformation</span><span class="face" style="--i:7">Tensor</span><span class="face" style="--i:8">Transfer</span><span class="face near" style="--i:9">Transaction</span></span>
+          </button>
+          <p class="gloss"><b>tx</b> · what goes out</p>
+        </div>
+      </div>
+      <p class="reading" aria-live="polite"><b class="r-in">In</b>telligence · <b class="r-cor">Cor</b>tex · <b class="r-tx">T</b>echnology</p>
+      <div class="name-foot">
+        <p class="reading-note">10 × 10 × 10 = 1,000 readings · tap a prism to turn it</p>
+        <button type="button" class="spin">Spin all three</button>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <span><b>INCORTX</b> Classes</span>
+      <span class="contact"><a href="https://profile.wkneil.com">Instructor profile</a><span>wasu.ku@kmitl.ac.th</span></span>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+(() => {
+  // ---- card motifs (viewBox 320 × 132)
+  const NS = 'http://www.w3.org/2000/svg';
+  const grid = () => { let g = ''; for (let x = 40; x < 320; x += 40) g += `<line class="grid" x1="${x}" y1="0" x2="${x}" y2="132"/>`; return g + '<line class="grid" x1="0" y1="66" x2="320" y2="66"/>'; };
+  const motifs = {
+    // Time: first four odd harmonics, their partial sum (with its Gibbs ripples) and the faint fundamental; period 160 px, drawn over 2 periods + 1 so the slide loops
+    time: () => {
+      let sum = '', fun = '';
+      for (let x = 0; x <= 480; x += 2) {
+        const p = (x / 160) * Math.PI * 2;
+        let s = 0; for (const k of [1, 3, 5, 7]) s += Math.sin(k * p) / k;
+        sum += `${x ? 'L' : 'M'}${x},${(66 - s * 4 / Math.PI * 34).toFixed(1)}`;
+        fun += `${x ? 'L' : 'M'}${x},${(66 - Math.sin(p) * 34 * 4 / Math.PI).toFixed(1)}`;
+      }
+      return `${grid()}<g class="wave-run"><path d="${fun}" fill="none" stroke="currentColor" stroke-opacity=".3" stroke-width="1.5"/><path d="${sum}" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/></g>`;
+    },
+    // Light: object arrow → pinhole → inverted image on the sensor (equal distances, so equal size)
+    light: () => `${grid()}
+      <path d="M40,96 V30 M30,42 L40,30 L50,42" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M160,8 V60 M160,72 V124" stroke="currentColor" stroke-opacity=".55" stroke-width="3"/>
+      <path d="M280,8 V124" stroke="currentColor" stroke-opacity=".55" stroke-width="2"/>
+      <path d="M272,36 V102 M262,90 L272,102 L282,90" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path class="ray" d="M40,30 L160,66 L272,102" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <path class="ray" d="M40,96 L160,66 L272,36" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <path class="ray" d="M40,63 L272,69" fill="none" stroke="currentColor" stroke-width="1.5" stroke-opacity=".6"/>`,
+    // Entropy: 54 dots, clustered at rest; while hovered they alternate between scattered and clustered
+    entropy: () => {
+      const C = [[78, 48], [196, 86], [258, 38]];
+      let d = '';
+      for (let n = 0; n < 54; n++) d += `<circle class="dot" r="${n % 3 ? 3 : 3.8}" fill="currentColor" fill-opacity="${n % 3 ? .7 : 1}"/>`;
+      return grid() + d;
+    }
+  };
+  document.querySelectorAll('.motif').forEach((m) => {
+    m.innerHTML = `<svg xmlns="${NS}" viewBox="0 0 320 132" preserveAspectRatio="xMidYMid slice">${motifs[m.dataset.motif]()}</svg>`;
+  });
+  const em = document.querySelector('[data-motif="entropy"]');
+  if (em) {
+    const dots = [...em.querySelectorAll('.dot')], C = [[78, 48], [196, 86], [258, 38]];
+    const rnd = (i) => { const s = Math.sin(i * 12.9898 + 4.1) * 43758.5453; return s - Math.floor(s); };
+    const g = (i) => Math.sqrt(-2 * Math.log(rnd(i) + 1e-6)) * Math.cos(6.2832 * rnd(i + 0.5));
+    const clustered = dots.map((_, n) => { const c = C[n % 3]; return [c[0] + g(n) * 14, c[1] + g(n + 99) * 11]; });
+    const scattered = dots.map((_, n) => [12 + rnd(n + 7) * 296, 10 + rnd(n + 13) * 112]);
+    const place = (P) => dots.forEach((el, n) => { el.style.transform = `translate(${P[n][0].toFixed(1)}px, ${P[n][1].toFixed(1)}px)`; });
+    place(clustered);
+    const card = em.closest('.card'), still = matchMedia('(prefers-reduced-motion: reduce)');
+    let timer = null, spread = false;
+    const startE = () => { if (timer || still.matches) return; const tick = () => { spread = !spread; place(spread ? scattered : clustered); }; tick(); timer = setInterval(tick, 1700); };
+    const stopE = () => { clearInterval(timer); timer = null; spread = false; place(clustered); };
+    card.addEventListener('pointerenter', startE); card.addEventListener('pointerleave', stopE);
+    card.addEventListener('focusin', startE); card.addEventListener('focusout', stopE);
+    card.addEventListener('motif-play', () => { startE(); setTimeout(stopE, 3500); });
+  }
+  // touch screens have no hover: play each card's motif once when it scrolls into view
+  if (matchMedia('(hover: none)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const io = new IntersectionObserver((es) => es.forEach((en) => {
+      if (!en.isIntersecting) return;
+      const card = en.target; io.unobserve(card);
+      card.classList.add('play'); card.dispatchEvent(new Event('motif-play'));
+      setTimeout(() => card.classList.remove('play'), 3600);
+    }), { threshold: 0.6 });
+    document.querySelectorAll('.card').forEach((c) => io.observe(c));
+  }
+
+  const N = 1998, TAU = Math.PI * 2;
+  const hash = (n) => { const s = Math.sin(n * 12.9898 + 78.233) * 43758.5453; return s - Math.floor(s); };
+
+  // ---- TIME: odd harmonics 1, 3, 5, 7 at their true amplitudes (4/π · 1/k) and their sum, a square wave with Gibbs ripples
+  const HARM = [1, 3, 5, 7], SUMN = 798, CN = 300, AMP = 0.3, ROWZ = [1.0, 0.5, 0.05, -0.4, -0.85];
+  function timeScene(t, P, B) {
+    for (let i = 0; i < SUMN; i++) {
+      const x = -1 + 2 * i / (SUMN - 1), u = (x + 1) / 2;
+      let sum = 0;
+      for (const k of HARM) sum += Math.sin(TAU * k * (1.5 * u - 0.12 * t)) / k;
+      const q = i * 3;
+      P[q] = x; P[q + 1] = 0.32 + AMP * sum * 4 / Math.PI; P[q + 2] = ROWZ[0];
+      B[i] = 0.9;
+    }
+    HARM.forEach((k, r) => {
+      for (let i = 0; i < CN; i++) {
+        const x = -1 + 2 * i / (CN - 1), u = (x + 1) / 2, s = Math.sin(TAU * k * (1.5 * u - 0.12 * t)), n = SUMN + r * CN + i;
+        P[n * 3] = x; P[n * 3 + 1] = 0.32 + AMP * 4 / Math.PI * s / k; P[n * 3 + 2] = ROWZ[r + 1];
+        B[n] = 0.3 + 0.35 * Math.abs(s);
+      }
+    });
+  }
+
+  // ---- LIGHT: pinhole camera (object -> pinhole -> inverted image)
+  // object shapes as polylines of [y, z], each resampled to M points so one can morph into the next
+  const M = 110, PIN = [0, 0.4, 0], IMG_D = 0.9;
+  function sample(path) {
+    const segs = []; let L = 0;
+    path.forEach((pl) => { for (let i = 1; i < pl.length; i++) { const a = pl[i - 1], b = pl[i], l = Math.hypot(b[0] - a[0], b[1] - a[1]); segs.push([a, b, L, l]); L += l; } });
+    const out = [];
+    for (let j = 0; j < M; j++) {
+      const d = (j + 0.5) / M * L, s = segs.find((g) => d <= g[2] + g[3]) || segs[segs.length - 1], e = (d - s[2]) / s[3];
+      out.push([-1, s[0][0] + (s[1][0] - s[0][0]) * e, s[0][1] + (s[1][1] - s[0][1]) * e]);
+    }
+    return out;
+  }
+  const SHAPES = [
+    { name: 'an arrow', pts: sample([[[0.06, 0], [0.74, 0]], [[0.58, -0.15], [0.74, 0], [0.58, 0.15]], [[0.46, 0], [0.46, 0.3], [0.32, 0.3]]]) },
+    { name: 'the letter F', pts: sample([[[0.06, -0.14], [0.76, -0.14], [0.76, 0.24]], [[0.44, -0.14], [0.44, 0.14]]]) },
+    { name: 'a house', pts: sample([[[0.5, -0.26], [0.06, -0.26], [0.06, 0.26], [0.5, 0.26], [0.5, -0.26], [0.78, 0], [0.5, 0.26]], [[0.06, 0.06], [0.28, 0.06], [0.28, 0.17], [0.06, 0.17]]]) }
+  ];
+  const HOLD = 5, MORPH = 1.2, OBJ = SHAPES[0].pts.map((p) => p.slice());
+  let lightShape = 0;
+  function updateObject(t) {
+    const cycle = HOLD + MORPH, k = Math.floor(t / cycle), ph = t - k * cycle;
+    const a = SHAPES[k % SHAPES.length].pts, b = SHAPES[(k + 1) % SHAPES.length].pts;
+    const e = ph < HOLD ? 0 : ease((ph - HOLD) / MORPH);
+    for (let j = 0; j < M; j++) for (let d = 1; d < 3; d++) OBJ[j][d] = a[j][d] + (b[j][d] - a[j][d]) * e;
+    lightShape = e > 0 ? -1 : k % SHAPES.length;   // no name while the shape is changing
+  }
+  const image = (p) => [PIN[0] + (PIN[0] - p[0]) * IMG_D, PIN[1] + (PIN[1] - p[1]) * IMG_D, PIN[2] + (PIN[2] - p[2]) * IMG_D];
+  function lightScene(t, P, B) {
+    updateObject(t);
+    for (let n = 0; n < N; n++) {
+      const j = Math.floor(n / 10) % M, cls = n % 10, o = OBJ[j], im = image(o), q = n * 3, h = hash(n);
+      if (cls < 3) { P[q] = o[0]; P[q + 1] = o[1] + (h - 0.5) * 0.012; P[q + 2] = o[2] + (hash(n + 1) - 0.5) * 0.012; B[n] = 1; }
+      else if (cls < 5) { P[q] = im[0]; P[q + 1] = im[1] + (h - 0.5) * 0.012; P[q + 2] = im[2] + (hash(n + 1) - 0.5) * 0.012; B[n] = 0.85; }
+      else {
+        const s = (t * 0.22 + h) % 1;
+        const a = s < 0.5 ? o : PIN, b = s < 0.5 ? PIN : im, e = s < 0.5 ? s * 2 : s * 2 - 1;
+        P[q] = a[0] + (b[0] - a[0]) * e; P[q + 1] = a[1] + (b[1] - a[1]) * e; P[q + 2] = a[2] + (b[2] - a[2]) * e;
+        B[n] = 0.42;
+      }
+    }
+  }
+
+  // ---- ENTROPY: evenly scattered points (high entropy) settle into three clusters (low entropy), then scatter again
+  const WELLS = [[-0.5, -0.35, 1.0], [0.5, 0.1, 0.7], [-0.05, 0.62, 0.5]];
+  const warp = (x, z) => { let y = 0; for (const [cx, cz, m] of WELLS) { const d = Math.hypot(x - cx, z - cz) / 0.24; y -= m * 0.4 / (1 + d * d); } return y; };
+  const orbit = [];
+  for (let n = 0; n < N; n++) {
+    const u = hash(n * 3.1), c = u < 0.45 ? 0 : u < 0.77 ? 1 : 2, m = WELLS[c][2];
+    const r = 0.04 + 0.3 * Math.sqrt(hash(n * 5.7)) * Math.sqrt(m);
+    orbit.push([c, r, TAU * hash(n * 9.3), 0.05 * Math.sqrt(m) / Math.pow(r, 1.2), TAU * hash(n * 2.2)]);
+  }
+  const scatter = [];
+  for (let n = 0; n < N; n++) scatter.push([hash(n * 1.7) * 2 - 1, hash(n * 4.3) * 0.7, hash(n * 6.1) * 2 - 1, 0.5 + hash(n * 8.9)]);
+  let order = 0;
+  // one 10 s cycle: 2 s scattered, 3 s settling, 3 s clustered, 2 s scattering
+  function orderAt(t) {
+    const p = t % 10;
+    return p < 2 ? 0 : p < 5 ? ease((p - 2) / 3) : p < 8 ? 1 : 1 - ease((p - 8) / 2);
+  }
+  function entropyScene(t, P, B) {
+    order = reduce.matches ? 1 : orderAt(t);
+    for (let n = 0; n < N; n++) {
+      const [c, r, th0, w, ph] = orbit[n], [cx, cz] = WELLS[c], th = th0 + w * t, q = n * 3, s = scatter[n];
+      const x = cx + r * Math.cos(th), z = cz + r * Math.sin(th), y = warp(x, z) + 0.05 + 0.04 * Math.sin(th + ph);
+      const sx = s[0] + 0.03 * Math.sin(t * s[3] + n), sy = s[1] + 0.03 * Math.sin(t * s[3] * 1.3 + n * 2), sz = s[2] + 0.03 * Math.cos(t * s[3] + n);
+      P[q] = sx + (x - sx) * order; P[q + 1] = sy + (y - sy) * order; P[q + 2] = sz + (z - sz) * order;
+      B[n] = 0.35 + (0.7 * Math.max(0, 1 - r / 0.36) - 0.05) * order;
+    }
+  }
+  // Shannon entropy of where the points sit on an 8 × 8 floor grid, in bits (max 6)
+  const BINS = 8, hist = new Float32Array(BINS * BINS);
+  function floorEntropy(P) {
+    hist.fill(0);
+    for (let n = 0; n < N; n++) {
+      const i = Math.min(BINS - 1, Math.max(0, Math.floor((P[n * 3] + 1) / 2 * BINS)));
+      const j = Math.min(BINS - 1, Math.max(0, Math.floor((P[n * 3 + 2] + 1) / 2 * BINS)));
+      hist[i * BINS + j]++;
+    }
+    let H = 0;
+    for (const c of hist) if (c) { const p = c / N; H -= p * Math.log2(p); }
+    return H;
+  }
+
+  const scenes = {
+    time: { fn: timeScene, color: 'time', label: 'Time',
+      note: 'sine waves at 1, 3, 5 and 7 × the base frequency add up to a square wave: the Fourier series.',
+      aria: 'Four sine waves at odd harmonics move through time; the front line is their sum, a square wave' },
+    light: { fn: lightScene, color: 'light', label: 'Light',
+      note: 'a pinhole camera: light through one small hole lands upside down and mirrored. Image formation, CV Session 01.',
+      aria: 'Light rays from an arrow pass through a pinhole and form an inverted image on a sensor' },
+    entropy: { fn: entropyScene, color: 'entropy', label: 'Entropy',
+      note: 'scattered points settle into clusters and H, their Shannon entropy on an 8 × 8 grid, drops. Finding that structure is what data analysis does.',
+      aria: 'Scattered points settle into three clusters and spread again, with a live Shannon entropy reading in bits' }
+  };
+
+  const canvas = document.getElementById('field'), ctx = canvas.getContext('2d'), caption = document.getElementById('caption');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  const cur = new Float32Array(N * 3), curB = new Float32Array(N), snap = new Float32Array(N * 3), snapB = new Float32Array(N);
+  const live = new Float32Array(N * 3), liveB = new Float32Array(N);
+  const weight = { time: 1, light: 0, entropy: 0 };
+  let key = 'time', t0 = -1e9, yaw = -0.62, pitch = 0.5, dragging = false, lastX = 0, visible = true;
+  let W = 0, H = 0, dpr = 1, col = {}, dark = true, clock = 0, lastNow = 0, mprog = 1;
+
+  function readColors() {
+    const cs = getComputedStyle(canvas), v = (n) => cs.getPropertyValue(n).trim();
+    const rgb = (h) => { h = h.replace('#', ''); return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16)); };
+    col = { time: rgb(v('--time')), light: rgb(v('--light')), entropy: rgb(v('--entropy')), line: rgb(v('--line')), muted: v('--muted') };
+    const bg = rgb(v('--bg')); dark = (bg[0] + bg[1] + bg[2]) < 300;
+  }
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const r = canvas.getBoundingClientRect(); W = r.width; H = r.height;
+    canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+  }
+  function project(x, y, z) {
+    y = y * 1.05 - 0.3;
+    const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch);
+    const x1 = x * cy - z * sy, z1 = x * sy + z * cy, y2 = y * cp - z1 * sp, z2 = y * sp + z1 * cp;
+    const s = Math.min(W * (W < 600 ? 0.44 : 0.36), H * 0.5), f = 3.4 / (3.4 + z2);
+    return [W / 2 + x1 * s * f, H * 0.55 - y2 * s * f, f];
+  }
+  const rgba = (c, a) => `rgba(${c[0]},${c[1]},${c[2]},${a.toFixed(3)})`;
+
+  function drawFloor() {
+    const wm = weight.entropy * order, L = 25;
+    ctx.lineWidth = 1; ctx.strokeStyle = rgba(col.line, dark ? 0.9 : 1);
+    ctx.beginPath();
+    for (let g = 0; g <= 12; g++) {
+      const a = -1 + g / 6;
+      for (let dir = 0; dir < 2; dir++) {
+        for (let i = 0; i < L; i++) {
+          const b = -1 + 2 * i / (L - 1), x = dir ? a : b, z = dir ? b : a;
+          const p = project(x, warp(x, z) * wm, z);
+          i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]);
+        }
+      }
+    }
+    ctx.stroke();
+  }
+  function rect(x, y0, y1, z0, z1, a) {
+    const c = [[x, y0, z0], [x, y1, z0], [x, y1, z1], [x, y0, z1]].map((p) => project(...p));
+    ctx.beginPath(); c.forEach((p, i) => i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1])); ctx.closePath(); ctx.stroke();
+  }
+  function drawOverlays() {
+    const wl = weight.light;
+    if (wl > 0.02) {
+      ctx.strokeStyle = rgba(col.light, 0.55 * wl); ctx.lineWidth = 1.2;
+      rect(0, 0, 0.8, -0.6, 0.6); rect(IMG_D, 0, 0.8, -0.6, 0.6);
+      const p = project(...PIN);
+      ctx.fillStyle = rgba(col.light, wl); ctx.beginPath(); ctx.arc(p[0], p[1], 3.2, 0, TAU); ctx.fill();
+      ctx.fillStyle = col.muted; ctx.font = '12px "JetBrains Mono", ui-monospace, monospace'; ctx.textAlign = 'center';
+      ctx.globalAlpha = wl;
+      const a = project(-1, 0.9, 0), b = project(0, 0.9, 0), s = project(IMG_D, 0.9, 0);
+      ctx.fillText(lightShape < 0 ? 'object' : 'object: ' + SHAPES[lightShape].name, a[0], a[1]); ctx.fillText('pinhole', b[0], b[1]); ctx.fillText('sensor', s[0], s[1]);
+      ctx.globalAlpha = 1;
+    }
+    const we = weight.entropy;
+    if (we > 0.02) {
+      ctx.globalAlpha = we; ctx.textAlign = 'left';
+      ctx.fillStyle = rgba(col.entropy, 1); ctx.font = '500 15px "JetBrains Mono", ui-monospace, monospace';
+      ctx.fillText(`H = ${floorEntropy(cur).toFixed(2)} bits`, 14, 26);
+      ctx.fillStyle = col.muted; ctx.font = '12px "JetBrains Mono", ui-monospace, monospace';
+      ctx.fillText('max 6.00 · evenly spread', 14, 46);
+      ctx.globalAlpha = 1;
+    }
+    const wt = weight.time;
+    if (wt > 0.02) {
+      ctx.fillStyle = col.muted; ctx.font = '12px "JetBrains Mono", ui-monospace, monospace'; ctx.globalAlpha = wt;
+      const names = ['sum', 'k = 1', 'k = 3', 'k = 5', 'k = 7'];
+      ctx.textAlign = 'left';
+      ROWZ.forEach((z, r) => { const p = project(1.06, 0.32, z); ctx.fillText(names[r], Math.min(p[0] + 4, W - ctx.measureText(names[r]).width - 6), p[1] + 4); });
+      const e = project(0, 0, 1.3); ctx.textAlign = 'center'; ctx.fillText('time →', e[0], e[1] + 14);
+      ctx.globalAlpha = 1;
+    }
+  }
+  function draw() {
+    if (!W) return;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
+    drawFloor(); drawOverlays();
+    const c = col[scenes[key].color];
+    ctx.globalCompositeOperation = dark ? 'lighter' : 'source-over';
+    for (let n = 0; n < N; n++) {
+      const q = n * 3, p = project(cur[q], cur[q + 1], cur[q + 2]), b = curB[n];
+      const s = (1.1 + 2.1 * b) * p[2];
+      ctx.fillStyle = rgba(c, (dark ? 0.12 : 0.18) + (dark ? 0.7 : 0.75) * b);
+      ctx.fillRect(p[0] - s / 2, p[1] - s / 2, s, s);
+    }
+    ctx.globalCompositeOperation = 'source-over';
+    // the sum row as one continuous line, so the square wave reads at a glance
+    if (key === 'time' && mprog > 0.02) {
+      ctx.strokeStyle = rgba(c, 0.95 * mprog ** 3); ctx.lineWidth = 2.4; ctx.lineJoin = 'round';
+      if (dark) { ctx.shadowColor = rgba(c, 0.8); ctx.shadowBlur = 14; }
+      ctx.beginPath();
+      for (let i = 0; i < SUMN; i++) { const p = project(cur[i * 3], cur[i * 3 + 1], cur[i * 3 + 2]); i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]); }
+      ctx.stroke(); ctx.shadowBlur = 0;
+    }
+  }
+  const ease = (x) => x < 0.5 ? 4 * x * x * x : 1 - (-2 * x + 2) ** 3 / 2;
+  function step(now) {
+    const dt = Math.min(0.05, (now - lastNow) / 1000); lastNow = now;
+    if (!reduce.matches) clock += dt;
+    scenes[key].fn(reduce.matches ? 3 : clock, live, liveB);
+    const m = reduce.matches ? 1 : Math.min(1, (now - t0) / 1300), e = ease(m);
+    mprog = e;
+    for (let i = 0; i < N * 3; i++) cur[i] = snap[i] + (live[i] - snap[i]) * e;
+    for (let i = 0; i < N; i++) curB[i] = snapB[i] + (liveB[i] - snapB[i]) * e;
+    for (const k in weight) weight[k] = reduce.matches ? +(k === key) : weight[k] + (+(k === key) - weight[k]) * Math.min(1, dt * 4);
+    if (!dragging && !reduce.matches) yaw += dt * 0.12;
+    draw();
+  }
+  function frame(now) {
+    if (visible && !document.hidden) step(now); else lastNow = now;
+    requestAnimationFrame(frame);
+  }
+  function show(k) {
+    if (!scenes[k]) return;
+    document.querySelectorAll('.switch button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.scene === k)));
+    document.querySelectorAll('.hero h1 span').forEach((s) => s.classList.toggle('on', s.dataset.scene === k));
+    if (k === key) return;
+    snap.set(cur); snapB.set(curB); t0 = performance.now(); key = k;
+    const sc = scenes[k];
+    [document.documentElement, document.querySelector('.hero')].forEach((el) => el.style.setProperty('--accent', `var(--${sc.color})`));
+    caption.textContent = '';
+    const b = document.createElement('b'); b.textContent = sc.label;
+    caption.append(b, ' · ' + sc.note);
+    canvas.setAttribute('aria-label', sc.aria);
+    if (reduce.matches) step(performance.now());
+  }
+
+  document.querySelectorAll('.switch button').forEach((b) => b.addEventListener('click', () => show(b.dataset.scene)));
+  document.querySelectorAll('.card').forEach((c) => {
+    c.addEventListener('pointerenter', () => show(c.dataset.scene));
+    c.addEventListener('focusin', () => show(c.dataset.scene));
+  });
+  canvas.addEventListener('pointerdown', (e) => { dragging = true; lastX = e.clientX; canvas.setPointerCapture(e.pointerId); });
+  canvas.addEventListener('pointermove', (e) => { if (!dragging) return; yaw += (e.clientX - lastX) * 0.008; lastX = e.clientX; if (reduce.matches) draw(); });
+  const stop = () => { dragging = false; };
+  canvas.addEventListener('pointerup', stop); canvas.addEventListener('pointercancel', stop);
+
+  const refresh = () => { readColors(); draw(); };
+  new ResizeObserver(() => { resize(); draw(); }).observe(canvas);
+  new IntersectionObserver((es) => { visible = es[0].isIntersecting; }).observe(canvas);
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', refresh);
+  new MutationObserver(refresh).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+  readColors(); resize();
+  timeScene(reduce.matches ? 3 : 0, cur, curB); snap.set(cur); snapB.set(curB);
+  lastNow = performance.now(); step(lastNow);
+  requestAnimationFrame(frame);
+})();
+</script>
+<script>
+(() => {
+  const cols = [...document.querySelectorAll('.prism-col')]; if (!cols.length) return;
+  const reading = document.querySelector('.reading');
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const PRE = ['In', 'Cor', 'T'], CLS = ['r-in', 'r-cor', 'r-tx'];
+  const S = cols.map((c) => ({ btn: c.querySelector('.prism'), drum: c.querySelector('.drum'), faces: [...c.querySelectorAll('.face')], tag: c.querySelector('.prism-tag').textContent, k: 0 }));
+  const F = 10;   // faces per prism
+  const idx = (s) => ((Math.round(s.k) % F) + F) % F;
+  const word = (s) => s.faces[idx(s)].textContent;
+  const render = () => {
+    S.forEach((s) => {
+      s.drum.style.setProperty('--k', s.k);
+      s.faces.forEach((f, j) => { const d = (j - idx(s) + F) % F; f.classList.toggle('on', d === 0); f.classList.toggle('near', d === 1 || d === F - 1); });
+      s.btn.setAttribute('aria-label', `${s.tag} ${word(s)}, next word`);
+    });
+    reading.innerHTML = S.map((s, n) => { const w = word(s); return `<b class="${CLS[n]}">${w.slice(0, PRE[n].length)}</b>${w.slice(PRE[n].length)}`; }).join(' · ');
+  };
+  let lastTouch = 0;
+  const turn = (s, d) => { s.k = Math.round(s.k) + d; lastTouch = Date.now(); render(); };
+  S.forEach((s) => {
+    let y0 = null, k0 = 0, moved = false;
+    s.btn.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowUp') { e.preventDefault(); turn(s, -1); }
+      if (e.key === 'ArrowDown') { e.preventDefault(); turn(s, 1); }
+    });
+    s.btn.addEventListener('pointerdown', (e) => { if (e.pointerType !== 'mouse') return; y0 = e.clientY; k0 = s.k; moved = false; s.btn.setPointerCapture(e.pointerId); });
+    s.btn.addEventListener('pointermove', (e) => { if (y0 === null) return; const dy = e.clientY - y0; if (Math.abs(dy) > 4) { moved = true; s.btn.classList.add('dragging'); s.k = k0 + dy / 40; s.drum.style.setProperty('--k', s.k); } });
+    const end = () => { if (y0 === null) return; y0 = null; s.btn.classList.remove('dragging'); if (moved) { s.k = Math.round(s.k); lastTouch = Date.now(); render(); } };
+    s.btn.addEventListener('pointerup', end); s.btn.addEventListener('pointercancel', end);
+    s.btn.addEventListener('click', () => { if (moved) { moved = false; return; } turn(s, 1); });
+  });
+  // spin all three by 1–9 faces each, so the reading always changes
+  document.querySelector('.spin').addEventListener('click', () => {
+    S.forEach((s) => { s.k = Math.round(s.k) + 1 + Math.floor(Math.random() * (F - 1)); });
+    lastTouch = Date.now(); render();
+  });
+  S[0].k = 3; S[1].k = 0; S[2].k = 2; render();   // start: Insight · Cortex · Transform
+  if (still) return;
+  let visible = false, n = 0;
+  new IntersectionObserver((es) => { visible = es[0].isIntersecting; }, { threshold: 0.3 }).observe(document.querySelector('.prisms'));
+  setInterval(() => { if (!visible || document.hidden || Date.now() - lastTouch < 9000) return; const s = S[n++ % 3]; s.k = Math.round(s.k) + 1; render(); }, 2600);
+})();
+</script>
 </body>
-
 </html>
