@@ -490,14 +490,15 @@ footer a { color: var(--entropy); text-decoration: none; }
 
   // ---- LIGHT: pinhole camera (object -> pinhole -> inverted image)
   // object shapes as polylines of [y, z], each resampled to M points so one can morph into the next
-  const M = 110, PIN = [0, 0.4, 0], IMG_D = 0.9;
+  // object at -0.82 and sensor at 0.74 keep both on the floor (it spans -1..1) at about the old 0.9 magnification
+  const M = 110, PIN = [0, 0.4, 0], OBJ_X = -0.82, IMG_D = 0.74, MAG = IMG_D / (PIN[0] - OBJ_X);
   function sample(path) {
     const segs = []; let L = 0;
     path.forEach((pl) => { for (let i = 1; i < pl.length; i++) { const a = pl[i - 1], b = pl[i], l = Math.hypot(b[0] - a[0], b[1] - a[1]); segs.push([a, b, L, l]); L += l; } });
     const out = [];
     for (let j = 0; j < M; j++) {
       const d = (j + 0.5) / M * L, s = segs.find((g) => d <= g[2] + g[3]) || segs[segs.length - 1], e = (d - s[2]) / s[3];
-      out.push([-1, s[0][0] + (s[1][0] - s[0][0]) * e, s[0][1] + (s[1][1] - s[0][1]) * e]);
+      out.push([OBJ_X, s[0][0] + (s[1][0] - s[0][0]) * e, s[0][1] + (s[1][1] - s[0][1]) * e]);
     }
     return out;
   }
@@ -515,7 +516,7 @@ footer a { color: var(--entropy); text-decoration: none; }
     for (let j = 0; j < M; j++) for (let d = 1; d < 3; d++) OBJ[j][d] = a[j][d] + (b[j][d] - a[j][d]) * e;
     lightShape = e > 0 ? -1 : k % SHAPES.length;   // no name while the shape is changing
   }
-  const image = (p) => [PIN[0] + (PIN[0] - p[0]) * IMG_D, PIN[1] + (PIN[1] - p[1]) * IMG_D, PIN[2] + (PIN[2] - p[2]) * IMG_D];
+  const image = (p) => [PIN[0] + (PIN[0] - p[0]) * MAG, PIN[1] + (PIN[1] - p[1]) * MAG, PIN[2] + (PIN[2] - p[2]) * MAG];
   function lightScene(t, P, B) {
     updateObject(t);
     for (let n = 0; n < N; n++) {
@@ -574,7 +575,7 @@ footer a { color: var(--entropy); text-decoration: none; }
 
   const scenes = {
     time: { fn: timeScene, color: 'time', label: 'Time',
-      note: 'sine waves at 1, 3, 5 and 7 × the base frequency add up to a square wave: the Fourier series.',
+      note: 'sine waves at 1, 3, 5 and 7 × the base frequency add up to a square wave: the Fourier series. The bars on the floor are their amplitudes, 1/k.',
       aria: 'Four sine waves at odd harmonics move through time; the front line is their sum, a square wave' },
     light: { fn: lightScene, color: 'light', label: 'Light',
       note: 'a pinhole camera: light through one small hole lands upside down and mirrored. Image formation, CV Session 01.',
@@ -641,7 +642,7 @@ footer a { color: var(--entropy); text-decoration: none; }
       ctx.fillStyle = rgba(col.light, wl); ctx.beginPath(); ctx.arc(p[0], p[1], 3.2, 0, TAU); ctx.fill();
       ctx.fillStyle = col.muted; ctx.font = '12px "JetBrains Mono", ui-monospace, monospace'; ctx.textAlign = 'center';
       ctx.globalAlpha = wl;
-      const a = project(-1, 0.9, 0), b = project(0, 0.9, 0), s = project(IMG_D, 0.9, 0);
+      const a = project(OBJ_X, 0.9, 0), b = project(0, 0.9, 0), s = project(IMG_D, 0.9, 0);
       ctx.fillText(lightShape < 0 ? 'object' : 'object: ' + SHAPES[lightShape].name, a[0], a[1]); ctx.fillText('pinhole', b[0], b[1]); ctx.fillText('sensor', s[0], s[1]);
       ctx.globalAlpha = 1;
     }
@@ -656,6 +657,19 @@ footer a { color: var(--entropy); text-decoration: none; }
     }
     const wt = weight.time;
     if (wt > 0.02) {
+      // the floor becomes the time x frequency plane: each wave's zero line on the floor, drop lines
+      // from the wave down to it, and near the start of each row a bar as tall as that harmonic's amplitude (1/k)
+      const seg = (a, b) => { const p = project(...a), q = project(...b); ctx.moveTo(p[0], p[1]); ctx.lineTo(q[0], q[1]); };
+      ctx.lineWidth = 1; ctx.strokeStyle = rgba(col.time, (dark ? 0.32 : 0.4) * wt);
+      ctx.beginPath(); ROWZ.forEach((z) => seg([-1, 0, z], [1, 0, z])); ctx.stroke();
+      ctx.strokeStyle = rgba(col.time, (dark ? 0.1 : 0.12) * wt); ctx.beginPath();
+      const drop = (n) => seg([cur[n * 3], cur[n * 3 + 1], cur[n * 3 + 2]], [cur[n * 3], 0, cur[n * 3 + 2]]);
+      for (let i = 0; i < SUMN; i += 40) drop(i);
+      for (let r = 0; r < HARM.length; r++) for (let i = 0; i < CN; i += 20) drop(SUMN + r * CN + i);
+      ctx.stroke();
+      ctx.lineWidth = 4; ctx.lineCap = 'round'; ctx.strokeStyle = rgba(col.time, 0.85 * wt); ctx.beginPath();
+      HARM.forEach((k, r) => seg([-0.94, 0, ROWZ[r + 1]], [-0.94, AMP * 4 / Math.PI / k, ROWZ[r + 1]]));   // inside the floor edge
+      ctx.stroke(); ctx.lineCap = 'butt';
       ctx.fillStyle = col.muted; ctx.font = '12px "JetBrains Mono", ui-monospace, monospace'; ctx.globalAlpha = wt;
       const names = ['sum', 'k = 1', 'k = 3', 'k = 5', 'k = 7'];
       ctx.textAlign = 'left';
