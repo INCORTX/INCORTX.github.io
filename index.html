@@ -662,7 +662,7 @@ footer a { color: var(--entropy); text-decoration: none; }
       const seg = (a, b) => { const p = project(...a), q = project(...b); ctx.moveTo(p[0], p[1]); ctx.lineTo(q[0], q[1]); };
       ctx.lineWidth = 1; ctx.strokeStyle = rgba(col.time, (dark ? 0.32 : 0.4) * wt);
       ctx.beginPath(); ROWZ.forEach((z) => seg([-1, 0, z], [1, 0, z])); ctx.stroke();
-      ctx.strokeStyle = rgba(col.time, (dark ? 0.1 : 0.12) * wt); ctx.beginPath();
+      ctx.lineWidth = 0.5; ctx.strokeStyle = rgba(col.time, (dark ? 0.09 : 0.1) * wt); ctx.beginPath();   // hairline drop lines
       const drop = (n) => seg([cur[n * 3], cur[n * 3 + 1], cur[n * 3 + 2]], [cur[n * 3], 0, cur[n * 3 + 2]]);
       for (let i = 0; i < SUMN; i += 40) drop(i);
       for (let r = 0; r < HARM.length; r++) for (let i = 0; i < CN; i += 20) drop(SUMN + r * CN + i);
