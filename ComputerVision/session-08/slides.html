@@ -829,7 +829,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card violet"><b>Precision · recall</b>Right boxes ÷ all boxes · found objects ÷ all objects. The threshold trades one for the other; AP is the area under the curve.</div>
     <div class="card teal"><b>NMS</b>Keep the best box, drop its overlapping copies, repeat — one box per object.</div>
   </div>
-  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-08/lab.ipynb#scrollTo=part-a" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part A</a><span>IoU, NMS and precision / recall in NumPy on this photo's boxes, checked against torchvision; a PR curve from the scores</span></p>
+  <p class="labline"><a class="colab" href="lab/#part-a" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part A</a><span>IoU, NMS and precision / recall in NumPy on this photo's boxes, checked against torchvision; a PR curve from the scores</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s8a">More practice · Session 8 A — practice bank with worked solutions →</a></p>
   <p class="takeaway"><span>Later: session 9 C — IoU matches a box in one video frame to the same object in the next. Next · B: how one network makes all these boxes.</span></p>
 
@@ -961,7 +961,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card violet"><b>Three scales</b>Strides 8 / 16 / 32: 80² + 40² + 20² = 8,400 guesses at 640 — small things on the fine grid.</div>
     <div class="card teal"><b>Then filter</b>A score threshold and NMS leave one box per object. Fine-tune: a new head, your labelled boxes.</div>
   </div>
-  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-08/lab.ipynb#scrollTo=part-b" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part B</a><span>YOLOv8n on the photo: the 84 × 8,400 output, score and NMS thresholds, three grids; a short fine-tune on a tiny dataset</span></p>
+  <p class="labline"><a class="colab" href="lab/#part-b" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part B</a><span>YOLOv8n on the photo: the 84 × 8,400 output, score and NMS thresholds, three grids; a short fine-tune on a tiny dataset</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s8b">More practice · Session 8 B — practice bank with worked solutions →</a></p>
   <p class="takeaway"><span>Later: T8-1 — two-stage detectors (Faster R-CNN) and DETR, which predicts a set of boxes with attention (session 5). Next · C: which pixels.</span></p>
 
@@ -1094,7 +1094,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card violet"><b>Encoder–decoder</b>Shrink for meaning, grow back with transposed convolutions; skip connections return the edges. Mask IoU counts pixels.</div>
     <div class="card teal"><b>SAM</b>A ViT encoder once, a light decoder per click or box: three masks to choose from — no training for new things.</div>
   </div>
-  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-08/lab.ipynb#scrollTo=part-c" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part C</a><span>A small encoder–decoder's shapes; SAM with a click and a box on the photo; mask IoU between two masks</span></p>
+  <p class="labline"><a class="colab" href="lab/#part-c" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part C</a><span>A small encoder–decoder's shapes; SAM with a click and a box on the photo; mask IoU between two masks</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s8c">More practice · Session 8 C — practice bank with worked solutions →</a></p>
   <p class="takeaway"><span>Later: T8-2 — SAM 2 follows a mask through a video (session 9). Next · D: name a thing in words, get its box and mask — and the questions that come with it.</span></p>
 
@@ -1248,7 +1248,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card violet"><b>Inherited views</b>Web data carries who is in it and who wrote about them; the words you choose decide who is harmed.</div>
     <div class="card teal"><b>Before you deploy</b>Ask who is watched and who agreed; measure by group; write the limits down.</div>
   </div>
-  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-08/lab.ipynb#scrollTo=part-d" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part D</a><span>Text queries → OWL-ViT boxes → SAM masks on the photo; change a word and compare</span></p>
+  <p class="labline"><a class="colab" href="lab/#part-d" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part D</a><span>Text queries → OWL-ViT boxes → SAM masks on the photo; change a word and compare</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s8d">More practice · Session 8 D — practice bank with worked solutions →</a></p>
   <p class="takeaway"><span>Later: session 9 — tracking follows each box through time · T8-6 auto-labelling, T8-7 privacy.</span></p>
 

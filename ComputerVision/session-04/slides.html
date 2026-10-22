@@ -817,7 +817,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card violet"><b>Bend</b>An activation (ReLU) between layers is what lets a stack do more than one layer.</div>
     <div class="card teal"><b>Too many weights</b>Fully connected on a photo: 150 million weights, and every shift is new. Part C shares one kernel.</div>
   </div>
-  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-04/lab.ipynb#scrollTo=part-a" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part A</a><span>a neuron by hand vs PyTorch, one neuron's line, two layers without ReLU</span></p>
+  <p class="labline"><a class="colab" href="lab/#part-a" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part A</a><span>a neuron by hand vs PyTorch, one neuron's line, two layers without ReLU</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s4a">More practice · Session 4 A — practice bank with worked solutions →</a></p>
   <p class="takeaway"><span>Next · B: the weights you just turned by hand — found by the data itself.</span></p>
 
@@ -1025,7 +1025,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card violet"><b>Backprop &amp; batches</b>The chain rule gives every weight's gradient in one backward pass. Mini-batches: cheaper, noisier (√B).</div>
     <div class="card teal"><b>Unseen data</b>Training error always falls. Watch validation, stop early, test once.</div>
   </div>
-  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-04/lab.ipynb#scrollTo=part-b" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part B</a><span>gradient descent on (w − 3)², a kernel learned back to Sobel, an MLP on digits with train/val curves</span></p>
+  <p class="labline"><a class="colab" href="lab/#part-b" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part B</a><span>gradient descent on (w − 3)², a kernel learned back to Sobel, an MLP on digits with train/val curves</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s4b">More practice · Session 4 B — practice bank with worked solutions →</a></p>
   <p class="takeaway"><span>Later: session 5 C trains CLIP with another loss. Next · C: the slide-16 kernel, slid over the whole image — a CNN.</span></p>
 
@@ -1271,7 +1271,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card violet"><b>Shapes</b>out = ⌊(n + 2p − k)/s⌋ + 1 · params = (k²C<sub>in</sub> + 1)C<sub>out</sub> · pooling halves · transposed grows back.</div>
     <div class="card teal"><b>Stacked</b>Each layer sees further (receptive field); the first layer learns edges and blobs like session 3's.</div>
   </div>
-  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-04/lab.ipynb#scrollTo=part-c" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part C</a><span>nn.Conv2d shapes and counts, CNN vs MLP on digits, pooling, receptive field, ResNet-18's first layer</span></p>
+  <p class="labline"><a class="colab" href="lab/#part-c" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part C</a><span>nn.Conv2d shapes and counts, CNN vs MLP on digits, pooling, receptive field, ResNet-18's first layer</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s4c">More practice · Session 4 C — practice bank with worked solutions →</a></p>
   <p class="takeaway"><span>Later: session 5 A–B (attention sees everything at once) · session 6 (CNN features vs hand-made corners) · session 8 (transposed conv → masks). Next · D: stack many more layers.</span></p>
 
@@ -1434,7 +1434,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card violet"><b>Backbone</b>ResNet: a pyramid of residual blocks. Everything but the last layer turns a photo into features.</div>
     <div class="card teal"><b>Reuse</b>Freeze or fine-tune a trained backbone; augment with changes that keep the label.</div>
   </div>
-  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-04/lab.ipynb#scrollTo=part-d" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part D</a><span>a residual block in 5 lines, plain vs residual depth, frozen ResNet-18 + new head vs training from scratch, augmentation</span></p>
+  <p class="labline"><a class="colab" href="lab/#part-d" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part D</a><span>a residual block in 5 lines, plain vs residual depth, frozen ResNet-18 + new head vs training from scratch, augmentation</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s4d">More practice · Session 4 D — practice bank with worked solutions →</a></p>
   <p class="takeaway"><span>Later: session 5 D — CLIP's image encoder is a ResNet or a ViT · session 8 — YOLO's backbone · your project.</span></p>
 

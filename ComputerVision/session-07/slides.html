@@ -813,7 +813,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card violet"><b>Four families</b>Translation 2 · similarity 4 · affine 6 · projective 8 degrees of freedom — each keeps less.</div>
     <div class="card teal"><b>Order and w</b>The right-hand matrix acts first. Divide by w; w = 0 is a direction — a vanishing point.</div>
   </div>
-  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-07/lab.ipynb#scrollTo=part-a" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part A</a><span>Transforms as 3 × 3 matrices in NumPy, warpAffine and warpPerspective on a photo, the order of products, what each family keeps</span></p>
+  <p class="labline"><a class="colab" href="lab/#part-a" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part A</a><span>Transforms as 3 × 3 matrices in NumPy, warpAffine and warpPerspective on a photo, the order of products, what each family keeps</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s7a">More practice · Session 7 A — practice bank with worked solutions →</a></p>
   <p class="takeaway"><span>Later: session 9 — a shaking video is steadied by undoing one transform per frame (T9). Next · B: the projective family lines up two photos of a flat scene.</span></p>
 
@@ -940,7 +940,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card violet"><b>How many</b>8 unknowns, 2 equations per pair: 4 pairs fix H — the sample size RANSAC draws.</div>
     <div class="card teal"><b>Stitch</b>Match (session 6 C) → RANSAC (6 D) → warp by H → blend the seam.</div>
   </div>
-  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-07/lab.ipynb#scrollTo=part-b" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part B</a><span>Two overlapping views cut from one photo with a known H; SIFT + RANSAC + findHomography against the truth; warp and blend a panorama; fix a perspective with four points</span></p>
+  <p class="labline"><a class="colab" href="lab/#part-b" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part B</a><span>Two overlapping views cut from one photo with a known H; SIFT + RANSAC + findHomography against the truth; warp and blend a panorama; fix a perspective with four points</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s7b">More practice · Session 7 B — practice bank with worked solutions →</a></p>
   <p class="takeaway"><span>Later: T7-3 — structure from motion recovers the cameras and the 3D points from many photos. Next · C: how a 3D point becomes a pixel.</span></p>
 
@@ -1074,7 +1074,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card violet"><b>[R | t] · where it is</b>Subtract the camera position, turn to its direction: world to camera coordinates.</div>
     <div class="card teal"><b>x = K[R | t] X</b>Multiply, divide by the depth. On a plane one column drops: the homography of part B.</div>
   </div>
-  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-07/lab.ipynb#scrollTo=part-c" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part C</a><span>Project a cube with K[R | t] (session 2 lab A, continued): change f, move and turn the camera, check the plane's 3 × 3 shortcut</span></p>
+  <p class="labline"><a class="colab" href="lab/#part-c" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part C</a><span>Project a cube with K[R | t] (session 2 lab A, continued): change f, move and turn the camera, check the plane's 3 × 3 shortcut</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s7c">More practice · Session 7 C — practice bank with worked solutions →</a></p>
   <p class="takeaway"><span>Later: T7-1 — calibration measures K from photos of a chessboard. Next · D: two cameras, two K[R | t] — and the depth comes back.</span></p>
 
@@ -1242,7 +1242,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card violet"><b>Precision</b>One pixel of error costs Z²/(fB) metres: far depth is rough; a longer baseline helps.</div>
     <div class="card teal"><b>Search one line</b>The twin lies on the epipolar line; after rectifying, on the same row.</div>
   </div>
-  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-07/lab.ipynb#scrollTo=part-d" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part D</a><span>Z = f·B/d and a pixel of error; a rectified stereo pair → StereoSGBM → a depth map; matching rows (no fundamental matrix)</span></p>
+  <p class="labline"><a class="colab" href="lab/#part-d" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part D</a><span>Z = f·B/d and a pixel of error; a rectified stereo pair → StereoSGBM → a depth map; matching rows (no fundamental matrix)</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s7d">More practice · Session 7 D — practice bank with worked solutions →</a></p>
   <p class="takeaway"><span>Later: session 9 — optical flow matches points across time instead of across cameras · T7-6 Depth Anything and T7-7 DUSt3R get depth from one or two photos with a trained model.</span></p>
 

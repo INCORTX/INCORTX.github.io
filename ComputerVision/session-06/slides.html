@@ -823,7 +823,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card violet"><b>The matrix M</b>Gradients in a Gaussian window: two large eigenvalues = corner.</div>
     <div class="card teal"><b>Harris</b>R = det M − k·(trace M)²: corner if large, edge if negative.</div>
   </div>
-  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-06/lab.ipynb#scrollTo=part-a" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part A</a><span>Harris step by step from Sobel gradients, compared with cv2.cornerHarris; k and the threshold</span></p>
+  <p class="labline"><a class="colab" href="lab/#part-a" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part A</a><span>Harris step by step from Sobel gradients, compared with cv2.cornerHarris; k and the threshold</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s6a">More practice · Session 6 A — practice bank with worked solutions →</a></p>
   <p class="takeaway"><span>Later: session 9 B — the same M finds motion between video frames (optical flow). Next · B: zoom in, and a corner can turn into an edge.</span></p>
 
@@ -939,7 +939,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card violet"><b>Scale space</b>Blur at every σ; a blob answers most at σ ≈ its radius ÷ √2.</div>
     <div class="card teal"><b>SIFT points</b>Maxima over space and scale (26 neighbours): every point has a position and a size.</div>
   </div>
-  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-06/lab.ipynb#scrollTo=part-b" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part B</a><span>Gaussian blur at many σ, the response of discs of three sizes, SIFT on the photo and on a shrunk copy</span></p>
+  <p class="labline"><a class="colab" href="lab/#part-b" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part B</a><span>Gaussian blur at many σ, the response of discs of three sizes, SIFT on the photo and on a shrunk copy</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s6b">More practice · Session 6 B — practice bank with worked solutions →</a></p>
   <p class="takeaway"><span>Later: session 8 — detectors look for objects of every size the same way, on a pyramid of features. Next · C: describe each point so its twin can be found.</span></p>
 
@@ -1056,7 +1056,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card violet"><b>Matching</b>Nearest descriptor by Euclidean distance — session 5's nearest neighbour, point by point.</div>
     <div class="card teal"><b>Ratio test</b>Keep a match only if best ÷ second best &lt; 0.8. Fewer, surer matches — but never all right.</div>
   </div>
-  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-06/lab.ipynb#scrollTo=part-c" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part C</a><span>SIFT descriptors, brute-force matching, the ratio test with match lines before and after</span></p>
+  <p class="labline"><a class="colab" href="lab/#part-c" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part C</a><span>SIFT descriptors, brute-force matching, the ratio test with match lines before and after</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s6c">More practice · Session 6 C — practice bank with worked solutions →</a></p>
   <p class="takeaway"><span>Later: session 7 — matched pairs give homographies and depth · T6-4/5 SuperPoint and LightGlue learn descriptors and matching (with attention, session 5 A). Next · D: fit a model when some matches are still wrong.</span></p>
 
@@ -1206,7 +1206,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card violet"><b>RANSAC</b>Sample the fewest points, fit, count inliers, keep the best, refit.</div>
     <div class="card teal"><b>How many tries</b>N = log(1 − p) ÷ log(1 − wˢ): more outliers or bigger samples need far more.</div>
   </div>
-  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-06/lab.ipynb#scrollTo=part-d" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part D</a><span>RANSAC for a line by hand, the number of tries, cv2.findHomography with RANSAC on a view with a known H</span></p>
+  <p class="labline"><a class="colab" href="lab/#part-d" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part D</a><span>RANSAC for a line by hand, the number of tries, cv2.findHomography with RANSAC on a view with a known H</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s6d">More practice · Session 6 D — practice bank with worked solutions →</a></p>
   <p class="takeaway"><span>Later: session 7 B — RANSAC + homography stitch a panorama · your project, whenever data has outliers.</span></p>
 

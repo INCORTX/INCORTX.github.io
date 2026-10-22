@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Session 9 lab · Computer Vision</title>
+<style>
+:root{--ink:#0f1b2d;--muted:#667085;--line:#e4e8ee;--gold:#9c6c18;}
+html,body{margin:0;height:100%;background:#fff;color:var(--ink);font:16px/1.5 'Plus Jakarta Sans',system-ui,-apple-system,sans-serif}
+main{min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6em;padding:24px;text-align:center}
+h1{margin:0;font-size:22px}
+p{margin:0;color:var(--muted)}
+a{color:var(--gold);font-weight:600}
+</style>
+</head>
+<body>
+<main>
+  <h1>Opening the session 9 lab in Colab…</h1>
+  <p>If nothing happens, <a id="go" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-09/lab.ipynb">open the lab</a>.</p>
+  <noscript><p>JavaScript is off — use the link above.</p></noscript>
+</main>
+<script>
+/* served under /dev/ → the cv-next branch; anywhere else → master */
+(function () {
+  var branch = /^\/dev\//.test(location.pathname) ? 'cv-next' : 'master';
+  var part = location.hash.replace(/^#(scrollTo=)?/, '');                 /* #part-b or #scrollTo=part-b */
+  var url = 'https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/' + branch +
+            '/ComputerVision/session-09/lab.ipynb' + (part ? '#scrollTo=' + part : '');
+  document.getElementById('go').href = url;
+  location.replace(url);
+})();
+</script>
+</body>
+</html>

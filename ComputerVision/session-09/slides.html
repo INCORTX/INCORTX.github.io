@@ -809,7 +809,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card violet"><b>Brightness constancy</b>Iₓu + I_yv + Iₜ = 0 — the gradient (session 3) and the change over time give one equation per pixel.</div>
     <div class="card teal"><b>Aperture problem</b>One equation, two unknowns: only the normal flow −Iₜ ÷ ‖∇I‖ across the edge.</div>
   </div>
-  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-09/lab.ipynb#scrollTo=part-a" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part A</a><span>a moving image with a known (u, v) → Farneback flow vs the truth; a bar behind a round hole</span></p>
+  <p class="labline"><a class="colab" href="lab/#part-a" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part A</a><span>a moving image with a known (u, v) → Farneback flow vs the truth; a bar behind a round hole</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s9a">More practice · Session 9 A — practice bank with worked solutions →</a></p>
   <p class="takeaway"><span>Later: T9-1 — RAFT learns flow from data. Next · B: many pixels share one motion — and session 6's matrix M comes back.</span></p>
 
@@ -926,7 +926,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card violet"><b>M decides</b>Session 6's matrix: two large eigenvalues track; an edge gives only the normal flow; flat areas follow the noise.</div>
     <div class="card teal"><b>Coarse to fine</b>Big motion: solve on the smallest pyramid level, then refine — 31 of 40 points right on a 30-px cyclist instead of 2.</div>
   </div>
-  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-09/lab.ipynb#scrollTo=part-b" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part B</a><span>Lucas–Kanade by hand on a known shift (M from gradients, as in session 6's lab); goodFeaturesToTrack + calcOpticalFlowPyrLK: corners track, edges slide</span></p>
+  <p class="labline"><a class="colab" href="lab/#part-b" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part B</a><span>Lucas–Kanade by hand on a known shift (M from gradients, as in session 6's lab); goodFeaturesToTrack + calcOpticalFlowPyrLK: corners track, edges slide</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s9b">More practice · Session 9 B — practice bank with worked solutions →</a></p>
   <p class="takeaway"><span>Next · C: follow points and boxes from frame to frame — tracking. Later: T9-1 RAFT learns flow end-to-end.</span></p>
 
@@ -1076,7 +1076,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card violet"><b>Follow a patch</b>NCC finds the patch in the next frame; the same patch fades as the object turns (0.85 → 0.37).</div>
     <div class="card teal"><b>Detect, then link</b>A detector every frame, boxes linked by IoU, highest first. Fast motion, low fps and crowds break IDs.</div>
   </div>
-  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-09/lab.ipynb#scrollTo=part-c" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part C</a><span>frame differencing with a threshold; an IoU tracker written by hand on two frames' boxes; YOLO + ByteTrack counting at a line</span></p>
+  <p class="labline"><a class="colab" href="lab/#part-c" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part C</a><span>frame differencing with a threshold; an IoU tracker written by hand on two frames' boxes; YOLO + ByteTrack counting at a line</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s9c">More practice · Session 9 C — practice bank with worked solutions →</a></p>
   <p class="takeaway"><span>Later: T9-4 — a Kalman filter predicts each box · T9-5 — one person across many cameras. Next · D: every session in one system.</span></p>
 
@@ -1194,7 +1194,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card violet"><b>A budget</b>1000 ÷ fps ms per frame: measure every stage on your machine; run the slow ones less often.</div>
     <div class="card teal"><b>An honest comparison</b>Two or three solutions, one metric, the same data, the time of each — and the risks named.</div>
   </div>
-  <p class="labline"><a class="colab" href="https://colab.research.google.com/github/INCORTX/INCORTX.github.io/blob/cv-next/ComputerVision/session-09/lab.ipynb#scrollTo=part-d" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part D</a><span>a small pipeline end to end: detect → track → count at a line → compare with a hand count → time each stage</span></p>
+  <p class="labline"><a class="colab" href="lab/#part-d" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part D</a><span>a small pipeline end to end: detect → track → count at a line → compare with a hand count → time each stage</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s9d">More practice · Session 9 D — practice bank with worked solutions →</a></p>
   <p class="takeaway"><span>Next week: your pitch — Input · Output · Problem · Challenge.</span></p>
 
