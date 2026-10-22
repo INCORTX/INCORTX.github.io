@@ -182,7 +182,7 @@ html.reading .cols.today{grid-template-columns:1fr;}
 .outcomes li::before{content:counter(c);position:absolute;left:0;top:.42em;width:1.6em;height:1.6em;border-radius:50%;background:var(--gold);color:#fff;font-family:var(--display);font-weight:700;font-size:.85em;display:flex;align-items:center;justify-content:center;}
 
 /* grading */
-.gtiles{display:grid;grid-template-columns:40fr 30fr 20fr 10fr;gap:.4em;margin:.2em 0 .6em;}
+.gtiles{display:grid;grid-template-columns:45fr 30fr 20fr minmax(5.2em,5fr);gap:.4em;margin:.2em 0 .6em;}
 .gtile{border-radius:14px;padding:.6em .7em;color:#fff;min-height:9em;display:flex;flex-direction:column;justify-content:space-between;}
 .gtile .num{font-family:var(--display);font-size:2.4em;font-weight:700;line-height:1;}
 .gtile .lbl{font-family:var(--display);font-weight:600;font-size:.72em;}
@@ -768,15 +768,15 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="kicker">Assessment</p>
   <h2 class="claim">Your grade: 100 points, four parts</h2>
   <div class="gtiles">
-    <div class="gtile" style="background:var(--gold)"><span class="lbl">Final</span><span class="num">40</span><span class="det">Week 15 · sessions 2–9 · hand calculation + concepts</span></div>
+    <div class="gtile" style="background:var(--gold)"><span class="lbl">Final</span><span class="num">45</span><span class="det">Week 15 · sessions 2–9 · hand calculation + concepts</span></div>
     <div class="gtile" style="background:var(--coral)"><span class="lbl">Project</span><span class="num">30</span><span class="det">Proposal + demo</span></div>
     <div class="gtile" style="background:var(--teal)"><span class="lbl">Assignment</span><span class="num">20</span><span class="det">4 presentations</span></div>
-    <div class="gtile" style="background:var(--violet)"><span class="lbl">Part.</span><span class="num">10</span><span class="det">Questions + activities</span></div>
+    <div class="gtile" style="background:var(--violet)"><span class="lbl">Part.</span><span class="num">5</span><span class="det">Taking part</span></div>
   </div>
-  <p class="lead" style="margin:0 0 .45em">No midterm. <b>+10 extra</b>: 1 per session you take part in &mdash; ask a question or join the activity; just coming is not enough. Every criterion is marked on one <b>grading scale</b>:</p>
+  <p class="lead" style="margin:0 0 .45em">No midterm. <b>+10 extra</b>, on top of the 100: ask good questions when your classmates present. Every criterion is marked on one <b>grading scale</b>:</p>
   <div class="scale mini" aria-label="The grading scale"><div style="--c:var(--gold)"><b>100%</b>Excellent</div><div style="--c:#9c6c18"><b>75%</b>Good</div><div style="--c:var(--teal)"><b>50%</b>Satisfactory</div><div style="--c:var(--coral)"><b>25%</b>Needs work</div><div style="--c:#98a2b3"><b>0%</b>Missing</div></div>
   <p class="lead" style="margin:.6em 0 0;max-width:none"><b>Grades:</b> A ≥ 80 · C ≥ 60 · D+ 55–59 · D 50–54 · F &lt; 50 · <b>final &amp; project need 80%+ handed in (all 4)</b></p>
-  <aside class="notes"><p>🇹🇭 ชี้ 4 ส่วน 40 · 30 · 20 · 10 · ไม่มี midterm · +10 พิเศษ = เช็คชื่อเฉพาะคาบที่มีส่วนร่วม (ถามคำถาม/ร่วม activity) มาเฉย ๆ ไม่ได้ · คาบละ 1 สูงสุด 10 รวมเกิน 100 ได้ · ทุกเกณฑ์ใช้ scale 5 ระดับเดียวกัน · ชี้บรรทัดล่าง: เกณฑ์เกรด และเงื่อนไขส่งงาน 80%</p><p>🇬🇧 Point at the four parts 40 · 30 · 20 · 10. No midterm. Plus 10 extra: one check-in per session you take part in, a question or the activity; just coming does not count. One five-level scale for every criterion. Bottom line: grade cut-offs and the 80% hand-in condition.</p></aside>
+  <aside class="notes"><p>🇹🇭 ชี้ 4 ส่วน 45 · 30 · 20 · 5 · ไม่มี midterm · +10 พิเศษ นอกเหนือจาก 100 = ถามคำถามเพื่อนที่นำเสนอ (ให้คะแนนตาม 5 ระดับ หน้า 22) รวมเกิน 100 ได้ · ทุกเกณฑ์ใช้ scale 5 ระดับเดียวกัน · ชี้บรรทัดล่าง: เกณฑ์เกรด และเงื่อนไขส่งงาน 80%</p><p>🇬🇧 Point at the four parts 45 · 30 · 20 · 5. No midterm. Plus up to 10 extra, on top of the 100: questions to classmates who present, marked on the five levels (slide 22). One five-level scale for every criterion. Bottom line: grade cut-offs and the 80% hand-in condition.</p></aside>
 </section>
 
 <!-- 15 · Assignment: halves -->
@@ -954,7 +954,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
 
 <!-- 21 · Final exam -->
 <section data-part="D">
-  <p class="kicker">Final exam · 40 points</p>
+  <p class="kicker">Final exam · 45 points</p>
   <h2 class="claim">The final rewards what you practise in class</h2>
   <div class="cols">
     <ul class="small">
@@ -977,9 +977,9 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
 
 <!-- 22 · Participation -->
 <section data-part="D">
-  <p class="kicker">Participation · 10 points</p>
+  <p class="kicker">Extra · up to 10 points</p>
   <h2 class="claim">A good question earns full marks</h2>
-  <p class="lead" style="margin-bottom:.5em">Ask during the presentations. Each question is marked on the grading scale:</p>
+  <p class="lead" style="margin-bottom:.5em">Ask your classmates questions when they present. Each question is marked on the grading scale:</p>
   <ul class="levels">
     <li style="--c:var(--gold)"><b>100%</b><span><b>Excellent</b> — needs reasoning (“why…”, “what if…”, “how is it different from…”) and the answer is not on the slides</span></li>
     <li style="--c:#9c6c18"><b>75%</b><span><b>Good</b> — asks for an explanation or an example of a key point</span></li>
@@ -987,8 +987,8 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <li style="--c:var(--coral)"><b>25%</b><span><b>Needs work</b> — the answer is already on the slides</span></li>
     <li style="--c:#98a2b3"><b>0%</b><span><b>Missing</b> — off topic, or no question</span></li>
   </ul>
-  <p class="takeaway">Questions alone rarely fill all 10 points — volunteering answers and class activities count too.</p>
-  <aside class="notes"><p>🇹🇭 พูดผ่าน ๆ · คำถามได้เต็มต้องมีเหตุผล ("ทำไม…", "ถ้า…") และคำตอบไม่อยู่บนสไลด์ · อาสาตอบและกิจกรรมก็นับ</p><p>🇬🇧 Brief. Full marks need reasoning ("why…", "what if…") and an answer that is not on the slides. Volunteering and activities count too.</p></aside>
+  <p class="takeaway">These points come on top of the 100 — up to 10 extra.</p>
+  <aside class="notes"><p>🇹🇭 พูดผ่าน ๆ · คะแนนพิเศษ +10 มาจากการถามคำถามเพื่อนที่นำเสนอ · คำถามได้เต็มต้องมีเหตุผล ("ทำไม…", "ถ้า…") และคำตอบไม่อยู่บนสไลด์</p><p>🇬🇧 Brief. The extra 10 come from questions to classmates who present. Full marks need reasoning ("why…", "what if…") and an answer that is not on the slides.</p></aside>
 </section>
 
 <!-- 23 · Schedule -->
@@ -1025,7 +1025,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <ol class="steps recap">
     <li><span><b>Vision:</b> a computer sees numbers, not objects; new light means all new numbers, so fixed rules break.</span></li>
     <li><span><b>The course:</b> pixels → learning → features &amp; geometry → recognition → motion — one question, four parts, every session.</span></li>
-    <li><span><b>Grade:</b> final 40 · project 30 · assignment 20 · participation 10; half the class presents each week, 4 times per group.</span></li>
+    <li><span><b>Grade:</b> final 45 · project 30 · assignment 20 · participation 5, plus up to 10 extra for questions to classmates who present; half the class presents each week, 4 times per group.</span></li>
     <li><span><b>Project &amp; final:</b> search from week 5 · topic 8 · pitch 10 · proposal 11 · demo 13 · review 14 · final 15; hand in files named <code>CV_ID_SLOT_Topic.ext</code>.</span></li>
   </ol>
   <aside class="notes"><p>🇹🇭 ทวน 4 บรรทัด A–D</p><p>🇬🇧 Recap the four lines A–D.</p></aside>
