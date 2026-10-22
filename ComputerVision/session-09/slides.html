@@ -1125,7 +1125,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     </div>
   </div>
 
-  <aside class="notes"><p>🇹🇭 ตัวเลขวัดจริงด้วย time_stages.py บน Apple M1 Pro (CPU อย่างเดียว · median 20 ครั้ง · ภาพ 1920 × 1080) · YOLO 640 29.6 · 320 12.3 · + mask 38.3 · ByteTrack 0.8 · Farneback 960 × 540 48.8 · homography < 0.1 ms · กดเลือก: เปิด flow ทุกเฟรม → เกินงบ · ทุกเฟรมที่ 3 + YOLO 320 → ผ่าน · เครื่องอื่นได้ตัวเลขอื่น — ให้นักศึกษาวัดเครื่องตัวเอง (C2 ของ Demo)</p><p>🇬🇧 Measured by time_stages.py on Apple M1 Pro (CPU only, median of 20, 1920 × 1080 frames): YOLO 640 29.6, 320 12.3, with masks 38.3, ByteTrack 0.8, Farneback at 960 × 540 48.8, homography under 0.1 ms. Click: flow on every frame breaks the budget; every 3rd plus YOLO 320 fits. Other machines give other numbers — students measure their own (Demo criterion C2).</p></aside>
+  <aside class="notes"><p>🇹🇭 ตัวเลขวัดจริงด้วย time_stages.py บน Apple M1 Pro (CPU อย่างเดียว · median 20 ครั้ง · ภาพ 1920 × 1080) · YOLO 640 29.6 · 320 12.3 · + mask 38.3 · ByteTrack 0.8 · Farneback 960 × 540 48.8 · homography < 0.1 ms · กดเลือก: เปิด flow ทุกเฟรม → เกินงบ · ทุกเฟรมที่ 3 + YOLO 320 → ผ่าน · เครื่องอื่นได้ตัวเลขอื่น — ให้นักศึกษาวัดเครื่องตัวเอง (C3 ของ Demo)</p><p>🇬🇧 Measured by time_stages.py on Apple M1 Pro (CPU only, median of 20, 1920 × 1080 frames): YOLO 640 29.6, 320 12.3, with masks 38.3, ByteTrack 0.8, Farneback at 960 × 540 48.8, homography under 0.1 ms. Click: flow on every frame breaks the budget; every 3rd plus YOLO 320 fits. Other machines give other numbers — students measure their own (Demo criterion C3).</p></aside>
 </section>
 
 <!-- 30 -->
@@ -1134,15 +1134,15 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <h2 class="claim">Two or three solutions, one honest comparison</h2>
   <div>
     <table class="tbl big" style="width:100%">
-      <tr><th>count people on the crossing</th><th>sessions</th><th>C1 · accuracy</th><th>C2 · speed &amp; resources</th><th>risk</th></tr>
+      <tr><th>count people on the crossing</th><th>sessions</th><th>C2 · accuracy</th><th>C3 · speed &amp; resources</th><th>risk</th></tr>
       <tr><td>detect + track + count at a line</td><td>8 · 9</td><td>count error vs a hand count</td><td>30 ms / frame here</td><td>IDs break (39 IDs, ≤ 19 people)</td></tr>
       <tr><td>frame difference + blobs</td><td>3 · 9</td><td>same metric, same clip</td><td>no model at all</td><td>groups merge; light fools it</td></tr>
       <tr><td>open-vocabulary detector</td><td>5 · 8</td><td>same metric, same clip</td><td>a bigger model</td><td>new words, inherited bias</td></tr>
     </table>
-    <p class="takeaway" style="margin-top:.7em"><span>Project Demo, C1–C3: one metric that fits, the same data for every solution, time per frame for each — then explain why each one won or lost.</span></p>
+    <p class="takeaway" style="margin-top:.7em"><span>Project Demo, C2–C4: one metric that fits, the same data for every solution, time per frame for each — then explain why each one won or lost.</span></p>
   </div>
 
-  <aside class="notes"><p>🇹🇭 เกณฑ์ Demo ของโปรเจกต์ (project_brief.md): C1 metric เดียวบนข้อมูลชุดเดียว · C2 เวลา/หน่วยความจำ/พารามิเตอร์ของทุก solution · C3 วิเคราะห์ราย solution · C5 เลือก solution สุดท้าย · ตัวเลข ms วัดจริงเฉพาะแบบแรก — แบบอื่นยังไม่ได้วัด จึงเขียนเชิงคุณภาพ</p><p>🇬🇧 The project's Demo criteria (project_brief.md): C1 one metric on one dataset; C2 time, memory and parameters for every solution; C3 per-solution analysis; C5 choose the final solution. Only the first row's ms is measured — the others are left qualitative on purpose.</p></aside>
+  <aside class="notes"><p>🇹🇭 เกณฑ์ Demo ของโปรเจกต์ (project_brief.md): C2 metric เดียวบนข้อมูลชุดเดียว · C3 เวลา/หน่วยความจำ/พารามิเตอร์ของทุก solution · C4 วิเคราะห์ราย solution · C7 เลือก solution สุดท้าย · ตัวเลข ms วัดจริงเฉพาะแบบแรก — แบบอื่นยังไม่ได้วัด จึงเขียนเชิงคุณภาพ</p><p>🇬🇧 The project's Demo criteria (project_brief.md): C2 one metric on one dataset; C3 time, memory and parameters for every solution; C4 per-solution analysis; C7 choose the final solution. Only the first row's ms is measured — the others are left qualitative on purpose.</p></aside>
 </section>
 
 <!-- 31 -->

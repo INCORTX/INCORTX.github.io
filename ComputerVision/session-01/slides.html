@@ -363,8 +363,8 @@ html.reading .tl.tl7,html.reading .tl.tl8{grid-template-columns:repeat(3,minmax(
 .tl.tl-sm div::before{width:.95em;height:.95em;top:.25em;}
 .rubric{gap:1em;}
 .rubric h3{font-size:.56em;margin:0 0 .3em;}
-.reveal .rubric ol{list-style:none;margin:0;padding:0;counter-reset:rb;display:grid;gap:2px;}
-.rubric li{counter-increment:rb;display:grid;grid-template-columns:1.6em 1fr;gap:.4em;align-items:baseline;margin:0;padding:.07em .45em;border-radius:6px;font-size:.44em;line-height:1.28;background:var(--soft);}
+.reveal .rubric ol{list-style:none;margin:0;padding:0;counter-reset:rb;display:grid;gap:1px;}
+.rubric li{counter-increment:rb;display:grid;grid-template-columns:1.6em 1fr;gap:.4em;align-items:baseline;margin:0;padding:.05em .45em;border-radius:6px;font-size:.41em;line-height:1.26;background:var(--soft);}
 .rubric li::before{content:counter(rb);font-family:var(--display);font-weight:700;color:var(--gold);text-align:right;}
 html.reading .rubric li{font-size:14px;}
 html.reading .rubric h3{font-size:15px;}
@@ -882,10 +882,12 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div>
       <h3>Demo · week 13 · slides + notebook + video</h3>
       <ol>
-        <li><span><b>Accuracy</b> — a metric that fits the problem, and why; same data for every solution</span></li>
+        <li><span><b>Proposal recap</b> — your proposal in brief; what changed, and why</span></li>
+        <li><span><b>Evaluation metric</b> — which one, why, and the value each solution got</span></li>
         <li><span><b>Speed &amp; resources</b> — time, memory or parameter count of every solution</span></li>
         <li><span><b>Per-solution analysis</b> — what each one got and why, using those numbers</span></li>
-        <li><span><b>Experimental &amp; parameter settings</b> — split, settings and values used, and why</span></li>
+        <li><span><b>Experimental setting</b> — the data split and settings you used, and why</span></li>
+        <li><span><b>Parameter settings</b> — the values each solution used, and why</span></li>
         <li><span><b>Overall analysis</b> — the solution you pick and why; failure cases and limits</span></li>
         <li><span><b>Future work</b> — what you would try next, and why</span></li>
         <li><span><b>Creativity</b> — an original idea, or a strong literature review</span></li>
