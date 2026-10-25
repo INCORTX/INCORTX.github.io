@@ -183,7 +183,7 @@ html.reading .cols.today{grid-template-columns:1fr;}
 .outcomes li::before{content:counter(c);position:absolute;left:0;top:.42em;width:1.6em;height:1.6em;border-radius:50%;background:var(--gold);color:#fff;font-family:var(--display);font-weight:700;font-size:.85em;display:flex;align-items:center;justify-content:center;}
 
 /* grading */
-.gtiles{display:grid;grid-template-columns:40fr 30fr 20fr 10fr;gap:.4em;margin:.2em 0 .6em;}
+.gtiles{display:grid;grid-template-columns:45fr 30fr 20fr minmax(5.2em,5fr);gap:.4em;margin:.2em 0 .6em;}
 .gtile{border-radius:14px;padding:.6em .7em;color:#fff;min-height:9em;display:flex;flex-direction:column;justify-content:space-between;}
 .gtile .num{font-family:var(--display);font-size:2.4em;font-weight:700;line-height:1;}
 .gtile .lbl{font-family:var(--display);font-weight:600;font-size:.72em;}
@@ -457,8 +457,8 @@ html.reading .tl.tl7,html.reading .tl.tl8{grid-template-columns:repeat(3,minmax(
 .tl.tl-sm div::before{width:.95em;height:.95em;top:.25em;}
 .rubric{gap:1em;}
 .rubric h3{font-size:.56em;margin:0 0 .3em;}
-.reveal .rubric ol{list-style:none;margin:0;padding:0;counter-reset:rb;display:grid;gap:2px;}
-.rubric li{counter-increment:rb;display:grid;grid-template-columns:1.6em 1fr;gap:.4em;align-items:baseline;margin:0;padding:.07em .45em;border-radius:6px;font-size:.44em;line-height:1.28;background:var(--soft);}
+.reveal .rubric ol{list-style:none;margin:0;padding:0;counter-reset:rb;display:grid;gap:1px;}
+.rubric li{counter-increment:rb;display:grid;grid-template-columns:1.6em 1fr;gap:.4em;align-items:baseline;margin:0;padding:.05em .45em;border-radius:6px;font-size:.41em;line-height:1.26;background:var(--soft);}
 .rubric li::before{content:counter(rb);font-family:var(--display);font-weight:700;color:var(--gold);text-align:right;}
 html.reading .rubric li{font-size:14px;}
 html.reading .rubric h3{font-size:15px;}
@@ -1053,6 +1053,29 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
 <!-- 26 -->
 <section data-part="C">
   <p class="kicker">C · The camera matrix</p>
+  <h2 class="claim">Calibration: the camera measures itself on a checkerboard</h2>
+  <div class="split even" style="align-items:start">
+    <div>
+      <figure class="photo"><img src="img/calib_views.jpg" alt="three photos of a drawn checkerboard held at different tilts, with the corners OpenCV found joined by coloured lines"><figcaption>3 of 12 drawn boards · true K: f 900 px, centre (330, 245)</figcaption></figure>
+      <div class="say" style="margin-top:.5em">
+        <p>Each corner: its place on the board (X, Y, 0) is known, its pixel is found → one <b>H per photo</b> = K[r₁ r₂ t] (slide 24).</p>
+        <p class="fragment">r₁ ⟂ r₂, same length: 2 equations about K per photo → several tilted photos give <b>K</b> and the lens distortion (<code>cv2.calibrateCamera</code>).</p>
+      </div>
+    </div>
+    <div class="say fragment">
+      <table class="tbl" style="font-size:.8em;margin:0"><tr><th style="text-align:left">photos</th><th>f found</th><th>off</th><th>error px</th></tr><tr><td style="text-align:left;font-family:var(--display)">12 tilted, sharp</td><td>900.4</td><td>0%</td><td>0.08</td></tr><tr><td style="text-align:left;font-family:var(--display)">12 tilted, noisy</td><td>900.8</td><td>0.1%</td><td>0.12</td></tr><tr><td style="text-align:left;font-family:var(--display)">3 tilted, noisy</td><td>898.1</td><td>0.2%</td><td>0.12</td></tr><tr style="color:var(--coral)"><td style="text-align:left;font-family:var(--display)">6 facing the camera</td><td>1070.7</td><td>19%</td><td>0.11</td></tr></table>
+      <p style="margin-top:.5em"><b>Reprojection error:</b> project each corner back with the K found; RMS distance to where it was seen. The centre lands within 4 px every time.</p>
+      <p>Boards facing straight on: error 0.11 px, yet f is 19% off. A small error does not prove K right — <b>tilt the board</b>.</p>
+      <p style="color:var(--muted);font-size:.9em">Overview, not on the final · T7-1 goes deeper.</p>
+    </div>
+  </div>
+
+  <aside class="notes"><p>🇹🇭 ⚪ ภาพรวม ไม่ออก Final · ต่อจากหน้า 24: checkerboard คือระนาบ → แต่ละภาพได้ H = K[r1 r2 t] · r1 ⟂ r2 และยาวเท่ากัน → ภาพละ 2 สมการเกี่ยวกับ K → หลายภาพได้ K · ตารางวัดจริงจาก make_assets.py (K จริง f 900): เอียงหลายมุมได้ใกล้มาก แม้มี noise · กระดานหันตรงทุกภาพ error เล็ก 0.11 px แต่ f ผิด 19% — error เล็กไม่ได้แปลว่า K ถูก · ชี้ต่อ T7-1</p><p>🇬🇧 ⚪ Overview, not on the final. From slide 24: a checkerboard is a plane, so each photo gives H = K[r1 r2 t]; r1 ⟂ r2 and equal length → 2 equations about K per photo → several photos give K. The table is measured (make_assets.py, true f 900): tilted views land close even with noise; boards all facing the camera give a small error (0.11 px) but f 19% off — a small error does not prove K is right. Forward: T7-1.</p></aside>
+</section>
+
+<!-- 27 -->
+<section data-part="C">
+  <p class="kicker">C · The camera matrix</p>
   <h2 class="claim">Try it: where does the point land?</h2>
   <div class="split">
     <div class="tryit"><span class="tag">Try it</span>K has f = 500 px and centre (c<sub>x</sub>, c<sub>y</sub>) = (320, 240).
@@ -1065,7 +1088,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ให้เวลา 2 นาที · แบบข้อสอบ Final · ข้อ 2: กล้องเลื่อนขวา จุดจึงเลื่อนซ้ายในพิกัดกล้อง</p><p>🇬🇧 Give two minutes. Final-exam style. Question 2: the camera moves right, so the point moves left in camera coordinates.</p></aside>
 </section>
 
-<!-- 27 -->
+<!-- 28 -->
 <section data-part="C">
   <p class="kicker">C · The camera matrix</p>
   <h2 class="claim">A camera is K[R | t]</h2>
@@ -1074,14 +1097,14 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <div class="card violet"><b>[R | t] · where it is</b>Subtract the camera position, turn to its direction: world to camera coordinates.</div>
     <div class="card teal"><b>x = K[R | t] X</b>Multiply, divide by the depth. On a plane one column drops: the homography of part B.</div>
   </div>
-  <p class="labline"><a class="colab" href="lab/#part-c" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part C</a><span>Project a cube with K[R | t] (session 2 lab A, continued): change f, move and turn the camera, check the plane's 3 × 3 shortcut</span></p>
+  <p class="labline"><a class="colab" href="lab/#part-c" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part C</a><span>Project a cube with K[R | t] (session 2 lab A, continued): change f, move and turn the camera, check the plane's 3 × 3 shortcut, calibrate K from checkerboard corners</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s7c">More practice · Session 7 C — practice bank with worked solutions →</a></p>
-  <p class="takeaway"><span>Later: T7-1 — calibration measures K from photos of a chessboard. Next · D: two cameras, two K[R | t] — and the depth comes back.</span></p>
+  <p class="takeaway"><span>Later: T7-1 — calibration in depth (lens distortion, Zhang's method). Next · D: two cameras, two K[R | t] — and the depth comes back.</span></p>
 
   <aside class="notes"><p>🇹🇭 สรุป C · ชี้ต่อ T7-1 (calibration) · แล้วต่อ D: กล้องสองตัว = K[R | t] สองชุด</p><p>🇬🇧 Wrap up C. Forward: T7-1 (calibration). Then D: two cameras are two K[R | t].</p></aside>
 </section>
 
-<!-- 28 -->
+<!-- 29 -->
 <section class="part-open" id="part-d" data-part="D">
   <div class="po-strip"><a href="#/part-a" class="done"><b>A</b>Transforms</a><a href="#/part-b" class="done"><b>B</b>Homography</a><a href="#/part-c" class="done"><b>C</b>Camera</a><a href="#/part-d" class="on"><b>D</b>Stereo</a></div>
   <p class="po-letter">D</p>
@@ -1091,7 +1114,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 หน้าเปิด part: อ่านคำถามกับสิ่งที่จะทำได้ท้าย part แล้วเข้าเนื้อหา</p><p>🇬🇧 Part opener: read the question and what you can do by the end of the part, then go in.</p></aside>
 </section>
 
-<!-- 29 -->
+<!-- 30 -->
 <section data-part="D">
   <p class="kicker">D · Stereo</p>
   <h2 class="claim">Two eyes, two cameras: the near shifts more</h2>
@@ -1107,7 +1130,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ทดลองในห้อง: ยกนิ้วโป้ง ปิดตาทีละข้าง นิ้วกระโดด ผนังแทบไม่ขยับ · disparity = ระยะที่จุดเลื่อนระหว่างสองภาพ · ย้อน part B: parallax คือสิ่งที่ทำให้ไม่มี H เดียว</p><p>🇬🇧 In the room: thumb up, close one eye then the other — the thumb jumps, the wall barely moves. Disparity = how far a point shifts between the two pictures. Back to part B: this parallax is why no single H fits.</p></aside>
 </section>
 
-<!-- 30 -->
+<!-- 31 -->
 <section data-part="D">
   <p class="kicker">D · Stereo</p>
   <h2 class="claim">Depth from disparity: Z = f·B/d</h2>
@@ -1122,10 +1145,10 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     </div>
   </div>
 
-  <aside class="notes"><p>🇹🇭 ที่มา Z = fB/d: สูตร pinhole ของคาบ 2 สองครั้ง กล้องขวาเห็น X − B → ลบกัน X หายไป เหลือ d = fB/Z · ตัวอย่าง f 800 px, B 12 cm (fB = 96) ใช้ต่อทั้ง part (ฉากหน้า 33 สร้างด้วยค่านี้)</p><p>🇬🇧 Where Z = fB/d comes from: session 2's pinhole formula twice; the right camera sees X − B; subtract and X cancels: d = fB/Z. The example f 800 px, B 12 cm (fB = 96) runs through the part (slide 33's scene is built with it).</p></aside>
+  <aside class="notes"><p>🇹🇭 ที่มา Z = fB/d: สูตร pinhole ของคาบ 2 สองครั้ง กล้องขวาเห็น X − B → ลบกัน X หายไป เหลือ d = fB/Z · ตัวอย่าง f 800 px, B 12 cm (fB = 96) ใช้ต่อทั้ง part (ฉากหน้า 34 สร้างด้วยค่านี้)</p><p>🇬🇧 Where Z = fB/d comes from: session 2's pinhole formula twice; the right camera sees X − B; subtract and X cancels: d = fB/Z. The example f 800 px, B 12 cm (fB = 96) runs through the part (slide 34's scene is built with it).</p></aside>
 </section>
 
-<!-- 31 -->
+<!-- 32 -->
 <section data-part="D">
   <p class="kicker">D · Stereo</p>
   <h2 class="claim">Push the point away: the disparity shrinks</h2>
@@ -1146,7 +1169,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ลาก Z 1 → 20: d ลดตาม 1/Z (4 m → 24 px · 8 m → 12 px) · ลาก B: d โตตาม B · readout แทนค่าในสูตรทั้งสองทาง · f คงที่ 800 px</p><p>🇬🇧 Drag Z from 1 to 20: d falls like 1/Z (4 m → 24 px, 8 m → 12 px). Drag B: d grows with B. The readout substitutes into the formula both ways; f stays 800 px.</p></aside>
 </section>
 
-<!-- 32 -->
+<!-- 33 -->
 <section data-part="D">
   <p class="kicker">D · Stereo</p>
   <h2 class="claim">One pixel of error hurts far more when far</h2>
@@ -1160,10 +1183,10 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     </div>
   </div>
 
-  <aside class="notes"><p>🇹🇭 ที่มา: ΔZ ≈ |dZ/dd| = fB/d² = Z²/(fB) (อนุพันธ์ — ย้อน Taylor คาบ 4 หน้า 13) · ไกลสองเท่า ผิดสี่เท่า · ตัวอย่างไม่ซ้ำ Try it หน้า 36 · baseline ยาวขึ้นช่วย</p><p>🇬🇧 Where it comes from: ΔZ ≈ |dZ/dd| = fB/d² = Z²/(fB) (a derivative — session 4 slide 13's Taylor). Twice as far, four times worse. The example differs from slide 36's Try it. A longer baseline helps.</p></aside>
+  <aside class="notes"><p>🇹🇭 ที่มา: ΔZ ≈ |dZ/dd| = fB/d² = Z²/(fB) (อนุพันธ์ — ย้อน Taylor คาบ 4 หน้า 13) · ไกลสองเท่า ผิดสี่เท่า · ตัวอย่างไม่ซ้ำ Try it หน้า 38 · baseline ยาวขึ้นช่วย</p><p>🇬🇧 Where it comes from: ΔZ ≈ |dZ/dd| = fB/d² = Z²/(fB) (a derivative — session 4 slide 13's Taylor). Twice as far, four times worse. The example differs from slide 38's Try it. A longer baseline helps.</p></aside>
 </section>
 
-<!-- 33 -->
+<!-- 34 -->
 <section data-part="D">
   <p class="kicker">D · Stereo</p>
   <h2 class="claim">Depth is lost — and now we win it back</h2>
@@ -1186,7 +1209,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ปิดสัญญาคาบ 2 หน้า 13–14 · ฉากที่สร้างเอง (กระดาน 3 แผ่นที่ 2, 4, 8 m หน้ากำแพง 16 m · texture จากภาพ CC0 ที่ใช้อยู่แล้ว) → StereoSGBM วัด disparity 48 / 24 / 12 → ความลึกกลับมาครบ · สีดำ = บริเวณที่ถูกบังในอีกภาพ หาคู่ไม่ได้</p><p>🇬🇧 Closing session 2 slides 13–14's promise. A drawn scene (three boards at 2, 4, 8 m in front of a wall at 16 m, textures from the CC0 photos already used) → StereoSGBM measures 48 / 24 / 12 → the depths come back. Black = hidden in the other view, no match.</p></aside>
 </section>
 
-<!-- 34 -->
+<!-- 35 -->
 <section data-part="D">
   <p class="kicker">D · Stereo</p>
   <h2 class="claim">The twin of a point lies on one line</h2>
@@ -1203,7 +1226,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 epipolar เป็นแนวคิดเท่านั้น (ไม่มีข้อคำนวณ F ใน Final) · pixel หนึ่งจุด = รังสีหนึ่งเส้น · กล้องที่สองเห็นรังสีเป็นเส้น → หาคู่บนเส้นเดียว · ตัวอย่าง: ค้นน้อยลง 480 เท่า · F อยู่ใน T7-2</p><p>🇬🇧 Epipolar geometry is a concept only (no F calculations in the final). One pixel = one ray; the second camera sees the ray as a line → search one line. The example: 480 times less search. The fundamental matrix is T7-2.</p></aside>
 </section>
 
-<!-- 35 -->
+<!-- 36 -->
 <section data-part="D">
   <p class="kicker">D · Stereo</p>
   <h2 class="claim">Rectify: make the lines horizontal</h2>
@@ -1218,29 +1241,47 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 หลัง rectify: เส้น epipolar = แถว · disparity = ผลต่างของคอลัมน์ · ชี้วงกลมแดง: แถวเดียวกันทั้งสองภาพ เลื่อน 24 px → 4 m · rectify ใช้ homography ของ part B</p><p>🇬🇧 After rectification epipolar lines are rows and disparity is a column difference. The red circles: same row in both views, 24 px apart → 4 m. Rectifying uses part B's homographies.</p></aside>
 </section>
 
-<!-- 36 -->
+<!-- 37 -->
+<section data-part="D">
+  <p class="kicker">D · Stereo</p>
+  <h2 class="claim">From two views to many: structure from motion</h2>
+  <div class="split" style="grid-template-columns:minmax(0,1fr) minmax(0,1.25fr)">
+    <div><svg class="fig cvsvg" viewBox="40 25 480 255" style="max-height:250px;margin:0 auto" role="img" aria-label="four cameras around a small house; one point on the house is seen by all four, and their rays meet at it"><defs><marker id="a70f1b2d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f1b2d"/></marker><marker id="a7855400" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#855400"/></marker><marker id="a7e0533d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e0533d"/></marker><marker id="a70f766e" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker><marker id="a72f6fdb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2f6fdb"/></marker></defs><polygon points="200,80 260,40 320,80 320,140 200,140" fill="#855400" fill-opacity=".1" stroke="#855400" stroke-width="2.5"/><circle cx="217" cy="117" r="3.5" fill="#855400"/><circle cx="233" cy="131" r="3.5" fill="#855400"/><circle cx="291" cy="88" r="3.5" fill="#855400"/><circle cx="269" cy="112" r="3.5" fill="#855400"/><circle cx="218" cy="115" r="3.5" fill="#855400"/><circle cx="253" cy="89" r="3.5" fill="#855400"/><circle cx="258" cy="70" r="3.5" fill="#855400"/><circle cx="225" cy="132" r="3.5" fill="#855400"/><circle cx="284" cy="89" r="3.5" fill="#855400"/><circle cx="220" cy="90" r="3.5" fill="#855400"/><circle cx="249" cy="127" r="3.5" fill="#855400"/><circle cx="262" cy="107" r="3.5" fill="#855400"/><circle cx="253" cy="100" r="3.5" fill="#855400"/><circle cx="269" cy="119" r="3.5" fill="#855400"/><line x1="70" y1="230" x2="290" y2="100" stroke="#e0533d" stroke-width="1.6" opacity=".75"/><polygon points="70.0,230.0 98.3,223.2 81.6,203.3" fill="#2f6fdb" fill-opacity=".25" stroke="#2f6fdb" stroke-width="2.5"/><text x="70" y="252" text-anchor="middle" class="tk" style="fill:#2f6fdb"></text><line x1="190" y1="260" x2="290" y2="100" stroke="#e0533d" stroke-width="1.6" opacity=".75"/><polygon points="190.0,260.0 209.3,238.3 184.2,231.5" fill="#2f6fdb" fill-opacity=".25" stroke="#2f6fdb" stroke-width="2.5"/><text x="190" y="282" text-anchor="middle" class="tk" style="fill:#2f6fdb"></text><line x1="330" y1="260" x2="290" y2="100" stroke="#e0533d" stroke-width="1.6" opacity=".75"/><polygon points="330.0,260.0 338.3,232.1 312.7,236.7" fill="#2f6fdb" fill-opacity=".25" stroke="#2f6fdb" stroke-width="2.5"/><text x="330" y="282" text-anchor="middle" class="tk" style="fill:#2f6fdb"></text><line x1="450" y1="230" x2="290" y2="100" stroke="#e0533d" stroke-width="1.6" opacity=".75"/><polygon points="450.0,230.0 438.4,203.3 421.7,223.2" fill="#2f6fdb" fill-opacity=".25" stroke="#2f6fdb" stroke-width="2.5"/><text x="450" y="252" text-anchor="middle" class="tk" style="fill:#2f6fdb"></text><circle cx="290" cy="100" r="7" fill="#e0533d"/><text x="335" y="60" class="lb" style="fill:#e0533d"><tspan x="335">one point,</tspan><tspan x="335" dy="20">seen by every camera</tspan></text></svg></div>
+    <div class="say">
+      <p>Stereo knew where its two cameras stood. With photos from anywhere, <b>find the cameras too</b>.</p>
+      <div class="worked fragment"><span class="tag">Measured · 2 views, 150 drawn points, matches 0.5 px off</span><p>129 / 150 kept by RANSAC · turn within 0.6° · step direction within 3.2° · points 6.9% off at 4–6 m — two close views are rough</p></div>
+      <p class="fragment"><b>Limit: no size.</b> The step comes out as 1, no unit: a scene twice as big, seen from twice as far, gives the same pixels. One known length fixes it.</p>
+    </div>
+  </div>
+  <div class="pipe fragment" style="margin-top:.4em"><div class="st"><b>1 · Match</b>same points across photos (session 6)</div><span class="ar">→</span><div class="st"><b>2 · Pose</b>each camera's R, t</div><span class="ar">→</span><div class="st"><b>3 · Triangulate</b>rays meet at a 3D point (part D)</div><span class="ar">→</span><div class="st"><b>4 · Bundle adjust</b>move all at once to shrink the reprojection error</div></div>
+  <p class="more" style="margin-top:.4em;color:var(--muted)">Overview, not on the final · T7-3: COLMAP · T7-7: DUSt3R does it with a trained network.</p>
+
+  <aside class="notes"><p>🇹🇭 ⚪ ภาพรวม ไม่ออก Final · stereo รู้ตำแหน่งกล้อง → SfM ต้องหากล้องเองด้วย · 4 ขั้น: match (คาบ 6) → pose → triangulate (part D) → bundle adjustment (ลด reprojection error ของหน้าก่อน ๆ ทุกกล้องพร้อมกัน) · ตัวเลขวัดจริง (make_assets.py): สองภาพ match คลาด 0.5 px → จุดคลาด 6.9% · ข้อจำกัด: ไม่รู้ขนาด (scene ใหญ่สองเท่า ถ่ายไกลสองเท่า ได้ pixel เดิม) — ย้อนคาบ 2: depth is lost · ชี้ต่อ T7-3, T7-7</p><p>🇬🇧 ⚪ Overview, not on the final. Stereo knew where the cameras were; SfM has to find them too. Four steps: match (session 6) → pose → triangulate (part D) → bundle adjustment (shrink the reprojection error over all cameras at once). Measured (make_assets.py): two views, matches 0.5 px off → points 6.9% off. The limit: no size — a scene twice as big, seen from twice as far, gives the same pixels (session 2's depth ambiguity again). Forward: T7-3, T7-7.</p></aside>
+</section>
+
+<!-- 38 -->
 <section data-part="D">
   <p class="kicker">D · Stereo</p>
   <h2 class="claim">Try it: how far, and how sure?</h2>
   <div class="split">
     <div class="tryit"><span class="tag">Try it</span>A stereo camera has f = 700 px and B = 0.1 m (fB = 70).
       <ol style="margin:.4em 0 0 1.1em"><li>A point has disparity 35 px. How far is it? What if the match is 1 px off (34 px)?</li><li>A far point has disparity 7 px. How far? And at 6 px?</li><li>By how many percent does one pixel change the depth in each case?</li></ol>
-      <details><summary>Answer</summary>1. 70 ÷ 35 = <b>2 m</b> · 70 ÷ 34 ≈ <b>2.06 m</b> · 2. 70 ÷ 7 = <b>10 m</b> · 70 ÷ 6 ≈ <b>11.7 m</b> · 3. near ≈ <b>3%</b> · far ≈ <b>17%</b> — the Z² of slide 32.</details>
+      <details><summary>Answer</summary>1. 70 ÷ 35 = <b>2 m</b> · 70 ÷ 34 ≈ <b>2.06 m</b> · 2. 70 ÷ 7 = <b>10 m</b> · 70 ÷ 6 ≈ <b>11.7 m</b> · 3. near ≈ <b>3%</b> · far ≈ <b>17%</b> — the Z² of slide 33.</details>
     </div>
     <div class="say"><p>Z = f·B / d</p><p>ΔZ ≈ Z² / (f·B)</p></div>
   </div>
 
-  <aside class="notes"><p>🇹🇭 ให้เวลา 2 นาที · แบบข้อสอบ Final · ข้อ 3 โยงกับหน้า 32</p><p>🇬🇧 Give two minutes. Final-exam style. Question 3 ties to slide 32.</p></aside>
+  <aside class="notes"><p>🇹🇭 ให้เวลา 2 นาที · แบบข้อสอบ Final · ข้อ 3 โยงกับหน้า 33</p><p>🇬🇧 Give two minutes. Final-exam style. Question 3 ties to slide 33.</p></aside>
 </section>
 
-<!-- 37 -->
+<!-- 39 -->
 <section data-part="D">
   <p class="kicker">D · Stereo</p>
   <h2 class="claim">Stereo: disparity buys back depth</h2>
   <div class="cards">
     <div class="card"><b>Disparity</b>The same point shifts between two side-by-side cameras: Z = f·B/d — near shifts more.</div>
     <div class="card violet"><b>Precision</b>One pixel of error costs Z²/(fB) metres: far depth is rough; a longer baseline helps.</div>
-    <div class="card teal"><b>Search one line</b>The twin lies on the epipolar line; after rectifying, on the same row.</div>
+    <div class="card teal"><b>Search one line</b>The twin lies on the epipolar line; after rectifying, on the same row. Many photos: structure from motion.</div>
   </div>
   <p class="labline"><a class="colab" href="lab/#part-d" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Open lab in Colab · part D</a><span>Z = f·B/d and a pixel of error; a rectified stereo pair → StereoSGBM → a depth map; matching rows (no fundamental matrix)</span></p>
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s7d">More practice · Session 7 D — practice bank with worked solutions →</a></p>
@@ -1249,7 +1290,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 สรุป D · ชี้ต่อคาบ 9 (optical flow = จับคู่ข้ามเวลา) · T7-6, T7-7</p><p>🇬🇧 Wrap up D. Forward: session 9 (optical flow matches across time). T7-6, T7-7.</p></aside>
 </section>
 
-<!-- 38 -->
+<!-- 40 -->
 <section>
   <p class="kicker">Session 7 · what to remember</p>
   <h2 class="claim">Geometry ties views together</h2>
@@ -1263,7 +1304,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ทวน 4 ข้อ A–D · ปิดสัญญาคาบ 2 หน้า 14 · ต่อด้วยครึ่ง A นำเสนอ T6</p><p>🇬🇧 Recap A–D. Session 2 slide 14's promise is kept. Half A's T6 talks follow.</p></aside>
 </section>
 
-<!-- 39 -->
+<!-- 41 -->
 <section>
   <p class="kicker">Assignment · topic set T7</p>
   <h2 class="claim">Half B: pick a T7 topic today — you present it in session 8</h2>
@@ -1272,7 +1313,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ครึ่ง B เลือกหัวข้อ กลุ่มละหนึ่งหัวข้อ ไม่ซ้ำกัน · ส่งไฟล์ตามกำหนดก่อนคาบ 8 · เตือน: ส่งหัวข้อโปรเจกต์สัปดาห์หน้า</p><p>🇬🇧 Half B picks one topic per group, no repeats; files due before session 8. Remind: project topic due next week.</p></aside>
 </section>
 
-<!-- 40 -->
+<!-- 42 -->
 <section>
   <p class="kicker">Next · Session 8</p>
   <h2 class="claim">What is in the picture, where — and which pixels?</h2>
@@ -1286,7 +1327,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ปิดคาบ: ปูทางคาบ 8</p><p>🇬🇧 Close the session and set up session 8.</p></aside>
 </section>
 
-<!-- 41 -->
+<!-- 43 -->
 <section>
   <p class="kicker">References</p>
   <h2 class="claim">Where session 7 comes from</h2>
@@ -1296,8 +1337,10 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <li>A. Torralba, P. Isola &amp; W. Freeman (2024). <i>Foundations of Computer Vision</i>, ch. 38–41 (visionbook.mit.edu).</li>
     <li>S. K. Nayar. <i>First Principles of Computer Vision</i> — Image Stitching; Camera Calibration; Uncalibrated Stereo.</li>
     <li>H. Hirschmüller (2008). Stereo processing by semiglobal matching and mutual information. <i>IEEE TPAMI</i> 30(2) — OpenCV's StereoSGBM.</li>
+    <li>Z. Zhang (2000). A flexible new technique for camera calibration. <i>IEEE TPAMI</i> 22(11) — the checkerboard method behind cv2.calibrateCamera.</li>
+    <li>J. L. Schönberger &amp; J.-M. Frahm (2016). Structure-from-motion revisited. <i>CVPR</i> — COLMAP.</li>
   </ul>
-  <p class="small refimg">Photos (CC0, Wikimedia Commons): Dinkum, “Façade d'immeuble 1 rue Bayard” and “(détail)” (session 6) · Wilfredor, Jacques-Cartier National Park (session 2). The stereo scene, every warp, blend, diagram and number: made by programs written for this course (OpenCV, NumPy).</p>
+  <p class="small refimg">Photos (CC0, Wikimedia Commons): Dinkum, “Façade d'immeuble 1 rue Bayard” and “(détail)” (session 6) · Wilfredor, Jacques-Cartier National Park (session 2). The stereo scene, the checkerboards, every warp, blend, diagram and number: made by programs written for this course (OpenCV, NumPy).</p>
 </section>
 
 </div>
