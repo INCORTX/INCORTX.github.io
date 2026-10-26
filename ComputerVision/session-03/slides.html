@@ -183,7 +183,7 @@ html.reading .cols.today{grid-template-columns:1fr;}
 .outcomes li::before{content:counter(c);position:absolute;left:0;top:.42em;width:1.6em;height:1.6em;border-radius:50%;background:var(--gold);color:#fff;font-family:var(--display);font-weight:700;font-size:.85em;display:flex;align-items:center;justify-content:center;}
 
 /* grading */
-.gtiles{display:grid;grid-template-columns:40fr 30fr 20fr 10fr;gap:.4em;margin:.2em 0 .6em;}
+.gtiles{display:grid;grid-template-columns:45fr 30fr 20fr minmax(5.2em,5fr);gap:.4em;margin:.2em 0 .6em;}
 .gtile{border-radius:14px;padding:.6em .7em;color:#fff;min-height:9em;display:flex;flex-direction:column;justify-content:space-between;}
 .gtile .num{font-family:var(--display);font-size:2.4em;font-weight:700;line-height:1;}
 .gtile .lbl{font-family:var(--display);font-weight:600;font-size:.72em;}
@@ -441,8 +441,8 @@ html.reading .tl.tl7,html.reading .tl.tl8{grid-template-columns:repeat(3,minmax(
 .tl.tl-sm div::before{width:.95em;height:.95em;top:.25em;}
 .rubric{gap:1em;}
 .rubric h3{font-size:.56em;margin:0 0 .3em;}
-.reveal .rubric ol{list-style:none;margin:0;padding:0;counter-reset:rb;display:grid;gap:2px;}
-.rubric li{counter-increment:rb;display:grid;grid-template-columns:1.6em 1fr;gap:.4em;align-items:baseline;margin:0;padding:.07em .45em;border-radius:6px;font-size:.44em;line-height:1.28;background:var(--soft);}
+.reveal .rubric ol{list-style:none;margin:0;padding:0;counter-reset:rb;display:grid;gap:1px;}
+.rubric li{counter-increment:rb;display:grid;grid-template-columns:1.6em 1fr;gap:.4em;align-items:baseline;margin:0;padding:.05em .45em;border-radius:6px;font-size:.41em;line-height:1.26;background:var(--soft);}
 .rubric li::before{content:counter(rb);font-family:var(--display);font-weight:700;color:var(--gold);text-align:right;}
 html.reading .rubric li{font-size:14px;}
 html.reading .rubric h3{font-size:15px;}
@@ -1441,10 +1441,39 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s3d">More practice · Session 3 D — practice bank with worked solutions →</a></p>
   <p class="takeaway"><span>That is the whole session: one operation, seen four ways.</span></p>
 
-  <aside class="notes"><p>🇹🇭 สรุป D แล้วไปหน้าสรุปทั้งคาบ</p><p>🇬🇧 Wrap up D, then the session summary.</p></aside>
+  <aside class="notes"><p>🇹🇭 สรุป D แล้วไปหน้าวัดผล</p><p>🇬🇧 Wrap up D, then how well it all works.</p></aside>
 </section>
 
 <!-- 46 -->
+<section>
+  <p class="kicker">Session 3 · how well it works</p>
+  <h2 class="claim">Each filter, measured: where does it break?</h2>
+  <div class="cards" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+    <div class="card"><b>A · Padding</b>Blur a crop vs the whole photo (real neighbours): zero padding is off by 12.5 grey levels in the 9 px border band, up to 92; replicate 1.4; inside, 0.</div>
+    <div class="card violet"><b>B · Smoothing</b>Noise σ 20: a 3 × 3 box leaves 6.68 (√9 rule: 6.67), 5 × 5 leaves 4.01. Error on edges: 16 → 19.8 → 23.5. More blur, less accurate.</div>
+    <div class="card teal"><b>C · Edges</b>Drawn shapes, true edges known (±2 px). Canny: clean F 1.00 · noise σ 25 F 0.98, no blur: precision 0.06 · 30 % light: recall 0.16.</div>
+    <div class="card coral"><b>D · Shrinking 4×</b>Test rings where the truth is plain grey: skipping leaves a false pattern of std 90.2; Gaussian first, 1.2. Price: detail at half the limit keeps 64 % of its contrast.</div>
+  </div>
+  <div class="worked" style="margin-top:.5em"><span class="tag">Worked example · scoring edges</span><p>P = share of found edges that are true · R = share of true edges found · F = 2PR ÷ (P + R): P 0.96, R 1.00 → F = 1.92 ÷ 1.96 = 0.98</p></div>
+  <aside class="notes"><p>🇹🇭 ทุกตัวเลขวัดจริงด้วย tools/s03/evaluate.py · A: zero padding ทำขอบมืด (ผิด 12.5 ระดับเทาในแถบ 9 px) · B: noise ลดตาม √n ตรงสูตร แต่ขอบเสียมากขึ้น — blur มากไม่ได้แม่นขึ้น · C: ฉากวาดเองจึงรู้ขอบจริง · ไม่ blur ก่อน noise กลายเป็นขอบ (precision 0.06) · แสงน้อย threshold เดิมหาขอบเจอแค่ 0.16 · D: blur ก่อนย่อ ลายปลอมหาย แต่รายละเอียดจริงจางลง · F ใช้ต่อในหน้าถัดไป (HED)</p><p>🇬🇧 Every number measured by tools/s03/evaluate.py. A: zero padding darkens the border (12.5 grey levels in the 9 px band). B: noise falls by √n exactly, but edges suffer more — more blur is not more accurate. C: a drawn scene, so the true edges are known; without the blur noise becomes edges (precision 0.06); in dim light the same thresholds find 0.16 of the edges. D: blurring before shrinking removes the false pattern but fades real detail. F is used on the next slide (HED).</p></aside>
+</section>
+
+<!-- 47 -->
+<section>
+  <p class="kicker">Session 3 · research</p>
+  <h2 class="claim">Research: learn edges at every scale at once</h2>
+  <figure class="photo" style="margin:0 0 .3em"><img src="img/hed_scales.jpg" alt="four edge maps of a covered walkway: fine scale full of leaf and tile texture, coarser scales showing only the arch and posts, and their average" style="max-height:150px;width:auto;max-width:100%;margin:0 auto">
+    <figcaption>simulated with part C’s gradient: σ 1 · σ 2 · σ 4 · plain average (HED learns the weights) — the paper’s own: Fig. 1</figcaption></figure>
+  <div class="say" style="margin-bottom:.4em"><p><b>Xie &amp; Tu (ICCV 2015), HED.</b> No one σ suits every picture: on our shapes with noise σ 60, σ 1 scores F 0.71 and σ 4 0.99. HED is a CNN (session 4): every stage gives an edge map, fine to coarse, fused by learned weights; trained on 200 photos edged by people (BSDS500).</p></div>
+  <div class="cards" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+    <div class="card teal"><b>Result</b>F, one threshold for the test set: Canny .600 · HED .782 · people vs each other .80. One stage alone: .595–.740. 0.4 s a photo on a GPU, 12 s on a CPU.</div>
+    <div class="card coral"><b>Limits they state</b>Few training photos (100 more → .797) · weak edges dropped at high recall · an edge counts only if 3+ people drew it.</div>
+  </div>
+  <p class="more"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1504.06375">Read the paper (arXiv 1504.06375) →</a></p>
+  <aside class="notes"><p>🇹🇭 ตรวจกับ paper แล้ว: human consistency F 0.80 (บทนำ) · BSDS500 200/100/200 (§4.2) · Table 4 ODS: Human .80 · Canny .600 (15 FPS) · HED .782 (2.5 FPS GPU, 1/12 CPU) · Table 3 side output 1–5 = .595/.697/.738/.740/.606 → fusion .782 · บทสรุป: 0.4 s GPU / 12 s CPU · ข้อจำกัด: ข้อมูลฝึกน้อย เพิ่ม 100 ภาพ → .797 (§4.2) · deep methods ตกที่ recall สูง ขอบอ่อนหาย · ground truth นับเป็นขอบเมื่อ ≥ 3 คนลาก (§4.1) · ODS = threshold เดียวทั้งชุด · ภาพของเราจำลองแนวคิดหลายสเกลด้วย gradient part C ไม่ใช่ network · ชี้ต่อคาบ 4 (CNN) และคาบ 8 (segmentation)</p><p>🇬🇧 Checked against the paper: human consistency F 0.80 (introduction); BSDS500 200/100/200 (§4.2); Table 4 ODS: human .80, Canny .600 at 15 FPS, HED .782 (2.5 FPS GPU, 1/12 CPU); Table 3 side outputs 1–5 .595/.697/.738/.740/.606 → fusion .782; conclusion: 0.4 s GPU / 12 s CPU. Limits: little training data — 100 more images → .797 (§4.2); deep methods fall off at high recall, weak edges omitted; ground truth: an edge only where ≥ 3 annotators agree (§4.1). ODS = one threshold for the whole set. Our figure simulates the multi-scale idea with part C's gradients, not the network. Forward: session 4 (CNNs), session 8 (segmentation).</p></aside>
+</section>
+
+<!-- 48 -->
 <section>
   <p class="kicker">Session 3 · what to remember</p>
   <h2 class="claim">One operation, four jobs</h2>
@@ -1458,7 +1487,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ทวน 4 ข้อ A–D · ต่อด้วยครึ่ง A นำเสนอ T2 หลังจบเด็ค</p><p>🇬🇧 Recap the four lines A–D. Half A's T2 talks follow after the deck.</p></aside>
 </section>
 
-<!-- 47 -->
+<!-- 49 -->
 <section>
   <p class="kicker">Assignment · topic set T3</p>
   <h2 class="claim">Half B: pick a T3 topic today — you present it in session 4</h2>
@@ -1476,7 +1505,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ครึ่ง B เลือกหัวข้อ กลุ่มละหนึ่งหัวข้อ ไม่ซ้ำกัน · ส่งไฟล์ตามกำหนดก่อนคาบ 4 · ครึ่ง A รับ T4 หลังคาบ 4</p><p>🇬🇧 Half B picks one topic per group, no repeats; files due before session 4. Half A gets T4 after session 4.</p></aside>
 </section>
 
-<!-- 48 -->
+<!-- 50 -->
 <section>
   <p class="kicker">Next · Session 4</p>
   <h2 class="claim">What if the data chose the kernel?</h2>
@@ -1490,7 +1519,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ปิดคาบ: ปูทางคาบ 4</p><p>🇬🇧 Close the session and set up session 4.</p></aside>
 </section>
 
-<!-- 49 -->
+<!-- 51 -->
 <section>
   <p class="kicker">References</p>
   <h2 class="claim">Where session 3 comes from</h2>
@@ -1498,13 +1527,14 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <li>S. K. Nayar. <i>First Principles of Computer Vision</i> — Image Processing I and II (pixel processing, convolution, linear filters, Fourier transform, sampling); Edge Detection.</li>
     <li>R. Szeliski (2022). <i>Computer Vision: Algorithms and Applications</i>, 2nd ed., §3.1–3.5, §7.2.</li>
     <li>A. Torralba, P. Isola &amp; W. T. Freeman (2024). <i>Foundations of Computer Vision</i>, ch. 15–18, 20, 23 — free at visionbook.mit.edu.</li>
+    <li>S. Xie &amp; Z. Tu (2015). Holistically-nested edge detection. <i>ICCV</i> (arXiv 1504.06375).</li>
   </ul>
   <h3 style="margin-top:.8em">Images</h3>
   <ul class="small" style="font-size:.56em;line-height:1.6">
     <li>Laitche, “One point perspective”, Tennoji Park, Osaka — public domain, via Wikimedia Commons.</li>
     <li>Wilfredor, “Panoramic view of Jacques-Cartier National Park from the Wolves peak” — CC0, via Wikimedia Commons.</li>
     <li>Wilfredor, “Facade of a tower block in downtown Rio de Janeiro” — CC0, via Wikimedia Commons.</li>
-    <li>Every filtered, transformed or shrunk version, the test rings, the wheel and all charts: made by programs written for this course.</li>
+    <li>Every filtered, transformed or shrunk version, the test rings, the wheel, the drawn shapes and all charts: made by programs written for this course.</li>
   </ul>
 </section>
 
