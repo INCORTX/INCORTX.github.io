@@ -1351,10 +1351,39 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s5d">More practice · Session 5 D — practice bank with worked solutions →</a></p>
   <p class="takeaway"><span>Later: session 8 — find by text, and the ethics of who is in the data (8 D). Next: start looking for your project topic.</span></p>
 
-  <aside class="notes"><p>🇹🇭 สรุป D · ชี้ต่อคาบ 8 (find by text + ethics) · ต่อด้วยหน้าเริ่มหาหัวข้อโปรเจกต์</p><p>🇬🇧 Wrap up D. Forward: session 8 (find by text, ethics). Then the project-topic slide.</p></aside>
+  <aside class="notes"><p>🇹🇭 สรุป D · ชี้ต่อคาบ 8 (find by text + ethics) · ต่อด้วยหน้าวัดผล งานวิจัย แล้วหน้าเริ่มหาหัวข้อโปรเจกต์</p><p>🇬🇧 Wrap up D. Forward: session 8 (find by text, ethics). Then how well it works, research, and the project-topic slide.</p></aside>
 </section>
 
 <!-- 42 -->
+<section>
+  <p class="kicker">Session 5 · how well it works</p>
+  <h2 class="claim">Real models, measured: what breaks them?</h2>
+  <div class="cards" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+    <div class="card"><b>A · Attention costs N²</b>DINO's ViT-B/16, laptop CPU: 224 px 56 ms · 448 px 154 ms · 896 px 943 ms — 16× the tokens, 17× the time.</div>
+    <div class="card violet"><b>B · ViT: layout matters</b>DINO's [CLS] vs the clean photo (cosine): noise 0.96 · half the patches grey 0.81 · upside down 0.64 · shuffled 0.51. Two different photos: 0.13.</div>
+    <div class="card teal"><b>C · Search by example</b>A changed photo finds its own original among 9? Noise σ 120: 8 · blur 8 px: 9 · blur 16 px: 6 · 2 % light: 6.</div>
+    <div class="card coral"><b>D · Zero-shot</b>5/5 right up to blur 16 px; blur 32 px 4/5; 2 % light 2/5. But 5 very different classes is an easy test.</div>
+  </div>
+  <div class="worked" style="margin-top:.5em"><span class="tag">Worked example · tokens at 896 px</span><p>(896 ÷ 16)² + 1 = 3,137 tokens → 3,137² ≈ 9.8 million scores a head: 254× those at 224 px</p></div>
+  <aside class="notes"><p>🇹🇭 ทุกตัวเลขวัดจริงด้วย tools/s05/evaluate.py บน DINO ViT-B/16 และ CLIP ViT-B/32 ตัวเดียวกับที่เด็คใช้ · ภาพ CC0 ของคาบนี้ · เวลาเป็นของ laptop CPU (เครื่องอื่นต่างได้ แต่สัดส่วนใกล้กัน) · B: noise แทบไม่เปลี่ยน embedding แต่สลับ patch / กลับหัว เปลี่ยนมาก — position embedding ทำงาน (ย้อนหน้า 16) · C: การค้นพังก่อน zero-shot · D: 5 คลาสต่างกันมาก โจทย์ง่าย — ความผิดพลาดของหน้า 38 (นับ, ตัวหนังสือ) ไม่ได้มาจากคุณภาพภาพ</p><p>🇬🇧 Every number measured by tools/s05/evaluate.py on the same DINO ViT-B/16 and CLIP ViT-B/32 the deck uses, on this session's CC0 photos. Times are this laptop's CPU (others differ, the ratio is similar). B: noise barely moves the embedding; shuffling or turning the patches moves it a lot — the position embeddings at work (slide 16). C: search breaks before zero-shot. D: five very different classes make an easy test; slide 38's failures (counting, written words) are not about image quality.</p></aside>
+</section>
+
+<!-- 43 -->
+<section>
+  <p class="kicker">Session 5 · research</p>
+  <h2 class="claim">Research: is it the same person?</h2>
+  <figure class="photo" style="margin:0 0 .3em"><img src="img/verify_hist.png" alt="two histograms of distances between embedding pairs: on the digits the embedding learned, same-digit pairs sit left of the threshold and different-digit pairs right; on digits it never saw, the two outlines overlap" style="max-height:160px;width:auto;max-width:100%;margin:0 auto">
+    <figcaption>simulated on digits: embedding + threshold learned on 0–4 only · the paper’s own: Fig. 3 and 11</figcaption></figure>
+  <div class="say" style="margin-bottom:.4em"><p><b>Kudisthalert, Pasupa, Morales &amp; Fierrez (Neural Computing and Applications 2022), SELM.</b> Two faces → two embeddings (ResNet-50 + a triplet model per group: part C’s pull together, push apart) → a Siamese layer joins them (sum, |difference|, product, mean) → an extreme learning machine: same person or not.</p></div>
+  <div class="cards" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+    <div class="card teal"><b>Result</b>DiveFace (72,000 faces, 6 balanced groups): SELM 98.32 %, AUC 99.72. On LFW: false accepts 0.2 % vs ResNet 2.4 %.</div>
+    <div class="card coral"><b>Limits they state</b>A group drawn from other regions than in training scored lower on LFW. Our digits: 95.0 % on the group learned, 61.5 % on unseen ones.</div>
+  </div>
+  <p class="more"><a target="_blank" rel="noopener" href="https://doi.org/10.1007/s00521-022-07100-z">Read the paper →</a></p>
+  <aside class="notes"><p>🇹🇭 งานวิจัยของผู้สอนเอง · ตรวจกับ paper แล้ว: ResNet-50 (VGGFace2) 2,048 ตัวเลข → triplet model แยก 6 กลุ่ม (§4) · Siamese layer: sum / distance / multiply / mean (§3.3, Fig. 3) · DiveFace 72,000 ภาพ 24,000 คน 6 กลุ่มเท่ากัน (§5.1.1, Table 1) · Table 2: SI 93.65 · GED 97.87 / AUC 99.45 · Table 3: SELM-Sum 98.32 / AUC 99.72 (abstract และบทสรุปเขียน 98.31 — ใช้ค่าจากตาราง) · LFW 1,000 คู่: FAR 0.2% เทียบ ResNet 2.4% (§6.4, Fig. 11) · ข้อจำกัด §6.4: กลุ่ม Black ใน LFW มาจากภูมิภาคต่างจาก DiveFace → ผลต่ำกว่า · SELM-GED ขึ้นกับขั้นทายกลุ่ม และอันดับรวมบน LFW แย่สุด (16 เทียบ SELM-SI 9.5, ResNet 10.5) · อนาคต: ฝึกเองตั้งแต่ต้นเพื่อลด bias (§7) · รูปของเราจำลองด้วย digits: embedding (LDA) + threshold จาก 0–4 → คู่ 0–4 ใหม่ 95.0% (false accept 2.5%) · คู่ 5–9 61.5% (false accept 19.2%) — ปัญหาเดียวกับกลุ่มที่ข้อมูลฝึกไม่ครอบคลุม · ชี้ต่อคาบ 8 D (bias)</p><p>🇬🇧 The lecturer's own paper. Checked against it: ResNet-50 (VGGFace2), 2,048 numbers → a triplet model per group (§4); Siamese layer: sum, distance, multiply, mean (§3.3, Fig. 3); DiveFace: 72,000 images, 24,000 people, 6 equal groups (§5.1.1, Table 1); Table 2: SI 93.65, GED 97.87 / AUC 99.45; Table 3: SELM-Sum 98.32 / AUC 99.72 (abstract and conclusion say 98.31 — the table is used); LFW, 1,000 pairs: FAR 0.2 % vs ResNet 2.4 % (§6.4, Fig. 11). Limits (§6.4): LFW's Black group comes from other regions than DiveFace's and scores lower; SELM-GED depends on the group prediction and ranked last on LFW (16 vs SELM-SI 9.5, ResNet 10.5); future work: train from scratch to remove bias (§7). Our figure simulates it on digits: an LDA embedding + threshold from 0–4 → new 0–4 pairs 95.0 % (false accepts 2.5 %), 5–9 pairs 61.5 % (false accepts 19.2 %) — the same problem as a group the training data does not cover. Forward: session 8 D (bias).</p></aside>
+</section>
+
+<!-- 44 -->
 <section>
   <p class="kicker">Project · week 5</p>
   <h2 class="claim">Start looking for your project topic now</h2>
@@ -1372,7 +1401,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 หมุดหมายสัปดาห์ 5: เริ่มหาหัวข้อ ส่งสัปดาห์ 8 · ทวน 4 คำถาม pitch ของคาบ 1 · ย้อนตาราง recipe คาบ 4 หน้า 42</p><p>🇬🇧 Week-5 milestone: start looking, topic due week 8. Recap session 1's four pitch questions; session 4's recipe table (slide 42).</p></aside>
 </section>
 
-<!-- 43 -->
+<!-- 45 -->
 <section>
   <p class="kicker">Session 5 · what to remember</p>
   <h2 class="claim">From fixed windows to learned attention — and open names</h2>
@@ -1386,7 +1415,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ทวน 4 ข้อ A–D · ต่อด้วยครึ่ง A นำเสนอ T4 หลังจบเด็ค</p><p>🇬🇧 Recap the four lines A–D. Half A's T4 talks follow after the deck.</p></aside>
 </section>
 
-<!-- 44 -->
+<!-- 46 -->
 <section>
   <p class="kicker">Assignment · topic set T5</p>
   <h2 class="claim">Half B: pick a T5 topic today — you present it in session 6</h2>
@@ -1395,7 +1424,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ครึ่ง B เลือกหัวข้อ กลุ่มละหนึ่งหัวข้อ ไม่ซ้ำกัน · ส่งไฟล์ตามกำหนดก่อนคาบ 6 · ครึ่ง A รับ T6 หลังคาบ 6</p><p>🇬🇧 Half B picks one topic per group, no repeats; files due before session 6. Half A gets T6 after session 6.</p></aside>
 </section>
 
-<!-- 45 -->
+<!-- 47 -->
 <section>
   <p class="kicker">Next · Session 6</p>
   <h2 class="claim">Do two photos show the same point?</h2>
@@ -1409,7 +1438,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ปิดคาบ: ปูทางคาบ 6</p><p>🇬🇧 Close the session and set up session 6.</p></aside>
 </section>
 
-<!-- 46 -->
+<!-- 48 -->
 <section>
   <p class="kicker">References</p>
   <h2 class="claim">Where session 5 comes from</h2>
@@ -1419,6 +1448,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <li>T. Chen, S. Kornblith, M. Norouzi &amp; G. Hinton (2020). A simple framework for contrastive learning of visual representations (SimCLR). <i>ICML</i> — arXiv:2002.05709.</li>
     <li>M. Caron et al. (2021). Emerging properties in self-supervised vision transformers (DINO). <i>ICCV</i> — arXiv:2104.14294.</li>
     <li>A. Radford et al. (2021). Learning transferable visual models from natural language supervision (CLIP). <i>ICML</i> — arXiv:2103.00020.</li>
+    <li>W. Kudisthalert, K. Pasupa, A. Morales &amp; J. Fierrez (2022). SELM: Siamese extreme learning machine with application to face biometrics. <i>Neural Computing and Applications</i> — doi:10.1007/s00521-022-07100-z.</li>
     <li>S. J. D. Prince (2023). <i>Understanding Deep Learning</i>, ch. 12 · A. Torralba, P. Isola &amp; W. T. Freeman (2024). <i>Foundations of Computer Vision</i>, ch. 26, 30, 51 · R. Szeliski (2022), §5.4, §6.6.</li>
   </ul>
   <h3 style="margin-top:.6em">Images and models</h3>
