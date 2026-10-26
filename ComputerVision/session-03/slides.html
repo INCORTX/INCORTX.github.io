@@ -1475,6 +1475,21 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
 
 <!-- 48 -->
 <section>
+  <p class="kicker">Session 3 · research</p>
+  <h2 class="claim">Research: count blood cells with this session's tools</h2>
+  <figure class="photo" style="margin:0 0 .3em"><img src="img/cells_steps.jpg" alt="four panels: a drawn blood film of pink round cells; the cells as white discs after a threshold; the same after an opening with the holes filled; the film with every counted cell circled, green for single cells and orange for touching pairs split by circle finding" style="max-height:140px;width:auto;max-width:100%;margin:0 auto">
+    <figcaption>simulated, 60 drawn cells: CLAHE → threshold → opening + fill → green one cell, orange split by Hough (paper: Fig. 6, 10)</figcaption></figure>
+  <div class="say" style="margin-bottom:.4em"><p><b>Kudisthalert, Pasupa &amp; Tongsima (IEEE Access 2020).</b> Count red cells and malaria stages in stained blood films. The counting is this session: contrast (A); an <b>opening</b>, a sliding disk that keeps the min, then the max (B, but no weighted sum); edges (C) and a Hough transform for touching cells.</p></div>
+  <div class="cards" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+    <div class="card teal"><b>Result</b>147 images, 23,248 cells. Counting: 9,218 of 9,420 right (97.86 %). With a stage classifier on session 4’s AlexNet features: 96.18 %.</div>
+    <div class="card coral"><b>Limits they state</b>Stain debris counted as cells · clumps counted as one · hand-tuned settings (size ±35 %). Our film: 60/60 with small overlaps, 52/60 with large.</div>
+  </div>
+  <p class="more"><a target="_blank" rel="noopener" href="https://doi.org/10.1109/ACCESS.2020.2990497">Read the paper (open access) →</a></p>
+  <aside class="notes"><p>🇹🇭 งานวิจัยของผู้สอนเอง — เล่าเบื้องหลังได้ (ถ่ายที่ BIOTEC) · ตรวจกับ paper แล้ว: 147 field-of-view 4080 × 3072 · 23,248 เซลล์ (§V-A) · ขั้นนับ: binary → opening แผ่นกลม → flood fill (Fig. 6) · ขนาดที่พบบ่อยสุด ±35% จากการลองผิดลองถูก (§IV-3) · CLAHE + ช่องเขียว (Fig. 9) · opening ซ้ำ แล้ว Hough circle สำหรับเซลล์ซ้อน (Fig. 10) · shape feature ใช้ Sobel · texture ใช้ Gabor (§IV-7) · นับถูก 9,218 / 9,420 = 97.86% บน 60 ภาพ (§VI-B1 — abstract เขียน 97.94% ไม่ตรงกัน ใช้ตัวที่คำนวณกลับได้) · รวมทั้งระบบ 96.18% (ไม่นับ unknown) · ข้อจำกัด §VI-B1: การย้อมสี artefact ถูกนับ (Fig. 23) และกลุ่มเซลล์นับเป็นหนึ่ง · §VII: พารามิเตอร์ต้องจูนเยอะ → อนาคตใช้ semantic segmentation (คาบ 8) · ภาพของเราวาดเอง รู้จำนวนจริง 60 เซลล์: ซ้อนน้อยนับครบ ซ้อนมากเหลือ 52 — ตรงกับข้อจำกัดของ paper · opening/morphology อยู่ใน T3-5</p><p>🇬🇧 The lecturer's own paper — tell the story behind it (imaged at BIOTEC). Checked against the paper: 147 fields of view, 4080 × 3072; 23,248 cells (§V-A). Counting: binary → disk opening → flood fill (Fig. 6); the most common size ±35 % by trial and error (§IV-3); CLAHE on the green channel (Fig. 9); repeated opening, then Hough circles for touching cells (Fig. 10); Sobel for the shape feature, Gabor for texture (§IV-7). Counting 9,218 / 9,420 = 97.86 % on 60 images (§VI-B1 — the abstract says 97.94 %; we use the figure the counts give). Whole system 96.18 % (without the unknown class). Limits (§VI-B1): stain artefacts counted (Fig. 23), clumps counted as one; §VII: many tuning parameters → future work: semantic segmentation (session 8). Our drawn film has a known count of 60: small overlaps all counted, large ones 52 — the paper's limit. Morphology is T3-5.</p></aside>
+</section>
+
+<!-- 49 -->
+<section>
   <p class="kicker">Session 3 · what to remember</p>
   <h2 class="claim">One operation, four jobs</h2>
   <ol class="steps recap">
@@ -1487,7 +1502,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ทวน 4 ข้อ A–D · ต่อด้วยครึ่ง A นำเสนอ T2 หลังจบเด็ค</p><p>🇬🇧 Recap the four lines A–D. Half A's T2 talks follow after the deck.</p></aside>
 </section>
 
-<!-- 49 -->
+<!-- 50 -->
 <section>
   <p class="kicker">Assignment · topic set T3</p>
   <h2 class="claim">Half B: pick a T3 topic today — you present it in session 4</h2>
@@ -1505,7 +1520,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ครึ่ง B เลือกหัวข้อ กลุ่มละหนึ่งหัวข้อ ไม่ซ้ำกัน · ส่งไฟล์ตามกำหนดก่อนคาบ 4 · ครึ่ง A รับ T4 หลังคาบ 4</p><p>🇬🇧 Half B picks one topic per group, no repeats; files due before session 4. Half A gets T4 after session 4.</p></aside>
 </section>
 
-<!-- 50 -->
+<!-- 51 -->
 <section>
   <p class="kicker">Next · Session 4</p>
   <h2 class="claim">What if the data chose the kernel?</h2>
@@ -1519,7 +1534,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ปิดคาบ: ปูทางคาบ 4</p><p>🇬🇧 Close the session and set up session 4.</p></aside>
 </section>
 
-<!-- 51 -->
+<!-- 52 -->
 <section>
   <p class="kicker">References</p>
   <h2 class="claim">Where session 3 comes from</h2>
@@ -1528,13 +1543,14 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <li>R. Szeliski (2022). <i>Computer Vision: Algorithms and Applications</i>, 2nd ed., §3.1–3.5, §7.2.</li>
     <li>A. Torralba, P. Isola &amp; W. T. Freeman (2024). <i>Foundations of Computer Vision</i>, ch. 15–18, 20, 23 — free at visionbook.mit.edu.</li>
     <li>S. Xie &amp; Z. Tu (2015). Holistically-nested edge detection. <i>ICCV</i> (arXiv 1504.06375).</li>
+    <li>W. Kudisthalert, K. Pasupa &amp; S. Tongsima (2020). Counting and classification of malarial parasite from Giemsa-stained thin film images. <i>IEEE Access</i> 8 (doi 10.1109/ACCESS.2020.2990497).</li>
   </ul>
   <h3 style="margin-top:.8em">Images</h3>
   <ul class="small" style="font-size:.56em;line-height:1.6">
     <li>Laitche, “One point perspective”, Tennoji Park, Osaka — public domain, via Wikimedia Commons.</li>
     <li>Wilfredor, “Panoramic view of Jacques-Cartier National Park from the Wolves peak” — CC0, via Wikimedia Commons.</li>
     <li>Wilfredor, “Facade of a tower block in downtown Rio de Janeiro” — CC0, via Wikimedia Commons.</li>
-    <li>Every filtered, transformed or shrunk version, the test rings, the wheel, the drawn shapes and all charts: made by programs written for this course.</li>
+    <li>Every filtered, transformed or shrunk version, the test rings, the wheel, the drawn shapes, the drawn blood film and all charts: made by programs written for this course.</li>
   </ul>
 </section>
 
