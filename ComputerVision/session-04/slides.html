@@ -183,7 +183,7 @@ html.reading .cols.today{grid-template-columns:1fr;}
 .outcomes li::before{content:counter(c);position:absolute;left:0;top:.42em;width:1.6em;height:1.6em;border-radius:50%;background:var(--gold);color:#fff;font-family:var(--display);font-weight:700;font-size:.85em;display:flex;align-items:center;justify-content:center;}
 
 /* grading */
-.gtiles{display:grid;grid-template-columns:40fr 30fr 20fr 10fr;gap:.4em;margin:.2em 0 .6em;}
+.gtiles{display:grid;grid-template-columns:45fr 30fr 20fr minmax(5.2em,5fr);gap:.4em;margin:.2em 0 .6em;}
 .gtile{border-radius:14px;padding:.6em .7em;color:#fff;min-height:9em;display:flex;flex-direction:column;justify-content:space-between;}
 .gtile .num{font-family:var(--display);font-size:2.4em;font-weight:700;line-height:1;}
 .gtile .lbl{font-family:var(--display);font-weight:600;font-size:.72em;}
@@ -454,8 +454,8 @@ html.reading .tl.tl7,html.reading .tl.tl8{grid-template-columns:repeat(3,minmax(
 .tl.tl-sm div::before{width:.95em;height:.95em;top:.25em;}
 .rubric{gap:1em;}
 .rubric h3{font-size:.56em;margin:0 0 .3em;}
-.reveal .rubric ol{list-style:none;margin:0;padding:0;counter-reset:rb;display:grid;gap:2px;}
-.rubric li{counter-increment:rb;display:grid;grid-template-columns:1.6em 1fr;gap:.4em;align-items:baseline;margin:0;padding:.07em .45em;border-radius:6px;font-size:.44em;line-height:1.28;background:var(--soft);}
+.reveal .rubric ol{list-style:none;margin:0;padding:0;counter-reset:rb;display:grid;gap:1px;}
+.rubric li{counter-increment:rb;display:grid;grid-template-columns:1.6em 1fr;gap:.4em;align-items:baseline;margin:0;padding:.05em .45em;border-radius:6px;font-size:.41em;line-height:1.26;background:var(--soft);}
 .rubric li::before{content:counter(rb);font-family:var(--display);font-weight:700;color:var(--gold);text-align:right;}
 html.reading .rubric li{font-size:14px;}
 html.reading .rubric h3{font-size:15px;}
@@ -657,7 +657,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <a href="#/part-d"><b><i>D</i>Deeper</b>How do we train very deep networks — and reuse one trained on millions of photos?</a>
   </div>
   <p class="takeaway"><span>Each part ends in the same notebook — <code>lab.ipynb</code>, one section per part.</span></p>
-  <aside class="notes"><p>🇹🇭 อ่านคำถามของคาบ · ย้อนหน้า 48 ของคาบ 3 (What if the data chose the kernel?) · วันนี้เริ่มที่ A</p><p>🇬🇧 Read the session question — it answers session 3's last slide (What if the data chose the kernel?). Today starts with A.</p></aside>
+  <aside class="notes"><p>🇹🇭 อ่านคำถามของคาบ · ย้อนหน้า 50 ของคาบ 3 (What if the data chose the kernel?) · วันนี้เริ่มที่ A</p><p>🇬🇧 Read the session question — it answers session 3's last slide (What if the data chose the kernel?). Today starts with A.</p></aside>
 </section>
 
 <!-- 3 -->
@@ -1182,7 +1182,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     </div>
   </div>
 
-  <aside class="notes"><p>🇹🇭 ชี้กรอบสี: ตรงกับ Sobel x / Sobel y / Gaussian ที่คาบ 3 ออกแบบเอง (วัดด้วย correlation ใน build.py) · ตอบคำสัญญาหน้า 48 ของคาบ 3</p><p>🇬🇧 Point at the frames: Sobel x, Sobel y and a Gaussian, as designed by hand in session 3 (matched by correlation in build.py). This keeps session 3's last-slide promise.</p></aside>
+  <aside class="notes"><p>🇹🇭 ชี้กรอบสี: ตรงกับ Sobel x / Sobel y / Gaussian ที่คาบ 3 ออกแบบเอง (วัดด้วย correlation ใน build.py) · ตอบคำสัญญาหน้า 50 ของคาบ 3</p><p>🇬🇧 Point at the frames: Sobel x, Sobel y and a Gaussian, as designed by hand in session 3 (matched by correlation in build.py). This keeps session 3's last-slide promise.</p></aside>
 </section>
 
 <!-- 30 -->
@@ -1438,10 +1438,39 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s4d">More practice · Session 4 D — practice bank with worked solutions →</a></p>
   <p class="takeaway"><span>Later: session 5 D — CLIP's image encoder is a ResNet or a ViT · session 8 — YOLO's backbone · your project.</span></p>
 
-  <aside class="notes"><p>🇹🇭 สรุป D · ชี้ต่อ CLIP (คาบ 5 D) · YOLO (คาบ 8) · โปรเจกต์</p><p>🇬🇧 Wrap up D. Forward: CLIP (session 5 D), YOLO (session 8), the project.</p></aside>
+  <aside class="notes"><p>🇹🇭 สรุป D · ชี้ต่อ CLIP (คาบ 5 D) · YOLO (คาบ 8) · โปรเจกต์ · แล้ววัดผล (หน้าถัดไป)</p><p>🇬🇧 Wrap up D. Forward: CLIP (session 5 D), YOLO (session 8), the project. Then: how well it works.</p></aside>
 </section>
 
 <!-- 45 -->
+<section>
+  <p class="kicker">Session 4 · how well it works</p>
+  <h2 class="claim">High accuracy — until the digit moves one pixel</h2>
+  <div class="cards" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+    <div class="card"><b>A · Fully connected</b>Trained on 1,200 digits, tested on 597 new ones: 98 %. Shift each digit 1 px right: 49 % — every weight belongs to one pixel place. Half the brightness: 98 %.</div>
+    <div class="card violet"><b>B · Learning</b>Train on 50 / 200 / 1,200 digits: 100 % on its own training digits every time, but 83 % / 94 % / 98 % on new ones. The gap is overfitting; more data closes it.</div>
+    <div class="card teal"><b>C · CNN</b>99 % clean; 1 px shift: 63 %. The feature maps move with the digit (slide 24), but the last fully connected layer still remembers places. With noise: 78 %, the plain net 86 %.</div>
+    <div class="card coral"><b>D · Augmentation</b>Train on copies shifted by ±1 px: a 1 px shift now scores 96 %, but 2 px still 43 % — it learns only the changes it was shown. Clean: 95 %.</div>
+  </div>
+  <div class="worked" style="margin-top:.5em"><span class="tag">Worked example · accuracy and error</span><p>one run, shifted digits: 299 of 597 right → accuracy 299 ÷ 597 = 50.1 % · error = 1 − accuracy = 49.9 %</p></div>
+  <aside class="notes"><p>🇹🇭 ทุกตัวเลขวัดจริงด้วย tools/s04/evaluate.py (NumPy · digits 8 × 8 ของ scikit-learn · train 1,200 / test 597 · ค่าเฉลี่ย 4 seed) · เลื่อน 1 px = หนึ่งในแปดของภาพ · CNN ดีกว่าตอนสะอาด แต่ทน noise แย่กว่า (78 % เทียบ 86 %) — ความแม่นยำสูงไม่ได้แปลว่าทนทาน (ต่อหน้าถัดไป) · conv เลื่อนตามภาพ (equivariant) แต่ชั้น fully connected ท้ายไม่ใช่ · augmentation ±1 ช่วยได้แค่ 1 px</p><p>🇬🇧 Every number measured by tools/s04/evaluate.py (NumPy; scikit-learn's 8 × 8 digits; 1,200 train / 597 test; mean of 4 seeds). One pixel is an eighth of the picture. The CNN is better clean but worse under noise (78 % vs 86 %): accurate is not robust (next slide). Convolution moves with the input; the final fully connected layer does not. ±1 px augmentation covers 1 px only.</p></aside>
+</section>
+
+<!-- 46 -->
+<section>
+  <p class="kicker">Session 4 · research</p>
+  <h2 class="claim">Research: accurate is not the same as robust</h2>
+  <figure class="photo" style="margin:0 0 .3em"><img src="img/corrupt_strip.jpg" alt="six copies of a forest landscape: clean, grainy with noise, blurred, washed-out bright, low contrast, and blocky from heavy JPEG" style="max-height:120px;width:auto;max-width:100%;margin:0 auto">
+    <figcaption>made here on session 2’s photo, the kinds ImageNet-C uses: clean · noise · defocus blur · brightness · contrast · JPEG — the paper’s own: its Fig. 1</figcaption></figure>
+  <div class="say" style="margin-bottom:.4em"><p><b>Hendrycks &amp; Dietterich (ICLR 2019), ImageNet-C.</b> 15 corruptions (noise, blur, weather, digital) at 5 severities: 75 versions of the ImageNet test photos — for testing only, never training. Error is scaled so AlexNet = 100 (mCE). Slide 45 saw the same on our digits: the more accurate net was the less sturdy.</p></div>
+  <div class="cards" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+    <div class="card teal"><b>Result</b>Clean error: AlexNet 43.5 % → ResNet-18 30.2 % → ResNet-50 23.9 %; mCE 100 → 84.7 → 76.7. But the drop from clean to corrupted did not shrink: ResNet-50’s relative mCE is 105 %.</div>
+    <div class="card coral"><b>Limits and fixes they state</b>Corruptions are made by program · ResNet-18 flips its answer between neighbouring frames of a zoom 15.6 % of the time · Stylized-ImageNet training: mCE 69.3; contrast equalisation: 74.5.</div>
+  </div>
+  <p class="more"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1903.12261">Read the paper (arXiv 1903.12261) →</a></p>
+  <aside class="notes"><p>🇹🇭 ตรวจกับ paper แล้ว: 15 corruption × 5 severity = 75 (Fig. 1, §3) · ใช้ทดสอบเท่านั้น ห้ามฝึก (§3) · mCE หารด้วย error ของ AlexNet (§3) · Table 1: clean error AlexNet 43.5 · ResNet-18 30.2 · ResNet-50 23.9 · mCE 100 / 84.7 / 76.7 · §5.1: relative mCE ของรุ่นหลังแย่กว่า AlexNet — robustness แทบไม่เปลี่ยน · ResNet-50 relative mCE 105.0% (§5.2) · ResNet-18 บน Scale perturbation เปลี่ยนคำตอบระหว่างเฟรมติดกัน 15.6% (§5.1) · Stylized ImageNet 69.3 · CLAHE 74.5 (§5.2) · ภาพของเราสร้างเองบนภาพคาบ 2 ไม่ใช่ค่า severity ของ paper · ต่อหน้าก่อน: CNN ของเราก็แม่นกว่าแต่ทน noise แย่กว่า · ย้อนคาบ 2 C (noise) คาบ 3 (blur) · ชี้ต่อ augmentation หน้า 41</p><p>🇬🇧 Checked against the paper: 15 corruptions × 5 severities = 75 (Fig. 1, §3); test only, never train (§3); mCE divides by AlexNet's errors (§3). Table 1: clean error AlexNet 43.5, ResNet-18 30.2, ResNet-50 23.9; mCE 100 / 84.7 / 76.7. §5.1: later models' relative mCE is worse than AlexNet's — robustness itself barely changed; ResNet-50 relative mCE 105.0 % (§5.2). ResNet-18 flips its top-1 between adjacent frames of the Scale perturbation 15.6 % of the time (§5.1). Stylized ImageNet 69.3, CLAHE 74.5 (§5.2). Our strip is made here on session 2's photo, not the paper's severities. Ties back to the previous slide, to session 2 C (noise) and session 3 (blur), and to augmentation (slide 41).</p></aside>
+</section>
+
+<!-- 47 -->
 <section>
   <p class="kicker">Session 4 · what to remember</p>
   <h2 class="claim">From hand-made kernels to learned ones</h2>
@@ -1455,7 +1484,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ทวน 4 ข้อ A–D · ต่อด้วยครึ่ง B นำเสนอ T3 หลังจบเด็ค</p><p>🇬🇧 Recap the four lines A–D. Half B's T3 talks follow after the deck.</p></aside>
 </section>
 
-<!-- 46 -->
+<!-- 48 -->
 <section>
   <p class="kicker">Assignment · topic set T4</p>
   <h2 class="claim">Half A: pick a T4 topic today — you present it in session 5</h2>
@@ -1464,7 +1493,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ครึ่ง A เลือกหัวข้อ กลุ่มละหนึ่งหัวข้อ ไม่ซ้ำกัน · ส่งไฟล์ตามกำหนดก่อนคาบ 5 · ครึ่ง B รับ T5 หลังคาบ 5</p><p>🇬🇧 Half A picks one topic per group, no repeats; files due before session 5. Half B gets T5 after session 5.</p></aside>
 </section>
 
-<!-- 47 -->
+<!-- 49 -->
 <section>
   <p class="kicker">Next · Session 5</p>
   <h2 class="claim">What if every pixel could look at every other?</h2>
@@ -1478,7 +1507,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ปิดคาบ: ปูทางคาบ 5</p><p>🇬🇧 Close the session and set up session 5.</p></aside>
 </section>
 
-<!-- 48 -->
+<!-- 50 -->
 <section>
   <p class="kicker">References</p>
   <h2 class="claim">Where session 4 comes from</h2>
@@ -1488,6 +1517,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <li>A. Torralba, P. Isola &amp; W. T. Freeman (2024). <i>Foundations of Computer Vision</i>, ch. 9–12, 14, 21, 24, 36, 37 — free at visionbook.mit.edu.</li>
     <li>R. Szeliski (2022). <i>Computer Vision: Algorithms and Applications</i>, 2nd ed., §5.3–5.4.</li>
     <li>K. He, X. Zhang, S. Ren &amp; J. Sun (2016). Deep residual learning for image recognition. <i>CVPR</i> — arXiv:1512.03385.</li>
+    <li>D. Hendrycks &amp; T. Dietterich (2019). Benchmarking neural network robustness to common corruptions and perturbations. <i>ICLR</i> — arXiv:1903.12261.</li>
   </ul>
   <h3 style="margin-top:.7em">Images and data</h3>
   <ul class="small" style="font-size:.54em;line-height:1.55">

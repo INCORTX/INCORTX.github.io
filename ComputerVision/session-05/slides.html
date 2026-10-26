@@ -183,7 +183,7 @@ html.reading .cols.today{grid-template-columns:1fr;}
 .outcomes li::before{content:counter(c);position:absolute;left:0;top:.42em;width:1.6em;height:1.6em;border-radius:50%;background:var(--gold);color:#fff;font-family:var(--display);font-weight:700;font-size:.85em;display:flex;align-items:center;justify-content:center;}
 
 /* grading */
-.gtiles{display:grid;grid-template-columns:40fr 30fr 20fr 10fr;gap:.4em;margin:.2em 0 .6em;}
+.gtiles{display:grid;grid-template-columns:45fr 30fr 20fr minmax(5.2em,5fr);gap:.4em;margin:.2em 0 .6em;}
 .gtile{border-radius:14px;padding:.6em .7em;color:#fff;min-height:9em;display:flex;flex-direction:column;justify-content:space-between;}
 .gtile .num{font-family:var(--display);font-size:2.4em;font-weight:700;line-height:1;}
 .gtile .lbl{font-family:var(--display);font-weight:600;font-size:.72em;}
@@ -455,8 +455,8 @@ html.reading .tl.tl7,html.reading .tl.tl8{grid-template-columns:repeat(3,minmax(
 .tl.tl-sm div::before{width:.95em;height:.95em;top:.25em;}
 .rubric{gap:1em;}
 .rubric h3{font-size:.56em;margin:0 0 .3em;}
-.reveal .rubric ol{list-style:none;margin:0;padding:0;counter-reset:rb;display:grid;gap:2px;}
-.rubric li{counter-increment:rb;display:grid;grid-template-columns:1.6em 1fr;gap:.4em;align-items:baseline;margin:0;padding:.07em .45em;border-radius:6px;font-size:.44em;line-height:1.28;background:var(--soft);}
+.reveal .rubric ol{list-style:none;margin:0;padding:0;counter-reset:rb;display:grid;gap:1px;}
+.rubric li{counter-increment:rb;display:grid;grid-template-columns:1.6em 1fr;gap:.4em;align-items:baseline;margin:0;padding:.05em .45em;border-radius:6px;font-size:.41em;line-height:1.26;background:var(--soft);}
 .rubric li::before{content:counter(rb);font-family:var(--display);font-weight:700;color:var(--gold);text-align:right;}
 html.reading .rubric li{font-size:14px;}
 html.reading .rubric h3{font-size:15px;}
@@ -658,7 +658,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <a href="#/part-d"><b><i>D</i>CLIP</b>Can a model recognise things nobody labelled for it?</a>
   </div>
   <p class="takeaway"><span>Each part ends in the same notebook — <code>lab.ipynb</code>, one section per part. After today you start looking for a project topic.</span></p>
-  <aside class="notes"><p>🇹🇭 อ่านคำถามของคาบ · ย้อนหน้า 47 ของคาบ 4 (What if every pixel could look at every other?) · บอกว่าท้ายคาบเริ่มหาหัวข้อโปรเจกต์</p><p>🇬🇧 Read the session question — it answers session 4's last slide (What if every pixel could look at every other?). Say that topic search starts after today.</p></aside>
+  <aside class="notes"><p>🇹🇭 อ่านคำถามของคาบ · ย้อนหน้า 49 ของคาบ 4 (What if every pixel could look at every other?) · บอกว่าท้ายคาบเริ่มหาหัวข้อโปรเจกต์</p><p>🇬🇧 Read the session question — it answers session 4's last slide (What if every pixel could look at every other?). Say that topic search starts after today.</p></aside>
 </section>
 
 <!-- 3 -->
@@ -689,7 +689,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     </div>
   </div>
 
-  <aside class="notes"><p>🇹🇭 ตอบคำถามท้ายคาบ 4 (หน้า 47) · ย้ำสองข้อจำกัด: weight ตายตัว และมองแค่เพื่อนบ้าน</p><p>🇬🇧 Answer session 4's last slide (47). Two limits: fixed weights, and only neighbours.</p></aside>
+  <aside class="notes"><p>🇹🇭 ตอบคำถามท้ายคาบ 4 (หน้า 49) · ย้ำสองข้อจำกัด: weight ตายตัว และมองแค่เพื่อนบ้าน</p><p>🇬🇧 Answer session 4's last slide (49). Two limits: fixed weights, and only neighbours.</p></aside>
 </section>
 
 <!-- 5 -->
