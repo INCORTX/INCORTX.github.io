@@ -183,7 +183,7 @@ html.reading .cols.today{grid-template-columns:1fr;}
 .outcomes li::before{content:counter(c);position:absolute;left:0;top:.42em;width:1.6em;height:1.6em;border-radius:50%;background:var(--gold);color:#fff;font-family:var(--display);font-weight:700;font-size:.85em;display:flex;align-items:center;justify-content:center;}
 
 /* grading */
-.gtiles{display:grid;grid-template-columns:40fr 30fr 20fr 10fr;gap:.4em;margin:.2em 0 .6em;}
+.gtiles{display:grid;grid-template-columns:45fr 30fr 20fr minmax(5.2em,5fr);gap:.4em;margin:.2em 0 .6em;}
 .gtile{border-radius:14px;padding:.6em .7em;color:#fff;min-height:9em;display:flex;flex-direction:column;justify-content:space-between;}
 .gtile .num{font-family:var(--display);font-size:2.4em;font-weight:700;line-height:1;}
 .gtile .lbl{font-family:var(--display);font-weight:600;font-size:.72em;}
@@ -450,8 +450,8 @@ html.reading .tl.tl7,html.reading .tl.tl8{grid-template-columns:repeat(3,minmax(
 .tl.tl-sm div::before{width:.95em;height:.95em;top:.25em;}
 .rubric{gap:1em;}
 .rubric h3{font-size:.56em;margin:0 0 .3em;}
-.reveal .rubric ol{list-style:none;margin:0;padding:0;counter-reset:rb;display:grid;gap:2px;}
-.rubric li{counter-increment:rb;display:grid;grid-template-columns:1.6em 1fr;gap:.4em;align-items:baseline;margin:0;padding:.07em .45em;border-radius:6px;font-size:.44em;line-height:1.28;background:var(--soft);}
+.reveal .rubric ol{list-style:none;margin:0;padding:0;counter-reset:rb;display:grid;gap:1px;}
+.rubric li{counter-increment:rb;display:grid;grid-template-columns:1.6em 1fr;gap:.4em;align-items:baseline;margin:0;padding:.05em .45em;border-radius:6px;font-size:.41em;line-height:1.26;background:var(--soft);}
 .rubric li::before{content:counter(rb);font-family:var(--display);font-weight:700;color:var(--gold);text-align:right;}
 html.reading .rubric li{font-size:14px;}
 html.reading .rubric h3{font-size:15px;}
@@ -1210,10 +1210,39 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s6d">More practice · Session 6 D — practice bank with worked solutions →</a></p>
   <p class="takeaway"><span>Later: session 7 B — RANSAC + homography stitch a panorama · your project, whenever data has outliers.</span></p>
 
-  <aside class="notes"><p>🇹🇭 สรุป D · ชี้ต่อคาบ 7 B (panorama — แผนที่คาบ 1: RANSAC → stitching 7) และโปรเจกต์</p><p>🇬🇧 Wrap up D. Forward: session 7 B (panoramas — session 1's map: RANSAC → stitching 7) and the project.</p></aside>
+  <aside class="notes"><p>🇹🇭 สรุป D · ชี้ต่อคาบ 7 B (panorama — แผนที่คาบ 1: RANSAC → stitching 7) และโปรเจกต์ · แล้ววัดผล</p><p>🇬🇧 Wrap up D. Forward: session 7 B (panoramas — session 1's map: RANSAC → stitching 7) and the project. Then: how well it works.</p></aside>
 </section>
 
 <!-- 36 -->
+<section>
+  <p class="kicker">Session 6 · how well it works</p>
+  <h2 class="claim">Known answer: where does matching break?</h2>
+  <div class="cards" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+    <div class="card"><b>A · Harris corners</b>Found again within 3 px — turned 30°: 90 % (by chance: 3 %) · 25 % light: 99 % · tilted: 73 % · blur σ 3: 21 %, fine corners melt.</div>
+    <div class="card violet"><b>B · SIFT points</b>Turned: 83 % · tilted: 65 % · blur: 25 %. At 10 % light: 0 points — SIFT's contrast threshold is fixed, Harris's is relative (96 %).</div>
+    <div class="card teal"><b>C · Matching</b>Ratio test; right = within 3 px of where H sends it. Turned: 950 of 1,033 (92 %) · tilted: 78 % · a quarter of the size: 61 %.</div>
+    <div class="card coral"><b>D · RANSAC</b>40 right matches + random wrong ones, at most 2,000 tries: H found in 20/20 runs at 20 % inliers, 19/20 at 10 %, 0/20 at 5 %.</div>
+  </div>
+  <div class="worked" style="margin-top:.5em"><span class="tag">Worked example · share right</span><p>right ÷ kept = 950 ÷ 1,033 = 92 % · chance check (B): as many random points pass the 3 px test only 5 % of the time</p></div>
+  <aside class="notes"><p>🇹🇭 ทุกตัวเลขวัดจริงด้วย tools/s06/evaluate.py บนภาพตึกของคาบนี้ บิดด้วย homography ที่รู้ค่า จึงรู้คำตอบจริงทุกจุด · ค่า chance = สุ่มจุดจำนวนเท่ากัน → ต่ำทุกกรณี ตัวเลขจึงเชื่อได้ (ไม่ใช้วัดการย่อภาพ เพราะจุดแน่นจน chance สูง: SIFT 0.42 เทียบ chance 0.28) · Harris ทนแสงเพราะ threshold สัมพัทธ์ · SIFT แสง 10% ไม่เหลือจุด · RANSAC ใน OpenCV 2,000 รอบ พังระหว่าง inlier 10% กับ 5% · หน้าถัดไป: benchmark ที่แยกมุมมองกับแสง</p><p>🇬🇧 Every number measured by tools/s06/evaluate.py on this session's building, changed by a known homography, so every point's true place is known. Chance = as many random points; it is low everywhere, so the numbers mean something (shrinking is left out: points crowd and chance rises — SIFT 0.42 vs chance 0.28). Harris survives the dark because its threshold is relative; SIFT finds no point at 10 % light. OpenCV's RANSAC with 2,000 tries breaks between 10 % and 5 % inliers. Next: a benchmark that separates viewpoint from light.</p></aside>
+</section>
+
+<!-- 37 -->
+<section>
+  <p class="kicker">Session 6 · research</p>
+  <h2 class="claim">Research: a fair test for matching points</h2>
+  <figure class="photo" style="margin:0 0 .3em"><img src="img/view_light.png" alt="two line charts of right SIFT matches: as the wall tilts more, the count falls steadily from 960 to 111; as the photo gets darker, it stays near 1,450 down to 40 % light, then drops to 661, 11 and 0" style="max-height:150px;width:auto;max-width:100%;margin:0 auto">
+    <figcaption>simulated on this session’s building: SIFT + ratio test, right matches of 1,500 points — the paper’s own sequences: its Fig. 1</figcaption></figure>
+  <div class="say" style="margin-bottom:.4em"><p><b>Balntas, Lenc, Vedaldi &amp; Mikolajczyk (CVPR 2017), HPatches.</b> Papers disagreed (ORB &gt; SIFT, SIFT &gt; ORB) because settings were not fixed. HPatches fixes them: 116 scenes of 6 photos with known homographies, 59 viewpoint, 57 light.</p></div>
+  <div class="cards" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+    <div class="card teal"><b>Result</b>Matching (mAP): SIFT 25.47 %; normalised RootSIFT 36.77 %, ahead of every learned descriptor (35.44 %). Light was harder than viewpoint.</div>
+    <div class="card coral"><b>Limits they state</b>Rankings change with the task · easy → tough costs up to 30 % · homographies only. Ours: light is free until SIFT's cutoff, then 11 matches.</div>
+  </div>
+  <p class="more"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1704.05939">Read the paper (arXiv 1704.05939) →</a></p>
+  <aside class="notes"><p>🇹🇭 ตรวจกับ paper แล้ว: Table 1 ผลขัดกันบน Oxford (ORB > SIFT [29] / SIFT > ORB [24] ฯลฯ) · 116 sequence: 57 photometric + 59 viewpoint · ภาพอ้างอิง + 5 ภาพ ผูกด้วย homography (§4) · EASY / HARD / TOUGH (Fig. 2) · Fig. 4 (ดูจากภาพ render ของหน้า 8): Image Matching mAP SIFT 25.47% · +RSIFT 36.77% สูงสุด · +DDesc 35.44% · ILLUM ต่ำกว่า VIEWPT เสมอ ต่างจาก Oxford (§6.2) · ข้อจำกัด: ลำดับเปลี่ยนตามงาน — MSTD ดีใน verification แต่ล้มใน matching · EASY กับ TOUGH ต่างกันถึง 30% · ฉากต้องประมาณด้วย homography ได้ · descriptor ที่เรียนรู้ฝึกบน PhotoTourism ไม่ใช่ HPatches · mAP = precision เฉลี่ยตลอดทุก threshold · กราฟของเราจำลอง: มุมมองค่อย ๆ ลด · แสงไม่เสียอะไรจนถึงเกณฑ์ contrast ของ SIFT แล้วหายหมด — แสงจริงใน HPatches (เงา สี กลางวัน/คืน) ยากกว่านี้ · SuperPoint / LightGlue อยู่ใน T6-4/5</p><p>🇬🇧 Checked against the paper: Table 1, contradicting results on Oxford (ORB > SIFT [29] vs SIFT > ORB [24], etc.); 116 sequences: 57 photometric + 59 viewpoint; a reference + 5 images tied by homographies (§4); EASY / HARD / TOUGH (Fig. 2). Fig. 4 (read from a render of page 8): image matching mAP SIFT 25.47 %, +RSIFT 36.77 % best, +DDesc 35.44 %; ILLUM consistently below VIEWPT, unlike Oxford (§6.2). Limits: rankings change with the task — MSTD good at verification, fails at matching; EASY vs TOUGH up to 30 %; scenes must be homographies; learned descriptors were trained on PhotoTourism. mAP = precision averaged over every threshold. Our chart is a simulation: viewpoint wears matches down; darkness costs nothing until SIFT's contrast cutoff, then all go — HPatches' real light changes (shadows, colour, day/night) are harder. SuperPoint / LightGlue: T6-4/5.</p></aside>
+</section>
+
+<!-- 38 -->
 <section>
   <p class="kicker">Session 6 · what to remember</p>
   <h2 class="claim">From pixels to trusted matches</h2>
@@ -1227,7 +1256,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ทวน 4 ข้อ A–D · ย้อนคาบ 3 หน้า 33 (gradients in two directions find corners) · ต่อด้วยครึ่ง B นำเสนอ T5</p><p>🇬🇧 Recap A–D. Back to session 3 slide 33 (gradients in two directions find corners). Half B's T5 talks follow.</p></aside>
 </section>
 
-<!-- 37 -->
+<!-- 39 -->
 <section>
   <p class="kicker">Assignment · topic set T6</p>
   <h2 class="claim">Half A: pick a T6 topic today — you present it in session 7</h2>
@@ -1236,7 +1265,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ครึ่ง A เลือกหัวข้อ กลุ่มละหนึ่งหัวข้อ ไม่ซ้ำกัน · ส่งไฟล์ตามกำหนดก่อนคาบ 7 · ครึ่ง B รับ T7 หลังคาบ 7</p><p>🇬🇧 Half A picks one topic per group, no repeats; files due before session 7. Half B gets T7 after session 7.</p></aside>
 </section>
 
-<!-- 38 -->
+<!-- 40 -->
 <section>
   <p class="kicker">Project · week 8</p>
   <h2 class="claim">Project topic due in week 8</h2>
@@ -1251,7 +1280,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 เตือน: เหลือ 2 สัปดาห์ส่งหัวข้อ · ยกตัวอย่างงานที่ใช้ของคาบนี้</p><p>🇬🇧 Two weeks to the topic deadline. Examples that use today's tools.</p></aside>
 </section>
 
-<!-- 39 -->
+<!-- 41 -->
 <section>
   <p class="kicker">Next · Session 7</p>
   <h2 class="claim">How are two views of one scene related?</h2>
@@ -1265,7 +1294,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ปิดคาบ: ปูทางคาบ 7</p><p>🇬🇧 Close the session and set up session 7.</p></aside>
 </section>
 
-<!-- 40 -->
+<!-- 42 -->
 <section>
   <p class="kicker">References</p>
   <h2 class="claim">Where session 6 comes from</h2>
@@ -1273,6 +1302,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <li>C. Harris &amp; M. Stephens (1988). A combined corner and edge detector. <i>Alvey Vision Conference</i>.</li>
     <li>D. G. Lowe (2004). Distinctive image features from scale-invariant keypoints. <i>International Journal of Computer Vision</i> 60(2).</li>
     <li>M. A. Fischler &amp; R. C. Bolles (1981). Random sample consensus. <i>Communications of the ACM</i> 24(6).</li>
+    <li>V. Balntas, K. Lenc, A. Vedaldi &amp; K. Mikolajczyk (2017). HPatches: a benchmark and evaluation of handcrafted and learned local descriptors. <i>CVPR</i> — arXiv:1704.05939.</li>
     <li>S. K. Nayar. <i>First Principles of Computer Vision</i> — Corner Detection; SIFT Detector; Image Stitching (RANSAC).</li>
     <li>R. Szeliski (2022). <i>Computer Vision: Algorithms and Applications</i>, 2nd ed., §7.1, §8.1.</li>
   </ul>
