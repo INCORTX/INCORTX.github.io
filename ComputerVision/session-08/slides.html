@@ -183,7 +183,7 @@ html.reading .cols.today{grid-template-columns:1fr;}
 .outcomes li::before{content:counter(c);position:absolute;left:0;top:.42em;width:1.6em;height:1.6em;border-radius:50%;background:var(--gold);color:#fff;font-family:var(--display);font-weight:700;font-size:.85em;display:flex;align-items:center;justify-content:center;}
 
 /* grading */
-.gtiles{display:grid;grid-template-columns:40fr 30fr 20fr 10fr;gap:.4em;margin:.2em 0 .6em;}
+.gtiles{display:grid;grid-template-columns:45fr 30fr 20fr minmax(5.2em,5fr);gap:.4em;margin:.2em 0 .6em;}
 .gtile{border-radius:14px;padding:.6em .7em;color:#fff;min-height:9em;display:flex;flex-direction:column;justify-content:space-between;}
 .gtile .num{font-family:var(--display);font-size:2.4em;font-weight:700;line-height:1;}
 .gtile .lbl{font-family:var(--display);font-weight:600;font-size:.72em;}
@@ -457,8 +457,8 @@ html.reading .tl.tl7,html.reading .tl.tl8{grid-template-columns:repeat(3,minmax(
 .tl.tl-sm div::before{width:.95em;height:.95em;top:.25em;}
 .rubric{gap:1em;}
 .rubric h3{font-size:.56em;margin:0 0 .3em;}
-.reveal .rubric ol{list-style:none;margin:0;padding:0;counter-reset:rb;display:grid;gap:2px;}
-.rubric li{counter-increment:rb;display:grid;grid-template-columns:1.6em 1fr;gap:.4em;align-items:baseline;margin:0;padding:.07em .45em;border-radius:6px;font-size:.44em;line-height:1.28;background:var(--soft);}
+.reveal .rubric ol{list-style:none;margin:0;padding:0;counter-reset:rb;display:grid;gap:1px;}
+.rubric li{counter-increment:rb;display:grid;grid-template-columns:1.6em 1fr;gap:.4em;align-items:baseline;margin:0;padding:.05em .45em;border-radius:6px;font-size:.41em;line-height:1.26;background:var(--soft);}
 .rubric li::before{content:counter(rb);font-family:var(--display);font-weight:700;color:var(--gold);text-align:right;}
 html.reading .rubric li{font-size:14px;}
 html.reading .rubric h3{font-size:15px;}
@@ -1252,10 +1252,39 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <p class="more"><a target="_blank" rel="noopener" href="../practice/#s8d">More practice · Session 8 D — practice bank with worked solutions →</a></p>
   <p class="takeaway"><span>Later: session 9 — tracking follows each box through time · T8-6 auto-labelling, T8-7 privacy.</span></p>
 
-  <aside class="notes"><p>🇹🇭 สรุป D · ชี้ต่อคาบ 9 (tracking) · T8-6, T8-7</p><p>🇬🇧 Wrap up D. Forward: session 9 (tracking), T8-6, T8-7.</p></aside>
+  <aside class="notes"><p>🇹🇭 สรุป D · ชี้ต่อคาบ 9 (tracking) · T8-6, T8-7 · แล้ววัดผล</p><p>🇬🇧 Wrap up D. Forward: session 9 (tracking), T8-6, T8-7. Then: how well it works.</p></aside>
 </section>
 
 <!-- 38 -->
+<section>
+  <p class="kicker">Session 8 · how well it works</p>
+  <h2 class="claim">Small, dark, hidden: what the detectors miss</h2>
+  <div class="cards" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+    <div class="card"><b>A · A stricter box test</b>The same detections: AP 0.755 at IoU ≥ 0.5, 0.511 at IoU ≥ 0.75. Found at score ≥ 0.25: near riders 5/5 · far 2/4 · tiny walkers 0/3.</div>
+    <div class="card violet"><b>B · YOLOv8n</b>AP 0.755 · half size 0.722 · blur σ 4 0.671 · night (¼ light + noise) 0.519 · the upper half of each person covered 0.022: it needs heads and shoulders.</div>
+    <div class="card teal"><b>C · SAM</b>One click on the front rider; mask IoU with the clean mask: noise 0.91 · night 0.89 · blur 0.77. The click still finds the rider; blur loosens the edge.</div>
+    <div class="card coral"><b>D · OWL-ViT</b>“a photo of a person”: the same 7 of 12 at night (AP 0.583), but the mean score falls 0.48 → 0.39 → 0.19 at 10 % light: a 0.3 cut-off keeps 2.</div>
+  </div>
+  <div class="worked" style="margin-top:.5em"><span class="tag">Worked example · a box too low</span><p>person 100 × 300 px, box 30 px too low: overlap 27,000 ÷ union 33,000 = 0.82, a hit at 0.5 and 0.75 · 80 px low: 22,000 ÷ 38,000 = 0.58, a miss at 0.75</p></div>
+  <aside class="notes"><p>🇹🇭 ทุกตัวเลขวัดจริงด้วย tools/s08/evaluate.py บน YOLOv8n, SAM ViT-B, OWL-ViT ตัวเดียวกับเด็ค · ตรวจก่อน: AP ภาพสะอาดคำนวณใหม่ได้ 0.755 ตรงกับหน้า 8 · A: กล่องเจอแต่วางหลวม · คนตัวเล็กไกล ๆ หาไม่เจอ · B: กลางคืนลดเหลือ 0.519 · ปิดครึ่งบนของคน AP เกือบศูนย์ · C: SAM ทน noise/มืด แต่ blur ทำขอบหลวม · D: AP เท่าเดิมเพราะคน 7 คนยังได้ score สูงกว่า false alarm ทุกตัว แต่ score ทั้งหมดตก → threshold ตายตัวเสียคน · ข้อมูล 12 คนในภาพเดียว = การทดสอบเล็ก บอกนักศึกษาตรง ๆ</p><p>🇬🇧 Every number measured by tools/s08/evaluate.py on the deck's YOLOv8n, SAM ViT-B and OWL-ViT. Checked first: the clean AP recomputes to 0.755, as on slide 8. A: boxes found but placed loosely; tiny far people missed. B: night drops AP to 0.519; covering the upper half of each person leaves almost nothing. C: SAM shrugs off noise and dark; blur loosens the edge. D: AP stays because the 7 people still outrank every false alarm, but every score falls — a fixed threshold loses people. Twelve people in one photo is a small test: say so.</p></aside>
+</section>
+
+<!-- 39 -->
+<section>
+  <p class="kicker">Session 8 · research</p>
+  <h2 class="claim">Research: draw a box, and the model looks there</h2>
+  <figure class="photo" style="margin:0 0 .3em"><img src="img/focus.jpg" alt="the bridge photo with a green box around the rider in red, and beside it a crop one and a half times that box with the box drawn in" style="max-height:134px;width:auto;max-width:100%;margin:0 auto">
+    <figcaption>simulated: the whole photo with a box vs a crop 1.5 × the box (the paper’s rule), asked with CLIP ViT-B/32 — the paper’s own: Fig. 1 and 2</figcaption></figure>
+  <div class="say" style="margin-bottom:.4em"><p><b>Phimsiri, …, Kudisthalert et al. (ICCV Workshops 2025), TrafficInternVL.</b> Describe a pedestrian–vehicle near-miss, answer safety questions. Part A’s boxes guide a 38-billion-parameter vision–language model: crop pedestrian + vehicle × 1.5, draw the boxes, tune 1 % of the weights.</p></div>
+  <div class="cards" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+    <div class="card teal"><b>Result</b>Questions 83.08 % right, caption score 32.75: 4th of the challenge. Crop vs whole frame: 31.43 → 32.72; several views at once: 29.04.</div>
+    <div class="card coral"><b>Limits they state</b>Crops miss context outside the boxes · boxes drawn by hand · chained questions: 66.50 %. Ours: jacket colour 1/5 from the whole photo, 2/5 from crops.</div>
+  </div>
+  <p class="more"><a target="_blank" rel="noopener" href="https://doi.org/10.1109/ICCVW69036.2025.00559">Read the paper →</a> · <a target="_blank" rel="noopener" href="https://github.com/ARV-MLCORE/TrafficInternVL">code and weights →</a></p>
+  <aside class="notes"><p>🇹🇭 งานวิจัยที่ผู้สอนร่วมเขียน · ตรวจกับ paper แล้ว: InternVL3-38B · crop รวมกล่องคนเดิน+รถ คูณ 1.5 วาดกล่องเขียว (คน) น้ำเงิน (รถ) (§3.1.2) · LoRA r 64 ~1% (§3.1.3) · WTS dataset (§4.1) · Caption Score 32.75 · VQA 83.08% (abstract) · Table 3: global 31.43 → local 32.72 · multi-view 29.04 (**§4.4.1 เขียน +0.29 แต่ตารางต่างกัน 1.29 · บทสรุปเขียนตก 3.71 แต่ตาราง 3.68** — ใช้ค่าตาราง) · Table 4 stateful 66.50 vs stateless 83.08 · Table 5 อันดับ 4 (57.91) · ข้อจำกัด §5: crop เน้นคนเดินอาจพลาดบริบท · ต้องใช้กล่องที่คนลาก · ของเราจำลองด้วย CLIP ถามสีเสื้อ 5 คนหน้า: ภาพเต็ม 1/5 (ตอบ 'green' ทุกคน) · crop 2/5 · ความน่าจะเป็นของคำตอบถูก 0.18 → 0.35 · เสื้อดำยังพลาด (crop มีคนข้าง ๆ ติดมา) · ย้อนคาบ 5 D (CLIP) · ชี้ต่อโปรเจกต์</p><p>🇬🇧 A paper the lecturer co-wrote. Checked against it: InternVL3-38B; one crop around the pedestrian + vehicle boxes × 1.5, drawn green (pedestrian) and blue (vehicle) (§3.1.2); LoRA r 64, about 1 % of the weights (§3.1.3); WTS data (§4.1); caption score 32.75, VQA 83.08 % (abstract); Table 3: global 31.43 → local 32.72, multi-view 29.04 (§4.4.1 says +0.29 but the table differs by 1.29; the conclusion says a 3.71 drop, the table 3.68 — the table is used); Table 4: stateful 66.50 vs stateless 83.08; Table 5: 4th (57.91). Limits (§5): pedestrian-centric crops can miss context; needs hand-drawn boxes. Our simulation asks CLIP the jacket colour of the 5 near riders: whole photo 1/5 ('green' every time), crops 2/5; probability on the right colour 0.18 → 0.35; black jackets still missed (neighbours inside the crop). Back to session 5 D (CLIP); forward to the project.</p></aside>
+</section>
+
+<!-- 40 -->
 <section>
   <p class="kicker">Session 8 · what to remember</p>
   <h2 class="claim">What, where, which pixels — and at what cost</h2>
@@ -1269,7 +1298,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ทวน 4 ข้อ A–D · ปิดสัญญาคาบ 5 D · ต่อด้วยครึ่ง B นำเสนอ T7</p><p>🇬🇧 Recap A–D. Session 5 D's promise is kept. Half B's T7 talks follow.</p></aside>
 </section>
 
-<!-- 39 -->
+<!-- 41 -->
 <section>
   <p class="kicker">Project · this week</p>
   <h2 class="claim">Project topic: due this week</h2>
@@ -1283,7 +1312,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 เตือนส่งหัวข้อสัปดาห์นี้ · pitch สัปดาห์ 10 · ทวนชุดเครื่องมือคาบ 4–8</p><p>🇬🇧 Topic due this week; pitch in week 10. The toolbox from sessions 4–8.</p></aside>
 </section>
 
-<!-- 40 -->
+<!-- 42 -->
 <section>
   <p class="kicker">Assignment · topic set T8</p>
   <h2 class="claim">Half A: pick a T8 topic today — you present it in session 9</h2>
@@ -1292,7 +1321,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ครึ่ง A เลือกหัวข้อ กลุ่มละหนึ่งหัวข้อ ไม่ซ้ำกัน · ส่งไฟล์ตามกำหนดก่อนคาบ 9</p><p>🇬🇧 Half A picks one topic per group, no repeats; files due before session 9.</p></aside>
 </section>
 
-<!-- 41 -->
+<!-- 43 -->
 <section>
   <p class="kicker">Next · Session 9</p>
   <h2 class="claim">What moves, which way — and is it the same object?</h2>
@@ -1306,7 +1335,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <aside class="notes"><p>🇹🇭 ปิดคาบ: ปูทางคาบ 9</p><p>🇬🇧 Close the session and set up session 9.</p></aside>
 </section>
 
-<!-- 42 -->
+<!-- 44 -->
 <section>
   <p class="kicker">References</p>
   <h2 class="claim">Where session 8 comes from</h2>
@@ -1316,6 +1345,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     <li>M. Minderer et al. (2022). Simple open-vocabulary object detection with vision transformers (OWL-ViT). <i>ECCV</i>.</li>
     <li>A. Radford et al. (2021). Learning transferable visual models from natural language supervision (CLIP), §7. <i>ICML</i>.</li>
     <li>T. Gebru et al. (2021). Datasheets for datasets. <i>Communications of the ACM</i> 64(12).</li>
+    <li>S. Phimsiri et al. (2025). TrafficInternVL: spatially-guided fine-tuning with caption refinement for fine-grained traffic safety captioning and VQA. <i>ICCV Workshops</i>, 5358–5365.</li>
     <li>R. Szeliski (2022). <i>Computer Vision: Algorithms and Applications</i>, 2nd ed., §6.3–6.4 · A. Torralba, P. Isola &amp; W. Freeman (2024). <i>Foundations of Computer Vision</i>, ch. 4.</li>
   </ul>
   <p class="small refimg">Photo (CC0, Wikimedia Commons): Fons Heijnsbroek, “Amsterdam, 2023 — biking people over the city bridge Odebrug”. Models run on it for this course: YOLOv8n, YOLOv8x-seg, SAM ViT-B (facebook/sam-vit-base), OWL-ViT B/32 (google/owlvit-base-patch32). The 12 true boxes were drawn and checked by hand.</p>
