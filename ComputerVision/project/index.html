@@ -117,7 +117,7 @@
       <li>What really separates solution A from B? If they tie, which do you pick?</li>
       <li>What about this dataset needs care before you use it?</li>
     </ul></div>
-    <div><b>Results session</b><ul>
+    <div><b>Demo session</b><ul>
       <li>What does this cell do? If you delete it, what changes?</li>
       <li>Why this kernel size / threshold / pretrained model?</li>
       <li>Which cell produced the number on this slide?</li>
@@ -130,9 +130,9 @@
   <table>
     <tr><th>Session</th><th>Files</th></tr>
     <tr><td>Proposal</td><td>presentation clip + slide deck (PDF)</td></tr>
-    <tr><td>Results</td><td>slide deck (PDF) + code — an <code>.ipynb</code> file (download it from Colab), <b>one file with every experiment</b> + <b>its data as a <code>.zip</code></b> + presentation clip</td></tr>
+    <tr><td>Demo</td><td>slide deck (PDF) + code — an <code>.ipynb</code> file (download it from Colab), <b>one file with every experiment</b> + <b>its data as a <code>.zip</code></b> + presentation clip</td></tr>
   </table>
-  <p class="note"><b>The results session’s data — one <code>.zip</code> with the notebook’s name</b> (only the extension changes): <code>CV_A_RES_LeafDiseaseDetection.ipynb</code> goes with <code>CV_A_RES_LeafDiseaseDetection.zip</code>. Code without its data does not run.<br>Inside: <code>README.txt</code> (where the data comes from and its licence, how it is split, how to run, who did what) and a <code>data/</code> folder with every file the notebook opens — images, videos, labels, weights you trained yourselves.<br>The notebook’s first cell unzips it and reads from <code>data/</code> by relative path — <code>!unzip -q -o CV_A_RES_LeafDiseaseDetection.zip</code>, then <code>cv2.imread('data/test/leaf_001.jpg')</code> — never a path on your own machine or Drive.<br><b>Test before you submit:</b> a fresh Colab, upload only the <code>.ipynb</code> and the <code>.zip</code>, Run all — it must finish. Too big to upload? Zip the part the notebook actually uses (say, the whole test set and some of the training set) and say in README.txt where the full set is and how you cut it. Pretrained weights the library downloads itself (such as <code>yolov8n.pt</code>) need not be included.</p>
+  <p class="note"><b>The demo’s data — one <code>.zip</code> with the notebook’s name</b> (only the extension changes): <code>CV_A_DEMO_LeafDiseaseDetection.ipynb</code> goes with <code>CV_A_DEMO_LeafDiseaseDetection.zip</code>. Code without its data does not run.<br>Inside: <code>README.txt</code> (where the data comes from and its licence, how it is split, how to run, who did what) and a <code>data/</code> folder with every file the notebook opens — images, videos, labels, weights you trained yourselves.<br>The notebook’s first cell unzips it and reads from <code>data/</code> by relative path — <code>!unzip -q -o CV_A_DEMO_LeafDiseaseDetection.zip</code>, then <code>cv2.imread('data/test/leaf_001.jpg')</code> — never a path on your own machine or Drive.<br><b>Test before you submit:</b> a fresh Colab, upload only the <code>.ipynb</code> and the <code>.zip</code>, Run all — it must finish. Too big to upload? Zip the part the notebook actually uses (say, the whole test set and some of the training set) and say in README.txt where the full set is and how you cut it. Pretrained weights the library downloads itself (such as <code>yolov8n.pt</code>) need not be included.</p>
 
   <h3>File naming — every submission (presentation rounds R1–R5 and both project sessions)</h3>
   <pre>COURSE_ID_SLOT_Topic.ext</pre>
@@ -140,13 +140,13 @@
     <tr><th>Part</th><th>Value</th></tr>
     <tr><td>COURSE</td><td><code>CV</code></td></tr>
     <tr><td>ID</td><td>group: your group’s letter, <code>A</code>–<code>G</code>, e.g. <code>A</code> · working alone: your 8-digit student ID, e.g. <code>69012345</code></td></tr>
-    <tr><td>SLOT</td><td><code>R1</code>–<code>R5</code> presentation rounds · <code>PROP</code> proposal · <code>RES</code> results</td></tr>
+    <tr><td>SLOT</td><td><code>R1</code>–<code>R5</code> presentation rounds · <code>PROP</code> proposal · <code>DEMO</code> results, code &amp; demo</td></tr>
     <tr><td>Topic</td><td>English, CamelCase, about 30 characters at most</td></tr>
     <tr><td>ext</td><td><code>.pdf</code> slides · <code>.mp4</code> clip (<code>.mov</code> accepted) · <code>.ipynb</code> notebook · <code>.zip</code> the notebook’s data (same name as the notebook)</td></tr>
   </table>
-  <p class="note"><b>Group</b> (group A): <code>CV_A_R1_PinholeCamera.pdf</code> · <code>CV_A_R1_PinholeCamera.mp4</code> · <code>CV_A_PROP_LeafDiseaseDetection.pdf</code> · <code>CV_A_PROP_LeafDiseaseDetection.mp4</code> · <code>CV_A_RES_LeafDiseaseDetection.pdf</code> · <code>CV_A_RES_LeafDiseaseDetection.mp4</code> · <code>CV_A_RES_LeafDiseaseDetection.ipynb</code> · <code>CV_A_RES_LeafDiseaseDetection.zip</code><br>
-  <b>Solo</b> (student ID 69012345): <code>CV_69012345_R1_PinholeCamera.pdf</code> · <code>CV_69012345_R1_PinholeCamera.mp4</code> · <code>CV_69012345_PROP_LeafDiseaseDetection.pdf</code> · <code>CV_69012345_PROP_LeafDiseaseDetection.mp4</code> · <code>CV_69012345_RES_LeafDiseaseDetection.pdf</code> · <code>CV_69012345_RES_LeafDiseaseDetection.mp4</code> · <code>CV_69012345_RES_LeafDiseaseDetection.ipynb</code> · <code>CV_69012345_RES_LeafDiseaseDetection.zip</code><br>
-  Letters, digits, <code>_</code> and <code>-</code> only — no spaces, no Thai · a resubmission ends in <code>_v2</code> · <b>files only — no links (Colab, Drive, YouTube) and <code>.zip</code> only for the results session’s data</b>; upload each file on its own · <b>a missing or wrongly named file leaves its whole assignment incomplete &mdash; that assignment scores nothing on C17</b>.</p>
+  <p class="note"><b>Group</b> (group A): <code>CV_A_R1_PinholeCamera.pdf</code> · <code>CV_A_R1_PinholeCamera.mp4</code> · <code>CV_A_PROP_LeafDiseaseDetection.pdf</code> · <code>CV_A_PROP_LeafDiseaseDetection.mp4</code> · <code>CV_A_DEMO_LeafDiseaseDetection.pdf</code> · <code>CV_A_DEMO_LeafDiseaseDetection.mp4</code> · <code>CV_A_DEMO_LeafDiseaseDetection.ipynb</code> · <code>CV_A_DEMO_LeafDiseaseDetection.zip</code><br>
+  <b>Solo</b> (student ID 69012345): <code>CV_69012345_R1_PinholeCamera.pdf</code> · <code>CV_69012345_R1_PinholeCamera.mp4</code> · <code>CV_69012345_PROP_LeafDiseaseDetection.pdf</code> · <code>CV_69012345_PROP_LeafDiseaseDetection.mp4</code> · <code>CV_69012345_DEMO_LeafDiseaseDetection.pdf</code> · <code>CV_69012345_DEMO_LeafDiseaseDetection.mp4</code> · <code>CV_69012345_DEMO_LeafDiseaseDetection.ipynb</code> · <code>CV_69012345_DEMO_LeafDiseaseDetection.zip</code><br>
+  Letters, digits, <code>_</code> and <code>-</code> only — no spaces, no Thai · a resubmission ends in <code>_v2</code> · <b>files only — no links (Colab, Drive, YouTube) and <code>.zip</code> only for the demo’s data</b>; upload each file on its own · <b>a missing or wrongly named file leaves its whole assignment incomplete &mdash; that assignment scores nothing on C17</b>.</p>
 
   <h2>5. AI and attribution</h2>
   <p>You may use AI to help write code, <b>but you must understand every cell you submit</b> — the demo (C10) and the Q&amp;A (C16) are where that is checked. If you use a pretrained model or borrow code or data, cite the source on the slides and in the README (no citation = treated as copying).</p>
