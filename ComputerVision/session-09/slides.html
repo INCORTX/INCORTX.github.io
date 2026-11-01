@@ -183,7 +183,7 @@ html.reading .cols.today{grid-template-columns:1fr;}
 .outcomes li::before{content:counter(c);position:absolute;left:0;top:.42em;width:1.6em;height:1.6em;border-radius:50%;background:var(--gold);color:#fff;font-family:var(--display);font-weight:700;font-size:.85em;display:flex;align-items:center;justify-content:center;}
 
 /* grading */
-.gtiles{display:grid;grid-template-columns:40fr 30fr 20fr 10fr;gap:.4em;margin:.2em 0 .6em;}
+.gtiles{display:grid;grid-template-columns:45fr 30fr 20fr minmax(5.2em,5fr);gap:.4em;margin:.2em 0 .6em;}
 .gtile{border-radius:14px;padding:.6em .7em;color:#fff;min-height:9em;display:flex;flex-direction:column;justify-content:space-between;}
 .gtile .num{font-family:var(--display);font-size:2.4em;font-weight:700;line-height:1;}
 .gtile .lbl{font-family:var(--display);font-weight:600;font-size:.72em;}
@@ -457,8 +457,8 @@ html.reading .tl.tl7,html.reading .tl.tl8{grid-template-columns:repeat(3,minmax(
 .tl.tl-sm div::before{width:.95em;height:.95em;top:.25em;}
 .rubric{gap:1em;}
 .rubric h3{font-size:.56em;margin:0 0 .3em;}
-.reveal .rubric ol{list-style:none;margin:0;padding:0;counter-reset:rb;display:grid;gap:2px;}
-.rubric li{counter-increment:rb;display:grid;grid-template-columns:1.6em 1fr;gap:.4em;align-items:baseline;margin:0;padding:.07em .45em;border-radius:6px;font-size:.44em;line-height:1.28;background:var(--soft);}
+.reveal .rubric ol{list-style:none;margin:0;padding:0;counter-reset:rb;display:grid;gap:1px;}
+.rubric li{counter-increment:rb;display:grid;grid-template-columns:1.6em 1fr;gap:.4em;align-items:baseline;margin:0;padding:.05em .45em;border-radius:6px;font-size:.41em;line-height:1.26;background:var(--soft);}
 .rubric li::before{content:counter(rb);font-family:var(--display);font-weight:700;color:var(--gold);text-align:right;}
 html.reading .rubric li{font-size:14px;}
 html.reading .rubric h3{font-size:15px;}
@@ -1125,7 +1125,7 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
     </div>
   </div>
 
-  <aside class="notes"><p>🇹🇭 ตัวเลขวัดจริงด้วย time_stages.py บน Apple M1 Pro (CPU อย่างเดียว · median 20 ครั้ง · ภาพ 1920 × 1080) · YOLO 640 29.6 · 320 12.3 · + mask 38.3 · ByteTrack 0.8 · Farneback 960 × 540 48.8 · homography < 0.1 ms · กดเลือก: เปิด flow ทุกเฟรม → เกินงบ · ทุกเฟรมที่ 3 + YOLO 320 → ผ่าน · เครื่องอื่นได้ตัวเลขอื่น — ให้นักศึกษาวัดเครื่องตัวเอง (C3 ของ Demo)</p><p>🇬🇧 Measured by time_stages.py on Apple M1 Pro (CPU only, median of 20, 1920 × 1080 frames): YOLO 640 29.6, 320 12.3, with masks 38.3, ByteTrack 0.8, Farneback at 960 × 540 48.8, homography under 0.1 ms. Click: flow on every frame breaks the budget; every 3rd plus YOLO 320 fits. Other machines give other numbers — students measure their own (Demo criterion C3).</p></aside>
+  <aside class="notes"><p>🇹🇭 ตัวเลขวัดจริงด้วย time_stages.py บน Apple M1 Pro (CPU อย่างเดียว · median 20 ครั้ง · ภาพ 1920 × 1080) · YOLO 640 29.6 · 320 12.3 · + mask 38.3 · ByteTrack 0.8 · Farneback 960 × 540 48.8 · homography < 0.1 ms · กดเลือก: เปิด flow ทุกเฟรม → เกินงบ · ทุกเฟรมที่ 3 + YOLO 320 → ผ่าน · เครื่องอื่นได้ตัวเลขอื่น — ให้นักศึกษาวัดเครื่องตัวเอง (C2 ของ Demo)</p><p>🇬🇧 Measured by time_stages.py on Apple M1 Pro (CPU only, median of 20, 1920 × 1080 frames): YOLO 640 29.6, 320 12.3, with masks 38.3, ByteTrack 0.8, Farneback at 960 × 540 48.8, homography under 0.1 ms. Click: flow on every frame breaks the budget; every 3rd plus YOLO 320 fits. Other machines give other numbers — students measure their own (Demo criterion C2).</p></aside>
 </section>
 
 <!-- 30 -->
@@ -1134,15 +1134,15 @@ html.reading .src,html.reading .pix-readout,html.reading .kicker,html.reading .c
   <h2 class="claim">Two or three solutions, one honest comparison</h2>
   <div>
     <table class="tbl big" style="width:100%">
-      <tr><th>count people on the crossing</th><th>sessions</th><th>C2 · accuracy</th><th>C3 · speed &amp; resources</th><th>risk</th></tr>
+      <tr><th>count people on the crossing</th><th>sessions</th><th>C3 · accuracy</th><th>C2 · speed &amp; resources</th><th>risk</th></tr>
       <tr><td>detect + track + count at a line</td><td>8 · 9</td><td>count error vs a hand count</td><td>30 ms / frame here</td><td>IDs break (39 IDs, ≤ 19 people)</td></tr>
       <tr><td>frame difference + blobs</td><td>3 · 9</td><td>same metric, same clip</td><td>no model at all</td><td>groups merge; light fools it</td></tr>
       <tr><td>open-vocabulary detector</td><td>5 · 8</td><td>same metric, same clip</td><td>a bigger model</td><td>new words, inherited bias</td></tr>
     </table>
-    <p class="takeaway" style="margin-top:.7em"><span>Project Demo, C2–C4: one metric that fits, the same data for every solution, time per frame for each — then explain why each one won or lost.</span></p>
+    <p class="takeaway" style="margin-top:.7em"><span>Project: choose the metric in the proposal (P5) and recap it in the demo (C1); report it and the time per frame of every solution, on the same data (C2–C3) — then explain why each one won or lost.</span></p>
   </div>
 
-  <aside class="notes"><p>🇹🇭 เกณฑ์ Demo ของโปรเจกต์ (project_brief.md): C2 metric เดียวบนข้อมูลชุดเดียว · C3 เวลา/หน่วยความจำ/พารามิเตอร์ของทุก solution · C4 วิเคราะห์ราย solution · C7 เลือก solution สุดท้าย · ตัวเลข ms วัดจริงเฉพาะแบบแรก — แบบอื่นยังไม่ได้วัด จึงเขียนเชิงคุณภาพ</p><p>🇬🇧 The project's Demo criteria (project_brief.md): C2 one metric on one dataset; C3 time, memory and parameters for every solution; C4 per-solution analysis; C7 choose the final solution. Only the first row's ms is measured — the others are left qualitative on purpose.</p></aside>
+  <aside class="notes"><p>🇹🇭 เกณฑ์โปรเจกต์ (project_brief.md · เลขข้อปรับ 2026-11-01): Proposal P5 เลือก metric และเหตุผล · Demo C1 recap metric อีกรอบ · C2 เวลา/หน่วยความจำ/พารามิเตอร์ของทุก solution · C3 ค่า metric ของทุก solution บนข้อมูลชุดเดียว + วิเคราะห์ · C6 เลือก solution สุดท้าย · ตัวเลข ms วัดจริงเฉพาะแบบแรก — แบบอื่นยังไม่ได้วัด จึงเขียนเชิงคุณภาพ</p><p>🇬🇧 The project criteria (project_brief.md, renumbered 2026-11-01): proposal P5 picks the metric and says why; demo C1 recaps it; C2 time, memory and parameters for every solution; C3 every solution's metric on one dataset, analysed; C6 choose the final solution. Only the first row's ms is measured — the others are left qualitative on purpose.</p></aside>
 </section>
 
 <!-- 31 -->
