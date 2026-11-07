@@ -40,6 +40,9 @@
   .scale{display:flex;flex-wrap:wrap;gap:.4rem;margin:.4rem 0 .5rem}
   .scale span{border:1px solid var(--line);border-radius:999px;padding:.2rem .75rem;font-size:.9rem;background:#fff}
   .scale b{color:var(--gold);font-family:var(--display)}
+  table.files td.w { width:24%; } table.files td.f { width:16%; } table.files tr.tot td { background:var(--gold-soft); }
+  @media (max-width:700px) { table.files td.w, table.files td.f { width:auto; } }
+  td[rowspan] { border-right:1px solid var(--line); }
   .toc { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 26px; }
   .toc a { text-decoration:none; font:600 14px var(--display); border:1px solid var(--line); border-radius:999px; padding:5px 12px; background:var(--soft); color:var(--ink); }
   .toc a b { color:var(--gold); margin-right:4px; }
@@ -67,13 +70,19 @@
 
   <h2 id="hand-in">1. Hand in every file, named one way</h2>
   <p>The same rules for every piece of work — the four assignment turns, the proposal and the demo.</p>
-  <table>
-    <tr><th>Work</th><th>SLOT</th><th>Files</th><th>When</th></tr>
-    <tr><td>Assignment rounds 1–4</td><td><code>R1</code>–<code>R4</code></td><td>clip + slide PDF</td><td>each turn’s deadline</td></tr>
-    <tr><td>Proposal</td><td><code>PROP</code></td><td>clip + slide PDF</td><td>week 11</td></tr>
-    <tr><td>Demo</td><td><code>DEMO</code></td><td>clip + slide PDF + <code>.ipynb</code> (one file with every experiment) + <code>.zip</code> (the data the notebook reads)</td><td>week 13</td></tr>
+  <table class="files">
+    <tr><th>Work · SLOT · due</th><th>File</th><th>Must have</th></tr>
+    <tr><td class="w" rowspan="2"><b>Assignment turn</b><br><code>R1</code>–<code>R4</code><br><span class="d">each turn’s deadline · 4 turns × 2 files</span></td><td class="f">slides <code>.pdf</code></td><td><b>10+ slides</b> · page numbers on every slide · a title slide with names, student IDs and the topic · at least one picture · no slide over ~6 lines · groups: a “who did what” slide (ID + real name)</td></tr>
+    <tr><td class="f">video <code>.mp4</code></td><td><b>8+ minutes</b> · opens with the group, the topic and who presents · you explain, you do not read · it does not replace the live talk in class</td></tr>
+    <tr><td class="w" rowspan="2"><b>Proposal</b><br><code>PROP</code><br><span class="d">week 11 · 2 files</span></td><td class="f">slides <code>.pdf</code></td><td><b>30+ slides</b> · page numbers · at least one picture · ≤ 6 lines a slide · covers P1–P8 (pitch → dataset → core techniques → solutions → setting → metric → parameters → creativity) · groups: “who did what”</td></tr>
+    <tr><td class="f">video <code>.mp4</code></td><td><b>15+ minutes</b> · the whole proposal talk</td></tr>
+    <tr><td class="w" rowspan="4"><b>Demo</b><br><code>DEMO</code><br><span class="d">week 13 · 4 files</span></td><td class="f">slides <code>.pdf</code></td><td><b>20+ slides</b> · page numbers · at least one picture · ≤ 6 lines a slide · covers C1–C9 (recap → setting → parameters → per-solution results → speed → overall → limitations → future work) · <b>no code needed</b> · groups: “who did what”</td></tr>
+    <tr><td class="f">video <code>.mp4</code></td><td><b>15+ minutes including the live demo</b> — record the screen while the notebook runs</td></tr>
+    <tr><td class="f">notebook <code>.ipynb</code></td><td><b>one file with every experiment</b>, downloaded from Colab · a section per solution (groups: with its author) · runs top to bottom from just the <code>.ipynb</code> and the <code>.zip</code></td></tr>
+    <tr><td class="f">data <code>.zip</code></td><td>same name as the notebook · <code>README.txt</code> + a <code>data/</code> folder with every file the notebook opens (details below)</td></tr>
+    <tr class="tot"><td colspan="2"><b>Across the term</b></td><td><b>14 files</b> — 8 for the assignment turns, 2 for the proposal, 4 for the demo · the week-10 pitch has no files</td></tr>
   </table>
-  <p>14 files in the term. Name every file <code>CV_ID_SLOT_Topic.ext</code> &mdash; ID is your group’s letter, <code>A</code>–<code>G</code> (<code>A</code>) or, working alone, your 8-digit student ID (<code>69012345</code>) &middot; Topic in English CamelCase &middot; <code>.pdf</code> slides, <code>.mp4</code> clip (<code>.mov</code> accepted), <code>.ipynb</code> notebook, <code>.zip</code> the notebook’s data (same name as the notebook).</p>
+  <p>Name every file <code>CV_ID_SLOT_Topic.ext</code> &mdash; ID is your group’s letter, <code>A</code>–<code>G</code> (<code>A</code>) or, working alone, your 8-digit student ID (<code>69012345</code>) &middot; Topic in English CamelCase &middot; <code>.pdf</code> slides, <code>.mp4</code> clip (<code>.mov</code> accepted), <code>.ipynb</code> notebook, <code>.zip</code> the notebook’s data (same name as the notebook).</p>
   <p class="note"><b>Group</b> (group A): <code>CV_A_R1_PinholeCamera.pdf</code> · <code>CV_A_R1_PinholeCamera.mp4</code> · <code>CV_A_PROP_LeafDiseaseDetection.pdf</code> · <code>CV_A_PROP_LeafDiseaseDetection.mp4</code> · <code>CV_A_DEMO_LeafDiseaseDetection.pdf</code> · <code>CV_A_DEMO_LeafDiseaseDetection.mp4</code> · <code>CV_A_DEMO_LeafDiseaseDetection.ipynb</code> · <code>CV_A_DEMO_LeafDiseaseDetection.zip</code><br>
   <b>Solo</b> (student ID 69012345): <code>CV_69012345_R1_PinholeCamera.pdf</code> · <code>CV_69012345_R1_PinholeCamera.mp4</code> · <code>CV_69012345_PROP_LeafDiseaseDetection.pdf</code> · <code>CV_69012345_PROP_LeafDiseaseDetection.mp4</code> · <code>CV_69012345_DEMO_LeafDiseaseDetection.pdf</code> · <code>CV_69012345_DEMO_LeafDiseaseDetection.mp4</code> · <code>CV_69012345_DEMO_LeafDiseaseDetection.ipynb</code> · <code>CV_69012345_DEMO_LeafDiseaseDetection.zip</code><br>
   Letters, digits, <code>_</code> and <code>-</code> only — no spaces, no Thai · a resubmission ends in <code>_v2</code> · <b>files only — no links (Colab, Drive, YouTube), and <code>.zip</code> only for the demo’s data</b>; upload each file on its own · <b>a wrongly named file counts as missing on C17</b>.</p>
